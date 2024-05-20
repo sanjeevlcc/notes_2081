@@ -1,5 +1,6 @@
 
 
+https://cse19-iiith.vlabs.ac.in/exp/image-histogram/index.html
 
 =========================
 histogram labs
