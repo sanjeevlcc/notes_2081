@@ -144,5 +144,267 @@ This approach allows you to interactively explore image processing techniques an
 
 
 
+==================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To perform histogram labs in C, you can create a program that reads an image, 
+computes its histogram, and displays the results using a library such as OpenCV.
+Here’s a step-by-step guide to set up the environment using Docker and write a
+C program to perform histogram operations on an image.
+
+Step 1: Set Up Docker Environment
+-----------------------------------
+First, create a Dockerfile that sets up an environment with OpenCV and necessary tools to compile and run C programs.
+
+
+# Use the official Ubuntu image
+FROM ubuntu:20.04
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    wget \
+    unzip \
+    pkg-config \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    libv4l-dev \
+    libxvidcore-dev \
+    libx264-dev \
+    libgtk-3-dev \
+    libatlas-base-dev \
+    gfortran \
+    python3-dev \
+    python3-pip
+
+# Install OpenCV
+RUN apt-get install -y libopencv-dev
+
+# Set the working directory in the container
+WORKDIR /workspace
+
+# Copy the current directory contents into the container at /workspace
+COPY . /workspace
+
+# Set the entry point
+ENTRYPOINT ["/bin/bash"]
+
+
+
+
+
+
+Step 2: Build the Docker Image
+-----------------------------------
+Navigate to the directory containing your Dockerfile and build the Docker image.
+
+docker build -t c-opencv-histogram .
+
+
+
+
+
+
+Step 3: Run the Docker Container
+-----------------------------------
+Run the container with an interactive terminal session to compile and run your C programs.
+
+
+docker run -it --rm -v $(pwd):/workspace c-opencv-histogram
+
+
+
+
+
+
+
+Step 4: Write the C Program for Histogram Processing
+----------------------------------------------------------------------
+Create a file named histogram.c in your working directory and add the following code:
+
+
+#include <opencv2/opencv.hpp>
+#include <stdio.h>
+
+using namespace cv;
+
+int main(int argc, char** argv) {
+    if (argc != 2) {
+        printf("Usage: %s <image_path>\n", argv[0]);
+        return -1;
+    }
+
+    // Read the image file
+    Mat image = imread(argv[1], IMREAD_GRAYSCALE);
+    if (image.empty()) {
+        printf("Could not open or find the image\n");
+        return -1;
+    }
+
+    // Calculate the histogram
+    int histSize = 256;
+    float range[] = { 0, 256 };
+    const float* histRange = { range };
+    Mat hist;
+    calcHist(&image, 1, 0, Mat(), hist, 1, &histSize, &histRange);
+
+    // Normalize the result to [0, histImage.rows]
+    normalize(hist, hist, 0, 400, NORM_MINMAX, -1, Mat());
+
+    // Create an image to display the histogram
+    int hist_w = 512, hist_h = 400;
+    int bin_w = cvRound((double)hist_w / histSize);
+    Mat histImage(hist_h, hist_w, CV_8UC1, Scalar(0));
+
+    // Draw the histogram
+    for (int i = 1; i < histSize; i++) {
+        line(histImage, Point(bin_w * (i - 1), hist_h - cvRound(hist.at<float>(i - 1))),
+             Point(bin_w * i, hist_h - cvRound(hist.at<float>(i))),
+             Scalar(255), 2, 8, 0);
+    }
+
+    // Display the original image
+    namedWindow("Original Image", WINDOW_AUTOSIZE);
+    imshow("Original Image", image);
+
+    // Display the histogram
+    namedWindow("Histogram", WINDOW_AUTOSIZE);
+    imshow("Histogram", histImage);
+
+    waitKey(0); // Wait for any keystroke in the window
+
+    return 0;
+}
+
+
+
+
+
+
+Step 5: Compile the C Program
+-----------------------------------
+Inside the Docker container, compile the histogram.c file using the following command:
+
+
+g++ -o histogram histogram.c `pkg-config --cflags --libs opencv4`
+
+
+
+
+
+
+Step 6: Run the C Program
+-----------------------------------
+Run the compiled program with the path to your image file:
+
+
+./histogram path_to_your_image.jpg
+
+
+
+
+This program reads an image, computes its histogram, normalizes 
+the histogram, and displays both the original image and the histogram using OpenCV.
+
+
+
+
+
+
+
+
+Conclusion
+-----------------------------------
+By following these steps, you can set up a Docker environment and write a 
+C program to perform histogram operations on an image.
+This approach uses OpenCV for image processing tasks, leveraging its powerful
+functionalities and ease of use in handling image data.
+
+
+
+
+
+
+
 
 
