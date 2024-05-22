@@ -1,0 +1,80 @@
+https://killercoda.com/playgrounds/scenario/ubuntu
+
+
+cat /etc/os-release
+
+docker run -d --name bibek -p 2020:80 httpd
+docker ps
+
+docker exec -ti bibek bash
+
+root@f6996a9403d9:/usr/local/apache2/htdocs# cat > index.html 
+
+<h1> this is the class of bca 5 sem unser ecommerce, by sanjeev thapa </h1>
+
+
+2 times EXIT
+
+
+
+[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
+
+
+BASIC APP
+-------------
+
+
+
+controlplane $ apt  install tree
+
+ 
+controlplane $ git clone https://github.com/yogesh174/docker-project.git
+
+
+
+controlplane $ cd docker-project/
+controlplane $ ls
+README.md  apache  docker-compose.yml  php  public
+
+
+controlplane $ tree
+.
+|-- README.md
+|-- apache
+|   |-- Dockerfile
+|   `-- apache_php.conf
+|-- docker-compose.yml
+|-- php
+|   `-- Dockerfile
+`-- public
+    |-- config.php
+    |-- create.php
+    |-- delete.php
+    |-- dump
+    |   `-- dump.sql
+    |-- error.php
+    |-- index.php
+    |-- read.php
+    `-- update.php
+
+4 directories, 13 files
+
+
+
+controlplane $ less public/index.php
+
+
+
+--------
+
+controlplane $ docker images
+controlplane $ docker ps
+
+
+
+docker-compose up -d
+
+
+
+
+
