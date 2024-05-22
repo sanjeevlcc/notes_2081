@@ -5,6 +5,33 @@ Distributed Systems
 A distributed system is a network of independent computers that work together to achieve a common goal. 
 These systems enable resource sharing, improved performance, and fault tolerance. 
 
+A distributed system is a collection of computer programs that utilize computational 
+resources across multiple, separate computation nodes to achieve a common, 
+shared goal. 
+
+Distributed systems aim to remove bottlenecks or central points of failure from a system
+
+
+
+                                    Distributed System Example: Client-Server Model
+                                    -----------------------------------------------
+                                    
+                                               +------------+
+                                               |   Client   |
+                                               +-----+------+
+                                                     |
+                                                     | HTTP Request
+                                                     v
+                                              +------+--------+
+                                              |   Web Server  |
+                                              +------+--------+
+                                                     |
+                                                     | Database Query
+                                                     v
+                                           +---------+----------+
+                                           |   Database Server  |
+                                           +--------------------+
+
 
 
 Characteristics of Distributed Systems
@@ -76,7 +103,22 @@ Types of Distributed Systems
         Each node, or peer, has equivalent capabilities and responsibilities, 
         sharing resources directly without centralized coordination. 
         Examples include file-sharing networks like BitTorrent.
-        
+
+                                 (Node 1)               (Node 2)
+                                  +---+                  +---+
+                                  | 1 |---+          +---| 2 |
+                                  +---+   |          |   +---+
+                                   |      |          |      |
+                                   |      +---+  +---+      |
+                                   |          |  |          |
+                                   |          |  |          |
+                                  +---+       |  |       +---+
+                                  | 3 |-------+  +-------| 4 |
+                                  +---+                  +---+
+                                (Node 3)               (Node 4)
+
+
+
         
         Three-Tier Architecture: 
         -------------------------
@@ -182,7 +224,24 @@ Implementation
         CDNs: 
         --------------
         Networks of servers that distribute content globally to reduce latency and improve load times.
-        
+                              
+                                    +-----------------+
+                                    |  Origin Server  |
+                                    +-----------------+
+                                             |
+                                             | Push Content
+                                             v
+                                  +------------------+          +------------------+
+                                  | CDN Edge Server 1|  <---->  | CDN Edge Server 2|
+                                  +------------------+          +------------------+
+                                             |                           |
+                                             |                           |
+                                   +---------+---------+      +----------+---------+
+                                   |     User 1        |      |      User 2        |
+                                   +-------------------+      +--------------------+
+
+
+
         Search Engines: 
         --------------
         Services like Google and Bing index and rank web content, making it easily searchable.
