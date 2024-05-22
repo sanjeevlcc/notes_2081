@@ -36,31 +36,90 @@ Distributed systems aim to remove bottlenecks or central points of failure from 
 
 Characteristics of Distributed Systems
 ------------------------------------
-Heterogeneity: Components of a distributed system can vary in terms of hardware, operating systems, and network protocols.
-Scalability: The system can easily expand by adding more nodes without significant changes to the architecture or performance issues.
-Transparency: The complexity of the system is hidden from the user, who perceives it as a single coherent system.
+Heterogeneity: Components of a distributed system can vary in terms of 
+hardware, operating systems, and network protocols.
+
+      
+      Scalability: 
+      ----------------
+      The system can easily expand by adding more nodes without significant
+      changes to the architecture or performance issues.
+      
+      
+      Transparency: 
+      ----------------
+      The complexity of the system is hidden from the user, who perceives
+      it as a single coherent system.
+      
 
       Fault Tolerance: 
       ----------------
       The system can continue to operate properly in the event of the failure of some of its components.
       
-      
+              +---------+    +---------+    +---------+
+              | Server 1|    | Server 2|    | Server 3|
+              +---------+    +---------+    +---------+
+                   \            /               /
+                    \          /               /
+                     \        /               /
+                      \      /               /
+                       +---------+    +---------+
+                       | Load    |    | Failover|
+                       | Balancer|    | Server  |
+                       +---------+    +---------+
+
+
+
       Concurrency: 
       ----------------
       Multiple processes can occur simultaneously, leveraging the distributed 
       nature to enhance performance.
-      
+
+            +------------+    +------------+    +------------+
+            | Client 1   |    | Client 2   |    | Client 3   |
+            +-----+------+    +-----+------+    +-----+------+
+                  |                 |                  |
+                  |                 |                  |
+            +-----v------+    +-----v------+    +------v-----+
+            | Transaction |    | Transaction |    | Transaction|
+            | Server      |    | Server      |    | Server     |
+            +-------------+    +-------------+    +------------+
+
+
       
       Resource Sharing: 
       ----------------
       Resources such as files, printers, and storage devices are shared among 
       users across the network.
 
+            +-----------+    +-----------+    +-----------+
+            | Workstation|    | Workstation|    | Workstation|
+            |  A         |    |  B         |    |  C         |
+            +-----+-----+    +-----+-----+    +-----+-----+
+                  |                |                |
+                  |                |                |
+            +-----v-----+    +-----v-----+    +-----v-----+
+            | Shared    |    | Shared    |    | Shared    |
+            | Printer   |    | Storage   |    | Database  |
+            +-----------+    +-----------+    +-----------+
+
 
       Openness: 
       ----------------
       The system can be extended or improved with new components and features.
       
+                +------------+    +------------+    +------------+
+                | Windows    |    | Linux      |    | macOS      |
+                | Client     |    | Client     |    | Client     |
+                +-----+------+    +-----+------+    +-----+------+
+                      |                 |                 |
+                      |                 |                 |
+                +-----v------+    +-----v------+    +-----v------+
+                | Open       |    | Open       |    | Open      |
+                | Protocols  |    | APIs       |    | Standards |
+                +------------+    +------------+    +------------+
+
+
 
 
 
