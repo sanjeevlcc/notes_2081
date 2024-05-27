@@ -130,10 +130,182 @@ Embedded Operating Systems:
 
 
 
-=================================================
+
 
 =================================================
+Some basic Linux commands
+=================================================
 
+
+
+Copy and paste in terminal
+-----------
+
+        @sanjeevlcc ➜ ~ $ touch file1 file2 file3 file4
+        @sanjeevlcc ➜ ~ $ mkdir dir1 dir2 fol3 fol4 fol5
+        @sanjeevlcc ➜ ~ $ touch dir1/fil3 dir1/file44
+        @sanjeevlcc ➜ ~ $ touch fol4/f66 fol4/f77 fol4/f88
+        @sanjeevlcc ➜ ~ $ touch dir2/f33 dir2/f99
+
+
+
+        @sanjeevlcc ➜ ~ $ ls -R
+        .:
+        dir1  dir2  file1  file2  file3  file4  fol3  fol4  fol5  
+        
+        ./dir1:
+        fil3  file44
+        
+        ./dir2:
+        f33  f99
+        
+        ./fol3:
+        
+        ./fol4:
+        f66  f77  f88
+        
+        ./fol5:
+
+
+
+                @sanjeevlcc ➜ ~ $ tree
+                .
+                ├── dir1
+                │   ├── fil3
+                │   └── file44
+                ├── dir2
+                │   ├── f33
+                │   └── f99
+                ├── file1
+                ├── file2
+                ├── file3
+                ├── file4
+                ├── fol3
+                ├── fol4
+                │   ├── f66
+                │   ├── f77
+                │   └── f88
+                ├── fol5
+
+
+
+
+ls:
+-----------
+        Lists files and directories in the current directory.
+        Example: ls
+
+
+cd:
+-----------
+        Changes the current directory.
+        Example: cd /path/to/directory
+
+
+pwd:
+-----------
+        Prints the current working directory.
+        Example: pwd
+
+
+mkdir:
+-----------
+        Creates a new directory.
+        Example: mkdir new_directory
+
+
+
+rm:
+-----------
+        Deletes files or directories.
+        Example: rm file_to_delete
+
+
+cp:
+-----------
+        Copies files or directories.
+        Example: cp source_file destination
+
+
+mv:
+-----------
+        Moves or renames files or directories.
+        Example: mv old_file new_file
+
+
+
+
+
+
+cat > file_name                 or  cat >> file_name 
+-------------------
+        cat > file1.txt
+        this is the text we write
+        
+        CTRL + C
+
+
+
+cat:
+-----------
+        Displays the contents of a file.
+        Example: cat file_to_display
+
+
+
+
+less:
+-----------
+        Displays the contents of a file one page at a time, allowing scrolling.
+        Example: less file_to_display
+
+
+head:
+-----------
+        Displays the first few lines of a file.
+        Example: head file_to_display
+
+
+tail:
+-----------
+        Displays the last few lines of a file.
+        Example: tail file_to_display
+
+
+grep:
+-----------
+        Searches for a pattern in files.
+        Example: grep pattern file_to_search
+
+
+chmod:
+-----------
+        Changes the permissions of a file or directory.
+        Example: chmod permissions file_or_directory
+
+
+chown:
+-----------
+        Changes the owner and/or group of a file or directory.
+        Example: chown user:group file_or_directory
+
+
+ps:
+-----------
+        Displays information about running processes.
+        Example: ps aux
+
+
+kill:
+-----------
+        Terminates a process by its process ID (PID).
+        Example: kill PID
+
+
+sudo:
+-----------
+        Executes a command with superuser (administrative) privileges.
+        Example: sudo command_to_execute
 
 
 
