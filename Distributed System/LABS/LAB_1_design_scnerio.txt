@@ -399,13 +399,29 @@ mv:
 
 
 
-
-cat > file_name                 or  cat >> file_name 
--------------------
-        cat > file1.txt
-        this is the text we write
+ADD a content in file 
+-------------------------
+        cat > file_name                 or  cat >> file_name 
         
-        CTRL + C
+                cat > file1.txt
+                this is the text we write
+                
+                CTRL + C
+
+
+
+                @sanjeevlcc ➜ ~ $ cat > file2 
+                
+                hello 
+                
+                this is adding on line 
+                
+                end of file
+
+
+                ^C
+                @sanjeevlcc ➜ ~ $ 
+
 
 
 
@@ -415,6 +431,20 @@ cat:
         Example: cat file_to_display
 
 
+                        @sanjeevlcc ➜ ~ $ cat file2 
+                        
+                        hello 
+                        
+                        this is adding on line 
+                        
+                        end of file
+
+
+                        @sanjeevlcc ➜ ~ $ 
+
+
+
+
 
 
 less:
@@ -422,11 +452,28 @@ less:
         Displays the contents of a file one page at a time, allowing scrolling.
         Example: less file_to_display
 
+                @sanjeevlcc ➜ ~ $ less file2 
+
+
+
 
 head:
 -----------
         Displays the first few lines of a file.
         Example: head file_to_display
+
+                @sanjeevlcc ➜ ~ $ head file2 
+                
+                hello 
+                
+                this is adding on line 
+                
+                end of file
+                
+                
+                @sanjeevlcc ➜ ~ $ 
+
+
 
 
 tail:
@@ -435,10 +482,26 @@ tail:
         Example: tail file_to_display
 
 
+                @sanjeevlcc ➜ ~ $ tail file2 
+                
+                hello 
+                
+                this is adding on line 
+                
+                end of file
+                
+                
+                @sanjeevlcc ➜ ~ $ 
+
+
+
+
 grep:
 -----------
         Searches for a pattern in files.
         Example: grep pattern file_to_search
+
+
 
 
 chmod:
