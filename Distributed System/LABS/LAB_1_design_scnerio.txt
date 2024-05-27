@@ -195,6 +195,25 @@ ls:
         Lists files and directories in the current directory.
         Example: ls
 
+                @sanjeevlcc ➜ ~ $ ls
+                dir1  dir2  file1  file2  file3  file4  fol3  fol4  fol5
+                
+                
+                
+                @sanjeevlcc ➜ ~ $ ls -l
+                total 20
+                drwxr-sr-x 2 codespace codespace 4096 May 27 03:13 dir1
+                drwxr-sr-x 2 codespace codespace 4096 May 27 03:14 dir2
+                -rw-r--r-- 1 codespace codespace    0 May 27 03:13 file1
+                -rw-r--r-- 1 codespace codespace    0 May 27 03:13 file2
+                -rw-r--r-- 1 codespace codespace    0 May 27 03:13 file3
+                -rw-r--r-- 1 codespace codespace    0 May 27 03:13 file4
+                drwxr-sr-x 2 codespace codespace 4096 May 27 03:13 fol3
+                drwxr-sr-x 2 codespace codespace 4096 May 27 03:14 fol4
+                drwxr-sr-x 2 codespace codespace 4096 May 27 03:13 fol5
+
+
+
 
 cd:
 -----------
@@ -202,16 +221,64 @@ cd:
         Example: cd /path/to/directory
 
 
+                        @sanjeevlcc ➜ ~ $ ls
+                        dir1  dir2  file1  file2  file3  file4  fol3  fol4  fol5
+                        @sanjeevlcc ➜ ~ $ cd dir
+                        bash: cd: dir: No such file or directory
+                        @sanjeevlcc ➜ ~ $ cd dir1/
+                        @sanjeevlcc ➜ ~/dir1 $ pwd
+                        /home/codespace/dir1
+                        @sanjeevlcc ➜ ~/dir1 $ cd ..
+                        @sanjeevlcc ➜ ~ $ cd fol3/
+                        @sanjeevlcc ➜ ~/fol3 $ ls
+                        @sanjeevlcc ➜ ~/fol3 $ cd ..
+                        @sanjeevlcc ➜ ~ $ cd fol4/
+                        @sanjeevlcc ➜ ~/fol4 $ ls
+                        f66  f77  f88
+                        @sanjeevlcc ➜ ~/fol4 $ 
+
+
+
+
 pwd:
 -----------
         Prints the current working directory.
         Example: pwd
+
+                        @sanjeevlcc ➜ ~/fol4 $ pwd
+                        /home/codespace/fol4
+                        @sanjeevlcc ➜ ~/fol4 $ cd ..
+                        @sanjeevlcc ➜ ~ $ cd dir2/
+                        @sanjeevlcc ➜ ~/dir2 $ pwd
+                        /home/codespace/dir2
+                        @sanjeevlcc ➜ ~/dir2 $ cd /
+                        @sanjeevlcc ➜ / $ pwd
+                        /
+                        @sanjeevlcc ➜ / $ cd /home/
+                        @sanjeevlcc ➜ /home $ pwd
+                        /home
+                        @sanjeevlcc ➜ /home $ cd /root/
+                        bash: cd: /root/: Permission denied
+                        @sanjeevlcc ➜ /home $ pwd
+                        /home
+
+
+
 
 
 mkdir:
 -----------
         Creates a new directory.
         Example: mkdir new_directory
+
+                @sanjeevlcc ➜ ~ $ ls
+                dir1  dir2  file1  file2  file3  file4  fol3  fol4  fol5
+                @sanjeevlcc ➜ ~ $ mkdir apple 
+                @sanjeevlcc ➜ ~ $ mkdir ball cat
+
+                @sanjeevlcc ➜ ~ $ ls
+                apple  ball  cat  dir1  dir2  file1  file2  file3  file4  fol3  fol4  fol5
+
 
 
 
@@ -220,11 +287,70 @@ rm:
         Deletes files or directories.
         Example: rm file_to_delete
 
+                @sanjeevlcc ➜ ~ $ rm apple/
+                rm: cannot remove 'apple/': Is a directory
+                @sanjeevlcc ➜ ~ $ ls
+                apple  ball  cat  dir1  dir2  file1  file2  file3  file4  fol3  fol4  fol5
+                
+                @sanjeevlcc ➜ ~ $ rm -f apple/
+                rm: cannot remove 'apple/': Is a directory
+                @sanjeevlcc ➜ ~ $ rm -rf apple/
+
+
 
 cp:
 -----------
         Copies files or directories.
         Example: cp source_file destination
+
+                @sanjeevlcc ➜ ~ $ tree
+                .
+                ├── ball
+                ├── cat
+                ├── dir1
+                │   ├── fil3
+                │   └── file44
+                ├── dir2
+                │   ├── f33
+                │   └── f99
+                ├── file1
+                ├── file2
+                ├── file3
+                ├── file4
+                ├── fol3
+                ├── fol4
+                │   ├── f66
+                │   ├── f77
+                │   └── f88
+                └── fol5
+                
+                7 directories, 11 files
+                @sanjeevlcc ➜ ~ $ cp dir2/f33 fol5/
+                @sanjeevlcc ➜ ~ $ cp file2 cat/
+                @sanjeevlcc ➜ ~ $ cp fol4/f77 cat/
+                @sanjeevlcc ➜ ~ $ tree
+                .
+                ├── ball
+                ├── cat
+                │   ├── f77
+                │   └── file2
+                ├── dir1
+                │   ├── fil3
+                │   └── file44
+                ├── dir2
+                │   ├── f33
+                │   └── f99
+                ├── file1
+                ├── file2
+                ├── file3
+                ├── file4
+                ├── fol3
+                ├── fol4
+                │   ├── f66
+                │   ├── f77
+                │   └── f88
+                └── fol5
+                    └── f33
 
 
 mv:
@@ -232,6 +358,43 @@ mv:
         Moves or renames files or directories.
         Example: mv old_file new_file
 
+
+                @sanjeevlcc ➜ ~ $ ls
+                ball  cat  dir1  dir2  file1  file2  file3  file4  fol3  fol4  fol5
+                @sanjeevlcc ➜ ~ $ 
+                @sanjeevlcc ➜ ~ $ mv file1 mero_file1
+                @sanjeevlcc ➜ ~ $ ls
+                ball  cat  dir1  dir2  file2  file3  file4  fol3  fol4  fol5  mero_file1
+
+
+
+
+                @sanjeevlcc ➜ ~ $ tree
+                .
+                ├── ball
+                ├── cat
+                │   ├── f77
+                │   └── file2
+                ├── dir1
+                │   ├── fil3
+                │   └── file44
+                ├── dir2
+                │   ├── f33
+                │   └── f99
+                ├── file2
+                ├── file3
+                ├── file4
+                ├── fol3
+                ├── fol4
+                │   ├── f66
+                │   ├── f77
+                │   └── f88
+                ├── fol5
+                │   └── f33
+                └── mero_file1
+                
+                7 directories, 14 files
+                @sanjeevlcc ➜ ~ $ mv fol4/f88 fol5/
 
 
 
