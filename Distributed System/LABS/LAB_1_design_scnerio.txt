@@ -21,11 +21,112 @@ Its primary functions include managing the computer's
         ensuring security and access controls.
 
 
-=================================================
+USERS                RAM        SITA         HANUMAN         user level
+------------------------------------------------------------------------
+                -----------------------------------          kernel level
+                |        Applications             |
+                -----------------------------------
+                |       OS Services               |
+                -----------------------------------
+                |       Kernel                    |
+                -----------------------------------
+                |    Hardware Abstraction Layer   |
+                -----------------------------------
+                |            Hardware             |
+                -----------------------------------
+
+
+
 
 =================================================
+types of operating systems
+=================================================
+
+Single-User Operating Systems:
+--------------------------------
+        Designed to support one user at a time.
+        MS-DOS and early versions of Apple Macintosh operating systems.
 
 
+
+Multi-User Operating Systems:
+--------------------------------
+        Designed to support multiple users simultaneously.
+        
+        Examples include
+        Unix-based systems (Linux, macOS) and
+        modern versions of Microsoft Windows.
+
+
+
+Multi-Tasking Operating Systems:
+--------------------------------
+        Allow multiple tasks or processes to run concurrently.
+        
+        Examples include 
+        Unix-like systems (Linux, macOS) and 
+        modern versions of Microsoft Windows.
+
+
+Real-Time Operating Systems (RTOS):
+--------------------------------
+        Designed to handle tasks with specific timing constraints.
+
+        Used in 
+        embedded systems, 
+        industrial automation, and 
+        other time-critical applications.
+        
+        Examples include FreeRTOS, VxWorks, and QNX.
+
+
+Batch Processing Operating Systems:
+--------------------------------
+        Designed to execute tasks in batches without user interaction.
+        
+        Commonly used in mainframe computers for 
+        processing large volumes of data.
+        
+        Examples include IBM z/OS (formerly known as OS/390 and MVS).
+
+
+Distributed Operating Systems:
+--------------------------------
+        Run on multiple interconnected computers 
+        and coordinate their activities.
+        
+        Provide a unified interface to users and 
+        applications across the network.
+        
+        Examples include Google's Chrome OS and 
+        various cluster computing systems.
+
+
+Network Operating Systems (NOS):
+--------------------------------
+        Designed to facilitate network communication 
+        and resource sharing among multiple computers.
+        
+        Provide file and printer sharing, 
+        user authentication, and other 
+        network-related services.
+        
+        Examples include Novell NetWare, Windows Server, 
+        and Linux-based server distributions.
+
+
+
+
+Embedded Operating Systems:
+--------------------------------
+        Optimized for use in embedded systems with 
+        limited resources (e.g., smartphones, IoT devices, automotive systems).
+        
+        Compact, efficient, and often 
+        tailored to specific hardware platforms.
+        
+        Examples include Android, iOS, and
+        real-time operating systems like FreeRTOS.
 
 
 
