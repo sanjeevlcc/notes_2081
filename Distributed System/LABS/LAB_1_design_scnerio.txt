@@ -503,11 +503,87 @@ grep:
 
 
 
+                @sanjeevlcc ➜ ~ $ ls  |  grep le
+                file2
+                file3
+                file4
+                mero_file1
+
+
+                @sanjeevlcc ➜ ~ $ 
+
+
+
+
+
+
+                @sanjeevlcc ➜ ~ $ grep on file2 
+                this is adding on line
+
+
+
+
 
 chmod:
 -----------
         Changes the permissions of a file or directory.
         Example: chmod permissions file_or_directory
+
+
+                @sanjeevlcc ➜ ~ $ cd fol5/
+                @sanjeevlcc ➜ ~/fol5 $ whoami 
+                codespace
+
+                @sanjeevlcc ➜ ~/fol5 $ ls -l
+                total 0
+                -rw-r--r-- 1 codespace codespace 0 May 27 03:25 f33
+                -rw-r--r-- 1 codespace codespace 0 May 27 03:14 f88
+                @sanjeevlcc ➜ ~/fol5 $ mkdir nose
+
+
+                @sanjeevlcc ➜ ~/fol5 $ ls -l
+                total 4
+                -rw-r--r-- 1 codespace codespace    0 May 27 03:25 f33
+                -rw-r--r-- 1 codespace codespace    0 May 27 03:14 f88
+                drwxr-sr-x 2 codespace codespace 4096 May 27 05:26 nose
+
+
+
+                drwxr-sr-x 
+                
+                d / -           rwx        r-s        r-x 
+                ---------------------------------------------
+                file type      owner    group       others
+                
+
+
+
+                                permission levels
+                                -------------------
+                                read = 4
+                                write = 2
+                                execute = 1
+                                nothing = -
+
+
+
+
+
+
+                        @sanjeevlcc ➜ ~/fol5 $ ls -l f88 
+                        -rw-r--r-- 1 codespace codespace 0 May 27 03:14 f88
+                        
+                        @sanjeevlcc ➜ ~/fol5 $ chmod 777 f88
+                        @sanjeevlcc ➜ ~/fol5 $ ls -l f88 
+                        -rwxrwxrwx 1 codespace codespace 0 May 27 03:14 f88
+                        
+                        
+                        
+                        @sanjeevlcc ➜ ~/fol5 $ chmod 640  f88
+                        @sanjeevlcc ➜ ~/fol5 $ ls -l f88 
+                        -rw-r----- 1 codespace codespace 0 May 27 03:14 f88
+
+
 
 
 chown:
@@ -516,16 +592,60 @@ chown:
         Example: chown user:group file_or_directory
 
 
+
+@sanjeevlcc ➜ ~/fol5 $ ls -l
+total 4
+-rw-r--r-- 1 codespace codespace    0 May 27 03:25 f33
+-rw-r----- 1 codespace codespace    0 May 27 03:14 f88
+drwxr-sr-x 2 codespace codespace 4096 May 27 05:26 nose
+
+
+                        @sanjeevlcc ➜ ~/fol5 $ sudo chown sita:sita f33
+                        
+                        @sanjeevlcc ➜ ~/fol5 $ ls -l
+                        total 4
+                        -rw-r--r-- 1 sita      sita         0 May 27 03:25 f33
+                        -rw-r----- 1 codespace codespace    0 May 27 03:14 f88
+                        drwxr-sr-x 2 codespace codespace 4096 May 27 05:26 nose
+
+
+
+
+
+
+
+
+
+
+
+
+
 ps:
 -----------
         Displays information about running processes.
         Example: ps aux
 
 
-kill:
------------
-        Terminates a process by its process ID (PID).
-        Example: kill PID
+
+                @sanjeevlcc ➜ ~/fol5 $ ps
+                    PID TTY          TIME CMD
+                   2847 pts/0    00:00:01 bash
+                  68350 pts/0    00:00:00 ps
+                
+                
+                
+                @sanjeevlcc ➜ ~/fol5 $ ps -aux
+                USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+                codespa+       1  0.0  0.0   1136   640 ?        Ss   02:53   0:00 /sbin/docker-init -- /b
+                codespa+       7  0.0  0.0   7236  1792 ?        S    02:53   0:00 sleep infinity
+                root          88  0.0  0.0  12196  3480 ?        Ss   02:53   0:00 sshd: /usr/sbin/sshd [l
+                root         903  0.0  1.0 1983432 88552 ?       Sl   02:54   0:01 dockerd --dns 168.63.12
+                root         910  0.0  0.5 1798408 45140 ?       Ssl  02:54   0:01 containerd --config /va
+                codespa+    1629  0.0  0.0   2616  1536 ?        Ss   02:57   0:00 /bin/sh
+
+
+
+
 
 
 sudo:
@@ -536,12 +656,108 @@ sudo:
 
 
 
-=================================================
+
+
+
+
+
+
 
 =================================================
+advanced commands can be extremely powerful 
+for 
+system administration, automation, and troubleshooting
+=================================================
+
+
+find:
+-----------
+Search for files and directories in a directory hierarchy.
+
+Example: find /home/user -type f -name "*.txt" -exec grep -H "search_term" {} \;
+
+This command finds all .txt files in /home/user and 
+searches for the term "search_term" within them.
 
 
 
+awk:
+-----------
+A powerful text processing tool.
+Example: awk '{if ($3 > 50) print $1, $3}' file.txt
+This command prints the first and third columns of file.txt if the value in the third column is greater than 50.
+sed:
+-----------
+Stream editor for filtering and transforming text.
+Example: sed -i 's/old_text/new_text/g' file.txt
+This command replaces all occurrences of "old_text" with "new_text" in file.txt in-place.
+tar:
+-----------
+Archive files and directories.
+Example: tar -czvf archive.tar.gz /path/to/directory
+This command compresses and archives the specified directory into a .tar.gz file.
+rsync:
+-----------
+Efficiently synchronize files between two locations.
+Example: rsync -avz /source/directory/ user@remote:/destination/directory/
+This command synchronizes the source directory to the destination directory on a remote server.
+ssh:
+-----------
+Secure Shell for remote login and command execution.
+Example: ssh user@remote 'df -h'
+This command logs into the remote server and executes the df -h command to check disk space.
+netstat or ss:
+-----------
+Network statistics and information.
+Example: netstat -tuln or ss -tuln
+These commands display listening ports and their associated services.
+iptables:
+-----------
+Configure the Linux kernel firewall.
+Example: sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+This command allows incoming SSH connections.
+crontab:
+-----------
+Schedule periodic tasks.
+Example: crontab -e
+Opens the crontab editor to add or edit scheduled tasks.
+Example entry: 0 2 * * * /path/to/backup_script.sh
+This schedules a backup script to run daily at 2 AM.
+lsof:
+-----------
+List open files and the processes that opened them.
+Example: lsof -i :80
+This command lists processes using port 80.
+vmstat:
+-----------
+Report virtual memory statistics.
+Example: vmstat 5
+This command displays system performance statistics every 5 seconds.
+tcpdump:
+-----------
+Network packet analyzer.
+Example: sudo tcpdump -i eth0
+This command captures packets on the eth0 network interface.
+curl:
+-----------
+Transfer data from or to a server.
+Example: curl -O http://example.com/file.txt
+This command downloads a file from a specified URL.
+docker:
+-----------
+Manage Docker containers.
+Example: docker ps -a
+This command lists all Docker containers, running or stopped.
+systemctl:
+-----------
+Control the systemd system and service manager.
+Example: sudo systemctl restart apache2
+This command restarts the Apache2 service.
+journalctl:
+-----------
+Query and display messages from the systemd journal.
+Example: journalctl -u apache2
+This command displays logs for the Apache2 service.
 
 
 =================================================
