@@ -1,0 +1,321 @@
+
+
+========================================
+DOWNLOAD Software for 8086
+========================================
+
+GOOGLE : 8086 emulator
+	emu8086
+
+
+https://emu8086-microprocessor-emulator.en.download.it/downloading
+
+
+
+
+
+========================================
+TABS of emu8086
+========================================
+
+NEW
+OPEN
+SAVE
+COMPILE
+EMULATE - DEBUG MODE
+CALCULATOR
+CONVERT
+
+
+Reg in 8086
+-----------
+
+
+
+    GENERAL PURPOSE REG
+    --------------------
+        AX	Accumulator register (16-bit)
+            AH	High byte of AX (8-bit)
+            AL	Low byte of AX (8-bit)
+            
+        BX	Base register (16-bit)
+            BH	High byte of BX (8-bit)
+            BL	Low byte of BX (8-bit)
+            
+        CX	Counter register (16-bit)
+            CH	High byte of CX (8-bit)
+            CL	Low byte of CX (8-bit)
+            
+        DX	Data register (16-bit)
+            DH	High byte of DX (8-bit)
+            DL	Low byte of DX (8-bit)
+
+
+
+
+    SEGMENT REG (hold base address)
+    ------------
+        CS	Code segment register (16-bit)
+        DS	Data segment register (16-bit)
+        SS	Stack segment register (16-bit)
+        ES	Extra segment register (16-bit)
+
+
+
+
+
+segment offset pointer
+(to make 20 bit physical address)
+--------------------------------------------   
+      SP	Stack pointer (16-bit)
+      BP	Base pointer (16-bit)
+      SI	Source index (16-bit)
+      DI	Destination index (16-bit)
+      IP	Instruction pointer (16-bit)
+
+
+
+
+Flags	Flags register (16-bit)
+--------------------------------
+    CF	Carry flag (bit 0)
+    PF	Parity flag (bit 2)
+    AF	Auxiliary carry flag (bit 4)
+    ZF	Zero flag (bit 6)
+    SF	Sign flag (bit 7)
+    TF	Trap flag (bit 8)
+    IF	Interrupt enable flag (bit 9)
+    DF	Direction flag (bit 10)
+    OF	Overflow flag (bit 11)
+
+
+
+
+
+
+
+========================================
+LAB 1 
+========================================
+NEW >> empty WORKSPACE
+
+      .........................
+      MOV AX 1234h
+      MOV B,4321h
+      ADD AX,BX
+      HLT      
+      .........................EMULATE > PROBLEM (BUG)
+      
+
+
+    .........................
+    MOV AX,1234h
+    MOV BX,4321h
+    ADD AX,BX
+    HLT
+    ......................... NO PROBLEM , DEBUG
+
+
+
+
+                                               
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
