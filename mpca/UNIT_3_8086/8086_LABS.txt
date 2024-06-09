@@ -1,4 +1,4 @@
-
+ 
 
 ========================================
 DOWNLOAD Software for 8086
@@ -87,6 +87,154 @@ Flags	Flags register (16-bit)
     IF	Interrupt enable flag (bit 9)
     DF	Direction flag (bit 10)
     OF	Overflow flag (bit 11)
+
+
+
+
+========================================
+Physical address(PA) clculation in 8086
+A0 - A19 = 20 bit
+========================================
+
+
+		---------------------------------
+		seg reg(16)	offset pointer(16)
+		---------	------------------
+		CS		IP
+		SS		SP/BP
+		DS		SI
+		ES		DI
+		---------------------------------
+
+
+In the 8086 microprocessor, 
+physical addresses (PA) are calculated
+using a combination of segment and offset addresses. 
+
+
+	formula:
+	.........
+	Physical Address (PA) = ( Segment × 10H ) + Offset
+	
+
+EXAMPLE 1:
+---------
+IF CS is 1245h and instruction pointer 1561h. 
+Find the physical address PA of intruction?
+
+	(PA) = ( Segment × 10H ) + Offset
+	     =  1245 * 10H + 1561H 
+	     = 139B1h
+
+
+1	3	9	B	1 h
+0001	0011	1001	1100	0001 B
+----------------20 bit-----------------
+
+
+
+
+EXAMPLE 2:
+---------
+Segment (DS) = 0x3000
+Offset (SI) = 0x0020
+
+
+	PA = (DS × 10H) + SI
+	= (0x3000 × 10H) + 0x0020
+	= 0x30020
+
+	0x30020
+	
+	0x" indicates  represented in hexadecimal notation.
+	"20030" is the actual memory address.
+
+
+
+
+
+EXAMPLE 3:
+---------
+Segment (CS) = 0x8000
+Offset (IP) = 0x00A0
+
+
+	PA = (CS × 10H) + IP
+	= (0x8000 × 10H) + 0x00A0
+	= 0x800A0
+
+
+
+
+EXAMPLE 4:
+---------
+Segment (SS) = 0xA000
+Offset (SP/BP) = 0x0020
+	
+	PA = (SS × 10H) + SP/BP
+	= (0xA000 × 10H) + 0x0020
+	= 0xA020
+
+
+
+
+========================================
+WHAT IS PA AND LA?
+========================================
+
+
+Physical Address:
+------------------
+	A physical address refers to the actual memory 
+	location in the computer's physical memory (RAM)
+	where data is stored.
+	
+	In the 8086 architecture, a physical address is 
+	formed by combining the contents of a 
+	segment register and an offset register
+
+	(PA) = ( Segment × 10H ) + Offset
+
+
+Logical Address:
+------------------
+	A logical address is an address generated 
+	by the CPU during the execution of a program. 
+	It represents the location of data relative to 
+	the start of a specific segment.
+	
+	In the 8086 architecture, a logical address 
+	consists of a segment address and an offset address. 
+	The segment address identifies a segment in 
+	the memory, and the offset address specifies the location 
+	of data within that segment.
+
+
+
+	Suppose we have the following scenario:
+	
+		Segment Register (DS) = 0x2000
+		Offset Pointer (SI) = 0x0030
+	
+	
+	Logical Address = (Segment × 10H) + Offset
+	Logical Address = (0x2000 × 10H) + 0x0030
+			= (0x20000) + 0x0030
+			= 0x20030
+	
+		So, the logical address 
+		corresponding to DS is 0x20030.
+	
+	
+	Physical Address = (Segment × 10H) + Offset
+	Physical Address = (0x2000 × 10H) + 0x0030
+			= (0x20000) + 0x0030
+			= 0x20030
+	
+			So, the physical address
+			corresponding to DS
+			is also 0x20030.
+
 
 
 
