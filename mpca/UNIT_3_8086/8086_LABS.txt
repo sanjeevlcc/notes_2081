@@ -13,6 +13,44 @@ https://emu8086-microprocessor-emulator.en.download.it/downloading
 
 
 
+Key Features of emu8086
+--------------------------
+	User-Friendly IDE
+		Provides a graphical interface that is easy 
+		to navigate, making it accessible for beginners.
+	
+	Emulator
+		Simulates the behavior of the 8086 
+		microprocessor, allowing users to run assembly 
+		language programs and observe their execution.
+	
+	Debugger
+		Step-by-step execution of programs to observe 
+		changes in registers and memory.
+		
+		Breakpoints and watchpoints to monitor 
+		specific conditions and variables.
+	
+	
+	Assembly and Disassembly
+		Supports the assembly of source code
+		into machine code and disassembly of machine code
+		back into source code.
+	
+	Sample Programs and Tutorials
+		Comes with a collection of sample programs
+		and detailed tutorials to help users get started
+		with 8086 assembly language programming.
+	
+	
+	Compatibility
+		Compatible with both DOS and Windows environments, 
+		allowing users to run and test their programs on 
+		different platforms.
+
+
+
+
 
 ========================================
 TABS of emu8086
@@ -27,9 +65,11 @@ CALCULATOR
 CONVERT
 
 
-Reg in 8086
------------
 
+
+========================================
+REGISTERS in 8086
+========================================
 
 
     GENERAL PURPOSE REG
