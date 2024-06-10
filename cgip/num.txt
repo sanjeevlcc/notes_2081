@@ -1,0 +1,147 @@
+
+
+====================================================================
+
+Obtain the digital negative of the following 8-BPP. 
+170    220    110   140   190   220   9   70   222 
+
+
+
+    Digital Negative=255−Original Pixel Value
+    255−170=85
+    255−220=35
+    255−110=145
+    255−140=115
+    255−190=65
+    255−220=35
+    255−70=185
+    255−222=33
+    
+    digital negatives are: 85, 35, 145, 115, 65, 35, 246, 185, and 33.
+
+
+====================================================================
+
+
+Obtain digital negative for 8bpp of given pixels [120, 200, 220, 9, 50, 120, 260, 192, 168, 20, 155, 108]
+
+                Original Pixel	    Digital Negative
+                120	                255 - 120 = 135
+                200	                255 - 200 = 55
+                220	                255 - 220 = 35
+                9	                  255 - 9 = 246
+                50	                255 - 50 = 205
+                120	                255 - 120 = 135
+                260	                255 - 260 = -5 (Note: Adjusted to fit within 0-255 range)
+                192	                255 - 192 = 63
+                168	                255 - 168 = 87
+                20	                255 - 20 = 235
+                155	                255 - 155 = 100
+                108	                255 - 108 = 147
+                
+                digital negatives are: 135, 55, 35, 246, 205, 135, 5 (adjusted), 63, 87, 235, 100, and 147.
+
+====================================================================
+
+
+
+
+Compute the filter for mean, weighted average, median, min and max filter for 
+following image with the new pixel at position at (2,2) for the pixel values of 
+dimension 5*5 as [3,2,5,3,3,4,1,4,4,6,6,1,3,5,4,5,3,3,3,3,6,2,3,1,3] if 
+the smoothing is done using a 3x3 bit neighborhood. 
+
+
+
+        3 2 5 3 3
+        4 1 4 4 6
+        6 1 3 5 4
+        5 3 3 3 3
+        6 2 3 1 3
+
+
+        Mean Filter:
+            Calculate the average of the pixel values in the 3x3 neighborhood
+            
+            Mean= ( 3+2+5+4+1+4+6+1+3 ) / 9 = 29 / 9 = 3.22
+        ​
+        
+        
+        Weighted Average Filter:
+            Assign weights to each pixel value and calculate the weighted average:
+            
+            Weighted Average = [  (3×1)+(2×1)+(5×1)+(4×1)+(1×2)+(4×2)+(6×1)+(1×1)+(3×1)  ] / 12 
+                             = 34 / 12 
+                             = 2.83
+        
+        
+        
+        Median Filter:
+            Arrange the pixel values in ascending order and choose the middle value:
+            Median =  median(1,1,2,2,3,3,3,3,3)  =  3
+        
+        
+        
+        Min Filter:
+            Find the minimum value among the pixel values in the 3x3 neighborhood
+            Min Filter: min(1,1,2,2,3,3,3,3,3)   =   1
+        
+        
+        
+        Max Filter:
+            Find the maximum value among the pixel values in the 3x3 neighborhood
+            Max = max(1,1,2,2,3,3,3,3,3)  =  3
+
+
+
+
+====================================================================
+
+
+Consider the source with 8 messages to design Huffman code 
+and efficiency for intensity values in following normalized histogram. 
+
+Intensity values (rk):     0,       1,       2,       3,         4,         5,         6
+Probabilities (P(rk)):     0.25,   0.25,   0.125,   0.125,     0.125,     0.0625,    0.0625
+
+ 
+Arrange the histogram in decreasing order of probabilities.
+Create a binary tree using the probabilities.
+Assign binary codes to each intensity value based on the tree.
+Calculate the average code length and efficiency.
+
+
+
+
+
+
+
+
+
+
+====================================================================
+
+====================================================================
+
+
+
+
+==================================================================== 
+
+====================================================================
+
+
+
+
+====================================================================
+
+====================================================================
+
+
+
+
+====================================================================
+
+====================================================================
+
+
