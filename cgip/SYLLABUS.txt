@@ -1,0 +1,107 @@
+                        CMP 366 Computer Graphics and Image Processing
+                                      BCIS, 6th Semester
+
+
+Course Objectives
+    The objective of this course is to provide the knowledge of image processing and pattern
+    recognition and apply these concepts in image processing and recognition applications of having
+    commercial values in industry and business management.
+
+
+
+Course Description
+    The course content is mainly focused on developing the sound theoretical foundation of all of the
+    digital image processing stages, ranging from creation to acquisition and pre-processing to
+    restoration. The course also requires programming assignments for deeper understanding of the
+    various stages of image processing and pattern recognition.
+
+
+
+Course Outcomes
+    Upon completion of this course, students will be able to:
+         Thorough understanding of theoretical foundation of fundamental Digital Image
+          manipulation and processing steps like acquisition; preprocessing; segmentation; Fourier
+          domain processing; and
+         Skills on exploration and appropriate use of image processing methods / tools for
+          business and management applications.
+
+
+
+Course Contents
+Unit I: Introduction : Digital Image Processing 4 hours
+    Digital image representation, Digital image processing: Problems and applications, Elements of
+    visual perception, Sampling and quantization, Some basic relationships like Neighbors,
+    Connectivity, Distance, Measures between pixels, Visual Perception
+
+
+
+Unit II: Image Enhancement in Spatial Domain 4 hours
+    Gray Level Transformations, Histogram Processing, Enhancement Using Arithmetic and Logic
+    operations, Basics of Spatial Filters, Smoothening and Sharpening Spatial Filters, Combining
+    Spatial Enhancement Methods
+
+
+
+Unit III: Image Enhancement in the Frequency Domain 5 hours
+    Introduction to Fourier Transform and the frequency Domain, Computing and Visualizing the
+    2D DFT, Smoothing and Sharpening using Frequency Domain Filters, Hadamard transform,
+    Haar transform and Discrete Cosine transform, Fast Fourier Transform
+
+
+
+Unit IV: Image Restoration 7 hours
+    The Image Degradation / Restoration Process, Noise Model based Restoration, Spatial filtering,
+    Periodic Noise Reduction by Frequency Domain Filtering, Inverse filtering, Wiener filtering,
+    Geometric Mean Filter
+
+
+
+
+Unit V : Color Processing 5 hours
+    Color Fundamentals, Color Models, Pseudocolor based Image Processing, Color
+    transformations, Smoothing and Sharpening operations
+
+
+
+Unit VI: Image Compression 5 hours
+    Coding, Interpixel and Psychovisual Redundancy, Image Compression models, Lossless and
+    Lossy Compressions
+
+
+Unit VII: Morphological Image Processing 5 hours
+    Logic Operations involving binary images, Dilation and Erosion, Opening and Closing, The Hitor-Miss Transformation
+
+
+Unit VIII: Image Segmentation 5 hours
+    Detection of Discontinuities, Edge linking and boundary detection, Thresholding, Region Based
+    Segmentation
+
+
+Unit IX: Pattern Recognition 8 hours
+    Descriptor concept, Chain codes, Signatures, Shape Numbers, Fourier Descriptors, Patterns and
+    pattern classes, Overview of pattern recognition, Neural Network and Image Processing, NN
+    based pattern recognition, Decision-Theoretic Pattern Recognition Methods.
+
+
+
+Lab and Project Requirement
+        This course requires extensive exposure of practical examples with at least 8-12 lab exercises
+        with programs consisting most of topics detailed in syllabus content. Semester end, imageprocessing 
+        project as a course project (either individual or group (at most 4 students) is a strict
+        requirement for this course.
+
+
+Basic Text
+      Gonzalez, R. C., & Woods, R. E. Digital Image Processing. New Delhi: Prentice Hall of
+      India.
+
+
+
+References
+        1. Jain, A. K. Fundamental of Digital Image processing. New Delhi: Prentice Hall of India.
+        2. Monique, P., & Dekker, M. Fundamentals of Pattern recognition. New York: MIT Press.
+        3. James, M. Pattern recognition. BSP Professional Books.
+
+
+
+
