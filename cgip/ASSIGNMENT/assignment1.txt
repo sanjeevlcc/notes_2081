@@ -1,17 +1,37 @@
 
+Date of Assignment Published: 10 June 2024
+Date of Assignment Submittion: 16 June 2024
+
+Assignment must be in loose sheet copy, with proper full name in copy.
+
+there will the two assignments ... 
+each assignments hold 20 marks for final exam result.
+---------------------------------------------------------
+
+
+
+
+
+
+--------------------Unit I: Introduction : Digital Image Processing ---------------------
 
 
 Q1 Describe the various problems and applications of digital image processing. 
 Provide examples to illustrate your points.
 
+
 Q2 Explain the process of sampling and quantization in digital image processing.
 How do these processes affect the quality of the resulting digital image?
+
 
 Q3 Discuss the elements of visual perception and their significance in digital image processing. 
 How do these elements influence the design of image processing algorithms?
 
-Q4 Explain the concepts of neighbors, connectivity, and distance measures between pixels in digital images.
+
+Q4 Explain the concepts of neighbors, connectivity, and distance
+measures between pixels in digital images.
 How are these concepts utilized in different image processing tasks?
+
 
 Q5 Given a digital image of size 256x256 pixels, if we sample the 
 image at half the resolution, what will be the new size of the image?
@@ -24,12 +44,17 @@ different gray levels does the image have after quantization into 4 bits per pix
 Q7 Calculate the Euclidean distance between two pixels 
 located at (3, 4) and (7, 1).
 
+Q7 a   How many images of size 2500*1600 with 8-bit gray 
+value can be stored in a 512 MB storage space? 
+
 
 Q8 An image of size 512x512 pixels is quantized using 8 bits per pixel.
 Calculate the total number of bits required to store this image.
 
+
 Q9 Digital image processing involves __________ and __________ to improve 
 the quality or extract information from images.
+
 
 Q10 In digital image processing, sampling refers to the 
 process of __________, while quantization involves __________.
@@ -55,9 +80,11 @@ adjacent to a given pixel.
 Q16 The distance between pixels can be measured using different
 metrics, such as __________ and __________ distances.
 
----------------------------
 
 
+
+
+--------------------Unit II: Image Enhancement in Spatial Domain ---------------------
 
 
 Q21 Discuss the various types of gray level transformations and 
@@ -98,78 +125,68 @@ Q29 Smoothing filters are typically used to __________ noise, while sharpening f
 
 
 
-Given an 8-bit grayscale image, perform a gray level transformation to invert the image. If the original pixel value is 50, what will be the new pixel value?
-For a given image with the following histogram distribution: [100, 50, 30, 20], apply histogram equalization and provide the new distribution.
-If a 3x3 averaging filter is applied to the following image segment [100, 150, 200; 50, 100, 150; 0, 50, 100], what will be the new pixel value at the center?
-Apply a 3x3 sharpening filter to the same image segment [100, 150, 200; 50, 100, 150; 0, 50, 100] and provide the new pixel value at the center.
 
 
 
---------------------------
+-------------------- Unit III: Image Enhancement in the Frequency Domain ---------------------
 
 
-What is the Fourier Transform and why is it important in image processing?
-Explain the difference between the 1D and 2D Fourier Transforms.
-How is the 2D Discrete Fourier Transform (DFT) computed?
-What is the purpose of using frequency domain filters for smoothing and sharpening?
-Describe the Hadamard transform and its applications.
-What is the Haar transform used for in image processing?
-Explain the Discrete Cosine Transform (DCT) and its importance.
-How does the Fast Fourier Transform (FFT) improve the computation of the DFT?
 
+1 What is the Fourier Transform and why is it important in image processing?
 
-Discuss the role of the Fourier Transform in image processing. How does it help in analyzing and enhancing images? Provide detailed examples.
-Describe the process of computing and visualizing the 2D Discrete Fourier Transform (DFT). Include steps and examples to illustrate your explanation.
-Explain how frequency domain filters are used for smoothing and sharpening images. Compare these methods with their spatial domain counterparts.
-Provide a detailed description of the Hadamard transform, its mathematical basis, and its applications in image processing.
-Discuss the Haar transform, including its computation and applications. How does it differ from other transforms used in image processing?
-Explain the Discrete Cosine Transform (DCT), focusing on its mathematical formulation and applications. Why is it widely used in image compression?
-Describe the Fast Fourier Transform (FFT) algorithm. How does it work, and why is it more efficient than the direct computation of the DFT?
+2 Explain the difference between the 1D and 2D Fourier Transforms.
 
+3 How is the 2D Discrete Fourier Transform (DFT) computed?
 
-The Fourier Transform is used to convert a signal from the __________ domain to the __________ domain.
+4 What is the purpose of using frequency domain filters for smoothing and sharpening?
 
-Answer: spatial, frequency
-The 2D Discrete Fourier Transform (DFT) is computed by applying the Fourier Transform __________ to each row and column of the image matrix.
+5 Describe the Hadamard transform and its applications.
 
-Answer: individually
+6 What is the Haar transform used for in image processing?
 
+7 Explain the Discrete Cosine Transform (DCT) and its importance.
 
-Frequency domain filters are effective for smoothing and sharpening because they allow selective attenuation or amplification of specific __________ components.
-
-Answer: frequency
-The Hadamard transform is a linear, orthogonal transform that decomposes an image into a series of __________ functions.
-
-Answer: basis
-The Haar transform is particularly useful for __________ analysis and is a fundamental component of wavelet transform techniques.
-
-Answer: multi-resolution
-The Discrete Cosine Transform (DCT) is widely used in image compression algorithms like __________ due to its energy compaction properties.
-
-Answer: JPEG
-
-The main advantage of the FFT over the direct computation of the DFT is its __________, making it suitable for large-scale signal processing.
-
-Answer: efficiency
-
-
------------------------
+8 How does the Fast Fourier Transform (FFT) improve the computation of the DFT?
 
 
 
 
 
+9 Eplain how frequency domain filters are used for smoothing and sharpening images.
+Compare these methods with their spatial domain counterparts.
+
+10 Discuss the Haar transform, including its computation and applications. 
+How does it differ from other transforms used in image processing?
+
+11 Explain the Discrete Cosine Transform (DCT), focusing on its mathematical formulation and applications.
+Why is it widely used in image compression?
+
+12 Describe the Fast Fourier Transform (FFT) algorithm.
+How does it work, and why is it more efficient than the direct computation of the DFT?
+
+
+13 The Fourier Transform is used to convert a
+signal from the __________ domain to the __________ domain.
+
+
+14 The 2D Discrete Fourier Transform (DFT) is computed 
+by applying the Fourier Transform __________ to each row and column of the image matrix.
 
 
 
-What are the primary color models used in digital image processing?
-Explain the concept of pseudocolor transformation.
-What is the difference between smoothing and sharpening operations in image processing?
-Define color coding in the context of image processing.
-What is interpixel redundancy?
-Explain psychovisual redundancy and its significance in image compression.
-What are the main differences between lossless and lossy compression?
-Give examples of image compression models.
+15 Frequency domain filters are effective for smoothing 
+and sharpening because they allow selective attenuation 
+or amplification of specific __________ components.
+
+
+
+16 The Discrete Cosine Transform (DCT) is widely used 
+in image compression algorithms like __________ due to its energy compaction properties.
+
+
+17 The main advantage of the FFT over the direct 
+computation of the DFT is its __________, making it suitable 
+for large-scale signal processing.
 
 
 
@@ -177,56 +194,108 @@ Give examples of image compression models.
 
 
 
+-------------------- Unit V : Color Processing ---------------------
+
+1 What are the primary color models used in digital image processing?
+
+2 Explain the concept of pseudocolor transformation.
 
 
+3 What is the difference between smoothing and sharpening operations in image processing?
+
+4 Define color coding in the context of image processing.
+
+5 What is interpixel redundancy?
+
+6 Explain psychovisual redundancy and its significance in image compression.
+
+7 What are the main differences between lossless and lossy compression?
 
 
-Discuss the various color models used in digital image processing. How do these models differ in terms of their applications and advantages?
-Describe pseudocolor transformation and its applications. Provide examples to illustrate how pseudocolor can be used to enhance image interpretation.
-Explain the processes of smoothing and sharpening operations in image processing. How do these operations affect the visual quality of an image?
-Describe color coding and its importance in image processing. How does color coding facilitate different image analysis tasks?
-Discuss the concepts of interpixel and psychovisual redundancy. How do these types of redundancy contribute to image compression?
-Compare and contrast lossless and lossy compression techniques. Provide examples of each and discuss scenarios where one might be preferred over the other.
-Explain the different image compression models. Describe how these models achieve compression and the trade-offs involved in using them.
-
-
-
-
-
-
-
-Convert the following RGB color value to the CMY color model: (R, G, B) = (100, 150, 200). Provide the CMY values.
-Apply a pseudocolor transformation to an 8-bit grayscale image where pixel intensity values range from 0 to 255. Map the intensity range [0-85] to blue, [86-170] to green, and [171-255] to red. What will be the pseudocolor representation of a pixel with intensity 130?
-Given a 3x3 image segment with the following pixel values: [10, 20, 30; 40, 50, 60; 70, 80, 90], apply a 3x3 smoothing filter and provide the new pixel values.
-Compute the entropy of a grayscale image with the following histogram distribution: [100, 50, 25, 25, 10, 10, 5, 5].
-Calculate the compression ratio for an image of size 1024x1024 pixels, compressed from 8 bits per pixel to 2 bits per pixel.
+8 Give examples of image compression models.
 
 
 
 
 
-Color models like __________ and __________ are used to represent colors in digital images.
+9 Discuss the various color models used in digital image processing.
+How do these models differ in terms of their applications and advantages?
 
-Answer: RGB, CMYK
-Pseudocolor transformation is a technique used to map grayscale intensity values to __________ for better visualization.
+10 Describe pseudocolor transformation and its applications. 
+Provide examples to illustrate how pseudocolor can be used to enhance image interpretation.
 
-Answer: colors
-Smoothing operations in image processing are used to reduce __________, while sharpening operations enhance __________.
+11 Explain the processes of smoothing and sharpening operations in image processing. 
+How do these operations affect the visual quality of an image?
 
-Answer: noise, edges
-Color coding in image processing helps in distinguishing different __________ within an image.
+12 Describe color coding and its importance in image processing. 
+How does color coding facilitate different image analysis tasks?
 
-Answer: features or regions
-Interpixel redundancy refers to the correlation between __________ in an image.
+13 Discuss the concepts of interpixel and psychovisual redundancy. 
+How do these types of redundancy contribute to image compression?
 
-Answer: neighboring pixels
-Psychovisual redundancy exploits the human eye's sensitivity to certain __________ over others.
+14 Compare and contrast lossless and lossy compression techniques. 
+Provide examples of each and discuss scenarios where one might be preferred over the other.
 
-Answer: visual information
-Lossless compression techniques do not lose any __________ during the compression process, while lossy compression techniques achieve higher compression by allowing some loss of __________.
 
-Answer: original data, data or quality
-Common examples of image compression models include __________ for lossless compression and __________ for lossy compression.
+15 Explain the different image compression models.
+Describe how these models achieve compression and the trade-offs involved in using them.
 
-Answer: PNG, JPEG
+
+
+
+16 Color models like __________ and __________ are used to
+represent colors in digital images.
+
+
+17 Pseudocolor transformation is a technique used to map 
+grayscale intensity values to __________ for better visualization.
+
+
+18 Smoothing operations in image processing are used to 
+reduce __________, while sharpening operations enhance __________.
+
+
+19 Color coding in image processing helps in
+distinguishing different __________ within an image.
+
+
+20 Interpixel redundancy refers to the 
+correlation between __________ in an image.
+
+
+21 Psychovisual redundancy exploits the human
+eye's sensitivity to certain __________ over others.
+
+
+22 Lossless compression techniques do not 
+lose any __________ during the compression process, while lossy compression techniques 
+achieve higher compression by allowing some loss of __________.
+
+
+23 Common examples of image compression models
+include __________ for lossless compression and __________ for lossy compression.
+
+
+
+
+
+
+24 Convert the following RGB color value to the CMY color model: (R, G, B) = (100, 150, 200). Provide the CMY values.
+
+25 Apply a pseudocolor transformation to an 8-bit grayscale image where pixel intensity 
+values range from 0 to 255. Map the intensity range [0-85] to blue, [86-170] to green, and [171-255] to red.
+What will be the pseudocolor representation of a pixel with intensity 130?
+
+26 Given a 3x3 image segment with the following pixel values: [10, 20, 30; 40, 50, 60; 70, 80, 90], 
+apply a 3x3 smoothing filter and provide the new pixel values.
+
+27 Compute the entropy of a grayscale image with the following histogram distribution: [100, 50, 25, 25, 10, 10, 5, 5].
+
+28 Calculate the compression ratio for an image of size 1024x1024 pixels, compressed
+from 8 bits per pixel to 2 bits per pixel.
+
+
+
+
+
 
