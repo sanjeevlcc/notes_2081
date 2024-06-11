@@ -17,6 +17,67 @@ Unit 1: Database Concepts and Architecture 4 LHs
 
 
 
+
+=======================================================
+Data VS Information
+=======================================================
+
+Aspect	      Data	                              Information
+-------          -------                              -------------
+Definition	      Raw, unprocessed            	      Processed, organized
+                  facts and figures                   data with meaning
+
+Nature	      Raw and unorganized	            Processed and organized
+
+Context	      Lacks context and meaning	      Has context and meaning
+
+Usage	            Input for processing	            Used for decision-making
+
+Form	            Numbers, text, images, etc.	      Reports, summaries, visualizations
+
+Dependence	      Independent facts and figures	      Dependent on data
+
+Example	      23, 42, "John Doe",                  "Average temperature is 23°C",
+                  "2024-06-11"	                   "John Doe born on June 11, 2024"
+
+
+
+
+                      Types of Data
+                  +---------------------------+
+                  |           Data            |
+                  +---------------------------+
+                  | - Structured Data         |
+                  |   (Tables, Spreadsheets)  |
+                  +---------------------------+
+                  | - Unstructured Data       |
+                  |   (Text, Images, Videos)  |
+                  +---------------------------+
+                  | - Semi-Structured Data    |
+                  |   (JSON, XML)             |
+                  +---------------------------+
+
+
+
+            
+                               Data to Information Transformation
+            +---------+      +-----------+      +----------+      +-------------+
+            |  Data   | ---> | Processing | ---> | Analysis | ---> | Information |
+            +---------+      +-----------+      +----------+      +-------------+
+            | Raw     |      | Organizing|      | Patterns |      | Contextual  |
+            | Facts   |      | Structuring|      | Insights |      | Meaningful  |
+            +---------+      +-----------+      +----------+      +-------------+
+
+
+
++-----------------+              +-----------------+              +-----------------+              +-----------------+              +-----------------+              +-----------------+
+|    Database     |              |      File       |              |     Record      |              |      Field      |              |   Character     |              |      Bit        |
+| (Collection of  |   --->       | (Collection of  |  --->        | (Collection of  |   --->       | (Collection of  |   --->       | (Collection of  |   --->       |   (0 or 1)      |
+|   Files/Tables) |              |    Records)     |              |    Fields)      |              |   Characters)   |              |      Bits)      |              |                 |
++-----------------+              +-----------------+              +-----------------+              +-----------------+              +-----------------+              +-----------------+
+
+
+
 =======================================================
 Database
 =======================================================
