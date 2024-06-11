@@ -1,4 +1,4 @@
-      Unit 1: Database Concepts and Architecture 4 LHs
+Unit 1: Database Concepts and Architecture 4 LHs
 
       Database, 
       Database Management System, 
@@ -16,6 +16,9 @@
 
 
 https://github.com/sanjeevlcc/crud/tree/main
+
+
+
 
 
 
@@ -55,18 +58,18 @@ Example	      23, 42, "John Doe",                  "Average temperature is 23°C
                   |   (Text, Images, Videos)  |
                   +---------------------------+
                   | - Semi-Structured Data    |
-                  |   (JSON, XML)             |
+                  |   (JSON, XML, YAML)             |
                   +---------------------------+
 
 
 
             
                                Data to Information Transformation
-            +---------+      +-----------+      +----------+      +-------------+
+            +---------+      +-----------+       +----------+      +-------------+
             |  Data   | ---> | Processing | ---> | Analysis | ---> | Information |
-            +---------+      +-----------+      +----------+      +-------------+
-            | Raw     |      | Organizing|      | Patterns |      | Contextual  |
-            | Facts   |      | Structuring|      | Insights |      | Meaningful  |
+            +---------+      +-----------+       +----------+      +-------------+
+            | Raw     |      | Organizing|      | Patterns |      | Contextual   |
+            | Facts   |      | Structuring|     | Insights |      | Meaningful   |
             +---------+      +-----------+      +----------+      +-------------+
 
 
