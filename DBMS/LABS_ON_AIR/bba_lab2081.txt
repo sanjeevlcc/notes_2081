@@ -1,0 +1,1413 @@
+
+
+
+
+
+===============================
+Start the system
+===============================
+
+
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose any scnerio. Ubuntu or CKA or Playground
+
+step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql ;  docker exec -ti mydb1 bash ; mysql -u root -p
+
+
+
+
+
+
+
+===============================
+Design database and table
+===============================
+
+
+
+-- Create a database called 'banking_system'
+CREATE DATABASE banking_system;
+
+
+
+
+-- Use the 'banking_system' database
+USE banking_system;
+
+
+
+
+-- Create a table for storing customer information
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(15) NOT NULL,
+    address VARCHAR(255) NOT NULL
+);
+
+
+
+-- Create a table for storing account information
+CREATE TABLE  accounts (
+    account_number INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    account_type ENUM('Checking', 'Savings') NOT NULL,
+    balance DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+
+
+
+-- Create a table for storing transactions
+CREATE TABLE  transactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_number INT NOT NULL,
+    transaction_type ENUM('Deposit', 'Withdrawal') NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_number) REFERENCES accounts(account_number)
+);
+
+
+
+
+
+
+
+===============================
+
+===============================
+
+
+
+
+
+
+
+
+
+
+===============================
+Show the parameters of tables
+===============================
+
+
+
+mysql> show tables;
++--------------------------+
+| Tables_in_banking_system |
++--------------------------+
+| accounts                 |
+| customers                |
+| transactions             |
++--------------------------+
+
+
+
+
+
+mysql> desc customers;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| customer_id  | int          | NO   | PRI | NULL    | auto_increment |
+| full_name    | varchar(100) | NO   |     | NULL    |                |
+| email        | varchar(100) | NO   |     | NULL    |                |
+| phone_number | varchar(15)  | NO   |     | NULL    |                |
+| address      | varchar(255) | NO   |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+mysql> desc accounts;
++----------------+----------------------------+------+-----+---------+----------------+
+| Field          | Type                       | Null | Key | Default | Extra          |
++----------------+----------------------------+------+-----+---------+----------------+
+| account_number | int                        | NO   | PRI | NULL    | auto_increment |
+| customer_id    | int                        | NO   | MUL | NULL    |                |
+| account_type   | enum('Checking','Savings') | NO   |     | NULL    |                |
+| balance        | decimal(10,2)              | NO   |     | 0.00    |                |
++----------------+----------------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+mysql> desc transactions ;
++------------------+------------------------------+------+-----+-------------------+-------------------+
+| Field            | Type                         | Null | Key | Default           | Extra             |
++------------------+------------------------------+------+-----+-------------------+-------------------+
+| transaction_id   | int                          | NO   | PRI | NULL              | auto_increment    |
+| account_number   | int                          | NO   | MUL | NULL              |                   |
+| transaction_type | enum('Deposit','Withdrawal') | NO   |     | NULL              |                   |
+| amount           | decimal(10,2)                | NO   |     | NULL              |                   |
+| transaction_date | timestamp                    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------------+------------------------------+------+-----+-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+===============================
+Insrting Data
+===============================
+
+
+-- Insert data into the 'customers' table
+INSERT INTO customers (full_name, email, phone_number, address) VALUES
+('Ram Shrestha', 'ram@example.com', '9841XXXXXX', 'Kathmandu, Nepal'),
+('Sita Thapa', 'sita@example.com', '9841XXXXXX', 'Pokhara, Nepal'),
+('Hari Acharya', 'hari@example.com', '9841XXXXXX', 'Biratnagar, Nepal'),
+('Shyam Maharjan', 'shyam@example.com', '9841XXXXXX', 'Lalitpur, Nepal'),
+('Gita Adhikari', 'gita@example.com', '9841XXXXXX', 'Bhaktapur, Nepal'),
+('Krishna Tamang', 'krishna@example.com', '9841XXXXXX', 'Dharan, Nepal'),
+('Mohan Rai', 'mohan@example.com', '9841XXXXXX', 'Butwal, Nepal'),
+('Radha Basnet', 'radha@example.com', '9841XXXXXX', 'Dhangadhi, Nepal'),
+('Shiva Bhattarai', 'shiva@example.com', '9841XXXXXX', 'Hetauda, Nepal'),
+('Anita Gautam', 'anita@example.com', '9841XXXXXX', 'Janakpur, Nepal'),
+('Dilip Oli', 'dilip@example.com', '9841XXXXXX', 'Itahari, Nepal'),
+('Rita KC', 'rita@example.com', '9841XXXXXX', 'Nepalgunj, Nepal'),
+('Bishnu Magar', 'bishnu@example.com', '9841XXXXXX', 'Dhankuta, Nepal'),
+('Nabin Koirala', 'nabin@example.com', '9841XXXXXX', 'Birgunj, Nepal'),
+('Saraswati Bhandari', 'saraswati@example.com', '9841XXXXXX', 'Dhulikhel, Nepal');
+
+
+
+
+
+-- Insert data into the 'accounts' table
+INSERT INTO accounts (customer_id, account_type, balance) VALUES
+(1, 'Checking', 50000.00),
+(1, 'Savings', 100000.00),
+(2, 'Checking', 75000.00),
+(2, 'Savings', 125000.00),
+(3, 'Checking', 60000.00),
+(3, 'Savings', 110000.00),
+(4, 'Checking', 48000.00),
+(4, 'Savings', 105000.00),
+(5, 'Checking', 55000.00),
+(5, 'Savings', 95000.00),
+(6, 'Checking', 52000.00),
+(6, 'Savings', 100000.00),
+(7, 'Checking', 60000.00),
+(7, 'Savings', 115000.00),
+(8, 'Checking', 45000.00),
+(8, 'Savings', 90000.00),
+(9, 'Checking', 58000.00),
+(9, 'Savings', 120000.00),
+(10, 'Checking', 51000.00),
+(10, 'Savings', 97000.00),
+(11, 'Checking', 49000.00),
+(11, 'Savings', 100000.00),
+(12, 'Checking', 54000.00),
+(12, 'Savings', 110000.00),
+(13, 'Checking', 57000.00),
+(13, 'Savings', 125000.00),
+(14, 'Checking', 52000.00),
+(14, 'Savings', 105000.00),
+(15, 'Checking', 60000.00),
+(15, 'Savings', 115000.00);
+
+
+
+
+
+
+
+
+-- Insert data into the 'transactions' table
+INSERT INTO transactions (account_number, transaction_type, amount) VALUES
+(1, 'Deposit', 10000.00),
+(2, 'Deposit', 20000.00),
+(3, 'Deposit', 15000.00),
+(4, 'Deposit', 12000.00),
+(5, 'Deposit', 18000.00),
+(6, 'Deposit', 13000.00),
+(7, 'Deposit', 16000.00),
+(8, 'Deposit', 11000.00),
+(9, 'Deposit', 17000.00),
+(10, 'Deposit', 14000.00),
+(11, 'Deposit', 19000.00),
+(12, 'Deposit', 12500.00),
+(13, 'Deposit', 17500.00),
+(14, 'Deposit', 14500.00),
+(15, 'Deposit', 20000.00),
+(1, 'Withdrawal', 5000.00),
+(2, 'Withdrawal', 8000.00),
+(3, 'Withdrawal', 6000.00),
+(4, 'Withdrawal', 7000.00),
+(5, 'Withdrawal', 9000.00),
+(6, 'Withdrawal', 4000.00),
+(7, 'Withdrawal', 7000.00),
+(8, 'Withdrawal', 3000.00),
+(9, 'Withdrawal', 8000.00),
+(10, 'Withdrawal', 5000.00),
+(11, 'Withdrawal', 7000.00),
+(12, 'Withdrawal', 4500.00),
+(13, 'Withdrawal', 8500.00),
+(14, 'Withdrawal', 6000.00),
+(15, 'Withdrawal', 9000.00);
+
+
+
+
+
+
+
+
+===============================
+Viewig DATA
+===============================
+
+
+ysql> select  * from customers;
++-------------+--------------------+-----------------------+--------------+-------------------+
+| customer_id | full_name          | email                 | phone_number | address           |
++-------------+--------------------+-----------------------+--------------+-------------------+
+|           1 | Ram Shrestha       | ram@example.com       | 9841XXXXXX   | Kathmandu, Nepal  |
+|           2 | Sita Thapa         | sita@example.com      | 9841XXXXXX   | Pokhara, Nepal    |
+|           3 | Hari Acharya       | hari@example.com      | 9841XXXXXX   | Biratnagar, Nepal |
+|           4 | Shyam Maharjan     | shyam@example.com     | 9841XXXXXX   | Lalitpur, Nepal   |
+|           5 | Gita Adhikari      | gita@example.com      | 9841XXXXXX   | Bhaktapur, Nepal  |
+|           6 | Krishna Tamang     | krishna@example.com   | 9841XXXXXX   | Dharan, Nepal     |
+|           7 | Mohan Rai          | mohan@example.com     | 9841XXXXXX   | Butwal, Nepal     |
+|           8 | Radha Basnet       | radha@example.com     | 9841XXXXXX   | Dhangadhi, Nepal  |
+|           9 | Shiva Bhattarai    | shiva@example.com     | 9841XXXXXX   | Hetauda, Nepal    |
+|          10 | Anita Gautam       | anita@example.com     | 9841XXXXXX   | Janakpur, Nepal   |
+|          11 | Dilip Oli          | dilip@example.com     | 9841XXXXXX   | Itahari, Nepal    |
+|          12 | Rita KC            | rita@example.com      | 9841XXXXXX   | Nepalgunj, Nepal  |
+|          13 | Bishnu Magar       | bishnu@example.com    | 9841XXXXXX   | Dhankuta, Nepal   |
+|          14 | Nabin Koirala      | nabin@example.com     | 9841XXXXXX   | Birgunj, Nepal    |
+|          15 | Saraswati Bhandari | saraswati@example.com | 9841XXXXXX   | Dhulikhel, Nepal  |
++-------------+--------------------+-----------------------+--------------+-------------------+
+15 rows in set (0.00 sec)
+
+
+
+
+mysql> select  * from accounts;
++----------------+-------------+--------------+-----------+
+| account_number | customer_id | account_type | balance   |
++----------------+-------------+--------------+-----------+
+|              1 |           1 | Checking     |  50000.00 |
+|              2 |           1 | Savings      | 100000.00 |
+|              3 |           2 | Checking     |  75000.00 |
+|              4 |           2 | Savings      | 125000.00 |
+|              5 |           3 | Checking     |  60000.00 |
+|              6 |           3 | Savings      | 110000.00 |
+|              7 |           4 | Checking     |  48000.00 |
+|              8 |           4 | Savings      | 105000.00 |
+|              9 |           5 | Checking     |  55000.00 |
+|             10 |           5 | Savings      |  95000.00 |
+|             11 |           6 | Checking     |  52000.00 |
+|             12 |           6 | Savings      | 100000.00 |
+|             13 |           7 | Checking     |  60000.00 |
+|             14 |           7 | Savings      | 115000.00 |
+|             15 |           8 | Checking     |  45000.00 |
+|             16 |           8 | Savings      |  90000.00 |
+|             17 |           9 | Checking     |  58000.00 |
+|             18 |           9 | Savings      | 120000.00 |
+|             19 |          10 | Checking     |  51000.00 |
+|             20 |          10 | Savings      |  97000.00 |
+|             21 |          11 | Checking     |  49000.00 |
+|             22 |          11 | Savings      | 100000.00 |
+|             23 |          12 | Checking     |  54000.00 |
+|             24 |          12 | Savings      | 110000.00 |
+|             25 |          13 | Checking     |  57000.00 |
+|             26 |          13 | Savings      | 125000.00 |
+|             27 |          14 | Checking     |  52000.00 |
+|             28 |          14 | Savings      | 105000.00 |
+|             29 |          15 | Checking     |  60000.00 |
+|             30 |          15 | Savings      | 115000.00 |
++----------------+-------------+--------------+-----------+
+30 rows in set (0.00 sec)
+
+
+
+
+
+
+mysql> select  * from transactions;
++----------------+----------------+------------------+----------+---------------------+
+| transaction_id | account_number | transaction_type | amount   | transaction_date    |
++----------------+----------------+------------------+----------+---------------------+
+|              1 |              1 | Deposit          | 10000.00 | 2024-05-07 23:48:41 |
+|              2 |              2 | Deposit          | 20000.00 | 2024-05-07 23:48:41 |
+|              3 |              3 | Deposit          | 15000.00 | 2024-05-07 23:48:41 |
+|              4 |              4 | Deposit          | 12000.00 | 2024-05-07 23:48:41 |
+|              5 |              5 | Deposit          | 18000.00 | 2024-05-07 23:48:41 |
+|              6 |              6 | Deposit          | 13000.00 | 2024-05-07 23:48:41 |
+|              7 |              7 | Deposit          | 16000.00 | 2024-05-07 23:48:41 |
+|              8 |              8 | Deposit          | 11000.00 | 2024-05-07 23:48:41 |
+|              9 |              9 | Deposit          | 17000.00 | 2024-05-07 23:48:41 |
+|             10 |             10 | Deposit          | 14000.00 | 2024-05-07 23:48:41 |
+|             11 |             11 | Deposit          | 19000.00 | 2024-05-07 23:48:41 |
+|             12 |             12 | Deposit          | 12500.00 | 2024-05-07 23:48:41 |
+|             13 |             13 | Deposit          | 17500.00 | 2024-05-07 23:48:41 |
+|             14 |             14 | Deposit          | 14500.00 | 2024-05-07 23:48:41 |
+|             15 |             15 | Deposit          | 20000.00 | 2024-05-07 23:48:41 |
+|             16 |              1 | Withdrawal       |  5000.00 | 2024-05-07 23:48:41 |
+|             17 |              2 | Withdrawal       |  8000.00 | 2024-05-07 23:48:41 |
+|             18 |              3 | Withdrawal       |  6000.00 | 2024-05-07 23:48:41 |
+|             19 |              4 | Withdrawal       |  7000.00 | 2024-05-07 23:48:41 |
+|             20 |              5 | Withdrawal       |  9000.00 | 2024-05-07 23:48:41 |
+|             21 |              6 | Withdrawal       |  4000.00 | 2024-05-07 23:48:41 |
+|             22 |              7 | Withdrawal       |  7000.00 | 2024-05-07 23:48:41 |
+|             23 |              8 | Withdrawal       |  3000.00 | 2024-05-07 23:48:41 |
+|             24 |              9 | Withdrawal       |  8000.00 | 2024-05-07 23:48:41 |
+|             25 |             10 | Withdrawal       |  5000.00 | 2024-05-07 23:48:41 |
+|             26 |             11 | Withdrawal       |  7000.00 | 2024-05-07 23:48:41 |
+|             27 |             12 | Withdrawal       |  4500.00 | 2024-05-07 23:48:41 |
+|             28 |             13 | Withdrawal       |  8500.00 | 2024-05-07 23:48:41 |
+|             29 |             14 | Withdrawal       |  6000.00 | 2024-05-07 23:48:41 |
+|             30 |             15 | Withdrawal       |  9000.00 | 2024-05-07 23:48:41 |
++----------------+----------------+------------------+----------+---------------------+
+30 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+===============================
+Inserting More data
+===============================
+
+
+-- Insert 20 more rows into the 'customers' table
+INSERT INTO customers (full_name, email, phone_number, address) VALUES
+('Raju Gurung', 'raju@example.com', '9841XXXXXX', 'Kathmandu, Nepal'),
+('Rita Tamang', 'rita@example.com', '9841XXXXXX', 'Pokhara, Nepal'),
+('Santosh Thapa', 'santosh@example.com', '9841XXXXXX', 'Biratnagar, Nepal'),
+('Gopal Maharjan', 'gopal@example.com', '9841XXXXXX', 'Lalitpur, Nepal'),
+('Sarita Adhikari', 'sarita@example.com', '9841XXXXXX', 'Bhaktapur, Nepal'),
+('Bibek Tamang', 'bibek@example.com', '9841XXXXXX', 'Dharan, Nepal'),
+('Pramod Rai', 'pramod@example.com', '9841XXXXXX', 'Butwal, Nepal'),
+('Meera Basnet', 'meera@example.com', '9841XXXXXX', 'Dhangadhi, Nepal'),
+('Nisha Bhattarai', 'nisha@example.com', '9841XXXXXX', 'Hetauda, Nepal'),
+('Prabin Gautam', 'prabin@example.com', '9841XXXXXX', 'Janakpur, Nepal'),
+('Roshan Oli', 'roshan@example.com', '9841XXXXXX', 'Itahari, Nepal'),
+('Bina KC', 'bina@example.com', '9841XXXXXX', 'Nepalgunj, Nepal'),
+('Pratik Magar', 'pratik@example.com', '9841XXXXXX', 'Dhankuta, Nepal'),
+('Anjana Koirala', 'anjana@example.com', '9841XXXXXX', 'Birgunj, Nepal'),
+('Sanjita Bhandari', 'sanjita@example.com', '9841XXXXXX', 'Dhulikhel, Nepal'),
+('Rakesh Sharma', 'rakesh@example.com', '9841XXXXXX', 'Kathmandu, Nepal'),
+('Pratima Shrestha', 'pratima@example.com', '9841XXXXXX', 'Pokhara, Nepal'),
+('Sangita Thapa', 'sangita@example.com', '9841XXXXXX', 'Biratnagar, Nepal'),
+('Dipak Acharya', 'dipak@example.com', '9841XXXXXX', 'Lalitpur, Nepal'),
+('Anish Maharjan', 'anish@example.com', '9841XXXXXX', 'Bhaktapur, Nepal');
+
+-- Insert 20 more rows into the 'accounts' table
+INSERT INTO accounts (customer_id, account_type, balance) VALUES
+(16, 'Checking', 50000.00),
+(16, 'Savings', 100000.00),
+(17, 'Checking', 75000.00),
+(17, 'Savings', 125000.00),
+(18, 'Checking', 60000.00),
+(18, 'Savings', 110000.00),
+(19, 'Checking', 48000.00),
+(19, 'Savings', 105000.00),
+(20, 'Checking', 55000.00),
+(20, 'Savings', 95000.00),
+(21, 'Checking', 52000.00),
+(21, 'Savings', 100000.00),
+(22, 'Checking', 60000.00),
+(22, 'Savings', 115000.00),
+(23, 'Checking', 45000.00),
+(23, 'Savings', 90000.00),
+(24, 'Checking', 58000.00),
+(24, 'Savings', 120000.00),
+(25, 'Checking', 51000.00),
+(25, 'Savings', 97000.00),
+(26, 'Checking', 49000.00),
+(26, 'Savings', 100000.00),
+(27, 'Checking', 54000.00),
+(27, 'Savings', 110000.00),
+(28, 'Checking', 57000.00),
+(28, 'Savings', 125000.00),
+(29, 'Checking', 52000.00),
+(29, 'Savings', 105000.00),
+(30, 'Checking', 60000.00),
+(30, 'Savings', 115000.00),
+(31, 'Checking', 50000.00),
+(31, 'Savings', 100000.00),
+(32, 'Checking', 75000.00),
+(32, 'Savings', 125000.00),
+(33, 'Checking', 60000.00),
+(33, 'Savings', 110000.00),
+(34, 'Checking', 48000.00),
+(34, 'Savings', 105000.00),
+(35, 'Checking', 55000.00),
+(35, 'Savings', 95000.00);
+
+
+
+
+-- Insert 20 more rows into the 'transactions' table
+INSERT INTO transactions (account_number, transaction_type, amount) VALUES
+(16, 'Withdrawal', 5000.00),
+(17, 'Withdrawal', 8000.00),
+(18, 'Withdrawal', 6000.00),
+(19, 'Withdrawal', 7000.00),
+(20, 'Withdrawal', 9000.00),
+(21, 'Withdrawal', 4000.00),
+(22, 'Withdrawal', 7000.00),
+(23, 'Withdrawal', 3000.00),
+(24, 'Withdrawal', 8000.00),
+(25, 'Withdrawal', 5000.00),
+(26, 'Withdrawal', 7000.00),
+(27, 'Withdrawal', 4500.00),
+(28, 'Withdrawal', 8500.00),
+(29, 'Withdrawal', 6000.00),
+(30, 'Withdrawal', 9000.00),
+(31, 'Withdrawal', 5000.00),
+(32, 'Withdrawal', 8000.00),
+(33, 'Withdrawal', 6000.00),
+(34, 'Withdrawal', 7000.00),
+(35, 'Withdrawal', 9000.00),
+(16, 'Deposit', 10000.00),
+(17, 'Deposit', 20000.00),
+(18, 'Deposit', 15000.00),
+(19, 'Deposit', 12000.00),
+(20, 'Deposit', 18000.00),
+(21, 'Deposit', 13000.00),
+(22, 'Deposit', 16000.00),
+(23, 'Deposit', 11000.00),
+(24, 'Deposit', 17000.00),
+(25, 'Deposit', 14000.00),
+(26, 'Deposit', 19000.00),
+(27, 'Deposit', 12500.00),
+(28, 'Deposit', 17500.00),
+(29, 'Deposit', 14500.00),
+(30, 'Deposit', 20000.00),
+(31, 'Deposit', 10000.00),
+(32, 'Deposit', 20000.00),
+(33, 'Deposit', 15000.00),
+(34, 'Deposit', 12000.00),
+(35, 'Deposit', 18000.00);
+
+
+
+
+
+
+
+
+
+===============================
+Insert more 
+===============================
+
+
+-- Insert 15 more rows into the 'customers' table
+INSERT INTO customers (full_name, email, phone_number, address) VALUES
+('Rajesh Thapa', 'rajesh@example.com', '9841XXXXXX', 'Kathmandu, Nepal'),
+('Sunita Rai', 'sunita@example.com', '9841XXXXXX', 'Pokhara, Nepal'),
+('Alok Shrestha', 'alok@example.com', '9841XXXXXX', 'Biratnagar, Nepal'),
+('Nisha Maharjan', 'nisha@example.com', '9841XXXXXX', 'Lalitpur, Nepal'),
+('Binod Adhikari', 'binod@example.com', '9841XXXXXX', 'Bhaktapur, Nepal'),
+('Komal Tamang', 'komal@example.com', '9841XXXXXX', 'Dharan, Nepal'),
+('Nabin Rai', 'nabin@example.com', '9841XXXXXX', 'Butwal, Nepal'),
+('Sarita Basnet', 'sarita@example.com', '9841XXXXXX', 'Dhangadhi, Nepal'),
+('Rajendra Bhattarai', 'rajendra@example.com', '9841XXXXXX', 'Hetauda, Nepal'),
+('Santosh Gautam', 'santosh@example.com', '9841XXXXXX', 'Janakpur, Nepal'),
+('Bibek Oli', 'bibek@example.com', '9841XXXXXX', 'Itahari, Nepal'),
+('Shova KC', 'shova@example.com', '9841XXXXXX', 'Nepalgunj, Nepal'),
+('Pratima Magar', 'pratima@example.com', '9841XXXXXX', 'Dhankuta, Nepal'),
+('Ramesh Koirala', 'ramesh@example.com', '9841XXXXXX', 'Birgunj, Nepal'),
+('Neha Bhandari', 'neha@example.com', '9841XXXXXX', 'Dhulikhel, Nepal');
+
+-- Insert 15 more rows into the 'accounts' table
+INSERT INTO accounts (customer_id, account_type, balance) VALUES
+(36, 'Checking', 50000.00),
+(36, 'Savings', 100000.00),
+(37, 'Checking', 75000.00),
+(37, 'Savings', 125000.00),
+(38, 'Checking', 60000.00),
+(38, 'Savings', 110000.00),
+(39, 'Checking', 48000.00),
+(39, 'Savings', 105000.00),
+(40, 'Checking', 55000.00),
+(40, 'Savings', 95000.00),
+(41, 'Checking', 52000.00),
+(41, 'Savings', 100000.00),
+(42, 'Checking', 60000.00),
+(42, 'Savings', 115000.00),
+(43, 'Checking', 45000.00),
+(43, 'Savings', 90000.00),
+(44, 'Checking', 58000.00),
+(44, 'Savings', 120000.00),
+(45, 'Checking', 51000.00),
+(45, 'Savings', 97000.00),
+(46, 'Checking', 49000.00),
+(46, 'Savings', 100000.00),
+(47, 'Checking', 54000.00),
+(47, 'Savings', 110000.00),
+(48, 'Checking', 57000.00),
+(48, 'Savings', 125000.00),
+(49, 'Checking', 52000.00),
+(49, 'Savings', 105000.00),
+(50, 'Checking', 60000.00),
+(50, 'Savings', 115000.00);
+
+-- Insert 30 more rows into the 'transactions' table
+INSERT INTO transactions (account_number, transaction_type, amount) VALUES
+(36, 'Deposit', 10000.00),
+(37, 'Deposit', 20000.00),
+(38, 'Deposit', 15000.00),
+(39, 'Deposit', 12000.00),
+(40, 'Deposit', 18000.00),
+(41, 'Deposit', 13000.00),
+(42, 'Deposit', 16000.00),
+(43, 'Deposit', 11000.00),
+(44, 'Deposit', 17000.00),
+(45, 'Deposit', 14000.00),
+(46, 'Deposit', 19000.00),
+(47, 'Deposit', 12500.00),
+(48, 'Deposit', 17500.00),
+(49, 'Deposit', 14500.00),
+(50, 'Deposit', 20000.00),
+(36, 'Withdrawal', 5000.00),
+(37, 'Withdrawal', 8000.00),
+(38, 'Withdrawal', 6000.00),
+(39, 'Withdrawal', 7000.00),
+(40, 'Withdrawal', 9000.00),
+(41, 'Withdrawal', 4000.00),
+(42, 'Withdrawal', 7000.00),
+(43, 'Withdrawal', 3000.00),
+(44, 'Withdrawal', 8000.00),
+(45, 'Withdrawal', 5000.00),
+(46, 'Withdrawal', 7000.00),
+(47, 'Withdrawal', 4500.00),
+(48, 'Withdrawal', 8500.00),
+(49, 'Withdrawal', 6000.00),
+(50, 'Withdrawal', 9000.00),
+(36, 'Deposit', 10000.00),
+(37, 'Deposit', 20000.00),
+(38, 'Deposit', 15000.00),
+(39, 'Deposit', 12000.00),
+(40, 'Deposit', 18000.00),
+(41, 'Deposit', 13000.00),
+(42, 'Deposit', 16000.00),
+(43, 'Deposit', 11000.00),
+(44, 'Deposit', 17000.00),
+(45, 'Deposit', 14000.00),
+(46, 'Deposit', 19000.00),
+(47, 'Deposit', 12500.00),
+(48, 'Deposit', 17500.00),
+(49, 'Deposit', 14500.00),
+(50, 'Deposit', 20000.00);
+
+
+
+
+
+
+
+
+===============================
+Display All DATA
+===============================
+
+mysql> select * from customers;
++-------------+--------------------+-----------------------+--------------+-------------------+
+| customer_id | full_name          | email                 | phone_number | address           |
++-------------+--------------------+-----------------------+--------------+-------------------+
+|           1 | Ram Shrestha       | ram@example.com       | 9841XXXXXX   | Kathmandu, Nepal  |
+|           2 | Sita Thapa         | sita@example.com      | 9841XXXXXX   | Pokhara, Nepal    |
+|           3 | Hari Acharya       | hari@example.com      | 9841XXXXXX   | Biratnagar, Nepal |
+|           4 | Shyam Maharjan     | shyam@example.com     | 9841XXXXXX   | Lalitpur, Nepal   |
+|           5 | Gita Adhikari      | gita@example.com      | 9841XXXXXX   | Bhaktapur, Nepal  |
+|           6 | Krishna Tamang     | krishna@example.com   | 9841XXXXXX   | Dharan, Nepal     |
+|           7 | Mohan Rai          | mohan@example.com     | 9841XXXXXX   | Butwal, Nepal     |
+|           8 | Radha Basnet       | radha@example.com     | 9841XXXXXX   | Dhangadhi, Nepal  |
+|           9 | Shiva Bhattarai    | shiva@example.com     | 9841XXXXXX   | Hetauda, Nepal    |
+|          10 | Anita Gautam       | anita@example.com     | 9841XXXXXX   | Janakpur, Nepal   |
+|          11 | Dilip Oli          | dilip@example.com     | 9841XXXXXX   | Itahari, Nepal    |
+|          12 | Rita KC            | rita@example.com      | 9841XXXXXX   | Nepalgunj, Nepal  |
+|          13 | Bishnu Magar       | bishnu@example.com    | 9841XXXXXX   | Dhankuta, Nepal   |
+|          14 | Nabin Koirala      | nabin@example.com     | 9841XXXXXX   | Birgunj, Nepal    |
+|          15 | Saraswati Bhandari | saraswati@example.com | 9841XXXXXX   | Dhulikhel, Nepal  |
+|          16 | Raju Gurung        | raju@example.com      | 9841XXXXXX   | Kathmandu, Nepal  |
+|          17 | Rita Tamang        | rita@example.com      | 9841XXXXXX   | Pokhara, Nepal    |
+|          18 | Santosh Thapa      | santosh@example.com   | 9841XXXXXX   | Biratnagar, Nepal |
+|          19 | Gopal Maharjan     | gopal@example.com     | 9841XXXXXX   | Lalitpur, Nepal   |
+|          20 | Sarita Adhikari    | sarita@example.com    | 9841XXXXXX   | Bhaktapur, Nepal  |
+|          21 | Bibek Tamang       | bibek@example.com     | 9841XXXXXX   | Dharan, Nepal     |
+|          22 | Pramod Rai         | pramod@example.com    | 9841XXXXXX   | Butwal, Nepal     |
+|          23 | Meera Basnet       | meera@example.com     | 9841XXXXXX   | Dhangadhi, Nepal  |
+|          24 | Nisha Bhattarai    | nisha@example.com     | 9841XXXXXX   | Hetauda, Nepal    |
+|          25 | Prabin Gautam      | prabin@example.com    | 9841XXXXXX   | Janakpur, Nepal   |
+|          26 | Roshan Oli         | roshan@example.com    | 9841XXXXXX   | Itahari, Nepal    |
+|          27 | Bina KC            | bina@example.com      | 9841XXXXXX   | Nepalgunj, Nepal  |
+|          28 | Pratik Magar       | pratik@example.com    | 9841XXXXXX   | Dhankuta, Nepal   |
+|          29 | Anjana Koirala     | anjana@example.com    | 9841XXXXXX   | Birgunj, Nepal    |
+|          30 | Sanjita Bhandari   | sanjita@example.com   | 9841XXXXXX   | Dhulikhel, Nepal  |
+|          31 | Rakesh Sharma      | rakesh@example.com    | 9841XXXXXX   | Kathmandu, Nepal  |
+|          32 | Pratima Shrestha   | pratima@example.com   | 9841XXXXXX   | Pokhara, Nepal    |
+|          33 | Sangita Thapa      | sangita@example.com   | 9841XXXXXX   | Biratnagar, Nepal |
+|          34 | Dipak Acharya      | dipak@example.com     | 9841XXXXXX   | Lalitpur, Nepal   |
+|          35 | Anish Maharjan     | anish@example.com     | 9841XXXXXX   | Bhaktapur, Nepal  |
+|          36 | Rajesh Thapa       | rajesh@example.com    | 9841XXXXXX   | Kathmandu, Nepal  |
+|          37 | Sunita Rai         | sunita@example.com    | 9841XXXXXX   | Pokhara, Nepal    |
+|          38 | Alok Shrestha      | alok@example.com      | 9841XXXXXX   | Biratnagar, Nepal |
+|          39 | Nisha Maharjan     | nisha@example.com     | 9841XXXXXX   | Lalitpur, Nepal   |
+|          40 | Binod Adhikari     | binod@example.com     | 9841XXXXXX   | Bhaktapur, Nepal  |
+|          41 | Komal Tamang       | komal@example.com     | 9841XXXXXX   | Dharan, Nepal     |
+|          42 | Nabin Rai          | nabin@example.com     | 9841XXXXXX   | Butwal, Nepal     |
+|          43 | Sarita Basnet      | sarita@example.com    | 9841XXXXXX   | Dhangadhi, Nepal  |
+|          44 | Rajendra Bhattarai | rajendra@example.com  | 9841XXXXXX   | Hetauda, Nepal    |
+|          45 | Santosh Gautam     | santosh@example.com   | 9841XXXXXX   | Janakpur, Nepal   |
+|          46 | Bibek Oli          | bibek@example.com     | 9841XXXXXX   | Itahari, Nepal    |
+|          47 | Shova KC           | shova@example.com     | 9841XXXXXX   | Nepalgunj, Nepal  |
+|          48 | Pratima Magar      | pratima@example.com   | 9841XXXXXX   | Dhankuta, Nepal   |
+|          49 | Ramesh Koirala     | ramesh@example.com    | 9841XXXXXX   | Birgunj, Nepal    |
+|          50 | Neha Bhandari      | neha@example.com      | 9841XXXXXX   | Dhulikhel, Nepal  |
++-------------+--------------------+-----------------------+--------------+-------------------+
+50 rows in set (0.00 sec)
+
+
+
+
+mysql> select * from accounts;
++----------------+-------------+--------------+-----------+
+| account_number | customer_id | account_type | balance   |
++----------------+-------------+--------------+-----------+
+|              1 |           1 | Checking     |  50000.00 |
+|              2 |           1 | Savings      | 100000.00 |
+|              3 |           2 | Checking     |  75000.00 |
+|              4 |           2 | Savings      | 125000.00 |
+|              5 |           3 | Checking     |  60000.00 |
+|              6 |           3 | Savings      | 110000.00 |
+|              7 |           4 | Checking     |  48000.00 |
+|              8 |           4 | Savings      | 105000.00 |
+|              9 |           5 | Checking     |  55000.00 |
+|             10 |           5 | Savings      |  95000.00 |
+|             11 |           6 | Checking     |  52000.00 |
+|             12 |           6 | Savings      | 100000.00 |
+|             13 |           7 | Checking     |  60000.00 |
+|             14 |           7 | Savings      | 115000.00 |
+|             15 |           8 | Checking     |  45000.00 |
+|             16 |           8 | Savings      |  90000.00 |
+|             17 |           9 | Checking     |  58000.00 |
+|             18 |           9 | Savings      | 120000.00 |
+|             19 |          10 | Checking     |  51000.00 |
+|             20 |          10 | Savings      |  97000.00 |
+|             21 |          11 | Checking     |  49000.00 |
+|             22 |          11 | Savings      | 100000.00 |
+|             23 |          12 | Checking     |  54000.00 |
+|             24 |          12 | Savings      | 110000.00 |
+|             25 |          13 | Checking     |  57000.00 |
+|             26 |          13 | Savings      | 125000.00 |
+|             27 |          14 | Checking     |  52000.00 |
+|             28 |          14 | Savings      | 105000.00 |
+|             29 |          15 | Checking     |  60000.00 |
+|             30 |          15 | Savings      | 115000.00 |
+|             31 |          16 | Checking     |  50000.00 |
+|             32 |          16 | Savings      | 100000.00 |
+|             33 |          17 | Checking     |  75000.00 |
+|             34 |          17 | Savings      | 125000.00 |
+|             35 |          18 | Checking     |  60000.00 |
+|             36 |          18 | Savings      | 110000.00 |
+|             37 |          19 | Checking     |  48000.00 |
+|             38 |          19 | Savings      | 105000.00 |
+|             39 |          20 | Checking     |  55000.00 |
+|             40 |          20 | Savings      |  95000.00 |
+|             41 |          21 | Checking     |  52000.00 |
+|             42 |          21 | Savings      | 100000.00 |
+|             43 |          22 | Checking     |  60000.00 |
+|             44 |          22 | Savings      | 115000.00 |
+|             45 |          23 | Checking     |  45000.00 |
+|             46 |          23 | Savings      |  90000.00 |
+|             47 |          24 | Checking     |  58000.00 |
+|             48 |          24 | Savings      | 120000.00 |
+|             49 |          25 | Checking     |  51000.00 |
+|             50 |          25 | Savings      |  97000.00 |
+|             51 |          26 | Checking     |  49000.00 |
+|             52 |          26 | Savings      | 100000.00 |
+|             53 |          27 | Checking     |  54000.00 |
+|             54 |          27 | Savings      | 110000.00 |
+|             55 |          28 | Checking     |  57000.00 |
+|             56 |          28 | Savings      | 125000.00 |
+|             57 |          29 | Checking     |  52000.00 |
+|             58 |          29 | Savings      | 105000.00 |
+|             59 |          30 | Checking     |  60000.00 |
+|             60 |          30 | Savings      | 115000.00 |
+|             61 |          31 | Checking     |  50000.00 |
+|             62 |          31 | Savings      | 100000.00 |
+|             63 |          32 | Checking     |  75000.00 |
+|             64 |          32 | Savings      | 125000.00 |
+|             65 |          33 | Checking     |  60000.00 |
+|             66 |          33 | Savings      | 110000.00 |
+|             67 |          34 | Checking     |  48000.00 |
+|             68 |          34 | Savings      | 105000.00 |
+|             69 |          35 | Checking     |  55000.00 |
+|             70 |          35 | Savings      |  95000.00 |
+|             71 |          36 | Checking     |  50000.00 |
+|             72 |          36 | Savings      | 100000.00 |
+|             73 |          37 | Checking     |  75000.00 |
+|             74 |          37 | Savings      | 125000.00 |
+|             75 |          38 | Checking     |  60000.00 |
+|             76 |          38 | Savings      | 110000.00 |
+|             77 |          39 | Checking     |  48000.00 |
+|             78 |          39 | Savings      | 105000.00 |
+|             79 |          40 | Checking     |  55000.00 |
+|             80 |          40 | Savings      |  95000.00 |
+|             81 |          41 | Checking     |  52000.00 |
+|             82 |          41 | Savings      | 100000.00 |
+|             83 |          42 | Checking     |  60000.00 |
+|             84 |          42 | Savings      | 115000.00 |
+|             85 |          43 | Checking     |  45000.00 |
+|             86 |          43 | Savings      |  90000.00 |
+|             87 |          44 | Checking     |  58000.00 |
+|             88 |          44 | Savings      | 120000.00 |
+|             89 |          45 | Checking     |  51000.00 |
+|             90 |          45 | Savings      |  97000.00 |
+|             91 |          46 | Checking     |  49000.00 |
+|             92 |          46 | Savings      | 100000.00 |
+|             93 |          47 | Checking     |  54000.00 |
+|             94 |          47 | Savings      | 110000.00 |
+|             95 |          48 | Checking     |  57000.00 |
+|             96 |          48 | Savings      | 125000.00 |
+|             97 |          49 | Checking     |  52000.00 |
+|             98 |          49 | Savings      | 105000.00 |
+|             99 |          50 | Checking     |  60000.00 |
+|            100 |          50 | Savings      | 115000.00 |
++----------------+-------------+--------------+-----------+
+100 rows in set (0.01 sec)
+
+
+
+
+
+
+
+mysql> select * from transactions;
++----------------+----------------+------------------+----------+---------------------+
+| transaction_id | account_number | transaction_type | amount   | transaction_date    |
++----------------+----------------+------------------+----------+---------------------+
+|              1 |              1 | Deposit          | 10000.00 | 2024-05-07 23:48:41 |
+|              2 |              2 | Deposit          | 20000.00 | 2024-05-07 23:48:41 |
+|              3 |              3 | Deposit          | 15000.00 | 2024-05-07 23:48:41 |
+|              4 |              4 | Deposit          | 12000.00 | 2024-05-07 23:48:41 |
+|              5 |              5 | Deposit          | 18000.00 | 2024-05-07 23:48:41 |
+|              6 |              6 | Deposit          | 13000.00 | 2024-05-07 23:48:41 |
+|              7 |              7 | Deposit          | 16000.00 | 2024-05-07 23:48:41 |
+|              8 |              8 | Deposit          | 11000.00 | 2024-05-07 23:48:41 |
+|              9 |              9 | Deposit          | 17000.00 | 2024-05-07 23:48:41 |
+|             10 |             10 | Deposit          | 14000.00 | 2024-05-07 23:48:41 |
+|             11 |             11 | Deposit          | 19000.00 | 2024-05-07 23:48:41 |
+|             12 |             12 | Deposit          | 12500.00 | 2024-05-07 23:48:41 |
+|             13 |             13 | Deposit          | 17500.00 | 2024-05-07 23:48:41 |
+|             14 |             14 | Deposit          | 14500.00 | 2024-05-07 23:48:41 |
+|             15 |             15 | Deposit          | 20000.00 | 2024-05-07 23:48:41 |
+|             16 |              1 | Withdrawal       |  5000.00 | 2024-05-07 23:48:41 |
+|             17 |              2 | Withdrawal       |  8000.00 | 2024-05-07 23:48:41 |
+|             18 |              3 | Withdrawal       |  6000.00 | 2024-05-07 23:48:41 |
+|             19 |              4 | Withdrawal       |  7000.00 | 2024-05-07 23:48:41 |
+|             20 |              5 | Withdrawal       |  9000.00 | 2024-05-07 23:48:41 |
+|             21 |              6 | Withdrawal       |  4000.00 | 2024-05-07 23:48:41 |
+|             22 |              7 | Withdrawal       |  7000.00 | 2024-05-07 23:48:41 |
+|             23 |              8 | Withdrawal       |  3000.00 | 2024-05-07 23:48:41 |
+|             24 |              9 | Withdrawal       |  8000.00 | 2024-05-07 23:48:41 |
+|             25 |             10 | Withdrawal       |  5000.00 | 2024-05-07 23:48:41 |
+|             26 |             11 | Withdrawal       |  7000.00 | 2024-05-07 23:48:41 |
+|             27 |             12 | Withdrawal       |  4500.00 | 2024-05-07 23:48:41 |
+|             28 |             13 | Withdrawal       |  8500.00 | 2024-05-07 23:48:41 |
+|             29 |             14 | Withdrawal       |  6000.00 | 2024-05-07 23:48:41 |
+|             30 |             15 | Withdrawal       |  9000.00 | 2024-05-07 23:48:41 |
+|             31 |             16 | Withdrawal       |  5000.00 | 2024-05-07 23:54:58 |
+|             32 |             17 | Withdrawal       |  8000.00 | 2024-05-07 23:54:58 |
+|             33 |             18 | Withdrawal       |  6000.00 | 2024-05-07 23:54:58 |
+|             34 |             19 | Withdrawal       |  7000.00 | 2024-05-07 23:54:58 |
+|             35 |             20 | Withdrawal       |  9000.00 | 2024-05-07 23:54:58 |
+|             36 |             21 | Withdrawal       |  4000.00 | 2024-05-07 23:54:58 |
+|             37 |             22 | Withdrawal       |  7000.00 | 2024-05-07 23:54:58 |
+|             38 |             23 | Withdrawal       |  3000.00 | 2024-05-07 23:54:58 |
+|             39 |             24 | Withdrawal       |  8000.00 | 2024-05-07 23:54:58 |
+|             40 |             25 | Withdrawal       |  5000.00 | 2024-05-07 23:54:58 |
+|             41 |             26 | Withdrawal       |  7000.00 | 2024-05-07 23:54:58 |
+|             42 |             27 | Withdrawal       |  4500.00 | 2024-05-07 23:54:58 |
+|             43 |             28 | Withdrawal       |  8500.00 | 2024-05-07 23:54:58 |
+|             44 |             29 | Withdrawal       |  6000.00 | 2024-05-07 23:54:58 |
+|             45 |             30 | Withdrawal       |  9000.00 | 2024-05-07 23:54:58 |
+|             46 |             31 | Withdrawal       |  5000.00 | 2024-05-07 23:54:58 |
+|             47 |             32 | Withdrawal       |  8000.00 | 2024-05-07 23:54:58 |
+|             48 |             33 | Withdrawal       |  6000.00 | 2024-05-07 23:54:58 |
+|             49 |             34 | Withdrawal       |  7000.00 | 2024-05-07 23:54:58 |
+|             50 |             35 | Withdrawal       |  9000.00 | 2024-05-07 23:54:58 |
+|             51 |             16 | Deposit          | 10000.00 | 2024-05-07 23:54:58 |
+|             52 |             17 | Deposit          | 20000.00 | 2024-05-07 23:54:58 |
+|             53 |             18 | Deposit          | 15000.00 | 2024-05-07 23:54:58 |
+|             54 |             19 | Deposit          | 12000.00 | 2024-05-07 23:54:58 |
+|             55 |             20 | Deposit          | 18000.00 | 2024-05-07 23:54:58 |
+|             56 |             21 | Deposit          | 13000.00 | 2024-05-07 23:54:58 |
+|             57 |             22 | Deposit          | 16000.00 | 2024-05-07 23:54:58 |
+|             58 |             23 | Deposit          | 11000.00 | 2024-05-07 23:54:58 |
+|             59 |             24 | Deposit          | 17000.00 | 2024-05-07 23:54:58 |
+|             60 |             25 | Deposit          | 14000.00 | 2024-05-07 23:54:58 |
+|             61 |             26 | Deposit          | 19000.00 | 2024-05-07 23:54:58 |
+|             62 |             27 | Deposit          | 12500.00 | 2024-05-07 23:54:58 |
+|             63 |             28 | Deposit          | 17500.00 | 2024-05-07 23:54:58 |
+|             64 |             29 | Deposit          | 14500.00 | 2024-05-07 23:54:58 |
+|             65 |             30 | Deposit          | 20000.00 | 2024-05-07 23:54:58 |
+|             66 |             31 | Deposit          | 10000.00 | 2024-05-07 23:54:58 |
+|             67 |             32 | Deposit          | 20000.00 | 2024-05-07 23:54:58 |
+|             68 |             33 | Deposit          | 15000.00 | 2024-05-07 23:54:58 |
+|             69 |             34 | Deposit          | 12000.00 | 2024-05-07 23:54:58 |
+|             70 |             35 | Deposit          | 18000.00 | 2024-05-07 23:54:58 |
+|             71 |             36 | Deposit          | 10000.00 | 2024-05-07 23:56:39 |
+|             72 |             37 | Deposit          | 20000.00 | 2024-05-07 23:56:39 |
+|             73 |             38 | Deposit          | 15000.00 | 2024-05-07 23:56:39 |
+|             74 |             39 | Deposit          | 12000.00 | 2024-05-07 23:56:39 |
+|             75 |             40 | Deposit          | 18000.00 | 2024-05-07 23:56:39 |
+|             76 |             41 | Deposit          | 13000.00 | 2024-05-07 23:56:39 |
+|             77 |             42 | Deposit          | 16000.00 | 2024-05-07 23:56:39 |
+|             78 |             43 | Deposit          | 11000.00 | 2024-05-07 23:56:39 |
+|             79 |             44 | Deposit          | 17000.00 | 2024-05-07 23:56:39 |
+|             80 |             45 | Deposit          | 14000.00 | 2024-05-07 23:56:39 |
+|             81 |             46 | Deposit          | 19000.00 | 2024-05-07 23:56:39 |
+|             82 |             47 | Deposit          | 12500.00 | 2024-05-07 23:56:39 |
+|             83 |             48 | Deposit          | 17500.00 | 2024-05-07 23:56:39 |
+|             84 |             49 | Deposit          | 14500.00 | 2024-05-07 23:56:39 |
+|             85 |             50 | Deposit          | 20000.00 | 2024-05-07 23:56:39 |
+|             86 |             36 | Withdrawal       |  5000.00 | 2024-05-07 23:56:39 |
+|             87 |             37 | Withdrawal       |  8000.00 | 2024-05-07 23:56:39 |
+|             88 |             38 | Withdrawal       |  6000.00 | 2024-05-07 23:56:39 |
+|             89 |             39 | Withdrawal       |  7000.00 | 2024-05-07 23:56:39 |
+|             90 |             40 | Withdrawal       |  9000.00 | 2024-05-07 23:56:39 |
+|             91 |             41 | Withdrawal       |  4000.00 | 2024-05-07 23:56:39 |
+|             92 |             42 | Withdrawal       |  7000.00 | 2024-05-07 23:56:39 |
+|             93 |             43 | Withdrawal       |  3000.00 | 2024-05-07 23:56:39 |
+|             94 |             44 | Withdrawal       |  8000.00 | 2024-05-07 23:56:39 |
+|             95 |             45 | Withdrawal       |  5000.00 | 2024-05-07 23:56:39 |
+|             96 |             46 | Withdrawal       |  7000.00 | 2024-05-07 23:56:39 |
+|             97 |             47 | Withdrawal       |  4500.00 | 2024-05-07 23:56:39 |
+|             98 |             48 | Withdrawal       |  8500.00 | 2024-05-07 23:56:39 |
+|             99 |             49 | Withdrawal       |  6000.00 | 2024-05-07 23:56:39 |
+|            100 |             50 | Withdrawal       |  9000.00 | 2024-05-07 23:56:39 |
+|            101 |             36 | Deposit          | 10000.00 | 2024-05-07 23:56:39 |
+|            102 |             37 | Deposit          | 20000.00 | 2024-05-07 23:56:39 |
+|            103 |             38 | Deposit          | 15000.00 | 2024-05-07 23:56:39 |
+|            104 |             39 | Deposit          | 12000.00 | 2024-05-07 23:56:39 |
+|            105 |             40 | Deposit          | 18000.00 | 2024-05-07 23:56:39 |
+|            106 |             41 | Deposit          | 13000.00 | 2024-05-07 23:56:39 |
+|            107 |             42 | Deposit          | 16000.00 | 2024-05-07 23:56:39 |
+|            108 |             43 | Deposit          | 11000.00 | 2024-05-07 23:56:39 |
+|            109 |             44 | Deposit          | 17000.00 | 2024-05-07 23:56:39 |
+|            110 |             45 | Deposit          | 14000.00 | 2024-05-07 23:56:39 |
+|            111 |             46 | Deposit          | 19000.00 | 2024-05-07 23:56:39 |
+|            112 |             47 | Deposit          | 12500.00 | 2024-05-07 23:56:39 |
+|            113 |             48 | Deposit          | 17500.00 | 2024-05-07 23:56:39 |
+|            114 |             49 | Deposit          | 14500.00 | 2024-05-07 23:56:39 |
+|            115 |             50 | Deposit          | 20000.00 | 2024-05-07 23:56:39 |
++----------------+----------------+------------------+----------+---------------------+
+115 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+===============================
+Basic Query 
+Group 1: Customer Information
+===============================
+
+
+Question 1: How many customers do we have in our database?
+
+
+	SELECT COUNT(*) AS total_customers FROM customers;
+
+
+
+
+Question 2: Who is the customer with the highest account balance?
+
+SELECT c.full_name, a.balance
+FROM customers c
+JOIN accounts a ON c.customer_id = a.customer_id
+ORDER BY a.balance DESC
+LIMIT 1;
+
+
+
+
+Question 3: How many customers have both checking and savings accounts?
+
+SELECT COUNT(DISTINCT c.customer_id) AS customers_with_both_accounts
+FROM customers c
+JOIN accounts a ON c.customer_id = a.customer_id
+WHERE a.account_type IN ('Checking', 'Savings');
+
+
+
+
+Question 4: What is the total number of accounts?
+
+
+SELECT COUNT(*) AS total_accounts 
+FROM accounts;
+
+
+
+
+
+
+Question 5: Which customer has the highest number of accounts?
+
+
+SELECT c.full_name, COUNT(*) AS number_of_accounts
+FROM customers c
+JOIN accounts a ON c.customer_id = a.customer_id
+GROUP BY c.full_name
+ORDER BY number_of_accounts DESC
+LIMIT 1;
+
+
+
+
+
+
+
+
+
+
+
+===============================
+Basic Query 
+Group 2: Account Information
+===============================
+
+
+Question 1: What is the total balance across all accounts?
+
+
+SELECT SUM(balance) AS total_balance 
+FROM accounts;
+
+
+
+
+Question 2: How many checking accounts do we have?
+
+SELECT COUNT(*) AS total_checking_accounts
+FROM accounts
+WHERE account_type = 'Checking';
+
+
+
+
+Question 3: What is the average balance of savings accounts?
+
+SELECT AVG(balance) AS average_balance
+FROM accounts
+WHERE account_type = 'Savings';
+
+
+
+Question 4: Which account has the highest balance?
+
+SELECT account_number, balance
+FROM accounts
+ORDER BY balance DESC
+LIMIT 1;
+
+
+
+Question 5: How many accounts have a balance over 100,000?
+
+SELECT COUNT(*) AS accounts_over_100k
+FROM accounts
+WHERE balance > 100000;
+
+
+
+
+
+
+
+===============================
+Basic Query 
+Group 3: Transaction Information
+===============================
+
+
+
+Question 1: What is the total number of transactions?
+
+SELECT COUNT(*) AS total_transactions 
+FROM transactions;
+
+
+
+
+
+Question 2: How many deposit transactions do we have?
+
+SELECT COUNT(*) AS total_deposits
+FROM transactions
+WHERE transaction_type = 'Deposit';
+
+
+
+Question 3: What is the total amount withdrawn?
+
+SELECT SUM(amount) AS total_withdrawn
+FROM transactions
+WHERE transaction_type = 'Withdrawal';
+
+
+
+
+
+
+
+
+===============================
+Task 1
+===============================
+
+
+Group 1: Customer Information
+Question 1: How many customers do we have in our database?
+
+
+
+
+Group 2: Account Information
+Question 1: What is the total balance across all accounts?
+
+
+
+
+Group 3: Transaction Information
+Question 1: What is the total number of transactions?
+
+
+
+
+
+
+
+
+
+
+
+===============================
+Task 2
+===============================
+
+
+Group 1: Customer Information
+Question 1: How many customers do we have in our database?
+
+
+Question 2: What is the name of the oldest customer?
+
+
+
+Group 2: Account Information
+Question 1: What is the total balance across all accounts?
+
+Question 2: What is the average balance of all accounts?
+
+
+
+Group 3: Transaction Information
+Question 1: What is the total number of transactions?
+
+Question 2: What is the highest transaction amount?
+
+
+
+
+
+
+
+===============================
+Task 3
+===============================
+
+Group 1: Customer Information
+Question 1: How many customers were born after 1990?
+
+Question 2: How many customers are either from New York or California?
+
+
+
+
+Group 2: Account Information
+Question 1: What are the account numbers with a balance greater than $5000?
+
+Question 2: How many accounts have a balance less than $100?
+
+
+
+
+
+Group 3: Transaction Information
+Question 1: What are the transaction IDs with an amount greater than $1000?
+
+Question 2: How many transactions were not successful?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===============================
+Task 1- Solution
+===============================
+
+
+Group 1: Customer Information
+Question 1: How many customers do we have in our database?
+
+SELECT COUNT(*) AS total_customers 
+FROM customers;
+
+
+
+Group 2: Account Information
+Question 1: What is the total balance across all accounts?
+
+SELECT SUM(balance) AS total_balance 
+FROM accounts;
+
+
+Group 3: Transaction Information
+Question 1: What is the total number of transactions?
+
+SELECT COUNT(*) AS total_transactions 
+FROM transactions;
+
+
+
+
+
+
+
+
+
+
+
+
+===============================
+Task 2 - Solutions
+===============================
+
+
+Group 1: Customer Information
+Question 1: How many customers do we have in our database?
+
+
+SELECT COUNT(*) AS total_customers 
+FROM customers;
+
+
+
+
+
+Question 2: What is the name of the oldest customer?
+
+
+SELECT name 
+FROM customers 
+ORDER BY birth_date ASC 
+LIMIT 1;
+
+
+
+
+
+Group 2: Account Information
+Question 1: What is the total balance across all accounts?
+
+SELECT SUM(balance) AS total_balance 
+FROM accounts;
+
+
+
+
+
+Question 2: What is the average balance of all accounts?
+
+SELECT AVG(balance) AS average_balance 
+FROM accounts;
+
+
+
+
+
+
+
+Group 3: Transaction Information
+Question 1: What is the total number of transactions?
+
+SELECT COUNT(*) AS total_transactions 
+FROM transactions;
+
+
+
+
+
+Question 2: What is the highest transaction amount?
+
+SELECT MAX(amount) AS highest_transaction_amount 
+FROM transactions;
+
+
+
+
+
+
+
+
+
+
+
+===============================
+Task 3 Solutions
+===============================
+
+Group 1: Customer Information
+Question 1: How many customers were born after 1990?
+
+
+SELECT COUNT(*) AS total_customers 
+FROM customers 
+WHERE birth_date > '1990-01-01';
+
+
+
+Question 2: How many customers are either from New York or California?
+
+SELECT COUNT(*) AS total_customers 
+FROM customers 
+WHERE state = 'New York' OR state = 'California';
+
+
+
+Group 2: Account Information
+Question 1: What are the account numbers with a balance greater than $5000?
+
+SELECT account_number 
+FROM accounts 
+WHERE balance > 5000;
+
+
+
+
+Question 2: How many accounts have a balance less than $100?
+
+SELECT COUNT(*) AS accounts_with_balance_less_than_100 
+FROM accounts 
+WHERE balance < 100;
+
+
+
+Group 3: Transaction Information
+Question 1: What are the transaction IDs with an amount greater than $1000?
+
+SELECT transaction_id 
+FROM transactions 
+WHERE amount > 1000;
+
+
+
+Question 2: How many transactions were not successful?
+
+SELECT COUNT(*) AS unsuccessful_transactions 
+FROM transactions 
+WHERE NOT status = 'success';
+

@@ -1,0 +1,608 @@
+
+
+
+Movies(movielD, movieName, releaseDate, ticketPrice, buyPrice)
+Viewers (viewerlD, viewer Name, email, phone, age)
+Tickets (ticketID, showDateTime, screenNumber, seatNumber, viewerlD, movielD)
+
+        a. Write the DDL statement to create the Tickets table.
+        b. Write SQL query to find the list of all the movies released in the month of January 2018.
+        c. Write SQL query to find the name and email of viewers whose name contains
+        "Prakash"
+        d. Write SQL to find the name of the viewers of age not less than 18 years.
+
+
+
+
+SOLLUTION
+----------
+a. Write the DDL statement to create the Tickets table.
+
+
+b. Write SQL query to find the list of all the movies released in the month of January 2018.
+
+
+c. Write SQL query to find the name and email of viewers whose name contains "Prakash"
+
+
+d. Write SQL to find the name of the viewers of age not less than 18 years.
+
+
+
+
+
+
+===============LAB SCNERIO ======================
+
+docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d MySQL
+docker exec -ti mydb1 mysql -u root -p1234
+
+mysql> create database bim2019;
+mysql> use bim2019;
+
+
+-- Create Movies table
+CREATE TABLE Movies (
+    movieID INT AUTO_INCREMENT PRIMARY KEY,
+    movieName VARCHAR(255) NOT NULL,
+    releaseDate DATE,
+    ticketPrice DECIMAL(10, 2),
+    buyPrice DECIMAL(10, 2)
+);
+
+-- Create Viewers table
+CREATE TABLE Viewers (
+    viewerID INT AUTO_INCREMENT PRIMARY KEY,
+    viewerName VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    age INT
+);
+
+-- Create Tickets table
+CREATE TABLE Tickets (
+    ticketID INT AUTO_INCREMENT PRIMARY KEY,
+    showDateTime DATETIME,
+    screenNumber INT,
+    seatNumber INT,
+    viewerID INT,
+    movieID INT,
+    FOREIGN KEY (viewerID) REFERENCES Viewers(viewerID),
+    FOREIGN KEY (movieID) REFERENCES Movies(movieID)
+);
+
+
+
+
+
+
+
+
+- Insert data into Movies table
+INSERT INTO Movies (movieName, releaseDate, ticketPrice, buyPrice) VALUES
+('Kabaddi Kabaddi', '2015-11-27', 200, 500),
+('Pashupati Prasad', '2016-01-29', 250, 550),
+('Chhakka Panja', '2016-09-09', 220, 600),
+('Jatra', '2016-11-24', 200, 550),
+('Changa Chet', '2018-05-11', 230, 580),
+('Purano Dunga', '2017-11-17', 240, 600),
+('Gopi Krishna', '2018-10-12', 220, 550),
+('Loot', '2012-11-13', 180, 500),
+('Kalo Pothi', '2015-08-21', 190, 520),
+('Pardeshi', '2015-12-11', 210, 540),
+('Karkhana', '2016-02-19', 230, 560),
+('Kohalpur Express', '2017-11-03', 200, 530),
+('Saayad', '2012-09-14', 180, 500),
+('Panche Baja', '2018-04-13', 250, 570),
+('Kri', '2018-02-09', 240, 590),
+('Nai Nabhannu La', '2010-07-16', 170, 480),
+('Jhola', '2014-09-12', 190, 510),
+('Bato Muniko Phool', '2010-10-14', 200, 520),
+('Mukhauta', '2014-08-13', 210, 540),
+('Mala', '2013-12-06', 220, 550);
+
+
+
+
+
+
+-- Insert data into Viewers table
+INSERT INTO Viewers (viewerName, email, phone, age) VALUES
+('Suresh Tamang', 'suresh@example.com', '9876543210', 28),
+('Rajesh Sharma', 'rajesh@example.com', '9876543211', 35),
+('Nabin Thapa', 'nabin@example.com', '9876543212', 30),
+('Pratima Rai', 'pratima@example.com', '9876543213', 25),
+('Bibek Gurung', 'bibek@example.com', '9876543214', 26),
+('Sangita Shrestha', 'sangita@example.com', '9876543215', 32),
+('Alisha Khadka', 'alisha@example.com', '9876543216', 22),
+('Bikash Maharjan', 'bikash@example.com', '9876543217', 29),
+('Preeti Tamrakar', 'preeti@example.com', '9876543218', 27),
+('Dipendra Shrestha', 'dipendra@example.com', '9876543219', 31),
+('Sunita Rai', 'sunita@example.com', '9876543220', 24),
+('Ramesh Lama', 'ramesh@example.com', '9876543221', 33),
+('Sarita Thapa', 'sarita@example.com', '9876543222', 28),
+('Bishal Shrestha', 'bishal@example.com', '9876543223', 30),
+('Anjali Maharjan', 'anjali@example.com', '9876543224', 26),
+('Bimal Thapa', 'bimal@example.com', '9876543225', 29),
+('Kabita Gurung', 'kabita@example.com', '9876543226', 25),
+('Raju Shrestha', 'raju@example.com', '9876543227', 34),
+('Anita Rai', 'anita@example.com', '9876543228', 27),
+('Deepak Shakya', 'deepak@example.com', '9876543229', 32);
+
+
+
+
+
+
+
+-- Insert data into Tickets table
+INSERT INTO Tickets (showDateTime, screenNumber, seatNumber, viewerID, movieID) 
+VALUES
+('2024-02-15 18:00:00', 2, 121, 1, 1),
+('2024-02-15 20:00:00', 3, 122, 2, 2),
+('2024-02-15 15:00:00', 1, 123, 3, 3),
+('2024-02-15 17:00:00', 2, 124, 4, 4),
+('2024-02-15 19:00:00', 3, 125, 5, 5),
+('2024-02-15 14:00:00', 1, 126, 6, 6),
+('2024-02-15 16:00:00', 2, 127, 7, 7),
+('2024-02-15 18:00:00', 3, 128, 8, 8),
+('2024-02-15 20:00:00', 1, 129, 9, 9),
+('2024-02-15 15:00:00', 2, 130, 10, 10),
+('2024-02-15 17:00:00', 3, 131, 11, 11),
+('2024-02-15 19:00:00', 1, 132, 12, 12),
+('2024-02-15 14:00:00', 2, 133, 13, 13),
+('2024-02-15 16:00:00', 3, 134, 14, 14),
+('2024-02-15 18:00:00', 1, 135, 15, 15),
+('2024-02-15 20:00:00', 2, 136, 16, 16),
+('2024-02-15 15:00:00', 3, 137, 17, 17),
+('2024-02-15 17:00:00', 1, 138, 18, 18),
+('2024-02-15 19:00:00', 2, 139, 19, 19),
+('2024-02-15 14:00:00', 3, 140, 20, 20);
+
+
+
+ysql> select * from Movies;
++---------+-------------------+-------------+-------------+----------+
+| movieID | movieName         | releaseDate | ticketPrice | buyPrice |
++---------+-------------------+-------------+-------------+----------+
+|       1 | Kabaddi Kabaddi   | 2015-11-27  |      200.00 |   500.00 |
+|       2 | Pashupati Prasad  | 2016-01-29  |      250.00 |   550.00 |
+|       3 | Chhakka Panja     | 2016-09-09  |      220.00 |   600.00 |
+|       4 | Jatra             | 2016-11-24  |      200.00 |   550.00 |
+|       5 | Changa Chet       | 2018-05-11  |      230.00 |   580.00 |
+|       6 | Purano Dunga      | 2017-11-17  |      240.00 |   600.00 |
+|       7 | Gopi Krishna      | 2018-10-12  |      220.00 |   550.00 |
+|       8 | Loot              | 2012-11-13  |      180.00 |   500.00 |
+|       9 | Kalo Pothi        | 2015-08-21  |      190.00 |   520.00 |
+|      10 | Pardeshi          | 2015-12-11  |      210.00 |   540.00 |
+|      11 | Karkhana          | 2016-02-19  |      230.00 |   560.00 |
+|      12 | Kohalpur Express  | 2017-11-03  |      200.00 |   530.00 |
+|      13 | Saayad            | 2012-09-14  |      180.00 |   500.00 |
+|      14 | Panche Baja       | 2018-04-13  |      250.00 |   570.00 |
+|      15 | Kri               | 2018-02-09  |      240.00 |   590.00 |
+|      16 | Nai Nabhannu La   | 2010-07-16  |      170.00 |   480.00 |
+|      17 | Jhola             | 2014-09-12  |      190.00 |   510.00 |
+|      18 | Bato Muniko Phool | 2010-10-14  |      200.00 |   520.00 |
+|      19 | Mukhauta          | 2014-08-13  |      210.00 |   540.00 |
+|      20 | Mala              | 2013-12-06  |      220.00 |   550.00 |
++---------+-------------------+-------------+-------------+----------+
+
+
+
+mysql> select * from Viewers;
++----------+-------------------+----------------------+------------+------+
+| viewerID | viewerName        | email                | phone      | age  |
++----------+-------------------+----------------------+------------+------+
+|        1 | Suresh Tamang     | suresh@example.com   | 9876543210 |   28 |
+|        2 | Rajesh Sharma     | rajesh@example.com   | 9876543211 |   35 |
+|        3 | Nabin Thapa       | nabin@example.com    | 9876543212 |   30 |
+|        4 | Pratima Rai       | pratima@example.com  | 9876543213 |   25 |
+|        5 | Bibek Gurung      | bibek@example.com    | 9876543214 |   26 |
+|        6 | Sangita Shrestha  | sangita@example.com  | 9876543215 |   32 |
+|        7 | Alisha Khadka     | alisha@example.com   | 9876543216 |   22 |
+|        8 | Bikash Maharjan   | bikash@example.com   | 9876543217 |   29 |
+|        9 | Preeti Tamrakar   | preeti@example.com   | 9876543218 |   27 |
+|       10 | Dipendra Shrestha | dipendra@example.com | 9876543219 |   31 |
+|       11 | Sunita Rai        | sunita@example.com   | 9876543220 |   24 |
+|       12 | Ramesh Lama       | ramesh@example.com   | 9876543221 |   33 |
+|       13 | Sarita Thapa      | sarita@example.com   | 9876543222 |   28 |
+|       14 | Bishal Shrestha   | bishal@example.com   | 9876543223 |   30 |
+|       15 | Anjali Maharjan   | anjali@example.com   | 9876543224 |   26 |
+|       16 | Bimal Thapa       | bimal@example.com    | 9876543225 |   29 |
+|       17 | Kabita Gurung     | kabita@example.com   | 9876543226 |   25 |
+|       18 | Raju Shrestha     | raju@example.com     | 9876543227 |   34 |
+|       19 | Anita Rai         | anita@example.com    | 9876543228 |   27 |
+|       20 | Deepak Shakya     | deepak@example.com   | 9876543229 |   32 |
++----------+-------------------+----------------------+------------+------+
+
+
+
+
+mysql> select * from Tickets;
++----------+---------------------+--------------+------------+----------+---------+
+| ticketID | showDateTime        | screenNumber | seatNumber | viewerID | movieID |
++----------+---------------------+--------------+------------+----------+---------+
+|        1 | 2024-02-15 18:00:00 |            2 |        121 |        1 |       1 |
+|        2 | 2024-02-15 20:00:00 |            3 |        122 |        2 |       2 |
+|        3 | 2024-02-15 15:00:00 |            1 |        123 |        3 |       3 |
+|        4 | 2024-02-15 17:00:00 |            2 |        124 |        4 |       4 |
+|        5 | 2024-02-15 19:00:00 |            3 |        125 |        5 |       5 |
+|        6 | 2024-02-15 14:00:00 |            1 |        126 |        6 |       6 |
+|        7 | 2024-02-15 16:00:00 |            2 |        127 |        7 |       7 |
+|        8 | 2024-02-15 18:00:00 |            3 |        128 |        8 |       8 |
+|        9 | 2024-02-15 20:00:00 |            1 |        129 |        9 |       9 |
+|       10 | 2024-02-15 15:00:00 |            2 |        130 |       10 |      10 |
+|       11 | 2024-02-15 17:00:00 |            3 |        131 |       11 |      11 |
+|       12 | 2024-02-15 19:00:00 |            1 |        132 |       12 |      12 |
+|       13 | 2024-02-15 14:00:00 |            2 |        133 |       13 |      13 |
+|       14 | 2024-02-15 16:00:00 |            3 |        134 |       14 |      14 |
+|       15 | 2024-02-15 18:00:00 |            1 |        135 |       15 |      15 |
+|       16 | 2024-02-15 20:00:00 |            2 |        136 |       16 |      16 |
+|       17 | 2024-02-15 15:00:00 |            3 |        137 |       17 |      17 |
+|       18 | 2024-02-15 17:00:00 |            1 |        138 |       18 |      18 |
+|       19 | 2024-02-15 19:00:00 |            2 |        139 |       19 |      19 |
+|       20 | 2024-02-15 14:00:00 |            3 |        140 |       20 |      20 |
++----------+---------------------+--------------+------------+----------+---------+
+
+
+
+
+
+a. Write the DDL statement to create the Tickets table.
+
+
+CREATE TABLE Tickets (
+    ticketID INT PRIMARY KEY,
+    showDateTime DATETIME,
+    screenNumber INT,
+    seatNumber INT,
+    viewerID INT,
+    movieID INT,
+    FOREIGN KEY (viewerID) REFERENCES Viewers(viewerID),
+    FOREIGN KEY (movieID) REFERENCES Movies(movieID)
+);
+
+
+
+b. Write SQL query to find the list of all the movies released in the month of January 2018.
+
+SELECT movieName
+FROM Movies
+WHERE YEAR(releaseDate) = 2018 AND MONTH(releaseDate) = 1;
+
+Empty set (0.00 sec)
+
+
+c. Write SQL query to find the name and email of viewers whose name contains "Prakash"
+
+SELECT viewerName, email
+FROM Viewers
+WHERE viewerName LIKE '%Prakash%';
+
+Empty set (0.00 sec)
+
+d. Write SQL to find the name of the viewers of age not less than 18 years.
+
+SELECT viewerName
+FROM Viewers
+WHERE age >= 18;
+
+
++-------------------+
+| viewerName        |
++-------------------+
+| Suresh Tamang     |
+| Rajesh Sharma     |
+| Nabin Thapa       |
+| Pratima Rai       |
+| Bibek Gurung      |
+| Sangita Shrestha  |
+| Alisha Khadka     |
+| Bikash Maharjan   |
+| Preeti Tamrakar   |
+| Dipendra Shrestha |
+| Sunita Rai        |
+| Ramesh Lama       |
+| Sarita Thapa      |
+| Bishal Shrestha   |
+| Anjali Maharjan   |
+| Bimal Thapa       |
+| Kabita Gurung     |
+| Raju Shrestha     |
+| Anita Rai         |
+| Deepak Shakya     |
++-------------------+
+
+
+
+
+=========== MISC QUESTIONS
+
+
+Retrieve all movies released in 2018:
+------------------------------------------
+SELECT movieName
+FROM Movies
+WHERE YEAR(releaseDate) = 2018;
+
++--------------+
+| movieName    |
++--------------+
+| Changa Chet  |
+| Gopi Krishna |
+| Panche Baja  |
+| Kri          |
++--------------+
+
+
+
+
+Find the total number of viewers aged 25 or younger:
+------------------------------------------
+
+SELECT COUNT(*)
+FROM Viewers
+WHERE age <= 25;
+
+
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+
+
+
+
+
+List movies with their ticket prices in descending order:
+------------------------------------------
+
+SELECT movieName, ticketPrice
+FROM Movies
+ORDER BY ticketPrice DESC;
+
+
++-------------------+-------------+
+| movieName         | ticketPrice |
++-------------------+-------------+
+| Pashupati Prasad  |      250.00 |
+| Panche Baja       |      250.00 |
+| Kri               |      240.00 |
+| Purano Dunga      |      240.00 |
+| Karkhana          |      230.00 |
+| Changa Chet       |      230.00 |
+| Gopi Krishna      |      220.00 |
+| Chhakka Panja     |      220.00 |
+| Mala              |      220.00 |
+| Pardeshi          |      210.00 |
+| Mukhauta          |      210.00 |
+| Kabaddi Kabaddi   |      200.00 |
+| Kohalpur Express  |      200.00 |
+| Jatra             |      200.00 |
+| Bato Muniko Phool |      200.00 |
+| Kalo Pothi        |      190.00 |
+| Jhola             |      190.00 |
+| Loot              |      180.00 |
+| Saayad            |      180.00 |
+| Nai Nabhannu La   |      170.00 |
++-------------------+-------------+
+
+
+
+
+
+
+Retrieve viewers who booked tickets for the movie with ID 3:
+------------------------------------------
+
+
+SELECT v.viewerName, v.email
+FROM Viewers v
+JOIN Tickets t ON v.viewerID = t.viewerID
+WHERE t.movieID = 3;
+
+
++-------------+-------------------+
+| viewerName  | email             |
++-------------+-------------------+
+| Nabin Thapa | nabin@example.com |
++-------------+-------------------+
+
+
+
+
+
+
+Find the average age of viewers:
+------------------------------------------
+
+SELECT AVG(age) AS averageAge
+FROM Viewers;
+
++------------+
+| averageAge |
++------------+
+|    28.6500 |
++------------+
+
+
+
+
+
+Count the number of tickets booked for each movie:
+------------------------------------------
+
+SELECT m.movieName, COUNT(t.ticketID) AS ticketCount
+FROM Movies m
+LEFT JOIN Tickets t ON m.movieID = t.movieID
+GROUP BY m.movieName;
+
++-------------------+-------------+
+| movieName         | ticketCount |
++-------------------+-------------+
+| Kabaddi Kabaddi   |           1 |
+| Pashupati Prasad  |           1 |
+| Chhakka Panja     |           1 |
+| Jatra             |           1 |
+| Changa Chet       |           1 |
+| Purano Dunga      |           1 |
+| Gopi Krishna      |           1 |
+| Loot              |           1 |
+| Kalo Pothi        |           1 |
+| Pardeshi          |           1 |
+| Karkhana          |           1 |
+| Kohalpur Express  |           1 |
+| Saayad            |           1 |
+| Panche Baja       |           1 |
+| Kri               |           1 |
+| Nai Nabhannu La   |           1 |
+| Jhola             |           1 |
+| Bato Muniko Phool |           1 |
+| Mukhauta          |           1 |
+| Mala              |           1 |
++-------------------+-------------+
+
+
+
+
+
+
+Find the movie with the highest buy price:
+------------------------------------------
+
+SELECT movieName, buyPrice
+FROM Movies
+ORDER BY buyPrice DESC
+LIMIT 1;
+
+
++---------------+----------+
+| movieName     | buyPrice |
++---------------+----------+
+| Chhakka Panja |   600.00 |
++---------------+----------+
+
+
+
+
+
+Retrieve viewers who booked tickets for a show after '2024-02-15 17:00:00':
+------------------------------------------
+SELECT DISTINCT v.viewerName, v.email
+FROM Viewers v
+JOIN Tickets t ON v.viewerID = t.viewerID
+WHERE t.showDateTime > '2024-02-15 17:00:00';
+
++-----------------+--------------------+
+| viewerName      | email              |
++-----------------+--------------------+
+| Suresh Tamang   | suresh@example.com |
+| Rajesh Sharma   | rajesh@example.com |
+| Bibek Gurung    | bibek@example.com  |
+| Bikash Maharjan | bikash@example.com |
+| Preeti Tamrakar | preeti@example.com |
+| Ramesh Lama     | ramesh@example.com |
+| Anjali Maharjan | anjali@example.com |
+| Bimal Thapa     | bimal@example.com  |
+| Anita Rai       | anita@example.com  |
++-----------------+--------------------+
+
+
+
+
+List movies with their average ticket prices:
+------------------------------------------
+
+SELECT movieName, AVG(ticketPrice) AS avgTicketPrice
+FROM Movies
+GROUP BY movieName;
+
+
+-------------------+----------------+
+| movieName         | avgTicketPrice |
++-------------------+----------------+
+| Kabaddi Kabaddi   |     200.000000 |
+| Pashupati Prasad  |     250.000000 |
+| Chhakka Panja     |     220.000000 |
+| Jatra             |     200.000000 |
+| Changa Chet       |     230.000000 |
+| Purano Dunga      |     240.000000 |
+| Gopi Krishna      |     220.000000 |
+| Loot              |     180.000000 |
+| Kalo Pothi        |     190.000000 |
+| Pardeshi          |     210.000000 |
+| Karkhana          |     230.000000 |
+| Kohalpur Express  |     200.000000 |
+| Saayad            |     180.000000 |
+| Panche Baja       |     250.000000 |
+| Kri               |     240.000000 |
+| Nai Nabhannu La   |     170.000000 |
+| Jhola             |     190.000000 |
+| Bato Muniko Phool |     200.000000 |
+| Mukhauta          |     210.000000 |
+| Mala              |     220.000000 |
++-------------------+----------------+
+
+
+
+Find viewers who booked tickets but have no age information:
+------------------------------------------
+
+SELECT viewerName, email
+FROM Viewers
+WHERE viewerID IN (SELECT DISTINCT viewerID FROM Tickets)
+AND age IS NULL;
+
+Empty set (0.00 sec)
+
+
+
+Count the number of distinct viewers for each movie:
+------------------------------------------
+SELECT m.movieName, COUNT(DISTINCT t.viewerID) AS viewerCount
+FROM Movies m
+LEFT JOIN Tickets t ON m.movieID = t.movieID
+GROUP BY m.movieName;
+
+
++-------------------+-------------+
+| movieName         | viewerCount |
++-------------------+-------------+
+| Bato Muniko Phool |           1 |
+| Changa Chet       |           1 |
+| Chhakka Panja     |           1 |
+| Gopi Krishna      |           1 |
+| Jatra             |           1 |
+| Jhola             |           1 |
+| Kabaddi Kabaddi   |           1 |
+| Kalo Pothi        |           1 |
+| Karkhana          |           1 |
+| Kohalpur Express  |           1 |
+| Kri               |           1 |
+| Loot              |           1 |
+| Mala              |           1 |
+| Mukhauta          |           1 |
+| Nai Nabhannu La   |           1 |
+| Panche Baja       |           1 |
+| Pardeshi          |           1 |
+| Pashupati Prasad  |           1 |
+| Purano Dunga      |           1 |
+| Saayad            |           1 |
++-------------------+-------------+
+
+
+
+------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+

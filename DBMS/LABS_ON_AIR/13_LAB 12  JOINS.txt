@@ -1,0 +1,1513 @@
+
+-----------------------------------------------------------------------------------------
+LAB 12 - JOINS
+-----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+In SQL (Structured Query Language), operators are used to perform operations on data. 
+There are several types of operators in SQL, and they can be broadly categorized into the following groups:
+
+		Arithmetic Operators:
+		----------------------
+			Addition: 		+
+			Subtraction: 		-
+			Multiplication: 	*
+			Division: 		/
+			Modulus (Remainder): 	%
+
+
+
+		Comparison Operators:
+		-------------------------
+			Equal to: 			=
+			Not equal to: 			<> or !=
+			Greater than: 			>
+			Less than: 			<
+			Greater than or equal to: 	>=
+			Less than or equal to: 		<=
+
+
+		Logical Operators:
+		--------------------
+
+			AND:	 AND
+			OR: 	OR
+			NOT: 	NOT
+
+
+
+		Concatenation Operator:
+		-----------------------
+		|| or CONCAT() function
+
+
+
+
+		Wildcard Operators:
+		-----------------------
+		% (percent) - 		Represents zero or more characters.
+		_ (underscore) - 	Represents a single character.
+
+
+
+
+
+
+
+LAB 1:  BASIC OPERATION UNDER SETS
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	-- Create students table
+		CREATE TABLE students (
+    			student_id INT PRIMARY KEY,
+    			student_name VARCHAR(50),
+    			grade VARCHAR(10)
+			);
+
+
+	-- Create teachers table
+		CREATE TABLE teachers (
+   		 teacher_id INT PRIMARY KEY,
+    		teacher_name VARCHAR(50),
+    		subject VARCHAR(30)
+		);
+
+
+	-- Insert 3 more rows into students table
+		INSERT INTO students VALUES (5, 'Sita KC', 'English');
+		INSERT INTO students VALUES (6, 'Ramesh Sharma', 'Science');
+		INSERT INTO students VALUES (7, 'Puja Thapa', 'Math');
+
+	-- Insert 3 more rows into teachers table
+		INSERT INTO teachers VALUES (105, 'Rajiv Kumar', 'Science');
+		INSERT INTO teachers VALUES (106, 'Aarti Singh', 'Nepali');
+		INSERT INTO teachers VALUES (107, 'Bikram Thakur', 'Social');
+
+
+
+Example 2
+----------
+
+mysql> create table t1(a varchar(4));
+mysql> create table t2(b varchar(4));
+mysql> insert into t1(a) values (1),(2),(3),(4),(5);
+mysql> insert into t2(b) values  (2),(3),(4);
+
+mysql> desc t1;
+mysql> desc t2;
+
+mysql> select * from t1;
++------+
+| a    |
++------+
+| 1    |
+| 2    |
+| 3    |
+| 4    |
+| 5    |
++------+
+
+
+mysql> select * from t2;
++------+
+| b    |
++------+
+| 2    |
+| 3    |
+| 4    |
++------+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- UNION: Combine student names and teacher names
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+	Set A: {1, 2, 3}		Set B: {2, 3, 4}
+	Union of A and B: A ∪ B = {1, 2, 3, 4}
+
+
+
+mysql> select  student_name AS name from students
+       UNION
+       select teacher_name as name from teachers;
++---------------+
+| name          |
++---------------+
+| Sita KC       |
+| Ramesh Sharma |
+| Rajiv Kumar   |
+| Aarti Singh   |
+| Bikram Thakur |
++---------------+;
+
+
+
+
+mysql> select * from t1
+    	union
+    	select * from t2;
+
+or 
+
+mysql> select a AS common from t1
+  	union
+    	select b AS common from t2;
++------+
+| a    |
++------+
+| 1    |
+| 2    |
+| 3    |
+| 4    |
+| 5    |
++------+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- INTERSECT: Find common subjects between students and teachers
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+	Set A: {1, 2, 3, 4, 5}		
+	Set B: {4, 5, 6, 7}	 
+	
+	A ∩ B = {4, 5}.
+
+
+mysql> SELECT DISTINCT grade AS common_subject FROM students
+       INTERSECT
+       SELECT DISTINCT subject FROM teachers;
++----------------+
+| common_subject |
++----------------+
+| Science        |
++----------------+
+
+
+
+
+
+mysql> select a AS common from t1 
+	intersect  
+	select b AS common from t2;
++--------+
+| common |
++--------+
+| 2      |
+| 4      |
+| 3      |
++--------+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- SET DIFFERENCE: Find subjects taught by teachers but not studied by students
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+	A = {1, 2, 3, 4} and B = {2, 4}, 
+	
+	then 
+
+		a-b = {1, 3} 	
+		and 
+		b-a = {phi}
+
+
+
+teachers - students
+------------------------
+mysql> select distinct subject as difference_subject from teachers
+       except
+       select distinct grade from students;
++--------------------+
+| difference_subject |
++--------------------+
+| Social Studies     |
+| Nepali             |
++--------------------+
+
+
+
+students - teachers
+--------------------
+mysql> select distinct grade as difference_grade from  students  
+	except 
+	select distinct subject from teachers;
+
++------------------+
+| difference_grade |
++------------------+
+| English          |
+| Math             |
++------------------+
+
+
+
+
+...........................................................
+note -- non commutative 
+......................
+
+teachers - students  != (not equals) students - teachers
+...........................................................
+
+
+
+mysql> select a AS common from t1 except  select b AS common from t2;
++--------+
+| common |
++--------+
+| 5      |
+| 1      |
++--------+
+
+
+mysql> select b AS common from t2  except select a AS common from t1;
+Empty set (0.00 sec)
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- Cartesian product of sets:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	E.G : Let  A = {1, 2, 3, 4} and B = {2, 4}
+		
+		A × B = {(1, 2), (1, 4), (2, 2), (2, 4), 
+			  (3, 2), (3, 4), (4, 2), (4, 4)}
+
+
+		A × B = B × A		[COMMUTATIVE]
+
+
+mysql> select * from students, teachers;
++------------+---------------+---------+------------+---------------+----------------+
+| student_id | student_name  | grade   | teacher_id | teacher_name  | subject        |
++------------+---------------+---------+------------+---------------+----------------+
+|          6 | Ramesh Sharma | Science |        105 | Rajiv Kumar   | Science        |
+|          5 | Sita KC       | English |        105 | Rajiv Kumar   | Science        |
+|          6 | Ramesh Sharma | Science |        106 | Aarti Singh   | Nepali         |
+|          5 | Sita KC       | English |        106 | Aarti Singh   | Nepali         |
+|          6 | Ramesh Sharma | Science |        107 | Bikram Thakur | Social Studies |
+|          5 | Sita KC       | English |        107 | Bikram Thakur | Social Studies |
++------------+---------------+---------+------------+---------------+----------------+
+
+
+
+mysql> select * from  teachers,students;
++------------+---------------+----------------+------------+---------------+---------+
+| teacher_id | teacher_name  | subject        | student_id | student_name  | grade   |
++------------+---------------+----------------+------------+---------------+---------+
+|        105 | Rajiv Kumar   | Science        |          6 | Ramesh Sharma | Science |
+|        105 | Rajiv Kumar   | Science        |          5 | Sita KC       | English |
+|        106 | Aarti Singh   | Nepali         |          6 | Ramesh Sharma | Science |
+|        106 | Aarti Singh   | Nepali         |          5 | Sita KC       | English |
+|        107 | Bikram Thakur | Social Studies |          6 | Ramesh Sharma | Science |
+|        107 | Bikram Thakur | Social Studies |          5 | Sita KC       | English |
++------------+---------------+----------------+------------+---------------+---------+
+
+
+
+
+
+EXAMPLE 2
+----------
+
+	EG: FROM above 
+		E.G : Let  A = {1, 2, 3, 4} and B = {2, 4}
+		
+		A × B = {(1, 2), (1, 4), (2, 2), (2, 4), 
+			  (3, 2), (3, 4), (4, 2), (4, 4)}
+
+
+		A × B = B × A		[COMMUTATIVE]
+
+
+CREATE TABLE A (
+    element INT
+);
+
+CREATE TABLE B (
+    element INT
+);
+
+INSERT INTO A (element) VALUES (1), (2), (3), (4);
+INSERT INTO B (element) VALUES (2), (4);
+
+
+
+mysql> select * from A;
++---------+
+| element |
++---------+
+|       1 |
+|       2 |
+|       3 |
+|       4 |
++---------+
+
+
+mysql> select * from B;
++---------+
+| element |
++---------+
+|       2 |
+|       4 |
++---------+
+
+
+mysql>create table t1 as  select m,f,r from A,B;
++---------+---------+
+| element | element |
++---------+---------+
+|       1 |       4 |
+|       1 |       2 |
+|       2 |       4 |
+|       2 |       2 |
+|       3 |       4 |
+|       3 |       2 |
+|       4 |       4 |
+|       4 |       2 |
++---------+---------+
+
+
+mysql> select * from B,A;
++---------+---------+
+| element | element |
++---------+---------+
+|       4 |       1 |
+|       2 |       1 |
+|       4 |       2 |
+|       2 |       2 |
+|       4 |       3 |
+|       2 |       3 |
+|       4 |       4 |
+|       2 |       4 |
++---------+---------+
+
+
+
+
+
+
+
+
+
+
+
+
+EXAMPLE 3:
+-----------
+
+
+
+mysql> select * from  t1,t2;			// table expands, NOT good ===> JOIN ( good)
++------+------+					// what about 3 * 3 tables=?
+| a    | b    |					// check t1 * t2 * t3=?
++------+------+
+| 1    | 4    |
+| 1    | 3    |
+| 1    | 2    |
+| 2    | 4    |
+| 2    | 3    |
+| 2    | 2    |
+| 3    | 4    |
+| 3    | 3    |
+| 3    | 2    |
+| 4    | 4    |
+| 4    | 3    |
+| 4    | 2    |
+| 5    | 4    |
+| 5    | 3    |
+| 5    | 2    |
++------+------+
+
+
+
+mysql> select * from  t1;
++------+
+| a    |
++------+
+| 1    |
+| 2    |
+| 3    |
+| 4    |
+| 5    |
++------+
+
+
+mysql> select * from  t2;
++------+
+| b    |
++------+
+| 2    |
+| 3    |
+| 4    |
++------+
+
+
+
+		CHECK CONLUSION on ????  (t1*t2*t3)
+		------------------------------------
+
+
+		example 4
+		----------
+
+
+mysql> select * from  t1;
++------+
+| a    |
++------+
+| 1    |
+| 2    |
+| 3    |
+| 4    |
+| 5    |
++------+
+
+
+mysql> select * from  t2;
++------+
+| b    |
++------+
+| 2    |
+| 3    |
+| 4    |
++------+	
+
+
+mysql> create table t3(c varchar(4));
+mysql> insert into t3() values ("w"), ("x") , ("y");
+
+
+mysql> select * from t3;
++------+
+| c    |
++------+
+| w    |
+| x    |
+| y    |
++------+
+
+
+		CHECK ON
+		------------
+		t1,t2
+		t1,t3
+		t2,t3
+		t1,t2,t3
+
+
+
+t1,t2
+
+mysql> select * from t1,t2;
++------+------+
+| a    | b    |
++------+------+
+| 1    | 4    |
+| 1    | 3    |
+| 1    | 2    |
+| 2    | 4    |
+| 2    | 3    |
+| 2    | 2    |
+| 3    | 4    |
+| 3    | 3    |
+| 3    | 2    |
+| 4    | 4    |
+| 4    | 3    |
+| 4    | 2    |
+| 5    | 4    |
+| 5    | 3    |
+| 5    | 2    |
++------+------+
+
+
+
+
+
+t1,t3
+mysql> select * from t1,t3;
++------+------+
+| a    | c    |
++------+------+
+| 1    | y    |
+| 1    | x    |
+| 1    | w    |
+| 2    | y    |
+| 2    | x    |
+| 2    | w    |
+| 3    | y    |
+| 3    | x    |
+| 3    | w    |
+| 4    | y    |
+| 4    | x    |
+| 4    | w    |
+| 5    | y    |
+| 5    | x    |
+| 5    | w    |
++------+------+
+
+
+
+
+
+
+t2,t3
+		
+mysql> select * from t2,t3;
++------+------+
+| b    | c    |
++------+------+
+| 4    | w    |
+| 3    | w    |
+| 2    | w    |
+| 4    | x    |
+| 3    | x    |
+| 2    | x    |
+| 4    | y    |
+| 3    | y    |
+| 2    | y    |
++------+------+
+
+
+
+
+
+
+
+
+
+
+t1,t2,t3
+mysql> select * from t1,t2,t3;
++------+------+------+
+| a    | b    | c    |
++------+------+------+
+| 1    | 2    | y    |
+| 1    | 3    | y    |
+| 1    | 4    | y    |
+| 1    | 2    | x    |
+| 1    | 3    | x    |
+| 1    | 4    | x    |
+| 1    | 2    | w    |
+| 1    | 3    | w    |
+| 1    | 4    | w    |
+| 2    | 2    | y    |
+| 2    | 3    | y    |
+| 2    | 4    | y    |
+| 2    | 2    | x    |
+| 2    | 3    | x    |
+| 2    | 4    | x    |
+| 2    | 2    | w    |
+| 2    | 3    | w    |
+| 2    | 4    | w    |
+| 3    | 2    | y    |
+| 3    | 3    | y    |
+| 3    | 4    | y    |
+| 3    | 2    | x    |
+| 3    | 3    | x    |
+| 3    | 4    | x    |
+| 3    | 2    | w    |
+| 3    | 3    | w    |
+| 3    | 4    | w    |
+| 4    | 2    | y    |
+| 4    | 3    | y    |
+| 4    | 4    | y    |
+| 4    | 2    | x    |
+| 4    | 3    | x    |
+| 4    | 4    | x    |
+| 4    | 2    | w    |
+| 4    | 3    | w    |
+| 4    | 4    | w    |
+| 5    | 2    | y    |
+| 5    | 3    | y    |
+| 5    | 4    | y    |
+| 5    | 2    | x    |
+| 5    | 3    | x    |
+| 5    | 4    | x    |
+| 5    | 2    | w    |
+| 5    | 3    | w    |
+| 5    | 4    | w    |
++------+------+------+
+
+
+
+
+
+CONCLUSON: ON CARTESION PRODUCT
+------------------------------------
+
+
+		
+Size of Result Set:
+--------------------
+The Cartesian product generates a result set that is the product of the number of rows in the involved tables. 
+This can lead to an extremely large result set, especially when dealing with tables with a large number of rows.
+The result set can quickly become unmanageable and may consume a significant amount of memory.
+
+
+
+......CALCULATE SIE OF TABLE............
+
+SELECT 
+    table_name AS `Table`,
+    ROUND(((data_length + index_length) / 1024 / 1024), 2) AS `Size_MB`
+FROM 
+    information_schema.tables
+WHERE 
+    table_schema = 'your_database_name' 
+    AND table_name = 'your_table_name'; 
+
+.............
+
+
+mysql> SELECT      
+	table_name AS `Table`,     
+	ROUND(((data_length + index_length) / 1024 / 1024), 2) AS `Size_MB` 
+FROM      
+	information_schema.tables 
+WHERE      
+	table_schema = 'db44'
+  	AND table_name = 't1';
++-------+---------+
+| Table | Size_MB |
++-------+---------+
+| t1    |    0.02 |
++-------+---------+
+
+
+........................
+
+mysql>CREATE TABLE new_table AS
+	SELECT *
+	FROM t1
+	CROSS JOIN t2
+	CROSS JOIN t3;
+
+mysql> select * from new_table;
+
+
+
+Performance Impact:
+--------------------
+Cartesian products can have a severe impact on performance due to the sheer size of the result set. 
+Generating and handling a large number of rows can be resource-intensive and time-consuming.
+The lack of specific join conditions in a Cartesian product can lead to inefficient queries.
+
+
+
+
+Lack of Specificity:
+--------------------
+Cartesian products do not rely on any specific join conditions or relationships between tables. 
+This lack of specificity can lead to unintended combinations of rows, producing data that may not be relevant or meaningful.
+JOINs allow for more precise control over how tables are combined, based on specified conditions.
+
+
+
+Data Redundancy:
+--------------------
+The result set of a Cartesian product may contain redundant data, 
+especially when there are no specific conditions to filter the combinations. 
+This redundancy can lead to difficulties in interpreting and analyzing the data.
+
+
+
+Limited Usefulness:
+--------------------
+Cartesian products are rarely used in practical scenarios where meaningful relationships between tables need to be established. 
+They are more of an edge case and are generally avoided in favor of more targeted JOIN operations.
+
+
+
+Maintainability:
+--------------------
+Cartesian products can make queries less readable and maintainable, 
+as the lack of explicit join conditions may make it unclear why certain combinations are being produced.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************
+SQL/ DBMS JOINS
+*******************************************************************
+
+	INNER JOIN is used when you only want rows with matching values, 
+
+	OUTER JOINs are used when you want to include unmatched rows along with matching ones. 
+
+
+
+
+
+	INNER JOIN:
+	------------
+	Returns only matching rows from both tables.
+	Excludes unmatched rows.
+	THETHA , EQUI, NATURAL
+
+
+	OUTER JOIN:
+	------------
+	Returns matching rows and all rows from one table, even if there is no match in the 			other table.
+	Includes unmatched rows with NULL values.
+		LEFT, RIGHT, or FULL
+	determines which table's unmatched rows are included in the result
+
+
+
+
+
+=============
+Inner Join
+============
+	Inner Join is used to return rows from both tables which 
+	satisfy the given condition. 
+	It is the most widely used join operation and can be considered 
+	as a default join-type
+
+	An Inner join or equijoin is a comparator-based join which uses 
+	equality comparisons in the join-predicate. 
+	However, if you use other comparison operators like “>” it can’t 
+	be called equijoin.
+
+
+	Inner Join is further divided into three subtypes:
+	
+		Theta join
+		Natural join
+		EQUI join
+
+
+
+
+
+
+Theta Join
+************
+Theta Join allows you to merge two tables based on the condition 
+represented by theta. Theta joins work for all comparison operators. 
+It is denoted by symbol θ. 
+
+	A ⋈θ B
+
+
+		Table A					Table B
+		---------				---------
+	column 1	column 2		column 1	column 2
+	1		1			1		1
+	1		2			1		3
+
+
+	A ⋈  A.column 2 >  B.column 2 (B)
+
+
+	column 1	column 2
+	1		2
+
+
+
+
+					-- Create Table A
+					CREATE TABLE TableA (
+					    column1 INT,
+					    column2 INT
+					);
+					
+					-- Insert Data into Table A
+					INSERT INTO TableA (column1, column2) VALUES
+					(1, 1),
+					(1, 2);
+					
+					-- Create Table B
+					CREATE TABLE TableB (
+					    column1 INT,
+					    column2 INT
+					);
+					
+					-- Insert Data into Table B
+					INSERT INTO TableB (column1, column2) VALUES
+					(1, 1),
+					(1, 3);
+
+
+
+					mysql> SELECT * FROM TableA, TableB 
+						WHERE TableA.column2 > TableB.column2;
+					+---------+---------+---------+---------+
+					| column1 | column2 | column1 | column2 |
+					+---------+---------+---------+---------+
+					|       1 |       2 |       1 |       1 |
+					+---------+---------+---------+---------+
+
+
+
+
+
+
+EQUI Join
+************
+EQUI Join is done when a Theta join uses only the equivalence condition. 
+EQUI join is the most difficult operation to implement efficiently in 
+an RDBMS, and one reason why RDBMS have essential performance problems.
+
+
+	A ⋈ A.column 2 =  B.column 2 (B)
+
+	column 1	column 2
+	1		1
+
+					
+					mysql> SELECT * FROM TableA 
+						JOIN TableB ON TableA.column2 = TableB.column2;
+					+---------+---------+---------+---------+
+					| column1 | column2 | column1 | column2 |
+					+---------+---------+---------+---------+
+					|       1 |       1 |       1 |       1 |
+					+---------+---------+---------+---------+
+
+
+
+
+
+
+
+Natural Join (⋈)
+************
+Natural Join does not utilize any of the comparison operators. 
+In this type of join, the attributes should have the same name and domain. 
+In Natural Join, there should be at least one common attribute 
+between two relations.
+
+It performs selection forming equality on those attributes which appear 
+in both relations and eliminates the duplicate attributes.
+
+
+
+Example:
+
+	Consider the following two tables
+
+		C		     D
+	-------------		------------			
+	Num	Square		Num	Cube
+	2	4		2	8
+	3	9		3	18
+
+
+
+		C ⋈ D
+	-------------------
+	Num	Square	Cube
+	2	4	8
+	3	9	18
+
+
+
+						-- Create Table C
+						CREATE TABLE C (
+						    Num INT,
+						    Square INT
+						);
+						
+						-- Insert Data into Table C
+						INSERT INTO C (Num, Square) VALUES
+						(2, 4),
+						(3, 9);
+						
+						-- Create Table D
+						CREATE TABLE D (
+						    Num INT,
+						    Cube INT
+						);
+						
+						-- Insert Data into Table D
+						INSERT INTO D (Num, Cube) VALUES
+						(2, 8),
+						(3, 18);
+
+
+
+
+
+						mysql> select * from C;
+						+------+--------+
+						| Num  | Square |
+						+------+--------+
+						|    2 |      4 |
+						|    3 |      9 |
+						+------+--------+
+						
+						
+						mysql> select * from D;
+						+------+------+
+						| Num  | Cube |
+						+------+------+
+						|    2 |    8 |
+						|    3 |   18 |
+						+------+------+
+
+						
+						mysql> SELECT * FROM C 
+							NATURAL JOIN D;
+						+------+--------+------+
+						| Num  | Square | Cube |
+						+------+--------+------+
+						|    2 |      4 |    8 |
+						|    3 |      9 |   18 |
+						+------+--------+------+
+						2 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+						--EQUI JOIN
+						mysql> SELECT C.Num, C.Square, D.Cube FROM C 
+							JOIN D ON C.Num = D.Num;
+						+------+--------+------+
+						| Num  | Square | Cube |
+						+------+--------+------+
+						|    2 |      4 |    8 |
+						|    3 |      9 |   18 |
+						+------+--------+------+
+						2 rows in set (0.00 sec
+
+
+
+
+
+
+
+						-- THETA <
+						mysql> SELECT C.Num, C.Square, D.Cube FROM C, D 
+							WHERE C.Num < D.Num;
+						+------+--------+------+
+						| Num  | Square | Cube |
+						+------+--------+------+
+						|    2 |      4 |   18 |
+						+------+--------+------+
+						
+						
+						
+						-- THETA >
+						mysql> SELECT C.Num, C.Square, D.Cube FROM C, D 
+									WHERE C.Num > D.Num;
+						+------+--------+------+
+						| Num  | Square | Cube |
+						+------+--------+------+
+						|    3 |      9 |    8 |
+						+------+--------+------+
+						
+						
+						
+						-- THETA >=
+						mysql> SELECT C.Num, C.Square, D.Cube 
+						FROM C, D 
+						WHERE C.Num >= D.Num;
+						+------+--------+------+
+						| Num  | Square | Cube |
+						+------+--------+------+
+						|    3 |      9 |    8 |
+						|    2 |      4 |    8 |
+						|    3 |      9 |   18 |
+						+------+--------+------+
+						
+						
+						-- THETA !=
+						mysql> SELECT C.Num, C.Square, D.Cube 
+							FROM C, D WHERE 
+							C.Num != D.Num;
+						+------+--------+------+
+						| Num  | Square | Cube |
+						+------+--------+------+
+						|    3 |      9 |    8 |
+						|    2 |      4 |   18 |
+						+------+--------+------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+================
+Outer Join
+================
+An Outer Join doesn’t require each record in the two join tables to have 
+a matching record. 
+In this type of join, the table retains each record even if no other 
+matching record exists.
+
+	Three types of Outer Joins are:
+		Left Outer Join
+		Right Outer Join
+		Full Outer Join
+
+
+
+
+Left Outer Join (A ⟕ B)
+************
+Left Outer Join returns all the rows from the table on the left even 
+if no matching rows have been found in the table on the right. 
+When no matching record is found in the table on the right, NULL is 
+returned
+
+
+Consider the following 2 Tables
+
+	A		      B
+-------------		-------------
+Num	Square		Num	Cube
+2	4		2	8
+3	9		3	18
+4	16		5	75
+
+
+		A ⋈ B
+	Num	Square	Cube
+	2	4	8
+	3	9	18
+	4	16	–
+
+
+							-- Create Table A
+							CREATE TABLE A (
+							    Num INT,
+							    Square INT
+							);
+							
+							-- Insert Data into Table A
+							INSERT INTO A (Num, Square) VALUES
+							(2, 4),
+							(3, 9),
+							(4, 16);
+							
+							-- Create Table B
+							CREATE TABLE B (
+							    Num INT,
+							    Cube INT
+							);
+							
+							-- Insert Data into Table B
+							INSERT INTO B (Num, Cube) VALUES
+							(2, 8),
+							(3, 18),
+							(5, 75);
+
+
+
+
+							mysql> SELECT A.Num, A.Square, B.Cube 
+								FROM A 
+								LEFT JOIN B ON A.Num = B.Num;
+							+------+--------+------+
+							| Num  | Square | Cube |
+							+------+--------+------+
+							|    2 |      4 |    8 |
+							|    3 |      9 |   18 |
+							|    4 |     16 | NULL |
+							+------+--------+------+
+
+
+
+
+
+
+
+Right Outer Join ( A ⟖ B )
+************
+Right Outer Join ( A ⟖ B )
+Right Outer Join returns all the columns from the table on the right 
+even if no matching rows have been found in the table on the left. 
+Where no matches have been found in the table on the left, NULL is returned.
+RIGHT outer JOIN is the opposite of LEFT JOIN
+
+	A Right Outer Join B
+		A ⋈ B
+		Num	Cube	Square
+		2	8	4
+		3	18	9
+		5	75	–
+
+
+
+					
+					mysql> SELECT A.Num, A.Square, B.Cube FROM A 
+						RIGHT JOIN 
+						B ON A.Num = B.Num;
+					+------+--------+------+
+					| Num  | Square | Cube |
+					+------+--------+------+
+					|    2 |      4 |    8 |
+					|    3 |      9 |   18 |
+					| NULL |   NULL |   75 |
+					+------+--------+------+
+					3 rows in set (0.00 sec)
+
+
+
+
+
+
+Full Outer Join ( A ⟗ B)
+************
+
+In a Full Outer Join , all tuples from both relations are included in
+ the result, irrespective of the matching condition.
+
+A ⋈ B
+
+	A ⋈ B
+	Num	Square	Cube
+	2	4	8
+	3	9	18
+	4	16	–
+	5	–	75
+
+
+
+
+						mysql> SELECT A.Num, A.Square, B.Cube 
+							FROM A 
+							LEFT JOIN B ON A.Num = B.Num 
+							UNION 
+							SELECT B.Num, A.Square, B.Cube 
+							FROM B 
+							LEFT JOIN A ON B.Num = A.Num;
+						+------+--------+------+
+						| Num  | Square | Cube |
+						+------+--------+------+
+						|    2 |      4 |    8 |
+						|    3 |      9 |   18 |
+						|    4 |     16 | NULL |
+						|    5 |   NULL |   75 |
+						+------+--------+------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example 3
+**********
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************
+-- C
+*******************************************************************
+
+
+
+
+*******************************************************************
+-- C
+*******************************************************************
+
+
+
+
+*******************************************************************
+-- C
+*******************************************************************
+
+
+
+
+
+
+
+*******************************************************************
+-- C
+*******************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***********BIM QUESTIONS ****************************************************
+Assume a  database of a Company. Where primary keys are underlined:
+
+employees (EmpID.., FirstName, LastName, Salary, DeplID)
+departments (DeptID.., DeptName, LocationID)
+locations (LocationID.., StreetAddress, PostalCode, City, ProvinceNo)
+
+Write the SQL queries for each of the following cases.
+The HR department needs a report to display the EmpID, first name, salary, for cach employce whose salary is greater than 25,000 and lcss than 50,000.
+
+Write a query to display the last namo, salary, department name of all employees whose department id is 26.
+
+Write a query to display the first name, department ID, department name, city for all employees who works in Lalitpur.
+
+Update the salary of employee with 50000 whose EmpiD is 220.
+
+Create a view for employees table named as EmpView with attributes EmplD,FirstName, Salary
+
+
+-----------------
+-- Create the employees table
+CREATE TABLE employees (
+    EmpID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Salary DECIMAL(10, 2),
+    DeptID INT
+);
+
+-- Insert sample data
+INSERT INTO employees (EmpID, FirstName, LastName, Salary, DeptID) VALUES
+(1, 'John', 'Doe', 50000.00, 1),
+(2, 'Jane', 'Smith', 60000.00, 2),
+(3, 'Bob', 'Johnson', 55000.00, 1),
+(4, 'Alice', 'Williams', 70000.00, 3),
+(5, 'Charlie', 'Brown', 48000.00, 2),
+(6, 'Eva', 'Jones', 62000.00, 1),
+(7, 'David', 'Lee', 75000.00, 3),
+(8, 'Grace', 'Taylor', 58000.00, 2);
+
+
+
+
+-- Create the departments table
+CREATE TABLE departments (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(50),
+    LocationID INT
+);
+
+-- Insert sample data
+INSERT INTO departments (DeptID, DeptName, LocationID) VALUES
+(1, 'HR', 101),
+(2, 'IT', 102),
+(3, 'Finance', 103),
+(4, 'Marketing', 104),
+(5, 'Operations', 105),
+(6, 'Sales', 106),
+(7, 'Research and Development', 107),
+(8, 'Customer Service', 108);
+
+
+
+
+
+
+-- Create the locations table
+CREATE TABLE locations (
+    LocationID INT PRIMARY KEY,
+    StreetAddress VARCHAR(255),
+    PostalCode VARCHAR(20),
+    City VARCHAR(50),
+    ProvinceNo INT
+);
+
+-- Insert sample data
+INSERT INTO locations (LocationID, StreetAddress, PostalCode, City, ProvinceNo) VALUES
+(101, '123 Main St', '12345', 'Example City', 1),
+(102, '456 Oak St', '67890', 'Sampletown', 2),
+(103, '789 Pine St', '45678', 'Testville', 3),
+(104, '321 Maple St', '23456', 'Dummypolis', 1),
+(105, '555 Elm St', '78901', 'Faketown', 2),
+(106, '777 Birch St', '34567', 'Placeholder City', 3),
+(107, '999 Cedar St', '89012', 'Nulltown', 1),
+(108, '222 Spruce St', '12345', 'Voidville', 2);
+
+
+
+
+mysql> show tables;
++-----------------+
+| Tables_in_lab11 |
++-----------------+
+| departments     |
+| employees       |
+| locations       |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from departments;
++--------+--------------------------+------------+
+| DeptID | DeptName                 | LocationID |
++--------+--------------------------+------------+
+|      1 | HR                       |        101 |
+|      2 | IT                       |        102 |
+|      3 | Finance                  |        103 |
+|      4 | Marketing                |        104 |
+|      5 | Operations               |        105 |
+|      6 | Sales                    |        106 |
+|      7 | Research and Development |        107 |
+|      8 | Customer Service         |        108 |
++--------+--------------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employees;
++-------+-----------+----------+----------+--------+
+| EmpID | FirstName | LastName | Salary   | DeptID |
++-------+-----------+----------+----------+--------+
+|     1 | John      | Doe      | 50000.00 |      1 |
+|     2 | Jane      | Smith    | 60000.00 |      2 |
+|     3 | Bob       | Johnson  | 55000.00 |      1 |
+|     4 | Alice     | Williams | 70000.00 |      3 |
+|     5 | Charlie   | Brown    | 48000.00 |      2 |
+|     6 | Eva       | Jones    | 62000.00 |      1 |
+|     7 | David     | Lee      | 75000.00 |      3 |
+|     8 | Grace     | Taylor   | 58000.00 |      2 |
++-------+-----------+----------+----------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from locations;
++------------+---------------+------------+------------------+------------+
+| LocationID | StreetAddress | PostalCode | City             | ProvinceNo |
++------------+---------------+------------+------------------+------------+
+|        101 | 123 Main St   | 12345      | Example City     |          1 |
+|        102 | 456 Oak St    | 67890      | Sampletown       |          2 |
+|        103 | 789 Pine St   | 45678      | Testville        |          3 |
+|        104 | 321 Maple St  | 23456      | Dummypolis       |          1 |
+|        105 | 555 Elm St    | 78901      | Faketown         |          2 |
+|        106 | 777 Birch St  | 34567      | Placeholder City |          3 |
+|        107 | 999 Cedar St  | 89012      | Nulltown         |          1 |
+|        108 | 222 Spruce St | 12345      | Voidville        |          2 |
++------------+---------------+------------+------------------+------------+
+8 rows in set (0.00 sec)
+
+
+The HR department needs a report to display 
+the EmpID, first name, salary, for 
+each employee whose salary is greater than 25,000 and less than 50,000.
+
+mysql> SELECT EmpID, FirstName, Salary
+    -> FROM employees
+    -> WHERE Salary > 25000 AND Salary < 50000;
++-------+-----------+----------+
+| EmpID | FirstName | Salary   |
++-------+-----------+----------+
+|     5 | Charlie   | 48000.00 |
++-------+-----------+----------+
+
+
+
+Write a query to display 
+the last name, salary, department name of 
+all employees whose department id is 26.
+
+mysql> SELECT e.LastName, e.Salary, d.DeptName
+    -> FROM employees e
+    -> JOIN departments d ON e.DeptID = d.DeptID
+    -> WHERE e.DeptID = 26;
+Empty set (0.00 sec)
+
+
+
+
+
+Write a query to display the 
+first name, department ID, department name, city for all 
+employees who works in Lalitpur.
+
+Update the salary of employee with 50000 whose EmpiD is 220.
+
+Create a view for employees table named as EmpView with attributes EmplD,FirstName, Salary
+

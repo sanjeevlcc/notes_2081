@@ -1,0 +1,405 @@
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 2 - creating database and tables , inserting data with some constraints
+-----------------------------------------------------------------------------------------
+
+
+=========USING/Mysql Community/phpadmin/docker==============
+
+			-----------------DOCKER------------------------------
+			step 1: Login with credentials in ... https://killercoda.com/
+			step 2: Choose any scnerio. Ubuntu or CKA or Playground
+			step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+			step 4: docker exec -ti mydb1 bash
+			step 5: mysql -u root -p1234
+
+
+
+
+
+
+
+
+
+
+
+
+SQL Create Constraints
+
+Constraints can be specified when the table is created with the CREATE TABLE statement, 
+or after the table is created with the ALTER TABLE statement.
+
+Constraints are used to limit the type of data that can go into a table.
+
+		NOT NULL - Ensures that a column cannot have a NULL value
+		UNIQUE - Ensures that all values in a column are different
+		PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+		FOREIGN KEY - Prevents actions that would destroy links between tables
+		CHECK - Ensures that the values in a column satisfies a specific condition
+		DEFAULT - Sets a default value for a column if no value is specified
+		CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+
+	CHECK on
+	-------
+	not null
+	unique
+	default
+	CHECK
+	
+	foreign key
+	primary key
+
+mysql> create table personal1( 
+	id int not null unique,     
+	name varchar(50) not null,     
+	age int not null check (age>=18),     
+	gender varchar(1) not null,     
+	phone varchar(10) not null unique,     
+	city varchar(15) not null default 'Butwal'
+	);
+
+
+mysql> show tables;
++---------------+
+| Tables_in_db1 |
++---------------+
+| personal      |
+| personal1     |
++---------------+
+
+
+mysql> desc personal1;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| gender | varchar(1)  | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| city   | varchar(15) | NO   |     | Butwal  |       |
++--------+-------------+------+-----+---------+-------+
+
+
+
+1st data entry -- OK
+mysql> insert into personal1 (id, name, age, gender, phone,city) 
+	values (1,"Sanjeev Thapa",20,"M", 9815489555, "Palpa");
+Query OK, 1 row affected (0.00 sec)
+
+
+
+Showing Error on gender as no entry of attribute
+mysql> insert into personal (id, name, age, gender, phone, city)  
+	values (1,"Sun Thapa",20, 9812289555, "Palpa");
+ERROR 1054 (42S22): Unknown column 'age' in 'field list'
+
+
+Checking default value.... i.e CITY
+mysql> insert into personal1 (id, name, age, gender, phone)  
+	values (2,"Mivaan Thapa",21,"M", 9822229555);
+Query OK, 1 row affected (0.00 sec)
+
+
+mysql> select * from personal1;
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
++----+---------------+-----+--------+------------+--------+
+
+
+Checking default value..... Phone no same from above
+mysql> insert into personal1 (id,name,age,gender,phone)  
+	values (3,"Shila Lama",22,"F", 9822229555);
+ERROR 1062 (23000): Duplicate entry '9822229555' for key 'personal1.phone'
+
+
+mysql> insert into personal1 (id, name, age, gender, phone)  
+	values (3,"Shila Lama",22,"F", 982222955);
+Query OK, 1 row affected (0.00 sec)
+
+
+
+
+
+mysql> select * from personal1;
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal |
++----+---------------+-----+--------+------------+--------+
+
+
+
+Inserting age less than 18...... VIOLATION ERROR
+mysql> insert into personal1 (id, name, age, gender, phone,city)
+  	values
+    	(35,"Mina Lama",12,"F", 982222956,"bhirawaha");
+ERROR 3819 (HY000): Check constraint 'personal1_chk_1' is violated.
+
+
+mysql> insert into personal1 (id, name, age, gender, phone,city) 
+	values (35,"Mina Lama",22,"F", 982222956,"bhirawaha");
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> select * from personal1;
++----+---------------+-----+--------+------------+-----------+
+| id | name          | age | gender | phone      | city      |
++----+---------------+-----+--------+------------+-----------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa     |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal    |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal    |
+| 35 | Mina Lama     |  22 | F      | 982222956  | bhirawaha |
++----+---------------+-----+--------+------------+-----------+
+
+
+
+
+//picking more data directly
+mysql> insert into personal1 (id, name, age, gender, phone,city)  values     
+	(4,"sunita pandey",35,"F", 981221995, "Palpa"),
+	(5,"aman rijal",26, "M", 981555, "Palpa"),
+	(6,"kririka pandey",25,"F", 981228, "Palpa"),
+	(7,"anil pandey",60,"M", 9812287, "Palpa"),
+	(8,"manju ale",26, "F",98125698, "Palpa");
+
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from personal1;
++----+----------------+-----+--------+------------+-----------+
+| id | name           | age | gender | phone      | city      |
++----+----------------+-----+--------+------------+-----------+
+|  1 | Sanjeev Thapa  |  20 | M      | 9815489555 | Palpa     |
+|  2 | Mivaan Thapa   |  21 | M      | 9822229555 | Butwal    |
+|  3 | Shila Lama     |  22 | F      | 982222955  | Butwal    |
+|  4 | sunita pandey  |  35 | F      | 981221995  | Palpa     |
+|  5 | aman rijal     |  26 | M      | 981555     | Palpa     |
+|  6 | kririka pandey |  25 | F      | 981228     | Palpa     |
+|  7 | anil pandey    |  60 | M      | 9812287    | Palpa     |
+|  8 | manju ale      |  26 | F      | 98125698   | Palpa     |
+| 35 | Mina Lama      |  22 | F      | 982222956  | bhirawaha |
++----+----------------+-----+--------+------------+-----------+
+
+
+
+mysql> insert into personal1 (id, name, age, gender, phone)  values
+	(9,"Mina Lama", 35, "F", 98458125),
+	(10,"Manish KC ",22,"M", 98228598), 
+	(11,"Manoj KC ",60,"M", 9845845), 
+	(12,"Bikram Timilsina ",22,"M", 9821245), 
+	(13,"Ratana Lama",22,"F", 98458445);
+
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+
+
+
+mysql> insert into personal1 (id, name, age, gender, phone,city)  values 
+	(14,"mina BC",38,"F", 981221996, "chitwan"),
+	(15,"muskan shrestha",29, "M", 98157, "chitwan"),
+	(16,"karishma gurug",26,"F", 981229, "chitwan"),
+	(17,"basu subedi",62,"M", 9812286, "chitwan");
+
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+
+mysql> insert into personal1 (id, name, age, gender, phone,city)  values 
+	(18,"muna BC",25,"F", 98158545, "bhirawaha"),
+	(19,"divya shrestha",52, "F", 9814557, "nawalparasi"),
+	(20,"susma gurug",32,"F", 98544229, "bhirawaha"),
+	(21,"suman subedi",23,"M", 981225486, "nawalparasi"),
+	(22,"monika shrestha",19,"F", 981225445, "bhirawaha"),
+	(23,"hilsang gurug",91,"M", 9812544286, "nawalparasi"), 
+	(24,"rikma thapa",39,"F", 981782286, "kapilbastu"),
+	(25,"treya thapa",23,"F", 981562286, "bhirawaha"),
+	(26,"ganga shrestha",72,"F", 9814782286, "kapilbastu"),
+	(27,"sagar subedi",25,"M", 9814562286,"kapilbastu")
+
+Query OK, 10 rows affected (0.00 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from personal1;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+28 rows in set (0.00 sec)
+
+
+
+
+DISPLAY or READ the content from tables
+-----------------------------------------
+
+
+
+
+READ / Display all the attributes from personal1 table
+----------------------------------------------------------
+
+
+mysql> select * from personal1;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+READ / Display id,name,phone from personal1 table
+----------------------------------------------------------
+
+mysql> select id,name,phone from personal1;
++----+-------------------+------------+
+| id | name              | phone      |
++----+-------------------+------------+
+|  1 | Sanjeev Thapa     | 9815489555 |
+|  2 | Mivaan Thapa      | 9822229555 |
+|  3 | Shila Lama        | 982222955  |
+|  4 | sunita pandey     | 981221995  |
+|  5 | aman rijal        | 981555     |
+|  6 | kririka pandey    | 981228     |
+|  7 | anil pandey       | 9812287    |
+|  8 | manju ale         | 98125698   |
+|  9 | Mina Lama         | 98458125   |
+| 10 | Manish KC         | 98228598   |
+| 11 | Manoj KC          | 9845845    |
+| 12 | Bikram Timilsina  | 9821245    |
+| 13 | Ratana Lama       | 98458445   |
+| 14 | mina BC           | 981221996  |
+| 15 | muskan shrestha   | 98157      |
+| 16 | karishma gurug    | 981229     |
+| 17 | basu subedi       | 9812286    |
+| 18 | muna BC           | 98158545   |
+| 19 | divya shrestha    | 9814557    |
+| 20 | susma gurug       | 98544229   |
+| 21 | suman subedi      | 981225486  |
+| 22 | monika shrestha   | 981225445  |
+| 23 | hilsang gurug     | 9812544286 |
+| 24 | rikma thapa       | 981782286  |
+| 25 | treya thapa       | 981562286  |
+| 26 | ganga shrestha    | 9814782286 |
+| 27 | sagar subedi      | 9814562286 |
+| 35 | Mina Lama         | 982222956  |
++----+-------------------+------------+
+
+
+
+
+
+
+
+READ / Display id,name,city attributes from personal1 table
+----------------------------------------------------------
+
+mysql> select id,name,city from personal1;
++----+-------------------+-------------+
+| id | name              | city        |
++----+-------------------+-------------+
+|  1 | Sanjeev Thapa     | Palpa       |
+|  2 | Mivaan Thapa      | Butwal      |
+|  3 | Shila Lama        | Butwal      |
+|  4 | sunita pandey     | Palpa       |
+|  5 | aman rijal        | Palpa       |
+|  6 | kririka pandey    | Palpa       |
+|  7 | anil pandey       | Palpa       |
+|  8 | manju ale         | Palpa       |
+|  9 | Mina Lama         | Butwal      |
+| 10 | Manish KC         | Butwal      |
+| 11 | Manoj KC          | Butwal      |
+| 12 | Bikram Timilsina  | Butwal      |
+| 13 | Ratana Lama       | Butwal      |
+| 14 | mina BC           | chitwan     |
+| 15 | muskan shrestha   | chitwan     |
+| 16 | karishma gurug    | chitwan     |
+| 17 | basu subedi       | chitwan     |
+| 18 | muna BC           | bhirawaha   |
+| 19 | divya shrestha    | nawalparasi |
+| 20 | susma gurug       | bhirawaha   |
+| 21 | suman subedi      | nawalparasi |
+| 22 | monika shrestha   | bhirawaha   |
+| 23 | hilsang gurug     | nawalparasi |
+| 24 | rikma thapa       | kapilbastu  |
+| 25 | treya thapa       | bhirawaha   |
+| 26 | ganga shrestha    | kapilbastu  |
+| 27 | sagar subedi      | kapilbastu  |
+| 35 | Mina Lama         | bhirawaha   |
++----+-------------------+-------------+
+
+
+
+
+
+

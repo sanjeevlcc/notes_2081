@@ -1,0 +1,1436 @@
+
+
+==========================================================================
+Transaction Processing, Concurrency Control and Recovery Techniques
+==========================================================================
+
+
+SYLLABUS
+------------------
+        Introduction to Transaction Processing: 
+        Transaction and System Concepts,
+        Desirable Properties of Transactions: 
+        Serializable Schedule: 
+        Two-Phase Locking and Timestamp Ordering Concurrency Control Techniques 
+        Recovery Concepts, 
+        NO- UNDO REDO Recovery Based on Deferred Update,
+        Recovery Technique Based on Immediate Update: 
+        Shadow Paging:
+        Database Backup and Recovery from Catastroplac Failures
+
+
+
+
+
+
+
+
+
+==========================================================================
+ Introduction to Transaction Processing
+==========================================================================
+
+
+Transaction processing is a fundamental aspect of modern database systems, 
+facilitating the reliable and efficient management of data in various 
+applications. 
+
+In this context, a transaction refers to a logical unit of work
+that consists of one or more database operations, such as reads, writes,
+or updates. 
+
+These operations are typically performed as a single, indivisible unit 
+to maintain data integrity and consistency.
+
+Transaction processing systems (TPS) are responsible for 
+executing and managing transactions in a reliable and efficient manner.
+
+
+
+
+
+
+
+==========================================================================
+Concepts of read, write, commit, and rollback in the
+context of database transactions
+==========================================================================
+
+// Relation os DISK, RAM and CPU
++------------------------+  +------------+  +------------------+
+|          CPU           |  |    RAM     |  |    Hard Disk     |
++------------------------+  +------------+  +------------------+
+
+
+// Initially data is been brought from HD via RAM to CPU
++------------------------+         +------------+        +------------------+
+|          CPU           | <====   |    RAM     |  <==== |    Hard Disk     |
++------------------------+         +------------+        +------------------+
+
+// CPU logically process and send back to HD via RAM
++------------------------+         +------------+        +------------------+
+|          CPU           | ====>   |    RAM     |  ====> |    Hard Disk     |
++------------------------+         +------------+        +------------------+
+
+// CPU performs (add, sub etc , eg A=A + 10) and send to RAM for temp hold
+finally commit saves to HD via RDBMS software.
++------------------------+         +----------------+        +------------------+
+|          CPU           | <====>  |    RAM         |  ====> |    Hard Disk     |
+|  ALU + - * /           |         |RD/WR/rollback  |        |       Commit     |
++------------------------+         +----------------+        +------------------+
+
+
+
+
+EXAMPLE SCNERIO
+---------------------
+
+                -------------------------
+                Before transctions
+                A = 1500, B= 1200
+                --------------------------
+
+
+        R(A)        "Read(A)" fetches the current value of A. A= 1500 [RAM]
+        A=A-300      Deduct rs 300 from account from A                [CPU]
+        W(A)        "Write(A)" subtracts 300 from A.        A = 1200  [RAM]
+        
+        R(B)        "Read(B)" fetches the current value of B. B= 1200 [RAM]
+        B=B+300      Add on rs 300 to account B                       [CPU]
+        W(B)        "Write(B)" adds 300 to B.                 B= 1500 [RAM]
+        
+        COMMIT      Changes is been saved in DBMS                     [ Hard Disk ]
+
+
+                -------------------------
+                After transctions
+                A = 1200, B= 1300
+                --------------------------
+
+
+
+
+
+
+Read OPERATION: 
+------------------
+        In a database transaction, a read operation involves 
+        retrieving data from the database without making 
+        any changes to it. 
+        
+        Reads are typically performed to access existing 
+        data for processing or display purposes. 
+        
+        For example, a SELECT query in SQL is a 
+        read operation that retrieves data from 
+        the database tables.
+
+
+        EXAMPLE
+        ------------
+                sita=200, ram=300
+                read(sita)
+                read(ram)
+                commit
+
+
+        -------------------------
+        Before transactions
+        Sita = 200, Ram = 300
+        --------------------------
+
+      +-----------------------+     +-----------------------+
+      |       Read(Sita)      |     |       Read(Ram)       |
+      |   Fetch Sita=200      |     |   Fetch Ram=300       |
+      +-----------------------+     +-----------------------+
+                     |                           |
+                     |                           |
+      +----------------------------------------------------+
+      |                        COMMIT                      |
+      |              Apply changes to the database         |
+      +----------------------------------------------------
+
+        -------------------------
+        After transactions
+        No changes made as there are no write operations.
+        Sita = 200, Ram = 300
+        --------------------------
+
+
+                "Read(Sita)" fetches the current 
+                value of the variable Sita (200).
+                
+                "Read(Ram)" fetches the current
+                value of the variable Ram (300).
+                
+                The "Commit" statement finalizes 
+                the transaction, but since there are 
+                no write operations, there are no 
+                changes applied to the database.
+                
+                The values of Sita and Ram remain 
+                unchanged after the transaction.
+
+
+
+
+Write OPERATION: 
+------------------
+        A write operation in a database transaction involves 
+        modifying data in the database. 
+        
+        This modification could be inserting new records, updating 
+        existing records, or deleting records from the database tables.
+        
+        For example, INSERT, UPDATE, and DELETE statements 
+        in SQL are write operations that modify data in 
+        the database.
+
+
+
+        EXAMPLE
+        ------------
+        sita=200, ram=300
+        read(sita)
+        sita = sita -50
+        read(ram)
+        ram=ram + 50
+        commit
+
+        -------------------------
+        Before transactions
+        Sita = 200, Ram = 300
+        --------------------------
+
+      +-----------------------+     +-----------------------+
+      |       Read(Sita)      |     |       Read(Ram)       |
+      |   Fetch Sita=200      |     |   Fetch Ram=300      |
+      +-----------------------+     +-----------------------+
+                     |                           |
+                     |                           |
+      +-----------------------+     +-----------------------+
+      |  Update Sita=Sita-50  |     |   Update Ram=Ram+50  |
+      |   Sita=200-50=150     |     |   Ram=300+50=350     |
+      +-----------------------+     +-----------------------+
+                     |                           |
+                     |                           |
+      +----------------------------------------------------+
+      |                        COMMIT                      |
+      |              Apply changes to the database         |
+      +----------------------------------------------------
+
+        -------------------------
+        After transactions
+        Sita = 150, Ram = 350
+        --------------------------
+
+                "Read(Sita)" fetches the current 
+                value of the variable Sita (200).
+                
+                "Read(Ram)" fetches the current 
+                value of the variable Ram (300).
+                
+                The values of Sita and Ram 
+                are updated accordingly.
+                
+                The "Commit" statement finalizes the 
+                transaction, and the changes are 
+                applied to the database.
+                
+                The values of Sita and Ram are 
+                updated to 150 and 350, respectively, 
+                after the transaction.
+
+
+
+Rollback OPERATION: 
+------------------
+        Rolling back a transaction means undoing all the changes 
+        made by the transaction and restoring the database to 
+        its state before the transaction began. 
+        
+        This operation is typically used to discard the effects
+        of a transaction that encountered an error or did 
+        not complete successfully. 
+        
+        Rolling back ensures that the database remains in 
+        a consistent state and that incomplete or erroneous 
+        transactions do not leave behind any unintended changes. 
+        
+        In most database systems, the ROLLBACK statement is
+        used to initiate a rollback of a transaction.
+
+
+                -------------------------
+                Before transactions
+                Sita = 200, Ram = 300
+                --------------------------
+
+      +-----------------------+     +-----------------------+
+      |       Read(Sita)      |     |       Read(Ram)       |
+      |   Fetch Sita=200      |     |   Fetch Ram=300      |
+      +-----------------------+     +-----------------------+
+                     |                           |
+                     |                           |
+      +-----------------------+     +-----------------------+
+      |  Update Sita=Sita-50  |     |   Update Ram=Ram+50  |
+      |   Sita=200-50=150     |     |   Ram=300+50=350     |
+      +-----------------------+     +-----------------------+
+                     |                           |
+                     |                           |
+      +----------------------------------------------------+
+      |                       ROLLBACK                     |
+      |              Undo changes made to the database    |
+      +----------------------------------------------------
+
+                -------------------------
+                After transactions
+                No changes made as the transaction was rolled back.
+                Sita = 200, Ram = 300
+                --------------------------
+                
+
+                        "Read(Sita)" fetches the current
+                        value of the variable Sita (200).
+                        
+                        "Read(Ram)" fetches the current
+                        value of the variable Ram (300).
+                        
+                        The values of Sita and Ram 
+                        are updated accordingly.
+                        
+                        The "Rollback" statement is executed,
+                        undoing the changes made to the database.
+                        
+                        Since the transaction was rolled back,
+                        the values of 
+                        Sita and Ram remain unchanged 
+                        at 200 and 300, respectively.
+
+
+
+Commit OPERATION: 
+------------------
+        Committing a transaction in a database context means
+        making all the changes performed within the transaction
+        permanent and visible to other transactions. 
+        
+        Once a transaction is committed, its effects are durable 
+        and cannot be undone. 
+        
+        Committing ensures that the changes made by the transaction 
+        are preserved even in the event of system failures. 
+        
+        In many database systems, the COMMIT statement is used to
+        finalize and commit a transaction.
+
+
+
+           +-----------+   +-----------+   +-----------+
+           |   Read A  |   |   Read B  |   |   Read B  |
+           +-----------+   +-----------+   +-----------+
+           |   A=1500  |   |   B=1200  |   |   B=1200  |
+           +-----------+   +-----------+   +-----------+
+                    |             |             |
+                    |             |             |
+           +----------------+  +----------------+   
+           |   Write A      |  |   Write B      |  
+           |   (A=A-300)    |  |   (B=B+300)    |  
+           +----------------+  +----------------+   
+           |   A=1200       |  |   B=1500       |
+           +----------------+  +----------------+   
+                              |
+                              |
+                       +--------------+
+                       |   Commit     |
+                       +--------------+
+
+
+
+==========================================================================
+Transaction and System Concepts
+==========================================================================
+
+
+ACID
+------
+
+      Atomicity:
+      ---------------
+          Transactions should exhibit the atomicity property, meaning 
+          that either all the operations within a transaction are 
+          executed successfully, or none of them are. 
+          
+          In other words, transactions are indivisible and 
+          should be treated as all or nothing.
+      
+      Consistency:
+      ---------------
+          Transactions should leave the database in a consistent 
+          state, adhering to all integrity constraints and business rules. 
+          Consistency ensures that the database transitions from one
+          valid state to another valid state after each transaction.
+      
+      Isolation: 
+      ---------------
+          Each transaction should be isolated from other transactions
+          executing concurrently. 
+          
+          Isolation ensures that the intermediate states of transactions
+          are not visible to other transactions until they are committed. 
+          This prevents interference and maintains data integrity.
+      
+      Durability: 
+      ---------------
+          Once a transaction is committed, its effects should be 
+          permanently stored in the database and should not be lost, 
+          even in the event of system failures. 
+          
+          Durability guarantees that committed transactions survive 
+          system crashes or other failures.
+
+
+
+
+
+
+
+    +------------------+            +------------------+
+    |      Read A      |            |      Read B      |
+    +------------------+            +------------------+
+           |   A=1500                  |   B=1200
+           |                           |
+           |                           |
+    +-------------------+           +-------------------+
+    |    Write A (A-300)|           |   Write B (B+300)|
+    +-------------------+           +-------------------+
+           |   A=1200                  |   B=1500
+           |                           |
+           |                           |
+           +---------------------------+
+                         |
+                         |
+                  +-----------------------+
+                  |   Commit/ROLLBACK     |
+                  +-----------------------+
+
+        In this example:
+        --------------
+                "Read A" reads the current value of A (1500).
+                "Read B" reads the current value of B (1200).
+                "Write A" subtracts 300 from A (A=1200).
+                "Write B" adds 300 to B (B=1500).
+                Finally, the "Commit" operation makes the changes permanent.
+
+
+
+==========================================================================
+Desirable Properties of Transactions
+==========================================================================
+
+
+
+Desirable Properties of Transactions:
+---------------------------------------------
+
+
+
+ACID Properties: 
+---------------
+    The desirable properties of transactions are often 
+    summarized using the acronym ACID:
+    
+    Atomicity: 
+        Transactions are all-or-nothing operations.
+    Consistency: 
+        Transactions preserve the consistency of the database.
+    Isolation: 
+        Transactions execute independently of each other and do not interfere.
+    Durability: 
+        Committed transactions persist even in the face of system failures.
+
+
+
+
+Concurrency Control:
+------------------------------
+    Effective concurrency control mechanisms are essential for
+    managing concurrent execution of transactions while preserving
+    consistency and isolation. 
+    
+    Techniques such as locking, timestamp ordering, and multi-version 
+    concurrency control are commonly employed to ensure correct interleaving
+    of transactions.
+
+
+
+Recovery Management: 
+------------------------------
+    Robust recovery mechanisms are necessary to restore the database to
+    a consistent state after system failures. 
+    
+    This involves techniques such as logging changes to the database,
+    maintaining a write-ahead log, and performing recovery procedures 
+    such as rollbacks or roll-forwards.
+
+
+
+High Availability: 
+------------------------------
+    Transaction processing systems should aim to achieve high 
+    availability to ensure continuous access to data and
+    uninterrupted operation, even in the face of hardware 
+    failures, network issues, or other disruptions. 
+    
+    Redundancy, failover mechanisms, and disaster recovery plans 
+    contribute to achieving high availability.
+
+
+
+Scalability: 
+------------------------------
+    Transaction processing systems should be designed to scale 
+    efficiently to handle increasing workloads and growing datasets. 
+    
+    Scalability can be achieved through techniques such as sharding, 
+    replication, and vertical or horizontal scaling of hardware resources.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================================================================
+Transaction States
+==========================================================================
+
+                +------------------------+         +----------------+        +------------------+
+                |          CPU           | <====>  |    RAM         |  ====> |    Hard Disk     |
+                |  ALU + - * /           |         |RD/WR/rollback  |        |       Commit     |
+                +------------------------+         +----------------+        +------------------+
+
+        
+        Started: 
+        ----------
+                The initial state when a transaction begins.
+        
+        Active: 
+        ----------
+                The processing stage where database operations occur.
+        
+        Partially Committed (Optional):
+        ------------------------------
+                An intermediate state (not present in all systems) where some but 
+                not all operations of the transaction have been committed. 
+                
+                This might be used for large transactions to ensure partial 
+                rogress even if the entire transaction fails.
+        
+        Committed: 
+        ----------
+                The successful completion state. Changes are permanent.
+        
+        Failed: 
+        ----------
+                An error occurs during the active state, leading 
+                to transaction failure.
+        
+        Aborted: 
+        ----------
+                The user intentionally cancels the transaction 
+                before completion.
+        
+        Terminated: 
+        ----------
+                External factors, such as system crashes or 
+                timeouts, can force the transaction termination.
+        
+
+
+       +-----------+
+       |  Started  |
+       +-----------+
+                |
+                v                   (Successful Operations)
+       +-----------+
+       |  Active   |                [RAM]
+       +-----------+
+                |                   (Partial Commit)
+                v                   (Optional)
+       +---------------------+
+       | Partially Committed |      (Not all operations complete)/ [read/ write]
+       +---------------------+
+                |                
+                v                   (Successful Completion)
+       +-----------+
+       | Committed |                [Hard Disk]
+       +-----------+
+                |
+                v                    (Failure or Error)
+       +-----------+
+       |   Failed   |                [Rollback]
+       +-----------+
+                |                    (User Action)
+                v
+       +------------+
+       |  Aborted   |                [kill/restart]
+       +------------+
+                |                    (External Termination)
+                v
+       +------------+
+       | Terminated |
+       +------------+
+
+
+
+
+
+==========================================================================
+Transaction Schedule
+==========================================================================
+
+
+                                                Serial Schedule:
+                                                +----+----+----+
+                                                | T1 | T2 | T3 |
+                                                +----+----+----+
+
+                        Parallel Schedule:
+                        +----+----+----+
+                        | T1 | T2 | T3 |
+                        +----+----+----+
+                        |    | T1 |    |
+                        |    | T2 |    |
+                        | T3 |    |    |
+                        +----+----+----+
+
+
+
+        A schedule in the context of databases refers to the 
+        order in which transactions are executed by the 
+        database management system. 
+
+        A schedule defines the sequence of operations (reads and writes) 
+        performed by transactions in a database system.
+        
+        It determines the timing and interleaving
+        of transactions' execution.
+
+
+
+        Types of Schedules
+        --------------------
+                serial
+                parallel
+
+
+
+
+Types of Schedules:
+--------------------
+
+Serial Schedule: 
+----------------
+        Transactions are executed one after another in a 
+        sequential manner. 
+        Each transaction completes before the next one starts.
+
+
+                        +----+----+----+----+----+
+                        | T1 | T2 | T3 | T4 | T5 |
+                        +----+----+----+----+----+
+                        
+                        
+                                +----+----+----+
+                                | T1 | T2 | T3 |
+                                +----+----+----+
+                                | T1 |    |    |
+                                |    | T2 |    |
+                                |    |    | T3 |
+                                +----+----+----+
+
+                                
+Parallel Schedule: 
+----------------
+        Transactions are executed concurrently, allowing multiple transactions 
+        to run simultaneously.
+        Interleaved operations from different transactions may occur.
+
+                +----+----+----+
+                | T1 | T2 | T3 |
+                +----+----+----+
+                |    | T1 |    |
+                |    | T2 |    |
+                | T3 |    |    |
+                +----+----+----+
+
+                                +----+----+----+
+                                | T1 | T2 | T3 |
+                                +----+----+----+
+                                | T1 |    |    |
+                                | T3 | T2 | T1 |
+                                |    |    | T3 |
+                                +----+----+----+
+
+                                                +----+----+----+
+                                                | T1 | T2 | T3 |
+                                                +----+----+----+
+                                                | T1 |    |    |
+                                                |    | T1 | T3 |
+                                                |    | T2 | T1 |
+                                                +----+----+----+
+
+
+Advantages of Serial Schedule:
+----------------------------------
+        Simplicity: 
+        -------------
+                Serial schedules are straight forward to implement 
+                and analyze due to their sequential nature.
+        
+        Deterministic:
+        -------------
+                The outcome of serial schedules is predictable since
+                transactions execute one after another without concurrency.
+
+
+
+Disadvantages of Serial Schedule:
+----------------------------------
+        Low Throughput:
+        -----------------
+                Serial schedules may result in lower throughput 
+                as transactions are executed sequentially, leading 
+                to potential performance bottlenecks.
+                +----+----+----+
+                | T1 | T2 | T3 |
+                +----+----+----+
+                When T1 complets then T2 starts and so on T3
+
+
+        Potential for Delays:
+        --------------------------
+                If one transaction takes a long time to execute, it 
+                can delay the execution of subsequent transactions, 
+                affecting overall system responsiveness.
+                PERFORMANCE DEGRAGADE
+
+
+
+Advantages of Parallel Schedule:
+----------------------------------
+        Higher Throughput:
+        --------------------------
+                Parallel schedules can achieve higher throughput by 
+                allowing multiple transactions to execute concurrently, 
+                utilizing available system resources more efficiently.
+
+                        SERIAL                        PARALLEL
+                +----+----+----+                +----+----+----+
+                | T1 | T2 | T3 |                | T1 | T2 | T3 |
+                +----+----+----+                +----+----+----+
+                                                |    | T1 |    |
+                                                |    | T2 | T1 |
+                                                | T3 |    | T3 |
+                                                +----+----+----+
+
+
+        Improved Performance:
+        --------------------------
+                Parallel execution can lead to reduced transaction 
+                latency and faster response times, especially in
+                systems with high concurrency requirements.
+
+
+
+Disadvantages of Parallel Schedule:
+-----------------------------------------
+        Complexity:
+        -------------
+                Parallel schedules are more complex to manage and 
+                analyze due to the potential for concurrency-related 
+                issues such as data conflicts and race conditions.
+        
+        Concurrency Control Overhead: 
+        --------------------------
+                Ensuring data consistency and integrity in parallel 
+                schedules requires the implementation of sophisticated
+                concurrency control mechanisms, which may introduce 
+                overhead and complexity.
+                
+
+
+
+==========================================================================
+Problems in concurrency
+==========================================================================
+
+        Concurrency in database systems refers to the 
+        ability of multiple transactions to execute 
+        simultaneously without interfering with each other. 
+        
+        However, concurrency can lead to several problems, which 
+        are typically addressed through concurrency control mechanisms. 
+
+Here are some common problems in concurrency and their types:
+--------------------------------------------------------------------
+
+1. Lost Update:
+-----------------
+        Occurs when two or more transactions attempt 
+        to update the same data concurrently, resulting in one transaction 
+        overwriting the changes made by another transaction.
+        
+        This can lead to data inconsistency as the 
+        changes made by one transaction are lost.
+
+        T1:                                T2:
+        +------+                          +------+
+        | Read |                          | Read |
+        |  B   |                          |  B   |
+        +------+                          +------+
+        |      |                          |      |
+        |      |                          |      |
+        |      |                          |      |
+        | Write|                          | Write|
+        |  B   |                          |  B   |
+        +------+                          +------+
+
+
+        Both T1 and T2 perform a read operation 
+        followed by a write operation on variable B.
+        
+        The Lost Update problem may occur if T1 and T2 both read the 
+        same value of B and 
+        then perform their write operations independently,
+        potentially overwriting each other's changes.
+
+
+
+
+2. Dirty Read: or uncomitted read
+---------------------------------- read after write
+
+        Occurs when one transaction reads data that has been
+        modified by another transaction that has not yet been committed.
+        
+        If the modifying transaction is later rolled back, the
+        data read by the first transaction becomes invalid or "dirty".
+
+
+                                A = 200
+                                --------
+                `         T1                   T2:
+                +------------------+   +------------------+
+         >----> |   Read(A)        |   |                  |  A=200 (T1) [RAM]
+         ^rollBK|   Write(A)       |   |                  |  A = A-40 = 160
+         ^      |                  |   |   Read(A)        |  A = 160 (T2) [RAM], dirty read
+         ^      |                  |   |   Write(A)       |  A = A * 10% = 160+16= 176 [RAM]
+         ^      |                  |   |   Commit         |  A = 176 [HD]
+         ^<---- |    Failure       |   |                  |  
+                |                  |   |                  |
+                +------------------+   +------------------+
+        
+
+                T1 reads the value of A, which is initially 200, 
+                and then writes the value of A as 160.
+                
+                T2 reads the value of A, which is updated 
+                by T1 to 160, and then writes the value of 
+                A as 176 after applying a 10% increment.
+                
+                T1 experiences a failure before committing
+                its changes.
+                
+                T2 commits its changes successfully, resulting 
+                in the final value of A being 176 in
+                the database (HD). 
+                
+                However, T1's changes are lost due to the failure. 
+                This scenario represents a lost update problem.
+
+
+
+
+3. Incorrect Summary Problem
+----------------------------
+The Incorrect summary problem occurs when there 
+is an incorrect sum of the two data.
+
+This happens when a transaction tries to sum two
+data using an aggregate function and the
+value of any one of the data get changed by another transaction.
+
+        Example: 
+        ----------
+        Consider a situation, where one transaction is applying 
+        the aggregate function on some recordswhile another 
+        transaction is updating these records. 
+        
+        The aggregate function may calculate some values 
+        before the values have been updated and others 
+        after they are updated. 
+
+
+                +--------------+--------------------+
+                     T1:       |        T2:         |
+                +--------------+--------------------+
+                               |  sum=0             |
+                               |  Read(A)           |
+                               |  sum = sum + A     |
+                               |                    |
+                  Read(B)      |                    |
+                  B = B - N    |                    |
+                  Write (B)    |                    |
+                               |                    |
+                               |  Read(B)           |
+                               |  sum = sum + B     |
+                               |  Read(B)           |
+                               |  sum = sum + C     |
+                               |                    |
+                  Read(C)      |                    |
+                  c = c + n    |                    |
+                  Write(c)     |                    |
+                +--------------+--------------------+  
+
+
+
+
+                In the above example, transaction 2 is 
+                calculating the sum of some records while 
+                transaction 1 is updating them. 
+                Therefore the aggregate function may calculate 
+                some values before they have been updated and others 
+                after they have been updated. 
+                
+                
+                The Incorrect Summary Problem arises when T2 reads data 
+                that has been modified by T1 but does not reflect 
+                those changes accurately, leading to
+                inconsistencies in the calculated sum.
+
+
+        
+        T1 (Transaction 1):
+                Reads the value of B, subtracts N from it, and 
+                then writes the updated value back to B.
+                
+                Reads the value of C, adds n to it,
+                and then writes the updated value back to C.
+        
+        T2 (Transaction 2):
+                Initializes the sum to 0.
+                Reads the value of A, adds it to the sum.
+                Reads the value of B, adds it to the sum.
+                Reads the value of B again (possibly an error, as 
+                        it should read C), and adds it to the sum.
+                Reads the value of C, adds it to the sum.
+        
+        
+        
+        Remarks:
+                Transaction T1 performs updates on variables B and C.
+                
+                Transaction T2 calculates the sum of variables A, B, and C.
+                
+                There's a potential inconsistency in Transaction T2, as 
+                it reads the value of B twice without any updates in between. 
+                
+                The second read should possibly be for variable C, as it's 
+                trying to calculate the sum of A, B, and C.
+                
+                This potential inconsistency could lead to incorrect or 
+                unexpected results in the calculated sum.
+                
+                Proper coordination or synchronization mechanisms should 
+                be employed to ensure data consistency and reliability 
+                in concurrent transactions.
+
+
+
+
+
+
+
+
+
+3. Non-Repeatable Read:
+-----------------------
+        Occurs when a transaction reads the same data multiple times 
+        within its execution, but obtains different results due to 
+        concurrent updates by other transactions.
+        
+        This inconsistency arises because the data read by the 
+        transaction changes between reads.
+
+        T1:                                   T2:
+        +------+                             +------+
+        | Read |                             | Read |
+        |  B   |                             |  B   |
+        +------+                             +------+
+        |      |                             |      |
+        |      |                             |      |
+        |      |                             |      |
+        | Read |                             | Read |
+        |  B   |                             |  B   |
+        +------+                             +------+
+
+
+        Both T1 and T2 perform a read operation on variable B.
+        
+        T1 reads the value of B.
+        
+        While T1 is still active, T2 also reads the value of B.
+        
+        T1 then reads the value of B again, but it has
+        been modified by T2 in the meantime.
+        
+        As a result, T1 obtains different values of B in 
+        its consecutive reads, which is the essence 
+        of the Non-Repeatable Read problem.
+        
+
+
+4. Phantom Read:
+-----------------
+        Occurs when a transaction reads a set of records that 
+        satisfy a certain condition, but while the transaction is
+        still executing, another transaction inserts or deletes 
+        records that also meet the condition.
+        
+        When the first transaction reads the same set of records again, 
+        it observes the newly inserted or deleted records, causing phantom
+        or unexpected results.
+                
+                
+                T1:                                   T2:
+                +------+                             +------+
+                | Read |                             | Read |
+                |  B   |                             |  B   |
+                +------+                             +------+
+                |      |                             |      |
+                +------+                             |      |
+                |Delete|                             |      |
+                |  B   |                             |      |
+                +------+                             |      |
+                |      |                             +------+
+                |      |                             | Read |
+                |      |                             |  B   |
+                +------+                             +------+
+
+
+        Transaction T1 reads data from table B.
+        
+        While T1 is still active, Transaction T2 reads data from table B.
+        
+        After T2 has read data from B, T1 deletes some records from table B.
+        
+        T2 then reads data from table B again.
+        
+        The rows read by T2 in the second read may include 
+        new rows that were inserted after T1's delete operation, 
+        which were not visible during T2's initial read.
+        
+        This inconsistency in the dataset observed by
+        T2 is what characterizes the Phantom Read problem.
+
+
+
+
+
+
+
+
+
+        Types of Concurrency Control:
+        -----------------------------------
+                1. Locking-Based Concurrency Control:
+                2. Timestamp-Based Concurrency Control:
+                3. Multiversion Concurrency Control (MVCC):
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================================================================
+Recovery Concepts
+==========================================================================
+
+        Recovery concepts in database management systems are essential for 
+        ensuring data integrity and consistency, especially in the 
+        event of system failures or crashes. 
+
+                Two common recovery techniques used in database systems are the 
+                        Undo Logging (UNDO)
+                        Redo Logging (REDO)
+                        Shadow Paging
+                        Checkpointing
+                        Immediate Update and Deferred Update
+
+
+
+
+
+
+Immediate Update and Deferred Update
+----------------------------
+Immediate Update and Deferred Update are two
+different strategies used in database systems to
+handle changes made by transactions and 
+maintain data consistency.
+
+
+
+        Immediate Update:
+        ------------------
+                In Immediate Update, changes made by a transaction are immediately
+                applied to the database before the transaction completes or commits.
+                
+                Whenever a transaction performs a write operation (insert, update, delete), 
+                the corresponding changes are directly made to the database's main storage.
+                
+                This approach ensures that changes made by a transaction are
+                immediately visible to other transactions, even before the 
+                transaction completes.
+                
+                However, immediate update requires the system to maintain
+                undo information to rollback incomplete transactions in case of failure.
+                
+        
+        
+        Deferred Update:
+        ----------------
+                Deferred Update, also known as NO-UNDO/REDO, defers applying 
+                changes made by a transaction to the database until the transaction commits.
+                
+                Instead of directly modifying the database, changes made by a 
+                transaction are first recorded in a transaction log.
+                
+                Once a transaction commits, its changes are applied to the
+                database from the transaction log. This ensures that only
+                committed changes are permanently stored in the database.
+                
+                Deferred update provides better concurrency and throughput 
+                compared to immediate update because transactions do not need 
+                to acquire locks on data items for as long.
+                
+                During recovery, the system needs to apply all committed
+                transactions' changes from the transaction log to restore the 
+                database to a consistent state.
+
+
+
+
+comparison between Immediate Update and Deferred Update:
+--------------------------------------------------------------------------------
+Aspect	        Immediate Update	        Deferred Update
+---------------------------------------------------------------------------------
+Application	Changes are immediately         Changes are recorded in a 
+                applied to the DB.	        transaction log and applied 
+                                                upon commit.
+
+Visibility	Changes are immediately         Changes are not visible 
+                visible to other 	        to other transactions 
+                transactions.                   until commit.
+
+
+Concurrency	Tends to lead to more	         Allows greater concurrency since 
+                contention due to                transactions don't need to hold 
+                immediate updates.               locks for as long.
+
+
+Recovery	Requires maintaining 	        Requires applying committed transactions'
+                undo information for            changes from the log during recovery.
+                rollback during recovery.
+
+
+
+
+
+Both strategies have their own advantages and trade-offs, and 
+their suitability depends on factors such as system requirements, 
+concurrency control mechanisms, and recovery considerations.
+
+
+
+
+
+
+
+Undo Logging (UNDO):
+----------------------------
+        In this approach, before modifying any data item, the original value is 
+        copied to a log record. If a transaction needs to be rolled back (undone), 
+        these log records are used to restore the original values of the modified data items.
+
+
+Redo Logging (REDO):
+----------------------------
+        In redo logging, changes made by transactions are logged before 
+        they are applied to the database. These logs contain information 
+        about the modifications made by each transaction. During recovery, 
+        the changes logged are reapplied (redone) to the database.
+
+
+Shadow Paging:
+----------------------------
+        Shadow paging is a recovery technique where a duplicate (shadow)
+        copy of the database is maintained. All changes made by transactions
+        are applied to this shadow copy, leaving the original database
+        untouched. 
+        
+        Once a transaction commits, its changes are atomically swapped
+        with the original database by updating pointers.
+        
+        If a transaction aborts, its changes are simply discarded by 
+        abandoning the shadow copy.
+        
+
+
+Checkpointing:
+----------------------------
+        Checkpointing is a mechanism used to periodically save the database's 
+        state to stable storage. During a checkpoint, all modified data
+        is flushed to disk, and a checkpoint record is written to the log. 
+        
+        This ensures that the database can be recovered to a consistent state 
+        more efficiently, without having to replay all transaction
+        logs from the beginning.
+
+
+
+
+
+
+
+==========================================================================
+Database Backup and Recovery from Catastrophic Failures
+==========================================================================
+
+        Catastrophic" refers to events or situations that cause 
+                extensive damage, 
+                destruction, 
+                or adverse consequences on a large scale. 
+        
+                sudden and often unexpected, 
+                leading to significant disruptions, 
+                loss of life, 
+                property damage, 
+                or economic impact. 
+        
+        These events can result from natural phenomena such as 
+                earthquakes, 
+                hurricanes, 
+                floods, 
+                or wildfires, 
+                as well as human-made disasters like industrial accidents, 
+        
+                terrorist attacks, 
+                or cyber-attacks. 
+        
+        In the context of database management and IT infrastructure, 
+        catastrophic failures refer to 
+                severe system outages, 
+                data breaches, 
+                or events that cause widespread disruption to operations,
+        
+        resulting in significant 
+                data loss, 
+                downtime, 
+                or financial losses for organizations. 
+
+It's essential for businesses to have contingency 
+plans and disaster recovery strategies in place to mitigate the 
+impact of catastrophic events and ensure business continuity.
+
+
+
+
+
+
+
+
+        Database backup and recovery from catastrophic failures
+        are crucial components of ensuring data resilience and business 
+        continuity in any organization. 
+        
+        Catastrophic failures include events like hardware failures, 
+        software bugs, natural disasters, or cyberattacks that can 
+        potentially lead to massive data loss or corruption. 
+
+
+
+
+        Here's an overview of database backup 
+        and recovery strategies for dealing with such scenarios:
+        -------------------------------------------------------------
+
+        
+        Backup Strategies:
+        ----------------------
+                Regular Backups:
+                ----------------
+                        Implement regular backups of the database to capture 
+                        the state of the data at specific points in time. 
+                        This can be achieved through full backups (copying the entire database), 
+                        incremental backups (capturing changes since the last backup),
+                        or differential backups (capturing changes since the last full backup).
+                
+                Offsite Backups: 
+                ----------------
+                        Store backups offsite or in a remote location to 
+                        mitigate the risk of data loss due to localized disasters 
+                        such as fires, floods, or theft.
+                
+                Redundant Storage:
+                ----------------
+                        Utilize redundant storage solutions such as 
+                        RAID (Redundant Array of Independent Disks) to protect 
+                        against hardware failures and ensure data availability.
+                
+                Cloud Backup:
+                ----------------
+                        Consider leveraging cloud-based backup solutions
+                        that offer scalability, durability, and geographic 
+                        redundancy for storing backups securely offsite.
+        
+        
+        
+        Recovery Strategies:
+        ----------------------
+                Point-in-Time Recovery: 
+                ----------------
+                        Perform point-in-time recovery to restore the database 
+                        to a specific state prior to the occurrence of the catastrophic 
+                        failure.
+                        This involves applying transaction logs or incremental 
+                        backups to roll forward or roll back changes until the 
+                        desired recovery point is reached.
+                
+                Failover and High Availability:
+                ---------------------------------
+                        Implement failover mechanisms and high availability 
+                        architectures to minimize downtime and maintain service 
+                        continuity in the event of a catastrophic failure. 
+                        This may involve deploying standby databases, clustering,
+                        or replication solutions to quickly switch to backup systems
+                        in case of primary system failure.
+                
+                Disaster Recovery Planning:
+                ----------------------------
+                        Develop comprehensive disaster recovery plans outlining
+                        step-by-step procedures for restoring operations after catastrophic 
+                        failures. Test these plans regularly to ensure effectiveness
+                        and identify potential gaps or weaknesses.
+                
+                Data Integrity Checks:
+                ---------------------------
+                        Conduct regular data integrity checks and validations to detect 
+                        and mitigate data corruption issues before they escalate into 
+                        catastrophic failures. This includes verifying backups, monitoring 
+                        system health, and implementing data consistency checks.
+                
+        
+        
+        Security Measures:
+        ----------------
+                Data Encryption: 
+                ----------------
+                        Encrypt sensitive data both at rest and in transit to 
+                        protect against unauthorized access or data breaches.
+                
+                Access Controls:
+                ----------------
+                        Implement robust access controls and authentication mechanisms 
+                        to prevent unauthorized users from modifying or deleting critical data.
+                
+                
+                Auditing and Monitoring:
+                ------------------------
+                        Monitor database activity, audit trails, and system
+                        logs to detect suspicious behavior, security incidents, or
+                        anomalies that could indicate potential threats or breaches.
+        
+
+
+By implementing comprehensive backup and recovery strategies
+, organizations can minimize the impact of catastrophic failures
+, maintain data integrity, and ensure business continuity in 
+the face of adversity. 
+
+Regular testing, monitoring, and continuous improvement are 
+essential aspects of a robust disaster recovery plan.
+
+
+
+
+
+
+
+
+
+
+
+==========================================================================
+EXTRA
+-------
+
+Access database logs for 
+Immediate Update and Deferred Update 
+
+scenarios in some popular RDBMS:
+==========================================================================
+
+
+MySQL:
+**********
+In MySQL, you can configure the level of logging in the MySQL server configuration 
+file (my.cnf).
+
+Common logging options include the general query log, error log, and binary log.
+
+
+To enable general query logging, you can set the 
+general_log option to ON, and to enable binary logging, 
+you can set the log_bin option to ON.
+
+Once logging is enabled, you can view the logs using 
+MySQL client commands such as SHOW VARIABLES LIKE 'general_log'; 
+and SHOW BINARY LOGS;.
+
+
+
+PostgreSQL:
+**********
+In PostgreSQL, logging settings are configured in the postgresql.conf file.
+
+Common logging options include log_statement, 
+log_duration, and log_connections, among others.
+
+
+Once logging is configured, you can view the logs using
+PostgreSQL utility commands such as pg_log and pg_stat_activity.
+
+

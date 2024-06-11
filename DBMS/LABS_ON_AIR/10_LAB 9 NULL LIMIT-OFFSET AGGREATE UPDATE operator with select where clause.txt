@@ -1,0 +1,918 @@
+=========USING/Mysql Community/phpadmin/docker==============
+
+-----------------DOCKER------------------------------
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose any scnerio. Ubuntu or CKA or Playground
+step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+step 4: docker exec -ti mydb1 bash
+step 5: mysql -u root -p1234
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 9 - IS NULL and IS NOT NULL operator with select/where
+		and
+	 LIMIT and OFFSET operator with select/where
+		and	
+	Aggregate functions(COUNT MAX  MIN SUM AVG   )
+		and
+	UPDATE
+
+Conditional clause using WHERE Clause with
+-----------------------------------------------------------------------------------------
+
+
+
+	Syntax IS NULL
+	--------------------
+	SELECT  column1,column2,column3,…..
+		FROM table _name
+		Where column IS NULL
+
+
+
+	Syntax IS NOT NULL
+	--------------------
+	SELECT  column1,column2,column3,…..
+		FROM table _name
+		Where column IS NOT NULL
+
+
+
+khali bhayeko value lai check mattra garne hooo
+
+
+
+mysql> desc personal1;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| gender | varchar(1)  | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| city   | varchar(15) | NO   |     | Butwal  |       |
++--------+-------------+------+-----+---------+-------+
+
+
+
+
+
+
+
+
+mysql> SELECT * FROM personal1 WHERE city is null;
+Empty set (0.00 sec)
+
+
+
+mysql> SELECT * FROM personal1 WHERE city is not null;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+28 rows in set (0.00 sec)
+
+
+
+	LIMIT and OFFSET
+	---------------------
+
+	To view all the data in limited no from DB
+	Jatti herna maan lageko xa, teti data matra LIMIT le show garxa
+
+
+		Syntax
+		------------
+		SELECT  column1,column2,column3,…..
+			FROM table _name
+			Where condition
+			LIMIT number;
+
+
+
+
+To show only 2 records
+----------------------------------------------------------
+
+mysql> SELECT * FROM personal1 limit 2;
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
++----+---------------+-----+--------+------------+--------+
+
+
+
+
+
+For 4 records
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 limit 4;
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal |
+|  4 | sunita pandey |  35 | F      | 981221995  | Palpa  |
++----+---------------+-----+--------+------------+--------+
+
+
+
+
+
+For 4 records, with cities
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 
+	where city="palpa" 
+	limit 4;
++----+----------------+-----+--------+------------+-------+
+| id | name           | age | gender | phone      | city  |
++----+----------------+-----+--------+------------+-------+
+|  1 | Sanjeev Thapa  |  20 | M      | 9815489555 | Palpa |
+|  4 | sunita pandey  |  35 | F      | 981221995  | Palpa |
+|  5 | aman rijal     |  26 | M      | 981555     | Palpa |
+|  6 | kririka pandey |  25 | F      | 981228     | Palpa |
++----+----------------+-----+--------+------------+-------+
+
+
+
+
+
+For 4 records, with cities, order by name
+----------------------------------------------------------
+
+mysql> SELECT * FROM personal1 
+	where city="palpa" 
+	order by name 
+	limit 4;
+
++----+----------------+-----+--------+----------+-------+
+| id | name           | age | gender | phone    | city  |
++----+----------------+-----+--------+----------+-------+
+|  5 | aman rijal     |  26 | M      | 981555   | Palpa |
+|  7 | anil pandey    |  60 | M      | 9812287  | Palpa |
+|  6 | kririka pandey |  25 | F      | 981228   | Palpa |
+|  8 | manju ale      |  26 | F      | 98125698 | Palpa |
++----+----------------+-----+--------+----------+-------+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 9A -  LIMIT and OFFSET operator with select/where
+	
+Conditional clause using WHERE Clause with
+-----------------------------------------------------------------------------------------
+
+
+	For next succussing reports (i.e LIMIT 2,3                           
+		    ….. 2 is offset and 3 is limit)
+
+
+		Syntax
+		-----------
+			SELECT  column1,column2,column3,…..
+				FROM table _name
+				Where condition
+				LIMIT offset,number;
+
+
+
+To view 3 record with 2 offset
+----------------------------------------------------------
+
+mysql> SELECT * FROM personal1 limit 2,3;
++----+---------------+-----+--------+-----------+--------+
+| id | name          | age | gender | phone     | city   |
++----+---------------+-----+--------+-----------+--------+
+|  3 | Shila Lama    |  22 | F      | 982222955 | Butwal |
+|  4 | sunita pandey |  35 | F      | 981221995 | Palpa  |
+|  5 | aman rijal    |  26 | M      | 981555    | Palpa  |
++----+---------------+-----+--------+-----------+--------+
+
+
+
+
+To view 2 record with 2 offset
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 limit 2,2;
++----+---------------+-----+--------+-----------+--------+
+| id | name          | age | gender | phone     | city   |
++----+---------------+-----+--------+-----------+--------+
+|  3 | Shila Lama    |  22 | F      | 982222955 | Butwal |
+|  4 | sunita pandey |  35 | F      | 981221995 | Palpa  |
++----+---------------+-----+--------+-----------+--------+
+
+
+
+
+
+To view 5 record with 17 offset
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 limit 17,5;
++----+-----------------+-----+--------+-----------+-------------+
+| id | name            | age | gender | phone     | city        |
++----+-----------------+-----+--------+-----------+-------------+
+| 18 | muna BC         |  25 | F      | 98158545  | bhirawaha   |
+| 19 | divya shrestha  |  52 | F      | 9814557   | nawalparasi |
+| 20 | susma gurug     |  32 | F      | 98544229  | bhirawaha   |
+| 21 | suman subedi    |  23 | M      | 981225486 | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445 | bhirawaha   |
++----+-----------------+-----+--------+-----------+-------------+
+
+
+
+
+
+To view 0 record with 4 offset
+----------------------------------------------------------
+
+mysql> SELECT * FROM personal1 limit 0,4;
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal |
+|  4 | sunita pandey |  35 | F      | 981221995  | Palpa  |
++----+---------------+-----+--------+------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 9B - Aggregate functions(COUNT MAX  MIN SUM AVG  )
+
+Conditional clause using WHERE Clause with
+-----------------------------------------------------------------------------------------
+
+
+	Aggregate functions 	COUNT SUM, MIN, MAX, AVG
+
+		COUNT (column_name)
+		MAX (column_name)
+		MIN (column_name)
+		SUM (column_name)
+		AVG (column_name)
+
+	Syntax
+	----------------
+	SELECT  COUNT(column_name)
+		FROM table _name
+		Where condition;
+
+	Syntax
+	----------------
+	SELECT  MAX(column_name)
+		FROM table _name
+		Where condition;
+
+	Syntax
+	----------------
+	SELECT  MIN(column_name)
+		FROM table _name
+		Where condition;
+
+	Syntax
+	----------------
+	SELECT  SUM(column_name)
+		FROM table _name
+		Where condition;
+
+
+
++++++++++++++++++LAB SCNERIO TO ADD SALARY COLUMN WITH DATA +++++++++++++++++++++++++++++++++++++++
+
+
+mysql> SELECT * FROM personal1;
+
+
+mysql> desc personal1;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| age    | int         | NO   |     | NULL    |       |
+| gender | varchar(1)  | NO   |     | NULL    |       |
+| phone  | varchar(10) | NO   | UNI | NULL    |       |
+| city   | varchar(15) | NO   |     | Butwal  |       |
++--------+-------------+------+-----+---------+-------+
+
+
+
+mysql> -- Alter the table to move the salary column after the gender column
+
+mysql> ALTER TABLE personal1 
+	ADD COLUMN salary int(9) AFTER gender;
+
+
+
+mysql> select * from personal1;
++----+-------------------+-----+--------+--------+------------+-------------+
+| id | name              | age | gender | salary | phone      | city        |
++----+-------------------+-----+--------+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      |   NULL | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      |   NULL | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  22 | F      |   NULL | 982222955  | Butwal      |
+|  4 | sunita pandey     |  35 | F      |   NULL | 981221995  | Palpa       |
+|  5 | aman rijal        |  26 | M      |   NULL | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      |   NULL | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      |   NULL | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      |   NULL | 98125698   | Palpa       |
+|  9 | Mina Lama         |  35 | F      |   NULL | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      |   NULL | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      |   NULL | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      |   NULL | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      |   NULL | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      |   NULL | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      |   NULL | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      |   NULL | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      |   NULL | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      |   NULL | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      |   NULL | 9814557    | nawalparasi |
+| 20 | susma gurug       |  32 | F      |   NULL | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      |   NULL | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  19 | F      |   NULL | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      |   NULL | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      |   NULL | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      |   NULL | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      |   NULL | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      |   NULL | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      |   NULL | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+--------+------------+-------------+
+
+
+
+
+-- Update the salary for all rows with random integer values
+mysql> UPDATE personal1 
+	SET salary = CAST(FLOOR(RAND() * 100000) + 30000 AS UNSIGNED
+	);
+
+
+
+mysql> select * from personal1;
++----+-------------------+-----+--------+--------+------------+-------------+
+| id | name              | age | gender | salary | phone      | city        |
++----+-------------------+-----+--------+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      | 116971 | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      |  54060 | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  22 | F      |  89388 | 982222955  | Butwal      |
+|  4 | sunita pandey     |  35 | F      |  54761 | 981221995  | Palpa       |
+|  5 | aman rijal        |  26 | M      |  75640 | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      |  83919 | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      |  62676 | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      |  31623 | 98125698   | Palpa       |
+|  9 | Mina Lama         |  35 | F      |  40089 | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      |  75574 | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 127604 | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      |  81297 | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      |  93675 | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      |  94486 | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      |  61402 | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      |  93556 | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      |  53571 | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      |  57190 | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      |  95238 | 9814557    | nawalparasi |
+| 20 | susma gurug       |  32 | F      |  74621 | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      |  57389 | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  19 | F      |  33082 | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      |  63246 | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      |  86982 | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      | 115175 | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      |  84929 | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      |  49121 | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      |  60819 | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+--------+------------+-------------+
+
+
+++++++++++++++++++++++++++++NOW TABLE IS READY/ NOW BACK TO AGGREATE FUNCTION ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+Count the no of names
+----------------------------------------------------------
+mysql> select count(name) from personal1;
++-------------+
+| count(name) |
++-------------+
+|          28 |
++-------------+
+
+mysql> select count(*) from personal1;
++----------+
+| count(*) |
++----------+
+|       28 |
++----------+
+
+
+
+
+
+Students with gender
+----------------------------------------------------------
+mysql> select count(gender) from personal1;
++---------------+
+| count(gender) |
++---------------+
+|            28 |
++---------------+
+
++------------------------+
+| count(distinct gender) |
++------------------------+
+|                      2 |
++------------------------+
+
+
+	ALISING (AS) with proper name
+	--------------------------------
+	mysql> select count(distinct gender) 
+		AS gender_count from personal1;
+
+		+--------------+
+		| gender_count |
+		+--------------+
+		|            2 |
+		+--------------+
+	
+
+
+Highest age from the record
+----------------------------------------------------------
+
+mysql> select max(age) AS maximum_age from personal1;
++-------------+
+| maximum_age |
++-------------+
+|          91 |
++-------------+
+
+
+
+
+Highest salary
+----------------------------------------------------------
+mysql> select max(salary) AS high_salary from personal1;
++-------------+
+| high_salary |
++-------------+
+|      127604 |
++-------------+
+
+
+
+
+
+Mnimum salary
+----------------------------------------------------------
+
+mysql> select min(salary) AS minimum_salary from personal1;
++----------------+
+| minimum_salary |
++----------------+
+|          31623 |
++----------------+
+
+
+mysql> SELECT name, MIN(salary) AS minimum_salary 
+	FROM personal1 where name="saugat";
+
+
+
+
+Total salary sum
+----------------------------------------------------------
+mysql> select sum(salary) AS total_salary_sum from personal1;
++------------------+
+| total_salary_sum |
++------------------+
+|          2068084 |
++------------------+
+
+
+
+
+
+Average salary from the record
+----------------------------------------------------------
+mysql> select avg(salary) AS averge_salary from personal1;
++---------------+
+| averge_salary |
++---------------+
+|    73860.1429 |
++---------------+
+
+
+
+
+
+find the average salary from the table with name and city
+----------------------------------------------------------
+
+mysql> SELECT city, AVG(salary) AS average_salary
+    	FROM personal1
+    	GROUP BY city;
++-------------+----------------+
+| city        | average_salary |
++-------------+----------------+
+| Palpa       |     70931.6667 |
+| Butwal      |     80241.0000 |
+| chitwan     |     75753.7500 |
+| bhirawaha   |     68177.4000 |
+| nawalparasi |     71957.6667 |
+| kapilbastu  |     73677.3333 |
++-------------+----------------+
+
+
+
+
+Count the number of distinct cities:
+----------------------------------------------------------
+mysql> SELECT COUNT(DISTINCT city) FROM personal1;
++----------------------+
+| COUNT(DISTINCT city) |
++----------------------+
+|                    6 |
++----------------------+
+
+
+
+
+Calculate the total age for each gender:
+----------------------------------------------------------
+mysql> SELECT gender, SUM(age) FROM personal1 GROUP BY gender;
++--------+----------+
+| gender | SUM(age) |
++--------+----------+
+| M      |      461 |
+| F      |      513 |
++--------+----------+
+
+
+
+
+
+Find the average salary for each city:
+----------------------------------------------------------
+mysql> SELECT city, AVG(salary) FROM personal1 GROUP BY city;
++-------------+-------------+
+| city        | AVG(salary) |
++-------------+-------------+
+| Palpa       |  70931.6667 |
+| Butwal      |  80241.0000 |
+| chitwan     |  75753.7500 |
+| bhirawaha   |  68177.4000 |
+| nawalparasi |  71957.6667 |
+| kapilbastu  |  73677.3333 |
++-------------+-------------+
+
+
+
+
+
+Count the number of people in each city:
+----------------------------------------------------------
+mysql> SELECT city, COUNT(*) FROM personal1 GROUP BY city;
++-------------+----------+
+| city        | COUNT(*) |
++-------------+----------+
+| Palpa       |        6 |
+| Butwal      |        7 |
+| chitwan     |        4 |
+| bhirawaha   |        5 |
+| nawalparasi |        3 |
+| kapilbastu  |        3 |
++-------------+----------+
+
+
+
+
+
+Calculate the total salary for each gender:
+----------------------------------------------------------
+mysql> SELECT gender, SUM(salary) FROM personal1 GROUP BY gender;
++--------+-------------+
+| gender | SUM(salary) |
++--------+-------------+
+| M      |      878551 |
+| F      |     1189533 |
++--------+-------------+
+
+
+
+
+
+Find the youngest person in each city:
+---------------------------------------------------------
+mysql> SELECT city, MIN(age) FROM personal1 GROUP BY city;
++-------------+----------+
+| city        | MIN(age) |
++-------------+----------+
+| Palpa       |       20 |
+| Butwal      |       21 |
+| chitwan     |       26 |
+| bhirawaha   |       19 |
+| nawalparasi |       23 |
+| kapilbastu  |       25 |
++-------------+----------+
+
+
+
+
+
+Get the average age for each gender in each city
+----------------------------------------------------------
+
+mysql> SELECT city, gender, AVG(age) FROM personal1 GROUP BY city, gender;
++-------------+--------+----------+
+| city        | gender | AVG(age) |
++-------------+--------+----------+
+| Palpa       | M      |  35.3333 |
+| Butwal      | M      |  31.2500 |
+| Butwal      | F      |  26.3333 |
+| Palpa       | F      |  28.6667 |
+| chitwan     | F      |  32.0000 |
+| chitwan     | M      |  45.5000 |
+| bhirawaha   | F      |  24.2000 |
+| nawalparasi | F      |  52.0000 |
+| nawalparasi | M      |  57.0000 |
+| kapilbastu  | F      |  55.5000 |
+| kapilbastu  | M      |  25.0000 |
++-------------+--------+----------+
+
+
+mysql> SELECT city, gender, AVG(age) FROM personal1 GROUP BY city, gender order by city;
++-------------+--------+----------+
+| city        | gender | AVG(age) |
++-------------+--------+----------+
+| bhirawaha   | F      |  24.2000 |
+| Butwal      | F      |  26.3333 |
+| Butwal      | M      |  31.2500 |
+| chitwan     | F      |  32.0000 |
+| chitwan     | M      |  45.5000 |
+| kapilbastu  | F      |  55.5000 |
+| kapilbastu  | M      |  25.0000 |
+| nawalparasi | F      |  52.0000 |
+| nawalparasi | M      |  57.0000 |
+| Palpa       | F      |  28.6667 |
+| Palpa       | M      |  35.3333 |
++-------------+--------+----------+
+
+
+
+
+
+
+
+
+Count the number of males and females
+----------------------------------------------------------
+
+mysql> SELECT gender, COUNT(*) FROM personal1 GROUP BY gender;
++--------+----------+
+| gender | COUNT(*) |
++--------+----------+
+| M      |       12 |
+| F      |       16 |
++--------+----------+
+
+
+
+
+Calculate the total salary for each city:
+----------------------------------------------------------
+
+
+mysql> SELECT city, SUM(salary) FROM personal1 GROUP BY city;
++-------------+-------------+
+| city        | SUM(salary) |
++-------------+-------------+
+| Palpa       |      425590 |
+| Butwal      |      561687 |
+| chitwan     |      303015 |
+| bhirawaha   |      340887 |
+| nawalparasi |      215873 |
+| kapilbastu  |      221032 |
++-------------+-------------+
+
+
+
+Find the oldest person in each city:
+----------------------------------------------------------
+mysql> SELECT city, MAX(age) FROM personal1 GROUP BY city;
++-------------+----------+
+| city        | MAX(age) |
++-------------+----------+
+| Palpa       |       60 |
+| Butwal      |       60 |
+| chitwan     |       62 |
+| bhirawaha   |       32 |
+| nawalparasi |       91 |
+| kapilbastu  |       72 |
++-------------+----------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 9C - UPDATE
+
+Conditional clause using WHERE Clause with
+-----------------------------------------------------------------------------------------
+		Edit or change the data from record
+
+	SYNTAX
+	------------
+		UPDATE    table _name
+			SET colimn1_name=value1, column2_name=value2, ………..
+			Where condition;
+
+
+
+
+mysql> select * from personal1;
+
+
+update ID 15 muskan shrestha salary 61402 to 70000
+----------------------------------------------------------
+mysql> update personal1
+    	set salary=70000
+    	where id=15;
+
+
+mysql> select * from personal1;
+
+
+
+
+
+ID 16 karishma gurug is , wrong typed so we ll change to “karishma Pandey”
+----------------------------------------------------------
+mysql> update personal1 
+	set name="Karishma Pandey" 
+	where id=16;
+
+
+
+mysql> select * from personal1;
+
+
+
+
+
+
+
+
+	NOTE: using update command, always use where command
+	-----------------------------------------------------
+		CASE 1: normal using where command
+		CASE 2: without where command	//DANGER COMMAND 
+
+
+
+CASE 1: normal using where command
+----------------------------------------------------------
+Using where , it can change specific row or instance 
+
+
+mysql> update personal1 set age=45 where id in(10,11);
+
+mysql> select * from personal1;
+
+
+
+
+
+
+CASE 2: without where command
+----------------------------------------------------------
+Without Using where , it can change specific row or instance .
+It will entirely change all the rows …. DANGER COMMAND
+
+
+BEGIN TRANSACTION;
+
+mysql> update personal1 set age=25;
+
+
+
+mysql> select * from personal1;
++----+-------------------+-----+--------+--------+------------+-------------+
+| id | name              | age | gender | salary | phone      | city        |
++----+-------------------+-----+--------+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  25 | M      | 116971 | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  25 | M      |  54060 | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  25 | F      |  89388 | 982222955  | Butwal      |
+|  4 | sunita pandey     |  25 | F      |  54761 | 981221995  | Palpa       |
+|  5 | aman rijal        |  25 | M      |  75640 | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      |  83919 | 981228     | Palpa       |
+|  7 | anil pandey       |  25 | M      |  62676 | 9812287    | Palpa       |
+|  8 | manju ale         |  25 | F      |  31623 | 98125698   | Palpa       |
+|  9 | Mina Lama         |  25 | F      |  40089 | 98458125   | Butwal      |
+| 10 | Manish KC         |  25 | M      |  75574 | 98228598   | Butwal      |
+| 11 | Manoj KC          |  25 | M      | 127604 | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  25 | M      |  81297 | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  25 | F      |  93675 | 98458445   | Butwal      |
+| 14 | mina BC           |  25 | F      |  94486 | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  25 | M      |  70000 | 98157      | chitwan     |
+| 16 | Karishma Pandey   |  25 | F      |  93556 | 981229     | chitwan     |
+| 17 | basu subedi       |  25 | M      |  53571 | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      |  57190 | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  25 | F      |  95238 | 9814557    | nawalparasi |
+| 20 | susma gurug       |  25 | F      |  74621 | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  25 | M      |  57389 | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  25 | F      |  33082 | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  25 | M      |  63246 | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  25 | F      |  86982 | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  25 | F      | 115175 | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  25 | F      |  84929 | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      |  49121 | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  25 | F      |  60819 | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+--------+------------+-------------+
+
+
+
+
+
+
+
+// for safe return rollback
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+
+mysql> select * from personal1;

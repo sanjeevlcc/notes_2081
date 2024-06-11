@@ -1,0 +1,522 @@
+
+
+	Make changes in WORKBENCH
+	----------------------------
+	EDIT> PEFERENCES > SQL EXECUTIONS > 
+	UNCHECK (new connections use auto commit mode)
+	>RESTART APP
+
+
+-----------------------------------------------------------------------------------------
+LAB 11 - COMMIT AND ROLLBACK COMMAND operator with select/where
+	 and
+	 DELETE Command
+-----------------------------------------------------------------------------------------
+
+
+
+	To changes back in of old changes
+	Roll back of update command
+	Mistakenly command to be revert
+	Data changes or edit bhayexiiii, sankha lagyooooo bhane , back to same data revert or rollback garne .
+
+
+	# rollback;					//one step back
+	#commit
+
+
+
+
+
+	These commands works on
+	---------------------------
+	1.	INSERT
+	2.	UPDATE
+	3.	DELETE
+
+
+
+
+	ALGORITHM
+	-------------
+		-- Start a transaction
+		BEGIN TRANSACTION;
+
+		-- Perform some operations (e.g., UPDATE, INSERT, DELETE)
+		UPDATE your_table SET column1 = 'new_value' WHERE condition;
+
+		-- If something goes wrong, roll back the changes
+		ROLLBACK;
+
+		-- If everything is okay, commit the changes
+		-- COMMIT;
+
+
+
+
+mysql> CREATE TABLE hospitals (     
+	hospital_id INT PRIMARY KEY AUTO_INCREMENT,     
+	hospital_name VARCHAR(255) NOT NULL,     
+	location VARCHAR(100) NOT NULL,     
+	capacity INT,     
+	specialties VARCHAR(255),     
+	rating FLOAT );
+
+mysql> INSERT INTO hospitals (hospital_name, location, capacity, specialties, rating) VALUES
+	('City General Hospital', 'City A', 300, 'General Medicine', 4.5),     
+	('Central Regional Hospital', 'City B', 250, 'Cardiology, Orthopedics', 4.2),
+     	('Unity Hospital', 'City C', 200, 'Pediatrics, Surgery', 4.8);
+
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | City B   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+Working on UPDATE as ROLLBACK
+----------------------------------------------------------
+
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update  hospitals set  location="dharan" where hospital_id=2;
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | dharan   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+mysql> rollback;
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | City B   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Working on DELETE as ROLLBACK
+----------------------------------------------------------
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | City B   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from   hospitals  where hospital_id=2;
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+mysql> rollback;
+
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | City B   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+Working on INSERT as ROLLBACK
+----------------------------------------------------------
+mysql> START TRANSACTION;
+
+
+mysql> insert into   hospitals( hospital_id, hospital_name, location, capacity,specialties, rating)
+    -> values
+    -> (4,"anchal hospital","butwal-8",400,"gynocologist",5.5);
+
+
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | City B   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
+|           4 | anchal hospital           | butwal-8 |      400 | gynocologist            |    5.5 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+mysql> rollback;
+
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | City B   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+
+
+
+
+Working on UPDATE as COMMIT
+----------------------------------------------------------
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | City B   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+mysql> START TRANSACTION;
+
+
+mysql> update  hospitals set  location="dharan" where hospital_id=2;
+
+
+mysql> commit;
+
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | dharan   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+mysql> rollback;
+
+
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | dharan   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Working on DELETE as COMMIT
+----------------------------------------------------------
+
+
+mysql> select * from  hospitals;
++-------------+---------------------------+----------+----------+-------------------------+--------+
+| hospital_id | hospital_name             | location | capacity | specialties             | rating |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+|           1 | City General Hospital     | City A   |      300 | General Medicine        |    4.5 |
+|           2 | Central Regional Hospital | dharan   |      250 | Cardiology, Orthopedics |    4.2 |
+|           3 | Unity Hospital            | City C   |      200 | Pediatrics, Surgery     |    4.8 |
++-------------+---------------------------+----------+----------+-------------------------+--------+
+
+
+
+
+
+
+mysql> START TRANSACTION;
+
+
+mysql> delete from   hospitals  where hospital_id=2;
+
+
+mysql> commit;
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+mysql> rollback;
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+
+
+
+
+
+
+Working on INSERT as COMMIT
+----------------------------------------------------------
+
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+
+mysql> START TRANSACTION;
+
+
+
+mysql> insert into   hospitals( hospital_id, hospital_name, location, capacity,specialties, rating) values (4,"anchal hospital","butwal-8",400,"gynocologist",5.5);
+
+
+
+mysql> commit;
+
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
+|           4 | anchal hospital       | butwal-8 |      400 | gynocologist        |    5.5 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+mysql> rollback;
+
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
+|           4 | anchal hospital       | butwal-8 |      400 | gynocologist        |    5.5 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		DELETE Command
+		------------------
+
+
+		Record or data to be deleted from existing DB
+
+
+
+		SYNTAX
+		-----------
+
+			DELETE FROM    table _name
+				Where condition;
+
+			
+
+			DELETE FROM    table _name;			// all data deleted, use rollback, RISKY
+
+
+
+
+example to delete data inside table
+----------------------------------------------------------
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
+|           4 | anchal hospital       | butwal-8 |      400 | gynocologist        |    5.5 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+
+
+mysql> START TRANSACTION;
+
+
+
+mysql> delete from   hospitals  where hospital_id=1;
+
+
+
+mysql> select * from  hospitals;
++-------------+-----------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name   | location | capacity | specialties         | rating |
++-------------+-----------------+----------+----------+---------------------+--------+
+|           3 | Unity Hospital  | City C   |      200 | Pediatrics, Surgery |    4.8 |
+|           4 | anchal hospital | butwal-8 |      400 | gynocologist        |    5.5 |
++-------------+-----------------+----------+----------+---------------------+--------+
+
+
+
+mysql> rollback;
+
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
+|           4 | anchal hospital       | butwal-8 |      400 | gynocologist        |    5.5 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+
+
+
+
+
+
+
+
+
+
+example to delete  table		// risky
+----------------------------------------------------------
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
+|           4 | anchal hospital       | butwal-8 |      400 | gynocologist        |    5.5 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+
+mysql> START TRANSACTION;
+
+mysql> delete   from  hospitals;
+Query OK, 3 rows affected (0.00 sec)
+
+
+mysql> select * from  hospitals;		// no data , all table deleted, RISKY
+Empty set (0.00 sec)
+
+mysql> rollback;
+
+
+mysql> select * from  hospitals;
++-------------+-----------------------+----------+----------+---------------------+--------+
+| hospital_id | hospital_name         | location | capacity | specialties         | rating |
++-------------+-----------------------+----------+----------+---------------------+--------+
+|           1 | City General Hospital | City A   |      300 | General Medicine    |    4.5 |
+|           3 | Unity Hospital        | City C   |      200 | Pediatrics, Surgery |    4.8 |
+|           4 | anchal hospital       | butwal-8 |      400 | gynocologist        |    5.5 |
++-------------+-----------------------+----------+----------+---------------------+--------+
+
+
+
+
+
+
+
+

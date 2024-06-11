@@ -1,0 +1,362 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+Who does not belongs to Butwal
+----------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 5 - IN and BETWEEN operator with select/where
+
+Conditional clause using WHERE Clause with
+-----------------------------------------------------------------------------------------
+
+	The IN operator allows you to specify multiple values in a WHERE clause.
+	The IN operator is a shorthand for multiple OR conditions.
+
+
+	The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates.
+	The BETWEEN operator is inclusive: begin and end values are included.
+
+
+SYNTAX
+-----------
+
+		-----IN------
+		SELECT column1,column2, ......					
+			FROM table_name;
+			Where column_name IN (value1,value2,………….);
+
+
+		-----NOT IN------
+		SELECT column1,column2, ......					
+			FROM table_name;
+			Where column_name NOT IN (value1,value2,………….);
+
+
+
+
+
+		-----BETWEEN operator-----
+
+		SELECT column1,column2, ......					
+			FROM table_name;
+			Where column_name BETWEEN   value1 AND value2 ;
+
+
+		----- NOT BETWEEN operator-----
+		SELECT column1,column2, ......					
+			FROM table_name;
+			Where column_name NOT BETWEEN   value1 AND value2 ;
+
+
+
+
+
+Age between 20 and 22
+----------------------------------------------------------
+
+mysql> select * from personal1 where age>=20 and age<=22;
+
+OR
+
+mysql> select * from personal1 where age in (20,22);
++----+-------------------+-----+--------+------------+-----------+
+| id | name              | age | gender | phone      | city      |
++----+-------------------+-----+--------+------------+-----------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa     |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal    |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal    |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal    |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal    |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha |
++----+-------------------+-----+--------+------------+-----------+
+
+
+
+
+
+
+Not Age between 20 and 22
+----------------------------------------------------------
+
+mysql> select * from personal1 where not age in (20,22);
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal      |
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal      |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey     |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal      |
+| 11 | Manoj KC        |  60 | M      | 9845845    | Butwal      |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug  |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug     |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug   |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+
+Students from Butwal only
+----------------------------------------------------------
+mysql> select * from personal1 where city in ("butwal");
++----+-------------------+-----+--------+------------+--------+
+| id | name              | age | gender | phone      | city   |
++----+-------------------+-----+--------+------------+--------+
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal |
++----+-------------------+-----+--------+------------+--------+
+
+
+
+
+
+
+Students from out of Butwal 
+----------------------------------------------------------
+
+mysql> select * from personal1 where not city in ("butwal");
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal      |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey     |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug  |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug     |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug   |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha   |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+Student id of 2 and 4,8,11
+----------------------------------------------------------
+
+mysql> select * from personal1 where id in (2,4,8,11);
+
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
+|  4 | sunita pandey |  35 | F      | 981221995  | Palpa  |
+|  8 | manju ale     |  26 | F      | 98125698   | Palpa  |
+| 11 | Manoj KC      |  60 | M      | 9845845    | Butwal |
++----+---------------+-----+--------+------------+--------+
+
+
+
+
+
+Students id of 2 and 4 , reverse
+----------------------------------------------------------
+
+mysql> select * from personal1 where id not in (2,4,8,11);
+
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+Age between 21 and 23
+----------------------------------------------------------
+
+mysql> select * from personal1 where  age between 20 and 23;
+
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+Not Age between 21 and 23
+----------------------------------------------------------
+
+mysql> select * from personal1 where  age not between 20 and 23;
+
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal      |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey     |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal      |
+| 11 | Manoj KC        |  60 | M      | 9845845    | Butwal      |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug  |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug     |  32 | F      | 98544229   | bhirawaha   |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug   |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+
+Id between 2 and 6
+----------------------------------------------------------
+
+mysql> select * from personal1 where  id between 2 and 6;
++----+----------------+-----+--------+------------+--------+
+| id | name           | age | gender | phone      | city   |
++----+----------------+-----+--------+------------+--------+
+|  2 | Mivaan Thapa   |  21 | M      | 9822229555 | Butwal |
+|  3 | Shila Lama     |  22 | F      | 982222955  | Butwal |
+|  4 | sunita pandey  |  35 | F      | 981221995  | Palpa  |
+|  5 | aman rijal     |  26 | M      | 981555     | Palpa  |
+|  6 | kririka pandey |  25 | F      | 981228     | Palpa  |
++----+----------------+-----+--------+------------+--------+
+
+
+
+
+
+Name start with “a” and end with “m”
+----------------------------------------------------------
+
+mysql> select * from personal1 where  name between "a" and "m";
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+Not Name start with “a” and end with “m”
+----------------------------------------------------------
+
+mysql> select * from personal1 where  name not between "a" and "m";
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama      |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal      |
+| 10 | Manish KC       |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC        |  60 | M      | 9845845    | Butwal      |
+| 13 | Ratana Lama     |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha   |
+| 20 | susma gurug     |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha   |
++----+-----------------+-----+--------+------------+-------------+
+

@@ -1,0 +1,128 @@
+
+
+
+Q)
+Consider the following schema:
+ Suppliers (# sid : integer, sname : string, address : string)
+ Parts (# pid : integer, pname : string, color : string)
+ Catalog (# sid : integer, # pid : integer, cost : real)
+ 
+The key fields are underlined # and domain of each field is listed after the field
+ name
+
+
+1) Find the name of suppliers who supply some red parts
+We first find the pids of parts that are red in color and then we compute the
+natural join of this with catalog from this we project sid which gives ids of the
+supplier who supply some red part, then we take the natural join of this with
+supplier and project names which gives us the names of suppliers who supply
+some red part
+Step 1 : R1 = πpid(σcolor = ‘red’parts)
+Step 2 : R2 = πsid(R1 $ Catalog )
+Step 3 : R3 =πname(R2 $ Sppliers)
+
+Required answer is R3
+
+
+
+2) Find the sids of suppliers who supply some red or green parts
+
+Step1: R1 = πpid(σcolor = ‘red’ V ‘green’parts)
+Step 2 : R2 = πsid(R1 $ Catalog)
+
+Same as above one but here we have to choose red or green parts and we have
+to have sids of suppliers so we can stop after step 2 after choosing parts either
+in red color or green color
+
+
+
+
+
+3) Find the sids of suppliers who supply some red part or are at 221 packer Ave
+Sids of suppliers who supply some red part
+Step 1 : R1 = πpid(σcolor = ‘red’parts)
+Step 2 : R2 = πsid(R1 $ Catalog )
+Sids of suppiers who are at 221 packer Ave
+Step 1 : R3 = πsidσaddress = ‘221 packer Ave(Suppliers)
+Therefore sids of suppliers who supply some red part or are at 221 packer Ave
+Is R2 U R3
+
+
+
+
+
+
+
+
+4) Find the sids of suppliers who supply some red part and some green part
+A) R1 = πsid(πpid(σcolor = ‘red’ parts) $ Catalog)
+ R2 = πsid(πpid(σcolor = ‘green’parts) $ Catalog)
+ From question one we get the sids of suppliers who supply some red part (R1)
+ Similarly R2 is the sids of suppliers who supply some green part
+ Required list of sids who supply some red and some green part is R1
+ Intersection R2
+
+
+
+
+
+
+
+
+
+
+
+
+5) Find the sids of suppliers who supply every part
+A) R1=πsid,pid Catalog
+ R2=πpidParts
+ R1/R2 give us the required list of sids of suppliers who supply every part
+
+
+
+
+
+
+6)Find the sids of suppliers who supply every red part
+A)This is same as previous one but in R2 we consider only red parts
+ R1= πsid,pid Catalog
+ R2=πpidσcolr=’red’parts
+ So required answer is R1/R2
+
+
+
+
+7)Find the sids of suppliers who supply every red or green part
+A) R1= πsid,pid Catalog
+ R2=πpidσcolr=’red’ v ’green’ parts
+ R1/R2 gives the sids of suppliers who supply every part which is either red in
+ Color or green in color
+
+
+
+
+
+
+
+
+
+=================================================================
+https://datamastery.gitlab.io/exercises/relational-algebra-exercises-answers.pdf 
+
+
+
+Pubs Database Schema
+author(author id, f irst name, last name)
+author pub(author id, pub id, author position)
+book(book id, book title, month, year, editor)
+pub(pub id, title, book id)
+• author id in author pub is a foreign key referencing author
+• pub id in author pub is a foreign key referencing pub
+• book id in pub is a foreign key referencing book
+• editor in book is a foreign key referencing author(author id)
+• Primary keys are underlined
+
+
+
+
+

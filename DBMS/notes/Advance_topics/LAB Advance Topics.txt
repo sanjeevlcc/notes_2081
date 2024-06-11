@@ -1,0 +1,1285 @@
+
+
+
+********************************************************************************
+LAB 1 Optimize a Complex Query
+********************************************************************************
+docker run -d --name my_mysql -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 mysql:latest
+
+docker exec -it my_mysql mysql -uroot -p1234
+
+          Create a Sample Database:
+          ------------------------------
+CREATE DATABASE optimization_demo;
+USE optimization_demo;
+
+
+
+
+          Create Tables and Insert Sample Data:
+           ------------------------------
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE posts (
+    post_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content TEXT,
+    user_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+INSERT INTO users (username, email) VALUES
+    ('user1', 'user1@example.com'),
+    ('user2', 'user2@example.com');
+
+INSERT INTO posts (title, content, user_id) VALUES
+    ('Post 1', 'Content of post 1', 1),
+    ('Post 2', 'Content of post 2', 2);
+
+
+mysql> select * from posts;
++---------+--------+-------------------+---------+---------------------+
+| post_id | title  | content           | user_id | created_at          |
++---------+--------+-------------------+---------+---------------------+
+|       1 | Post 1 | Content of post 1 |       1 | 2024-02-27 09:21:56 |
+|       2 | Post 2 | Content of post 2 |       2 | 2024-02-27 09:21:56 |
++---------+--------+-------------------+---------+---------------------+
+
+mysql> select * from users;
++---------+----------+-------------------+
+| user_id | username | email             |
++---------+----------+-------------------+
+|       1 | user1    | user1@example.com |
+|       2 | user2    | user2@example.com |
++---------+----------+-------------------+
+
+
+
+
+
+
+                Optimize a Complex Query
+                ------------------------------
+
+
+                Create a Complex Query:
+                ------------------------------
+SELECT users.username, posts.title, posts.content
+FROM users
+INNER JOIN posts ON users.user_id = posts.user_id
+WHERE users.username = 'user1' AND posts.title LIKE '%Post%';
+
++----------+--------+-------------------+
+| username | title  | content           |
++----------+--------+-------------------+
+| user1    | Post 1 | Content of post 1 |
++----------+--------+-------------------+
+
+
+                        Analyze Execution Plan:
+                        ------------------------------
+Analyze the output of the EXPLAIN statement to understand the 
+execution plan and identify potential optimization opportunities.
+
+
+
+EXPLAIN SELECT users.username, posts.title, posts.content
+FROM users
+INNER JOIN posts ON users.user_id = posts.user_id
+WHERE users.username = 'user1' AND posts.title LIKE '%Post%';
++----+-------------+-------+------------+------+----------------------+--------------+---------+----------------------------------+------+----------+-------------+
+| id | select_type | table | partitions | type | possible_keys        | key          | key_len | ref                              | rows | filtered | Extra       |
++----+-------------+-------+------------+------+----------------------+--------------+---------+----------------------------------+------+----------+-------------+
+|  1 | SIMPLE      | users | NULL       | ref  | PRIMARY,idx_username | idx_username | 202     | const                            |    1 |   100.00 | Using index |
+|  1 | SIMPLE      | posts | NULL       | ref  | user_id              | user_id      | 5       | performance_tuning.users.user_id |    1 |    50.00 | Using where |
++----+-------------+-------+------------+------+----------------------+--------------+---------+----------------------------------+------+----------+-------------+
+
+
+                      Optimize the Query:
+                      ------------------------------
+Consider creating indexes on columns used in JOIN and WHERE clauses.
+Rewrite the query to use covered indexes where possible.
+Experiment with different indexing strategies to improve performance.
+
+
+                      Run Optimized Query:
+                      ------------------------------
+Run the optimized query and compare the execution time with the original query.
+
+
+
+
+
+
+********************************************************************************
+LAB 2
+********************************************************************************
+
+Partitioning involves dividing a large table or index into 
+smaller, more manageable pieces called partitions based 
+on a chosen criterion, such as a range of values, a list, or a 
+hash function.
+
+Example (Range Partitioning):
+
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    sale_date DATE,
+    amount DECIMAL(10,2)
+) PARTITION BY RANGE (YEAR(sale_date)) (
+    PARTITION p0 VALUES LESS THAN (1991),
+    PARTITION p1 VALUES LESS THAN (1992),
+    PARTITION p2 VALUES LESS THAN (1993),
+    PARTITION p3 VALUES LESS THAN (1994),
+    PARTITION p4 VALUES LESS THAN (1995),
+    PARTITION p5 VALUES LESS THAN (1996),
+    PARTITION p6 VALUES LESS THAN (1997),
+    PARTITION p7 VALUES LESS THAN (1998),
+    PARTITION p8 VALUES LESS THAN (1999),
+    PARTITION p9 VALUES LESS THAN MAXVALUE
+);
+
+
+Sharding:
+
+Sharding involves horizontally partitioning data across multiple database instances or servers. Each shard contains a subset of the entire dataset.
+
+Example (Hash-Based Sharding):
+
+-- Shard 1
+CREATE TABLE users_shard1 (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(50)
+);
+
+-- Shard 2
+CREATE TABLE users_shard2 (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(50)
+);
+
+-- Shard 3
+CREATE TABLE users_shard3 (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(50)
+);
+
+----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************************************************************
+LAB 3 Granting and Revoking Privileges:
+********************************************************************************
+
+
+-- Create Hospital Management System (HMS) database
+CREATE DATABASE HospitalManagementSystem;
+USE HospitalManagementSystem;
+
+-- Create the Hospital table
+CREATE TABLE Hospital (
+    PatientID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT,
+    Gender VARCHAR(10),
+    Diagnosis VARCHAR(100),
+    RoomNumber INT
+);
+
+-- Create Student Management System (SMS) database
+CREATE DATABASE StudentManagementSystem;
+USE StudentManagementSystem;
+
+-- Create the Student table
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT,
+    Gender VARCHAR(10),
+    Major VARCHAR(50)
+);
+
+
+
+
+
+
+
+
+
+
+-- Insert 10 records into the Hospital table
+INSERT INTO Hospital VALUES
+(1, 'John', 'Doe', 35, 'Male', 'Appendicitis', 101),
+(2, 'Jane', 'Smith', 42, 'Female', 'Fractured Arm', 205),
+(3, 'Mike', 'Johnson', 28, 'Male', 'Influenza', 303),
+(4, 'Emily', 'Williams', 55, 'Female', 'Diabetes', 402),
+(5, 'David', 'Brown', 47, 'Male', 'Hypertension', 105),
+(6, 'Anna', 'Miller', 32, 'Female', 'Migraine', 201),
+(7, 'Brian', 'Jones', 25, 'Male', 'Sprained Ankle', 304),
+(8, 'Sophia', 'Davis', 38, 'Female', 'Pneumonia', 102),
+(9, 'Daniel', 'Clark', 43, 'Male', 'Heart Attack', 401),
+(10, 'Olivia', 'Taylor', 29, 'Female', 'Allergy', 203);
+
+
+
+
+
+
+
+
+-- Insert 10 records into the Student table
+INSERT INTO Student VALUES
+(101, 'Alice', 'Johnson', 20, 'Female', 'Computer Science'),
+(102, 'Bob', 'Smith', 22, 'Male', 'Electrical Engineering'),
+(103, 'Catherine', 'Brown', 21, 'Female', 'Psychology'),
+(104, 'David', 'White', 23, 'Male', 'Mechanical Engineering'),
+(105, 'Eva', 'Williams', 19, 'Female', 'Biology'),
+(106, 'Frank', 'Jones', 24, 'Male', 'Chemistry'),
+(107, 'Grace', 'Davis', 20, 'Female', 'Business Administration'),
+(108, 'Harry', 'Clark', 22, 'Male', 'Political Science'),
+(109, 'Isabel', 'Taylor', 21, 'Female', 'Mathematics'),
+(110, 'Jack', 'Miller', 23, 'Male', 'Physics');
+
+
+
+
+
+
+mysql> select * from HospitalManagementSystem.Hospital;
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+|         3 | Mike      | Johnson  |   28 | Male   | Influenza      |        303 |
+|         4 | Emily     | Williams |   55 | Female | Diabetes       |        402 |
+|         5 | David     | Brown    |   47 | Male   | Hypertension   |        105 |
+|         6 | Anna      | Miller   |   32 | Female | Migraine       |        201 |
+|         7 | Brian     | Jones    |   25 | Male   | Sprained Ankle |        304 |
+|         8 | Sophia    | Davis    |   38 | Female | Pneumonia      |        102 |
+|         9 | Daniel    | Clark    |   43 | Male   | Heart Attack   |        401 |
+|        10 | Olivia    | Taylor   |   29 | Female | Allergy        |        203 |
++-----------+-----------+----------+------+--------+----------------+------------
+
+
+
+
+mysql> select * from StudentManagementSystem.Student;
++-----------+-----------+----------+------+--------+-------------------------+
+| StudentID | FirstName | LastName | Age  | Gender | Major                   |
++-----------+-----------+----------+------+--------+-------------------------+
+|       101 | Alice     | Johnson  |   20 | Female | Computer Science        |
+|       102 | Bob       | Smith    |   22 | Male   | Electrical Engineering  |
+|       103 | Catherine | Brown    |   21 | Female | Psychology              |
+|       104 | David     | White    |   23 | Male   | Mechanical Engineering  |
+|       105 | Eva       | Williams |   19 | Female | Biology                 |
+|       106 | Frank     | Jones    |   24 | Male   | Chemistry               |
+|       107 | Grace     | Davis    |   20 | Female | Business Administration |
+|       108 | Harry     | Clark    |   22 | Male   | Political Science       |
+|       109 | Isabel    | Taylor   |   21 | Female | Mathematics             |
+|       110 | Jack      | Miller   |   23 | Male   | Physics                 |
++-----------+-----------+----------+------+--------+-------------------------+
+
+
+
+
+
+
+
+-- Create Users
+mysql> CREATE USER 'sanjeev'@'localhost' IDENTIFIED BY 'password1';
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE USER 'ohm'@'localhost' IDENTIFIED BY 'password2';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE USER 'ashok'@'localhost' IDENTIFIED BY 'password3';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE USER 'manoj'@'localhost' IDENTIFIED BY 'password4';
+Query OK, 0 rows affected (0.03 sec);
+
+.
+mysql> SELECT user FROM mysql.user;
+                    +------------------+
+                    | user             |
+                    +------------------+
+                    | root             |
+                    | ashok            |
+                    | manoj            |
+                    | mysql.infoschema |
+                    | mysql.session    |
+                    | mysql.sys        |
+                    | ohm              |
+                    | root             |
+                    | sanjeev          |
+                    +------------------+
+
+
+
+mysql> SELECT COUNT(user) AS total_users FROM mysql.user;
++-------------+
+| total_users |
++-------------+
+|           9 |
++-------------+
+1 row in set (0.02 sec)
+
+
+
+
+USE HospitalManagementSystem;
+-----------------------------------
+
+-- Create Users
+CREATE USER 'sanjeev'@'localhost' IDENTIFIED BY 'password1';
+CREATE USER 'ohm'@'localhost' IDENTIFIED BY 'password2';
+CREATE USER 'ashok'@'localhost' IDENTIFIED BY 'password3';
+CREATE USER 'manoj'@'localhost' IDENTIFIED BY 'password4';
+
+
+
+-- Grant SELECT privilege to Sanjeev on Hospital table
+GRANT SELECT ON Hospital TO 'sanjeev'@'localhost';
+
+-- Grant INSERT and UPDATE privileges to Ohm on Hospital table
+GRANT INSERT, UPDATE ON Hospital TO 'ohm'@'localhost';
+
+-- Grant DELETE privilege to Ashok on Hospital table
+GRANT DELETE ON Hospital TO 'ashok'@'localhost';
+
+-- Grant ALL privileges to Manoj on Hospital table
+GRANT ALL ON Hospital TO 'manoj'@'localhost';
+
+
+
+
+
+USE StudentManagementSystem;
+----------------------------------
+
+-- Grant SELECT privilege to Sanjeev on Student table
+mysql> GRANT SELECT ON Student TO 'sanjeev'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+
+-- Grant INSERT and UPDATE privileges to Ohm on Student table
+mysql> GRANT INSERT, UPDATE ON Student TO 'ohm'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+
+
+
+-- Grant DELETE privilege to Ashok on Student table
+mysql> GRANT DELETE ON Student TO 'ashok'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+
+
+
+-- Grant ALL privileges to Manoj on Student table
+mysql> GRANT ALL ON Student TO 'manoj'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.12 sec)
+
+
+
+
+
+
+
+
+
+
+                    CHECKING AND ANALYSISNG
+                    ---------------------------
+
+
+USE HospitalManagementSystem;
+-----------------------------------
+
+-- Grant SELECT privilege to Sanjeev on Hospital table
+mysql> GRANT SELECT ON Hospital TO 'sanjeev'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.03 sec
+
+                    mysql> exit
+                    Bye
+                    bash-4.4# mysql -u sanjeev -p
+                    Enter password: password1
+                     
+                    mysql> USE HospitalManagementSystem;
+                    mysql> select * from Hospital;              ........works fine ok select
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+
+
+
+
+
+                              mysql> delete from Hospital where PatientID=1;          ....... dont work for delete , due to PriVILIGES
+                              ERROR 1142 (42000): DELETE command denied to user 'sanjeev'@'localhost' for table 'Hospital'
+
+
+
+
+
+
+
+
+
+-- Grant INSERT and UPDATE privileges to Ohm on Hospital table
+mysql> GRANT INSERT, UPDATE ON Hospital TO 'ohm'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.12 sec)
+
+
+                    bash-4.4# mysql -u ohm -ppassword2
+                    USE HospitalManagementSystem;
+
+                    mysql> select * from Hospital;
+                    ERROR 1142 (42000): SELECT command denied to user 'ohm'@'localhost' for table 'Hospital'
+                    
+                    
+                    mysql> INSERT INTO Hospital VALUES
+                         (11, 'Shyam', 'Dhakal', 37, 'Male', 'Appendicitis', 101);
+                    Query OK, 1 row affected (0.02 sec)                   ...... works fine PRIVILIGES WORKS 
+
+
+
+
+-- Grant DELETE privilege to Ashok on Hospital table
+mysql> GRANT DELETE ON Hospital TO 'ashok'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+
+                    bash-4.4# mysql -u ashok -ppassword3
+                    
+                    mysql> USE HospitalManagementSystem;
+                    Reading table information for completion of table and column names
+                    You can turn off this feature to get a quicker startup with -A
+                    
+                    Database changed
+
+
+
+                    mysql> select * from Hospitals;
+                    ERROR 1142 (42000): SELECT command denied to user 'ashok'@'localhost' for table 'Hospitals'
+
+
+
+
+
+
+
+
+-- Grant ALL privileges to Manoj on Hospital table
+mysql> GRANT ALL ON Hospital TO 'manoj'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+
+                    bash-4.4# mysql -u manoj -ppassword4
+                     mysql> USE HospitalManagementSystem;
+                    
+                    mysql> select * from Hospital;
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+|         3 | Mike      | Johnson  |   28 | Male   | Influenza      |        303 |
+|         4 | Emily     | Williams |   55 | Female | Diabetes       |        402 |
+|         5 | David     | Brown    |   47 | Male   | Hypertension   |        105 |
+|         6 | Anna      | Miller   |   32 | Female | Migraine       |        201 |
+|         7 | Brian     | Jones    |   25 | Male   | Sprained Ankle |        304 |
+|         8 | Sophia    | Davis    |   38 | Female | Pneumonia      |        102 |
+|         9 | Daniel    | Clark    |   43 | Male   | Heart Attack   |        401 |
+|        10 | Olivia    | Taylor   |   29 | Female | Allergy        |        203 |
+|        11 | Shyam     | Dhakal   |   37 | Male   | Appendicitis   |        101 |
++-----------+-----------+----------+------+--------+----------------+------------+
+11 rows in set (0.00 sec)
+
+
+
+
+                    mysql>  delete from Hospital where PatientID=10;
+                    Query OK, 1 row affected (0.02 sec)
+
+
+
+
+                    mysql> select * from Hospital;
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+|         3 | Mike      | Johnson  |   28 | Male   | Influenza      |        303 |
+|         4 | Emily     | Williams |   55 | Female | Diabetes       |        402 |
+|         5 | David     | Brown    |   47 | Male   | Hypertension   |        105 |
+|         6 | Anna      | Miller   |   32 | Female | Migraine       |        201 |
+|         7 | Brian     | Jones    |   25 | Male   | Sprained Ankle |        304 |
+|         8 | Sophia    | Davis    |   38 | Female | Pneumonia      |        102 |
+|         9 | Daniel    | Clark    |   43 | Male   | Heart Attack   |        401 |
+|        11 | Shyam     | Dhakal   |   37 | Male   | Appendicitis   |        101 |
++-----------+-----------+----------+------+--------+----------------+------------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+                    CHECKING AND ANALYSISNG
+                    ---------------------------
+
+
+
+USE StudentManagementSystem;
+----------------------------------
+
+-- Grant SELECT privilege to Sanjeev on Student table
+mysql> GRANT SELECT ON Student TO 'sanjeev'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+
+-- Grant INSERT and UPDATE privileges to Ohm on Student table
+mysql> GRANT INSERT, UPDATE ON Student TO 'ohm'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+
+
+
+-- Grant DELETE privilege to Ashok on Student table
+mysql> GRANT DELETE ON Student TO 'ashok'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+
+
+
+-- Grant ALL privileges to Manoj on Student table
+mysql> GRANT ALL ON Student TO 'manoj'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.12 sec)
+
+
+
+
+
+
+
+
+
+
+
+                    CHECKING AND ANALYSISNG
+                    ---------------------------
+
+For Hospital Management System (HMS) Database:
+------------------------------------------------------
+
+USE HospitalManagementSystem;
+
+-- Revoke SELECT privilege from all users on Hospital table
+REVOKE SELECT ON Hospital FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+-- Revoke INSERT and UPDATE privileges from all users on Hospital table
+REVOKE INSERT, UPDATE ON Hospital FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+-- Revoke DELETE privilege from all users on Hospital table
+REVOKE DELETE ON Hospital FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+
+
+
+
+
+                      CHECKING AND ANALYSISNG
+                    ---------------------------
+For Student Management System (SMS) Database:
+------------------------------------------------------
+USE StudentManagementSystem;
+
+-- Revoke SELECT privilege from all users on Student table
+REVOKE SELECT ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+-- Revoke INSERT and UPDATE privileges from all users on Student table
+REVOKE INSERT, UPDATE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+-- Revoke DELETE privilege from all users on Student table
+REVOKE DELETE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************************************************************
+LAB 4 Parallel and Distributed Databases
+********************************************************************************
+
+OPEN killer koda  > CKA > MAke two tabs
+
+
+
+
+
+                    TERMINAL 1
+                    --------------
+controlplane $ watch kubectl get all
+                    
+
+
+
+
+
+                    TERMINAL 2
+                    --------------
+
+
+
+Parallel Database Setup:
+-----------------------------
+
+
+controlplane $ cat > parallel-mysql-deployment.yaml
+# parallel-mysql-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parallel-mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: parallel-mysql
+  template:
+    metadata:
+      labels:
+        app: parallel-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:latest
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpassword
+        - name: MYSQL_DATABASE
+          value: mydatabase
+
+
+controlplane $ kubectl apply -f parallel-mysql-deployment.yaml
+
+
+
+controlplane $ kubectl get pod                     .........parallely 3 MYSQL server is running
+NAME                              READY   STATUS    RESTARTS   AGE
+parallel-mysql-7984d4c78b-bz7g9   1/1     Running   0          95s
+parallel-mysql-7984d4c78b-lfg8j   1/1     Running   0          95s
+parallel-mysql-7984d4c78b-lltkj   1/1     Running   0          95s  ........ let us crash or delete this pod/server.......system ll automatically re create it, i.e Loadbalancing and scaliblity
+
+
+
+
+controlplane $ kubectl delete pod parallel-mysql-7984d4c78b-lltkj ..... crashing pod
+pod "parallel-mysql-7984d4c78b-lltkj" deleted
+
+
+controlplane $ kubectl get pod 
+NAME                              READY   STATUS    RESTARTS   AGE
+parallel-mysql-7984d4c78b-bz7g9   1/1     Running   0          4m8s
+parallel-mysql-7984d4c78b-lfg8j   1/1     Running   0          4m8s
+parallel-mysql-7984d4c78b-w62lx   1/1     Running   0          5s  ........... auto scale
+
+
+
+
+
+
+
+
+          Parallel Database
+          
+          The parallel-mysql Deployment creates 
+          three separate instances of MySQL running in parallel. 
+          
+                                        parallel-mysql-7984d4c78b-bz7g9  
+                                        parallel-mysql-7984d4c78b-lfg8j  
+                                        parallel-mysql-7984d4c78b-w62lx   
+          
+          Each instance is independent and doesn't share data.
+
+
+
+                    +-----------------------------------------+
+                    |          parallel-mysql Deployment      |
+                    |                                         |
+                    |  +------------------------+             |
+                    |  |      MySQL Pod         |             |
+                    |  | Replica 1              |             |
+                    |  | table t1(name,age,add) |             |
+                    |  +------------------------+             |
+                    |  +------------------------+             |
+                    |  |      MySQL Pod         |             |
+                    |  | Replica 2              |             |
+                    |  | table t1(name,age,add) |             |
+                    |  +------------------------+             |
+                    |  +------------------------+             |
+                    |  |      MySQL Pod         |             |
+                    |  | Replica 3              |             |
+                    |  | table t1(name,age,add) |             |
+                    |  +------------------------+             |
+                    |                                         |
+                    |  Scaling up if any node is down         |
+                    +-----------------------------------------+
+
+
+
+
+
+
+
+
+Distributed Database Setup:
+-----------------------------
+
+
+controlplane $ cat > distributed-mysql-deployment.yaml
+
+# distributed-mysql-deployment.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: distributed-mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: distributed-mysql
+  serviceName: "mysql"
+  template:
+    metadata:
+      labels:
+        app: distributed-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:latest
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpassword
+        - name: MYSQL_DATABASE
+          value: mydatabase
+
+
+
+kubectl apply -f distributed-mysql-deployment.yaml
+
+
+ontrolplane $ kubectl get pods  
+NAME                  READY   STATUS    RESTARTS   AGE
+distributed-mysql-0   1/1     Running   0          17s
+distributed-mysql-1   1/1     Running   0          15s
+distributed-mysql-2   1/1     Running   0          12s
+
+
+
+
+
+          Distributed Database:
+          
+                    The distributed-mysql StatefulSet creates 
+                    three MySQL instances, and 
+                    each has a unique identity (mysql-0, mysql-1, mysql-2). 
+                    
+                                        distributed-mysql-0   
+                                        distributed-mysql-1   
+                                        distributed-mysql-2   
+                    
+                    
+                    This is useful for scenarios where data is distributed 
+                    and instances have specific roles.
+                    
+                     Each instance is dependent and share data.
+
+                    
+                    +-----------------------------------------+
+                    |        distributed-mysql StatefulSet    |
+                    |                                         |
+                    |  +-------------------+                  |
+                    |  |      MySQL Pod    |                  |
+                    |  | Replica 0         |                  |
+                    |  | d11(id,age,name)  |                  |
+                    |  +-------------------+                  |
+                    |  +-------------------+                  |
+                    |  |      MySQL Pod    |                  |
+                    |  | Replica 1         |                  |
+                    |  | d11(id,age,name)  |                  |
+                    |  +-------------------+                  |
+                    |  +-------------------+                  |
+                    |  |      MySQL Pod    |                  |
+                    |  | Replica 2         |                  |
+                    |  | d11(id,age,name)  |                  |
+                    |  +-------------------+                  |
+                    |                                         |
+                    |  Scaling up if any node is down         |
+                    +-----------------------------------------+
+                    
+
+
+
+
+
+
+difference
+------------
+
+
+
+                     +-----------------------------------------+
+                    |        distributed-mysql StatefulSet    |
+                    |                                         |
+                    |  +-------------------+                  |
+                    |  |      MySQL Pod    |                  |
+                    |  | Replica 0         |                  |
+                    |  | d11(id,age,name)  |                  |
+                    |  +-------------------+                  |
+                    |  +-------------------+                  |
+                    |  |      MySQL Pod    |                  |
+                    |  | Replica 1         |                  |
+                    |  | d11(id,age,name)  |                  |
+                    |  +-------------------+                  |
+                    |  +-------------------+                  |
+                    |  |      MySQL Pod    |                  |
+                    |  | Replica 2         |                  |
+                    |  | d11(id,age,name)  |                  |
+                    |  +-------------------+                  |
+                    |                                         |
+                    |  Scaling up if any node is down         |
+                    +-----------------------------------------+
+
+
+
+
+
+
+                    +-----------------------------------------+
+                    |          parallel-mysql Deployment      |
+                    |                                         |
+                    |  +------------------------+             |
+                    |  |      MySQL Pod         |             |
+                    |  | Replica 1              |             |
+                    |  | table t1(name,age,add) |             |
+                    |  +------------------------+             |
+                    |  +------------------------+             |
+                    |  |      MySQL Pod         |             |
+                    |  | Replica 2              |             |
+                    |  | table t1(name,age,add) |             |
+                    |  +------------------------+             |
+                    |  +------------------------+             |
+                    |  |      MySQL Pod         |             |
+                    |  | Replica 3              |             |
+                    |  | table t1(name,age,add) |             |
+                    |  +------------------------+             |
+                    |                                         |
+                    |  Scaling up if any node is down         |
+                    +-----------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************************************************************
+LAB 5 Data Mining lab, simple clustering algorithm (K-Means) 
+with a random dataset
+********************************************************************************
+
+
+
+To perform a Data Mining lab scenario using Docker,
+let's use the popular Python library scikit-learn to 
+implement a simple clustering algorithm (K-Means) 
+with a random dataset.
+
+We'll use Jupyter Notebook for a more interactive environment.
+
+
+
+                    Docker Setup:
+                    Create a Dockerfile:
+                    ------------------------
+
+
+controlplane $ cat > Dockerfile
+FROM python:3.8-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["jupyter", "notebook", "--ip='0.0.0.0'", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+
+
+controlplane $ 
+
+
+
+                    Create a requirements.txt file:
+                    ------------------------------
+
+controlplane $ cat > requirements.txt
+
+scikit-learn==0.24.1
+jupyter==1.0.0
+matplotlib==3.4.3
+
+
+controlplane $ 
+
+
+
+                    Create a Jupyter Notebook file (e.g., data_mining_lab.ipynb).
+                    ---------------------------------------------------------------
+                    Jupyter Notebook (data_mining_lab.ipynb):
+                    --------------------------------------------
+
+
+controlplane $ cat > data_mining_lab.ipynb
+
+
+# Import necessary libraries
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+
+# Generate random dataset
+X, _ = make_blobs(n_samples=300, centers=3, random_state=42)
+
+# Visualize the dataset
+plt.scatter(X[:, 0], X[:, 1], s=50)
+plt.title('Random Dataset')
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.show()
+
+# Apply K-Means clustering algorithm
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(X)
+
+# Visualize the clustered dataset
+plt.scatter(X[:, 0], X[:, 1], c=kmeans.labels_, s=50, cmap='viridis')
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=200, c='red', marker='X')
+plt.title('K-Means Clustering')
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.show()
+
+
+
+controlplane $ 
+
+
+
+
+controlplane $ ls
+Dockerfile  data_mining_lab.ipynb  requirements.txt
+
+
+
+                    Building and Running the Docker Container:
+                    Build the Docker image:
+                    ------------------------------------
+
+controlplane $ docker build -t data-mining-lab .
+
+
+                    Run the Docker container:
+                    --------------------------
+controlplane $  docker run  -d --name mining-lab -p 8888:8888 -v $(pwd):/app data-mining-lab
+
+
+                    List the Docker running container:
+                    --------------------------
+
+controlplane $ docker images
+
+controlplane $ docker ps
+
+
+
+
+                    Work from browser, chrme or firefox
+                    --------------------------
+
+                    127.0.0.1:8888
+                    
+                    or
+                    
+                    IP:8888
+
+
+
+********************************************************************************
+LAB 6  K-Nearest Neighbors (KNN) algorithm using 
+Docker and PHP 
+********************************************************************************
+
+Creating a Data Mining lab scenario for the 
+K-Nearest Neighbors (KNN) algorithm using 
+Docker and PHP involves a few steps. 
+
+We'll generate a random dataset, implement the KNN algorithm,
+and create a simple PHP script to visualize the results. 
+
+Below are the steps:
+
+
+
+
+                    1. Create Dockerfile:
+                    Dockerfile
+                    --------------------------
+
+controlplane $ cat > Dockerfile
+
+Copy code
+FROM php:7.4-apache
+
+COPY . /var/www/html
+
+CMD ["apache2-foreground"]
+
+
+
+
+                    2. Create PHP Script (index.php):
+                    -----------------------------------
+
+
+controlplane $ cat > index.php
+
+
+<?php
+function generateRandomData($numPoints) {
+    $data = [];
+    for ($i = 0; $i < $numPoints; $i++) {
+        $data[] = [
+            'x' => rand(1, 100),
+            'y' => rand(1, 100),
+            'label' => null, // To be assigned by KNN algorithm
+        ];
+    }
+    return $data;
+}
+
+function knn($data, $point, $k) {
+    // Implement the KNN algorithm here
+    // You can use distance metrics and select the k-nearest neighbors
+    // Assign the label based on the majority class among the neighbors
+}
+
+$numPoints = 100;
+$testPoint = ['x' => 60, 'y' => 50]; // Random test point
+
+// Generate random data
+$data = generateRandomData($numPoints);
+
+// Apply KNN algorithm
+$k = 5; // Number of neighbors to consider
+foreach ($data as &$point) {
+    $point['label'] = knn($data, $point, $k);
+}
+
+// Display the results
+echo '<h2>Random Data Points</h2>';
+echo '<pre>';
+print_r($data);
+echo '</pre>';
+
+echo '<h2>Test Point Classification</h2>';
+echo '<pre>';
+print_r(knn($data, $testPoint, $k));
+echo '</pre>';
+?>
+
+
+
+                    3. Build Docker Image:
+                    ------------------------------------------
+controlplane $ docker build -t knn-lab .
+
+
+
+                    4. Run Docker Container:
+                    -----------------------------------
+controlplane $ docker run -d  -p 8080:80 knn-lab
+
+
+
+                    5. Access PHP Script in Browser:
+                    --------------------------------------
+
+http://localhost:8080/index.php 
+
+
+This basic scenario generates a random dataset, 
+applies the KNN algorithm to classify points, 
+and displays the results using a simple PHP script. 
+
+For a more complete implementation, you would need to
+implement the KNN algorithm and visualization logic 
+based on your specific requirements.
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+********************************************************************************
+LAB 1
+********************************************************************************
+
+
+
+
+
+
+
+
+
+
+

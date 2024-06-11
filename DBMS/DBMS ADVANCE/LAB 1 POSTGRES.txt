@@ -1,0 +1,952 @@
+
+
+PostgreSQL, often referred to as Postgres, 
+is an open-source relational database management system (RDBMS) 
+known for its extensibility and compliance with SQL standards. 
+
+It supports various data types, indexing, and complex queries, 
+making it suitable for a wide range of applications. 
+
+PostgreSQL is highly extensible, allowing users to define their 
+own data types, operators, and functions.
+
+SQL, on the other hand, stands for Structured Query Language 
+and is a standard language for interacting with relational databases. 
+
+PostgreSQL is an RDBMS that uses SQL as its query language, 
+so in essence, when you interact with PostgreSQL, you are using SQL commands.
+
+
+	Here are some common PostgreSQL commands:
+	============================================
+
+	Connect to a Database:
+		\c database_name
+
+	List available databases:
+		\l
+
+	List available tables in the current database:
+		\dt
+
+	Describe a table:
+		\d table_name
+
+	Create a new database:
+	CREATE DATABASE new_database;
+
+	Create a new table:
+		CREATE TABLE table_name (
+    		column1 datatype1,
+    		column2 datatype2,
+    			...
+		);
+
+
+	Insert data into a table:
+		INSERT INTO table_name (column1, column2, ...) 
+		VALUES (value1, value2, ...);
+
+
+	Select data from a table:
+		SELECT * FROM table_name;
+
+	Update data in a table:
+		UPDATE table_name 
+			SET column1 = value1 
+			WHERE some_column = some_value;
+
+	Delete data from a table:
+		DELETE FROM table_name 
+		WHERE some_column = some_value;
+
+
+These commands are just a basic introduction; 
+PostgreSQL supports many more advanced features and commands for managing and querying data 
+in a relational database environment.
+
+	CHECK: https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html
+
+
+
+	More on psql commands
+	---------------------------
+
+	\?: show all psql commands.
+	\h sql-command: show syntax on SQL command.
+	\c dbname [username]: Connect to database, with an optional username (or \connect).
+	
+
+	Display Commands: You can append + to show more details.
+	-----------------------------------------------------------
+	\l: List all database (or \list).
+	\d: Display all tables, indexes, views, and sequences.
+	\dt: Display all tables.
+	\di: Display all indexes.
+	\dv: Display all views.
+	\ds: Display all sequences.
+	\dT: Display all types.
+	\dS: Display all system tables.
+	\du: Display all users.
+	\x auto|on|off: Toggle|On|Off expanded output mode.
+
+***************************************************************************
+
+========= USING docker or used TUNED APP for postgres ==============
+
+------------------------DOCKER------------------------------
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose scnerio CKA or Playground
+step 3: [SQL-lunch]   docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+	[SQL-execute] docker exec -ti mydb1 bash
+				OR
+		      docker exec -ti mydb1 mysql -u root -p1234
+
+
+
+
+step 4: [POSTGRES-syntax] docker run --name my_postgres_container -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+			  docker exec -it my_postgres_container psql -U postgres
+
+	[POSTGRES-lunch]   docker run --name pgDBapp -e POSTGRES_PASSWORD=pg1234 -p 5432:5432 -d postgres
+	[POSTGRES-execute] docker exec -ti pgDBapp psql -U postgres
+				OR
+			   docker exec -ti pgDBapp bash            
+                           psql -U postgres
+
+***************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************
+EXAMPLE 1
+*******************************
+
+
+create the lab11 database:
+-------------------------------------
+
+postgres=# CREATE DATABASE lab11;
+CREATE DATABASE
+
+
+
+
+List Databases:
+-------------------------------------
+postgres-# \l
+                                                      List of databases
+   Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges   
+-----------+----------+----------+-----------------+------------+------------+------------+-----------+-----------------------
+ lab11     | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+ postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           | 
+
+
+
+
+
+
+Connect to the lab11 Database:
+-------------------------------------
+postgres-# \c lab11 
+You are now connected to database "lab11" as user "postgres".
+
+
+
+Create the employee Table:
+-------------------------------------
+lab11=# CREATE TABLE employee (
+    employee_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    job_title VARCHAR(100) NOT NULL
+);
+CREATE TABLE
+
+
+
+
+
+describe tables
+-------------------------------------
+lab11=# \dt
+          List of relations
+ Schema |   Name   | Type  |  Owner   
+--------+----------+-------+----------
+ public | employee | table | postgres
+(1 row)
+
+
+
+ insert some sample data into the employee table:
+-------------------------------------
+
+lab11=# INSERT INTO employee (first_name, last_name, job_title) VALUES
+    ('Sarala', 'Shrestha', 'Tea Master'),
+    ('Rajendra', 'Gurung', 'Momos Chef'),
+    ('Anita', 'Thapa', 'Saree Boutique Owner'),
+    ('Bibek', 'Rai', 'Mountaineering Guide');
+INSERT 0 4
+
+
+
+
+
+
+
+DIPSLPAY DATA 
+-------------------------------------
+lab11=# select * from employee;
+ employee_id | first_name | last_name |      job_title       
+-------------+------------+-----------+----------------------
+           1 | Sarala     | Shrestha  | Tea Master
+           2 | Rajendra   | Gurung    | Momos Chef
+           3 | Anita      | Thapa     | Saree Boutique Owner
+           4 | Bibek      | Rai       | Mountaineering Guide
+(4 rows)
+
+
+
+
+
+
+INSERT more
+-------------------------------------
+lab11=# INSERT INTO employee (first_name, last_name, job_title) VALUES
+    ('Kritika', 'Bhattarai', 'Traditional Handicraft Artisan'),
+    ('Ramesh', 'Sharma', 'Yak Herder'),
+    ('Priya', 'Adhikari', 'Ayurvedic Healer'),
+    ('Dipesh', 'Lama', 'Thangka Painter'),
+    ('Mina', 'Chhetri', 'Culinary Explorer'),
+    ('Subash', 'Acharya', 'Tabla Maestro'),
+    ('Asha', 'Magar', 'Community Leader'),
+    ('Prakash', 'Koirala', 'Monastery Librarian'),
+    ('Sunita', 'Tamang', 'Traditional Dance Instructor'),
+    ('Nabin', 'Bista', 'Himalayan Honey Farmer');
+INSERT 0 10
+
+
+
+
+
+lab11=# select * from employee;
+ employee_id | first_name | last_name |           job_title            
+-------------+------------+-----------+--------------------------------
+           1 | Sarala     | Shrestha  | Tea Master
+           2 | Rajendra   | Gurung    | Momos Chef
+           3 | Anita      | Thapa     | Saree Boutique Owner
+           4 | Bibek      | Rai       | Mountaineering Guide
+           5 | Kritika    | Bhattarai | Traditional Handicraft Artisan
+           6 | Ramesh     | Sharma    | Yak Herder
+           7 | Priya      | Adhikari  | Ayurvedic Healer
+           8 | Dipesh     | Lama      | Thangka Painter
+           9 | Mina       | Chhetri   | Culinary Explorer
+          10 | Subash     | Acharya   | Tabla Maestro
+          11 | Asha       | Magar     | Community Leader
+          12 | Prakash    | Koirala   | Monastery Librarian
+          13 | Sunita     | Tamang    | Traditional Dance Instructor
+          14 | Nabin      | Bista     | Himalayan Honey Farmer
+(14 rows
+
+
+QUERY 1: Retrieve employees with the job title 'Tea Master' or 'Traditional Handicraft Artisan':
+-------------------------------------------------------------------
+
+lab11=# SELECT * FROM employee WHERE job_title IN ('Tea Master', 'Traditional Handicraft Artisan');
+ employee_id | first_name | last_name |           job_title            
+-------------+------------+-----------+--------------------------------
+           1 | Sarala     | Shrestha  | Tea Master
+           5 | Kritika    | Bhattarai | Traditional Handicraft Artisan
+
+
+
+QUERY 2: Retrieve employees whose last names start with the letter 'S':
+-------------------------------------------------------------------
+lab11=# SELECT * FROM employee WHERE last_name LIKE 'S%';
+ employee_id | first_name | last_name | job_title  
+-------------+------------+-----------+------------
+           1 | Sarala     | Shrestha  | Tea Master
+           6 | Ramesh     | Sharma    | Yak Herder
+
+
+
+QUERY 3: Retrieve employees sorted by their first names in ascending order:
+-------------------------------------------------------------------
+lab11=# SELECT * FROM employee ORDER BY first_name ASC;
+ employee_id | first_name | last_name |           job_title            
+-------------+------------+-----------+--------------------------------
+           3 | Anita      | Thapa     | Saree Boutique Owner
+          11 | Asha       | Magar     | Community Leader
+           4 | Bibek      | Rai       | Mountaineering Guide
+           8 | Dipesh     | Lama      | Thangka Painter
+           5 | Kritika    | Bhattarai | Traditional Handicraft Artisan
+           9 | Mina       | Chhetri   | Culinary Explorer
+          14 | Nabin      | Bista     | Himalayan Honey Farmer
+          12 | Prakash    | Koirala   | Monastery Librarian
+           7 | Priya      | Adhikari  | Ayurvedic Healer
+           2 | Rajendra   | Gurung    | Momos Chef
+           6 | Ramesh     | Sharma    | Yak Herder
+           1 | Sarala     | Shrestha  | Tea Master
+          10 | Subash     | Acharya   | Tabla Maestro
+          13 | Sunita     | Tamang    | Traditional Dance Instructor
+(14 rows
+
+
+
+
+QUERY 4: Retrieve the count of employees:
+-------------------------------------------------------------------
+lab11=# SELECT COUNT(*) FROM employee;
+ count 
+-------
+    14
+(1 row)
+
+
+
+
+QUERY 5: Retrieve employees with a job title that contains the word 'Master':
+-------------------------------------------------------------------
+lab11=# SELECT * FROM employee WHERE job_title LIKE '%Master%';
+ employee_id | first_name | last_name | job_title  
+-------------+------------+-----------+------------
+           1 | Sarala     | Shrestha  | Tea Master
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************
+EXAMPLE 2
+now create a user= manish , and 
+3 tables with primary key 
+and some foreign key relations 
+of hospital management system
+
+*******************************
+
+
+
+
+Create User manish:
+-------------------------------------
+lab11=# CREATE USER manish WITH PASSWORD 'manish1234';
+CREATE ROLE
+
+
+
+
+Create Database and Connect:
+-------------------------------------
+lab11=# CREATE DATABASE hospital_management;
+CREATE DATABASE
+
+
+
+
+
+Display  Table
+-------------------------------------
+hospital_management=# \dt
+Did not find any relations.
+
+
+
+
+Connect via docker command 
+-------------------------------------
+
+controlplane $ docker exec -ti pgDBapp psql -d hospital_management -U manish  -W
+Password: manish1234
+
+		OR
+
+controlplane $ docker exec -ti pgDBapp bash  
+root@2124b87dda6e:/# psql -d hospital_management -U manish  -W
+Password: 
+
+
+
+list databases
+-------------------------------------
+hospital_management=> \l
+                                                           List of databases
+        Name         |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges   
+---------------------+----------+----------+-----------------+------------+------------+------------+-----------+-----------------------
+ hospital_management | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
+
+
+
+Now create the 3 tables patients , doc , appointents
+-------------------------------------
+postgres=# CREATE TABLE patients (
+    patient_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    age INT,
+    gender VARCHAR(10),
+    contact_number VARCHAR(15) UNIQUE NOT NULL
+);
+CREATE TABLE
+
+
+
+
+
+postgres=# CREATE TABLE doctors (
+    doctor_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    specialization VARCHAR(100) NOT NULL
+);
+CREATE TABLE
+
+
+
+
+postgres=# CREATE TABLE appointments (
+    appointment_id SERIAL PRIMARY KEY,
+    appointment_date DATE NOT NULL,
+    patient_id INT REFERENCES patients(patient_id),
+    doctor_id INT REFERENCES doctors(doctor_id),
+    diagnosis VARCHAR(200),
+    prescription VARCHAR(200)
+);
+
+
+
+
+
+Display tables 
+-------------------------------------
+
+postgres-# \dt
+ public | appointments | table | postgres
+ public | doctors      | table | postgres
+ public | patients     | table | postgres
+
+
+
+
+
+
+
+postgres-# \d doctors
+ doctor_id      | integer                |           | not null | nextval('doctors_doctor_id_seq'::regclass)
+ first_name     | character varying(50)  |           | not null | 
+ last_name      | character varying(50)  |           | not null | 
+ specialization | character varying(100) |           | not null | 
+
+
+ 
+postgres-# \d patients
+ patient_id     | integer               |           | not null | nextval('patients_patient_id_seq'::regclass)
+ first_name     | character varying(50) |           | not null | 
+ last_name      | character varying(50) |           | not null | 
+ age            | integer               |           |          | 
+ gender         | character varying(10) |           |          | 
+ contact_number | character varying(15) |           | not null | 
+
+
+
+
+
+postgres-# \d appointments
+ appointment_id   | integer                |           | not null | nextval('appointments_appointment_id_seq'::regclass)
+ appointment_date | date                   |           | not null | 
+ patient_id       | integer                |           |          | 
+ doctor_id        | integer                |           |          | 
+ diagnosis        | character varying(200) |           |          | 
+ prescription     | character varying(200) |           |          |
+
+
+
+
+
+Insert some data 
+-------------------------------------
+
+
+-- Insert data into patients table
+postgres=# INSERT INTO patients (first_name, last_name, age, gender, contact_number) VALUES
+    ('Aarav', 'Shrestha', 32, 'Male', '9841XXXXXX'),
+    ('Sunita', 'Rai', 45, 'Female', '9813XXXXXX'),
+    ('Roshan', 'Thapa', 28, 'Male', '9851XXXXXX'),
+    ('Priya', 'Gurung', 55, 'Female', '9808XXXXXX');
+INSERT 0 4
+
+
+
+-- Insert data into doctors table
+postgres=# INSERT INTO doctors (first_name, last_name, specialization) VALUES
+    ('Dr. Prakash', 'Sharma', 'Cardiologist'),
+    ('Dr. Anju', 'Rai', 'Orthopedic Surgeon'),
+    ('Dr. Manisha', 'Bhattarai', 'Neurologist'),
+    ('Dr. Rajan', 'Acharya', 'Pediatrician');
+INSERT 0 4
+
+
+
+
+-- Insert data into appointments table
+postgres=# INSERT INTO appointments (appointment_date, patient_id, doctor_id, diagnosis, prescription) VALUES
+    ('2024-02-01', 1, 1, 'High Blood Pressure', 'Prescribed medication for one month'),
+    ('2024-02-03', 2, 2, 'Fractured Arm', 'Advised rest and provided painkillers'),
+    ('2024-02-05', 3, 3, 'Migraine', 'Suggested lifestyle changes and medication'),
+    ('2024-02-07', 4, 4, 'Child Vaccination', 'Administered routine vaccinations');
+
+
+
+
+
+
+
+
+Desplay data 
+-------------------------------------
+ 
+postgres=# \dt
+ public | appointments | table | postgres
+ public | doctors      | table | postgres
+ public | patients     | table | postgres
+
+
+
+
+postgres=# select * from patients;
+          1 | Aarav      | Shrestha  |  32 | Male   | 9841XXXXXX
+          2 | Sunita     | Rai       |  45 | Female | 9813XXXXXX
+          3 | Roshan     | Thapa     |  28 | Male   | 9851XXXXXX
+          4 | Priya      | Gurung    |  55 | Female | 9808XXXXXX
+
+
+
+postgres=# select * from doctors;
+         1 | Dr. Prakash | Sharma    | Cardiologist
+         2 | Dr. Anju    | Rai       | Orthopedic Surgeon
+         3 | Dr. Manisha | Bhattarai | Neurologist
+         4 | Dr. Rajan   | Acharya   | Pediatrician
+         5 | Dr. Prakash | Sharma    | Cardiologist
+         6 | Dr. Anju    | Rai       | Orthopedic Surgeon
+         7 | Dr. Manisha | Bhattarai | Neurologist
+         8 | Dr. Rajan   | Acharya   | Pediatrician
+
+
+
+ 
+postgres=# select * from appointments;
+              5 | 2024-02-01       |          1 |         1 | High Blood Pressure | Prescribed medication for one month
+              6 | 2024-02-03       |          2 |         2 | Fractured Arm       | Advised rest and provided painkillers
+              7 | 2024-02-05       |          3 |         3 | Migraine            | Suggested lifestyle changes and medication
+              8 | 2024-02-07       |          4 |         4 | Child Vaccination   | Administered routine vaccinations
+
+
+
+
+
+
+QUERY:  Retrieve all patients and their contact numbers:
+-------------------------------------
+postgres=# SELECT first_name, last_name, contact_number FROM patients;
+ Aarav      | Shrestha  | 9841XXXXXX
+ Sunita     | Rai       | 9813XXXXXX
+ Roshan     | Thapa     | 9851XXXXXX
+ Priya      | Gurung    | 9808XXXXXX
+
+
+
+
+
+QUERY:  Retrieve the names of doctors and their specializations:
+-------------------------------------
+postgres=# SELECT first_name, last_name, specialization FROM doctors;
+ Dr. Prakash | Sharma    | Cardiologist
+ Dr. Anju    | Rai       | Orthopedic Surgeon
+ Dr. Manisha | Bhattarai | Neurologist
+ Dr. Rajan   | Acharya   | Pediatrician
+ Dr. Prakash | Sharma    | Cardiologist
+ Dr. Anju    | Rai       | Orthopedic Surgeon
+ Dr. Manisha | Bhattarai | Neurologist
+ Dr. Rajan   | Acharya   | Pediatrician
+
+
+
+
+QUERY:  Retrieve appointments along with patient names, doctor names, and appointment dates:
+-------------------------------------------------------------------------------------------------------
+postgres=# SELECT first_name, last_name, specialization FROM doctors;
+ Dr. Prakash | Sharma    | Cardiologist
+ Dr. Anju    | Rai       | Orthopedic Surgeon
+ Dr. Manisha | Bhattarai | Neurologist
+ Dr. Rajan   | Acharya   | Pediatrician
+ Dr. Prakash | Sharma    | Cardiologist
+ Dr. Anju    | Rai       | Orthopedic Surgeon
+ Dr. Manisha | Bhattarai | Neurologist
+ Dr. Rajan   | Acharya   | Pediatrician
+
+
+
+
+QUERY:  Retrieve appointments along with patient names, doctor names, and appointment dates:
+-----------------------------------------------------------------------------------------
+postgres=# SELECT
+    a.appointment_date,
+    p.first_name AS patient_first_name,
+    p.last_name AS patient_last_name,
+    d.first_name AS doctor_first_name,
+    d.last_name AS doctor_last_name
+FROM
+    appointments a
+    JOIN patients p ON a.patient_id = p.patient_id
+    JOIN doctors d ON a.doctor_id = d.doctor_id;
+
+
+ 2024-02-01       | Aarav              | Shrestha          | Dr. Prakash       | Sharma
+ 2024-02-03       | Sunita             | Rai               | Dr. Anju          | Rai
+ 2024-02-05       | Roshan             | Thapa             | Dr. Manisha       | Bhattarai
+ 2024-02-07       | Priya              | Gurung            | Dr. Rajan         | Acharya
+
+
+
+QUERY:  Retrieve patients who have appointments and their corresponding doctor names:
+-------------------------------------
+postgres=# SELECT
+    p.first_name AS patient_first_name,
+    p.last_name AS patient_last_name,
+    d.first_name AS doctor_first_name,
+    d.last_name AS doctor_last_name
+FROM
+    patients p
+    JOIN appointments a ON p.patient_id = a.patient_id
+    JOIN doctors d ON a.doctor_id = d.doctor_id;
+
+
+ Aarav              | Shrestha          | Dr. Prakash       | Sharma
+ Sunita             | Rai               | Dr. Anju          | Rai
+ Roshan             | Thapa             | Dr. Manisha       | Bhattarai
+ Priya              | Gurung            | Dr. Rajan         | Acharya
+
+
+
+
+QUERY:  Retrieve the count of appointments for each doctor:
+-------------------------------------
+postgres=# SELECT
+    d.first_name AS doctor_first_name,
+    d.last_name AS doctor_last_name,
+    COUNT(a.appointment_id) AS appointment_count
+FROM
+    doctors d
+    LEFT JOIN appointments a ON d.doctor_id = a.doctor_id
+GROUP BY
+    d.doctor_id, d.first_name, d.last_name;
+
+
+ Dr. Manisha       | Bhattarai        |                 1
+ Dr. Prakash       | Sharma           |                 0
+ Dr. Rajan         | Acharya          |                 1
+ Dr. Anju          | Rai              |                 0
+ Dr. Anju          | Rai              |                 1
+ Dr. Manisha       | Bhattarai        |                 0
+ Dr. Prakash       | Sharma           |                 1
+ Dr. Rajan         | Acharya          |                 0
+
+
+
+
+
+*******************************
+EXAMPLE 3
+
+Using Utility "createuser" and "createdb"
+*******************************
+
+
+
+As an example, let's create a PostgreSQL user called testuser, 
+and a new database called testdb owned by testuser.
+
+
+# Create a new PostgreSQL user called testuser, allow user to login, but NOT creating databases
+------------------------------------------------------------------------------------------------
+$ sudo -u postgres createuser --login --pwprompt testuser
+Enter password for new role: xxxx
+
+
+# Create a new database called testdb, owned by testuser.
+------------------------------------------------------------------------------------------------
+$ sudo -u postgres createdb --owner=testuser testdb
+
+
+
+
+
+Tailor the PostgreSQL configuration 
+file /etc/postgresql/10/main/pg_hba.conf to allow 
+non-default user testuser to login to PostgreSQL server, 
+by adding the following entry:
+--------------------------------------------------------
+# TYPE  DATABASE    USER        ADDRESS          METHOD
+local   testdb      testuser                     md5
+
+
+
+Restart PostgreSQL server:
+--------------------------------------------------------
+$ sudo service postgresql restart
+
+
+
+Login to PostgreSQL server:
+--------------------------------------------------------
+
+	# Login to PostgreSQL: psql -U user database
+	-------------------------------------------
+	$ psql -U testuser testdb
+	Password for user testuser: ......
+	psql (9.3.10)
+	Type "help" for help.
+
+
+# List all databases (\list or \l)
+-------------------------------------------
+testdb=>\list
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+-----------+----------+----------+-------------+-------------+-----------------------
+ testdb    | testuser | UTF8     | en_SG.UTF-8 | en_SG.UTF-8 |
+......
+
+# Create table
+----------------
+testdb=> create table if not exists cafe (
+           name varchar(50),
+           price numeric(5,2),
+           primary key (name));
+CREATE TABLE
+
+# Insert rows
+----------------
+testdb=> insert into cafe values
+           ('Espresso', 3.99),
+           ('Green Tea', 2.99);
+INSERT 0 2
+
+# Select query
+----------------
+testdb=> select * from cafe;
+   name    | price 
+-----------+-------
+ Espresso  |  3.99
+ Green Tea |  2.99
+(2 rows)
+
+# To change password for the current user
+-------------------------------------------
+testdb=> \password
+......
+
+testdb=> \q
+You can also use other utilities like dropuser, dropdb, and etc.
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************
+EXAMPLE 
+
+Installing PostgreSQL 10.6
+*******************************
+
+
+// Refresh the apt-get repository
+controlplane $  sudo apt-get update
+
+
+
+
+// Install PostgreSQL
+controlplane $ sudo apt-get install postgresql postgresql-contrib
+
+
+
+
+// Verify the installation
+$ dpkg --status postgresql
+Package: postgresql
+Version: 10+190
+......
+
+
+controlplane $ whereis postgresql
+postgresql: /etc/postgresql /usr/lib/postgresql /usr/share/postgresql ...
+
+
+controlplane $ which psql     // psql is an interactive PostgreSQL client
+/usr/bin/psql
+
+
+controlplane $ ll /usr/bin/psql
+lrwxrwxrwx 1 root root 37 Aug 24  2020 /usr/bin/psql -> ../share/postgresql-common/pg_wrapper*
+
+
+
+
+	The following packages will be installed:
+	----------------------------------------
+	postgresql, postgresql-common, postgresql-10: Core database server.
+	postgresql-client-common, postgresql-client-10: Client binaries and libraries.
+	postgresql-contrib-10: Additional supplied modules.
+
+
+
+
+
+
+
+
+
+	PostgreSQL Configuration Files
+	------------------------------
+	The PostgreSQL configuration files are stored in 
+	directory /etc/postgresql/10/main (for Ubuntu). 
+	The main configuration file is called "postgresql.conf".
+
+
+	controlplane $ less /etc/postgresql/12/main/postgresql.conf
+
+		......
+		data_directory = '/var/lib/postgresql/10/main'
+		hba_file = '/etc/postgresql/10/main/pg_hba.conf'     # host-based authentication file
+		ident_file = '/etc/postgresql/10/main/pg_ident.conf' # ident configuration file
+		#listen_addresses = 'localhost'   # what IP address(es) to listen on;
+                                  # comma-separated list of addresses;
+                                  # defaults to 'localhost', '*' = all
+			port = 5432
+			max_connections = 100
+		......
+		
+
+
+
+
+	PostgreSQL Server
+	----------------------
+	In Ubuntu, the server is run as a service called postgresql (configured 
+	in /etc/init.d/postgresql). The postgresql service is started 
+	automatically upon startup. Like all other services, you could:
+
+		$ sudo systemctl start postgresql
+		$ sudo systemctl stop postgresql
+		$ sudo systemctl restart postgresql
+		$ sudo systemctl reload postgresql
+		$ sudo systemctl status postgresql   // Show th status
+
+
+
+
+
+
+
+
+
+
+*******************************
+EXAMPLE 1
+Design a system under
+user name = sita 
+user pw= sita1234
+db name = db11
+table name = tb11
+
+technology: docker - compose 
+*******************************
+
+
+
+
+
+
+controlplane $ cat > docker-compose.yaml 
+
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: sita
+      POSTGRES_PASSWORD: sita1234
+      POSTGRES_DB: db11
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+
+
+controlplane $ mkdir postgres_data
+
+
+
+
+ontrolplane $ docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS         PORTS                                       NAMES
+5d95f67f48bd   postgres:latest   "docker-entrypoint.s…"   11 seconds ago   Up 9 seconds   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   root_postgres_1
+
+
+
+
+controlplane $ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+postgres     latest    75b7bff7c3ad   2 weeks ago   425MB
+
+
+controlplane $ docker exec -ti root_postgres_1 bash
+root@5d95f67f48bd:/# psql -U sita -d db11 
+
+			OR
+
+controlplane $ docker exec -ti root_postgres_1 psql -U sita -d db11
+
+controlplane $ docker exec -ti root_postgres_1 psql -U sita -d db11 -a -1 -c "ALTER USER sita WITH SUPERUSER;"
+ALTER USER sita WITH SUPERUSER;
+ALTER ROLE
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2940 @@
+
+
+
+
+Functional Dependency and Normalisation
+
+
+
+
+
+
+
+====================================================================================
+NOTE/ BOOK
+
+
+https://industri.fatek.unpatti.ac.id/wp-content/uploads/2019/03/162-Introduction-to-Database-Management-System-Satinder-Bal-Gupta-Aditya-Mittal-Edisi-2-2017.pdf
+
+Page NO: 212
+====================================================================================
+
+
+
+
+====================================================================================
+ Database Normalization
+====================================================================================
+Normalization is a database design technique that reduces data redundancy and eliminates 
+undesirable characteristics like Insertion, Update and Deletion Anomalies. 
+
+Normalization rules divides larger tables into smaller tables and links them using relationships. 
+
+The purpose ofNormalisation in SQL is to eliminate redundant (repetitive) data and ensure data
+is stored logically.
+
+            A large database defined as a single relation may result in data duplication. 
+            This repetition of data may result in:
+            
+                Making relations very large.
+                It isn't easy to maintain and update data as it would involve searching many                             records in relation.
+                Wastage and poor utilization of disk space and resources.
+                The likelihood of errors and inconsistencies increases.
+            
+            
+            So to handle these problems, we should analyze and decompose the relations with 
+            redundant data into smaller, simpler, and well-structured relations that are 
+            satisfy desirable properties. 
+
+            Normalization is a process of decomposing the relations into relations with fewer 
+            attributes.
+
+------------------------DOCKER------------------------------
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose any scnerio. Ubuntu or CKA or Playground
+step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+step 4: docker exec -ti mydb1 bash
+step 5: mysql -u root -p1234
+----------------------------------------------------------------
+
+mysql> create database db33;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use db33;
+Database changed
+
+CREATE TABLE PatientRecords (
+    PatientID INT PRIMARY KEY NOT NULL,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Gender VARCHAR(10) NOT NULL,
+    Age INT NOT NULL,
+    Address VARCHAR(100) NOT NULL,
+    PhoneNumber VARCHAR(15) NOT NULL,
+    AdmissionDate DATE NOT NULL,
+    DischargeDate DATE,
+    DoctorName VARCHAR(50) NOT NULL,
+    Diagnosis VARCHAR(100) NOT NULL,
+    RoomNumber INT NOT NULL
+);
+
+INSERT INTO PatientRecords VALUES
+(1, 'Sajan', 'Shrestha', 'Male', 32, 'Kathmandu, Nepal', '9876543210', '2023-01-15', '2023-01-25', 'Dr. Sharma', 'Common Cold', 101),
+(2, 'Aarati', 'Dahal', 'Female', 45, 'Pokhara, Nepal', '9843210765', '2023-02-02', '2023-02-10', 'Dr. Khanal', 'Hypertension', 203),
+(3, 'Rajendra', 'Gurung', 'Male', 28, 'Biratnagar, Nepal', '9812345678', '2023-03-12', '2023-03-20', 'Dr. Bhattarai', 'Gastritis', 302),
+(4, 'Sunita', 'Magar', 'Female', 60, 'Butwal, Nepal', '9867543210', '2023-04-05', '2023-04-15', 'Dr. Thapa', 'Arthritis', 105),
+(5, 'Bibek', 'Dhakal', 'Male', 38, 'Dharan, Nepal', '9801234567', '2023-05-20', '2023-06-02', 'Dr. Acharya', 'Diabetes', 201);
+
+
+
+mysql> select * from PatientRecords;          // to long table attributes
++-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
+| PatientID | FirstName | LastName | Gender | Age | Address           | PhoneNumber | AdmissionDate | DischargeDate | DoctorName    | Diagnosis    | RoomNumber |
++-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
+
+
+mysql> select * from PatientRecords;
++-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
+| PatientID | FirstName | LastName | Gender | Age | Address           | PhoneNumber | AdmissionDate | DischargeDate | DoctorName    | Diagnosis    | RoomNumber |
++-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
+|         1 | Sajan     | Shrestha | Male   |  32 | Kathmandu, Nepal  | 9876543210  | 2023-01-15    | 2023-01-25    | Dr. Sharma    | Common Cold  |        101 |
+|         2 | Aarati    | Dahal    | Female |  45 | Pokhara, Nepal    | 9843210765  | 2023-02-02    | 2023-02-10    | Dr. Khanal    | Hypertension |        203 |
+|         3 | Rajendra  | Gurung   | Male   |  28 | Biratnagar, Nepal | 9812345678  | 2023-03-12    | 2023-03-20    | Dr. Bhattarai | Gastritis    |        302 |
+|         4 | Sunita    | Magar    | Female |  60 | Butwal, Nepal     | 9867543210  | 2023-04-05    | 2023-04-15    | Dr. Thapa     | Arthritis    |        105 |
+|         5 | Bibek     | Dhakal   | Male   |  38 | Dharan, Nepal     | 9801234567  | 2023-05-20    | 2023-06-02    | Dr. Acharya   | Diabetes     |        201 |
++-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+let's normalize the PatientRecords table up to the Third Normal Form (3NF). 
+-+---------------+---------------+--------------+------------+
+
+-- Create Doctor table
+CREATE TABLE Doctors (
+    DoctorID INT PRIMARY KEY,
+    DoctorName VARCHAR(50) UNIQUE
+);
+
+-- Create Diagnoses table
+CREATE TABLE Diagnoses (
+    DiagnosisID INT PRIMARY KEY,
+    DiagnosisName VARCHAR(100) UNIQUE
+);
+
+-- Create PatientRecords table with foreign keys
+CREATE TABLE PatientRecords1 (
+    PatientID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Gender VARCHAR(10),
+    Age INT,
+    Address VARCHAR(100),
+    PhoneNumber VARCHAR(15),
+    AdmissionDate DATE,
+    DischargeDate DATE,
+    DoctorID INT,
+    DiagnosisID INT,
+    RoomNumber INT,
+    FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID),
+    FOREIGN KEY (DiagnosisID) REFERENCES Diagnoses(DiagnosisID)
+);
+
+
+mysql> desc Doctors;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| DoctorID   | int         | NO   | PRI | NULL    |       |
+| DoctorName | varchar(50) | YES  | UNI | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> desc Diagnoses;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| DiagnosisID   | int          | NO   | PRI | NULL    |       |
+| DiagnosisName | varchar(100) | YES  | UNI | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc PatientRecords1;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| PatientID     | int          | NO   | PRI | NULL    |       |
+| FirstName     | varchar(50)  | YES  |     | NULL    |       |
+| LastName      | varchar(50)  | YES  |     | NULL    |       |
+| Gender        | varchar(10)  | YES  |     | NULL    |       |
+| Age           | int          | YES  |     | NULL    |       |
+| Address       | varchar(100) | YES  |     | NULL    |       |
+| PhoneNumber   | varchar(15)  | YES  |     | NULL    |       |
+| AdmissionDate | date         | YES  |     | NULL    |       |
+| DischargeDate | date         | YES  |     | NULL    |       |
+| DoctorID      | int          | YES  | MUL | NULL    |       |
+| DiagnosisID   | int          | YES  | MUL | NULL    |       |
+| RoomNumber    | int          | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+12 rows in set (0.01 sec)
+
+
+
+
+
+-- Insert data into Doctors table
+INSERT INTO Doctors VALUES
+(1, 'Dr. Sharma'),
+(2, 'Dr. Khanal'),
+(3, 'Dr. Bhattarai'),
+(4, 'Dr. Thapa'),
+(5, 'Dr. Acharya');
+
+
+
+
+-- Insert data into Diagnoses table
+INSERT INTO Diagnoses VALUES
+(101, 'Common Cold'),
+(203, 'Hypertension'),
+(302, 'Gastritis'),
+(105, 'Arthritis'),
+(201, 'Diabetes');
+
+
+
+-- Insert data into PatientRecords table with foreign keys
+INSERT INTO PatientRecords1 VALUES
+(1, 'Sajan', 'Shrestha', 'Male', 32, 'Kathmandu, Nepal', '9876543210', '2023-01-15', '2023-01-25', 1, 101, 101),
+(2, 'Aarati', 'Dahal', 'Female', 45, 'Pokhara, Nepal', '9843210765', '2023-02-02', '2023-02-10', 2, 203, 203),
+(3, 'Rajendra', 'Gurung', 'Male', 28, 'Biratnagar, Nepal', '9812345678', '2023-03-12', '2023-03-20', 3, 302, 302),
+(4, 'Sunita', 'Magar', 'Female', 60, 'Butwal, Nepal', '9867543210', '2023-04-05', '2023-04-15', 4, 105, 105),
+(5, 'Bibek', 'Dhakal', 'Male', 38, 'Dharan, Nepal', '9801234567', '2023-05-20', '2023-06-02', 5, 201, 201);
+
+
+
+
+
+
+
+mysql> select * from Doctors;
++----------+---------------+
+| DoctorID | DoctorName    |
++----------+---------------+
+|        5 | Dr. Acharya   |
+|        3 | Dr. Bhattarai |
+|        2 | Dr. Khanal    |
+|        1 | Dr. Sharma    |
+|        4 | Dr. Thapa     |
++----------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Diagnoses;
++-------------+---------------+
+| DiagnosisID | DiagnosisName |
++-------------+---------------+
+|         105 | Arthritis     |
+|         101 | Common Cold   |
+|         201 | Diabetes      |
+|         302 | Gastritis     |
+|         203 | Hypertension  |
++-------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from PatientRecords1;
++-----------+-----------+----------+--------+------+-------------------+-------------+---------------+---------------+----------+-------------+------------+
+| PatientID | FirstName | LastName | Gender | Age  | Address           | PhoneNumber | AdmissionDate | DischargeDate | DoctorID | DiagnosisID | RoomNumber |
++-----------+-----------+----------+--------+------+-------------------+-------------+---------------+---------------+----------+-------------+------------+
+|         1 | Sajan     | Shrestha | Male   |   32 | Kathmandu, Nepal  | 9876543210  | 2023-01-15    | 2023-01-25    |        1 |         101 |        101 |
+|         2 | Aarati    | Dahal    | Female |   45 | Pokhara, Nepal    | 9843210765  | 2023-02-02    | 2023-02-10    |        2 |         203 |        203 |
+|         3 | Rajendra  | Gurung   | Male   |   28 | Biratnagar, Nepal | 9812345678  | 2023-03-12    | 2023-03-20    |        3 |         302 |        302 |
+|         4 | Sunita    | Magar    | Female |   60 | Butwal, Nepal     | 9867543210  | 2023-04-05    | 2023-04-15    |        4 |         105 |        105 |
+|         5 | Bibek     | Dhakal   | Male   |   38 | Dharan, Nepal     | 9801234567  | 2023-05-20    | 2023-06-02    |        5 |         201 |        201 |
++-----------+-----------+----------+--------+------+-------------------+-------------+---------------+---------------+----------+-------------+------------+
+5 rows in set (0.00 sec)
+
+
+
+CHECK REDUNDANCY
++-----------+-----------+----------+-------
+
+mysql> INSERT INTO PatientRecords1 VALUES
+      (4, 'Sunita', 'Magar', 'Female', 60, 'Butwal, Nepal', '9867543210', '2023-04-05', '2023-04-15', 4, 105, 105);
+     ERROR 1062 (23000): Duplicate entry '4' for key 'PatientRecords1.PRIMARY'
+
+
+
+mysql> INSERT INTO Diagnoses VALUES (201, 'Diabetes');
+ERROR 1062 (23000): Duplicate entry '201' for key 'Diagnoses.PRIMARY'
+
+mysql> INSERT INTO Diagnoses VALUES (209, 'Diabetes');
+ERROR 1062 (23000): Duplicate entry 'Diabetes' for key 'Diagnoses.DiagnosisName'
+
+
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+Why Do We Need Normalization?
+====================================================================================
+
+As we have discussed above, normalization is used to reduce data redundancy. 
+It provides a method to remove the following anomalies from the database and bring it to a 
+more consistent state:
+
+
+     what is anomalies in dbms?
+     ---------------------------
+           something different, abnormal, peculiar, or not easily classified
+           Anomalies are irregularities or inconsistencies that occur 
+           in a database, disrupting the normal functioning and data integrity. 
+           
+           They are often a result of poor database design and can lead to significant 
+           problems like data redundancy, data loss, and incorrect data.
+
+
+
+A database anomaly is a flaw in the database that occurs because of poor planning and redundancy.
+
+Insertion anomalies: 
+---------------------
+    This occurs when we are not able to insert data into a database because 
+    some attributes may be missing at the time of insertion.
+
+Updation anomalies: 
+---------------------
+    This occurs when the same data items are repeated with the same values and 
+    are not linked to each other.
+
+Deletion anomalies:  
+---------------------
+    This occurs when deleting one part of the data deletes the other necessary 
+    information from the database.
+
+
+
+
+
+
+CASE SCNERIO IN Insertion anomalies: 
+-------------------------------------
+                  mysql> select * from Doctors;
+                  +----------+---------------+
+                  | DoctorID | DoctorName    |
+                  +----------+---------------+
+                  |        5 | Dr. Acharya   |
+                  |        3 | Dr. Bhattarai |
+                  |        2 | Dr. Khanal    |
+                  |        1 | Dr. Sharma    |
+                  |        4 | Dr. Thapa     |
+                  +----------+---------------+
+
+
+                  mysql> select * from Diagnoses;
+                  +-------------+---------------+
+                  | DiagnosisID | DiagnosisName |
+                  +-------------+---------------+
+                  |         105 | Arthritis     |
+                  |         101 | Common Cold   |
+                  |         201 | Diabetes      |
+                  |         302 | Gastritis     |
+                  |         203 | Hypertension  |
+                  +-------------+---------------+
+
+
+-- Inserting a patient with a non-existing doctor ..... i.e id 10
+mysql> INSERT INTO PatientRecords1 VALUES (6, 'Ram', 'Sharma', 'Male', 45, 'Pokhara, Nepal', '9812345678', '2023-06-15', '2023-06-25', 10, 203, 303);
+
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_1` FOREIGN KEY (`DoctorID`) REFERENCES `Doctors` (`DoctorID`))
+
+
+
+
+
+
+-- Inserting a patient with a non-existing diagnosis ..... i.e id 306
+mysql> INSERT INTO PatientRecords1 VALUES (7, 'Gita', 'Rai', 'Female', 30, 'Birgunj, Nepal', '9876543210', '2023-07-01', '2023-07-10', 3, 306, 202);
+
+
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_2` FOREIGN KEY (`DiagnosisID`) REFERENCES `Diagnoses` (`DiagnosisID`))
+
+
+
+
+
+
+CASE SCNERIO IN  Updation anomalies: 
+-------------------------------------
+    Updating the name of a doctor results in inconsistencies across patient records.
+
+DISPAY QUERY that patients relate to doctors
+
+mysql>  SELECT PatientRecords1.FirstName, PatientRecords1.LastName, Doctors.DoctorName
+    FROM PatientRecords1
+    INNER JOIN Doctors ON PatientRecords1.DoctorID = Doctors.DoctorID;
+                                  +-----------+----------+---------------+
+                                  | FirstName | LastName | DoctorName    |
+                                  +-----------+----------+---------------+
+                                  | Sajan     | Shrestha | Dr. Sharma    |
+                                  | Aarati    | Dahal    | Dr. Khanal    |
+                                  | Rajendra  | Gurung   | Dr. Bhattarai |
+                                  | Sunita    | Magar    | Dr. Thapa     |
+                                  | Bibek     | Dhakal   | Dr. Acharya   |
+                                  +-----------+----------+---------------+
+
+
+                             OR
+                             
+                             SELECT 
+                               CONCAT(FirstName, ' ', LastName) AS PatientName,
+                               Doctors.DoctorName
+                             FROM PatientRecords1
+                             INNER JOIN Doctors ON PatientRecords1.DoctorID = Doctors.DoctorID;
+                             
+                                 +-----------------+---------------+
+                                 | PatientName     | DoctorName    |
+                                 +-----------------+---------------+
+                                 | Sajan Shrestha  | Dr. Sharma    |
+                                 | Aarati Dahal    | Dr. Khanal    |
+                                 | Rajendra Gurung | Dr. Bhattarai |
+                                 | Sunita Magar    | Dr. Thapa     |
+                                 | Bibek Dhakal    | Dr. Acharya   |
+                                 +-----------------+---------------+
+
+
+-- Update doctor's name ....
+NOW ALL RECORD RELATE TO CHANGE "Dr. Bhattarai" TO "Dr. Pokharel"
+
+mysql> UPDATE Doctors
+     SET DoctorName = 'Dr. Pokharel'
+     WHERE DoctorID = 3;
+Query OK, 1 row affected (0.00 sec)
+
+
+
+                                           mysql> select * from Doctors;
+                                           +----------+--------------+
+                                           | DoctorID | DoctorName   |
+                                           +----------+--------------+
+                                           |        5 | Dr. Acharya  |
+                                           |        2 | Dr. Khanal   |
+                                           |        3 | Dr. Pokharel |
+                                           |        1 | Dr. Sharma   |
+                                           |        4 | Dr. Thapa    |
+                                           +----------+--------------+
+                                           5 rows in set (0.00 sec)
+
+
+
+SELECT PatientRecords1.FirstName, PatientRecords1.LastName, Doctors.DoctorName
+    FROM PatientRecords1
+    INNER JOIN Doctors ON PatientRecords1.DoctorID = Doctors.DoctorID;
+
+                                     +-----------+----------+--------------+
+                                     | FirstName | LastName | DoctorName   |
+                                     +-----------+----------+--------------+
+                                     | Sajan     | Shrestha | Dr. Sharma   |
+                                     | Aarati    | Dahal    | Dr. Khanal   |
+                                     | Rajendra  | Gurung   | Dr. Pokharel |
+                                     | Sunita    | Magar    | Dr. Thapa    |
+                                     | Bibek     | Dhakal   | Dr. Acharya  |
+                                     +-----------+----------+--------------+
+
+
+
+
+CASE SCNERIO IN Deletion anomalies:  
+-------------------------------------
+
+Deleting a doctor or diagnosis without considering patient records
+
+-- Deleting a doctor without considering patient records
+DELETE FROM Doctors
+WHERE DoctorID = 4;
+
+-- Deleting a diagnosis without considering patient records
+DELETE FROM Diagnoses
+WHERE DiagnosisID = 105;
+
+
+
+mysql> select * from Doctors;
+                          +----------+--------------+
+                          | DoctorID | DoctorName   |
+                          +----------+--------------+
+                          |        5 | Dr. Acharya  |
+                          |        2 | Dr. Khanal   |
+                          |        3 | Dr. Pokharel |
+                          |        1 | Dr. Sharma   |
+                          |        4 | Dr. Thapa    |
+                          +----------+--------------+
+
+
+mysql> DELETE FROM Doctors
+    -> WHERE DoctorID = 4;
+
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_1` FOREIGN KEY (`DoctorID`) REFERENCES `Doctors` (`DoctorID`))
+
+
+
+mysql> select * from Diagnoses;
+                         +-------------+---------------+
+                         | DiagnosisID | DiagnosisName |
+                         +-------------+---------------+
+                         |         105 | Arthritis     |
+                         |         101 | Common Cold   |
+                         |         201 | Diabetes      |
+                         |         302 | Gastritis     |
+                         |         203 | Hypertension  |
+                         +-------------+---------------+
+
+
+mysql> DELETE FROM Diagnoses
+    -> WHERE DiagnosisID = 105;
+
+
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_2` FOREIGN KEY (`DiagnosisID`) REFERENCES `Diagnoses` (`DiagnosisID`))
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+Database Normal Forms
+====================================================================================
+      The inventor of the relational model Edgar Codd proposed the 
+      theory of normalization of data with the introduction of the First Normal Form, 
+      and he continued to extend theory with Second and Third Normal Form. 
+      
+      Later he joined Raymond F. Boyce to develop the theory of Boyce-Codd Normal Form.
+
+Database Normal Forms
+----------------------------
+                1NF (First Normal Form)
+                2NF (Second Normal Form)
+                3NF (Third Normal Form)
+                BCNF (Boyce-Codd Normal Form)
+                4NF (Fourth Normal Form)
+                5NF (Fifth Normal Form)
+                6NF (Sixth Normal Form)
+
+The Theory of Data Normalization in MySQL server is still being developed further. 
+For example, there are discussions even on 6th Normal Form. 
+
+However, in most practical applications, normalization achieves its best in 3rd Normal Form. 
+
+
+
+Normal Form	Description
+---------------------------
+1NF	
+     A relation is in 1NF if it contains an atomic value.
+
+2NF	
+     A relation will be in 2NF if it is in 1NF and 
+     all non-key attributes are fully functional dependent on the primary key.
+
+3NF	
+     A relation will be in 3NF if it is in 2NF and 
+     no transition dependency exists.
+
+BCNF	
+      A stronger definition of 3NF is known as Boyce Codd's normal form.
+
+4NF	
+      A relation will be in 4NF if it is in Boyce Codd's normal form
+      and has no multi-valued dependency.
+
+5NF	
+      A relation is in 5NF. If it is in 4NF and does not contain any 
+      join dependency, joining should be lossless.
+
+
+
+
+
+
+
+
+
+====================================================================================
+Advantages  and Disadvantages of Normalization
+====================================================================================
+
+Advantages of Normalization
+------------------------------
+          Normalization helps to minimize data redundancy.
+          Greater overall database organization.
+          Data consistency within the database.
+          Much more flexible database design.
+          Enforces the concept of relational integrity.
+
+Disadvantages of Normalization
+------------------------------
+           You cannot start building the database before knowing what the user needs.
+           The performance degrades when normalizing the relations to higher normal forms, 
+           i.e., 4NF, 5NF.
+           It is very time-consuming and difficult to normalize relations of a higher degree.
+           Careless decomposition may lead to a bad database design, leading to serious problems.
+
+
+
+
+
+
+====================================================================================
+Database Keys
+====================================================================================
+             Super Key             
+             Candidate Key
+             Primary Key          
+             Alternate Key
+             Foreign Key
+             Composite Key
+
+table t1 {emp_id, name, citizenship_id, email_id, department_id}
+
+
+
+
+mysql> select * from t1;
++--------+----------------+----------------+--------------------+---------------+
+| emp_id | name           | citizenship_id | email_id           | department_id |
++--------+----------------+----------------+--------------------+---------------+
+
+
+
+
+Super Key:
+-----------------
+         Any combination of possible attributes that uniquely identifies a tuple.
+         It is a sublet of cndidate key
+         
+         Examples: 
+         {emp_id} 
+         {citizenship_id}
+         {email_id}
+         
+         {emp_id, citizenship_id}
+         {email_id, citizenship_id}
+         {email_id, emp_id}
+         
+         {name, email_id}
+         {emp_id,name, email_id}
+         {emp_id, citizenship_id}, etc.
+
+
+
+
+
+-- Create the table t1
+CREATE TABLE t1 (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    citizenship_id VARCHAR(20),
+    email_id VARCHAR(50),
+    department_id INT
+);
+
+
+
+-- Insert data with English script
+INSERT INTO t1 VALUES
+(6, 'Suman Shrestha', 'NEP-123', 'suman@example.com', 105),
+(7, 'Sarita Rai', 'NEP-456', 'sarita@example.com', 106),
+(8, 'Raj Gurung', 'NEP-789', 'raj@example.com', 107),
+(9, 'Bibek Paudel', 'NEP-012', 'bibek@example.com', 105),
+(10, 'Anita Rana', 'NEP-345', 'anita@example.com', 108);
+
+
+
+
+mysql> select * from t1;
++--------+----------------+----------------+--------------------+---------------+
+| emp_id | name           | citizenship_id | email_id           | department_id |
++--------+----------------+----------------+--------------------+---------------+
+|      6 | Suman Shrestha | NEP-123        | suman@example.com  |           105 |
+|      7 | Sarita Rai     | NEP-456        | sarita@example.com |           106 |
+|      8 | Raj Gurung     | NEP-789        | raj@example.com    |           107 |
+|      9 | Bibek Paudel   | NEP-012        | bibek@example.com  |           105 |
+|     10 | Anita Rana     | NEP-345        | anita@example.com  |           108 |
++--------+----------------+----------------+--------------------+---------------+
+
+
+
+
+
+
+Candidate Key:
+-----------------
+         A minimal super key, meaning no subset of the key can uniquely identify a tuple.
+         No NULL VALUES
+         A attribute where PRIMARY key can be selected
+         
+         Examples: 
+         {emp_id}, 
+         {email_id}, 
+         {emp_id, citizenship_id, email_id)
+         {emp_id, citizenship_id}}
+         { citizenship_id, email_id}etc.
+
+
+
+
+
+
+Primary Key:
+-----------------
+         A candidate key chosen to be the main identifier for the table.
+         It must be unique for each tuple and cannot contain NULL values.
+         it serves as the main identifier for the table.
+         
+         Examples:
+         {emp_id}, 
+         
+         {email_id}
+
+
+
+
+
+Alternate Key:
+-----------------
+         Candidate keys that are not chosen as the primary key.
+         Examples: 
+                   If {emp_id} is chosen as the primary key, 
+                   then {email_id} is an alternate key.
+
+
+         {emp_id, name, citizenship_id, email_id, department_id}
+         ---PK--------------AK------------AK-------------------
+
+
+
+
+Foreign Key:
+-----------------
+         An attribute that refers to the primary key in another table.
+         It enforces referential integrity between the two related tables.
+         It establishes a link between two tables by referencing the 
+            primary key in another table.
+
+
+         Examples: 
+         If there is another table with a primary key, 
+         say {dept_id}, and department_id in t1 refers to {dept_id}, 
+         then it is a foreign key.
+
+
+
+Composite Key:
+-----------------
+         A key that consists of more than one attribute.
+         
+         Examples: 
+         {emp_id, email_id}, {name, citizenship_id, department_id}
+
+
+
+
+
+                        -- Super Key
+                        SELECT 
+                            emp_id, name, citizenship_id, email_id, department_id
+                        FROM 
+                            t1;
+
+
+
+            -- Candidate Key
+            SELECT 
+                emp_id, email_id
+            FROM 
+                t1;
+
+
+
+                            -- Primary Key
+                            SELECT 
+                                emp_id
+                            FROM 
+                                t1;
+
+                                                 -- Alternate Key
+                                                 SELECT 
+                                                     email_id
+                                                 FROM 
+                                                     t1;
+
+
+
+
+
+
+            -- Foreign Key (Assuming there is 
+            another table 'departments' with a 
+            primary key 'dept_id')
+
+
+                      -- Create the 'departments' table
+                      CREATE TABLE departments (
+                          dept_id INT PRIMARY KEY,
+                          department_name VARCHAR(50)
+                      );
+
+                           -- Insert data into the 'departments' table
+                           INSERT INTO departments VALUES
+                           (101, 'HR'),
+                           (102, 'IT'),
+                           (103, 'Finance'),
+                           (104, 'Marketing'),
+                           (105, 'Operations'),
+                           (106, 'Research'),
+                           (107, 'Sales'),
+                           (108, 'Customer Service');
+
+            SELECT 
+                emp_id, name, citizenship_id, email_id, t1.department_id, d.dept_id
+            FROM 
+                t1
+            JOIN 
+                departments d ON t1.department_id = d.dept_id;
+
+
++--------+----------------+----------------+--------------------+---------------+---------+
+| emp_id | name           | citizenship_id | email_id           | department_id | dept_id |
++--------+----------------+----------------+--------------------+---------------+---------+
+|      6 | Suman Shrestha | NEP-123        | suman@example.com  |           105 |     105 |
+|      7 | Sarita Rai     | NEP-456        | sarita@example.com |           106 |     106 |
+|      8 | Raj Gurung     | NEP-789        | raj@example.com    |           107 |     107 |
+|      9 | Bibek Paudel   | NEP-012        | bibek@example.com  |           105 |     105 |
+|     10 | Anita Rana     | NEP-345        | anita@example.com  |           108 |     108 |
++--------+----------------+----------------+--------------------+---------------+---------+
+
+
+
+                              -- Composite Key
+                              SELECT 
+                                  emp_id, email_id
+                              FROM 
+                                  t1;
+
+
+
+
+
+
+
+
+====================================================================================
+Functional Dependencies
+====================================================================================
+
+Functional dependencies are the result of interrelationship between attributes or
+in between tuples in any relation.
+
+Definition : 
+In relation R, 
+    X and Y are the two subsets of the set of attributes, 
+    Y is  said to be functionally dependent on X if a given value of X (all attributes in X) 
+    uniquely determines the value of Y (all attributes in Y).
+
+
+It is denoted by X → Y (Y depends upon X).
+           emp_id  → name  
+
+
+Determinant :
+      Here X is known as determinant of functional dependency.
+
+                         X      →   Y
+                    determinant   dependent
+
+                         emp_id  → name  
+
+
+
+
+
+
+EXAMPLE SCNERIO
+--------------------
+          emp_id  → name             // VALID
+          6  → Suman Shrestha 
+          7  → Sarita Rai
+
+
+          emp_id  → name             // VALID
+          6  → Suman Shresth
+          6  → Suman Shresth
+
+
+          emp_id  → name             // VALID
+          6  → Suman Shrestha 
+          7  → Suman Shrestha 
+
+
+          emp_id  → name             // INVALID
+          6  → Suman Shrestha 
+          6  → Sarita Rai
+
++--------+----------------+----------------+--------------------+---------------+
+| emp_id | name           | citizenship_id | email_id           | department_id |
++--------+----------------+----------------+--------------------+---------------+
+|      6 | Suman Shrestha | NEP-123        | suman@example.com  |           105 |
+|      7 | Sarita Rai     | NEP-456        | sarita@example.com |           106 |
+|      8 | Raj Gurung     | NEP-789        | raj@example.com    |           107 |
+|      9 | Bibek Paudel   | NEP-012        | bibek@example.com  |           105 |
+|     10 | Anita Rana     | NEP-345        | anita@example.com  |           108 |
++--------+----------------+----------------+--------------------+---------------+
+
+
+
+
+
+
+
+
+
+====================================================================================
+Functional Dependency Chart/Diagram
+====================================================================================
+
+It is the graphical representation of function dependencies among attributes in any relation. 
+The following four steps are followed to draw FD chart.
+
+
+          1. Find out the primary key attributes.
+          2. Make a rectangle and write all primary key attributes inside it.
+          3. Write all non-prime key attributes outside the rectangle.
+          4. Use arrows to show functional dependency among attributes
+
+Example. Consider the following relation:
+         Professor (Pfcode, Dept, Head, Time) It is assumed that
+         (i) A professor can work in more than one dept.
+         (ii) The time he spends in each dept is given.
+         (iii) Each dept has only one head.
+   Draw the dependency diagram for the given relation by identifying the dependencies.
+
+                                     Pfcode → Dept
+                                     Dept  → Head
+                                     Pfcode, Dept → Time
+    
+
+                                              OR
+
+                    R1 or T1 (Pfcode → Dept , Dept  → Head, Pfcode Dept → Time)
+
+
+                    Pfcode → Dept , Dept  → Head, Pfcode Dept → Time
+                    ---A-------B------B-------C------AB-----------D---
+
+                    R1: FD  (A → B, B → C, AB → D)
+
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+Prime and Non-Prime Attributes
+====================================================================================
+      For a given relation R= {A1,A2,A3,………..,An}, 
+      
+      an attribute A is a prime attribute if A is a part of any candidate key of R 
+      otherwise A is a non-prime attribute
+
+                     EXAMPLE
+                     -------
+                     R(A, B, C, D, E, F, G, H) 
+                     FD = {D→AB, B→A, C→A, F→G, H→FGD, E→A}
+                     
+                     Solution
+                     RHS: AB A A G FGD A =>> C E H is missing 
+                     
+                     CK = CEH 
+                     
+                     Prime Attributes = CEH
+                     Non-Prime Attributes = ABDFG
+                     
+                     
+                               CEH      ABDFG
+                             --PA--------NPA----
+
+
+
+
+Example
+-----------
+
+    Functional dependencies:
+    
+           {emp_id} -> {name, citizenship_id, email_id, department_id}
+           {email_id} -> {name}
+           {department_id} -> {citizenship_id, email_id}           
+
+               +--------+----------------+----------------+--------------------+---------------+
+               | emp_id | name           | citizenship_id | email_id           | department_id |
+               +--------+----------------+----------------+--------------------+---------------+
+                  A          B                 C                D                     E
+
+
+                  {emp_id} -> {name, citizenship_id, email_id, department_id}
+                       A -> BCDE
+                  {email_id} -> {name}
+                       D-> B
+                  {department_id} -> {citizenship_id, email_id}
+                       E->CD
+
+
+
+                       FD:
+                        A -> BCDE
+                        D-> B
+                        E->CD
+                 
+                          RHS : A
+                          A+ -> A -> A BCDE  = ABCD              = R
+                 
+                             CK = A
+                             PA = A
+                             NPA = BCDE
+                    
+                 
+                 Prime Attributes: PA = A                  
+                                      emp_id
+                 
+                 Non-Prime Attributes: NPA = BCDE          
+                                  name, citizenship_id, email_id, department_id
+
+
+
+               +--------+----------------+----------------+--------------------+---------------+
+               | emp_id | name           | citizenship_id | email_id           | department_id |
+               +--------+----------------+----------------+--------------------+---------------+
+                  A          B                 C                D                     E
+        ----------PA---------NPA--------------NPA----------------NPA--------------------NPA--------
+
+
+
+
+
+
+
+           Example
+           -----------
+           Consider a relation R(A, B, C, D, E, F, G, H) 
+           having a set of FD’s F = {D→AB, B→A, C→A, F→G, H→FGD, E→A}. 
+           
+           What are the candidate keys of relation R? 
+           Also find prime and non-prime attributes.
+
+
+                Sol. 
+                Consider a subset K={C, E, H} of R. 
+                CEH is a candidate key as all attributes does not 
+                appear on right hand side of any FD in F. 
+                
+                It can also be proved as follows.
+                Compute K+ which gives ABCDEFH. 
+                Now compute closure of every subset of K such as CE, EH and CH. 
+                
+                First consider Y= {C,E}, the closure Y+
+                CE = CE = CAE or = AC ≠ R.
+                
+                Second consider Y={E,H}, the closure Y+
+                 = ABDEFGH ≠ R.
+
+               Finally, consider Y= { C,H}, the closure Y+
+                = ABCDFGH ≠ R.
+               
+               Thus, CEH is a candidate key.
+               
+               Prime Attributes are = CEH
+               Non-Prime Attributes are = ABDFG
+
+
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+Types of Functional Dependencie
+====================================================================================
+There are four major types of FD’s.
+                Trival Dependency and Non-trival Dependency
+                Single Valued Dependency and Multivalued Dependency
+                Partial Dependency and Fully Functional Dependency 
+                Transitive Dependency and Non-transitive Dependency 
+
+
+
+
+Trival Dependency and Non-trival Dependency
+---------------------------------------------------
+
+Trival FD : 
+----------------
+In any relation R, X → Y is trival if Y ⊆ X (Y is the subset of X).
+
+        EXAMPLE
+        Consider a table with two columns Employee_Id and Employee_Name.  
+
+
+        {Employee_id, Employee_Name}   →    Employee_Id 
+                    is a trivial functional dependency as   
+        
+        
+        Employee_Id is a subset of {Employee_Id, Employee_Name}.  
+        Also, 
+        Employee_Id → Employee_Id 
+                  and 
+        Employee_Name   →    Employee_Name 
+                    are trivial dependencies too.  
+
+
+
+Non-trival FD : 
+----------------
+In any relation R, X → Y is non-trival if Y ⊆ X (Y is not the subset of X)
+
+          EXAMPLE
+          ID   →    Name,  
+          Name   →    DOB  
+
+
+
+             EXAMPLE
+             ----------
+             Consider the Supplier-Product relation shown
+             +----+-------+------+---------+
+             | S# | City  | P#   | Quantity |
+             +----+-------+------+---------+
+             |  1 | Delhi | 1P   |      100 |
+             |  2 | Rohtak| 8P   |      200 |
+             |  3 | Pune  | 3P   |       50 |
+             |  4 | Pune  | 5P   |       75 |
+             |  5 | Rohtak| 1P   |       99 |
+             |  6 | Mau   | 5P   |      105 |
+             +----+-------+------+----------+
+
+                        (S#, P#) : S# is trival FD
+                         S# : Supplier ID
+                         P# : Product ID
+
+
+
+            EXAMPLE
+            ----------
+            Consider the given relation R:
+            +---+---+---+
+            | O | P | Q |
+            +---+---+---+
+            | 1 | 2 | 3 |
+            | 2 | 1 | 7 |
+            | 2 | 1 | 5 |
+            | 7 | 3 | 8 |
+            +---+---+---+
+            Write all non-trivial functional dependencies satisfied by R. 
+            Also give an example of an FD that does not hold on R.
+
+           Sol. For functional dependencies look at the data given in the table.
+           
+           – The FD O → P holds on R, 
+               since for each value of O there is a single value of P.
+           
+           – The FD O → Q does not hold on R, since in the 2nd and 3rd row, 
+               O has the same value, but Q has different values.
+           
+           The non-trivial functional dependencies are as follows:
+                         O → P, 
+                         Q → O, 
+                         Q → P, 
+                         OQ → P, 
+                         PQ → O, 
+                         Q → OP, 
+                         O → OP, 
+                         OQ → PQ,
+                         OQ → OPQ,
+                         Q → OQ, 
+                         PQ → OPQ, 
+                         Q → OPQ,
+                         P → O, 
+                         P → OP
+
+
+
+
+
+
+
+Partial Dependency and Fully Functional Dependency 
+---------------------------------------------------
+
+
+Partial dependency : 
+----------------------
+Suppose you have more than one attributes in primary key. 
+   
+      Let A be the non-prime key attribute. 
+          If A is not dependent upon all prime key attributes 
+          then partial dependency exists.
+   
+          A partial dependency occurs when a 
+          non-prime attribute is functionally dependent 
+          on only part of a candidate key, not the entire key.
+   
+   
+   
+          In other words, a non-prime attribute depends on only 
+          a portion (proper subset) of the candidate key.
+   
+   
+     For example, in the t1 table, if we have a functional dependency 
+                 {emp_id, department_id} -> {name}, 
+   
+          where name depends only on a part of the candidate 
+          key (emp_id), it would be a partial dependency.
+
+
+
+
+
+Fully functional dependency : 
+------------------------------
+Let A be the non-prime key attribute and value of A 
+      is dependent upon all prime key attributes. 
+      Then A is said to be fully functional dependent. 
+
+      A fully functional dependency occurs when a 
+      non-prime attribute is functionally dependent on the entire
+      candidate key, not just a part of it.
+
+      In this case, the non-prime attribute depends on the entire 
+      set of attributes that form the candidate key.
+
+   For example, if we have a functional dependency 
+         
+             {emp_id} -> {name},
+   
+       where name depends on 
+       the entire candidate key (emp_id), 
+       it would be a fully functional dependency.
+
+
+
+
+
+  Example:
+  
+  mysql> select * from t1;
+  +--------+----------------+----------------+--------------------+---------------+
+  | emp_id | name           | citizenship_id | email_id           | department_id |
+  +--------+----------------+----------------+--------------------+---------------+
+  |      6 | Suman Shrestha | NEP-123        | suman@example.com  |           105 |
+  |      7 | Sarita Rai     | NEP-456        | sarita@example.com |           106 |
+  |      8 | Raj Gurung     | NEP-789        | raj@example.com    |           107 |
+  |      9 | Bibek Paudel   | NEP-012        | bibek@example.com  |           105 |
+  |     10 | Anita Rana     | NEP-345        | anita@example.com  |           108 |
+  +--------+----------------+----------------+--------------------+---------------+
+
+             {emp_id} -> {name, citizenship_id, email_id, department_id} 
+
+       is a fully functional dependency because 
+       name, citizenship_id, email_id, and department_id 
+       depend   on the entire candidate key (emp_id).
+
+
+               {email_id} -> {name} 
+       is a fully functional dependency because name 
+       depends on the entire candidate key (email_id).
+
+
+          {department_id} -> {citizenship_id, email_id} 
+              
+              could be a partial dependency if 
+              citizenship_id and email_id depend only on a 
+              part of the candidate key (department_id),
+              or it could be a fully functional dependency
+              if they depend on the entire candidate key.
+
+
+
+
+
+Transitive Dependency and Non-transitive Dependency 
+---------------------------------------------------
+
+
+Transitive dependency : 
+----------------------------
+    Transitive dependency is due to dependency 
+    between non-prime key attributes. 
+    
+    Suppose in a relation R, X → Y (Y depen upon X), and
+                             Y → Z (Z depends upon Y), 
+    
+                        then X → Z (Z depends upon X).
+
+
+
+                 Therefore, Z is said to be 
+                 transitively  dependent upon X.
+
+                i.e X → Y   Y → Z   --------- X → Z
+
+
+
+        A transitive dependency occurs when a 
+        non-prime attribute is functionally
+        dependent on another non-prime attribute,
+        rather than directly on the candidate key.
+
+        In other words, the dependency involves a 
+        chain of functional dependencies where 
+        a non-prime attribute depends on another 
+        non-prime attribute that, in turn, 
+        depends on the candidate key.
+
+        Transitive dependencies can lead to data
+        redundancy and are typically 
+        eliminated in database normalization.
+        
+
+
+Example in the context of the t1 table: 
+       {emp_id} -> {department_id} -> {citizenship_id} 
+
+          is a transitive dependency if
+          citizenship_id depends on department_id and, in turn,
+          department_id depends on emp_id.
+
+
+
+
+
+
+
+
+Non-transitive dependency : 
+----------------------------
+       Any functional dependency which is not transitive 
+       is known as Non-transitive dependency.
+       
+       Non-transitive dependency exists if there is 
+       no dependency between non-prime key attributes.
+
+
+
+          A non-transitive dependency occurs when a
+          non-prime attribute is directly functionally
+          dependent on the candidate key without involving
+          any intermediate non-prime attributes.
+
+In this case, the dependency is straightforward and does not involve a chain of dependencies.
+Non-transitive dependencies are usually desirable in a normalized relational database.
+
+Example in the context of the t1 table: 
+{emp_id} -> {name, citizenship_id, email_id, department_id} is a non-transitive dependency
+because name, citizenship_id, email_id, and department_id directly depend on the candidate key emp_id.
+
+
+
+
+
+Single Valued Dependency and Multivalued Dependency
+---------------------------------------------------
+Single valued dependency : 
+-----------------------------
+In any relation R, if for a particular value of X, Y has single value then 
+it is known as single valued dependency.
+
+
+
+A single-valued dependency occurs when the value of one attribute uniquely 
+determines the value of another attribute, and this relationship holds for all possible values in the database.
+
+In other words, if attribute A determines attribute B (A -> B), and each value of
+A uniquely determines one and only one value of B, then it's a single-valued dependency.
+
+Example in the context of the t1 table: 
+{emp_id} -> {name}, meaning that each employee ID uniquely determines the employee's name.
+
+
+
+
+
+Multivalued dependency (MVD) : 
+-----------------------------
+In any relation R, if for a particular value of X, Y has more then one value, 
+then it is known as multivalued dependency. It is denoted by 
+X →→ Y
+
+
+
+A multivalued dependency occurs when the presence of certain values in 
+one attribute uniquely determines the values in another attribute, and this relationship 
+holds for all possible values in the database.
+
+MVD is often expressed as X ->> Y, where X and Y are sets of attributes, and X uniquely 
+determines a set of values in Y.
+
+Example in the context of the t1 table: 
+    {emp_id} ->> {citizenship_id}, meaning that for each employee ID, there
+    can be multiple citizenship IDs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+Dependencies and Logical Implications
+or 
+Properties of FD
+====================================================================================
+
+Given a relational schema R and a set of functional dependencies F. 
+
+A functional dependency X → Y (Not in F) on R is said to be logically implied 
+by the set of functional dependencies 
+
+F on R if for relation R on the relational schema that 
+satisfies F also satisfies X → Y.
+
+
+Example. Consider the relation schema R= (A, B, C, D) and 
+              the set of FD’s F = {A→B, B→C, C→D}. 
+
+         Then the FD’s A → C, B → D and A → D are logically implied
+
+
+
+
+
+Armstrong’s Axioms - RAT rule
+----------------------------------imp
+
+     The following three rules called inference axioms or Armstrong’s Axioms 
+     can be used to find  all the FDs logically implied by a set of FDs.
+     
+     Let X, Y, Z, and W be subsets of attributes  of a relation R. 
+
+
+
+     The following axioms hold:
+
+      1. Reflexivity. 
+      -------------------
+      If Y is a subset of X, then X → Y. 
+      
+      This also implies that X → X always holds. 
+                Employee_Id → Employee_Id
+      
+      Functional dependencies of this type 
+      are called trivial functional dependencies.
+
+
+
+      2. Augmentation. 
+      -------------------
+      If X → Y holds and Z is a set of attributes, 
+      then ZX → ZY.
+
+
+
+
+      3. Transitivity. 
+      -------------------
+      If X → Y holds 
+      and Y → Z holds, 
+      then X → Z holds.
+
+
+             EXAMPLE
+             Employee_Id   → Employee_Name
+             Employee_Name → Address
+             Employee_Id   → Address 
+
+
+
+      These rules are Sound and Complete. 
+      They are sound because they do not generate 
+      any invalid functional dependencies. 
+      
+      
+      They are complete because they allow us 
+      to generate F+ (closure of F) from the given 
+      set of functional dependencies F. 
+
+
+
+
+      4. Additivity or Union. 
+      -------------------------
+      If X → Y and 
+         X → Z, 
+      then X → YZ holds.
+
+
+
+
+        5. Projectivity or Decomposition. 
+        ----------------------------------
+        If   X → YZ holds, 
+        then  and X → Z also →
+        
+                  NOTE:    XY → Z  
+                       then X → Z and Y → Z DONT HOLD
+
+
+
+         6. Pseudotransitivity. 
+         -------------------------
+         If XZ → W holds, 
+         then XZ → W holds.
+
+
+
+
+
+                       --------------------SUMMARY--------------------------------
+                       X → Y                 Y is a subset of X  Reflexivity. 
+                       ZX → ZY               X → Y holds and Z   Augmentation
+                       X → Z                 X → Y,Y → Z         Transitivity
+                       X → YZ                X → Y, X → Z        Union
+                       X → Y,X → Z           X → YZ              Decomposition
+                       X → Z and Y → Z       XY → Z              DONT HOLD
+                       XZ → W                XZ → W              Pseudotransitivity
+                       ----------------------------------------------------------
+
+
+
+
+      Example. 
+      
+      Let R = (A, B, C, D) and 
+      F be the set of functional dependencies for 
+      R given by {A→B, A→C, BC→D}. 
+      
+      Prove A→D.
+
+
+               Sol. Given set of functional dependencies for 
+               a relation R is {A→B, A→C, BC→D} 
+               
+               By using Armstrong Axioms, named projectivity, we can show that
+                     A→BC (as A→B, A→C)
+               
+                 Since BC→D, so by transitivity rule,
+                
+               A→BC and BC→D means A→D. Hence proved.
+
+
+
+
+
+     Example. 
+     
+     Consider a relation R2(A, B, C, D, E, F) and 
+     a set of functional dependencies FD={AB→C, C→FA, F→E} that hold on R2. 
+     
+     (i) Using Armstrong’s axioms show that the functional dependency AB→E also holds 
+     on R. 
+     (ii) Does AB→F hold for FD1 = {AB→CD, C→E, DE→F}?
+
+               Sol.
+               (i) AB→C (given). 
+                Apply decomposition to C→FA, get C→F. 
+                F→E (given). 
+                Apply transitivity to AB→C, C→F, F→E, get AB→E. Hence proved.
+               
+               
+               (ii) Yes. We can prove it as follows:
+                AB→CD (given). 
+                C→E (given). Apply augmentation to C→E, get, CD→DE. 
+                DE→F (given). 
+                Apply transitivity to AB→CD, CD→DE and DE→F, get AB→
+
+
+
+
+
+
+
+
+
+      Example. 
+      
+      Let F = {AB → C, B → D, CD→E, CE→GH}. 
+      Give a derivation sequence on FD, {AB→G} using only Armstrong’s axioms. 
+
+
+                  Sol. 
+                  
+                  We have to derive AB → G
+                  
+                  AB → ABE (augmentation: AB → E with AB) 
+                  ABE → CE (augmentation: AB → C with E) 
+                  AB → CE (transitivity: AB → ABE and ABE → CE) 
+                  AB → GH (transitivity: AB → CE and CE → GH) 
+                  GH → G (reflexivity) 
+                  AB → G (transitivity: AB → GH and GH → G)
+
+
+
+
+
+
+
+====================================================================================
+Closure of an Attribute
+====================================================================================
+
+Closure of an Attribute can be defined as a set of attributes that can be functionally determined from it.
+
+                                    OR
+
+Closure of a set F of FDs is the set F+ of all FDs that can be inferred from F
+
+Closure of a set of attributes X concerning F is the set X+ of all attributes that are functionally determined by X
+
+Pseudocode to find Closure of an Attribute
+---------------------------------------------
+         Determine X+, the closure of X under functional dependency set F
+         X Closure : = will contain X itself;
+         Repeat the process as:
+         old X Closure  : = X Closure;
+         for each functional dependency P → Q in FD set do
+         if X Closure is subset of P then X Closure := X Closure U Q ;
+           Repeat until ( X Closure = old X Closure);
+
+
+
+
+
+
+      Q.1: 
+      
+      Consider the relation scheme 
+      R = {E, F, G, H, I, J, K, L, M, N} and 
+      the set of functional dependencies 
+      {{E, F} -> {G}, 
+       {F} -> {I, J}, 
+       {E, H} -> {K, L}, 
+        K -> {M}, 
+        L -> {N} on R. 
+      
+              What is the key for R?
+
+                    Solution:
+                    
+                    Finding attribute closure of all given options, we get: 
+                    {E,F}+ = {EFGIJ}        ≠ R
+                    {E,F,H}+ = {EFHGIJKLMN}   = R
+                    {E,F,H,K,L}+ = {{EFHGIJKLMN}       = R
+                    {E}+ = {E}           ≠ R
+                    
+                    {EFH}+ and {EFHKL}+ results in set of all attributes  ≠ R, 
+                    but EFH is minimal. 
+                    
+                    So EFH will be candidate key.
+
+
+
+
+       Q.2: 
+       
+       Consider a relation scheme
+       R = (A, B, C, D, E, H) 
+       
+       on which the following functional dependencies hold: 
+       {A–>B, BC–> D, E–>C, D–>A}. 
+       
+       What are the candidate keys of R?
+
+
+                 Solution:
+                 
+                 (AE)+ = {ABECD} which is not set of all attributes. 
+                 So AE is not a candidate key. Hence option A and B are wrong. 
+                 
+                 (AEH)+ = {ABCDEH} 
+                 
+                 (BEH)+ = {BEHCDA} 
+                 
+                 (BCH)+ = {BCHDA} which is not set of all attributes. 
+                 So BCH is not a candidate key. Hence option C is wrong. 
+                 
+                 CK : AEH, BEH, DEH 
+
+
+====================================================================================
+Keys and Functional Dependencie
+OR
+Finding candidate key
+====================================================================================
+
+     Example
+     -----------
+     
+     Consider a relation R(A,B,C,D,E) 
+     having a set of FD’s F= { A→BC, CD→E,B→D,E→A}. 
+     
+     List all the candidate keys of relation R. 
+     Also find primary key, prime attributes and non-prime attributes.
+     
+
+Sol. 
+There are 5 attributes, which gives a large number of subsets of R. To reduce the 
+number of subsets to be considered, we should start with single attributes, then take subsets 
+mentioned on LHS of all FD’s. If they are candidate keys, then ignore all subsets having 
+these attributes (2nd condition of candidate key).
+
+First of all try all individual attributes
+Try A, then A+
+ = ABCDE = R, So A is a candidate key. 
+
+Try B, then B+
+ = BD ≠ R, So B is not a candidate key.
+
+Try C, then C+
+ = C ≠ R, So C is not a candidate key. 
+
+Try D, then D+
+ = D ≠ R, So D is not a candidate key. 
+
+Try E, then E+
+ = ABCDE = R, So E is a candidate key.
+
+Now try CD, then CD+ = ABCDE = R, so CD is a candidate key. 
+
+You can ignore all the subsets having A, E and CD. 
+
+Thus only two subsets are left i.e. BC and BD
+
+Try BC, then BC+
+= ABCDE =R, so BC is a candidate key. 
+
+Finaly, try BD, then BD+
+ =BD ≠R, So B is not a candidate key.
+
+So, candidate keys of R are A, E, BC and CD.
+
+Consider one of them as primary keys.
+
+Take BC as a primary key, so Prime Attributes are B and C 
+and non-prime attributes are A,D and E.
+
+
+
+
+
+ Example
+-----------
+ Given R( X Y Z W) and FD= { XYZ → W, XY → ZW and X → YZW
+
+Step 1: Let us calculate the closure of XYZ+ = XYZW (from the method we studied earlier)
+Since XYZ closure is determining all the attributes of the table, hence it is Super Key
+
+Step 2: Let us calculate the closure of XY+ = XYZW (from the method we studied earlier)
+Since XY closure is determining all the attributes of the table, hence it is Super Key
+
+Step 3: Let us calculate the closure of X+ = XYZW (from the method we studied earlier)
+Since X closure is determining all the attributes of the table, hence it is Super Key
+
+As we have talked in the above step only for the super key, not for the candidate key.
+Let us see the definition of Candidate Key again (Candidate Key is a Super Key whose no 
+proper subset is a superkey)
+
+From the above definition, XYZ is not a candidate key, as in Step 2 and 3 we found
+that XY and X are also Super Key (i.e., subset of XYZ are also SK which violate the definition)
+
+XY is not a candidate key, as in Step 3 we found that X is also a Super Key (i.e., subset of XY
+are also SK which violate the definition)
+
+X is the Candidate key: As X cannot be further subdivided, or X cannot have any subset.
+
+
+
+
+
+
+
+ Example
+-----------
+Given R( X Y Z W) and FD= { XY → Z, Z → YW, and W → X }
+
+Step 1: Let us calculate the closure of XY+ = XYZW (from the method we studied earlier)
+Since XY closure is determining all the attributes of the table, hence it is Super Key
+
+Step 2: Let us calculate the closure of Z+ = ZYWX (from the method we studied earlier)
+Since Z closure is determining all the attributes of the table, hence it is Super Key
+
+Step 3: Let us calculate the closure of W+ = WX (from the method we studied earlier)
+Since X closure is not determining all the attributes of the table, hence it is Not Super 
+Key, since it is not SK it can never be Candidate key
+
+
+
+As we have talked in the above step only for the super key, not for the candidate key.
+
+Let us see the definition of Candidate Key again (Candidate Key is a Super Key whose 
+no proper subset is a superkey)
+
+From the above definition XY is a candidate key, as in Step 2 and 3 none of the s
+ubsets of XY i.e. either X or Y is Super Key.
+
+
+
+ Example
+-----------
+https://www.javatpoint.com/dbms-candidate-key
+
+
+
+ Example
+-----------
+Let R = (A, B, C, D, E, F) be a relation scheme with the following dependencies-
+
+FD: C → F , E → A, EC → D, A → B
+Which of the following is a key for R?
+
+            CD
+            EC
+            AE
+            AC
+sol
+
+Step-01:
+Determine all essential attributes of the given relation.
+Essential attributes of the relation are- C and E.
+So, attributes C and E will definitely be a part of every candidate key.
+
+Step-02:
+We will check if the essential attributes together can determine all remaining non-essential attributes.
+To check, we find the closure of CE.
+ 
+So, we have-
+{ CE }+ = { C , E }
+        = { C , E , F }                       ( Using C → F )
+        = { A , C , E , F }                   ( Using E → A )
+        = { A , C , D , E , F }               ( Using EC → D )
+        = { A , B , C , D , E , F }           ( Using A → B )
+
+ 
+We conclude that CE can determine all the attributes of the given relation.
+
+So, CE is the only possible candidate key of the relation.
+
+
+
+
+Example
+-----------
+Let R = (A, B, C, D, E) be a relation scheme with the following dependencies-
+FD: AB → C, , C → D, B → E
+
+Determine the total number of candidate keys and super keys.
+
+sol
+ 
+AB is the only possible candidate key of the relation.
+
+
+Example
+-----------
+Consider the relation scheme R(E, F, G, H, I, J, K, L, M, N) and the set of functional dependencies-
+FD : { E, F } → { G }
+{ F } → { I , J }
+{ E, H } → { K, L }
+{ K } → { M }
+{ L } → { N }
+
+
+
+sol
+
+EFH is the only possible candidate key of the relation.
+
+
+
+
+
+
+
+
+
+
+Example. 
+----------
+
+Suppose you are given a relation R(A, B, C, D). 
+For each of the following sets 
+of FDs, assuming they are the only dependencies that hold for R, 
+identify the candidate  key(s) for R. 
+
+1. B→C, D→A. 
+2. A→BC, C→AD 
+3. A→B, B→C, C→D 
+
+
+Sol. 
+
+                 1. Candidate key: BD
+                 2. Candidate keys: A and C
+                 3. Candidate key: A
+
+
+
+
+
+Example. 
+----------
+
+Consider the following relational schema R(A, B, C, D, E) and 
+set of functional dependencies AB → E and D → C.
+
+List all superkey(s) for this relation. 
+Which of these superkeys form a key (i.e., a minimal superkey) for this relation? 
+Justify the answer in terms of functional dependencies and closures.
+
+
+Sol. 
+
+A superkey is a set of attributes X s.t. X+  = all attributes.
+From the FDs above, we can derive:
+           {A, B, D}+ = {A, B, C, D}+
+                      = {A, B, D, E}+
+                      = {A, B, C, D, E}+
+                      = {A, B, C, D, E}
+
+Hence, {A,B,D}, {A,B,C,D}, {A,B,D,E}, and {A,B,C,D,E} are all superkeys.
+
+A key is a set of attributes which form a superkey and for which no subset is a superkey. 
+
+In this example, {A,B,D} is the only key
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+Normalisation
+====================================================================================
+Normalisation is a process by which we can decompose or divide any relation into more 
+than one relation to remove anomalies in relational database.
+
+It is a step by step process and each step is known as Normal Form.
+Normalisation is a reversible process
+
+
+
+
+
+Normal Form	Description
+---------------------------
+1NF	
+     A relation is in 1NF if it contains an atomic value.
+
+2NF	
+     A relation will be in 2NF if it is in 1NF and 
+     all non-key attributes are fully functional dependent on the primary key.
+
+3NF	
+     A relation will be in 3NF if it is in 2NF and 
+     no transition dependency exists.
+
+BCNF	
+      A stronger definition of 3NF is known as Boyce Codd's normal form.
+
+
+
+
+
+
+
+
+
+
+
+====================================================================================
+First Normal Form (1NF)
+====================================================================================
+A relation is in 1NF if it contains an single(atomic) valued attributes/columns.
+OR
+If a relation contain composite or multi-valued attribute, it violates first normal.
+
+   eg : phone no : 98154789 , 987578  ====> Multivalued, not atomic 
+        age: 25 years old ===> single, atomic, not multivalues ==> 1NF
+
+
+
+EXAMPLE
+----------
+
+        If we have an Employee table in which we store the 
+        employee information along with the employee skillset,
+        the table will look like this:
+
++--------+--------------+------------+-----------------------+
+| emp_id | emp_name     | emp_mobile | emp_skills            |
++--------+--------------+------------+-----------------------+
+|      1 | John Tick    | 9999957773 | Python, JavaScript    |
+|      2 | Darth Trader | 8888853337 | HTML, CSS, JavaScript |
+|      3 | Rony Shark   | 7777720008 | Java, Linux, C++      |
++--------+--------------+------------+-----------------------+
+
+  The above table has 4 columns:
+       
+          All the columns have different names.
+          
+          All the columns hold values of the same type like emp_name 
+          has all the names, emp_mobile has all the contact numbers, etc.
+          
+          The order in which we save data doesn't matter
+          
+          But the emp_skills column holds multiple comma-separated values, 
+          while as per the First Normal form, each column 
+          should have a single value.
+
+
+    Hence the above table fails to pass the First Normal form.
+    
+           So how do you fix the above table? There are 
+           two ways to do this:
+           
+           Remove the emp_skills column from the Employee 
+           table and keep it in some other table.
+           
+           Or add multiple rows for the employee and each row 
+           is linked with one skill.
+
+1. Create Separate tables for Employee and Employee Skills
+     So the Employee table will look like this,
+
+          +--------+--------------+------------+
+          | emp_id | emp_name     | emp_mobile |
+          +--------+--------------+------------+
+          |      1 | John Tick    | 9999957773 |
+          |      2 | Darth Trader | 8888853337 |
+          |      3 | Rony Shark   | 7777720008 |
+          +--------+--------------+------------+
+          
+                    +--------+------------+
+                    | emp_id | skill      |
+                    +--------+------------+
+                    |      1 | JavaScript |
+                    |      1 | Python     |
+                    |      2 | CSS        |
+                    |      2 | HTML       |
+                    |      2 | JavaScript |
+                    |      3 | C++        |
+                    |      3 | Java       |
+                    |      3 | Linux      |
+                    +--------+------------+
+
+
+2. Add Multiple rows for Multiple skills
+        You can also simply add multiple rows to add multiple skills. 
+        This will lead to repetition of the data, but that 
+        can be handled as you further Normalize your 
+        data using the Second Normal form and the Third Normal form.
+
+
+               +--------+--------------+-----------+--------------+
+               emp_id  	  emp_name	      emp_mobile	  emp_skill
+               +--------+--------------+-----------+--------------+
+               1	         John Tick	     9999957773	  Python
+               1	         John Tick	     9999957773	  JavaScript
+               2	         Darth Trader  	8888853337  	HTML
+               2	         Darth Trader  	8888853337	  CSS
+               2	         Darth Trader  	8888853337	  JavaScript
+               3	         Rony Shark    	7777720008	  Java
+               3	         Rony Shark	    7777720008	  Linux
+               3	         Rony Shark	    7777720008	  C++
+               +--------+--------------+-----------+--------------+
+
+
+
+
+
+EXAMPLE
+----------
+In the below table Course is a multi-valued attribute 
+so it is not in 1NF. 
+
+
+
+           +-----+----+--------+
+             ID   Name   Courses
+           +-----+----+--------+
+              1    A      c1, c2
+              2    E      c3
+              3    M      C2, c3
+           +-----+----+--------+
+
+Now Table is in 1NF as there is no multi-valued attribute
+            +-----+----+--------+
+             ID   Name   Course
+            +-----+----+--------+
+              1    A       c1
+              1    A       c2
+              2    E       c3
+              3    M       c2
+              3    M       c3
+            +-----+----+--------+
+
+
+
+
+
+EXAMPLE
+----------
+
+student
++--------+--------+----------------+--------------+---------+
+| stu_no | name   | phone          | district     | country |
++--------+--------+----------------+--------------+---------+
+|      1 | ram    | 1234 7894 8521 | palpa        | nepal   |
+|      2 | sita   | 1598           | palpa butwal | nepal   |
+|      3 | laxman | 9898           |  butwal      | nepal   |
++--------+--------+----------------+--------------+---------+
+
+to 1 NF
+
+         +--------+--------+-----------+-----------+---------+
+         | stu_no | name   | district1 | district2 | country |
+         +--------+--------+-----------+-----------+---------+
+         |      1 | ram    | palpa     | NULL      | nepal   |
+         |      2 | sita   | palpa     | butwal    | nepal   |
+         |      3 | laxman | butwal    | NULL      | nepal   |
+         +--------+--------+-----------+-----------+---------+
+         
+         +--------+-------------+-------------+-------------+
+         | stu_no | phone_part1 | phone_part2 | phone_part3 |
+         +--------+-------------+-------------+-------------+
+         |      1 | 1234        | 7894        | 8521        |
+         |      2 | 1598        |             |             |
+         |      3 | 9898        |             |             |
+         +--------+-------------+-------------+-------------+
+
+
+
+
+-- Create the student table
+CREATE TABLE student (
+    stu_no INT PRIMARY KEY,
+    name VARCHAR(255),
+    district1 VARCHAR(255),
+    district2 VARCHAR(255),
+    country VARCHAR(255)
+);
+
+-- Create the phone table with 
+separate columns for each part 
+of the phone number
+CREATE TABLE phone (
+    stu_no INT,
+    phone_part1 VARCHAR(4),
+    phone_part2 VARCHAR(4),
+    phone_part3 VARCHAR(4),
+    PRIMARY KEY (stu_no, phone_part1, phone_part2, phone_part3),
+    FOREIGN KEY (stu_no) REFERENCES student(stu_no)
+);
+
+-- Insert data into the student table
+INSERT INTO student (stu_no, name, district1, district2, country)
+VALUES
+(1, 'ram', 'palpa', NULL, 'nepal'),
+(2, 'sita', 'palpa', 'butwal', 'nepal'),
+(3, 'laxman', 'butwal', NULL, 'nepal');
+
+-- Insert data into the phone 
+table by splitting the phone number
+INSERT INTO phone (stu_no, phone_part1, phone_part2, phone_part3)
+VALUES
+(1, '1234', '7894', '8521'),
+(2, '1598', NULL, NULL),
+(3, '9898', NULL, NULL);
+INSERT INTO phone (stu_no, phone_part1, phone_part2, phone_part3) VALUES
+    (1, '1234', '7894', '8521'),
+    (2, '1598','' ,'')
+    (3, '9898','' ,'');
+
+
+
+
+
+
+
+====================================================================================
+Second Normal Form (2NF)
+====================================================================================
+A relation will be in 2NF if it is in 1NF 
+and 
+all non-prime attributes are fully functional dependent on the candidte key(PK).
+OR
+There shoud be no partial dependency
+
+     R(ABC)
+          CK <- NPA
+          eg AB <- A  (proper subset A or B)
+                <- B
+          
+          then  A or B -> C  (partial dependnt)
+
+
+
+
+
+
+
+
+EXAMPLE
+---------- 2NF ?
+
+TEACHER 
+---------------------------------------------
+TEACHER_ID	      SUBJECT	       TEACHER_AGE
+---------------------------------------------
+  25	              Chemistry	      30
+  25	              Biology	        30
+  47	              English	        35
+  83	              Math	           38
+  83	              Computer	       38
+---------------------------------------------
+
+
+In the given table,
+non-prime attribute TEACHER_AGE is dependent on TEACHER_ID which 
+is a proper subset of a candidate key. 
+
+That's why it violates the rule for 2NF.
+
+TEACHER_ID <- TEACHER_AGE
+
+To convert the given table into 2NF, we
+decompose it into two tables:
+
+
+
+                  TEACHER_DETAIL 
+                  ---------------------------
+                  TEACHER_ID	   TEACHER_AGE
+                  ---------------------------
+                       25	        30
+                       47	        35
+                       83	        38
+                  ---------------------------
+
+
+                        TEACHER_SUBJECT 
+                        ---------------------------
+                        TEACHER_ID	        SUBJECT
+                        ---------------------------
+                                25	       Chemistry
+                                25	       Biology
+                                47	       English
+                                83	       Math
+                                83	       Computer
+                        ---------------------------
+
+
+
+EXAMPLE
+----------
+EmployeeProjectDetail
+----------------------------------------------------------------------
+Employee Code	    Project ID	     Employee Name	    Project Name
+----------------------------------------------------------------------
+     101	           P03	             John           	Project103
+     101           	P01	             John	           Project101
+     102	           P04	             Ryan	           Project104
+     103	           P02             	Stephanie	      Project102
+----------------------------------------------------------------------
+
+In the above table, 
+the prime attributes of the table are Employee Code and Project ID.
+
+We have partial dependencies in this table because 
+Employee Name can be determined by Employee Code
+
+and 
+Project Name can be determined by Project ID.
+
+Thus, the above relational table violates the rule of 2NF.
+
+----------------------------------------------------------------------
+Employee Code	    Project ID	     Employee Name	    Project Name
+----------------------------------------------------------------------
+     PA              PA             NPA                NPA
+
+
+Employee Code <- Employee Name
+   PA                 NPA
+
+
+Project ID.<- Project Name
+   PA                 NPA
+
+
+
+
+To remove partial dependencies from this table 
+and normalize it into second normal form, 
+we can decompose the <EmployeeProjectDetail> table
+
+into the following three tables:
+
+                    EmployeeDetail
+                    ----------------------------------
+                    Employee Code	 Employee Name
+                    ----------------------------------
+                        101	       John
+                        101	       John
+                        102	       Ryan
+                        103	       Stephanie
+                    ----------------------------------
+                    
+                    EmployeeProject
+                    ----------------------------------
+                    Employee Code	      Project ID
+                    ----------------------------------
+                          101	            P03
+                          101	            P01
+                          102	            P04
+                          103            	P02
+                    ----------------------------------
+                    
+                    
+                    ProjectDetail
+                    ----------------------------------
+                    Project ID	       Project Name
+                    ----------------------------------
+                          P03	         Project103
+                          P01	         Project101
+                          P04	         Project104
+                          P02	         Project102
+
+----------------------------------
+
+
+the above tables satisfy the following 
+two rules of 2NF as they are in 1NF and 
+every non-prime attribute is fully dependent on the primary key.
+
+
+
+
+
+
+
+
+EXAMPLE
+----------
+
+ Let’s say a school wants to store the 
+data of teachers and the subjects they teach. 
+ 
+
+Since a teacher can teach more than one subjects, the table 
+can have multiple rows for a same teacher.
+
+
+----------------------------------------------
+Teacher_Id	    Subject	    Teacher_Age
+----------------------------------------------
+       111	      Maths	       38
+       111	      Physics	     38
+       222	      Biology	     38
+       333	      Physics	     40
+       333	      Chemistry	   40
+----------------------------------------------
+
+
+Candidate Keys: {Teacher_Id, Subject}
+Non prime attribute: Teacher_Age
+
+This table is in 1 NF because each attribute has atomic values. 
+
+However, it is not in 2NF 
+
+because non prime attribute Teacher_Age is dependent on 
+Teacher_Id alone which is a proper subset of candidate key. 
+
+This violates the rule for 2NF as the rule says 
+“no non-prime attribute is dependent on the proper subset of 
+any candidate key of the table”.
+
+To make the table complies with 2NF we can disintegrate it in two tables like this:
+
+
+
+          Teacher_Details
+          ----------------------------
+          Teacher_Id     	Teacher_Age
+          ----------------------------
+                111	       38
+                222	       38
+                333	       40
+          ----------------------------
+
+
+           Teacher_Subject
+           ----------------------------
+           Teacher_Id	        Subject
+           ----------------------------
+                 111	          Maths
+                 111          	Physics
+                 222           Biology
+                 333	          Physics
+                 333	          Chemistry
+           ----------------------------
+
+
+Now the tables are in Second normal form (2NF). 
+
+
+
+
+EXAMPLE
+----------
+EXAMPLE
+----------
+
+
+
+EXAMPLE
+----------
+
+====================================================================================
+Third Normal Form (3NF)
+====================================================================================
+
+A relation will be in 3NF if it is in 2NF and 
+     no transition dependency exists.
+
+A -> B
+B -> C
+then A -> C   i.e transitive dpendency
+
+
+example
+------------
+        -----------------------------
+        roll_no  provinence   city
+        -----------------------------
+        1          lumbini    butwal
+        2          gandaki    pokhara
+        3          lumbini    butwl
+        4          gandaki    pokhara
+        5          koshi      ktm
+        -----------------------------
+
+here, PK = CK = roll_no
+   FD : roll_no -> provinence, city
+        provinence -> city
+
+so, roll_no -> provinence, provinence -> city
+  then      roll_no -> city 
+            i.e transitive dpendency, not 3NF
+
+since : PK = CK = roll_no   i.e PA
+           roll_no -> city  i.e NPA -> NPA , voilates 3nf
+
+
+EXAMPLE
+----------
+  R(ABCD)
+  FD: AB-> C, C-> D
+
+        sol
+        CK = AB    PA = AB     NPA = CD
+        
+        
+        here   AB+ = AB C D      = R
+               PA -> PA or NPA      ok for 3NF
+        
+        but     C -> D
+               NPA-> NPA            not 3nf
+
+
+
+
+EXAMPLE
+----------
+EmployeeDetail
+--------------------------------------------------------------------------------
+Employee Code     	Employee Name	     Employee Zipcode	       Employee City
+--------------------------------------------------------------------------------
+        101	          John	               110033	               Model Town
+        101	          John	               110044	               Badarpur
+        102	          Ryan	               110028	               Naraina
+        103	          Stephanie	          110064	               Hari Nagar
+--------------------------------------------------------------------------------
+
+In 3NF, we remove transitive dependencies by 
+ensuring that every non-prime attribute 
+is non-transitively dependent on the primary key.
+
+
+The above table is not in 3NF because it has 
+Employee Code -> Employee City transitive dependency because:
+
+          Employee Code -> Employee Zipcode
+          Employee Zipcode -> Employee City
+
+Also, Employee Zipcode is not a super key and Employee City is 
+not a prime attribute.
+
+To remove transitive dependency from this table and normalize
+it into the third normal form, we can decompose 
+the <EmployeeDetail> table into the following two tables:
+
+
+
+         EmployeeDetail
+         -----------------------------------------------------
+         Employee Code	   Employee Name	   Employee Zipcode
+         -----------------------------------------------------
+              101          	John	            110033
+              101	          John	            110044
+              102	          Ryan	            110028
+              103	          Stephanie	       110064
+         -----------------------------------------------------
+
+
+               EmployeeLocation
+               ------------------------------------
+               Employee Zipcode     	Employee City
+               ------------------------------------
+                     110033	           Model Town
+                     110044	           Badarpur
+                     110028	           Naraina
+                     110064	           Hari Nagar
+               ------------------------------------
+
+Thus, we’ve converted the <EmployeeDetail> table into 3NF
+by decomposing it into <EmployeeDetail> and <EmployeeLocation> 
+tables as they are in 2NF and they don’t 
+have any transitive dependency.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EXAMPLE
+----------
+
+
+
+EXAMPLE
+----------
+
+
+
+EXAMPLE
+----------
+
+====================================================================================
+BCNF
+====================================================================================
+A stronger definition of 3NF is known as Boyce Codd's normal form.
+
+LHS of each FD should be CK or SK
+
+LHS (CK or SK ) , but RHS ( PK or NPK , doesnt matter)
+
+
+
+EXAMPLE
+----------
+
+-----------------------------------------------
+Roll No      	Name	        Voter ID	      Age
+-----------------------------------------------
+    001	    Aarav Gurung	  NPL123456789	  25
+    002	    Maya Shah	     NPL987654321	  22
+    003	    Raj Thapa	     NPL456789012	  28
+    004	    Priya Rai	     NPL321654987	  20
+    005	    Arjun RAi     	NPL654321789	  30
+    006	    Sita Acharya  	NPL789012345	  26
+-----------------------------------------------
+
+CK  = Roll No ,  Voter ID	     
+FD:
+           Roll No -> Name	
+           Roll No -> Voter ID
+           Voter ID	->  Age
+           Voter ID	->  Roll No
+
+LHS (CK or SK ) , but RHS ( PK or NPK , doesnt matter)
+
+           Roll No -> Name	
+            CK                          ok
+           Roll No -> Voter ID
+             CK                         ok
+           Voter ID	->  Age
+             CK                         ok
+           Voter ID	->  Roll No
+              CK                         ok
+
+
+
+                        is in BCNF 
+
+
+
+
+
+
+OR
+-----
+
+Now, let's check the functional dependencies:
+
+          Roll No → Name, Voter ID, Age
+
+               Roll No is the primary key, so 
+               this is trivially satisfied.
+
+
+          Voter ID → Name, Age
+
+                Voter ID is not a superkey since two 
+                people may have the same Voter ID. 
+                Therefore, this violates BCNF.
+
+
+
+To bring the table into BCNF, we need 
+to decompose it. Let's create two tables:
+
+Table 1: (Roll No, Name, Age)
+Table 2: (Voter ID, Name)
+
+              Table 1: (Roll No, Name, Age)
+           -----------------------------------
+           Roll No      	Name	        	  Age
+           -----------------------------------
+               001	    Aarav Gurung	     25
+               002	    Maya Shah	     	  22
+               003	    Raj Thapa	     	  28
+               004	    Priya Rai	     	  20
+               005	    Arjun RAi     		  30
+               006	    Sita Acharya  		  26
+           ------------------------------------
+
+
+
+                         Table 2: (Voter ID, Name)
+                   -----------------------------------------
+                   Voter ID	             Name
+                   -----------------------------------------
+                   NPL123456789      	  Aarav Gurung
+                   NPL987654321     	   Maya Shah
+                   NPL456789012        	Raj Thapa
+                   NPL321654987	        Priya Rai
+                   NPL654321789      	  Arjun Bhattarai
+                   NPL789012345	        Sita Acharya
+                   -----------------------------------------
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+
+====================================================================================
+
+====================================================================================
+
+
+

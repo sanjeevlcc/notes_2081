@@ -1,0 +1,318 @@
+==========================================================================
+LAB 1: Commit and rollback
+==========================================================================
+
+SYNTAX
+----------
+        -- Start a transaction
+        BEGIN TRANSACTION;
+        
+        -- Attempt to perform a series of operations
+        -- For example, updating multiple tables or rows
+        
+        UPDATE table1 SET column1 = value1 WHERE condition1;
+        UPDATE table2 SET column2 = value2 WHERE condition2;
+        DELETE FROM table3 WHERE condition3;
+        
+        -- Check if any errors occurred during the operations
+        IF @@ERROR <> 0
+        BEGIN
+            -- If an error occurred, rollback the transaction
+            ROLLBACK TRANSACTION;
+            PRINT 'Transaction rolled back due to errors.';
+        END
+        ELSE
+        BEGIN
+            -- If no errors occurred, commit the transaction
+            COMMIT TRANSACTION;
+            PRINT 'Transaction committed successfully.';
+        END
+        
+
+
+
+
+
+-- Create a new database for the microfinance system
+CREATE DATABASE MicrofinanceSystem;
+GO
+
+-- Use the newly created database
+USE MicrofinanceSystem;
+GO
+
+-- Create a table for clients
+CREATE TABLE Clients (
+    ClientID INT PRIMARY KEY,
+    Name NVARCHAR(100),
+    DateOfBirth DATE,
+    Address NVARCHAR(255),
+    PhoneNumber NVARCHAR(20)
+);
+GO
+
+-- Create a table for loans
+CREATE TABLE Loans (
+    LoanID INT PRIMARY KEY,
+    ClientID INT,
+    Amount DECIMAL(18, 2),
+    InterestRate DECIMAL(5, 2),
+    LoanDate DATE,
+    DueDate DATE,
+    FOREIGN KEY (ClientID) REFERENCES Clients(ClientID)
+);
+GO
+
+-- Create a table for loan payments
+CREATE TABLE LoanPayments (
+    PaymentID INT PRIMARY KEY,
+    LoanID INT,
+    AmountPaid DECIMAL(18, 2),
+    PaymentDate DATE,
+    FOREIGN KEY (LoanID) REFERENCES Loans(LoanID)
+);
+GO
+
+-- Insert sample data for Nepali clients into the Clients table
+INSERT INTO Clients (ClientID, Name, DateOfBirth, Address, PhoneNumber) 
+VALUES 
+(1, 'Sita Thapa', '1980-01-15', 'Kathmandu, Nepal', '9841XXXXXX'),
+(2, 'Hari Sharma', '1975-07-20', 'Pokhara, Nepal', '9803XXXXXX'),
+(3, 'Gita Acharya', '1990-05-05', 'Biratnagar, Nepal', '9812XXXXXX'),
+(4, 'Raj Tamang', '1988-11-10', 'Bhaktapur, Nepal', '9851XXXXXX');
+GO
+
+-- Insert sample loan data for Nepali clients into the Loans table
+INSERT INTO Loans (LoanID, ClientID, Amount, InterestRate, LoanDate, DueDate) 
+VALUES 
+(1, 1, 50000.00, 10.5, '2024-02-15', '2024-08-15'),
+(2, 2, 75000.00, 9.8, '2024-03-10', '2024-09-10'),
+(3, 3, 100000.00, 8.5, '2024-01-20', '2024-07-20'),
+(4, 4, 60000.00, 11.2, '2024-04-05', '2024-10-05');
+GO
+
+-- Insert sample loan payment data for Nepali clients into the LoanPayments table
+INSERT INTO LoanPayments (PaymentID, LoanID, AmountPaid, PaymentDate) 
+VALUES 
+(1, 1, 20000.00, '2024-03-01'),
+(2, 1, 15000.00, '2024-05-01'),
+(3, 2, 30000.00, '2024-04-10'),
+(4, 3, 50000.00, '2024-02-20'),
+(5, 4, 25000.00, '2024-05-05');
+GO
+
+
+mysql> show tables;
++------------------------------+
+| Tables_in_MicrofinanceSystem |
++------------------------------+
+| Clients                      |
+| LoanPayments                 |
+| Loans                        |
++------------------------------+
+
+
+
+mysql> select * from Clients;
++----------+--------------+-------------+-------------------+-------------+
+| ClientID | Name         | DateOfBirth | Address           | PhoneNumber |
++----------+--------------+-------------+-------------------+-------------+
+|        1 | Sita Thapa   | 1980-01-15  | Kathmandu, Nepal  | 9841XXXXXX  |
+|        2 | Hari Sharma  | 1975-07-20  | Pokhara, Nepal    | 9803XXXXXX  |
+|        3 | Gita Acharya | 1990-05-05  | Biratnagar, Nepal | 9812XXXXXX  |
+|        4 | Raj Tamang   | 1988-11-10  | Bhaktapur, Nepal  | 9851XXXXXX  |
++----------+--------------+-------------+-------------------+-------------+
+
+
+
+mysql> select * from Loans;
++--------+----------+-----------+--------------+------------+------------+
+| LoanID | ClientID | Amount    | InterestRate | LoanDate   | DueDate    |
++--------+----------+-----------+--------------+------------+------------+
+|      1 |        1 |  50000.00 |        10.50 | 2024-02-15 | 2024-08-15 |
+|      2 |        2 |  75000.00 |         9.80 | 2024-03-10 | 2024-09-10 |
+|      3 |        3 | 100000.00 |         8.50 | 2024-01-20 | 2024-07-20 |
+|      4 |        4 |  60000.00 |        11.20 | 2024-04-05 | 2024-10-05 |
++--------+----------+-----------+--------------+------------+------------+
+
+
+
+mysql> select * from LoanPayments;
++-----------+--------+------------+-------------+
+| PaymentID | LoanID | AmountPaid | PaymentDate |
++-----------+--------+------------+-------------+
+|         1 |      1 |   20000.00 | 2024-03-01  |
+|         2 |      1 |   15000.00 | 2024-05-01  |
+|         3 |      2 |   30000.00 | 2024-04-10  |
+|         4 |      3 |   50000.00 | 2024-02-20  |
+|         5 |      4 |   25000.00 | 2024-05-05  |
++-----------+--------+------------+-------------+
+
+
+
+
+
+
+
+START TRANSACTION;
+BEGIN TRY
+    -- Insert a new client
+    INSERT INTO Clients (ClientID, Name, DateOfBirth, Address, PhoneNumber) 
+    VALUES 
+    (5, 'Ramesh Shakya', '1985-06-25', 'Lalitpur, Nepal', '9842XXXXXX');
+
+    -- Insert a new loan for the newly added client
+    INSERT INTO Loans (LoanID, ClientID, Amount, InterestRate, LoanDate, DueDate) 
+    VALUES 
+    (5, 5, 90000.00, 12.0, '2024-02-25', '2024-08-25');
+
+    -- Insert a payment for the new loan
+    INSERT INTO LoanPayments (PaymentID, LoanID, AmountPaid, PaymentDate) 
+    VALUES 
+    (6, 5, 40000.00, '2024-04-01');
+
+    -- Check if any errors occurred during the operations
+    IF @@ERROR <> 0
+    BEGIN
+        -- If an error occurred, rollback the transaction
+        ROLLBACK TRANSACTION;
+        PRINT 'Transaction rolled back due to errors.';
+    END
+    ELSE
+    BEGIN
+        -- If no errors occurred, commit the transaction
+        COMMIT TRANSACTION;
+        PRINT 'Transaction committed successfully.';
+    END
+END TRY
+BEGIN CATCH
+    -- If an error occurred, rollback the transaction
+    ROLLBACK TRANSACTION;
+    PRINT 'Transaction rolled back due to errors.';
+END CATCH;
+
+
+
+==========================================================================
+LAB 2: d
+==========================================================================
+
+-- Set the transaction isolation level to SERIALIZABLE
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+-- Start a transaction
+BEGIN TRANSACTION;
+BEGIN TRY
+    -- Perform database operations within the transaction
+    -- For example, update, insert, or delete operations
+
+    -- Insert a new client
+    INSERT INTO Clients (ClientID, Name, DateOfBirth, Address, PhoneNumber) 
+    VALUES 
+    (6, 'Nabin Shrestha', '1992-09-12', 'Bhaktapur, Nepal', '9813XXXXXX');
+
+    -- Insert a new loan for the newly added client
+    INSERT INTO Loans (LoanID, ClientID, Amount, InterestRate, LoanDate, DueDate) 
+    VALUES 
+    (6, 6, 120000.00, 10.8, '2024-03-10', '2024-09-10');
+
+    -- Insert a payment for the new loan
+    INSERT INTO LoanPayments (PaymentID, LoanID, AmountPaid, PaymentDate) 
+    VALUES 
+    (7, 6, 60000.00, '2024-05-01');
+
+    -- Check if any errors occurred during the operations
+    IF @@ERROR <> 0
+    BEGIN
+        -- If an error occurred, rollback the transaction
+        ROLLBACK TRANSACTION;
+        PRINT 'Transaction rolled back due to errors.';
+    END
+    ELSE
+    BEGIN
+        -- If no errors occurred, commit the transaction
+        COMMIT TRANSACTION;
+        PRINT 'Transaction committed successfully.';
+    END
+END TRY
+BEGIN CATCH
+    -- If an error occurred, rollback the transaction
+    ROLLBACK TRANSACTION;
+    PRINT 'Transaction rolled back due to errors.';
+END CATCH;
+
+
+==========================================================================
+LAB 3: serial and parelel
+==========================================================================
+
+-- Serial Transactions
+BEGIN TRANSACTION;
+BEGIN TRY
+    -- Transaction 1
+    INSERT INTO Clients (ClientID, Name, DateOfBirth, Address, PhoneNumber) 
+    VALUES 
+    (10, 'Rajan Shrestha', '1987-04-20', 'Lalitpur, Nepal', '9843XXXXXX');
+
+    INSERT INTO Loans (LoanID, ClientID, Amount, InterestRate, LoanDate, DueDate) 
+    VALUES 
+    (10, 10, 150000.00, 11.5, '2024-03-15', '2024-09-15');
+
+    INSERT INTO LoanPayments (PaymentID, LoanID, AmountPaid, PaymentDate) 
+    VALUES 
+    (10, 10, 70000.00, '2024-04-15');
+
+    COMMIT TRANSACTION;
+    PRINT 'Transaction 1 committed successfully.';
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION;
+    PRINT 'Transaction 1 rolled back due to errors.';
+END CATCH;
+
+-- Simulate a delay to ensure Transaction 1 completes before Transaction 2 starts
+WAITFOR DELAY '00:00:05';
+
+BEGIN TRANSACTION;
+BEGIN TRY
+    -- Transaction 2
+    INSERT INTO Clients (ClientID, Name, DateOfBirth, Address, PhoneNumber) 
+    VALUES 
+    (11, 'Sarita Maharjan', '1990-08-25', 'Kathmandu, Nepal', '9814XXXXXX');
+
+    INSERT INTO Loans (LoanID, ClientID, Amount, InterestRate, LoanDate, DueDate) 
+    VALUES 
+    (11, 11, 100000.00, 10.0, '2024-02-20', '2024-08-20');
+
+    INSERT INTO LoanPayments (PaymentID, LoanID, AmountPaid, PaymentDate) 
+    VALUES 
+    (11, 11, 50000.00, '2024-03-20');
+
+    COMMIT TRANSACTION;
+    PRINT 'Transaction 2 committed successfully.';
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION;
+    PRINT 'Transaction 2 rolled back due to errors.';
+END CATCH;
+
+
+
+==========================================================================
+LAB 4: d
+==========================================================================
+
+
+
+==========================================================================
+LAB 5: d
+==========================================================================
+
+
+
+==========================================================================
+LAB 6: d
+==========================================================================
+
+
+

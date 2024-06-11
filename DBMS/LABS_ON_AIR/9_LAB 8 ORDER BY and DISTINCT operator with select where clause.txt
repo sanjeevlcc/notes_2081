@@ -1,0 +1,611 @@
+-----------------------------------------------------------------------------------------
+LAB 8 - ORDER BY and DISTINCT operator with select/where
+
+Conditional clause using WHERE Clause with
+-----------------------------------------------------------------------------------------
+	
+
+	Select data with order by i.e sorting order
+	----------------------------------------------
+		The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+		The ORDER BY keyword sorts the records in ascending order by default. 
+		To sort the records in descending order, use the DESC keyword.
+ 		
+		ORDER BY name ASC/DESC
+
+
+		Syntax
+		----------
+		SELECT column1,column2,column3,…..
+			FROM table _name
+			ORDER BY column1,column2,column3,…..      ASC| DESC;
+
+
+		
+
+		No duplicacy report	
+	
+		Syntax
+		----------
+		SELECT DISTINCT column1,column2,column3,…..
+			FROM table _name
+
+
+
+
+
+
+Normally unordered structured
+----------------------------------------------------------
+
+mysql> select * from personal1;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+Now in ordered structure, ascending order
+----------------------------------------------------------
+mysql> select * from personal1 order by name;;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+Descending order
+----------------------------------------------------------
+mysql> select * from personal1 order by name desc;;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+Take city=palpa , and oder in ascending order of name
+----------------------------------------------------------
+mysql> select * from personal1 where city="palpa" order by name ;
++----+----------------+-----+--------+------------+-------+
+| id | name           | age | gender | phone      | city  |
++----+----------------+-----+--------+------------+-------+
+|  5 | aman rijal     |  26 | M      | 981555     | Palpa |
+|  7 | anil pandey    |  60 | M      | 9812287    | Palpa |
+|  6 | kririka pandey |  25 | F      | 981228     | Palpa |
+|  8 | manju ale      |  26 | F      | 98125698   | Palpa |
+|  1 | Sanjeev Thapa  |  20 | M      | 9815489555 | Palpa |
+|  4 | sunita pandey  |  35 | F      | 981221995  | Palpa |
++----+----------------+-----+--------+------------+-------
+
+
+
+
+
+Order by age
+----------------------------------------------------------
+mysql> select * from personal1  order by age ;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+Order by higest age from palpa and butwal
+----------------------------------------------------------
+
+mysql> select * from personal1  where (city="butwal" or city="palpa") order by age desc;
+
+OR
+
+mysql> select * from personal1  where city regexp '^(palpa|butwal)$' order by age desc;
+
++----+-------------------+-----+--------+------------+--------+
+| id | name              | age | gender | phone      | city   |
++----+-------------------+-----+--------+------------+--------+
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa  |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa  |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa  |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa  |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa  |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal |
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa  |
++----+-------------------+-----+--------+------------+--------+
+
+
+
+
+
+Order by phone of females only
+----------------------------------------------------------
+mysql> select * from personal1  where gender  regexp 'f' order by age desc;
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal      |
+| 20 | susma gurug     |  32 | F      | 98544229   | bhirawaha   |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+| 16 | karishma gurug  |  26 | F      | 981229     | chitwan     |
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa       |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha   |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+|  3 | Shila Lama      |  22 | F      | 982222955  | Butwal      |
+| 13 | Ratana Lama     |  22 | F      | 98458445   | Butwal      |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha   |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+
+Order on basis of name and age
+----------------------------------------------------------
+
+mysql> select * from personal1 order by name,age ;
+
+
+
+
+
+
+
+DISTINCT
+--------------
+
+
+DUPLICACY NOT MAINTAINED, i.e palpa or address are repeated twice
+----------------------------------------------------------
+mysql> select city from personal1;
++-------------+
+| city        |
++-------------+
+| Palpa       |
+| Butwal      |
+| Butwal      |
+| Palpa       |
+| Palpa       |
+| Palpa       |
+| Palpa       |
+| Palpa       |
+| Butwal      |
+| Butwal      |
+| Butwal      |
+| Butwal      |
+| Butwal      |
+| chitwan     |
+| chitwan     |
+| chitwan     |
+| chitwan     |
+| bhirawaha   |
+| nawalparasi |
+| bhirawaha   |
+| nawalparasi |
+| bhirawaha   |
+| nawalparasi |
+| kapilbastu  |
+| bhirawaha   |
+| kapilbastu  |
+| kapilbastu  |
+| bhirawaha   |
++-------------+
+
+
+
+
+
+DUPLICACY MAINTAINED, i.e palpa or address are not repeated twice
+----------------------------------------------------------
+
+mysql> select distinct city from personal1;
++-------------+
+| city        |
++-------------+
+| Palpa       |
+| Butwal      |
+| chitwan     |
+| bhirawaha   |
+| nawalparasi |
+| kapilbastu  |
++-------------+
+
+
+
+
+FROM GENDER
+----------------------------------------------------------
+mysql> select distinct gender from personal1;
++--------+
+| gender |
++--------+
+| M      |
+| F      |
++--------+
+
+
+
+
+
+FROM AGE
+----------------------------------------------------------
+mysql> select distinct age from personal1;
++-----+
+| age |
++-----+
+|  20 |
+|  21 |
+|  22 |
+|  35 |
+|  26 |
+|  25 |
+|  60 |
+|  38 |
+|  29 |
+|  62 |
+|  52 |
+|  32 |
+|  23 |
+|  19 |
+|  91 |
+|  39 |
+|  72 |
++-----+
+
+
+
+
+
+FROM AGE with order
+----------------------------------------------------------
+mysql> select distinct age from personal1 order by age;
++-----+
+| age |
++-----+
+|  19 |
+|  20 |
+|  21 |
+|  22 |
+|  23 |
+|  25 |
+|  26 |
+|  29 |
+|  32 |
+|  35 |
+|  38 |
+|  39 |
+|  52 |
+|  60 |
+|  62 |
+|  72 |
+|  91 |
++-----+
+
+
+ADVANCE
+---------------
+
+
+Sort Residents by Age in Descending Orde
+----------------------------------------------------------
+mysql> SELECT * FROM personal1
+    	ORDER BY gender, age DESC;
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa       |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+List Unique Cities:
+----------------------------------------------------------
+mysql> SELECT DISTINCT city FROM personal1;
++-------------+
+| city        |
++-------------+
+| Palpa       |
+| Butwal      |
+| chitwan     |
+| bhirawaha   |
+| nawalparasi |
+| kapilbastu  |
++-------------+
+
+
+
+
+
+Unique Gender and Age Combinations:
+----------------------------------------------------------
+mysql> SELECT DISTINCT gender, age FROM personal1;
++--------+-----+
+| gender | age |
++--------+-----+
+| M      |  20 |
+| M      |  21 |
+| F      |  22 |
+| F      |  35 |
+| M      |  26 |
+| F      |  25 |
+| M      |  60 |
+| F      |  26 |
+| M      |  22 |
+| F      |  38 |
+| M      |  29 |
+| M      |  62 |
+| F      |  52 |
+| F      |  32 |
+| M      |  23 |
+| F      |  19 |
+| M      |  91 |
+| F      |  39 |
+| F      |  23 |
+| F      |  72 |
+| M      |  25 |
++--------+-----+
+
+
+
+
+
+Youngest Male Residents by City
+----------------------------------------------------------
+mysql> SELECT DISTINCT city, MIN(age) AS youngest_age
+    	FROM personal1
+    	WHERE gender = 'M'
+    	GROUP BY city
+    	ORDER BY city;
++-------------+--------------+
+| city        | youngest_age |
++-------------+--------------+
+| Butwal      |           21 |
+| chitwan     |           29 |
+| kapilbastu  |           25 |
+| nawalparasi |           23 |
+| Palpa       |           20 |
++-------------+--------------+
+
+
+
+
+
+Unique Cities, Ordered by Resident Count:
+----------------------------------------------------------
+mysql> SELECT city, COUNT(*) AS resident_count
+   	FROM personal1
+   	GROUP BY city
+    	ORDER BY resident_count DESC;
++-------------+----------------+
+| city        | resident_count |
++-------------+----------------+
+| Butwal      |              7 |
+| Palpa       |              6 |
+| bhirawaha   |              5 |
+| chitwan     |              4 |
+| nawalparasi |              3 |
+| kapilbastu  |              3 |
++-------------+----------------+
+
+
+
+
+
+Residents Grouped by Age Range:
+----------------------------------------------------------
+mysql> SELECT FLOOR(age / 10) * 10 AS age_range, COUNT(*) AS resident_count
+    	FROM personal1
+    	GROUP BY age_range
+    	ORDER BY age_range;
++-----------+----------------+
+| age_range | resident_count |
++-----------+----------------+
+|        10 |              1 |
+|        20 |             16 |
+|        30 |              5 |
+|        50 |              1 |
+|        60 |              3 |
+|        70 |              1 |
+|        90 |              1 |
++-----------+----------------+
+
+
+
+
+
+Top 5 Cities with Oldest Residents:
+----------------------------------------------------------
+mysql> SELECT city, MAX(age) AS max_age
+    	FROM personal1
+   	GROUP BY city
+    	ORDER BY max_age DESC
+    	LIMIT 5;
++-------------+---------+
+| city        | max_age |
++-------------+---------+
+| nawalparasi |      91 |
+| kapilbastu  |      72 |
+| chitwan     |      62 |
+| Palpa       |      60 |
+| Butwal      |      60 |
++-------------+---------+
+
+
+
+
+
+Distinct Cities with Residents Aged 25 or Younger:
+----------------------------------------------------------
+mysql> SELECT DISTINCT city
+    	FROM personal1
+   	WHERE age <= 25;
++-------------+
+| city        |
++-------------+
+| Palpa       |
+| Butwal      |
+| bhirawaha   |
+| nawalparasi |
+| kapilbastu  |
++-------------+
+

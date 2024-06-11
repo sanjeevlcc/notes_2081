@@ -1,0 +1,827 @@
+
+
+-----------------------------------------------------------------------------------------
+LAB 10 - Working with Primary and Foreign keys
+-----------------------------------------------------------------------------------------
+
+
+
+
+***************************************************************************
+
+========= USING Mysql Community/ phpadmin/ docker ==============
+
+------------------------DOCKER------------------------------
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose any scnerio. Ubuntu or CKA or Playground
+step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+step 4: docker exec -ti mydb1 bash
+step 5: mysql -u root -p1234
+
+
+***************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************************************
+
+EXAMPLE 1
+-----------------
+
+mysql> CREATE DATABASE IF NOT EXISTS DB32;
+mysql> USE DB32;
+
+
+-- Create the first table
+mysql> CREATE TABLE IF NOT EXISTS users (
+	user_id INT PRIMARY KEY,     
+	username VARCHAR(255) NOT NULL,     
+	email VARCHAR(255) UNIQUE NOT NULL );
+
+
+
+-- Create the second table
+mysql> CREATE TABLE IF NOT EXISTS orders (
+    order_id INT PRIMARY KEY,
+    user_id INT,
+    product_name VARCHAR(255) NOT NULL,
+    order_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+	);
+
+mysql> desc users;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| user_id  | int          | NO   | PRI | NULL    |       |
+| username | varchar(255) | NO   |     | NULL    |       |
+| email    | varchar(255) | NO   | UNI | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+
+mysql> desc orders;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| order_id     | int          | NO   | PRI | NULL    |       |
+| user_id      | int          | YES  | MUL | NULL    |       |
+| product_name | varchar(255) | NO   |     | NULL    |       |
+| order_date   | date         | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
+
+
+-- Insert data into the 'users' table
+INSERT INTO users (user_id, username, email) VALUES
+(1, 'JohnDoe', 'john.doe@example.com'),
+(2, 'JaneSmith', 'jane.smith@example.com'),
+(3, 'BobJohnson', 'bob.johnson@example.com'),
+(4, 'AliceWilliams', 'alice.williams@example.com'),
+(5, 'CharlieBrown', 'charlie.brown@example.com'),
+(6, 'EvaDavis', 'eva.davis@example.com'),
+(7, 'FrankMiller', 'frank.miller@example.com'),
+(8, 'GraceClark', 'grace.clark@example.com'),
+(9, 'HenryLee', 'henry.lee@example.com'),
+(10, 'IsabelGarcia', 'isabel.garcia@example.com');
+
+
+
+
+mysql> select * from users;
+mysql> describe users;
+
+
+INSERT INTO orders (order_id, user_id, product_name, order_date) VALUES
+(101, 1, 'Laptop', '2023-01-15'),
+(102, 2, 'Smartphone', '2023-01-16'),
+(103, 3, 'Tablet', '2023-01-17'),
+(104, 4, 'Camera', '2023-01-18'),
+(105, 5, 'Headphones', '2023-01-19'),
+(106, 6, 'Monitor', '2023-01-20'),
+(107, 7, 'Printer', '2023-01-21'),
+(108, 8, 'Keyboard', '2023-01-22'),
+(109, 9, 'Mouse', '2023-01-23'),
+(110, 10, 'Speakers', '2023-01-24');
+
+
+mysql> desc orders;
+mysql> select * from orders;
++----------+---------+--------------+------------+
+| order_id | user_id | product_name | order_date |
++----------+---------+--------------+------------+
+|      101 |       1 | Laptop       | 2023-01-15 |
+|      102 |       2 | Smartphone   | 2023-01-16 |
+|      103 |       3 | Tablet       | 2023-01-17 |
+|      104 |       4 | Camera       | 2023-01-18 |
+|      105 |       5 | Headphones   | 2023-01-19 |
+|      106 |       6 | Monitor      | 2023-01-20 |
+|      107 |       7 | Printer      | 2023-01-21 |
+|      108 |       8 | Keyboard     | 2023-01-22 |
+|      109 |       9 | Mouse        | 2023-01-23 |
+|      110 |      10 | Speakers     | 2023-01-24 |
++----------+---------+--------------+------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************************************
+
+EXAMPLE 2
+-----------------
+
+
+
+
+-- Create a new database
+-----------------------------
+CREATE DATABASE  d33;
+
+
+
+-- Switch to the newly created database
+-----------------------------
+USE d33;
+
+
+
+-- Create the 'employees' table
+-----------------------------
+CREATE TABLE  employees (
+    employee_id INT PRIMARY KEY AUTO_INCREMENT,
+    employee_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
+);
+
+
+
+-- Create the 'departments' table
+-----------------------------
+CREATE TABLE  departments (
+    department_id INT PRIMARY KEY AUTO_INCREMENT,
+    department_name VARCHAR(255) NOT NULL
+);
+
+
+mysql> show tables;
++---------------+
+| Tables_in_d38 |
++---------------+
+| departments   |
+| employees     |
++---------------+
+
+
+mysql> desc employees;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| employee_id   | int          | NO   | PRI | NULL    | auto_increment |
+| employee_name | varchar(255) | NO   |     | NULL    |                |
+| email         | varchar(255) | NO   | UNI | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+
+
+mysql> desc departments;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| department_id   | int          | NO   | PRI | NULL    | auto_increment |
+| department_name | varchar(255) | NO   |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+
+
+-- Create the 'assignments' table with foreign keys
+-----------------------------
+CREATE TABLE  assignments (
+    assignment_id INT PRIMARY KEY AUTO_INCREMENT,
+    employee_id INT,
+    department_id INT,
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
+    FOREIGN KEY (department_id) REFERENCES departments(department_id),
+    UNIQUE (employee_id, department_id)
+);
+
+
+mysql> desc assignments;
++---------------+------+------+-----+---------+----------------+
+| Field         | Type | Null | Key | Default | Extra          |
++---------------+------+------+-----+---------+----------------+
+| assignment_id | int  | NO   | PRI | NULL    | auto_increment |
+| employee_id   | int  | YES  | MUL | NULL    |                |
+| department_id | int  | YES  | MUL | NULL    |                |
++---------------+------+------+-----+---------+----------------+
+
+
+
+
+
+-- Insert data into the 'employees' table
+mysql> INSERT INTO employees (employee_name, email) VALUES 
+('Santosh Gurung', 'santosh@example.com'), 
+('Priya Rai', 'priya@example.com'), 
+('Rajendra Sharma', 'rajendra@example.com'), 
+('Anita Tamang', 'anita@example.com'), 
+('Bijay Thapa', 'bijay@example.com'), 
+('Sunita Bhandari', 'sunita@example.com');
+
+
+
+-- Insert data into the 'departments' table
+mysql> INSERT INTO departments (department_name) VALUES 
+('Human Resources'), 
+('Finance'), 
+('Marketing'), 
+('Engineering'), 
+('Sales'), 
+('Research and Development');;
+
+-- Insert data into the 'assignments' table
+mysql> INSERT INTO assignments (employee_id, department_id) VALUES 
+(1, 4), -- Santosh Gurung assigned to Engineering 
+(2, 1),-- Priya Rai assigned to Human Resources 
+(3, 3), -- Rajendra Sharma assigned to Marketing 
+(4, 2), -- Anita Tamang assigned to Finance 
+(5, 5), -- Bijay Thapa assigned to Sales 
+(6, 6) -- Sunita Bhandari assigned to Research and Development;
+
+
+
+
+mysql> select * from employees;
++-------------+-----------------+----------------------+
+| employee_id | employee_name   | email                |
++-------------+-----------------+----------------------+
+|           1 | Santosh Gurung  | santosh@example.com  |
+|           2 | Priya Rai       | priya@example.com    |
+|           3 | Rajendra Sharma | rajendra@example.com |
+|           4 | Anita Tamang    | anita@example.com    |
+|           5 | Bijay Thapa     | bijay@example.com    |
+|           6 | Sunita Bhandari | sunita@example.com   |
++-------------+-----------------+----------------------+
+
+
+
+mysql> select * from departments;
++---------------+--------------------------+
+| department_id | department_name          |
++---------------+--------------------------+
+|             1 | Human Resources          |
+|             2 | Finance                  |
+|             3 | Marketing                |
+|             4 | Engineering              |
+|             5 | Sales                    |
+|             6 | Research and Development |
++---------------+--------------------------+
+
+
+
+mysql> select * from assignments;
++---------------+-------------+---------------+
+| assignment_id | employee_id | department_id |
++---------------+-------------+---------------+
+|             1 |           1 |             4 |
+|             2 |           2 |             1 |
+|             3 |           3 |             3 |
+|             4 |           4 |             2 |
+|             5 |           5 |             5 |
+|             6 |           6 |             6 |
++---------------+-------------+---------------+
+
+
+
+
+
+***************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 10-A - Working with INSERT and DELETE data inside a table 
+-----------------------------------------------------------------------------------------
+
+
+SELECT - extracts data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+CREATE TABLE - creates a new table
+
+
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+ALTER DATABASE - modifies a database
+
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+
+
+
+
+	SYNTAX
+	---------
+	DELETE FROM table_name 
+		WHERE condition;
+
+
+mysql> select * from employees;
++-------------+-----------------+----------------------+
+| employee_id | employee_name   | email                |
++-------------+-----------------+----------------------+
+|           1 | Santosh Gurung  | santosh@example.com  |
+|           2 | Priya Rai       | priya@example.com    |
+|           3 | Rajendra Sharma | rajendra@example.com |
+|           4 | Anita Tamang    | anita@example.com    |
+|           5 | Bijay Thapa     | bijay@example.com    |
+|           6 | Sunita Bhandari | sunita@example.com   |
++-------------+-----------------+----------------------+
+
+mysql> INSERT INTO employees (employee_name, email) 
+	VALUES ('Parvati Gurung', 'parvati@example.com')
+
+mysql> select * from employees;
++-------------+-----------------+----------------------+
+| employee_id | employee_name   | email                |
++-------------+-----------------+----------------------+
+|           1 | Santosh Gurung  | santosh@example.com  |
+|           2 | Priya Rai       | priya@example.com    |
+|           3 | Rajendra Sharma | rajendra@example.com |
+|           4 | Anita Tamang    | anita@example.com    |
+|           5 | Bijay Thapa     | bijay@example.com    |
+|           6 | Sunita Bhandari | sunita@example.com   |
+|           7 | Parvati Gurung  | parvati@example.com  |
++-------------+-----------------+----------------------+
+
+mysql> DELETE FROM employees WHERE employee_id = 7;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employees;
++-------------+-----------------+----------------------+
+| employee_id | employee_name   | email                |
++-------------+-----------------+----------------------+
+|           1 | Santosh Gurung  | santosh@example.com  |
+|           2 | Priya Rai       | priya@example.com    |
+|           3 | Rajendra Sharma | rajendra@example.com |
+|           4 | Anita Tamang    | anita@example.com    |
+|           5 | Bijay Thapa     | bijay@example.com    |
+|           6 | Sunita Bhandari | sunita@example.com   |
++-------------+-----------------+----------------------+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 10-B - Working with ALTER and DROP with a table ( and UPDATE tooo)
+-----------------------------------------------------------------------------------------
+
+	SYNTAX
+	---------
+	ALTER TABLE table_name
+		ADD column_name datatype;
+
+	DROP TABLE table_name;
+
+
+
+
+
+mysql> ALTER TABLE employees 	
+	ADD COLUMN date_of_birth DATE;
+
+mysql> select * from employees;
++-------------+-----------------+----------------------+---------------+
+| employee_id | employee_name   | email                | date_of_birth |
++-------------+-----------------+----------------------+---------------+
+|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
+|           2 | Priya Rai       | priya@example.com    | NULL          |
+|           3 | Rajendra Sharma | rajendra@example.com | NULL          |
+|           4 | Anita Tamang    | anita@example.com    | NULL          |
+|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
+|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
++-------------+-----------------+----------------------+---------------+
+
+
+
+
+mysql> -- Insert two new rows
+mysql> INSERT INTO employees (employee_name, email, date_of_birth)
+    -> VALUES
+    ->     ('Amit Thapa', 'amit@example.com', '1987-08-12'),
+    ->     ('Komal Bhattarai', 'komal@example.com', '1993-04-28');
+
+
+
+mysql> select * from employees;
++-------------+-----------------+----------------------+---------------+
+| employee_id | employee_name   | email                | date_of_birth |
++-------------+-----------------+----------------------+---------------+
+|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
+|           2 | Priya Rai       | priya@example.com    | NULL          |
+|           3 | Rajendra Sharma | rajendra@example.com | NULL          |
+|           4 | Anita Tamang    | anita@example.com    | NULL          |
+|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
+|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
+|           8 | Amit Thapa      | amit@example.com     | 1987-08-12    |
+|           9 | Komal Bhattarai | komal@example.com    | 1993-04-28    |
++-------------+-----------------+----------------------+---------------+
+
+
+
+
+		//Be cautious when using the DROP statement as it 
+		permanently removes the table and all its data.
+
+mysql> DROP TABLE  employees;
+	ERROR 3730 (HY000): Cannot drop table 'employees' referenced by a 
+	foreign key constraint 'assignments_ibfk_1' on table 'assignments'.
+
+
+
+
+
+
+
+		UPDATE SYNTAX
+		------------------
+		UPDATE table_name
+			SET column1 = value1, column2 = value2, ...
+			WHERE condition;
+
+
+
+mysql> SELECT * FROM employees;
++-------------+-----------------+----------------------+---------------+
+| employee_id | employee_name   | email                | date_of_birth |
++-------------+-----------------+----------------------+---------------+
+|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
+|           2 | Priya Rai       | priya@example.com    | NULL          |
+|           3 | Rajendra Sharma | rajendra@example.com | NULL          |
+|           4 | Anita Tamang    | anita@example.com    | NULL          |
+|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
+|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
+|           8 | Amit Thapa      | amit@example.com     | 1987-08-12    |
+|           9 | Komal Bhattarai | komal@example.com    | 1993-04-28    |
++-------------+-----------------+----------------------+---------------+
+
+
+
+mysql> UPDATE employees SET date_of_birth =      
+	CASE          
+		WHEN employee_name = 'Rajendra Sharma' THEN '1980-03-18'         
+		WHEN employee_name = 'Anita Tamang' THEN '1972-11-25'         
+		-- Add more cases for other employees as needed     
+
+		END 
+	WHERE employee_name IN ('Rajendra Sharma', 'Anita Tamang');
+
+
+
+mysql> SELECT * FROM employees;
++-------------+-----------------+----------------------+---------------+
+| employee_id | employee_name   | email                | date_of_birth |
++-------------+-----------------+----------------------+---------------+
+|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
+|           2 | Priya Rai       | priya@example.com    | NULL          |
+|           3 | Rajendra Sharma | rajendra@example.com | 1980-03-18    |
+|           4 | Anita Tamang    | anita@example.com    | 1972-11-25    |
+|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
+|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
+|           8 | Amit Thapa      | amit@example.com     | 1987-08-12    |
+|           9 | Komal Bhattarai | komal@example.com    | 1993-04-28    |
++-------------+-----------------+----------------------+---------------+
+************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************************************************************************************************************
+
+
+EXAMPLE 3
+----------------
+
+
+
+
+-- Create a new database
+CREATE DATABASE IF NOT EXISTS school_database;
+
+-- Switch to the newly created database
+USE school_database;
+
+-- Create the 'students' table
+CREATE TABLE  students (
+    std_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    mobile VARCHAR(15),
+    gender VARCHAR(10),
+    address VARCHAR(255),
+    DOB DATE,
+    salary DECIMAL(10, 2),
+    marks_social INT,
+    marks_maths INT
+);
+
+
+
+-- Insert 25 rows of data into the 'students' table
+INSERT INTO students (name, mobile, gender, address, DOB, salary, marks_social, marks_maths) VALUES
+('Amit Poudel', '9841000000', 'Male', 'Kathmandu, Nepal', '1998-05-15', 50000.00, 85, 90),
+('Sarita Gurung', '9812345678', 'Female', 'Pokhara, Nepal', '1999-08-20', 45000.00, 78, 92),
+('Rajesh Dhakal', '9865432109', 'Male', 'Butwal, Nepal', '1997-12-10', 55000.00, 92, 88),
+('Anita Rai', '9809876543', 'Female', 'Dharan, Nepal', '2000-03-25', 48000.00, 75, 85),
+('Santosh Shrestha', '9856789012', 'Male', 'Biratnagar, Nepal', '1996-09-02', 60000.00, 89, 94),
+('Pratima Khadka', '9843210987', 'Female', 'Butwal, Nepal', '1999-11-18', 52000.00, 80, 91),
+('Nabin Thapa', '9811001100', 'Male', 'Pokhara, Nepal', '1997-07-07', 53000.00, 88, 89),
+('Rita Maharjan', '9867543210', 'Female', 'Lalitpur, Nepal', '2001-02-14', 47000.00, 82, 93),
+('Sunil Bhandari', '9856781234', 'Male', 'Birgunj, Nepal', '1998-04-30', 56000.00, 91, 87),
+('Priya Sharma', '9812345678', 'Female', 'Dang, Nepal', '1996-12-12', 51000.00, 79, 92),
+('Dinesh Thapa', '9845678901', 'Male', 'Itahari, Nepal', '2000-08-05', 54000.00, 87, 90),
+('Puja Adhikari', '9812345678', 'Female', 'Nepalgunj, Nepal', '1999-01-22', 49000.00, 76, 88),
+('Roshan Shrestha', '9861234567', 'Male', 'Hetauda, Nepal', '1997-06-14', 58000.00, 90, 85),
+('Anju Bista', '9841001100', 'Female', 'Butwal, Nepal', '1998-10-11', 50000.00, 83, 94),
+('Binod Khanal', '9812345678', 'Male', 'Chitwan, Nepal', '1996-03-28', 59000.00, 92, 87),
+('Sunita Regmi', '9856789012', 'Female', 'Dharan, Nepal', '1997-09-15', 48000.00, 84, 89),
+('Rajendra Shrestha', '9843210987', 'Male', 'Nepalgunj, Nepal', '2000-01-10', 55000.00, 88, 91),
+('Gita Lama', '9811001100', 'Female', 'Biratnagar, Nepal', '1998-11-23', 51000.00, 79, 93),
+('Suman Magar', '9867543210', 'Male', 'Lalitpur, Nepal', '1999-05-19', 53000.00, 86, 90),
+('Anita Tamang', '9856781234', 'Female', 'Hetauda, Nepal', '1997-02-08', 47000.00, 81, 92),
+('Suresh KC', '9812345678', 'Male', 'Chitwan, Nepal', '1998-07-03', 56000.00, 89, 88),
+('Manisha Thapa', '9845678901', 'Female', 'Birgunj, Nepal', '2001-04-15', 49000.00, 77, 94),
+('Ramesh Aryal', '9812345678', 'Male', 'Dang, Nepal', '1999-10-20', 52000.00, 87, 86),
+('Laxmi Bhandari', '9861234567', 'Female', 'Itahari, Nepal', '1996-12-28', 57000.00, 90, 87);
+
+
+
+Basics:
+***********
+
+Retrieve all students' names and their marks in social:
+------------------------------------------------------------
+SELECT name, marks_social FROM students;
+
+
+
+
+Insert a new student:
+------------------------------------------------------------
+INSERT INTO students (name, mobile, gender, address, DOB, salary, marks_social, marks_maths)
+VALUES ('Nisha Adhikari', '9876543210', 'Female', 'Biratnagar, Nepal', '1998-06-25', 52000.00, 85, 88);
+
+
+
+Update the address for a specific student:
+------------------------------------------------------------
+UPDATE students SET address = 'Kathmandu, Nepal' WHERE name = 'Amit Poudel';
+
+
+
+
+Delete a student record:
+------------------------------------------------------------
+DELETE FROM students WHERE name = 'Sarita Gurung';
+
+
+
+
+
+Intermediate:
+***********
+
+
+Retrieve the average salary of male students:
+------------------------------------------------------------
+SELECT AVG(salary) AS avg_salary_male FROM students WHERE gender = 'Male';
+
+
+
+
+Find students who scored more than 90 in either social or maths:
+------------------------------------------------------------
+SELECT name FROM students WHERE marks_social > 90 OR marks_maths > 90;
+
+
+
+Retrieve the list of students and their assigned department (assuming there's a related department table):
+------------------------------------------------------------
+SELECT students.name, assignments.department_id, departments.department_name
+FROM students
+LEFT JOIN assignments ON students.std_id = assignments.student_id
+LEFT JOIN departments ON assignments.department_id = departments.department_id;
+
+
+
+
+Advanced:
+***********
+Create a stored procedure to update student marks:
+------------------------------------------------------------
+CREATE PROCEDURE UpdateStudentMarks(IN student_id INT, IN new_marks_social INT, IN new_marks_maths INT)
+BEGIN
+    UPDATE students SET marks_social = new_marks_social, marks_maths = new_marks_maths WHERE std_id = student_id;
+END //
+DELIMITER ;
+
+
+Start a transaction to update salary and marks together:
+------------------------------------------------------------
+START TRANSACTION;
+UPDATE students SET salary = salary * 1.1 WHERE gender = 'Male';
+UPDATE students SET marks_maths = marks_maths + 5;
+COMMIT;
+
+
+Grant read-only access to a specific user:
+------------------------------------------------------------
+GRANT SELECT ON school_database.students TO 'read_only_user'@'localhost';
+
+
+
+Retrieve the top 5 students with the highest combined marks:
+------------------------------------------------------------
+SELECT name, marks_social + marks_maths AS total_marks
+FROM students
+ORDER BY total_marks DESC
+LIMIT 5;
+
+
+
+************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 10 A - REMOTE CONNECTIONS of Database
+-----------------------------------------------------------------------------------------
+
+Allow Remote Connections:
+By default, the MySQL container will bind to the localhost interface. 
+To allow remote connections, you'll need to modify the MySQL configuration.
+
+
+[root@server ~]# mkdir remote
+
+
+a. Find the IP address of your Docker host machine. If you are on Linux, you can use the following command:
+------------------------------
+[root@server remote]# mkdir  mysql_data
+
+[root@server remote]# cat  > docker-compose.yaml
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: remote1234
+      MYSQL_DATABASE: db2024
+      MYSQL_USER: sanjeev
+      MYSQL_PASSWORD: sanjeev1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+
+
+
+
+[root@server remote]# docker-compose up -d
+
+
+
+
+
+b. List the running container
+------------------------------
+[root@server remote]# docker ps
+CONTAINER ID   IMAGE                            COMMAND                  CREATED              STATUS              PORTS                                                  NAMES
+9fdd5a3b945d   mysql:latest                     "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   remote_mysql_1
+
+
+
+
+
+c. Connect to the MySQL container:
+[root@server ~]# docker exec -ti mysql-remote bash
+bash-4.4#
+
+
+bash-4.4# mysql -u root -p1234
+bash-4.4# mysql -u sanjeev -psanjeev1234
+
+
+mysql -h your_docker_host_ip -u your_user -p
+
+
+
+
+
+
+

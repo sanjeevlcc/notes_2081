@@ -1,0 +1,580 @@
+=========USING/Mysql Community/phpadmin/docker==============
+
+-----------------DOCKER------------------------------
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose any scnerio. Ubuntu or CKA or Playground
+step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+step 4: docker exec -ti mydb1 bash
+step 5: mysql -u root -p1234
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 7 - REGULAR EXPRESSION operator with select/where
+
+Conditional clause using WHERE Clause with
+
+NOT SYLLABUS OF TU: BIM BCA CSIT BIT
+-----------------------------------------------------------------------------------------
+
+		Syntax
+		----------
+		SELECT column1,column2,column3,…..
+			FROM table _name
+			WHERE column_name REGEXP pattern;
+
+
+
+
+	Sign		Pattern			Description
+	-----		--------		------------
+	^		‘^as’			Begging of the string as
+	$		‘ma$’			End of the string
+	[…]		‘[rat]’			Any character listed between the square brackets
+	^[…]		‘^[rat]’		Begins with any character listed between the square brackets
+	[a-z]		‘[a-h]e’		Match within the range 
+	P1|p2|p3	‘ram|sita|gita’		Matches the pattern p1 , pr or p3
+
+
+
+
+
+Find combination of “na” in name string 
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP 'na';
+
++----+-------------------+-----+--------+-----------+-----------+
+| id | name              | age | gender | phone     | city      |
++----+-------------------+-----+--------+-----------+-----------+
+|  9 | Mina Lama         |  35 | F      | 98458125  | Butwal    |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245   | Butwal    |
+| 13 | Ratana Lama       |  22 | F      | 98458445  | Butwal    |
+| 14 | mina BC           |  38 | F      | 981221996 | chitwan   |
+| 18 | muna BC           |  25 | F      | 98158545  | bhirawaha |
+| 35 | Mina Lama         |  22 | F      | 982222956 | bhirawaha |
++----+-------------------+-----+--------+-----------+-----------+
+
+
+
+
+
+Find combination of “est” in name string 
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP 'est';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+Find the name starting string with “sa”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP '^sa';
++----+---------------+-----+--------+------------+------------+
+| id | name          | age | gender | phone      | city       |
++----+---------------+-----+--------+------------+------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa      |
+| 27 | sagar subedi  |  25 | M      | 9814562286 | kapilbastu |
++----+---------------+-----+--------+------------+------------+
+
+
+
+
+
+Find the name ending string with “di”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP 'di$';
+
++----+--------------+-----+--------+------------+-------------+
+| id | name         | age | gender | phone      | city        |
++----+--------------+-----+--------+------------+-------------+
+| 17 | basu subedi  |  62 | M      | 9812286    | chitwan     |
+| 21 | suman subedi |  23 | M      | 981225486  | nawalparasi |
+| 27 | sagar subedi |  25 | M      | 9814562286 | kapilbastu  |
++----+--------------+-----+--------+------------+-------------+
+
+
+
+
+
+Find the name has found multiple strings such as subedi,thapa,darlami
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP 'thap|shres';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal      |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+mysql> select * from personal1 where name REGEXP 'thap|shres|subedi';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal      |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+mysql> select * from personal1 where name REGEXP  'moni|trey|mano';
++----+-----------------+-----+--------+-----------+-----------+
+| id | name            | age | gender | phone     | city      |
++----+-----------------+-----+--------+-----------+-----------+
+| 11 | Manoj KC        |  60 | M      | 9845845   | Butwal    |
+| 22 | monika shrestha |  19 | F      | 981225445 | bhirawaha |
+| 25 | treya thapa     |  23 | F      | 981562286 | bhirawaha |
++----+-----------------+-----+--------+-----------+-----------+
+
+
+
+
+
+
+mysql> select * from personal1 where name REGEXP  'moni|trey|^manoj';
++----+-----------------+-----+--------+-----------+-----------+
+| id | name            | age | gender | phone     | city      |
++----+-----------------+-----+--------+-----------+-----------+
+| 11 | Manoj KC        |  60 | M      | 9845845   | Butwal    |
+| 22 | monika shrestha |  19 | F      | 981225445 | bhirawaha |
+| 25 | treya thapa     |  23 | F      | 981562286 | bhirawaha |
++----+-----------------+-----+--------+-----------+-----------+
+
+
+
+
+
+Relating age 
+----------------------------------------------------------
+mysql> select * from personal1 where name REGEXP  'moni|trey|bc' and age regexp '25';
++----+---------+-----+--------+----------+-----------+
+| id | name    | age | gender | phone    | city      |
++----+---------+-----+--------+----------+-----------+
+| 18 | muna BC |  25 | F      | 98158545 | bhirawaha |
++----+---------+-----+--------+----------+-----------+
+
+
+
+
+
+For or operator 
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP  'moni|trey|bc' or age regexp '25';
++----+-----------------+-----+--------+------------+------------+
+| id | name            | age | gender | phone      | city       |
++----+-----------------+-----+--------+------------+------------+
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa      |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan    |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha  |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu |
++----+-----------------+-----+--------+------------+------------+
+
+
+
+
+
+
+Find separately from the string or individually i.e “sd”a ………………… i.e checks “sa” and “da”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP  '[sd]a';
++----+---------------+-----+--------+------------+-------------+
+| id | name          | age | gender | phone      | city        |
++----+---------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa       |
+| 23 | hilsang gurug |  91 | M      | 9812544286 | nawalparasi |
+| 27 | sagar subedi  |  25 | M      | 9814562286 | kapilbastu  |
++----+---------------+-----+--------+------------+-------------+
+
+
+
+
+
+For	” vy”
+----------------------------------------------------------
+mysql> select * from personal1 where name REGEXP  '[v]y';
++----+----------------+-----+--------+---------+-------------+
+| id | name           | age | gender | phone   | city        |
++----+----------------+-----+--------+---------+-------------+
+| 19 | divya shrestha |  52 | F      | 9814557 | nawalparasi |
++----+----------------+-----+--------+---------+-------------+
+
+
+
+
+
+Starting with “d” or “s”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP  '^[ds]';
++----+----------------+-----+--------+------------+-------------+
+| id | name           | age | gender | phone      | city        |
++----+----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa  |  20 | M      | 9815489555 | Palpa       |
+|  3 | Shila Lama     |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey  |  35 | F      | 981221995  | Palpa       |
+| 19 | divya shrestha |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug    |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi   |  23 | M      | 981225486  | nawalparasi |
+| 27 | sagar subedi   |  25 | M      | 9814562286 | kapilbastu  |
++----+----------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+Ending with “a” and “I”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name REGEXP  '[ai]$';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama      |  22 | F      | 982222955  | Butwal      |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal      |
+| 13 | Ratana Lama     |  22 | F      | 98458445   | Butwal      |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha   |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+SELECT * FROM personal1 WHERE name REGEXP '^M'
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE name REGEXP '^M';
++----+-----------------+-----+--------+------------+-----------+
+| id | name            | age | gender | phone      | city      |
++----+-----------------+-----+--------+------------+-----------+
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal    |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa     |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal    |
+| 10 | Manish KC       |  22 | M      | 98228598   | Butwal    |
+| 11 | Manoj KC        |  60 | M      | 9845845    | Butwal    |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan   |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan   |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha |
++----+-----------------+-----+--------+------------+-----------+
+
+
+
+
+SELECT * FROM personal1 WHERE city REGEXP '^(Palpa|Butwal)$'
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE city REGEXP '^(Palpa|Butwal)$';
++----+-------------------+-----+--------+------------+--------+
+| id | name              | age | gender | phone      | city   |
++----+-------------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa     |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal |
+|  3 | Shila Lama        |  22 | F      | 982222955  | Butwal |
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa  |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa  |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa  |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa  |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa  |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal |
++----+-------------------+-----+--------+------------+--------+
+
+
+
+
+Select rows where the phone number contains '9812'
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE phone REGEXP '9812';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey     |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+| 16 | karishma gurug  |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug   |  91 | M      | 9812544286 | nawalparasi |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+Select rows where the age is two digits
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE age REGEXP '^[0-9]{2}$';
+
+
+
+ Select rows where the name starts with 'M' and is followed by any character
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE name REGEXP '^M.';
++----+-----------------+-----+--------+------------+-----------+
+| id | name            | age | gender | phone      | city      |
++----+-----------------+-----+--------+------------+-----------+
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal    |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa     |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal    |
+| 10 | Manish KC       |  22 | M      | 98228598   | Butwal    |
+| 11 | Manoj KC        |  60 | M      | 9845845    | Butwal    |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan   |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan   |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha |
++----+-----------------+-----+--------+------------+-----------+
+
+
+
+Select rows where the gender is either 'M' or 'F'
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE gender REGEXP '^(M|F)$';
+
+
+
+
+ Select rows where the city does not start with 'B' and 'P'
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE city NOT REGEXP '^B|^P';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug  |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 23 | hilsang gurug   |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+Select rows where the name contains two consecutive vowels
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE name REGEXP '[aeiou]{2}';
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
++----+---------------+-----+--------+------------+--------+
+
+
+
+Select rows where the phone number has exactly 10 digits
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE phone REGEXP '^[0-9]{10}$';
++----+----------------+-----+--------+------------+-------------+
+| id | name           | age | gender | phone      | city        |
++----+----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa  |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa   |  21 | M      | 9822229555 | Butwal      |
+| 23 | hilsang gurug  |  91 | M      | 9812544286 | nawalparasi |
+| 26 | ganga shrestha |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi   |  25 | M      | 9814562286 | kapilbastu  |
++----+----------------+-----+--------+------------+-------------+
+
+
+
+
+Select rows where the name starts with a vowel
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE name REGEXP '^[aeiouAEIOU]';
++----+-------------+-----+--------+---------+-------+
+| id | name        | age | gender | phone   | city  |
++----+-------------+-----+--------+---------+-------+
+|  5 | aman rijal  |  26 | M      | 981555  | Palpa |
+|  7 | anil pandey |  60 | M      | 9812287 | Palpa |
++----+-------------+-----+--------+---------+-------+
+
+
+
+
+Select rows where the name contains both 'a' and 'e'
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE name REGEXP 'a.*e|e.*a';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey     |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+Select rows where the age is between 30 and 60 (inclusive)
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE age REGEXP '^(3[0-9]|60)$';
++----+---------------+-----+--------+-----------+------------+
+| id | name          | age | gender | phone     | city       |
++----+---------------+-----+--------+-----------+------------+
+|  4 | sunita pandey |  35 | F      | 981221995 | Palpa      |
+|  7 | anil pandey   |  60 | M      | 9812287   | Palpa      |
+|  9 | Mina Lama     |  35 | F      | 98458125  | Butwal     |
+| 11 | Manoj KC      |  60 | M      | 9845845   | Butwal     |
+| 14 | mina BC       |  38 | F      | 981221996 | chitwan    |
+| 20 | susma gurug   |  32 | F      | 98544229  | bhirawaha  |
+| 24 | rikma thapa   |  39 | F      | 981782286 | kapilbastu |
++----+---------------+-----+--------+-----------+------------+
+
+
+
+
+Select rows where the phone number starts with '98' and ends with '7'
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE phone REGEXP '^98.*7$';
++----+-----------------+-----+--------+---------+-------------+
+| id | name            | age | gender | phone   | city        |
++----+-----------------+-----+--------+---------+-------------+
+|  7 | anil pandey     |  60 | M      | 9812287 | Palpa       |
+| 15 | muskan shrestha |  29 | M      | 98157   | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557 | nawalparasi |
++----+-----------------+-----+--------+---------+-------------+
+
+
+
+
+Select rows where the name does not contain any whitespace
+----------------------------------------------------------
+mysql> SELECT * FROM personal1 WHERE name NOT REGEXP '\\s';
+Empty set (0.01 sec)
+
+
+
+
+Select rows where the name starts and ends with a consonant
+----------------------------------------------------------
+
+mysql> SELECT * FROM personal1 WHERE name REGEXP '^[^aeiouAEIOU].*[^aeiouAEIOU]$';
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+Select rows where the name consists of exactly two words
+----------------------------------------------------------
+
+mysql> SELECT * FROM personal1 WHERE name REGEXP '^[^\\s]+\\s[^\\s]+$';
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama      |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey   |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal      |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey  |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey     |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale       |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal      |
+| 13 | Ratana Lama     |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC         |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug  |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi     |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 20 | susma gurug     |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug   |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 27 | sagar subedi    |  25 | M      | 9814562286 | kapilbastu  |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha   |
++----+-----------------+-----+--------+------------+-------------+
+

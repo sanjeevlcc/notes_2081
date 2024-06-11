@@ -1,0 +1,297 @@
+
+						================================
+							      MYSQL
+						================================
+
+  It is databasse management software.
+  A database is a collection of data stored in a format that can easily be accessed.
+
+	SQL can execute queries against a database
+	SQL can retrieve data from a database
+	SQL can insert records in a database
+	SQL can update records in a database
+	SQL can delete records from a database
+	SQL can create new databases
+	SQL can create new tables in a database
+	SQL can create stored procedures in a database
+	SQL can create views in a database
+	SQL can set permissions on tables, procedures, and views
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+Website from ==> submit ==> dynamic content ==> as a data (but organized)==> in database
+
+
+https://github.com/sanjeevlcc/crud.git
+
+
+
+Static		vs 		Dynamic(dbms)
+stateless			sateful	(set)
+-----------------------------------------------------------------------------------------------
+
+
+---------------------
+DBMS software
+ 
+	oracle 
+	mysql
+	ms sql server
+	postgreSQL
+	MongoDB
+---------------------
+
+
+
+---------------------
+Types of database
+	1. relation- RDBMS
+	2. nosql
+---------------------
+
+
+
+---------------------------------------------------------------
+	relation are based on tables
+	tables are linked with another table.
+	so it is relation database(RDBMS)
+	use a language as==>> structure query language(SQL)
+---------------------------------------------------------------
+
+
+------------------------------------------------
+Advantage of Mysql
+
+	  crossplatform
+	  multiple language as PHP, nodeJS, Python , C#
+	  openSource
+	  Mysql is RDBMS
+	  fast, reliable, 
+	  scalable (small or v v huge vauge production)
+	  easy to use(client side or server side or embedded systems)
+------------------------------------------------
+
+
+
+-----------------------------------
+Website used by mysql
+
+	facebook
+	twitter
+	google
+	wikipedia
+	flicker
+	youtube
+	pinintreast
+-----------------------------------
+
+
+
+
+-----------------------------------
+CMS using mysql
+
+	wordpress
+	joomla
+	durpal
+	magento
+	phpBB
+	TYPO3
+	MODx
+-----------------------------------
+
+
+
+-----------------------------------
+Objectives
+
+	Create DB and tables
+	add data in DB
+	Update dta in DB
+	read sata from DB
+	delete data fromDB
+-----------------------------------
+
+
+
+----------------------------------------------------------------------
+Mysql installation
+
+METHOD 1
+--------
+install xaamp, wamp , maamp
+	....................
+	http://localhost/phpmyadmin
+	....................
+	
+METHOD 2 mysql workbench
+		https://dev.mysql.com/downloads/workbench/
+
+METHOD 3 killer koda
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+
+
+
+********************************************************************************************
+DATATYPES in MYSQL
+		STRING
+		Numeric
+		Date and Time
+
+1.STRING
+------------
+	CHAR(size)		0-255
+	VARCHAR(size)		0-65535
+	BINARY(size)		
+	VARBINARY(size)
+	TINYTEXT		255 characters
+	TEXT(size)		65535 bytes
+	MEDIUMTEXT		16777215 characters
+	LONGTEXT		4294967295 characters
+	TINYBLOB		blob stores in bytes @255 BYTES
+	BLOB(size)		65535 BYTES
+	MEDIUMBLOB		16777215 bytes
+	LONGBLOB		4294967295
+	ENUM(val1,val2,val3,......)	listing more values
+	SET(val1,val2,val3,.....)
+
+2.NUMERIC
+------------
+	BIT(size)		   1 to 64
+	TINYINT(size)		  -128 to 127		
+	INT(size)		  -2147483648 to 2147483647
+	INTEGER(size)		
+	SMALLINT(size)		  -32768 to 32767
+	MEDIUMINT(size)		  -8388608 to 8388607	
+	BIGINT(size)		  -9223372036854775808 to 9223372036854775807
+	BOOL			   0 or 1 / false or true
+	BOOLEAN
+	FLOAT(p)		   decimal value 200.786
+	DOUBLE(size,d) 
+	DECIMAL(size,d)		   size=60, d=30
+	DEC(size,d)		
+	
+3.DATE and TIME
+-----------------
+	DATE			yy-mm-dd	1000-01-01 to 9999-12-31
+	DATETIME(fps)		yyyy-mm-dd hh:mm:ss
+	TIMESTAMP(fps)		past date and time set  yyyy-mm-dd hh:mm:ss
+	TIME(fps)		hh:mm:ss	
+	YEAR			four-digit format: 2017
+********************************************************************************************
+
+
+
+
+
+
+
+
+**************************************************
+SYNTAX for SQL
+
+Most Important SQL Commands
+**************************************************
+
+SELECT - extracts data from a database
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+
+
+CREATING/ DELEATING DATABASE 
+--------------------
+
+	CREATE DATABASE database_name;
+	
+	
+	DROP DATABASE database_name;
+
+
+
+
+
+USING or INSERTING into DATABASE 
+-----------------------------------
+	USE database_name;
+	
+
+
+CREATING/ DELETING TABLES
+--------------------
+
+	CREATE TABLE table_name(
+		column1 datatype
+		column2 datatype
+		....
+		....
+		....
+		....
+		);
+
+	
+
+
+
+	DROP TABLE table_name;
+
+
+
+
+
+INSERT INTO Statement
+--------------------
+The INSERT INTO statement is used to insert new records in a table. 
+
+	INSERT INTO table_name (column1,column2, .......) 
+	VALUES(value1,value2, ....);
+
+
+DELETE FROM table_name WHERE (`id` = '2');
+
+
+
+
+SELECT Statement
+--------------------
+The SELECT statement is used to select data from a database.
+
+	SELECT column1, column2, ...
+	FROM table_name;
+
+
+	SELECT column1, column2, ...
+	FROM table_name
+	WHERE condition;
+	
+**************************************************
+
+
+
+

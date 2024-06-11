@@ -1,0 +1,419 @@
+
+=========USING/Mysql Community/phpadmin/docker==============
+
+-----------------DOCKER------------------------------
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose any scnerio. Ubuntu or CKA or Playground
+step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+step 4: docker exec -ti mydb1 bash
+step 5: mysql -u root -p1234
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+LAB 6 - LIKE operator with select/where
+
+Conditional clause using WHERE Clause with
+-----------------------------------------------------------------------------------------
+
+
+
+		SYNTAX
+		---------
+		SELECT column1,column2, ......					
+			FROM table_name;
+			Where column_name LIKE pattern;
+
+
+		SELECT column1,column2, ......					
+			FROM table_name;
+			Where column_name NOT LIKE pattern;
+
+
+	The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+	There are two wildcards often used in conjunction with the LIKE operator:
+	The percent sign (%) represents zero, one, or multiple characters
+	The underscore sign (_) represents one, single character
+	The percent sign and the underscore can also be used in combinations!
+
+
+
+
+Wild chard characters 			% and _	
+----------------------------------------------------------
+	%		represent zero, one or multiple characters
+	_		single character
+
+
+
+
+	Pattern	Description
+	---------------------
+		LIKE ‘a%’	Start with “a”
+		LIKE ‘%a’	End with a
+		LIKE ‘%am%’	Have am in any position
+		LIKE ‘a%m’	Start with a and ends with m
+		LIKE ‘_a%’	A in the second position
+		LIKE ‘__a%’	A in the third position
+		LIKE ‘_ab’	A in the second and y in te third position
+
+
+
+
+Display name that starts with “s”
+----------------------------------------------------------
+
+mysql> select * from personal1 where  name like "s%";
+
++----+---------------+-----+--------+------------+-------------+
+| id | name          | age | gender | phone      | city        |
++----+---------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa       |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey |  35 | F      | 981221995  | Palpa       |
+| 20 | susma gurug   |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi  |  23 | M      | 981225486  | nawalparasi |
+| 27 | sagar subedi  |  25 | M      | 9814562286 | kapilbastu  |
++----+---------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+Not Display name that starts with “s”
+----------------------------------------------------------
+
+mysql> select * from personal1 where  name not like "s%";
+
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  2 | Mivaan Thapa      |  21 | M      | 9822229555 | Butwal      |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+|  9 | Mina Lama         |  35 | F      | 98458125   | Butwal      |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 13 | Ratana Lama       |  22 | F      | 98458445   | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 15 | muskan shrestha   |  29 | M      | 98157      | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 19 | divya shrestha    |  52 | F      | 9814557    | nawalparasi |
+| 22 | monika shrestha   |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 24 | rikma thapa       |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa       |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha    |  72 | F      | 9814782286 | kapilbastu  |
+| 35 | Mina Lama         |  22 | F      | 982222956  | bhirawaha   |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+Display starting name that belongs to "sa"
+----------------------------------------------------------
+mysql> select * from personal1 where  name like "sa%";
++----+---------------+-----+--------+------------+------------+
+| id | name          | age | gender | phone      | city       |
++----+---------------+-----+--------+------------+------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa      |
+| 27 | sagar subedi  |  25 | M      | 9814562286 | kapilbastu |
++----+---------------+-----+--------+------------+------------+
+
+
+
+
+
+
+display starting name that belongs to shila 
+----------------------------------------------------------
+
+mysql> select * from personal1 where  name like "shila%";
+
++----+------------+-----+--------+-----------+--------+
+| id | name       | age | gender | phone     | city   |
++----+------------+-----+--------+-----------+--------+
+|  3 | Shila Lama |  22 | F      | 982222955 | Butwal |
++----+------------+-----+--------+-----------+--------+
+
+
+
+
+
+
+Display the name that contains “ap” in between strings 
+----------------------------------------------------------
+mysql> select * from personal1 where  name like "%ap%";
++----+---------------+-----+--------+------------+------------+
+| id | name          | age | gender | phone      | city       |
++----+---------------+-----+--------+------------+------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa      |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal     |
+| 24 | rikma thapa   |  39 | F      | 981782286  | kapilbastu |
+| 25 | treya thapa   |  23 | F      | 981562286  | bhirawaha  |
++----+---------------+-----+--------+------------+------------+
+
+
+
+
+
+
+Display the name starts with “s” or “m”
+----------------------------------------------------------
+
+mysql> select * from personal1 where  name like "s%" or "m%";
+
++----+---------------+-----+--------+------------+-------------+
+| id | name          | age | gender | phone      | city        |
++----+---------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa       |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey |  35 | F      | 981221995  | Palpa       |
+| 20 | susma gurug   |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi  |  23 | M      | 981225486  | nawalparasi |
+| 27 | sagar subedi  |  25 | M      | 9814562286 | kapilbastu  |
++----+---------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+display starting letter belongs to “s”
+----------------------------------------------------------
+
+mysql> select * from personal1 where  name like "s%";
+
++----+---------------+-----+--------+------------+-------------+
+| id | name          | age | gender | phone      | city        |
++----+---------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa       |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal      |
+|  4 | sunita pandey |  35 | F      | 981221995  | Palpa       |
+| 20 | susma gurug   |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi  |  23 | M      | 981225486  | nawalparasi |
+| 27 | sagar subedi  |  25 | M      | 9814562286 | kapilbastu  |
++----+---------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+
+display starting letter belongs to uppercase “s”
+----------------------------------------------------------
+
+mysql> select * from personal1 where binary  name like "s%";
++----+---------------+-----+--------+------------+-------------+
+| id | name          | age | gender | phone      | city        |
++----+---------------+-----+--------+------------+-------------+
+|  4 | sunita pandey |  35 | F      | 981221995  | Palpa       |
+| 20 | susma gurug   |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi  |  23 | M      | 981225486  | nawalparasi |
+| 27 | sagar subedi  |  25 | M      | 9814562286 | kapilbastu  |
++----+---------------+-----+--------+------------+-------------+
+
+
+
+
+
+Strings end with a
+----------------------------------------------------------
+
+mysql> select * from personal1 where name like "%a";
+
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+|  2 | Mivaan Thapa    |  21 | M      | 9822229555 | Butwal      |
+|  3 | Shila Lama      |  22 | F      | 982222955  | Butwal      |
+|  9 | Mina Lama       |  35 | F      | 98458125   | Butwal      |
+| 13 | Ratana Lama     |  22 | F      | 98458445   | Butwal      |
+| 15 | muskan shrestha |  29 | M      | 98157      | chitwan     |
+| 19 | divya shrestha  |  52 | F      | 9814557    | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 24 | rikma thapa     |  39 | F      | 981782286  | kapilbastu  |
+| 25 | treya thapa     |  23 | F      | 981562286  | bhirawaha   |
+| 26 | ganga shrestha  |  72 | F      | 9814782286 | kapilbastu  |
+| 35 | Mina Lama       |  22 | F      | 982222956  | bhirawaha   |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+
+Strings not end with a
+----------------------------------------------------------
+
+mysql> select * from personal1 where name not like "%a";
+
++----+-------------------+-----+--------+------------+-------------+
+| id | name              | age | gender | phone      | city        |
++----+-------------------+-----+--------+------------+-------------+
+|  4 | sunita pandey     |  35 | F      | 981221995  | Palpa       |
+|  5 | aman rijal        |  26 | M      | 981555     | Palpa       |
+|  6 | kririka pandey    |  25 | F      | 981228     | Palpa       |
+|  7 | anil pandey       |  60 | M      | 9812287    | Palpa       |
+|  8 | manju ale         |  26 | F      | 98125698   | Palpa       |
+| 10 | Manish KC         |  22 | M      | 98228598   | Butwal      |
+| 11 | Manoj KC          |  60 | M      | 9845845    | Butwal      |
+| 12 | Bikram Timilsina  |  22 | M      | 9821245    | Butwal      |
+| 14 | mina BC           |  38 | F      | 981221996  | chitwan     |
+| 16 | karishma gurug    |  26 | F      | 981229     | chitwan     |
+| 17 | basu subedi       |  62 | M      | 9812286    | chitwan     |
+| 18 | muna BC           |  25 | F      | 98158545   | bhirawaha   |
+| 20 | susma gurug       |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi      |  23 | M      | 981225486  | nawalparasi |
+| 23 | hilsang gurug     |  91 | M      | 9812544286 | nawalparasi |
+| 27 | sagar subedi      |  25 | M      | 9814562286 | kapilbastu  |
++----+-------------------+-----+--------+------------+-------------+
+
+
+
+
+
+
+Strings end with pa
+----------------------------------------------------------
+
+mysql> select * from personal1 where name like "%pa";
++----+---------------+-----+--------+------------+------------+
+| id | name          | age | gender | phone      | city       |
++----+---------------+-----+--------+------------+------------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa      |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal     |
+| 24 | rikma thapa   |  39 | F      | 981782286  | kapilbastu |
+| 25 | treya thapa   |  23 | F      | 981562286  | bhirawaha  |
++----+---------------+-----+--------+------------+------------+
+
+
+
+
+
+Phone no end with 55
+----------------------------------------------------------
+
+mysql> select * from personal1 where phone like "%55";
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  2 | Mivaan Thapa  |  21 | M      | 9822229555 | Butwal |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal |
+|  5 | aman rijal    |  26 | M      | 981555     | Palpa  |
++----+---------------+-----+--------+------------+--------+
+
+
+
+
+
+Phone no consist values in between or anywhere 54
+----------------------------------------------------------
+
+mysql> select * from personal1 where phone like "%54%";
++----+-----------------+-----+--------+------------+-------------+
+| id | name            | age | gender | phone      | city        |
++----+-----------------+-----+--------+------------+-------------+
+|  1 | Sanjeev Thapa   |  20 | M      | 9815489555 | Palpa       |
+| 18 | muna BC         |  25 | F      | 98158545   | bhirawaha   |
+| 20 | susma gurug     |  32 | F      | 98544229   | bhirawaha   |
+| 21 | suman subedi    |  23 | M      | 981225486  | nawalparasi |
+| 22 | monika shrestha |  19 | F      | 981225445  | bhirawaha   |
+| 23 | hilsang gurug   |  91 | M      | 9812544286 | nawalparasi |
++----+-----------------+-----+--------+------------+-------------+
+
+
+
+
+
+Name starts with “s” and end with “a”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name like "s%a";
++----+---------------+-----+--------+------------+--------+
+| id | name          | age | gender | phone      | city   |
++----+---------------+-----+--------+------------+--------+
+|  1 | Sanjeev Thapa |  20 | M      | 9815489555 | Palpa  |
+|  3 | Shila Lama    |  22 | F      | 982222955  | Butwal |
++----+---------------+-----+--------+------------+--------+
+
+
+
+
+mysql> select * from personal1 where name like "d%a";
++----+----------------+-----+--------+---------+-------------+
+| id | name           | age | gender | phone   | city        |
++----+----------------+-----+--------+---------+-------------+
+| 19 | divya shrestha |  52 | F      | 9814557 | nawalparasi |
++----+----------------+-----+--------+---------+-------------+
+
+
+
+
+
+
+Find second character belongs “re”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name like "_re%";
++----+-------------+-----+--------+-----------+-----------+
+| id | name        | age | gender | phone     | city      |
++----+-------------+-----+--------+-----------+-----------+
+| 25 | treya thapa |  23 | F      | 981562286 | bhirawaha |
++----+-------------+-----+--------+-----------+-----------+
+
+
+
+
+
+
+Find the third character belongs “n”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name like "___n%";
+
++----+------------+-----+--------+--------+-------+
+| id | name       | age | gender | phone  | city  |
++----+------------+-----+--------+--------+-------+
+|  5 | aman rijal |  26 | M      | 981555 | Palpa |
++----+------------+-----+--------+--------+-------+
+
+
+
+
+Find the start character “s” and third character “I”
+----------------------------------------------------------
+
+mysql> select * from personal1 where name like "s_i%";
+
++----+------------+-----+--------+-----------+--------+
+| id | name       | age | gender | phone     | city   |
++----+------------+-----+--------+-----------+--------+
+|  3 | Shila Lama |  22 | F      | 982222955 | Butwal |
++----+------------+-----+--------+-----------+--------+
+

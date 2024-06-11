@@ -1,0 +1,452 @@
+
+
+
+======================================================================================================
+2023
+======================================================================================================
+
+Perform normal form of the following student table , Normalize upto BCNF.
+
++-----------+-------------+----------+-----------------+--------+-----------+
+| studentID | studentName | courseID | courseName      | credit | contact   |
++-----------+-------------+----------+-----------------+--------+-----------+
+|       101 | Ram         | IT220    | DBMS            |      3 | 9841,5573 |
+|       102 | Sita        | IT220    | DBMS            |      3 | 9850      |
+|       103 | John        | IT218    | DSA with Java   |      3 | 9871,2365 |
+|       104 | Jenny       | ECO201   | Micro Economics |      3 | 9985,4395 |
++-----------+-------------+----------+-----------------+--------+-----------+
+
+                            Given Funtiona dependencies
+                            
+                            studentID -> studentName
+                            courseID -> courseName
+                            courseID -> credit
+
+
+Solution
+-----------
+
+                            1NF (First Normal Form):
+
+In 1NF, all attributes must be atomic (indivisible).
+
+students:
++-----------+-------------+----------+-----------------+--------+
+| studentID | studentName | courseID | courseName      | credit |
++-----------+-------------+----------+-----------------+--------+
+|       101 | Ram         | IT220    | DBMS            |      3 |
+|       102 | Sita        | IT220    | DBMS            |      3 |
+|       103 | John        | IT218    | DSA with Java   |      3 |
+|       104 | Jenny       | ECO201   | Micro Economics |      3 |
++-----------+-------------+----------+-----------------+--------+
+
+student_contacts:
++-----------+-----------+
+| studentID | contact   |
++-----------+-----------+
+|       101 | 9841      |
+|       101 | 5573      |
+|       102 | 9850      |
+|       103 | 9871      |
+|       103 | 2365      |
+|       104 | 9985      |
+|       104 | 4395      |
++-----------+-----------+
+
+
+The given data is already in 1NF as each cell contains atomic values.
+Now, the data satisfies the 1NF, as each attribute contains atomic values, 
+and the contact numbers are stored in a separate table.
+
+
+
+
+                         2NF (Second Normal Form), 
+
+we need to ensure that there are no partial dependencies of 
+any column on the primary key. 
+
+
+In the case of the students table, 
+the primary key is studentID, and there are no partial dependencies. 
+The student_contacts table also has the primary key studentID 
+without partial dependencies.
+
+students:
++-----------+-------------+----------+-----------------+--------+
+| studentID | studentName | courseID | courseName      | credit |
++-----------+-------------+----------+-----------------+--------+
+|       101 | Ram         | IT220    | DBMS            |      3 |
+|       102 | Sita        | IT220    | DBMS            |      3 |
+|       103 | John        | IT218    | DSA with Java   |      3 |
+|       104 | Jenny       | ECO201   | Micro Economics |      3 |
++-----------+-------------+----------+-----------------+--------+
+
+The students table is already in 2NF.
+
+student_contacts:
++-----------+-----------+
+| studentID | contact   |
++-----------+-----------+
+|       101 | 9841      |
+|       101 | 5573      |
+|       102 | 9850      |
+|       103 | 9871      |
+|       103 | 2365      |
+|       104 | 9985      |
+|       104 | 4395      |
++-----------+-----------+
+The student_contacts table is already in 2NF since there is no partial
+dependency on the composite primary key (studentID, contact).
+
+
+
+both the students and student_contacts tables are in 2NF, 
+as there are no partial dependencies on their respective primary keys.
+
+
+
+
+                         3NF (Third Normal Form)
+
+we need to eliminate transitive dependencies. 
+In both the students and student_contacts tables, 
+there are no transitive dependencies.
+
+
+students:
++-----------+-------------+----------+-----------------+--------+
+| studentID | studentName | courseID | courseName      | credit |
++-----------+-------------+----------+-----------------+--------+
+|       101 | Ram         | IT220    | DBMS            |      3 |
+|       102 | Sita        | IT220    | DBMS            |      3 |
+|       103 | John        | IT218    | DSA with Java   |      3 |
+|       104 | Jenny       | ECO201   | Micro Economics |      3 |
++-----------+-------------+----------+-----------------+--------+
+
+The students table is already in 3NF.
+
+student_contacts:
++-----------+-----------+
+| studentID | contact   |
++-----------+-----------+
+|       101 | 9841      |
+|       101 | 5573      |
+|       102 | 9850      |
+|       103 | 9871      |
+|       103 | 2365      |
+|       104 | 9985      |
+|       104 | 4395      |
++-----------+-----------+
+
+he student_contacts table is also in 3NF, 
+as there are no transitive dependencies.
+
+
+
+
+
+
+
+
+                              Boyce-Codd Normal Form (BCNF),
+
+we need to ensure that for every non-trivial 
+functional dependency X → Y in the set of functional 
+dependencies, X is a superkey. 
+
+If any non-trivial dependency violates this condition, we 
+need to decompose
+the table until it satisfies BCNF.
+
+In both the students and student_contacts tables, the functional 
+dependencies  do not violate BCNF, as the primary 
+keys (studentID in both tables) already uniquely determine 
+all attributes. Therefore, both tables are in BCNF.
+
+
+students:
++-----------+-------------+----------+-----------------+--------+
+| studentID | studentName | courseID | courseName      | credit |
++-----------+-------------+----------+-----------------+--------+
+|       101 | Ram         | IT220    | DBMS            |      3 |
+|       102 | Sita        | IT220    | DBMS            |      3 |
+|       103 | John        | IT218    | DSA with Java   |      3 |
+|       104 | Jenny       | ECO201   | Micro Economics |      3 |
++-----------+-------------+----------+-----------------+--------+
+
+
+student_contacts:
++-----------+-----------+
+| studentID | contact   |
++-----------+-----------+
+|       101 | 9841      |
+|       101 | 5573      |
+|       102 | 9850      |
+|       103 | 9871      |
+|       103 | 2365      |
+|       104 | 9985      |
+|       104 | 4395      |
++-----------+-----------+
+
+
+Both tables (students and student_contacts) are in BCNF, as there are 
+no non-trivial functional dependencies
+where the determinant is not a superkey.
+
+
+
+
+
+
+
+
+
+ LABS
+----------
+
+mysql> create database db1;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use db1;
+Database changed
+
+
+-- Create the students table
+CREATE TABLE students (
+    studentID INT PRIMARY KEY,
+    studentName VARCHAR(50),
+    courseID VARCHAR(8),
+    courseName VARCHAR(50),
+    credit INT,
+    contact VARCHAR(30) 
+); 
+
+
+-- Insert data into the students table
+INSERT INTO students (studentID, studentName, courseID, courseName, credit, contact)
+VALUES
+(101, 'Ram', 'IT220', 'DBMS', 3, '9841,5573'),
+(102, 'Sita', 'IT220', 'DBMS', 3, '9850'),
+(103, 'John', 'IT218', 'DSA with Java', 3, '9871,2365'),
+(104, 'Jenny', 'ECO201', 'Micro Economics', 3, '9985,4395');
+
+
+
+mysql> select * from students;
++-----------+-------------+----------+-----------------+--------+-----------+
+| studentID | studentName | courseID | courseName      | credit | contact   |
++-----------+-------------+----------+-----------------+--------+-----------+
+|       101 | Ram         | IT220    | DBMS            |      3 | 9841,5573 |
+|       102 | Sita        | IT220    | DBMS            |      3 | 9850      |
+|       103 | John        | IT218    | DSA with Java   |      3 | 9871,2365 |
+|       104 | Jenny       | ECO201   | Micro Economics |      3 | 9985,4395 |
++-----------+-------------+----------+-----------------+--------+-----------+
+4 rows in set (0.00 sec)
+
+
+
+
+SOLUTION
+-------
+
+CREATE TABLE students (
+    studentID INT PRIMARY KEY,
+    studentName VARCHAR(50),
+    courseID VARCHAR(10),
+    courseName VARCHAR(50),
+    credit INT
+);
+
+-- Insert Data into students Table
+INSERT INTO students (studentID, studentName, courseID, courseName, credit)
+VALUES
+    (101, 'Ram', 'IT220', 'DBMS', 3),
+    (102, 'Sita', 'IT220', 'DBMS', 3),
+    (103, 'John', 'IT218', 'DSA with Java', 3),
+    (104, 'Jenny', 'ECO201', 'Micro Economics', 3);
+
+
+
+CREATE TABLE student_contacts (
+    studentID INT,
+    contact VARCHAR(15),
+    PRIMARY KEY (studentID, contact),
+    FOREIGN KEY (studentID) REFERENCES students(studentID)
+);
+
+-- Insert Data into student_contacts Table
+INSERT INTO student_contacts (studentID, contact)
+VALUES
+    (101, '9841'),
+    (101, '5573'),
+    (102, '9850'),
+    (103, '9871'),
+    (103, '2365'),
+    (104, '9985'),
+    (104, '4395');
+
+
+mysql> select * from students;
++-----------+-------------+----------+-----------------+--------+
+| studentID | studentName | courseID | courseName      | credit |
++-----------+-------------+----------+-----------------+--------+
+|       101 | Ram         | IT220    | DBMS            |      3 |
+|       102 | Sita        | IT220    | DBMS            |      3 |
+|       103 | John        | IT218    | DSA with Java   |      3 |
+|       104 | Jenny       | ECO201   | Micro Economics |      3 |
++-----------+-------------+----------+-----------------+--------+
+
+
+mysql> select * from students_contacts;
+ERROR 1146 (42S02): Table 'd1.students_contacts' doesn't exist
+mysql> select * from student_contacts;
++-----------+---------+
+| studentID | contact |
++-----------+---------+
+|       101 | 5573    |
+|       101 | 9841    |
+|       102 | 9850    |
+|       103 | 2365    |
+|       103 | 9871    |
+|       104 | 4395    |
+|       104 | 9985    |
++-----------+---------+
+
+
+
+
+query to display the student name and contact number:
+--------------------
+SELECT s.studentName, sc.contact
+FROM students s
+JOIN student_contacts sc ON s.studentID = sc.studentID;
+                  +-------------+---------+
+                  | studentName | contact |
+                  +-------------+---------+
+                  | Ram         | 5573    |
+                  | Ram         | 9841    |
+                  | Sita        | 9850    |
+                  | John        | 2365    |
+                  | John        | 9871    |
+                  | Jenny       | 4395    |
+                  | Jenny       | 9985    |
+                  +-------------+---------+
+
+
+
+additional insertions of data 
+--------------------------------
+INSERT INTO students (studentID, studentName, courseID, courseName, credit)
+VALUES
+    (105, 'Sushil', 'IT220', 'Database Systems', 3),
+    (106, 'Santosh', 'IT218', 'Java Programming', 3),
+    (107, 'Priyanka', 'ECO201', 'Micro Economics', 3);
+
+
+
+
+INSERT INTO student_contacts (studentID, contact)
+VALUES
+    (105, '9841'),
+    (105, '5573'),
+    (106, '9850'),
+    (107, '9871'),
+    (107, '2365');
+
+m
+
+
+                           mysql> select * from students;
+                           +-----------+-------------+----------+------------------+--------+
+                           | studentID | studentName | courseID | courseName       | credit |
+                           +-----------+-------------+----------+------------------+--------+
+                           |       101 | Ram         | IT220    | DBMS             |      3 |
+                           |       102 | Sita        | IT220    | DBMS             |      3 |
+                           |       103 | John        | IT218    | DSA with Java    |      3 |
+                           |       104 | Jenny       | ECO201   | Micro Economics  |      3 |
+                           |       105 | Sushil      | IT220    | Database Systems |      3 |
+                           |       106 | Santosh     | IT218    | Java Programming |      3 |
+                           |       107 | Priyanka    | ECO201   | Micro Economics  |      3 |
+                           +-----------+-------------+----------+------------------+--------+
+
+
+
+                             mysql> select * from student_contacts ;
+                             +-----------+---------+
+                             | studentID | contact |
+                             +-----------+---------+
+                             |       101 | 5573    |
+                             |       101 | 9841    |
+                             |       102 | 9850    |
+                             |       103 | 2365    |
+                             |       103 | 9871    |
+                             |       104 | 4395    |
+                             |       104 | 9985    |
+                             |       105 | 5573    |
+                             |       105 | 9841    |
+                             |       106 | 9850    |
+                             |       107 | 2365    |
+                             |       107 | 9871    |
+                             +-----------+---------+
+
+
+
+                             mysql> SELECT s.studentName, sc.contact
+                                  FROM students s
+                                  JOIN student_contacts sc ON s.studentID = sc.studentID;
+                             +-------------+---------+
+                             | studentName | contact |
+                             +-------------+---------+
+                             | Ram         | 5573    |
+                             | Ram         | 9841    |
+                             | Sita        | 9850    |
+                             | John        | 2365    |
+                             | John        | 9871    |
+                             | Jenny       | 4395    |
+                             | Jenny       | 9985    |
+                             | Sushil      | 5573    |
+                             | Sushil      | 9841    |
+                             | Santosh     | 9850    |
+                             | Priyanka    | 2365    |
+                             | Priyanka    | 9871    |
+                             +-------------+---------+
+
+
+
+
+======================================================================================================
+
+======================================================================================================
+
+
+
+
+
+======================================================================================================
+
+======================================================================================================
+
+
+
+
+
+
+======================================================================================================
+
+======================================================================================================
+
+
+
+
+
+======================================================================================================
+
+======================================================================================================
+
+
+
+
+
+
+

@@ -1,0 +1,1553 @@
+
+==========================================================
+mysql> create database db_bank;
+Query OK, 1 row affected (0.03 sec)
+==========================================================
+
+
+
+==========================================================
+mysql> use db_bank;
+Database changed
+==========================================================
+
+
+
+
+
+==========================================================
+-- Create branch table
+CREATE TABLE branch (
+    branch_name VARCHAR(50),
+    branch_city VARCHAR(50),
+    assets DECIMAL(15, 2),
+    PRIMARY KEY (branch_name)
+);
+
+-- Create customer table
+CREATE TABLE customer (
+    customer_name VARCHAR(50),
+    customer_street VARCHAR(100),
+    customer_city VARCHAR(50),
+    PRIMARY KEY (customer_name)
+);
+
+-- Create account table
+CREATE TABLE account (
+    account_number INT,
+    branch_name VARCHAR(50),
+    balance DECIMAL(15, 2),
+    PRIMARY KEY (account_number),
+    FOREIGN KEY (branch_name) REFERENCES branch(branch_name)
+);
+
+-- Create loan table
+CREATE TABLE loan (
+    loan_number  VARCHAR(10),
+    branch_name VARCHAR(50),
+    amount DECIMAL(15, 2),
+    PRIMARY KEY (loan_number),
+    FOREIGN KEY (branch_name) REFERENCES branch(branch_name)
+);
+
+-- Create depositor table
+CREATE TABLE depositor (
+    customer_name VARCHAR(50),
+    account_number INT,
+    PRIMARY KEY (customer_name, account_number),
+    FOREIGN KEY (customer_name) REFERENCES customer(customer_name),
+    FOREIGN KEY (account_number) REFERENCES account(account_number)
+);
+
+-- Create borrower table
+CREATE TABLE borrower (
+    customer_name VARCHAR(50),
+    loan_number  VARCHAR(10),
+    PRIMARY KEY (customer_name, loan_number),
+    FOREIGN KEY (customer_name) REFERENCES customer(customer_name),
+    FOREIGN KEY (loan_number) REFERENCES loan(loan_number)
+);
+
+
+
+
+mysql> show tables;
++-------------------+
+| Tables_in_db_bank |
++-------------------+
+| account           |
+| borrower          |
+| branch            |
+| customer          |
+| depositor         |
+| loan              |
++-------------------+
+
+
+
+
+mysql> desc account;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| account_number | int           | NO   | PRI | NULL    |       |
+| branch_name    | varchar(50)   | YES  | MUL | NULL    |       |
+| balance        | decimal(15,2) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+
+
+
+
+
+==========================================================
+
+
+
+
+
+==========================================================
+INSERT INTO customer (customer_name, customer_street, customer_city)
+VALUES 
+    ('Jones', 'Main', 'Harrison'),
+    ('Smith', 'North', 'Rye'),
+    ('Hayes', 'Main', 'Harrison'),
+    ('Curry', 'North', 'Rye'),
+    ('Lindsay', 'Park', 'Pittsfield'),
+    ('Turner', 'Putnam', 'Stamford'),
+    ('Williams', 'Nassau', 'Princeton'),
+    ('Adams', 'Spring', 'Pittsfield'),
+    ('Johnson', 'Alma', 'Palo Alto'),
+    ('Glenn', 'Sand Hill', 'Woodside'),
+    ('Brooks', 'Senator', 'Brooklyn'),
+    ('Green', 'Walnut', 'Stamford');
+
+
+INSERT INTO branch (branch_name, branch_city, assets)
+VALUES 
+    ('Downtown', 'Brooklyn', 9000000),
+    ('Redwood', 'Palo Alto', 2100000),
+    ('Perryridge', 'Horseneck', 1700000),
+    ('Mianus', 'Horseneck', 400000),
+    ('Round Hill', 'Horseneck', 8000000),
+    ('Pownal', 'Bennington', 300000),
+    ('North Town', 'Rye', 3700000),
+    ('Brighton', 'Brooklyn', 7100000);
+
+
+
+
+INSERT INTO loan (loan_number, branch_name, amount)
+VALUES 
+    ('L-17', 'Downtown', 1000),
+    ('L-23', 'Redwood', 2000),
+    ('L-15', 'Perryridge', 1500),
+    ('L-14', 'Downtown', 1500),
+    ('L-93', 'Mianus', 500),
+    ('L-11', 'Round Hill', 900),
+    ('L-29', 'Pownal', 1200),
+    ('L-16', 'North Town', 1300),
+    ('L-18', 'Downtown', 2000),
+    ('L-25', 'Perryridge', 2500),
+    ('L-10', 'Brighton', 2200);
+==========================================================
+
+
+
+
+
+
+
+==========================================================
+mysql> select * from customer;
++---------------+-----------------+---------------+
+| customer_name | customer_street | customer_city |
++---------------+-----------------+---------------+
+| Adams         | Spring          | Pittsfield    |
+| Brooks        | Senator         | Brooklyn      |
+| Curry         | North           | Rye           |
+| Glenn         | Sand Hill       | Woodside      |
+| Green         | Walnut          | Stamford      |
+| Hayes         | Main            | Harrison      |
+| Johnson       | Alma            | Palo Alto     |
+| Jones         | Main            | Harrison      |
+| Lindsay       | Park            | Pittsfield    |
+| Smith         | North           | Rye           |
+| Turner        | Putnam          | Stamford      |
+| Williams      | Nassau          | Princeton     |
++---------------+-----------------+---------------+
+12 rows in set (0.00 sec)
+
+
+
+mysql> select * from branch;
++-------------+-------------+------------+
+| branch_name | branch_city | assets     |
++-------------+-------------+------------+
+| Brighton    | Brooklyn    | 7100000.00 |
+| Downtown    | Brooklyn    | 9000000.00 |
+| Mianus      | Horseneck   |  400000.00 |
+| North Town  | Rye         | 3700000.00 |
+| Perryridge  | Horseneck   | 1700000.00 |
+| Pownal      | Bennington  |  300000.00 |
+| Redwood     | Palo Alto   | 2100000.00 |
+| Round Hill  | Horseneck   | 8000000.00 |
++-------------+-------------+------------+
+8 rows in set (0.00 sec)
+
+
+
+
+mysql> select * from loan;
++-------------+-------------+---------+
+| loan_number | branch_name | amount  |
++-------------+-------------+---------+
+| L-10        | Brighton    | 2200.00 |
+| L-11        | Round Hill  |  900.00 |
+| L-14        | Downtown    | 1500.00 |
+| L-15        | Perryridge  | 1500.00 |
+| L-16        | North Town  | 1300.00 |
+| L-17        | Downtown    | 1000.00 |
+| L-18        | Downtown    | 2000.00 |
+| L-23        | Redwood     | 2000.00 |
+| L-25        | Perryridge  | 2500.00 |
+| L-29        | Pownal      | 1200.00 |
+| L-93        | Mianus      |  500.00 |
++-------------+-------------+---------+
+
+==========================================================
+
+
+
+
+
+==========================================================
+INSERT INTO borrower (customer_name, loan_number)
+VALUES 
+    ('Adams', 'L-16'),
+    ('Curry', 'L-93'),
+    ('Hayes', 'L-15'),
+    ('Lindsay', 'L-14'), -- Updated Jackson to Lindsay, assuming Jackson is meant to be Lindsay
+    ('Jones', 'L-17'),
+    ('Smith', 'L-11'),
+    ('Smith', 'L-23'),
+    ('Williams', 'L-17');
+
+
+
+
+INSERT INTO account (account_number, branch_name, balance)
+VALUES 
+    (101, 'Downtown', 1500.00),
+    (102, 'Redwood', 2000.00),
+    (103, 'Perryridge', 3000.00),
+    (104, 'Mianus', 500.00),
+    (105, 'Round Hill', 2500.00),
+    (106, 'Pownal', 1000.00),
+    (107, 'North Town', 3500.00);
+
+
+
+INSERT INTO depositor (customer_name, account_number)
+VALUES 
+    ('Adams', 101),
+    ('Brooks', 102),
+    ('Curry', 103),
+    ('Glenn', 104),
+    ('Hayes', 105),
+    ('Johnson', 106),
+    ('Jones', 107);
+
+==========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++Relation Alzebra and  SQL Queries +++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+--------------------------------------------
+Find all loans made at "Perryridge" branch
+--------------------------------------------
+
+
+	RA:
+	-----	 
+ 	SI branch_name= ′Perryridge′ (loan)
+
+
+	SQL:
+	-----
+SELECT loan_number, branch_name, amount
+FROM loan
+WHERE branch_name = 'Perryridge';
+
++-------------+-------------+---------+
+| loan_number | branch_name | amount  |
++-------------+-------------+---------+
+| L-15        | Perryridge  | 1500.00 |
+| L-25        | Perryridge  | 2500.00 |
++-------------+-------------+---------+
+
+
+
+
+
+
+SELECT l.loan_number, l.branch_name, l.amount, b.branch_city, b.assets
+FROM loan l
+JOIN branch b ON l.branch_name = b.branch_name
+WHERE l.branch_name = 'Perryridge';
+
++-------------+-------------+---------+-------------+------------+
+| loan_number | branch_name | amount  | branch_city | assets     |
++-------------+-------------+---------+-------------+------------+
+| L-15        | Perryridge  | 1500.00 | Horseneck   | 1700000.00 |
+| L-25        | Perryridge  | 2500.00 | Horseneck   | 1700000.00 |
++-------------+-------------+---------+-------------+------------+
+
+
+
+
+
+--------------------------------------------
+Find all loans of over $1200
+--------------------------------------------
+	RA:
+	-----
+	SI amount>1200 (loan)
+
+
+
+
+	SQL:
+	-----
+SELECT *FROM loan
+WHERE amount > 1200;
+
+
+
++-------------+-------------+---------+
+| loan_number | branch_name | amount  |
++-------------+-------------+---------+
+| L-10        | Brighton    | 2200.00 |
+| L-14        | Downtown    | 1500.00 |
+| L-15        | Perryridge  | 1500.00 |
+| L-16        | North Town  | 1300.00 |
+| L-18        | Downtown    | 2000.00 |
+| L-23        | Redwood     | 2000.00 |
+| L-25        | Perryridge  | 2500.00 |
++-------------+-------------+---------+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find all tuples who have taken loans of more than $1200 made 
+by the "Perryridge" branch
+----------------------------------------------------------------------------------------	
+	RA:
+	-----
+	SI amount>1200 ^ branch_name = 'Perryridge' (loan)	
+
+
+
+	SQL:
+	-----
+
+	SELECT * FROM loan 
+	WHERE amount > 1200 and branch_name = 'Perryridge';
+	
+	
+	+-------------+-------------+---------+
+	| loan_number | branch_name | amount  |
+	+-------------+-------------+---------+
+	| L-15        | Perryridge  | 1500.00 |
+	| L-25        | Perryridge  | 2500.00 |
+	+-------------+-------------+---------+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find all loan numbers and the amount of the loans.		PI
+----------------------------------------------------------------------------------------
+	RA:
+	-----
+		PI loan_number,amount  (loan)	
+
+	SQL:
+	-----
+
+		SELECT loan_number, amount
+		FROM loan;
+		
+		+-------------+---------+
+		| loan_number | amount  |
+		+-------------+---------+
+		| L-10        | 2200.00 |
+		| L-11        |  900.00 |
+		| L-14        | 1500.00 |
+		| L-15        | 1500.00 |
+		| L-16        | 1300.00 |
+		| L-17        | 1000.00 |
+		| L-18        | 2000.00 |
+		| L-23        | 2000.00 |
+		| L-25        | 2500.00 |
+		| L-29        | 1200.00 |
+		| L-93        |  500.00 |
+		+-------------+---------+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find the loan number for each loan of an amount greater than $1200		PI/SI()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+		PI loan_number  (SI amount>1200  (Loan))	
+
+
+
+	SQL:
+	-----
+
+		SELECT loan_number
+		FROM loan
+		WHERE amount > 1200;
+		
+		+-------------+
+		| loan_number |
+		+-------------+
+		| L-10        |
+		| L-14        |
+		| L-15        |
+		| L-16        |
+		| L-18        |
+		| L-23        |
+		| L-25        |
+		+-------------+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find those customers who lives in "Harrison"					PI/SI()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+		PI customer_name ( SI customer_city= ′ Harrison ′  (Customer) )
+
+	SQL:
+	-----
+
+		SELECT customer_name FROM customer 
+		WHERE customer_city = 'Harrison';
+		
+		
+		+---------------+
+		| customer_name |
+		+---------------+
+		| Hayes         |
+		| Jones         |
+		+---------------+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find the names of all customers who have a loan, an account, or both, from the bank
+
+								PI/SI   UNION  ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+		PI customer_name (Borrower)    U  PI customer_name (Depositor)	
+
+	SQL:
+	-----
+
+		SELECT customer_name
+		FROM borrower
+		UNION
+		SELECT customer_name
+		FROM depositor;
+		
+		+---------------+
+		| customer_name |
+		+---------------+
+		| Smith         |
+		| Lindsay       |
+		| Hayes         |
+		| Adams         |
+		| Jones         |
+		| Williams      |
+		| Curry         |
+		| Brooks        |
+		| Glenn         |
+		| Johnson       |
+		+---------------+
+		
+		
+		or
+		
+		SELECT DISTINCT customer.customer_name
+		FROM customer
+		LEFT JOIN depositor ON customer.customer_name = depositor.customer_name
+		LEFT JOIN borrower ON customer.customer_name = borrower.customer_name
+		WHERE depositor.customer_name IS NOT NULL OR borrower.customer_name IS NOT NULL;
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find the names of all customers who have a loan and an account 
+at bank
+
+							PI/SI   INTERSECT  ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+		PI customer_name (Borrower)    ^  PI customer_name (Depositor)	
+
+	SQL:
+	-----		
+		SELECT customer_name
+		FROM borrower
+		INTERSECT
+		SELECT customer_name
+		FROM depositor;
+		
+		+---------------+
+		| customer_name |
+		+---------------+
+		| Curry         |
+		| Hayes         |
+		| Adams         |
+		| Jones         |
+		+---------------+
+		
+		OR
+		
+		
+		
+		SELECT DISTINCT customer.customer_name
+		FROM customer
+		JOIN depositor ON customer.customer_name = depositor.customer_name
+		JOIN borrower ON customer.customer_name = borrower.customer_name
+		WHERE customer.customer_name IN (
+		    SELECT borrower.customer_name
+		    FROM borrower
+		    INTERSECT
+		    SELECT depositor.customer_name
+		    FROM depositor
+		);
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find the names of all customers who have accounts but no loan from the bank
+
+							PI/SI   set-difference  ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+		PI customer_name (Depositor)    -  PI customer_name (Borrower)	
+
+	SQL:
+	-----
+		SELECT customer_name FROM depositor
+		EXCEPT
+		SELECT borrower.customer_name
+		FROM borrower;
+		
+		+---------------+
+		| customer_name |
+		+---------------+
+		| Brooks        |
+		| Glenn         |
+		| Johnson       |
+		+---------------+
+		
+		
+		OR
+		
+		
+		
+		SELECT DISTINCT customer.customer_name
+		FROM customer
+		JOIN depositor ON customer.customer_name = depositor.customer_name
+		LEFT JOIN borrower ON customer.customer_name = borrower.customer_name
+		WHERE borrower.customer_name IS NULL;
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find all the names of customers who have a loan at the Perryridage Branch
+
+							PI/SI   X ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+		PI customer_name ( SI branch_name = 'Perryridge' ( SI borrower.loan_number = loan.loan_number (Borrower * Loan) ) )	
+
+	SQL:
+	-----
+		SELECT DISTINCT customer.customer_name
+		FROM customer, borrower, loan
+		WHERE customer.customer_name = borrower.customer_name
+		  AND borrower.loan_number = loan.loan_number
+		  AND loan.branch_name = 'Perryridge';
+		
+		+---------------+
+		| customer_name |
+		+---------------+
+		| Hayes         |
+		+---------------+
+		
+		
+		OR
+		
+		
+		SELECT DISTINCT customer.customer_name
+		FROM customer
+		JOIN borrower ON customer.customer_name = borrower.customer_name
+		JOIN loan ON borrower.loan_number = loan.loan_number
+		WHERE loan.branch_name = 'Perryridge';
+
+
+
+
+
+----------------------------------------------------------------------------------------
+Find  the names of all customers who have a loan at the Perryridage Branch but do not 
+have an account at any branch of the bank.
+
+							PI/SI   X ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+		PI customer_name ( SI branch_name = 'Perryridge' ( SI borrower.loan_number = loan.loan_number 			(Borrower * Loan) ) )  -	PI customer_name (Depositor)    
+
+	SQL:
+	-----
+		SELECT DISTINCT customer.customer_name
+		    -> FROM customer, borrower, loan, depositor, account
+		    -> WHERE customer.customer_name = borrower.customer_name
+		    ->   AND borrower.loan_number = loan.loan_number
+		    ->   AND loan.branch_name = 'Perryridge'
+		    ->   AND customer.customer_name = depositor.customer_name
+		    ->   AND depositor.account_number = account.account_number
+		    ->   AND account.account_number IS NULL;
+		Empty set (0.00 sec)
+		
+		
+		
+		OR 
+		
+		
+		
+		SELECT DISTINCT customer.customer_name
+		FROM customer
+		JOIN borrower ON customer.customer_name = borrower.customer_name
+		JOIN loan ON borrower.loan_number = loan.loan_number
+		LEFT JOIN depositor ON customer.customer_name = depositor.customer_name
+		LEFT JOIN account ON depositor.account_number = account.account_number
+		WHERE loan.branch_name = 'Perryridge' AND account.account_number IS NULL;
+		
+
+
+
+----------------------------------------------------------------------------------------
+x
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve all customer names and their cities:
+							PI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+	PI customer_name, customer_city(customer)
+
+
+	SQL:
+	-----
+mysql> SELECT customer_name, customer_city FROM customer;
++---------------+---------------+
+| customer_name | customer_city |
++---------------+---------------+
+| Adams         | Pittsfield    |
+| Brooks        | Brooklyn      |
+| Curry         | Rye           |
+| Glenn         | Woodside      |
+| Green         | Stamford      |
+| Hayes         | Harrison      |
+| Johnson       | Palo Alto     |
+| Jones         | Harrison      |
+| Lindsay       | Pittsfield    |
+| Smith         | Rye           |
+| Turner        | Stamford      |
+| Williams      | Princeton     |
++---------------+---------------+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve all loans with amounts greater than 1500:
+
+							SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+SI amount > 1500(loan)
+
+
+	SQL:
+	-----
+mysql> SELECT * FROM loan WHERE amount > 1500;
++-------------+-------------+---------+
+| loan_number | branch_name | amount  |
++-------------+-------------+---------+
+| L-10        | Brighton    | 2200.00 |
+| L-18        | Downtown    | 2000.00 |
+| L-23        | Redwood     | 2000.00 |
+| L-25        | Perryridge  | 2500.00 |
++-------------+-------------+---------+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+List all branches in Brooklyn:
+							SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+SI branch_city='Brooklyn'(branch)
+
+
+	SQL:
+	-----
+mysql> SELECT * FROM branch WHERE branch_city = 'Brooklyn';
++-------------+-------------+------------+
+| branch_name | branch_city | assets     |
++-------------+-------------+------------+
+| Brighton    | Brooklyn    | 7100000.00 |
+| Downtown    | Brooklyn    | 9000000.00 |
++-------------+-------------+------------+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the customer names who have loans:
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+PI_customer_name (SI loan_number ⨝ₐ loan ( borrower ) )
+
+
+	SQL:
+	-----
+mysql> SELECT DISTINCT customer_name FROM borrower;
++---------------+
+| customer_name |
++---------------+
+| Adams         |
+| Curry         |
+| Hayes         |
+| Jones         |
+| Lindsay       |
+| Smith         |
+| Williams      |
++---------------+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the total balance in all accounts:
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+PI total_balance (Σ_balance ( account ))
+
+
+	SQL:
+	-----
+mysql> SELECT SUM(balance) AS total_balance FROM account;
++---------------+
+| total_balance |
++---------------+
+|      14000.00 |
++---------------+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+List all customers and their loan numbers (if they have one):
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+PI customer_name, loan_number(c ⨝ₐ (customer ⨝ borrower))
+
+
+	SQL:
+	-----
+mysql> SELECT c.customer_name, b.loan_number
+    	FROM customer c
+    	LEFT JOIN borrower b ON c.customer_name = b.customer_name;
++---------------+-------------+
+| customer_name | loan_number |
++---------------+-------------+
+| Adams         | L-16        |
+| Brooks        | NULL        |
+| Curry         | L-93        |
+| Glenn         | NULL        |
+| Green         | NULL        |
+| Hayes         | L-15        |
+| Johnson       | NULL        |
+| Jones         | L-17        |
+| Lindsay       | L-14        |
+| Smith         | L-11        |
+| Smith         | L-23        |
+| Turner        | NULL        |
+| Williams      | L-17        |
++---------------+-------------+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the average loan amount:
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+PI avg_loan_amount(RO amount(loan))
+
+
+	SQL:
+	-----
+
+mysql> SELECT AVG(amount) AS avg_loan_amount FROM loan;
++-----------------+
+| avg_loan_amount |
++-----------------+
+|     1509.090909 |
++-----------------+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the details of customers who deposited in Brooklyn:
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+π_customer_name, customer_street, customer_city(σ_branch_name='Brooklyn'(customer ⨝ depositor ⨝ account))
+
+
+	SQL:
+	-----
+SELECT c.*
+FROM customer c
+JOIN depositor d ON c.customer_name = d.customer_name
+JOIN account a ON d.account_number = a.account_number
+WHERE a.branch_name = 'Brooklyn';
+
+
+Empty set (0.00 sec)
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the customers who have both accounts and loans:
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+π_customer_name, customer_street, customer_city(σ_branch_name='Brooklyn'(customer ⨝ depositor ⨝ account))
+
+
+	SQL:
+	-----
+
+SELECT DISTINCT c.customer_name
+FROM customer c
+JOIN depositor d ON c.customer_name = d.customer_name
+JOIN account a ON d.account_number = a.account_number
+INTERSECT
+SELECT DISTINCT c.customer_name
+FROM customer c
+JOIN borrower b ON c.customer_name = b.customer_name;
+
++---------------+
+| customer_name |
++---------------+
+| Curry         |
+| Adams         |
+| Hayes         |
+| Jones         |
++---------------+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the customer names and loan numbers for loans with amounts between 1000 and 2000:
+
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+π_customer_name, loan_number(σ_amount BETWEEN 1000 AND 2000(customer ⨝ borrower ⨝ loan))
+
+
+	SQL:
+	-----
+
+SELECT c.customer_name, b.loan_number
+FROM customer c
+JOIN borrower b ON c.customer_name = b.customer_name
+JOIN loan l ON b.loan_number = l.loan_number
+WHERE l.amount BETWEEN 1000 AND 2000;
+
+
++---------------+-------------+
+| customer_name | loan_number |
++---------------+-------------+
+| Lindsay       | L-14        |
+| Hayes         | L-15        |
+| Adams         | L-16        |
+| Jones         | L-17        |
+| Williams      | L-17        |
+| Smith         | L-23        |
++---------------+-------------+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the customer names and their balances for accounts with a balance greater than 2000:
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+π_customer_name, balance(σ_balance > 2000(customer ⨝ depositor ⨝ account))
+
+
+	SQL:
+	-----
+SELECT c.customer_name, a.balance
+FROM customer c
+JOIN depositor d ON c.customer_name = d.customer_name
+JOIN account a ON d.account_number = a.account_number
+WHERE a.balance > 2000;
+
++---------------+---------+
+| customer_name | balance |
++---------------+---------+
+| Curry         | 3000.00 |
+| Hayes         | 2500.00 |
+| Jones         | 3500.00 |
++---------------+---------+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+List all branches and the total amount of loans at each branch:
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+π_branch_name, total_loan_amount(Σ_amount(loan))
+
+
+	SQL:
+	-----
+SELECT branch_name, SUM(amount) AS total_loan_amount
+FROM loan
+GROUP BY branch_name;
+
++-------------+-------------------+
+| branch_name | total_loan_amount |
++-------------+-------------------+
+| Brighton    |           2200.00 |
+| Downtown    |           4500.00 |
+| Mianus      |            500.00 |
+| North Town  |           1300.00 |
+| Perryridge  |           4000.00 |
+| Pownal      |           1200.00 |
+| Redwood     |           2000.00 |
+| Round Hill  |            900.00 |
++-------------+-------------------+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the customer names who have loans in the 'Downtown' branch:
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+π_customer_name(σ_branch_name='Downtown'(customer ⨝ borrower ⨝ loan))
+
+
+	SQL:
+	-----
+
+SELECT DISTINCT c.customer_name
+FROM customer c
+JOIN borrower b ON c.customer_name = b.customer_name
+JOIN loan l ON b.loan_number = l.loan_number
+WHERE l.branch_name = 'Downtown';
+
+
++---------------+
+| customer_name |
++---------------+
+| Lindsay       |
+| Jones         |
+| Williams      |
++---------------+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+List all loans along with the corresponding customer names:
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+loan ⨝ borrower ⨝ customer
+
+	SQL:
+	-----
+
+SELECT l.*, c.customer_name
+FROM loan l
+JOIN borrower b ON l.loan_number = b.loan_number
+JOIN customer c ON b.customer_name = c.customer_name;
+
+
++-------------+-------------+---------+---------------+
+| loan_number | branch_name | amount  | customer_name |
++-------------+-------------+---------+---------------+
+| L-11        | Round Hill  |  900.00 | Smith         |
+| L-14        | Downtown    | 1500.00 | Lindsay       |
+| L-15        | Perryridge  | 1500.00 | Hayes         |
+| L-16        | North Town  | 1300.00 | Adams         |
+| L-17        | Downtown    | 1000.00 | Jones         |
+| L-17        | Downtown    | 1000.00 | Williams      |
+| L-23        | Redwood     | 2000.00 | Smith         |
+| L-93        | Mianus      |  500.00 | Curry         |
++-------------+-------------+---------+---------------+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+Retrieve the customer names who have accounts in 'Brooklyn' and loans in 'Downtown':
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+	RA:
+	-----
+π_customer_name(σ_branch_name='Brooklyn'(customer ⨝ depositor ⨝ account) ⨝ₐ σ_branch_name='Downtown'(borrower ⨝ loan))
+
+
+
+	SQL:
+	-----
+
+SELECT DISTINCT c.customer_name
+FROM customer c
+JOIN depositor d ON c.customer_name = d.customer_name
+JOIN account a ON d.account_number = a.account_number
+JOIN borrower b ON c.customer_name = b.customer_name
+JOIN loan l ON b.loan_number = l.loan_number
+WHERE a.branch_name = 'Brooklyn' AND l.branch_name = 'Downtown';
+
+
+Empty set (0.00 sec)
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+MISC
+
+							PI/SI   . ()
+----------------------------------------------------------------------------------------
+
+
+
+
+	RA:
+	-----
+
+
+
+	SQL:
+	-----
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+-----------------------------------------------------------------------------------------
+LAB 1 - creating database and tables , inserting with some data (and view problems)
+-----------------------------------------------------------------------------------------
+mysql> show databases;
+mysql> create database db1;
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db1                 |               |
++--------------------+
+
+mysql> use db1;
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> CREATE TABLE personal(
+    id INT,
+    name varchar(50),
+    birth_date date,
+    phone varchar(12),
+    gender varchar(1)
+    );
+
+mysql> show tables;
++---------------+
+| Tables_in_db1 |
++---------------+
+| personal      |
++---------------+
+
+mysql> desc personal;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int         | YES  |     | NULL    |       |
+| name       | varchar(50) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| phone      | varchar(12) | YES  |     | NULL    |       |
+| gender     | varchar(1)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+
+
+mysql> INSERT into personal(id, name, birth_date,phone,gender)
+    	values (1, "Mivaan Thapa", "1990-05-08","9865093594","M");
+
+	add more record
+
+mysql> INSERT into personal(id, name, birth_date,phone,gender)
+    	values (2, "Muna Thapa", "2015-05-08","9865093594","F");
+
+	// problem sampe phone no: duplicate redundancy
+
+mysql> insert into personal (id,name,birth_date,phone,gender)
+    -> values
+    -> (4, "Biita Phoungja", "2001-01-06","9911889911","F"),
+    -> (3, "mausam Thapa", "2021-01-06","9865093123","M"),
+    -> (3, "Sanjeev Thapa", "2022-01-02","91212123","M");
+
+mysql> select * from personal;
++------+----------------+------------+------------+--------+
+| id   | name           | birth_date | phone      | gender |
++------+----------------+------------+------------+--------+
+|    1 | Mivaan Thapa   | 1990-05-08 | 9865093594 | M      |		//phone duplicate .. mivaan and muna
+|    2 | Muna Thapa     | 2015-05-08 | 9865093594 | F      |
+|    4 | Biita Phoungja | 2001-01-06 | 9911889911 | F      |
+|    3 | mausam Thapa   | 2021-01-06 | 9865093123 | M      |		//id  duplicate  ....3 .. PROBEM
+|    3 | Sanjeev Thapa  | 2022-01-02 | 91212123   | M      |
++------+----------------+------------+------------+--------+
+
+
+
+
