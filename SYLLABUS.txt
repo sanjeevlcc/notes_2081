@@ -1,0 +1,162 @@
+
+                      IT 220: Database Management System
+                      BIM 4th Semester
+                                                            Credits: 3
+                                                            Lecture Hours: 48
+                                                            
+
+
+Course Objective
+-----------------------
+    The main objective of this course is to introduce 
+    different concepts of database management
+    system from theoretical and practical aspects.
+
+
+Course Description
+-----------------------
+      The course covers different concepts of database
+      management systems including database
+      system concepts and architecture, ER diagram, 
+      relational model, relational Calculus, SQL,
+      normalization, transaction processing, concurrency 
+      control, and database recovery. This
+      course also covers some advanced concepts of 
+      databases such as performance tuning,
+      security, parallel and distributed database, 
+      data warehousing, data mining and bigdata.
+
+
+
+Course Details
+-----------------------
+
+
+Unit 1: Database Concepts and Architecture 4 LHs
+---------------------------------------------------
+        Database, Database Management System, Database Users,
+        Database Administrator, advantages of Databases; Data Models, 
+        Schemas, and Instances; Three-Schema
+        Architecture and Data Independence; Database Languages and Interfaces; the
+        Database System Environment;
+        Centralized and Client/Server Architectures for
+        DBMSs; Classification of Database Management Systems.
+
+
+Unit 2: Data Modelling Using Entity-Relational Model and Relational Model 8 LHs
+--------------------------------------------------------------------------------------------
+        Using High-Level Conceptual Data Models 
+        for Database Design; Entity Types, Entity
+        Sets, Attributes, and Keys; Relationship Types, 
+        Relationship Sets, Roles, and
+        Structural Constraints; Weak Entity Types; 
+        ER Diagrams, Naming Conventions, and
+        Design Issues; Relationship Types of 
+        Degree Higher Than Two; Concepts of
+        Specialization and Generalization; 
+        Constraints and Characteristics of Specialization
+        and Generalization; Converting ER Diagrams to Tables.
+
+
+Unit 3: The Relational Algebra and Relational Calculus 5 LHs
+---------------------------------------------------------------------
+        Introduction of Relational Algebra, 
+        Unary Relational Operations: SELECT and
+        PROJECT; Relational Algebra Operations from Set Theory; 
+        Binary Relational
+        Operations: JOIN and DIVISION; Additional Relational
+        Operations; the Tuple
+        Relational Calculus; 
+        the Domain Relational Calculus. 
+        
+
+
+
+Unit 4: Database Normalization 4 LHs
+-------------------------------------
+        Informal Design Guidelines for Relational Schemas; 
+        Functional Dependencies;
+        Normal Forms Based on Primary Keys; 
+        First, Second and Third Normal Forms;
+        Boyce-Codd Normal Form; 
+        Multivalued Dependency and Fourth Normal Form;
+        Properties of Relational Decomposition.
+        
+
+
+Unit 5: SQL 15 LHs
+--------------------
+        Data Definition Language and Data Types, 
+        Specifying Constraints, Domain Types in
+        SQL, Schema Definition in SQL. 
+        Data Manipulation Language: The select Clause,
+        The where Clause, The from Clause, 
+        The Rename Operation, Tuple Variables, String
+        Operations, Ordering the Display of Tuples, 
+        Duplicate Tuples. Set Operations.
+        Aggregate Functions. Null Values. Nested Subqueries: 
+        Set Membership, Set
+        Comparison, Test for Empty Relations,
+        Test for the Absence of Duplicate Tuples.
+        Derived Relations: Views.
+        Modification of the Database: Deletion, Insertion, Updates,
+        Updates, Update of a view. Joined Relations: 
+        Join types and Conditions, Basic
+        concepts of Stored Procedure, DML Triggers, and Indexing.
+
+
+Unit 6: Transaction Processing, Concurrency Control and Recovery Techniques 8 LHs
+-------------------------------------------------------------------------------------
+        Introduction to Transaction Processing; 
+        Transaction and System Concepts; Desirable
+        Properties of Transactions; Serializable Schedule; 
+        Two-Phase Locking and
+        Timestamp Ordering Concurrency Control Techniques.
+        Recovery Concepts; NO- UNDO/REDO Recovery Based on Deferred Update; 
+        Recovery Technique Based on
+        Immediate Update; Shadow Paging;
+        Database Backup and Recovery from
+        Catastrophic Failures.
+
+
+Unit 7: Advanced Topics 4 LHs
+---------------------------------
+      Database Performance Tuning; Database Security; C
+      oncept of Parallel and
+      Distributed Databases; Concept of Data Warehousing and Data Mining, 
+      BigData, and
+      NoSQL databases.
+
+
+
+
+
+Laboratory Works:
+-------------------
+The laboratory work includes writing SQL statements to create databases and tables, inserting
+and deleting data, updating data, and writing select queries. The students are required to
+undertake a project work. The project work can be done individually or in group (at most 4
+students).
+
+
+Suggested Reading
+-----------------------
+      Fundamentals of Database Systems; Seventh Edition; Ramez Elmasri, Shamkant B. Navathe;
+      Pearson Education
+      Database System Concepts; Sixth Edition; Avi Silberschatz, Henry F Korth, S Sudarshan;
+      McGraw-Hill
+      
+      NoSQL for Dummies; Adam Fowler; John Wiley & Sons, Inc.
+      Principles of Distributed Database Systems; M. Tamer Ozsu and Patrick Valduriez; Fourth
+      Edition; Springer 2020
+      
+      Database Management Systems; Third Edition; Raghu Ramakrishnan, Johannes Gehrke;
+      McGraw-Hill
+
+
+
+4. A First Course in Database Systems; Jaffrey D. Ullman, Jennifer Widom; Third Edition;
+Pearson Education Limited.
+
+
+
