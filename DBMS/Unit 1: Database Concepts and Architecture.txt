@@ -1,3 +1,6 @@
+
+
+
 Unit 1: Database Concepts and Architecture 4 LHs
 
       Database, 
@@ -95,11 +98,15 @@ Database
     Examples include customer databases, product inventories, and transactional records.
 
 
+
     Key Characteristics of a Database:
     -----------------------------------
       Structured: Data is organized in tables, rows, and columns.
+
       Persistent: Data remains stored permanently until explicitly deleted.
+
       Consistent: Maintains data integrity and accuracy.
+
       Accessible: Data can be efficiently retrieved and manipulated.
 
                 +------------------------+
@@ -276,12 +283,14 @@ DBMS in Real-Time Systems: 1-Tier, 2-Tier, and 3-Tier Architectures
 =======================================================
 Applications of Database Management Systems (DBMS)
 =======================================================
-Database Management Systems (DBMS) are widely used across various 
-industries due to their ability to efficiently manage large volumes 
-of data and ensure data integrity, security, and accessibility. 
+      Database Management Systems (DBMS) are widely used across various 
+      industries due to their ability to efficiently manage large volumes 
+      of data and ensure data integrity, security, and accessibility. 
 
-Here are some key applications of DBMS:
-    
+      Here are some key applications of DBMS:
+
+
+
 Banking and Finance
 -----------------------
               
