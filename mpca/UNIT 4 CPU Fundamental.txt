@@ -1,0 +1,240 @@
+
+
+
+  UNIT 4 CPU Fundamental 4 Hrs.]
+        4.1 CPU organization/Structure
+        4.2 Register organization and data path
+        4.3 Arithmetic and Logic units
+        4.4 Design principal for modern system
+
+
+
+CPU Organization/Structure
+------------------------------
+Definition: CPU (Central Processing Unit) organization refers to the arrangement
+of the major functional units and their interconnections within a CPU.
+
+Key Components:
+--------------------
+      Control Unit (CU): Directs the operation of the processor.
+      Arithmetic Logic Unit (ALU): Performs arithmetic and logical operations.
+      Registers: Small, fast storage locations.
+      Cache: Fast memory close to the CPU.
+      Buses: Channels for data transfer (data bus, address bus, control bus)
+
+             +----------------+
+             |     CPU        |
+             |                |
+             |  +----------+  |
+             |  | Control   |  |
+             |  | Unit (CU) |  |
+             |  +----------+  |
+             |                |
+             |  +----------+  |
+             |  |  ALU     |  |
+             |  +----------+  |
+             |                |
+             |  +----------+  |
+             |  | Registers|  |
+             |  +----------+  |
+             |                |
+             |  +----------+  |
+             |  |  Cache   |  |
+             |  +----------+  |
+             |                |
+             +----------------+
+
+
+
+
+
+
+
+
+
+Register Organization:
+--------------------------------
+      General Purpose Registers (GPRs): Used for various functions by the CPU.
+      Special Purpose Registers:
+      Program Counter (PC): Address of the next instruction.
+      Instruction Register (IR): Currently executing instruction.
+      Status Register/Flags: Condition flags and status bits.
+      Stack Pointer (SP): Points to the top of the stack.
+      Base and Index Registers: Used in addressing
+
+
+
+Data Path:
+-----------
+Definition: Part of the CPU that performs operations on data.
+
+Components:
+      Multiplexers: Select between different data sources.
+      ALU: Performs arithmetic and logic operations.
+      Registers: Store operands and results.
+      Buses: Transfer data.
+      Control Signals: Direct the data path operation.
+
+
+
+
+       +--------------+              +-------------+
+       |              |              |             |
+       |  Register    |     Data     |   ALU       |
+       |  File        |<-----------> |  (Arithmetic|
+       |              |     Path     |  Logic Unit)|
+       +--------------+              +-------------+
+            |                                  |
+            |                                  |
+        +---v----------------------------------v---+
+        |         Control Unit (CU)                |
+        +------------------------------------------+
+
+
+
+
+
+
+Arithmetic and Logic Units
+--------------------------------
+Definition: The ALU is a critical component that performs arithmetic and logical operations.
+
+
+    Functions:
+    -----------
+          Arithmetic Operations: Addition, subtraction, multiplication, division.
+          Logical Operations: AND, OR, XOR, NOT.
+          Shift Operations: Logical, arithmetic, circular shifts.
+          Comparison Operations: Greater than, less than, equal to.
+    
+    
+    Components:
+    --------------
+          Adder/Subtractor: Performs addition and subtraction.
+          Logic Gate Networks: Performs bitwise operations.
+          Multipliers: Hardware for multiplication.
+          Barrel Shifters: Efficient hardware for shifting.
+    
+
+
+       +--------------------+
+       |     ALU            |
+       |                    |
+       | +---------------+  |
+       | |  Adder/Subtr. |  |
+       | +---------------+  |
+       |                    |
+       | +---------------+  |
+       | | Logic Gates   |  |
+       | +---------------+  |
+       |                    |
+       | +---------------+  |
+       | |  Multiplier   |  |
+       | +---------------+  |
+       |                    |
+       | +---------------+  |
+       | | Barrel Shifter|  |
+       | +---------------+  |
+       +--------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Design Principles for Modern Systems
+--------------------------------------
+    Scalability: 
+    -----------------
+        Design systems to scale in performance with
+        increased workload or additional hardware.
+    
+    
+    Efficiency: 
+    -----------------
+        Focus on power efficiency and performance per watt.
+    
+    
+    Parallelism: 
+    -----------------
+        Utilize parallel processing techniques 
+        such as multi-core processors and SIMD instructions.
+    
+    
+    Memory Hierarchy: 
+    -----------------
+        Implement a hierarchy (registers, cache, RAM, secondary storage)
+        for speed and efficiency.
+    
+    
+    Modularity: 
+    -----------------
+        Design with modularity for easy upgrades and maintenance.
+    
+    
+    Pipelining: 
+    -----------------
+        Increase instruction throughput by overlapping execution stages.
+    
+    
+    
+    Out-of-Order Execution: 
+    -----------------
+        Optimize CPU resource use by executing instructions
+        as resources become available.
+    
+    
+    
+    Branch Prediction: 
+    -----------------
+      Use advanced techniques to minimize control hazards.
+    
+    
+    Speculative Execution:
+    -----------------
+        Execute instructions before their necessity 
+        is certain to reduce idle cycles.
+    
+    
+    Reliability and Fault Tolerance:
+    -----------------
+        Design systems that detect, correct, and recover from faults.
+
+
+
+       +--------------------+              +--------------------+
+       |     CPU Core 1     |              |    CPU Core 2      |
+       |                    |              |                    |
+       | +----------------+ |              | +----------------+ |
+       | |  Register File | |              | |  Register File | |
+       | +----------------+ |              | +----------------+ |
+       |                    |              |                    |
+       | +----------------+ |              | +----------------+ |
+       | |      ALU       | |              | |      ALU       | |
+       | +----------------+ |              | +----------------+ |
+       |                    |              |                    |
+       +--------------------+              +--------------------+
+                 |                                 |
+                 +---------------+-----------------+
+                                 |
+                            +----v----+
+                            |  Cache  |
+                            +---------+
+                                 |
+                        +--------v-------+
+                        |  Main Memory   |
+                        +-----------------+
+                                 |
+                        +--------v-------+
+                        | Secondary Store |
+                        +-----------------+
+
+
