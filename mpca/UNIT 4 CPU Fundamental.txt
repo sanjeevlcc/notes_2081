@@ -48,6 +48,75 @@ Key Components:
 
 
 
+structured and detailed diagram of CPU organization
+------------------------------------------------------
+
+                                  +-------------------+
+                                  |       Memory      |
+                                  +---------+---------+
+                                            |
+                                            |
+                                            v
+                                  +-------------------+
+                                  |    System Bus     |
+                                  +-------------------+
+                                    |       |       |
+              +---------------------+       |       +----------------------+
+              |                             |                              |
+              v                             v                              v
+    +-------------------+       +-------------------+              +------------------+
+    |      Input        |       |      CPU          |              |      Output      |
+    +-------------------+       |                   |              +------------------+
+                                | +---------------+ |
+                                | | Control Unit  | |
+                                | +---------------+ |
+                                |                   |
+                                | +---------------+ |
+                                | |     ALU       | |
+                                | +---------------+ |
+                                |                   |
+                                | +---------------+ |
+                                | |  Registers    | |
+                                | +---------------+ |
+                                |                   |
+                                +-------------------+
+
+
+
+diagram illustrating the memory hierarchy
+---------------------------------------------
+
+
+
++------------------------+
+|       Registers        |  <-- Fastest, smallest, and most expensive
++-----------+------------+
+            |
+            v
++------------------------+
+|         Cache          |  <-- Small and fast memory, closer to CPU
+|   +----------------+   |
+|   | L1 Cache (small)|  |  <-- Level 1 Cache: Smallest and fastest
+|   +----------------+   |
+|   | L2 Cache (larger)  |
+|   +----------------+   |
+|   | L3 Cache (largest) |  <-- Level 3 Cache: Largest and slower than L1 and L2
++-----------+------------+
+            |
+            v
++------------------------+
+|    Main Memory (RAM)   |  <-- Larger and slower than cache
++-----------+------------+
+            |
+            v
++------------------------+
+|  Secondary Storage     |  <-- Non-volatile, larger, and slower (e.g., SSD, HDD)
++-----------+------------+
+            |
+            v
++------------------------+
+|  Tertiary Storage      |  <-- Used for backups and archival (e.g., tape drives)
++------------------------+
 
 
 
