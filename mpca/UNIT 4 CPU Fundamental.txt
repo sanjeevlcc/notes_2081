@@ -14,6 +14,15 @@ CPU Organization/Structure
 Definition: CPU (Central Processing Unit) organization refers to the arrangement
 of the major functional units and their interconnections within a CPU.
 
+
+https://www.tutorialsweb.com/computers/pc-motherboard.htm
+
+https://aws.amazon.com/what-is/cpu/
+
+https://www.redhat.com/sysadmin/cpu-components-functionality
+
+
+
 Key Components:
 --------------------
       Control Unit (CU): Directs the operation of the processor.
