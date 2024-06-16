@@ -1,0 +1,24 @@
+
+UNIT 6 Computer Arithmetic [7 Hrs.]
+        6.1 Numeric format and representation of binary number in signed
+        and unsigned notation
+        6.2 Addition and subtraction in signed and unsigned notation.
+        6.3 Shift and add multiplication algorithm, Booth’s algorithm.
+        (signed and unsigned)
+
+
+
+
+6.1 Numeric format and representation of binary number in signed
+and unsigned notation
+6.2 Addition and subtraction in signed and unsigned notation.
+6.3 Shift and add multiplication algorithm, Booth’s algorithm.
+(signed and unsigned)
+
+
+
+
+
+
+
+
