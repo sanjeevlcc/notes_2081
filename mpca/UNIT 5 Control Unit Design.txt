@@ -12,9 +12,218 @@ UNIT 5 Control Unit Design [7 Hrs.]
 
 
 
+
+
+==============================================================
+Comparison of computer architecture and computer organization
+==============================================================
+
+..................................................................................................
+:                  : **Computer Architecture**             : **Computer Organization**             :
+..................................................................................................
+: **Definition**   : Design and functionality of the       : Operational units and their           :
+:                  : computer system.                      : interconnections.                     :
+..................................................................................................
+: **Focus**        : Abstract aspects of the system.       : Physical aspects of the system.       :
+..................................................................................................
+: **Perspective**  : Programmer's view (software-centric). : Engineer's view (hardware-centric).   :
+..................................................................................................
+: **Components**   : Instruction set, addressing modes,    : Control signals, interfaces, memory   :
+:                  : data types, CPU design.               : technology, data paths.               :
+..................................................................................................
+: **Level of**     : High-level design and functionality.  : Low-level implementation and          :
+: **Abstraction**  :                                        : efficiency.                           :
+..................................................................................................
+: **Key Concerns** : How the hardware is controlled by     : How the architectural specifications  :
+:                  : software.                             : are realized in hardware.             :
+..................................................................................................
+: **Examples**     : RISC vs. CISC architectures, ISA      : Data path design, memory hierarchy,   :
+:                  : (Instruction Set Architecture).       : I/O mechanisms.                       :
+..................................................................................................
+: **Interrelation**: Defines what the computer should do.  : Defines how to accomplish the         :
+:                  :                                        : architectural goals.                  :
+..................................................................................................
+
+
+
+
+
+
+
+
+===============================================================
 5.1 Control of the processor
+===============================================================
+
+The control unit (CU) is a fundamental component of the 
+central processing unit (CPU). 
+
+Its primary role is to direct the operations of the processor, 
+ensuring that instructions are executed correctly and efficiently. 
+
+The control unit orchestrates the activities of the CPU by 
+managing the flow of data between the CPU, memory, 
+and input/output devices.
+
+
+
+Key Functions of the Control Unit:
+------------------------------------
+        Instruction Fetching: 
+        ---------------------
+                The control unit retrieves instructions from memory. 
+                This process involves placing the address of the instruction 
+                on the address bus, and reading the instruction from memory
+                into the instruction register.
+        
+        
+        Instruction Decoding:
+        ---------------------
+                The control unit interprets the fetched instruction
+                to determine the required operations. 
+                This typically involves breaking down the instruction 
+                into opcode and operands.
+        
+        
+        Execution Control:
+        ---------------------
+                The control unit generates the necessary control 
+                signals to execute the instruction. 
+                These signals direct the ALU, registers, and other
+                components to perform specific operations.
+        
+        
+        Data Transfer:
+        ---------------------
+                The control unit manages data transfer within
+                the CPU, between the CPU and memory, and between the
+                CPU and I/O devices. 
+                This includes operations like reading from or writing to memory.
+        
+        
+        Control Signal Generation:
+        -----------------------------
+                Based on the decoded instruction, the control unit 
+                generates a sequence of control signals that 
+                orchestrate the execution of the instruction.
+
+
+Example:
+        Fetch-Decode-Execute Cycle: This is the basic operational 
+        process of the CPU. 
+        
+        The control unit fetches an instruction from memory, decodes 
+        it to understand what action is required, and then executes 
+        the instruction by generating the appropriate control signals.
+
+
+
+
+
+
+===============================================================
 5.2 Hardwired Control Unit(Control unit inputs and logic)
+===============================================================
+
+A hardwired control unit is a type of control unit where
+the control signals are generated by fixed hardware
+circuits without using any programmable memory. 
+
+This approach involves using combinational logic 
+circuits to produce the control signals required 
+for instruction execution.
+
+
+Key Components:
+------------------
+        Instruction Register (IR):
+        ------------------
+                Holds the current instruction being executed. 
+                The opcode part of the instruction is used 
+                to generate control signals.
+        
+        Decoder: 
+        ------------------
+                Converts the opcode from the instruction 
+                register into a set of control signals.
+                The decoder's output determines the 
+                operations to be performed.
+        
+        
+        Control Logic Gates: 
+        ------------------
+                Use combinational logic to generate specific 
+                control signals based on the current state and 
+                inputs from the instruction register.
+
+
+
+Operation:
+----------
+        Fetch: 
+        --------
+                The control unit retrieves an instruction from 
+                memory and places it in the instruction register.
+        
+        Decode: 
+        -------
+                The opcode is sent to the decoder, which 
+                translates it into a set of control signals.
+        
+        Execute: 
+        --------
+                The control signals generated by the control
+                logic gates direct the various parts of the CPU
+                to perform the specified operations (e.g., reading from memory, 
+                writing to a register, performing arithmetic operations).
+
+
+Characteristics:
+-----------------
+        Speed:
+        --------
+                Hardwired control units are typically faster 
+                than microprogrammed control units because
+                the control signals are generated directly 
+                by the hardware without any intermediate steps.
+        
+        Complexity:
+        --------------
+                Designing a hardwired control unit can be 
+                complex, especially for CPUs with a large 
+                and complex instruction set. Each instruction 
+                requires a unique set of control signals, which
+                must be carefully designed and optimized.
+
+
+Example:
+Simple RISC Processor: In a Reduced Instruction Set 
+Computer (RISC) processor, the instruction set is small 
+and simple, which makes it feasible to use a hardwired control unit.
+
+The fixed logic circuits can quickly generate the control
+signals needed for instruction execution, leading to high performance.
+
+
+
+
+===============================================================
 5.3 Microprogramed control units(Micro instruction and its types)
+===============================================================
+
+===============================================================
 5.4 Architecture of micro programmed control unit
+===============================================================
+
+===============================================================
 5.5 Microinstruction sequencing and execution
+===============================================================
+
+===============================================================
 5.6 Application of hardwired and micro programmed control units
+===============================================================
+
+
+
+
+
