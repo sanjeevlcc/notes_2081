@@ -1,0 +1,19 @@
+
+
+
+UNIT 7 Memory Organization [4 Hrs.]
+      7.1 Memory hierarchy
+      7.2 Memory interfacing diagram (RAM and ROM with 8085)
+      7.3 Associative memory
+      7.4 Cache Memory and mapping techniques
+
+
+
+7.1 Memory hierarchy
+7.2 Memory interfacing diagram (RAM and ROM with 8085)
+7.3 Associative memory
+7.4 Cache Memory and mapping techniques
+
+
+
+
