@@ -17,12 +17,18 @@ Unit 1: Database Concepts and Architecture 4 LHs
       Classification of Database Management Systems.
 
 
+-----------------------
+root ➜ ~ $ git clone https://github.com/sanjeevlcc/crud.git
+root ➜ ~ $ cd crud/
+root ➜ ~/crud (main) $ ls
+root ➜ ~/crud (main) $ docker-compose up -d
 
-https://github.com/sanjeevlcc/crud/tree/main
+GO on brovser
+----------------------
 
-
-
-
+root ➜ ~ $ git clone https://github.com/nisheshthakuri/devopsdocker.git
+root ➜ ~ $ cd devopsdocker/
+root ➜ ~/devopsdocker (main) $ ls
 
 
 =======================================================
