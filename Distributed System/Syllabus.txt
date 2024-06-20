@@ -1,0 +1,136 @@
+Course Title: Distributed Systems (3 Cr.)
+Course Code: CACS352
+Year/Semester: III/VI
+
+Class Load: 4 Hrs. / Week (Theory: 3Hrs. Tutorial: 1 Hr.)
+
+Course Description
+
+The course introduces basic knowledge to give an understanding how modern distributed systems
+operate. The focus of the course is on distributed algorithms and on practical aspects that should
+be considered when designing and implementing real systems. Some topics covered during the
+course are causality and logical clocks, synchronization and coordination algorithms, transactions
+and replication, and end-to-end system design. In addition, the course explores recent trends
+exemplified by current highly available and reliable distributed systems.
+
+Course objectives
+
+The objective of the course is to make familiar with different aspect of the distributed system,
+
+middleware, system level support and different issues in designing distributed algorithms and
+finally systems.
+
+Course Contents
+
+Unit 1. Introduction 4Hrs.
+    L.1 Characteristics
+    1.2 Design Goals
+    1.3 Types of Distributed Systems
+    1.4 Case Study: The World Wide Web
+    
+
+
+Unit 2. Architecture 4 Hrs.
+    2.1 Architectural Styles
+    2.2 Middleware organization
+    2.3 System Architecture
+    2.4 Example Architectures
+    
+
+
+Unit 3. Processes 6 Hrs.
+    3.1 Threads
+    3.2 Virtualization
+    3.3 Clients
+    3.4 Servers
+    3.5 Code Migration
+
+
+Unit 4. Communication 5 Hrs.
+    4.1 Foundations
+    4.2 Remote Procedure Call
+    4.3 Message-Oriented Communication
+    4.4 Multicast Communication
+    4.5 Case Study: Java RMI and MessagePassing Interface (MPI)
+    
+
+Unit 5. Naming 5 Hrs.
+5.1 Name Identifiers, and Addresses we
+5.2 Structured Naming pete’.
+
+5.3 Attribute-based naming
+5.4 Case Study: The Global Name
+Service
+Unit 5. Coordination
+6.1 Clock Synchronization
+6.2 Logical Clocks
+6.3 Mutual Exclusion
+6.4 Election Algorithm
+6.5 Location System
+6.6 Distributed Event Matching
+6.7 Gossip-based coordination
+Unit 7. Consistency and Replication 5 Hrs.
+7.1 Introduction
+7.2 Data-centric consistency models
+7.3 Client-centric consistency models
+7.4 Replica management
+7.5 Consistency protocols
+7.6 Caching and Replication in Web
+Unit 8. Fault Tolerance
+8.1 Introduction to fault tolerance
+8.2 Process resilience
+8.3 Reliable client-server communication
+8.4 Reliable group communication
+8.5 Distributed commit
+8.6 Recovery
+Unit 9. Security
+9.1 Introduction to security
+9.2 Secure channels
+9.3 Access control
+9.4 Secure naming
+9.5 Security Management
+
+7 Hrs.
+
+5 Hrs.
+
+4 Hrs.
+
+Teaching Methods
+The teaching faculties are expected to create environment where students can update and
+
+upgrade themselves with the current scenario of computing and information technology
+with the help of topics listed in the syllabus. The general teaching pedagogy that can be
+followed by teaching faculties for this course includes class lectures, laboratory activity,
+group discussions, case studies, guest lectures, research work, project work, assignments
+(Theoretical and Practical), and written and verbal examinations.
+
+Evaluation System
+
+Examination Scheme
+
+Internal Assessment | External Assessment Total
+40% 60% (3 Hrs.) 100%
+
+References:
+
+Nr
+
+Le)
+
+wm
+
+_ A.S. Tanenbaum, M. VanSteen, “Distributed Systems”, Pearson Education.
+
+George Coulouris, Jean Dollimore, Tim Kindberg, “Distributed Systems Concepts and
+Design”, Third Edition, Pearson Education.
+
+Mukesh Singhal, “Advanced Concepts in Operating Systems”, McGraw-Hill Series in
+Computer Science.
+
+Ajay D. Kshemkalyani, Mukesh Singhal, "Distributed Computing: Principles,
+Algorithms, and Systems", Cambridge University Press
+
+Christian Cachin, Rachid Guerraoui, Luis, "Introduction to Reliable and Secure
+Distributed Programming”, Springer
+
