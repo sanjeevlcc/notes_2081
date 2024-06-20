@@ -1,0 +1,9 @@
+
+
+    2.1 Architectural Styles
+    2.2 Middleware organization
+    2.3 System Architecture
+    2.4 Example Architectures
+
+
+
