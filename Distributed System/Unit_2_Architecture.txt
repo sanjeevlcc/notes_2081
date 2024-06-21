@@ -396,6 +396,11 @@ LAB 1 - MICROSERVICE             START
 *********************************************************************
 *********************************************************************
 
+To demonstrate a microservice using Docker, you
+can use a simple example where you create a microservice
+in Python using Flask. 
+
+
 
 
 controlplane $ mkdir my_bca_app
