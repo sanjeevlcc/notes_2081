@@ -1,9 +1,691 @@
 
-
+Unit 2. Architecture 4 Hrs.
     2.1 Architectural Styles
     2.2 Middleware organization
     2.3 System Architecture
     2.4 Example Architectures
 
 
+
+==========================================
+2.1 Architectural Styles
+==========================================
+
+Architectural styles in distributed systems define 
+the structure and organization of system components to
+achieve desired performance, scalability, and manageability.
+
+
+Layered Architecture
+-----------------------
+
+    Layered architecture is an architectural style that
+    organizes a system into hierarchical layers. 
+    
+    Each layer has a specific role and responsibility, providing
+    services to the layer above it and consuming services from 
+    the layer below it. 
+
+    Example: OSI model in networking.
+    
+    Characteristics: Organized in hierarchical layers, each with a specific function.
+    
+    Advantages: Modularity, separation of concerns, ease of maintenance.
+    
+    Disadvantages: Potential performance overhead, dependency between layers.
+                        
+                    +---------------------+
+                    |  Presentation Layer |
+                    |  (UI/UX)            |
+                    +---------------------+
+                              |
+                              v
+                    +---------------------+
+                    |  Business Logic     |
+                    |  Layer              |
+                    |  (Core Functionality|
+                    |  and Business Rules)|
+                    +---------------------+
+                              |
+                              v
+                    +---------------------+
+                    |  Data Access Layer  |
+                    |  (Database Operations)|
+                    +---------------------+
+                              |
+                              v
+                    +---------------------+
+                    |  Physical Layer     |
+                    |  (Hardware and      |
+                    |  Network Infrastructure)|
+                    +---------------------+
+
+            A typical web application using a layered 
+            architecture might have the following layers:
+
+
+
+
+Client-Server Architecture
+--------------------------
+    Client-server architecture is an architectural model
+    that separates a system into two main components: 
+        clients and servers. 
+    
+    Clients request services, and servers provide these services. 
+    This model is widely used in networked applications.
+        
+
+    Example: Web applications.
+
+    Characteristics: Clients request services, servers provide services.
+   
+    Advantages: Centralized control, scalability, manageability.
+
+    Disadvantages: Single point of failure, server overload.
+
+
+            +-----------+         +---------------+
+            |           |         |               |
+            |  Client 1 |<------->|   Server      |
+            |  (Browser)|         | (Web Server)  |
+            +-----------+         +---------------+
+                   |
+                   |
+            +-----------+
+            |           |
+            |  Client 2 |
+            |  (Browser)|
+            +-----------+
+                   |
+                   |
+            +-----------+
+            |           |
+            |  Client 3 |
+            |  (Browser)|
+            +-----------+
+            A web application where web browsers
+            act as clients and a web server hosts the application.
+
+
+
+
+
+
+Event-Driven Architecture
+----------------------------- 
+
+    Event-Driven Architecture (EDA) is an architectural style
+    in which the flow of the program is determined by events
+    such as user actions, sensor outputs, or messages from 
+    other programs/services. 
+    
+    Components communicate through events, making the 
+    system highly decoupled and responsive.
+    
+    Example: GUI applications, IoT systems.
+    
+    Characteristics: Components communicate through events, asynchronous.
+    
+    Advantages: High decoupling, scalability, responsiveness.
+    
+    Disadvantages: Complexity in managing events, debugging challenges.
+    
+    
+    +-------------+       +-----------------+        +-------------------+
+    |  Event      |----->| Event Processor 1|------> | Event Processor 2  |
+    |  Source     |      | (Inventory)      |        | (Payment)          |
+    | (User Order)|      +-----------------+         +-------------------+
+    +-------------+            |                          |
+                               v                          v
+                        +-----------------+        +-------------------+
+                        | Event Processor 3|<----- | Event Processor 4  |
+                        | (Shipping)      |        | (Notification)     |
+                        +-----------------+        +-------------------+
+
+
+            An e-commerce platform where different
+            services (inventory, payment, shipping) react
+            to events such as a new order being placed.
+
+
+
+
+
+Microservices Architecture
+-----------------------
+    Microservices architecture is an architectural style
+    that structures an application as a collection of
+    small, independent services, each running in its 
+    own process and communicating through lightweight 
+    mechanisms, often HTTP-based APIs. 
+    
+    Each service is focused on a specific business 
+    function and can be developed, deployed, and scaled independently.    
+
+    Example: Netflix, Amazon.
+    
+    Characteristics: Independent, loosely coupled services with specific functionality.
+    
+    Advantages: Scalability, fault isolation, ease of deployment.
+    
+    Disadvantages: Complexity in management, inter-service communication overhead.
+
+    +-----------------+     +-----------------+
+    |  User Service   |     | Product Service |
+    |  (User Data)    |<--> | (Product Catalog)|
+    +-----------------+     +-----------------+
+              |                     |
+              v                     v
+    +-----------------+     +-----------------+
+    | Order Service   |     | Payment Service |
+    | (Order Process) |<--> | (Payment Gateway)|
+    +-----------------+     +-----------------+
+              |
+              v
+    +-----------------+
+    | Shipping Service|
+    | (Shipping Info) |
+    +-----------------+
+
+
+        +-----------------+     +-----------------+
+        |  User Service   |     | Product Service |
+        |  (User Data)    |<--> | (Product Catalog)|
+        +-----------------+     +-----------------+
+                  |                     |
+                  v                     v
+        +-----------------+     +-----------------+
+        | Order Service   |     | Payment Service |
+        | (Order Process) |<--> | (Payment Gateway)|
+        +-----------------+     +-----------------+
+                  |
+                  v
+        +-----------------+
+        | Shipping Service|
+        | (Shipping Info) |
+        +-----------------+
+
+
+
+
+
+Service-Oriented Architecture (SOA)
+----------------------------------
+    Example: Enterprise applications.
+    
+    Characteristics: Uses services to support business 
+                    processes, promotes reusability.
+    
+    Advantages: Interoperability, reusability, flexibility.
+    
+    Disadvantages: Overhead of service management, complexity.
+
+
+            
+
+
+==========================================
+2.2 Middleware organization
+==========================================
+Middleware is software that provides common 
+services and capabilities to applications outside
+of what's offered by the operating system, 
+facilitating communication and data management 
+in distributed systems.
+
+
+
+Message-Oriented Middleware (MOM)
+----------------------------------------------
+    Example: RabbitMQ, Apache Kafka.
+    Characteristics: Facilitates message passing between systems.
+    Advantages: Asynchronous communication, scalability.
+    Disadvantages: Complexity in message management, potential latency.
+    
+
+Remote Procedure Call (RPC) Middleware
+----------------------------------------------
+    Example: gRPC, Apache Thrift.
+    Characteristics: Enables function calls between different systems.
+    Advantages: Simplifies communication, high performance.
+    Disadvantages: Tight coupling, difficulty in error handling.
+    
+
+
+
+Object Request Broker (ORB) Middleware
+-----------------------
+    Example: CORBA.
+    Characteristics: Manages communication between distributed objects.
+    Advantages: Object-oriented approach, language interoperability.
+    Disadvantages: Complexity, performance overhead.
+
+
+
+
+Database Middleware
+-----------------------
+    Example: ODBC, JDBC.
+    Characteristics: Provides uniform access to multiple databases.
+    Advantages: Database abstraction, flexibility.
+    Disadvantages: Performance overhead, potential compatibility issues
+    
+
+
+
+
+
+
+==========================================
+2.3 System Architecture
+==========================================
+
+System architecture defines the overall structure, 
+behavior, and more views of a system, encompassing both
+hardware and software components.
+
+
+
+Hardware Architecture
+-------------------------
+    Components: Physical servers, networking equipment.
+    Characteristics: Physical layout, resource allocation.
+    Advantages: Performance, dedicated resources.
+    Disadvantages: Cost, inflexibility.
+
+
+
+Software Architecture
+-------------------------
+    Components: Applications, services.
+    Characteristics: Logical organization, component interaction.
+    Advantages: Modularity, maintainability.
+    Disadvantages: Potential complexity, integration challenges.
+
+
+Network Architecture
+-------------------------
+    Components: Routers, switches, protocols.
+    Characteristics: Network topology, communication protocols.
+    Advantages: Connectivity, data exchange.
+    Disadvantages: Latency, potential bottlenecks.
+
+
+
+Data Architecture
+-------------------------
+    Components: Databases, data warehouses.
+    Characteristics: Data storage, management, and retrieval.
+    Advantages: Data integrity, accessibility.
+    Disadvantages: Storage costs, data security concerns.
+
+
+
+
+
+
+
+
+
+
+==========================================
+2.4 Example Architectures
+==========================================
+
+Example architectures illustrate practical
+implementations of architectural concepts, providing
+insights into their application, benefits, and drawbacks.
+
+
+
+
+
+Monolithic Architecture
+----------------------------
+    Example: Traditional enterprise applications.
+    Characteristics: Single, unified codebase; tightly coupled components.
+    Advantages: Simple deployment, centralized management.
+    Disadvantages: Hard to scale, difficult to maintain.
+
+
+Microservices Architecture
+----------------------------
+    Example: Netflix, Amazon.
+    Characteristics: Independent services, each with a specific functionality.
+    Advantages: Scalability, fault isolation, ease of deployment.
+    Disadvantages: Complexity in management, inter-service communication overhead.
+
+
+Serverless Architecture
+----------------------------
+    Example: AWS Lambda, Google Cloud Functions.
+    Characteristics: Event-driven execution, no server management.
+    Advantages: Cost efficiency, scalability, reduced operational overhead.
+    Disadvantages: Cold start latency, limited execution time.
+
+
+Event-Driven Architecture
+----------------------------
+    Example: IoT applications, real-time analytics.
+    Characteristics: Components react to events, asynchronous communication.
+    Advantages: High decoupling, real-time processing.
+    Disadvantages: Complexity in event management, debugging challenges.
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 1 - MICROSERVICE             START
+*********************************************************************
+*********************************************************************
+
+
+
+controlplane $ mkdir my_bca_app
+controlplane $ cd my_bca_app/
+
+
+Create a Flask Microservice:
+---------------------------------
+First, create a simple Flask 
+application in a Python
+
+
+
+controlplane $ cat > app.py
+
+
+# app.py
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return jsonify(message="Hello, World!")
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+
+
+Write a Dockerfile:
+-------------------
+Next, write a Dockerfile to
+containerize this Flask application:
+
+controlplane $ cat > Dockerfile
+
+# Dockerfile
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY app.py /app
+
+RUN pip install Flask
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+
+
+
+
+Build and Run the Docker Container:
+---------------------------------
+Now, you can use inline Docker 
+commands to build and run this microservice.
+
+# Build the Docker image
+docker build -t flask-microservice .
+
+
+        controlplane $ docker build -t flask-microservice .
+        DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+                    Install the buildx component to build images with BuildKit:
+                    https://docs.docker.com/go/buildx/
+        
+        Sending build context to Docker daemon  3.072kB
+        Step 1/6 : FROM python:3.9-slim
+        3.9-slim: Pulling from library/python
+        2cc3ae149d28: Pull complete 
+        87c0edd565e2: Pull complete 
+        9b72c177d6b8: Pull complete 
+        74338068cff9: Pull complete 
+
+
+
+
+controlplane $ docker images
+REPOSITORY           TAG        IMAGE ID       CREATED          SIZE
+flask-microservice   latest     1086a99d55fe   39 seconds ago   138MB
+python               3.9-slim   462828d2b59e   3 months ago     126MB
+
+
+
+
+controlplane $ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+
+# Run the Docker container
+controlplane $ docker run -d -p 5000:5000 flask-microservice
+
+
+
+
+controlplane $ docker ps
+CONTAINER ID   IMAGE                COMMAND           CREATED         STATUS         PORTS                                       NAMES
+66ac65da48e2   flask-microservice   "python app.py"   4 seconds ago   Up 2 seconds   0.0.0.0:5000->5000/tcp, :::5000->5000/tcp   kind_shtern
+
+
+
+
+
+
+    BROWSER : IP:5000
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 1 - MICROSERVICE             END
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 1 - Client-Server Architecture             START
+*********************************************************************
+*********************************************************************
+
+
+
+
+To create a simple Client-Server Architecture lab using a
+Linux machine , we'll implement a basic scenario where
+a client sends a message to a server and the server
+responds back. Here’s how you can set it up:
+
+
+
+
+controlplane $ mkdir mero-clinet-server
+controlplane $ cd mero-clinet-server/
+
+
+Create the Server Script:
+------------------------------
+Open a text editor and create a file 
+named server.py with the following content:
+
+
+controlplane $ cat > server.py
+
+# server.py
+import socket
+
+# Define the host and port on which the server will listen
+HOST = '0.0.0.0'  # Allows connections from any network interface
+PORT = 12345      # Port to listen on
+
+# Create a socket object
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
+    # Bind the socket to the host and port
+    server_socket.bind((HOST, PORT))
+
+    # Start listening for incoming connections
+    server_socket.listen()
+
+    print(f"Server is listening on {HOST}:{PORT}")
+
+    # Accept incoming connection
+    client_socket, client_address = server_socket.accept()
+
+    with client_socket:
+        print(f"Connected by {client_address}")
+
+        # Receive data from the client
+        data = client_socket.recv(1024).decode('utf-8')
+        print(f"Received message from client: {data}")
+
+        # Send a response back to the client
+        client_socket.sendall(b"Message received by server. Thank you!")
+
+        # Close the connection
+        print("Closing connection with the client.")
+
+
+
+
+controlplane $ python3 server.py 
+Server is listening on 0.0.0.0:12345
+
+
+
+
+
+Client Side (Linux Machine)
+-----------------------------TAB 2
+Create the Client Script:
+
+Open another text editor and create
+a file named client.py with the following content:
+
+
+
+
+controlplane $ cat > client.py
+
+
+# client.py
+import socket
+
+# Define the server's host and port
+SERVER_HOST = 'server_ip_or_hostname'  # Replace with the actual IP address or hostname of the server
+SERVER_PORT = 12345                    # Port on which the server is listening
+
+# Create a socket object
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+    # Connect to the server
+    client_socket.connect((SERVER_HOST, SERVER_PORT))
+
+    # Send a message to the server
+    message = "Hello, server! How are you?"
+    client_socket.sendall(message.encode('utf-8'))
+
+    # Receive the server's response
+    data = client_socket.recv(1024).decode('utf-8')
+    print(f"Received from server: {data}")
+
+
+controlplane $ ip a
+
+controlplane $ hostname -I
+172.30.1.2 172.17.0.1 192.168.0.0 
+
+controlplane $ vi client.py 
+
+        :wq
+
+
+
+controlplane $ cat client.py 
+SERVER_PORT = 12345                    # Port on which the server is listening
+
+
+
+
+
+
+
+TAB 2 controlplane $ python3 client.py
+Received from server: Message received by server. Thank you!
+
+
+
+
+
+TAB1 controlplane $ python3 server.py 
+Server is listening on 0.0.0.0:12345
+Connected by ('172.30.1.2', 34838)
+Received message from client: Hello, server! How are you?
+Closing connection with the client
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 1 - Client-Server Architecture             END
+*********************************************************************
+*********************************************************************
 
