@@ -492,7 +492,7 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 
 # Run the Docker container
-controlplane $ docker run -d -p 5000:5000 flask-microservice
+controlplane $  docker run -d -p 5000:5000 flask-microservice
 
 
 
@@ -506,7 +506,7 @@ CONTAINER ID   IMAGE                COMMAND           CREATED         STATUS    
 
 
 
-    BROWSER : IP:5000
+    BROWSER: IP:5000
 
 
 
@@ -721,6 +721,228 @@ LAB 2 - Client-Server Architecture             END
 
 *********************************************************************
 *********************************************************************
+LAB 3 - Client-Server Architecture              START
+*********************************************************************
+*********************************************************************
+
+
+
+single inline command to install Apache 
+on an Ubuntu machine 
+----------------------------------------------
+
+controlplane $ sudo apt-get update && sudo apt-get install -y apache2
+
+
+
+
+
+To ensure Apache is installed correctly and 
+running, you can use the following command 
+to check its status:
+--------------------------------------------
+controlplane $ sudo systemctl status apache2
+
+
+
+
+
+Create an Index File
+-----------------------------------
+Next, create a custom index file to verify
+that your Apache server is serving content correctly.
+
+controlplane $ echo "<h1>Welcome to My Apache Server, this is BCA6 as distro class </h1>" | sudo tee /var/www/html/index.html
+
+
+
+
+
+Check the Index File
+------------------------
+To verify that the Apache server is correctly 
+serving the index file, open a web browser and 
+navigate to http://localhost. 
+
+You should see "Welcome to My Apache Server".
+
+
+controlplane $ curl http://localhost
+
+
+
+
+BROWSER-    IP:80
+-------------------
+
+
+
+
+
+ Locate the Log Files
+------------------------
+
+Apache's default log files are typically 
+located in the /var/log/apache2 directory.
+
+Access Log: /var/log/apache2/access.log
+Error Log: /var/log/apache2/error.log
+
+
+
+controlplane $ sudo tail -f /var/log/apache2/access.log
+
+
+10.244.3.130 - - [21/Jun/2024:03:19:27 +0000] "GET / HTTP/1.1" 200 295 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_8_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBAV/462.0.0.35.110;FBBV/609503125;FBDV/iPhone9,4;FBMD/iPhone;FBSN/iOS;FBSV/15.8.2;FBSS/3;FBCR/;FBID/phone;FBLC/en_US;FBOP/80]"
+
+
+====
+
+
+10.244.5.88 - - [21/Jun/2024:03:19:45 +0000] "GET / HTTP/1.1" 304 124 "https://killercoda.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+
+
+
+
+
+
+
+
+controlplane $ sudo tail -f /var/log/apache2/error.log
+
+
+
+To generate an error, try 
+accessing a non-existent page:
+    controlplane $ curl http://localhost/nonexistent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+explanation access logs 
+----------------------
+10.244.3.130 - - [21/Jun/2024:03:19:27 +0000] "GET / HTTP/1.1" 200 295 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 15_8_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBAV/462.0.0.35.110;FBBV/609503125;FBDV/iPhone9,4;FBMD/iPhone;FBSN/iOS;FBSV/15.8.2;FBSS/3;FBCR/;FBID/phone;FBLC/en_US;FBOP/80]"
+
+
+
+
+
+
+
+
+10.244.3.130: 
+    The IP address of the client making the request. 
+    This tells you where the request originated from.
+
+- -:
+    These two dashes typically represent the identity of the 
+    client and the user ID. 
+    They are placeholders because this information 
+    is not usually available or used.
+
+
+[21/Jun/2024:03:19:27 +0000]:
+    The timestamp of when the request was received by the server. 
+    It includes the date (21/Jun/2024) and time (03:19:27) with the 
+    timezone offset (+0000).
+
+
+
+"GET / HTTP/1.1":
+    The request line from the client. This shows the HTTP method (GET),
+    the requested resource (/), and the HTTP version (HTTP/1.1).
+
+
+200:
+    The HTTP status code returned by the server. 
+    A status code of 200 indicates that the request was successful.
+
+295:
+    The size of the response in bytes. 
+    This tells you how much data was sent back to the client.
+
+"-":
+    The referrer URL, which indicates where the request originated from.
+    In this case, it's "-", meaning there was no referrer.
+
+
+"Mozilla/5.0 (iPhone; CPU iPhone OS 15_8_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBAV/462.0.0.35.110;FBBV/609503125;FBDV/iPhone9,4;FBMD/iPhone;FBSN/iOS;FBSV/15.8.2;FBSS/3;FBCR/;FBID/phone;FBLC/en_US;FBOP/80]":
+
+    The user agent string. 
+    This provides information about the client's browser and operating system. 
+    
+    In this case, it indicates that the request was made from a mobile device (iPhone) running iOS 15.8.2, 
+    using a browser based on AppleWebKit.
+    
+    Understanding the User Agent String
+    The user agent string contains detailed information about the client:
+
+
+
+
+
+
+        Mozilla/5.0: 
+            A common string used by many browsers for compatibility.
+        
+        (iPhone; CPU iPhone OS 15_8_2 like Mac OS X): 
+            Specifies the device (iPhone) and the operating 
+            system (iPhone OS 15.8.2, similar to Mac OS X).
+        
+        AppleWebKit/605.1.15 (KHTML, like Gecko): 
+            Indicates the browser engine (AppleWebKit) used by Safari and other browsers on iOS.
+        
+        Mobile/15E148: 
+            Indicates a mobile device with a specific build number (15E148).
+        
+        [FBAN/FBIOS; FBAV/462.0.0.35.110; FBBV/609503125; FBDV/iPhone9,4; FBMD/iPhone; 
+            FBSN/iOS; FBSV/15.8.2; FBSS/3; FBCR/; FBID/phone; FBLC/en_US; 
+            FBOP/80]: 
+            This part of the user agent string is specific to Facebook's mobile app 
+            browser, providing details such as the app version (FBAV/462.0.0.35.110), 
+            the device model (FBDV/iPhone9,4), and the operating system version (FBSV/15.8.2).
+            
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 3 - Client-Server Architecture            END
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
 LAB 3 -              START
 *********************************************************************
 *********************************************************************
@@ -733,4 +955,56 @@ LAB 3 -            END
 *********************************************************************
 *********************************************************************
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 3 -              START
+*********************************************************************
+*********************************************************************
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 3 -            END
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 3 -              START
+*********************************************************************
+*********************************************************************
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 3 -            END
+*********************************************************************
+*********************************************************************
 
