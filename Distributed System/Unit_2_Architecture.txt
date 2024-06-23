@@ -238,6 +238,14 @@ in distributed systems.
 
 Message-Oriented Middleware (MOM)
 ----------------------------------------------
+    Message-Oriented Middleware (MOM) facilitates communication
+    between distributed systems through asynchronous message passing. 
+    
+    It enables applications to send and receive messages (data packets) 
+    without requiring both parties to be actively communicating 
+    at the same time.
+
+
     Example: RabbitMQ, Apache Kafka.
     Characteristics: Facilitates message passing between systems.
     Advantages: Asynchronous communication, scalability.
@@ -246,6 +254,16 @@ Message-Oriented Middleware (MOM)
 
 Remote Procedure Call (RPC) Middleware
 ----------------------------------------------
+
+Remote Procedure Call (RPC) allows a program to
+execute procedures or functions on another computer 
+or server across a network, as if they were local. I
+
+t abstracts the complexity of network communication 
+and enables seamless interaction between distributed systems.
+
+
+
     Example: gRPC, Apache Thrift.
     Characteristics: Enables function calls between different systems.
     Advantages: Simplifies communication, high performance.
@@ -255,7 +273,15 @@ Remote Procedure Call (RPC) Middleware
 
 
 Object Request Broker (ORB) Middleware
------------------------
+------------------------------------
+    Object Request Broker (ORB) is a middleware
+    component that enables communication and interaction 
+    between distributed objects across a network. 
+    
+    It manages the exchange of messages and facilitates 
+    the invocation of methods on remote objects as if they were local.
+
+
     Example: CORBA.
     Characteristics: Manages communication between distributed objects.
     Advantages: Object-oriented approach, language interoperability.
@@ -266,6 +292,14 @@ Object Request Broker (ORB) Middleware
 
 Database Middleware
 -----------------------
+    Database Middleware provides an interface between
+    applications and databases in a distributed environment. 
+    
+    It facilitates data access, manipulation, and management 
+    across multiple databases or database systems, ensuring data 
+    consistency and reliability.
+
+
     Example: ODBC, JDBC.
     Characteristics: Provides uniform access to multiple databases.
     Advantages: Database abstraction, flexibility.
@@ -407,10 +441,17 @@ controlplane $ mkdir my_bca_app
 controlplane $ cd my_bca_app/
 
 
+
+
+
+
+
 Create a Flask Microservice:
 ---------------------------------
 First, create a simple Flask 
 application in a Python
+
+
 
 
 
@@ -424,7 +465,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return jsonify(message="Hello, World!")
+    return jsonify(message="Hello, World!, from BCA 6")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
@@ -460,10 +501,9 @@ Now, you can use inline Docker
 commands to build and run this microservice.
 
 # Build the Docker image
-docker build -t flask-microservice .
+controlplane $ docker build -t flask-microservice .
 
 
-        controlplane $ docker build -t flask-microservice .
         DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
                     Install the buildx component to build images with BuildKit:
                     https://docs.docker.com/go/buildx/
@@ -509,7 +549,7 @@ CONTAINER ID   IMAGE                COMMAND           CREATED         STATUS    
     BROWSER: IP:5000
 
 
-
+ OUTPUT:        {"message":"Hello, World!, from BCA 6"}
 
 
 
@@ -943,7 +983,229 @@ LAB 3 - Client-Server Architecture            END
 
 *********************************************************************
 *********************************************************************
-LAB 3 -              START
+LAB 4 - Remote Procedure Call (RPC) Middleware             START
+*********************************************************************
+*********************************************************************
+
+
+    Remote Procedure Call (RPC) Middleware
+    ----------------------------------------------
+    Example: gRPC, Apache Thrift.
+
+
+
+
+It is a protocol that one program can use to request 
+a service from a program located on another computer in a network. 
+
+RPC abstracts the complexity of network communication
+by allowing a program to call a procedure (function) 
+on a remote server as if it were a local call.
+
+
+
+
+simple lab of Remote Procedure Call (RPC) middleware
+on an Ubuntu Linux terminal, 
+
+you can use gRPC, which is a modern open-source RPC 
+framework developed by Google. 
+
+Below are the steps to set up a basic gRPC 
+service and client in Python.
+
+
+
+Install Dependencies
+-----------------------
+First, ensure you have Python and pip installed.
+Then, install the necessary gRPC tools:
+
+
+controlplane $ sudo apt update
+controlplane $  sudo apt install python3 python3-pip
+controlplane $  pip3 install grpcio grpcio-tools
+
+
+
+
+
+
+Define the gRPC Service
+-------------------------
+Create a file named helloworld.proto 
+to define the service:
+
+
+controlplane $ cat > helloworld.proto
+
+
+syntax = "proto3";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+
+
+
+
+
+
+
+
+Generate Python Code from the Proto File
+------------------------------------------
+Run the following command to generate the gRPC code:
+
+
+This will generate two files: helloworld_pb2.py and helloworld_pb2_grpc.py.
+
+
+
+
+controlplane $ ls
+ helloworld.proto  
+
+
+
+
+controlplane $ python3 -m grpc_tools.protoc -I=. --python_out=. --grpc_python_out=. helloworld.proto
+
+
+controlplane $ ls
+ helloworld.proto  helloworld_pb2.py  helloworld_pb2_grpc.py  
+
+
+
+
+
+
+
+
+
+ Implement the gRPC Server
+----------------------------
+Create a file named server.py:
+
+
+
+controlplane $ cat > server.py
+
+from concurrent import futures
+import grpc
+import helloworld_pb2
+import helloworld_pb2_grpc
+
+class Greeter(helloworld_pb2_grpc.GreeterServicer):
+    def SayHello(self, request, context):
+        return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
+
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    print("Server started at [::]:50051")
+    server.wait_for_termination()
+
+if __name__ == '__main__':
+    serve()
+
+
+
+
+
+
+
+
+
+Implement the gRPC Client
+----------------------------
+Create a file named client.py:
+
+
+
+controlplane $ cat > client.py
+
+
+import grpc
+import helloworld_pb2
+import helloworld_pb2_grpc
+
+def run():
+    channel = grpc.insecure_channel('localhost:50051')
+    stub = helloworld_pb2_grpc.GreeterStub(channel)
+    response = stub.SayHello(helloworld_pb2.HelloRequest(name='World'))
+    print("Greeter client received: " + response.message)
+
+if __name__ == '__main__':
+    run()
+
+
+
+
+
+
+
+Run the Server and Client
+-----------------------------
+Open two terminal windows. 
+
+In the first terminal, run the server:
+In the second terminal, run the client:
+
+
+
+TERMINAL 1  controlplane $ python3 server.py 
+Server started at [::]:50051
+
+
+
+
+TERMINAL2 controlplane $ python3 client.py 
+Greeter client received: Hello, World!
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 4 -  Remote Procedure Call (RPC) Middleware          END
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB 5 -              START
 *********************************************************************
 *********************************************************************
 
@@ -951,35 +1213,7 @@ LAB 3 -              START
 
 *********************************************************************
 *********************************************************************
-LAB 3 -            END
-*********************************************************************
-*********************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*********************************************************************
-*********************************************************************
-LAB 3 -              START
-*********************************************************************
-*********************************************************************
-
-
-
-*********************************************************************
-*********************************************************************
-LAB 3 -            END
+LAB 5 -            END
 *********************************************************************
 *********************************************************************
 
