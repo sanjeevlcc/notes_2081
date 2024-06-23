@@ -1205,15 +1205,119 @@ LAB 4 -  Remote Procedure Call (RPC) Middleware          END
 
 *********************************************************************
 *********************************************************************
-LAB 5 -              START
+LAB 5 -     Message-Oriented Middleware using RabbitMQ         START
 *********************************************************************
 *********************************************************************
 
+To perform a lab of Message-Oriented Middleware 
+using RabbitMQ on an Ubuntu Linux terminal, follow these steps.
+This lab will involve installing RabbitMQ, setting it up, 
+and creating a simple producer and consumer in Python to demonstrate message queuing.
+
+
+
+Install RabbitMQ
+----------------
+First, ensure your system is up-to-date and install RabbitMQ:
+
+sudo apt update
+sudo apt install rabbitmq-server
+
+
+
+Start the RabbitMQ server:
+
+sudo systemctl start rabbitmq-server
+sudo systemctl enable rabbitmq-server
+
+
+Check the status of the RabbitMQ server:
+sudo systemctl status rabbitmq-server
+
+
+
+
+
+Install Python and Pika
+----------------------
+Pika is a pure-Python RabbitMQ client library:
+
+Create a file named producer.py:
+
+
+
+cat > producer.py
+
+import pika
+
+# Establish a connection to RabbitMQ server
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+
+# Declare a queue named 'hello'
+channel.queue_declare(queue='hello')
+
+# Publish a message to the queue
+channel.basic_publish(exchange='', routing_key='hello', body='Hello, World!')
+print(" [x] Sent 'Hello, World!'")
+
+# Close the connection
+connection.close()
+
+
+
+
+Create a RabbitMQ Consumer
+Create a file named consumer.py:
+
+cat > consumer.py
+import pika
+
+# Establish a connection to RabbitMQ server
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+
+# Declare a queue named 'hello'
+channel.queue_declare(queue='hello')
+
+# Define a callback function to process messages from the queue
+def callback(ch, method, properties, body):
+    print(f" [x] Received {body}")
+
+# Subscribe to the queue
+channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
+
+print(' [*] Waiting for messages. To exit press CTRL+C')
+# Start consuming messages
+channel.start_consuming()
+
+
+
+
+
+
+
+Run the Producer and Consumer
+----------------------------
+Open two terminal windows.
+
+In the first terminal, run the consumer:
+
+python3 consumer.py
+
+
+
+
+In the second terminal, run the producer:
+
+python3 producer.py
+
+
 
 
 *********************************************************************
 *********************************************************************
-LAB 5 -            END
+LAB 5 -   Message-Oriented Middleware using RabbitMQ         END
 *********************************************************************
 *********************************************************************
 
