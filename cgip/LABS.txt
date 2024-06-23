@@ -408,3 +408,224 @@ functionalities and ease of use in handling image data.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+**************************************************************************
+LAB :  JPEG and JPEG 2000 compression                           START
+**************************************************************************
+**************************************************************************
+Creating a web-based lab for JPEG and JPEG 2000 compression involves 
+setting up a simple web interface using HTML and JavaScript, 
+and using a backend to handle the compression tasks.
+
+The backend can be implemented using Python with Flask,
+which will handle the file uploads and compression operations.
+
+
+
+
+Install Required Tools
+-----------------------
+First, ensure you have Python, Flask, ImageMagick, and OpenJPEG installed. You can install Flask using pip and the other tools using apt.
+
+
+sudo apt update
+sudo apt install imagemagick openjpeg-tools -y
+sudo apt install imagemagick -y
+pip install Flask
+
+
+
+Create the Project Directory
+-------------------------------
+Create a directory for your project and navigate into it:
+
+
+mkdir ~/image_compression_lab
+cd ~/image_compression_lab
+
+
+
+
+Create the HTML Frontend
+----------------------------
+Create an index.html file inside a templates directory:
+
+
+mkdir templates
+nano templates/index.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compression Lab</title>
+</head>
+<body>
+    <h1>Image Compression Lab</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Choose an image to compress (JPEG, PNG):</label><br>
+        <input type="file" id="file" name="file" accept="image/*"><br><br>
+        <button type="submit">Upload and Compress</button>
+    </form>
+    <div id="result">
+        {% if result %}
+            <h2>Compression Results:</h2>
+            <p>Original file size: {{ result.original_size }}</p>
+            <p>JPEG compressed file size: {{ result.jpeg_size }}</p>
+            <p>JPEG 2000 compressed file size: {{ result.jpeg2000_size }}</p>
+            <a href="{{ result.jpeg_url }}" download>Download JPEG</a><br>
+            <a href="{{ result.jpeg2000_url }}" download>Download JPEG 2000</a>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+Create the Flask Backend
+--------------------------
+Create a app.py file for your Flask application:
+
+
+
+nano app.py
+
+import os
+from flask import Flask, request, render_template, send_from_directory
+from werkzeug.utils import secure_filename
+import subprocess
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['COMPRESSED_FOLDER'] = 'compressed'
+
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
+if not os.path.exists(app.config['COMPRESSED_FOLDER']):
+    os.makedirs(app.config['COMPRESSED_FOLDER'])
+
+def is_tool(name):
+    """Check whether `name` is on PATH and marked as executable."""
+    from shutil import which
+    return which(name) is not None
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    file = request.files['file']
+    if file:
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+
+        jpeg_output = os.path.join(app.config['COMPRESSED_FOLDER'], 'compressed_image.jpg')
+        jpeg2000_output = os.path.join(app.config['COMPRESSED_FOLDER'], 'compressed_image.jp2')
+
+        if is_tool('convert'):
+            subprocess.run(['convert', filepath, '-quality', '85', jpeg_output])
+            jpeg_size = os.path.getsize(jpeg_output)
+        else:
+            jpeg_size = None
+            print("ImageMagick convert tool not found")
+
+        if is_tool('opj_compress'):
+            subprocess.run(['opj_compress', '-i', filepath, '-o', jpeg2000_output])
+            jpeg2000_size = os.path.getsize(jpeg2000_output)
+        else:
+            jpeg2000_size = None
+            print("OpenJPEG opj_compress tool not found")
+
+        original_size = os.path.getsize(filepath)
+
+        result = {
+            'original_size': f'{original_size / 1024:.2f} KB',
+            'jpeg_size': f'{jpeg_size / 1024:.2f} KB' if jpeg_size else 'N/A',
+            'jpeg2000_size': f'{jpeg2000_size / 1024:.2f} KB' if jpeg2000_size else 'N/A',
+            'jpeg_url': f'/compressed/compressed_image.jpg' if jpeg_size else '',
+            'jpeg2000_url': f'/compressed/compressed_image.jp2' if jpeg2000_size else ''
+        }
+
+        return render_template('index.html', result=result)
+
+@app.route('/compressed/<filename>')
+def download_file(filename):
+    return send_from_directory(app.config['COMPRESSED_FOLDER'], filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+
+
+ Run the Flask Application
+-----------------------------
+Run the Flask application by executing the following command:
+
+
+python app.py
+
+
+
+
+sample image
+
+https://filesamples.com/samples/image/jpeg/sample_5184%C3%973456.jpeg
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+**************************************************************************
+LAB :                             END
+**************************************************************************
+**************************************************************************
+
+
