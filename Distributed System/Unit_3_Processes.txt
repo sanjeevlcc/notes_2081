@@ -1,0 +1,640 @@
+
+
+
+
+
+Unit 3. Processes 6 Hrs.
+    3.1 Threads
+    3.2 Virtualization
+    3.3 Clients
+    3.4 Servers
+    3.5 Code Migration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+Processes
+======================================================================
+
+  A process is an instance of a program in execution. 
+  It contains the program code and its activity, including the
+  current state, register contents, and variables.
+  
+  A process is an independent entity to which system
+  resources (CPU time, memory, etc.) are allocated.
+
+
+
+  Use Case:
+  -----------
+    Running an application on an operating system, 
+    such as a word processor or a web browser.
+    
+    Executing system-level tasks like background 
+    services or scheduled jobs.
+  
+
+
+
+
+  Advantages:
+  ---------------
+      Processes provide isolation, ensuring that one process 
+      does not interfere with the memory or resources of another.
+      
+      They allow multitasking, enabling multiple programs
+      to run simultaneously on a system.
+      
+      Processes can run in parallel on multi-core processors, 
+      improving performance and efficiency.
+
+
+  Disadvantages:
+  -------------
+      Creating and managing processes involves overhead, such
+      as memory usage for process control blocks (PCBs) and context switching.
+      
+      Inter-process communication (IPC) can be complex and
+      slower compared to communication within the same process (e.g., threads).
+      
+      Processes are more heavyweight compared to
+      threads, leading to higher resource consumption.
+  
+
+
+  Features:
+  ---------------
+      Process Control Block (PCB): Contains process state, 
+      program counter, CPU registers, memory management information, and I/O status.
+      
+      Memory Management: Processes have their own address space, 
+      including the code segment, data segment, and stack segment.
+      
+      Process States: New, Ready, Running, Waiting, Terminated.
+      
+      Context Switching: The process of storing and restoring the 
+      state of a CPU so that multiple processes can share a single CPU resource.
+      
+
+
+
+
+
+
+
+
+
+Linux Terminal Commands
+--------------------------
+
+
+controlplane $ ps -e
+    PID TTY          TIME CMD
+      1 ?        00:00:07 systemd
+      2 ?        00:00:00 kthreadd
+      3 ?        00:00:00 rcu_gp
+      4 ?        00:00:00 rcu_par_gp
+      6 ?        00:00:00 kworker/0:0H-events_highpri
+      8 ?        00:00:00 mm_percpu_wq
+
+
+
+
+
+controlplane $ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.4 168524  9492 ?        Ss   22:28   0:07 /sbin/init
+root           2  0.0  0.0      0     0 ?        S    22:28   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   22:28   0:00 [rcu_gp]
+
+
+
+
+
+
+
+
+controlplane $ top
+top - 23:47:33 up  1:19,  0 users,  load average: 0.14, 0.15, 0.10
+Tasks: 202 total,   2 running, 200 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.7 us,  3.1 sy,  0.0 ni, 92.2 id,  1.7 wa,  0.0 hi,  0.0 si,  0.3 st
+MiB Mem :   1983.3 total,     82.0 free,    958.2 used,    943.1 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.    831.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                       
+   2142 root      20   0 1541180 247812  38352 S   2.7  12.2   2:08.40 kube-apiserver                                                
+   1696 root      20   0 1927964  67364  31896 S   0.7   3.3   0:44.47 kubelet                                                       
+   2107 root      20   0   10.7g  65488  18536 R   0.7   3.2   0:46.31 etcd     
+
+
+
+
+controlplane $ pstree
+systemd-+-ModemManager---2*[{ModemManager}]
+        |-NetworkManager---2*[{NetworkManager}]
+        |-accounts-daemon---2*[{accounts-daemon}]
+        |-agent---2*[{agent}]
+        |-agetty
+        |-at-spi-bus-laun-+-dbus-daemon
+
+
+
+controlplane $ sudo apt-get install htop
+
+controlplane $ htop
+
+
+
+
+
+
+
+
+
+
+======================================================================
+3.1 Threads
+======================================================================
+
+
+    A thread is the smallest unit of a process that 
+    can be scheduled and executed by the CPU.
+    
+    Threads within the same process share resources 
+    such as memory and file descriptors but execute independently.
+    
+    Threads allow a program to perform multiple tasks 
+    concurrently, improving the efficiency and responsiveness of applications.
+
+
+
+
+
+Use Case:
+-----------
+    Web Servers: Using threads to handle multiple simultaneous client requests.
+    
+    GUI Applications: Running the user interface on one thread 
+                      while performing background tasks on another to keep 
+                      the application responsive.
+    
+    Real-time Systems: Performing time-critical tasks in separate
+                        threads to ensure timely execution.
+
+
+
+
+
+
+Example:
+----------
+Web Browser: Separate threads handle rendering, downloading, and user input.
+
+Word Processor: One thread manages the document interface while another
+                performs background spell-checking.
+
+
+
+
+
+
+
+Advantages:
+-----------------
+    Improved Performance: 
+      Threads can run concurrently on multiple processors, 
+      utilizing CPU resources more efficiently.
+      
+    Resource Sharing: 
+      Threads within the same process share memory and 
+      other resources, reducing overhead compared to processes.
+    
+    Responsiveness:
+      Multithreaded applications can remain responsive
+      to user input while performing other tasks in the background.
+
+
+
+
+Disadvantages:
+-------------------
+    Complexity: 
+      Multithreading introduces complexity in synchronization
+      and coordination between threads.
+    
+    Concurrency Issues: 
+      Risks of race conditions, deadlocks, and other
+      synchronization problems.
+    
+    Debugging Challenges:
+      Difficulties in identifying and resolving issues
+      due to concurrent execution.
+    
+
+
+
+Features:
+-----------
+      Shared Memory Space: 
+        Threads share the same address space, enabling 
+        efficient communication and data sharing.
+      
+      Independent Execution: 
+        Each thread has its own program counter,
+        stack, and set of registers.
+      
+      Lightweight: 
+        Threads have less overhead compared to processes, 
+        making them more efficient for parallel execution.
+      
+      
+      Synchronization Mechanisms: 
+        Tools like mutexes, semaphores, and condition variables are 
+        used to manage access to shared resources and coordinate thread execution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Linux Terminal Commands
+--------------------------
+
+  
+controlplane $ ps -eL                    #List threads for all processes:
+
+
+    PID     LWP TTY          TIME CMD
+      1       1 ?        00:00:08 systemd
+      2       2 ?        00:00:00 kthreadd
+      3       3 ?        00:00:00 rcu_gp
+      4       4 ?        00:00:00 rcu_par_gp
+      6       6 ?        00:00:00 kworker/0:0H-events_highpri
+      8       8 ?        00:00:00 mm_percpu_wq
+      9       9 ?        00:00:01 ksoftirqd/0
+     10      10 ?        00:00:00 rcu_sched
+
+
+
+
+
+controlplane $ sudo apt-get install nginx -y
+
+controlplane $ sudo systemctl start nginx
+
+controlplane $ pgrep nginx                  #Find the Process ID (PID) of Nginx
+17257
+17258
+
+
+
+controlplane $ ps -T -p 17257            #List Threads of a Specific Nginx Process
+    PID    SPID TTY          TIME CMD
+  17257   17257 ?        00:00:00 nginx
+
+
+controlplane $ ps -T -p 17258            #List Threads of a Specific Nginx Process
+    PID    SPID TTY          TIME CMD
+  17258   17258 ?        00:00:00 nginx
+
+
+
+controlplane $ ps -eL | grep nginx            #to list all threads for all Nginx processes:
+  17257   17257 ?        00:00:00 nginx
+  17258   17258 ?        00:00:00 nginx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+3.2 Virtualization
+======================================================================
+
+
+Virtualization is the creation of a virtual version of a 
+physical resource, such as a server, storage device, 
+network, or even an entire operating system.
+
+
+It allows multiple virtual environments to run on a single
+physical hardware resource, improving resource utilization and 
+providing flexibility in managing IT infrastructure.
+
+
+
+
+
+Use Case:
+---------------
+    Server Consolidation: 
+      Running multiple virtual servers on a single 
+      physical server to maximize resource utilization.
+      
+    
+    Development and Testing:
+      Creating isolated environments for development 
+      and testing without affecting the production environment.
+    
+    
+    Disaster Recovery: 
+      Using virtual machines (VMs) for backup and 
+      recovery, enabling quick restoration of services.
+
+
+
+
+
+Example:
+---------------
+    Using VMware or VirtualBox to run multiple
+    operating systems (e.g., Windows, Linux) on a single physical machine.
+    
+    
+    Employing Docker to create and manage containers for 
+    microservices architecture.
+
+
+
+
+
+
+
+
+Advantages:
+---------------
+      Resource Efficiency: 
+          Maximizes the use of physical hardware by running multiple virtual machines.
+      
+      
+      Isolation:
+          Each virtual machine or container is isolated, enhancing security and stability.
+      
+      
+      Scalability: 
+          Easily scale resources up or down by adding or removing virtual machines or containers.
+      
+      Flexibility: 
+          Quickly provision and deploy new environments as needed.
+      
+
+
+
+
+Disadvantages:
+---------------
+      Performance Overhead: 
+          Virtualization introduces a layer of abstraction, which can lead
+          to performance overhead compared to running directly on physical hardware.
+          
+      
+      Complexity:
+          Managing a virtualized environment can be complex, 
+          requiring specialized skills and tools.
+      
+      
+      Security Risks:
+          If the virtualization layer is compromised, all virtual
+          machines or containers running on it could be affected.
+          
+
+
+Features:
+---------------
+      
+      Hypervisors: 
+          Software that creates and manages virtual machines by 
+          abstracting the hardware. There are two types:
+
+              Type 1 (Bare-metal):   
+                                    Runs directly on the 
+                                    physical hardware (e.g., VMware ESXi, Microsoft Hyper-V).
+              Type 2 (Hosted): 
+                                    Runs on a host operating 
+                                    system (e.g., VMware Workstation, Oracle VirtualBox).
+      
+      Virtual Machines (VMs): 
+          Independent instances of operating systems running on virtualized hardware.
+
+
+      Containers: 
+          Lightweight, portable units of software that include the
+          application and its dependencies, running on a shared OS kernel (e.g., Docker, Kubernetes).
+
+
+      Snapshot and Cloning:
+          Features that allow capturing the state of a VM
+          or container at a specific point in time and creating duplicates.
+      
+      Resource Allocation:
+          Ability to allocate and manage CPU, memory, storage, 
+          and network resources for virtual environments.
+      
+
+
+Detailed Explanation of Features:
+------------------------------------
+    1. Hypervisors:
+    ---------------
+        Type 1 (Bare-metal) Hypervisors:
+        ---------------
+            Runs directly on the physical hardware without an underlying operating system.
+            Provides high performance and efficiency.
+            Examples: VMware ESXi, Microsoft Hyper-V, XenServer.
+        
+        
+        Type 2 (Hosted) Hypervisors:
+        ---------------
+            Runs on top of an existing operating system, 
+            providing a layer for creating and managing VMs.
+        
+            Easier to set up and use, suitable for desktops and non-enterprise environments.
+        
+            Examples: VMware Workstation, Oracle VirtualBox, Parallels Desktop.
+    
+    
+    2. Virtual Machines (VMs):
+    ---------------
+        Complete emulations of physical computers, running
+        their own operating systems and applications.
+        
+        Each VM is isolated, with its own virtual hardware, 
+        including CPU, memory, storage, and network interfaces.
+        
+        Useful for running multiple operating systems on a single
+        physical machine and for creating isolated environments for different applications.
+    
+    
+    3. Containers:
+    ---------------
+        Lightweight and portable units of software that
+        package an application and its dependencies together.
+        
+        
+        Containers share the host operating system kernel, making
+        them more efficient and faster to start than VMs.
+        
+        
+        Ideal for microservices architecture, allowing developers to 
+        build, ship, and run applications consistently across environments.
+        
+        Examples: Docker, Kubernetes.
+    
+    
+    4. Snapshot and Cloning:
+    -----------------------
+      Snapshots: 
+          Capture the state of a VM or container at a specific 
+          point in time, allowing quick restoration to that state if needed.
+          
+      
+      Cloning: 
+          Create exact copies of VMs or containers, useful for 
+          testing, development, or scaling applications.
+    
+    
+    5. Resource Allocation:
+    ------------------------
+        Virtualization platforms provide tools to allocate and
+        manage resources such as CPU, memory, storage, and network 
+        bandwidth to VMs and containers.
+        
+        Enables efficient use of physical hardware by dynamically 
+        adjusting resource allocation based on workload demands.
+
+
+
+
+
+
+
+
+Practical Considerations:
+-------------------------------
+
+      Performance Optimization:
+      ---------------
+            Use hardware with virtualization support 
+            (e.g., Intel VT-x, AMD-V) to reduce performance overhead.
+            
+            Optimize resource allocation to ensure that VMs and 
+            containers have sufficient resources without over-provisioning.
+      
+      Security:
+      ---------------
+            Implement strong security measures for the 
+            virtualization layer, such as regular updates, patches, and monitoring.
+            
+            Use isolation techniques to prevent one compromised
+            VM or container from affecting others.
+      
+      
+      Management Tools:
+      ---------------
+            Utilize management tools and platforms 
+            (e.g., VMware vSphere, Red Hat OpenShift) to simplify the 
+            administration and orchestration of virtual environments.
+            
+            
+            Automate common tasks like deployment, scaling, and 
+            monitoring to improve efficiency and reduce manual intervention.
+            
+      
+      
+      Backup and Recovery:
+      ---------------
+            Regularly back up VMs and containers to 
+            ensure quick recovery in case of failure.
+            
+            
+            Use snapshots and cloning to create consistent 
+            backup points and streamline the recovery process.
+            
+
+
+
+
+======================================================================
+3.3 Clients
+======================================================================
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+3.4 Servers
+======================================================================
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+3.5 Code Migration
+======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
