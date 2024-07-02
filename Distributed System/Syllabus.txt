@@ -5,23 +5,38 @@ Year/Semester: III/VI
 Class Load: 4 Hrs. / Week (Theory: 3Hrs. Tutorial: 1 Hr.)
 
 Course Description
+----------------------
+The course introduces basic knowledge to give an 
+understanding how modern distributed systems operate. 
+The focus of the course is on distributed algorithms and 
+on practical aspects that should be considered when 
+designing and implementing real systems. 
+Some topics covered during the course are causality and 
+logical clocks, synchronization and coordination algorithms, 
+transactions and replication, and end-to-end system design. 
 
-The course introduces basic knowledge to give an understanding how modern distributed systems
-operate. The focus of the course is on distributed algorithms and on practical aspects that should
-be considered when designing and implementing real systems. Some topics covered during the
-course are causality and logical clocks, synchronization and coordination algorithms, transactions
-and replication, and end-to-end system design. In addition, the course explores recent trends
-exemplified by current highly available and reliable distributed systems.
+In addition, the course explores recent trends exemplified
+by current highly available and reliable distributed systems.
+
+
+
+
+
+
+
 
 Course objectives
-
-The objective of the course is to make familiar with different aspect of the distributed system,
-
-middleware, system level support and different issues in designing distributed algorithms and
+----------------------
+The objective of the course is to make familiar with
+different aspect of the distributed system, middleware, system 
+level support and different issues
+in designing distributed algorithms and
 finally systems.
 
-Course Contents
 
+
+Course Contents
+---------------------
 Unit 1. Introduction 4Hrs.
     L.1 Characteristics
     1.2 Design Goals
@@ -52,49 +67,54 @@ Unit 4. Communication 5 Hrs.
     4.3 Message-Oriented Communication
     4.4 Multicast Communication
     4.5 Case Study: Java RMI and MessagePassing Interface (MPI)
-    
+
+
 
 Unit 5. Naming 5 Hrs.
-5.1 Name Identifiers, and Addresses we
-5.2 Structured Naming pete’.
+    5.1 Name Identifiers, and Addresses we
+    5.2 Structured Naming pete’.
+    5.3 Attribute-based naming
+    5.4 Case Study: The Global NameService
 
-5.3 Attribute-based naming
-5.4 Case Study: The Global Name
-Service
-Unit 5. Coordination
-6.1 Clock Synchronization
-6.2 Logical Clocks
-6.3 Mutual Exclusion
-6.4 Election Algorithm
-6.5 Location System
-6.6 Distributed Event Matching
-6.7 Gossip-based coordination
+
+
+
+Unit 6. Coordination
+    6.1 Clock Synchronization
+    6.2 Logical Clocks
+    6.3 Mutual Exclusion
+    6.4 Election Algorithm
+    6.5 Location System
+    6.6 Distributed Event Matching
+    6.7 Gossip-based coordination
+
+
 Unit 7. Consistency and Replication 5 Hrs.
-7.1 Introduction
-7.2 Data-centric consistency models
-7.3 Client-centric consistency models
-7.4 Replica management
-7.5 Consistency protocols
-7.6 Caching and Replication in Web
+    7.1 Introduction
+    7.2 Data-centric consistency models
+    7.3 Client-centric consistency models
+    7.4 Replica management
+    7.5 Consistency protocols
+    7.6 Caching and Replication in Web
+
+
 Unit 8. Fault Tolerance
-8.1 Introduction to fault tolerance
-8.2 Process resilience
-8.3 Reliable client-server communication
-8.4 Reliable group communication
-8.5 Distributed commit
-8.6 Recovery
+    8.1 Introduction to fault tolerance
+    8.2 Process resilience
+    8.3 Reliable client-server communication
+    8.4 Reliable group communication
+    8.5 Distributed commit
+    8.6 Recovery
+
+
 Unit 9. Security
-9.1 Introduction to security
-9.2 Secure channels
-9.3 Access control
-9.4 Secure naming
-9.5 Security Management
+    9.1 Introduction to security
+    9.2 Secure channels
+    9.3 Access control
+    9.4 Secure naming
+    9.5 Security Management
+    
 
-7 Hrs.
-
-5 Hrs.
-
-4 Hrs.
 
 Teaching Methods
 The teaching faculties are expected to create environment where students can update and
