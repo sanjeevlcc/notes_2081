@@ -624,8 +624,380 @@ https://filesamples.com/samples/image/jpeg/sample_5184%C3%973456.jpeg
 
 **************************************************************************
 **************************************************************************
+LAB : JPEG and JPEG 2000 compression                               END
+**************************************************************************
+**************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+**************************************************************************
+LAB :Logic Operations involving Binary Images                      START
+**************************************************************************
+**************************************************************************
+
+We'll create a simple Flask web application to upload
+binary images and perform logical operations on them.
+
+
+
+
+
+
+
+go via root
+----------------
+
+@sanjeevlcc ➜ /workspaces/cnlabs (main) $ sudo su -
+root ➜ /workspaces/cnlabs $ cd
+root ➜ ~ $ 
+
+
+
+
+
+
+
+Step 1: Install Flask and OpenCV.
+-------------------------------------
+root ➜ ~ $ pip install Flask opencv-python-headless
+
+
+
+
+Step 2: Create the Flask application.
+--------------------------------------------
+root ➜ ~ $ mkdir flask_app
+root ➜ ~ $ cd flask_app
+
+root ➜ ~/flask_app $ 
+
+
+
+Step 3: Create the necessary files.
+--------------------------------------
+
+
+root ➜ ~/flask_app $ cat > app.py
+
+from flask import Flask, request, render_template, send_file
+import cv2
+import numpy as np
+import os
+
+app = Flask(__name__)
+UPLOAD_FOLDER = 'uploads'
+RESULT_FOLDER = 'results'
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(RESULT_FOLDER, exist_ok=True)
+
+@app.route('/')
+def upload_form():
+    return render_template('upload.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    if 'file1' not in request.files or 'file2' not in request.files:
+        return 'No file part'
+
+    file1 = request.files['file1']
+    file2 = request.files['file2']
+
+    if file1.filename == '' or file2.filename == '':
+        return 'No selected file'
+
+    img1_path = os.path.join(UPLOAD_FOLDER, 'image1.png')
+    img2_path = os.path.join(UPLOAD_FOLDER, 'image2.png')
+    file1.save(img1_path)
+    file2.save(img2_path)
+
+    img1 = cv2.imread(img1_path, 0)
+    img2 = cv2.imread(img2_path, 0)
+
+    operations = {
+        'AND': cv2.bitwise_and(img1, img2),
+        'OR': cv2.bitwise_or(img1, img2),
+        'NOT': cv2.bitwise_not(img1),
+        'XOR': cv2.bitwise_xor(img1, img2),
+    }
+
+    results = {}
+    for op_name, result_img in operations.items():
+        result_path = os.path.join(RESULT_FOLDER, f'result_{op_name.lower()}.png')
+        cv2.imwrite(result_path, result_img)
+        results[op_name] = result_path
+
+    return render_template('results.html', results=results)
+
+@app.route('/result/<operation>')
+def get_result(operation):
+    result_path = os.path.join(RESULT_FOLDER, f'result_{operation.lower()}.png')
+    return send_file(result_path)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+
+web UI
+------------
+
+
+root ➜ ~/flask_app $ mkdir templates
+
+
+
+
+root ➜ ~/flask_app $ cat > templates/upload.html
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Upload Images</title>
+  </head>
+  <body>
+    <h1>Upload Binary Images</h1>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+      <input type="file" name="file1" accept="image/png" required>
+      <input type="file" name="file2" accept="image/png" required>
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+</html>
+
+
+
+
+
+
+
+root ➜ ~/flask_app $ cat > templates/results.html
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+  </head>
+  <body>
+    <h1>Operation Results</h1>
+    <ul>
+      {% for operation, result_path in results.items() %}
+        <li>
+          <strong>{{ operation }}:</strong> <a href="{{ url_for('get_result', operation=operation) }}">View Result</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <a href="/">Upload More Images</a>
+  </body>
+</html>
+
+
+
+
+before run
+-------------------
+root ➜ ~/flask_app $ tree
+.
+├── app.py
+└── templates
+    ├── results.html
+    └── upload.html
+
+
+
+
+
+
+Run the Flask Application
+---------------------------------
+Run the Flask application in your Linux terminal.
+
+This will start the Flask server, and 
+you can access the application in your 
+web browser at http://127.0.0.1:5000/.
+
+
+
+root ➜ ~/flask_app $ export FLASK_APP=app.py
+root ➜ ~/flask_app $ flask run
+
+
+ * Serving Flask app 'app.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+
+
+
+
+
+
+
+image download
+-----------------
+
+https://stockcake.com/?utm_source=google&utm_medium=cpc&utm_campaign=homepage&gad_source=1&gclid=CjwKCAjwp4m0BhBAEiwAsdc4aMPmJuixSbUEtChLpEOBoZxYclo6v3Qn5ydgPrJzvQOuf3Rqz842kBoCQd0QAvD_BwE
+
+
+
+
+
+
+
+after run
+-------------
+
+root ➜ ~/flask_app $ tree
+.
+├── __pycache__
+│   └── app.cpython-310.pyc
+├── app.py
+├── results
+│   ├── result_and.png
+│   ├── result_not.png
+│   ├── result_or.png
+│   └── result_xor.png
+├── templates
+│   ├── results.html
+│   └── upload.html
+└── uploads
+    ├── image1.png
+    └── image2.png
+
+4 directories, 10 files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+**************************************************************************
+LAB :Logic Operations involving Binary Images                       END
+**************************************************************************
+**************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+**************************************************************************
+LAB :                      START
+**************************************************************************
+**************************************************************************
+d
+**************************************************************************
+**************************************************************************
 LAB :                             END
 **************************************************************************
 **************************************************************************
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+**************************************************************************
+LAB :                      START
+**************************************************************************
+**************************************************************************
+d
+**************************************************************************
+**************************************************************************
+LAB :                             END
+**************************************************************************
+**************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************************************************************************
+**************************************************************************
+LAB :                      START
+**************************************************************************
+**************************************************************************
+d
+**************************************************************************
+**************************************************************************
+LAB :                             END
+**************************************************************************
+**************************************************************************
