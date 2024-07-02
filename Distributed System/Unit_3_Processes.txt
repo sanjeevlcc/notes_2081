@@ -1134,3 +1134,264 @@ Features:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB  -  CLIENT _ SERVER                                    START
+
+Web Server
+
+Apache, Nginx, IIS, which serve HTML  pages and web content to browsers.
+*********************************************************************
+*********************************************************************
+
+
+        Apache is highly flexible and widely used, 
+        suitable for traditional web hosting environments
+        and supporting a wide range of modules.
+
+
+                Nginx excels in performance, scalability, and 
+                efficient handling of concurrent connections, making 
+                it ideal for serving static content and acting as a reverse proxy.
+
+
+                        IIS is Microsoft's web server, tightly integrated
+                        with Windows Server and supporting Microsoft technologies, 
+                        making it suitable for organizations using
+                        .NET and Windows-based environments.
+                            
+
+Apache
+-------- CODESPACE 1
+
+sudo apt update
+sudo apt install apache2        #install software
+
+sudo ufw allow 'Apache'
+sudo systemctl start apache2      # Start Apache
+sudo systemctl stop apache2       # Stop Apache
+sudo systemctl restart apache2    # Restart Apache
+
+            Access Apache Welcome Page
+            Open a web browser and enter either 
+                http://localhost  
+                http://your_server_ip 
+            
+            (replace your_server_ip with your 
+            server's IP address or domain name). 
+            
+            You should see the default Apache welcome 
+            page if Apache is correctly installed and running.
+
+
+
+
+Nginx
+--------  CODESPACE 2
+
+sudo apt update
+sudo apt install nginx           #install software
+
+sudo ufw allow 'Nginx Full'
+sudo systemctl start nginx      # Start Nginx
+sudo systemctl stop nginx       # Stop Nginx
+sudo systemctl restart nginx    # Restart Nginx
+
+
+            Access Nginx Welcome Page
+            Open a web browser and enter either 
+                http://localhost  
+                http://your_server_ip 
+            
+            (replace your_server_ip with your 
+            server's IP address or domain name). 
+            
+            You should see the default Nginx welcome 
+            page if Nginx is correctly installed and running.
+
+
+
+*********************************************************************
+*********************************************************************
+LAB  -  CLIENT _ SERVER                                    STOP
+
+Web Server
+
+Apache, Nginx, IIS, which serve HTML  pages and web content to browsers.
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB  - CLIENT _ SERVER                                    START  
+
+Database Server:
+
+MySQL, PostgreSQL, nosql, which manage database operations for applications.
+*********************************************************************
+*********************************************************************
+
+
+*********************************************************************
+*********************************************************************
+LAB  - CLIENT _ SERVER                                    STOP  
+
+Database Server:
+
+MySQL, PostgreSQL, nosql, which manage database operations for applications.
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB  - CLIENT _ SERVER                                    START  
+
+File Server:
+
+Samba, FTP servers, 
+
+which facilitate file storage and sharing across a network.
+
+*********************************************************************
+*********************************************************************
+
+
+*********************************************************************
+*********************************************************************
+LAB  - CLIENT _ SERVER                                    STOP  
+
+File Server:
+
+Samba, FTP servers, 
+
+which facilitate file storage and sharing across a network.
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB  -              START
+*********************************************************************
+*********************************************************************
+nnnnn
+
+*********************************************************************
+*********************************************************************
+LAB -                STOP
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB  -              START
+*********************************************************************
+*********************************************************************
+nnnnn
+
+*********************************************************************
+*********************************************************************
+LAB -                STOP
+*********************************************************************
+*********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*********************************************************************
+LAB  -              START
+*********************************************************************
+*********************************************************************
+nnnnn
+
+*********************************************************************
+*********************************************************************
+LAB -                STOP
+*********************************************************************
+*********************************************************************
+
+
+
+
