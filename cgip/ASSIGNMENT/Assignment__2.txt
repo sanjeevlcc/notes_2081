@@ -1,1 +1,152 @@
-saas
+
+
+
+
+
+
+What are the primary colors in the additive color model?
+How is a color image separated into its component colors?
+Explain the significance of complementary colors in the additive color model.
+
+Describe the CMYK color model and its common applications.
+What do the letters HSV stand for in the HSV color model, and what does each component represent?
+Compare and contrast the RGB and CMYK color models.
+
+What is pseudocolor image processing, and how is it typically used?
+Describe a common technique used in pseudocolor processing.
+
+Why are color transformations important in image processing?
+Give an example of a common color transformation and its purpose.
+
+What is the purpose of smoothing operations in image processing?
+Describe how a sharpening filter enhances an image.
+Explain the difference between smoothing and sharpening operations.
+
+
+
+
+Discuss the additive color model, including the primary colors and how they combine to produce other colors. What are the complementary colors in this model, and how do they interact with the primary colors?
+
+Explain the concept of color mixing in the additive color model and provide examples of how this model is applied in real-world technologies.
+
+
+Describe the RGB and CMYK color models in detail, including the primary colors of each and their common uses. How do these models differ in terms of their application in digital and print media?
+
+Explain the HSV color model and its components. How is this model used in color selection tools in graphic design and image editing software?
+
+
+Define pseudocolor image processing and describe its significance in enhancing grayscale images. Provide examples of fields where pseudocolor processing is particularly useful and explain why.
+
+Describe the process and purpose of color transformations in image processing. Why might an image be transformed from one color space to another? Provide specific examples of color transformations and their applications.
+
+Explain the conversion process from RGB to HSV color space. What advantages does this transformation offer for certain types of image analysis?
+
+
+
+Convert the CMYK color (0.2, 0.5, 0.0, 0.1) to its equivalent RGB values.
+
+Convert the HSV color (120°, 0.75, 0.8) to its equivalent RGB values.
+
+
+
+-----------------------------------------------------------------
+
+
+Describe the process of entropy coding in image compression. How does it help reduce the size of an image file? Include examples of common entropy coding techniques.
+
+Explain predictive coding and how it differs from entropy coding. What are the advantages and disadvantages of predictive coding in image compression?
+
+
+Discuss the concept of interpixel redundancy in digital images. How can reducing interpixel redundancy improve compression efficiency? Provide examples of techniques used to address interpixel redundancy.
+
+Define psychovisual redundancy and explain how human visual perception is considered in image compression algorithms. Provide specific examples of how psychovisual redundancy is exploited in popular image compression standards.
+
+
+
+
+Describe the architecture of a typical image compression model. What are the main stages involved in the compression process? Illustrate your answer with a diagram and detailed explanation of each stage.
+
+
+
+Compare and contrast lossless and lossy image compression models. Discuss the scenarios in which each type of compression would be preferred, and provide examples of common algorithms used for both types.
+
+
+
+Explain the principles behind lossless compression techniques. How do these techniques ensure that no information is lost during the compression process? Discuss specific algorithms used in lossless compression and their applications.
+
+Describe the characteristics of lossy compression techniques. How do these techniques achieve higher compression ratios at the expense of some information loss? Provide examples of lossy compression algorithms and discuss their impact on image quality.
+
+
+
+
+
+An uncompressed image has a size of 5 MB. After compression, the image size is 1 MB. Calculate the compression ratio.
+
+
+In image of resolution 1024x768 is compressed to a size of 500 KB. What is the bit rate of the compressed image?
+
+
+An image of size 1920x1080 is compressed using a lossy algorithm, resulting in an average compression ratio of 10:1. What is the size of the compressed image in bytes, assuming 24 bits per pixel for the original image?
+
+
+
+Given the following set of symbols and their corresponding probabilities: A (0.4), B (0.2), C (0.2), D (0.1), and E (0.1), construct the Huffman code and efficiency for these symbols.
+
+
+
+
+
+=============================================================
+
+
+Discuss the complete image degradation/restoration process. Provide examples of common degradation functions and their impact on image quality.
+
+
+Describe the various noise models commonly used in image restoration, such as Gaussian noise, salt-and-pepper noise, and speckle noise. For each noise model, provide examples of real-world scenarios where they might occur
+
+Provide a comparative analysis of the geometric mean filter and other mean filters (e.g., arithmetic mean filter). Discuss the advantages and disadvantages of using the geometric mean filter in different image restoration scenarios.
+
+Apply a 3x3 median filter to the following image patch
+            10  20  30
+            40  50  60
+            70  80  90
+          What is the value of the center pixel after applying the median filter?
+
+
+
+Apply a 3x3 geometric mean filter to the following image patch:
+            1  2  3
+            4  5  6
+            7  8  9
+                  Calculate the value of the center pixel after applying the filter.
+
+
+
+
+
+
+
+
+
+
+=============================================================
+
+
+What are logic operations in the context of binary images? Provide examples of logic operations commonly used in morphological image processing.
+
+
+Define dilation and erosion operations in morphological image processing. Explain how structuring elements influence the outcome of these operations.
+
+Describe the concepts of opening and closing operations in morphological image processing. When are these operations typically used? Provide practical examples.
+
+Describe the Hit-or-Miss transformation in morphological image processing. How does it help in detecting specific patterns or shapes within binary images? Discuss the criteria for selecting appropriate foreground and background structuring elements. Provide practical examples where the Hit-or-Miss transformation is applied effectively.
+
+
+
+Given two binary images A and B, where A has 30 foreground pixels and B has 20 foreground pixels, calculate the number of foreground pixels in the union (A ∪ B) and intersection (A ∩ B) of A and B.
+
+
+
+
+
+
