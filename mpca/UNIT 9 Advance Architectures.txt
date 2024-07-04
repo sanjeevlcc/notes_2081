@@ -9,3 +9,281 @@ UNIT 9 Advance Architectures [4 Hrs.]
 
 
 
+
+
+Lets some rebound knowledge
+-----------------------------
+
+Processor (CPU)
+----------------
+      Definition: 
+      --------------
+          The central processing unit (CPU) is the primary component 
+          of a computer that performs most of the processing inside a computer.
+      
+      Function: 
+      --------------
+          Executes instructions from programs, performs arithmetic 
+          and logical operations, and controls input/output operations.
+
+
+
+
+
+              
+              root ➜ ~ $ lscpu  | less
+              
+              Architecture:                       x86_64
+              CPU op-mode(s):                     32-bit, 64-bit
+              Byte Order:                         Little Endian
+              Address sizes:                      48 bits physical, 48 bits virtual
+              CPU(s):                             2
+              On-line CPU(s) list:                0,1
+              Thread(s) per core:                 2
+              Core(s) per socket:                 1
+              Socket(s):                          1
+              NUMA node(s):                       1
+              Vendor ID:                          AuthenticAMD
+              CPU family:                         25
+              Model:                              1
+              Model name:                         AMD EPYC 7763 64-Core Processor
+              Stepping:                           1
+              CPU MHz:                            2636.570
+              BogoMIPS:                           4890.86
+              Virtualization:                     AMD-V
+              Hypervisor vendor:                  Microsoft
+              Virtualization type:                full
+              L1d cache:                          32 KiB
+              L1i cache:                          32 KiB
+              L2 cache:                           512 KiB
+              L3 cache:                           32 MiB
+              NUMA node0 CPU(s):                  0,1
+
+
+
+
+
+
+Socket
+----------
+      Definition: 
+      ----------
+          A physical interface on the motherboard where 
+          the processor (CPU) is installed.
+      
+      Function: 
+      ----------
+          Provides electrical and mechanical connections 
+          between the CPU and the motherboard.
+    
+
+
+
+
+Core
+----------
+      Definition: 
+      ----------
+          A core is an individual processing unit within a CPU. 
+          Modern CPUs can have multiple cores (dual-core, quad-core, etc.).
+      
+      
+      Function: 
+      ----------
+          Each core can independently execute instructions, allowing
+          for parallel processing and improved performance for 
+          multi-threaded applications.
+          
+
+
+
+Pipeline
+----------
+        Definition: 
+        ----------
+        A technique used in CPUs to execute multiple 
+        instructions in overlapping phases.
+        
+        
+        Function: 
+        ----------
+        Divides the execution process into stages (e.g., fetch, decode, execute), 
+        increasing instruction throughput and overall CPU performance.
+
+
+
+
+
+Single Processor
+--------------------
+        Definition: 
+        ----------
+            A computing system with one CPU.
+        
+        
+        Function: 
+        ----------
+            Executes instructions sequentially on a single core or processor.
+
+
+
+
+Motherboard
+---------------
+      Definition: 
+      ----------
+      The main printed circuit board (PCB) in a computer.
+      
+      
+      Function: 
+      ----------
+      Connects and allows communication between various components, 
+      including the CPU, memory, storage, and input/output devices.
+      
+
+
+
+Memory
+----------
+    Definition: 
+    ----------
+        Components or devices that store data and instructions for the CPU.
+        
+        Types:
+        
+          RAM (Random Access Memory): Volatile memory used for temporary storage while a computer is running.
+        
+          ROM (Read-Only Memory): Non-volatile memory used for permanent storage of firmware.
+        
+        Storage Memory: Includes SSDs, HDDs, and other long-term storage devices.
+
+
+
+I/O (Input/Output)
+---------------
+
+      Definition: 
+      ----------
+          Interfaces and devices used for communication between a computer and the outside world.
+      
+      Types: 
+      ----------
+          Includes keyboards, mice, monitors, printers, network interfaces, and external storage devices.
+
+
+
+
+
+
+HLL (High-Level Language)
+------------------------------
+        Definition: 
+            Programming languages that are closer to human languages 
+            and abstract away much of the hardware details.
+        
+        Examples: 
+            Python, Java, C++, and JavaScript.
+        
+        Function: 
+            Easier to read, write, and maintain compared to low-level languages.
+        
+
+
+
+LLL (Low-Level Language)
+------------------------------
+        Definition: 
+            Programming languages that provide little or no abstraction
+            from a computer's instruction set architecture.
+        
+        Examples: Assembly language, machine code.
+        
+        Function: 
+            More control over hardware, efficient performance, 
+            but harder to read and write.
+        
+
+
+
+ALL (Assembly Level Language)
+------------------------------
+        Definition: 
+            A low-level programming language that uses mnemonic codes
+            and labels to represent machine-level code instructions.
+        
+        
+        Function: 
+            Provides a more readable way to write machine
+            instructions, closely related to the hardware.
+
+
+
+
+MLL (Machine Level Language)
+------------------------------
+      Definition: 
+          The lowest-level programming language, consisting of binary 
+          code that the CPU can directly execute.
+      
+      
+      Function: 
+          Represents instructions in binary form, directly executed 
+          by the CPU, very efficient but difficult for humans to understand and write.
+          
+
+
+
+
+
+
+======================================================================
+9.1 RISC and CISC Fundamentals
+======================================================================
+
+RISC (Reduced Instruction Set Computer):
+-----------------------------------------
+Design Philosophy: Uses a small, highly optimized set of instructions. Emphasizes efficiency with a focus on executing instructions quickly.
+
+
+Characteristics:
+    Simple instructions that execute in a single clock cycle.
+    Large number of general-purpose registers.
+    Load/store architecture, where memory operations are separate from arithmetic and logic operations.
+    Fixed instruction length for easier decoding.
+
+
+
+CISC (Complex Instruction Set Computer):
+-----------------------------------------
+Design Philosophy: Uses a large set of instructions, some of which can execute complex tasks in a single instruction. Aims to reduce the number of instructions per program.
+
+
+Characteristics:
+      Complex instructions that may take multiple clock cycles to execute.
+      Fewer general-purpose registers.
+      Variable instruction length.
+      Many addressing modes.
+
+======================================================================
+9.2 Instruction Pipeline, Register window 
+======================================================================
+
+
+
+======================================================================
+9.3 Flynn’s Taxonomy, MIMD system topologies and architectures
+======================================================================
+
+
+
+======================================================================
+9.4 Introduction to multicore architecture 
+======================================================================
+
+
+
+
+
+
+
+
