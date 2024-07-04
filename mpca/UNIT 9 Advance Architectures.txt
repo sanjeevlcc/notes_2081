@@ -257,7 +257,7 @@ HLL (High-Level Language)
             and abstract away much of the hardware details.
         
         Examples: 
-            Python, Java, C++, and JavaScript.
+            C,C++,Python, Java, C++, and JavaScript.
         
         Function: 
             Easier to read, write, and maintain compared to low-level languages.
@@ -305,6 +305,112 @@ MLL (Machine Level Language)
           Represents instructions in binary form, directly executed 
           by the CPU, very efficient but difficult for humans to understand and write.
           
+
+
+c code for time checking 
+-----------------------------optional , not course
+                        root ➜ ~ $ cat > num.c
+                        #include <stdio.h>
+                        
+                        int main() {
+                            int i;
+                            
+                            // Print numbers from 1 to 1 million
+                            for(i = 1; i <= 1000; i++) {
+                                printf("%d\n", i);
+                            }
+                            
+                            return 0;
+                        }
+                        
+                        
+                        
+                        root ➜ ~ $ gcc -o num num.c
+                        
+                        root ➜ ~ $ ./num
+
+
+
+                        root ➜ ~ $ time ./num 
+                        real    0m0.028s
+                        user    0m0.000s
+                        sys     0m0.009s
+
+
+
+
+c++ code for time checking 
+-----------------------------optional , not course
+
+                        root ➜ ~/c++ $ cat > num.cpp 
+                        
+                        
+                        #include <iostream>
+                        using namespace std;
+                        
+                        int main() {
+                            // Print numbers from 1 to 1 million
+                            for(int i = 1; i <= 1000000; i++) {
+                                cout << i << endl;
+                            }
+                            
+                            return 0;
+                        }
+                        
+                        
+                        root ➜ ~/c++ $ g++ -o num num.cpp
+                        root ➜ ~/c++ $ ./num
+                        
+                        
+                        root ➜ ~/c++ $ time ./num
+                        real    0m0.007s
+                        user    0m0.000s
+                        sys     0m0.007s
+
+
+
+
+
+
+python code for time checking 
+-----------------------------optional , not course
+
+                        
+                        root ➜ ~ $ mkdir python1
+                        root ➜ ~ $ cd python1/
+                        root ➜ ~/python1 $ 
+                        
+                        
+                        
+                        root ➜ ~/python1 $ cat > num.py
+                        
+                        # Python program to print numbers from 1 to 1 million
+                        def print_numbers():
+                            # Print numbers from 1 to 1 million
+                            for i in range(1, 1000):
+                                print(i)
+                        
+                        if __name__ == "__main__":
+                            print_numbers()
+                        
+                        
+                        
+                        root ➜ ~/python1 $ python num.py
+                        
+                        root ➜ ~/python1 $ time python num.py
+                        
+                        real    0m0.024s
+                        user    0m0.008s
+                        sys     0m0.016s
+
+
+
+
+
+
+
+
+
 
 
 
