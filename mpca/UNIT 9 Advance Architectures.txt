@@ -1,0 +1,11 @@
+UNIT 9 Advance Architectures [4 Hrs.]
+9.1 RISC and CISC Fundamentals
+9.2 Instruction Pipeline, Register window 
+9.3 Flynn’s Taxonomy, MIMD system topologies and architectures
+9.4 Introduction to multicore architecture 
+
+
+
+
+
+
