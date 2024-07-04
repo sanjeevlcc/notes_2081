@@ -11,3 +11,19 @@ UNIT 8 Input/Output Organization [4 Hrs.]
 8.3 Interrupts, types of interrupts, Interrupt processing, Interrupt
 Hardware and priority
 8.4 Direct Memory Access, I/O Processors 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
