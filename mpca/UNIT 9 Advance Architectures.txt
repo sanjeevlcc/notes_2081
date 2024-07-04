@@ -13,6 +13,67 @@ UNIT 9 Advance Architectures [4 Hrs.]
 
 Lets some rebound knowledge
 -----------------------------
+LAB on : github codespace
+            sudo su -
+            cd
+
+
+
+
+Motherboard
+---------------
+      Definition: 
+      ----------
+      The main printed circuit board (PCB) in a computer.
+      
+      
+      Function: 
+      ----------
+      Connects and allows communication between various components, 
+      including the CPU, memory, storage, and input/output devices.
+      
+
+
+                  
+                  ...........................................................................
+                  .                               Motherboard                                .
+                  ...........................................................................
+                  .                                                                           .
+                  .    +-----------------------+    +---------------------+    +----------+  .
+                  .    |      Processor        |<-->|      Chipset        |<-->|  Memory  |  .
+                  .    +-----------------------+    +---------------------+    +----------+  .
+                  .            |                         |                        |           .
+                  .            |                         |                        |           .
+                  .            V                         V                        V           .
+                  .     +--------------+        +----------------+       +----------------+  .
+                  .     |  Power Supply|<------>| Voltage Regulator|<--->| Expansion Slots |  .
+                  .     +--------------+        +----------------+       +----------------+  .
+                  .                                                                           .
+                  .        |                                                                .
+                  .        V                                                                .
+                  .     +---------------+                                                   .
+                  .     |  BIOS/UEFI    |<-------------------------------------------------+.
+                  .     +---------------+                                                  |.
+                  .          |                                                             |.
+                  .          V                                                             |.
+                  .   +---------------+                                                    |.
+                  .   |  Storage      |                                                    |.
+                  .   +---------------+                                                    |.
+                  .        |                                                              |.
+                  .        V                                                              |.
+                  .    +---------------+                                                  |.
+                  .    |  I/O Ports    |<-------------------------------------------------+.
+                  .    +---------------+                                                  |.
+                  .        |                                                              |.
+                  .        V                                                              |.
+                  .    +----------------+                                                 |.
+                  .    |  Peripheral    |<------------------------------------------------+.
+                  .    +----------------+                                                 |.
+                  ...........................................................................
+
+
+
+
 
 Processor (CPU)
 ----------------
@@ -62,6 +123,7 @@ Processor (CPU)
 
 
 
+               
 
 
 Socket
@@ -77,7 +139,8 @@ Socket
           between the CPU and the motherboard.
     
 
-
+            root ➜ ~ $ lscpu | grep 'Socket(s)'
+            Socket(s):                          1
 
 
 Core
@@ -95,6 +158,12 @@ Core
           multi-threaded applications.
           
 
+            root ➜ ~ $ lscpu | grep 'Core(s) per socket'
+            Core(s) per socket:                 1
+
+
+
+
 
 
 Pipeline
@@ -110,6 +179,16 @@ Pipeline
         Divides the execution process into stages (e.g., fetch, decode, execute), 
         increasing instruction throughput and overall CPU performance.
 
+
+                  cat /proc/cpuinfo
+                  cat /proc/cpuinfo | grep 'model name\|cpu cores\|siblings'
+                  
+                  
+                  sudo dmidecode -t processor
+                  dmesg | grep -i dma
+                  sudo lshw -class dma
+                  cat /proc/dma
+                  sudo dmidecode -t 8
 
 
 
@@ -128,19 +207,6 @@ Single Processor
 
 
 
-Motherboard
----------------
-      Definition: 
-      ----------
-      The main printed circuit board (PCB) in a computer.
-      
-      
-      Function: 
-      ----------
-      Connects and allows communication between various components, 
-      including the CPU, memory, storage, and input/output devices.
-      
-
 
 
 Memory
@@ -156,6 +222,15 @@ Memory
           ROM (Read-Only Memory): Non-volatile memory used for permanent storage of firmware.
         
         Storage Memory: Includes SSDs, HDDs, and other long-term storage devices.
+
+
+                  root ➜ ~ $ free -h
+                                total        used        free      shared  buff/cache   available
+                  Mem:          7.7Gi       1.3Gi       154Mi        64Mi       6.3Gi       6.1Gi
+                  Swap:            0B          0B          0B
+
+
+
 
 
 
@@ -263,6 +338,88 @@ Characteristics:
       Fewer general-purpose registers.
       Variable instruction length.
       Many addressing modes.
+
+
+      Common RISC architectures include ARM, MIPS, and SPARC, 
+      while common CISC architectures are based on the x86 and x86-64 (also known as AMD64)
+      instruction sets.
+
+                  root ➜ ~ $ lscpu
+                  Architecture:                       x86_64
+                  CPU op-mode(s):                     32-bit, 64-bit
+                  Byte Order:                         Little Endian
+                  Address sizes:                      48 bits physical, 48 bits virtual
+                  CPU(s):                             2
+                  On-line CPU(s) list:                0,1
+                  Thread(s) per core:                 2
+                  Core(s) per socket:                 1
+                  Socket(s):                          1
+                  NUMA node(s):                       1
+                  Vendor ID:                          AuthenticAMD
+                  CPU family:                         25
+                  Model:                              1
+                  Model name:                         AMD EPYC 7763 64-Core Processor
+                  Stepping:                           1
+                  CPU MHz:                            2963.484
+                  BogoMIPS:                           4890.84
+                  Virtualization:                     AMD-V
+                  Hypervisor vendor:                  Microsoft
+
+
+
+
+
+
+                  root ➜ ~ $ cat /proc/cpuinfo | grep 'model name\|arch'
+                  model name      : AMD EPYC 7763 64-Core Processor
+                  model name      : AMD EPYC 7763 64-Core Processor
+
+                  Interpreting the Results:
+                        x86/x86_64 (AMD64):
+                              These are CISC architectures, typically
+                              used in Intel and AMD processors.
+                        
+                        ARM, MIPS, SPARC:
+                              These are RISC architectures, often used
+                              in mobile devices, embedded systems, and servers.
+
+
+
+
+
+
+
+
+                  lscpu for an x86_64 CPU (CISC):
+                  
+                  Architecture:        x86_64
+                  CPU op-mode(s):      32-bit, 64-bit
+                  Byte Order:          Little Endian
+                  CPU(s):              4
+                  On-line CPU(s) list: 0-3
+                  Thread(s) per core:  2
+                  Core(s) per socket:  2
+                  Socket(s):           1
+                  NUMA node(s):        1
+                  Vendor ID:           GenuineIntel
+                  CPU family:          6
+                  Model:               142
+                  Model name:          Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+                  
+                                    
+                                    lscpu for an ARM CPU (RISC):
+                                    
+                                    Architecture:        aarch64
+                                    CPU op-mode(s):      32-bit, 64-bit
+                                    Byte Order:          Little Endian
+                                    CPU(s):              8
+                                    On-line CPU(s) list: 0-7
+                                    Thread(s) per core:  1
+                                    Core(s) per socket:  8
+                                    Socket(s):           1
+                                    Vendor ID:           ARM
+                                    Model:               1
+                                    Model name:          Cortex-A72
 
 ======================================================================
 9.2 Instruction Pipeline, Register window 
