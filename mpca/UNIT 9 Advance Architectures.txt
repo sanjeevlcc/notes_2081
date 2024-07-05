@@ -423,7 +423,9 @@ python code for time checking
 
 RISC (Reduced Instruction Set Computer):
 -----------------------------------------
-Design Philosophy: Uses a small, highly optimized set of instructions. Emphasizes efficiency with a focus on executing instructions quickly.
+Design Philosophy: 
+            Uses a small, highly optimized set of instructions. 
+            Emphasizes efficiency with a focus on executing instructions quickly.
 
 
 Characteristics:
@@ -436,7 +438,10 @@ Characteristics:
 
 CISC (Complex Instruction Set Computer):
 -----------------------------------------
-Design Philosophy: Uses a large set of instructions, some of which can execute complex tasks in a single instruction. Aims to reduce the number of instructions per program.
+Design Philosophy: 
+            Uses a large set of instructions, some of which can execute complex tasks 
+            in a single instruction.
+            Aims to reduce the number of instructions per program.
 
 
 Characteristics:
@@ -527,9 +532,432 @@ Characteristics:
                                     Model:               1
                                     Model name:          Cortex-A72
 
+
+
+
+
+
+
+CISC (Complex Instruction Set Computing)
+---------------------------------------------
+            Instruction Set: 
+                        CISC processors have a large set of instructions 
+                        that can execute complex operations, including multi-step 
+                        operations or addressing modes within a single instruction.
+            
+            Microprogramming: 
+                        CISC instructions are often implemented using 
+                        microprogramming, which allows the use of complex instructions.
+            
+            Memory Usage: 
+                        CISC instructions can operate directly on memory, allowing 
+                        complex instructions that manipulate data stored in memory.
+            
+            Performance: 
+                        CISC designs aim to complete tasks with fewer lines of assembly code, 
+                        potentially reducing the number of instructions per program.
+            
+            Example Processors:
+                        Intel x86, Motorola 68k.
+            
+
+
+            Advantages of CISC:
+            -----------------------
+                        Rich Instruction Set: 
+                                    The wide range of instructions allows complex 
+                                    operations to be performed with a single instruction.
+                        
+                        Code Density: 
+                                    Programs tend to be smaller since more work
+                                    can be done with fewer instructions.
+                        
+                        Backward Compatibility: 
+                                    Easier to add new instructions without
+                                    breaking older programs.
+
+
+
+
+
+            Disadvantages of CISC:
+            -----------------------
+                        Complexity: 
+                                    More complex hardware is required to decode and 
+                                    execute the instructions, leading to potentially 
+                                    slower clock speeds.
+                        
+                        Power Consumption: 
+                                    Higher power consumption due to complex 
+                                    instructions and hardware.
+                        
+                        Microcode Dependence: 
+                                    Reliance on microcode can introduce 
+                                    inefficiencies and make optimization more difficult.
+
+
+
+
+RISC (Reduced Instruction Set Computing)
+---------------------------------------------
+            Instruction Set: 
+                        RISC processors have a smaller set of instructions,
+                        each designed to execute very quickly. 
+                        
+                        These instructions are simple and generally 
+                        take a single clock cycle to execute.
+            
+            Hardwired Control: 
+                        RISC instructions are typically hardwired, avoiding
+                        the need for microprogramming and simplifying the control logic.
+            
+            
+            Register Usage: 
+                        RISC processors use a large number of registers 
+                        and typically rely on register-to-register operations,
+                        reducing the need to access memory.
+            
+            
+            Performance: 
+                        RISC designs aim for high performance through 
+                        pipelining, where multiple instructions are processed
+                        simultaneously at different stages of execution.
+            
+            Example Processors: 
+                        ARM, MIPS, SPARC, PowerPC.
+            
+
+
+            Advantages of RISC:
+            -----------------------
+                        Simplicity: 
+                                    The simpler instruction set allows for faster
+                                    instruction execution and easier pipelining.
+                        
+                        Efficiency:
+                                    Efficient use of registers and fewer memory 
+                                    accesses result in higher performance and lower power consumption.
+                        
+                        Scalability: 
+                                    The simpler design allows for easier scaling
+                                    and optimization of processor performance.
+
+
+
+
+            Disadvantages of RISC:
+            -----------------------
+                        Code Size: 
+                                    Programs tend to be larger because more 
+                                    instructions are required to perform complex operations.
+                        
+                        Compiler Dependency:
+                                    The burden of optimization falls on the
+                                    compiler, requiring more sophisticated compiler design.
+                        
+                        Initial Learning Curve: 
+                                    Developers might need to adapt to the different 
+                                    programming model and instruction set.
+                        
+
+
+
+
+comparison table of CISC and RISC architectures:
+--------------------------------------------------
+
+
+|-----------------------------------------------------------------------------------------------------------------------|
+| Feature                        | CISC                                      | RISC                                     |
+|--------------------------------|-------------------------------------------|------------------------------------------|
+| **Instruction Set**            | Large, complex                            | Small, simple                            |
+| **Instruction Length**         | Variable                                  | Fixed                                    |
+| **Execution Time**             | Multiple cycles per instruction           | Single cycle per instruction (typically) |
+| **Memory Operations**          | Can perform operations directly on memory | Operations mainly on registers           |
+| **Pipelining**                 | Difficult to implement                    | Easy to implement                        |
+| **Hardware Complexity**        | High                                      | Low                                      |
+| **Power Consumption**          | Higher                                    | Lower                                    |
+| **Examples**                   | Intel x86, Motorola 68k                   | ARM, MIPS, SPARC, PowerPC                |
+|-----------------------------------------------------------------------------------------------------------------------|
+
+
+
+
+
+
 ======================================================================
 9.2 Instruction Pipeline, Register window 
 ======================================================================
+
+Instruction pipelining is a technique used in RISC processors to
+improve performance by overlapping the execution of multiple instructions. 
+
+The pipeline is divided into stages, and each stage processes 
+a part of an instruction.
+
+
+
+
+Here is a simple diagram of a typical five-stage instruction pipeline:
+            IF >> ID >> EX >> MEM >> WB
+|---------------------------------------------------------------------------|
+| Stage | Description                                                       |
+|-------|-------------------------------------------------------------------|
+| IF    | Instruction Fetch: Retrieve the instruction from memory.          |
+| ID    | Instruction Decode: Decode the instruction and read registers.    |
+| EX    | Execute: Perform the operation or calculate the address.          |
+| MEM   | Memory Access: Access memory if required.                         |
+| WB    | Write Back: Write the result back to the register file.           |
+|---------------------------------------------------------------------------|
+
+            Single processor 
+            ----------------
+            Processor1 : instruction1 + instruction2 +instruction3 +instruction4 +instruction5
+                       : IF1 >> ID1 >> EX1 >> MEM1 >> WB1        +      IF2 >> ID2 >> EX2 >> MEM2 >> WB2 + 
+                                    IF3 >> ID3 >> EX3 >> MEM3 >> WB3     +      IF4 >> ID4 >> EX4 >> MEM4 >> WB4 +
+                                    IF5 >> ID5 >> EX5 >> MEM5 >> WB5
+                       : 5 ns +5 ns +5 ns +5 ns +5 ns 
+                       : 20 ns
+
+
+
+            Multiple / Pipeline  processor: Assune 4 processor
+            
+            Processor1 : instruction1: IF1 >> ID1 >> EX1 >> MEM1 >> WB1
+            Processor2 : instruction2:        IF2 >> ID2 >> EX2 >> MEM2 >> WB2
+            Processor3 : instruction3:               IF3 >> ID3 >> EX3 >> MEM3 >> WB3
+            Processor4 : instruction4:                      IF4 >> ID4 >> EX4 >> MEM4 >> WB4
+            Processor5 : instruction5:                             IF5 >> ID5 >> EX5 >> MEM5 >> WB5
+            
+                                     : 9 ns  
+
+
+
+
+Advantages of Instruction Pipelining:
+-------------------------------------
+            Increased Throughput:
+                        Multiple instructions are processed simultaneously, 
+                        leading to higher instruction throughput.
+            
+            Efficient Utilization:
+                        Better utilization of processor resources by
+                        keeping different parts of the CPU busy.
+
+
+
+            Example of Pipelining
+                        Consider the following instructions 
+                        being executed in a pipeline:
+
+                        Instruction 1: ADD R1, R2, R3
+                        Instruction 2: SUB R4, R5, R6
+                        Instruction 3: MUL R7, R8, R9
+
+
+            The pipeline stages for these 
+            instructions might look like this:
+
+                        Cycle | IF    | ID    | EX    | MEM   | WB    |
+                        ------|-------|-------|-------|-------|-------|
+                        1     | ADD   |       |       |       |       |
+                        2     | SUB   | ADD   |       |       |       |
+                        3     | MUL   | SUB   | ADD   |       |       |
+                        4     |       | MUL   | SUB   | ADD   |       |
+                        5     |       |       | MUL   | SUB   | ADD   |
+                        6     |       |       |       | MUL   | SUB   |
+                        7     |       |       |       |       | MUL   |
+
+
+
+
+
+
+
+Disadvantages of Instruction Pipelining:
+---------------------------------------
+            Hazards: 
+                        Pipelining can introduce hazards such as 
+                        data hazards, control hazards, and structural hazards.
+            
+            Complexity: 
+                        Managing hazards and maintaining a smooth 
+                        flow through the pipeline adds complexity to the CPU design.
+            
+            Stalling:
+                        Certain situations may cause the pipeline to 
+                        stall, waiting for a previous instruction to 
+                        complete, which can reduce efficiency.
+
+
+
+
+
+
+Types of Hazards:
+---------------------
+            Data Hazards: 
+                        Occur when instructions depend on 
+                        the results of previous instructions.
+            
+            Control Hazards: 
+                        Occur due to branching instructions 
+                        that alter the flow of execution.
+            
+            Structural Hazards:
+                        Occur when hardware resources are
+                        insufficient to support all active pipeline stages.
+                        
+
+
+
+
+Techniques to Mitigate Hazards:
+----------------------------------
+            Forwarding:
+                        Also known as data bypassing, it passes the result of an
+                        operation directly to a subsequent instruction that needs it.
+            
+            Branch Prediction: 
+                        Predicts the outcome of a branch instruction 
+                        to reduce control hazards.
+            
+            Pipeline Stalling: 
+                        Temporarily halts the pipeline until the hazard is resolved.
+            
+
+
+
+
+
+
+
+
+
+
+
+Register Window
+------------------
+Register windows are a technique used in some RISC 
+architectures to optimize function calls and reduce 
+the overhead of saving and restoring registers.
+
+This technique divides the available registers into 
+overlapping sets or "windows," each set allocated to a 
+different function call.
+
+
+
+
+How Register Windows Work
+----------------------------
+            Overlapping Windows: 
+                        Register windows overlap with each other, sharing some registers 
+                        between the caller and callee functions. 
+                        This reduces the need to save and restore registers across function calls.
+            
+            Sliding Window:
+                        When a function is called, the register window "slides" 
+                        to the next set of registers. When a function returns, 
+                        the window slides back to the previous set.
+                        
+
+
+                        Here is a simplified diagram of register windows:
+                        -------------------------------------------------
+                        | Window | Registers                            |
+                        |--------|--------------------------------------|
+                        | W0     | R0, R1, R2, R3, R4, R5, R6, R7       |
+                        | W1     | R4, R5, R6, R7, R8, R9, R10, R11     |
+                        | W2     | R8, R9, R10, R11, R12, R13, R14, R15 |
+                        |-----------------------------------------------|
+
+
+
+                                    In this example:
+                                    
+                                    W0 has registers R0 to R7.
+                                    W1 overlaps with W0 on registers R4 to R7 and extends to R11.
+                                    W2 overlaps with W1 on registers R8 to R11 and extends to R15.
+                                    
+
+
+
+Advantages of Register Windows
+---------------------------------
+            Reduced Overhead: 
+                        Function calls are faster because the
+                        need to save and restore registers is minimized.
+            
+            Efficient Use of Registers:
+                        Overlapping windows allow sharing of 
+                        registers between caller and callee, reducing memory access.
+            
+            Increased Performance: 
+                        Faster function calls lead to improved overall performance.
+
+
+
+
+
+
+
+Disadvantages of Register Windows
+---------------------------------
+            Complexity: 
+                        Adds complexity to the CPU design and compiler.
+            
+            Limited Number of Windows: 
+                        The number of register windows is limited, 
+                        and when the limit is exceeded, it requires spilling registers to memory.
+            
+            Resource Utilization:
+                        In systems with limited register sets, the windows 
+                        might not fully utilize the available registers efficiently.
+            
+
+
+
+Example of Function Calls with Register Windows
+------------------------------------------------
+            Consider a scenario where function A calls
+            function B, which then calls function C. 
+            The register window management might look like this:
+
+------------------------------------------------------------------------------------------------------------------|
+| Function | Registers                     | Comment                                                              |
+|----------|-------------------------------|----------------------------------------------------------------------|
+| A        | R0, R1, R2, R3, R4, R5, R6, R7 | Registers R0-R3 for local use in A, R4-R7 shared with B             |
+| B        | R4, R5, R6, R7, R8, R9, R10, R11 | Registers R4-R7 for shared use with A, R8-R11 for local use in B  |
+| C        | R8, R9, R10, R11, R12, R13, R14, R15 | Registers R8-R11 shared with B, R12-R15 for local use in C    |
+-------------------------------------------------------------------------------------------------------------------
+
+            When A calls B, B uses a new set of registers overlapping with A. 
+            When B calls C, C uses another new set of registers overlapping with B.
+
+
+
+
+Visual Representation
+------------------------
+            Here's a simplified visual 
+            representation of register windows:
+
+------------------------------------------------------------------------------
+| Window | Registers    | Description                                        |
+|--------|--------------|----------------------------------------------------|
+| W0     | R0, R1, R2, R3, R4, R5, R6, R7 | Window for Function A            |
+| W1     | R4, R5, R6, R7, R8, R9, R10, R11 | Window for Function B          |
+| W2     | R8, R9, R10, R11, R12, R13, R14, R15 | Window for Function C      |
+------------------------------------------------------------------------------
+            Each window overlaps with the previous window by four registers.
+            When a function calls another function, the window slides
+            to the next set of registers, and when a function returns, the window slides back.
+
+
+
+
+
 
 
 
