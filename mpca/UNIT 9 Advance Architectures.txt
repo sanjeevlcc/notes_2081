@@ -423,32 +423,45 @@ python code for time checking
 
 RISC (Reduced Instruction Set Computer):
 -----------------------------------------
-Design Philosophy: 
-            Uses a small, highly optimized set of instructions. 
-            Emphasizes efficiency with a focus on executing instructions quickly.
+            Design Philosophy: 
+            ----------------
+                        Uses a small, highly optimized set of instructions. 
+                        Emphasizes efficiency with a focus on executing instructions quickly.
+            
+            
+            Characteristics:
+            ----------------
+                Simple instructions that execute in a single clock cycle.
+                Large number of general-purpose registers.
+                Load/store architecture, where memory operations are separate 
+                        from arithmetic and logic operations.
+                Fixed instruction length for easier decoding.
+            
 
 
-Characteristics:
-    Simple instructions that execute in a single clock cycle.
-    Large number of general-purpose registers.
-    Load/store architecture, where memory operations are separate from arithmetic and logic operations.
-    Fixed instruction length for easier decoding.
 
 
 
 CISC (Complex Instruction Set Computer):
 -----------------------------------------
-Design Philosophy: 
-            Uses a large set of instructions, some of which can execute complex tasks 
-            in a single instruction.
-            Aims to reduce the number of instructions per program.
+            Design Philosophy: 
+            ----------------
+                        Uses a large set of instructions, some of which can execute complex tasks 
+                        in a single instruction.
+                        Aims to reduce the number of instructions per program.
+            
+            
+            Characteristics:
+            ----------------
+                  Complex instructions that may take multiple clock cycles to execute.
+                  Fewer general-purpose registers.
+                  Variable instruction length.
+                  Many addressing modes.
+            
 
 
-Characteristics:
-      Complex instructions that may take multiple clock cycles to execute.
-      Fewer general-purpose registers.
-      Variable instruction length.
-      Many addressing modes.
+
+
 
 
       Common RISC architectures include ARM, MIPS, and SPARC, 
@@ -500,9 +513,9 @@ Characteristics:
 
 
 
-
+                  --------------------------------
                   lscpu for an x86_64 CPU (CISC):
-                  
+                  --------------------------------
                   Architecture:        x86_64
                   CPU op-mode(s):      32-bit, 64-bit
                   Byte Order:          Little Endian
@@ -517,9 +530,12 @@ Characteristics:
                   Model:               142
                   Model name:          Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
                   
-                                    
+
+
+
+                                    --------------------------------
                                     lscpu for an ARM CPU (RISC):
-                                    
+                                    --------------------------------
                                     Architecture:        aarch64
                                     CPU op-mode(s):      32-bit, 64-bit
                                     Byte Order:          Little Endian
@@ -538,128 +554,138 @@ Characteristics:
 
 
 
-CISC (Complex Instruction Set Computing)
----------------------------------------------
-            Instruction Set: 
-                        CISC processors have a large set of instructions 
-                        that can execute complex operations, including multi-step 
-                        operations or addressing modes within a single instruction.
-            
-            Microprogramming: 
-                        CISC instructions are often implemented using 
-                        microprogramming, which allows the use of complex instructions.
-            
-            Memory Usage: 
-                        CISC instructions can operate directly on memory, allowing 
-                        complex instructions that manipulate data stored in memory.
-            
-            Performance: 
-                        CISC designs aim to complete tasks with fewer lines of assembly code, 
-                        potentially reducing the number of instructions per program.
-            
-            Example Processors:
-                        Intel x86, Motorola 68k.
-            
-
-
-            Advantages of CISC:
-            -----------------------
-                        Rich Instruction Set: 
-                                    The wide range of instructions allows complex 
-                                    operations to be performed with a single instruction.
+            CISC (Complex Instruction Set Computing)
+            ---------------------------------------------
+                        Instruction Set: 
+                                    CISC processors have a large set of instructions 
+                                    that can execute complex operations, including multi-step 
+                                    operations or addressing modes within a single instruction.
                         
-                        Code Density: 
-                                    Programs tend to be smaller since more work
-                                    can be done with fewer instructions.
+                        Microprogramming: 
+                                    CISC instructions are often implemented using 
+                                    microprogramming, which allows the use of complex instructions.
                         
-                        Backward Compatibility: 
-                                    Easier to add new instructions without
-                                    breaking older programs.
-
-
-
-
-
-            Disadvantages of CISC:
-            -----------------------
-                        Complexity: 
-                                    More complex hardware is required to decode and 
-                                    execute the instructions, leading to potentially 
-                                    slower clock speeds.
+                        Memory Usage: 
+                                    CISC instructions can operate directly on memory, allowing 
+                                    complex instructions that manipulate data stored in memory.
                         
-                        Power Consumption: 
-                                    Higher power consumption due to complex 
-                                    instructions and hardware.
+                        Performance: 
+                                    CISC designs aim to complete tasks with fewer lines of assembly code, 
+                                    potentially reducing the number of instructions per program.
                         
-                        Microcode Dependence: 
-                                    Reliance on microcode can introduce 
-                                    inefficiencies and make optimization more difficult.
-
-
-
-
-RISC (Reduced Instruction Set Computing)
----------------------------------------------
-            Instruction Set: 
-                        RISC processors have a smaller set of instructions,
-                        each designed to execute very quickly. 
+                        Example Processors:
+                                    Intel x86, Motorola 68k.
                         
-                        These instructions are simple and generally 
-                        take a single clock cycle to execute.
-            
-            Hardwired Control: 
-                        RISC instructions are typically hardwired, avoiding
-                        the need for microprogramming and simplifying the control logic.
             
             
-            Register Usage: 
-                        RISC processors use a large number of registers 
-                        and typically rely on register-to-register operations,
-                        reducing the need to access memory.
+                        Advantages of CISC:
+                        -----------------------
+                                    Rich Instruction Set: 
+                                                The wide range of instructions allows complex 
+                                                operations to be performed with a single instruction.
+                                    
+                                    Code Density: 
+                                                Programs tend to be smaller since more work
+                                                can be done with fewer instructions.
+                                    
+                                    Backward Compatibility: 
+                                                Easier to add new instructions without
+                                                breaking older programs.
             
             
-            Performance: 
-                        RISC designs aim for high performance through 
-                        pipelining, where multiple instructions are processed
-                        simultaneously at different stages of execution.
             
-            Example Processors: 
-                        ARM, MIPS, SPARC, PowerPC.
+            
+            
+                        Disadvantages of CISC:
+                        -----------------------
+                                    Complexity: 
+                                                More complex hardware is required to decode and 
+                                                execute the instructions, leading to potentially 
+                                                slower clock speeds.
+                                    
+                                    Power Consumption: 
+                                                Higher power consumption due to complex 
+                                                instructions and hardware.
+                                    
+                                    Microcode Dependence: 
+                                                Reliance on microcode can introduce 
+                                                inefficiencies and make optimization more difficult.
             
 
 
-            Advantages of RISC:
-            -----------------------
-                        Simplicity: 
-                                    The simpler instruction set allows for faster
-                                    instruction execution and easier pipelining.
-                        
-                        Efficiency:
-                                    Efficient use of registers and fewer memory 
-                                    accesses result in higher performance and lower power consumption.
-                        
-                        Scalability: 
-                                    The simpler design allows for easier scaling
-                                    and optimization of processor performance.
 
 
 
 
-            Disadvantages of RISC:
-            -----------------------
-                        Code Size: 
-                                    Programs tend to be larger because more 
-                                    instructions are required to perform complex operations.
-                        
-                        Compiler Dependency:
-                                    The burden of optimization falls on the
-                                    compiler, requiring more sophisticated compiler design.
-                        
-                        Initial Learning Curve: 
-                                    Developers might need to adapt to the different 
-                                    programming model and instruction set.
-                        
 
+
+
+
+
+
+            
+            RISC (Reduced Instruction Set Computing)
+            ---------------------------------------------
+                        Instruction Set: 
+                                    RISC processors have a smaller set of instructions,
+                                    each designed to execute very quickly. 
+                                    
+                                    These instructions are simple and generally 
+                                    take a single clock cycle to execute.
+                        
+                        Hardwired Control: 
+                                    RISC instructions are typically hardwired, avoiding
+                                    the need for microprogramming and simplifying the control logic.
+                        
+                        
+                        Register Usage: 
+                                    RISC processors use a large number of registers 
+                                    and typically rely on register-to-register operations,
+                                    reducing the need to access memory.
+                        
+                        
+                        Performance: 
+                                    RISC designs aim for high performance through 
+                                    pipelining, where multiple instructions are processed
+                                    simultaneously at different stages of execution.
+                        
+                        Example Processors: 
+                                    ARM, MIPS, SPARC, PowerPC.
+                        
+            
+            
+                        Advantages of RISC:
+                        -----------------------
+                                    Simplicity: 
+                                                The simpler instruction set allows for faster
+                                                instruction execution and easier pipelining.
+                                    
+                                    Efficiency:
+                                                Efficient use of registers and fewer memory 
+                                                accesses result in higher performance and lower power consumption.
+                                    
+                                    Scalability: 
+                                                The simpler design allows for easier scaling
+                                                and optimization of processor performance.
+            
+            
+            
+            
+                        Disadvantages of RISC:
+                        -----------------------
+                                    Code Size: 
+                                                Programs tend to be larger because more 
+                                                instructions are required to perform complex operations.
+                                    
+                                    Compiler Dependency:
+                                                The burden of optimization falls on the
+                                                compiler, requiring more sophisticated compiler design.
+                                    
+                                    Initial Learning Curve: 
+                                                Developers might need to adapt to the different 
+                                                programming model and instruction set.
+                                    
+            
 
 
 
@@ -854,7 +880,9 @@ How Register Windows Work
             Overlapping Windows: 
                         Register windows overlap with each other, sharing some registers 
                         between the caller and callee functions. 
-                        This reduces the need to save and restore registers across function calls.
+
+                        This reduces the need to save and restore 
+                        registers across function calls.
             
             Sliding Window:
                         When a function is called, the register window "slides" 
@@ -971,6 +999,10 @@ data streams they can handle.
 
 It was proposed by Michael J. Flynn in 1966.
 
+
+
+
+
 The taxonomy divides computer architectures into four categories:
 
             SISD (Single Instruction stream, Single Data stream)
@@ -980,104 +1012,182 @@ The taxonomy divides computer architectures into four categories:
 
 
 1. SISD (Single Instruction stream, Single Data stream)
-Description: A traditional sequential computer that processes a single instruction stream and operates on a single data stream.
+----------------------------------------------------------
+            Description: 
+            A traditional sequential computer that processes a single 
+            instruction stream and operates on a single data stream.
+            
+            Example: Conventional single-core processors.
+            
+            Usage: Suitable for simple, linear tasks that do not require parallel processing.
 
-Example: Conventional single-core processors.
 
-Usage: Suitable for simple, linear tasks that do not require parallel processing.
+
 
 2. SIMD (Single Instruction stream, Multiple Data streams)
-Description: Executes the same instruction on multiple data streams simultaneously. It is particularly useful for tasks that can be parallelized at the data level.
-
-Example: Graphics Processing Units (GPUs), vector processors.
-
-Usage: Common in image processing, scientific computing, and applications requiring parallel data operations.
+----------------------------------------------------------
+            Description: Executes the same instruction on multiple data streams simultaneously. 
+            It is particularly useful for tasks that can be parallelized at the data level.
+            
+            Example: Graphics Processing Units (GPUs), vector processors.
+            
+            Usage: Common in image processing, scientific computing, and applications
+            requiring parallel data operations.
 
 
 
 3. MISD (Multiple Instruction streams, Single Data stream)
-Description: Executes multiple instructions on a single data stream. This architecture is rare and typically theoretical.
+----------------------------------------------------------
+            Description: Executes multiple instructions on a single data stream. 
+            This architecture is rare and typically theoretical.
+            
+            Example: Fault-tolerant systems that require redundancy and reliability.
+            
+            Usage: Specialized applications that require high fault tolerance.
 
-Example: Fault-tolerant systems that require redundancy and reliability.
 
-Usage: Specialized applications that require high fault tolerance.
+
+
+
+
 
 4. MIMD (Multiple Instruction streams, Multiple Data streams)
-Description: Executes multiple instructions on multiple data streams. It supports parallel processing at both the instruction and data levels.
-
-Example: Multi-core processors, distributed computing systems.
-
-Usage: General-purpose parallel computing, complex simulations, and tasks that benefit from both data and instruction parallelism.
-
+----------------------------------------------------------
+            Description: Executes multiple instructions on multiple data streams. 
+            It supports parallel processing at both the instruction and data levels.
+            
+            Example: Multi-core processors, distributed computing systems.
+            
+            Usage: General-purpose parallel computing, complex simulations, and tasks that benefit from 
+            both data and instruction parallelism.
+            
 
 
 
 MIMD System Topologies and Architectures
-MIMD (Multiple Instruction streams, Multiple Data streams) systems can be organized in various topologies and architectures to optimize communication, computation, and resource sharing. Here are some common MIMD topologies and architectures:
+----------------------------------------------------------
+            MIMD (Multiple Instruction streams, Multiple Data streams) systems can be organized in 
+            various topologies and architectures to optimize communication, computation, and resource sharing. 
+
+
+
+Here are some common MIMD topologies and architectures:
 
 1. Shared Memory Architecture
-Description: Multiple processors share a common memory space. Each processor can access any memory location, allowing easy data sharing and communication.
+------------------------------
+            Description: Multiple processors share a common memory space.
+            Each processor can access any memory location, allowing easy data sharing and communication.
+            
+            Example: Symmetric Multiprocessing (SMP) systems.
+            
+            Advantages:
+            ------------
+            Simplifies programming model due to shared memory space.
+            Efficient for tasks requiring frequent data sharing.
+            
+            
+            Disadvantages:
+            ---------------
+            Scalability issues due to contention for shared memory.
+            Complex memory coherence protocols required.
 
-Example: Symmetric Multiprocessing (SMP) systems.
-
-Advantages:
-
-Simplifies programming model due to shared memory space.
-Efficient for tasks requiring frequent data sharing.
 
 
-Disadvantages:
-
-Scalability issues due to contention for shared memory.
-Complex memory coherence protocols required.
 
 
 
 2. Distributed Memory Architecture
-Description: Each processor has its own private memory. Processors communicate by passing messages over an interconnection network.
+------------------------------
+            Description: Each processor has its own private memory. Processors 
+            communicate by passing messages over an interconnection network.
+            
+            Example: Massively Parallel Processors (MPPs), clusters of computers.
+            
+            Advantages:
+            ------------
+            Scalable to a large number of processors.
+            No contention for shared memory resources.
+            Disadvantages:
+            --------------
+            More complex programming model due to explicit message passing.
+            Higher communication overhead compared to shared memory.
 
-Example: Massively Parallel Processors (MPPs), clusters of computers.
 
-Advantages:
 
-Scalable to a large number of processors.
-No contention for shared memory resources.
-Disadvantages:
-
-More complex programming model due to explicit message passing.
-Higher communication overhead compared to shared memory.
 
 
 3. Hybrid Architecture
-Description: Combines elements of both shared and distributed memory architectures. Each node in the system can be a shared memory multiprocessor, and nodes communicate via message passing.
+------------------------------
+            Description: Combines elements of both shared and distributed memory architectures. 
+            Each node in the system can be a shared memory multiprocessor, and nodes communicate via message passing.
+            
+            Example: Modern supercomputers, such as the IBM Blue Gene.
+            
+            Advantages:
+            -------------
+            Balances scalability and ease of programming.
+            Leverages the strengths of both shared and distributed memory models.
+            
+            
+            
+            
+            Disadvantages:
+            ---------------
+            Increased complexity in both hardware and software.
+            Requires sophisticated management of both memory models.
 
-Example: Modern supercomputers, such as the IBM Blue Gene.
 
-Advantages:
 
-Balances scalability and ease of programming.
-Leverages the strengths of both shared and distributed memory models.
-Disadvantages:
 
-Increased complexity in both hardware and software.
-Requires sophisticated management of both memory models.
+
 
 
 4. Interconnection Networks
-The performance of MIMD systems often depends on the efficiency of the interconnection network used for processor communication. Common network topologies include:
+------------------------------
+The performance of MIMD systems often depends on the efficiency of the 
+interconnection network used for processor communication. Common network topologies include:
 
-Bus: Simple and cost-effective but limited in scalability due to contention.
-Ring: Provides better scalability than a bus but can suffer from high latency for distant nodes.
-Mesh: Nodes are arranged in a grid, offering good scalability and lower latency.
-Torus: A variant of the mesh with wrap-around connections, reducing the maximum distance between nodes.
-Hypercube: Highly scalable with low latency, suitable for large systems.
-Fat Tree: Hierarchical network with high bandwidth, commonly used in high-performance computing clusters.
+            Bus: Simple and cost-effective but limited in scalability due to contention.
+            Ring: Provides better scalability than a bus but can suffer from high latency for distant nodes.
+            Mesh: Nodes are arranged in a grid, offering good scalability and lower latency.
+            Torus: A variant of the mesh with wrap-around connections, reducing the maximum distance between nodes.
+            Hypercube: Highly scalable with low latency, suitable for large systems.
+            Fat Tree: Hierarchical network with high bandwidth, commonly used in high-performance computing clusters.
+            
+
+
+
+
+
+
+
+
 
 
 
 ======================================================================
 9.4 Introduction to multicore architecture 
 ======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
