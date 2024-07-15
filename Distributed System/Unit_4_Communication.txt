@@ -22,8 +22,80 @@ Unit 4. Communication 5 Hrs.
             
             It involves the exchange of data and commands between various nodes, processes, or systems.
             
-            
-            
+            Understanding the foundational aspects of communication helps 
+            in designing robust and efficient distributed systems.
+
+
+
+
+
+
+
+Components of Communication Systems:
+------------------------------------
+        Nodes:
+        ----------
+                Definition: Individual devices or processes that participate in the communication.
+                Examples: Servers, clients, sensors, and any other computing devices in a network.
+                Roles: Nodes can act as senders, receivers, or intermediaries in a communication process.
+        
+        
+        Links:
+        ----------
+                Definition: The physical or logical pathways that connect nodes.
+                Types: Wired (Ethernet), wireless (Wi-Fi, Bluetooth), and virtual (VPN, tunnels).
+                Importance: Determines the speed, reliability, and capacity of data transfer between nodes.
+                
+        
+        Messages:
+        ----------
+                Definition: Units of data exchanged between nodes.
+                Format: Structured as packets, frames, or higher-level constructs like JSON or XML.
+                Content: Can contain commands, data, or both.
+        
+        
+        Protocols:
+        ----------
+                Definition: Set of rules that govern communication between nodes.
+                Levels: Can operate at different levels of the network stack (e.g., TCP/IP at the transport layer, 
+                        HTTP at the application layer).
+                Functions: Define how data is formatted, transmitted, received, and acknowledged.
+        
+
+
+
+
+
+Communication Models:
+------------------------------
+        Client-Server Model:
+        --------------------
+                Definition: A model where clients request services and servers provide them.
+                Structure: Clients initiate communication, and servers wait to respond.
+                Examples: Web browsers (clients) requesting pages from web servers.
+        
+        
+        Peer-to-Peer (P2P) Model:
+        ------------------------------
+                Definition: A decentralized model where each node can act as both client and server.
+                Structure: Nodes communicate directly without central coordination.
+                Examples: File-sharing networks like BitTorrent.
+        
+        
+        Publish-Subscribe Model:
+        ------------------------------
+                Definition: A model where publishers send messages to a central broker, and 
+                            subscribers receive messages from the broker.
+                Structure: Decouples the producers and consumers of messages.
+                Examples: Messaging systems like MQTT, Apache Kafka.
+
+
+
+
+
+
+
+
             Features:
             ----------------
                 Types of Communication:
@@ -76,165 +148,205 @@ Unit 4. Communication 5 Hrs.
 
 
 
+        Examples of Communication Systems:
+        ------------------------------------
+                HTTP/HTTPS:
+                ------------
+                        Use Case: Web browsing and web services.
+                        Features: Stateless, request-response model, secure version (HTTPS) with encryption.
+                
+                
+                WebSockets:
+                ------------
+                        Use Case: Real-time applications like chat and live updates.
+                        Features: Full-duplex communication, low latency, persistent connection.
+                
+                
+                MQTT:
+                ------------
+                        Use Case: IoT (Internet of Things) applications.
+                        Features: Lightweight, publish-subscribe model, low bandwidth usage.
+                
+                
+                SMTP:
+                ------------
+                        Use Case: Email transmission.
+                        Features: Reliable message delivery, supports attachments, text-based protocol.
+                
+                
+                FTP/SFTP:
+                ------------
+                        Use Case: File transfer.
+                        Features: Reliable file transfer, supports authentication, secure version (SFTP) with encryption.
+                
 
 
 
-Asynchronous Communication
-------------------------
-Definition:
---------------
-    In asynchronous communication, the sender sends a message and does not 
-    wait for the receiver to respond. The sender can continue processing other 
-    tasks while the receiver processes the message independently.
 
 
 
 
-Features:
---------------
-        Non-blocking Operation: 
-        --------------
-            The sender is not blocked and can perform other tasks after sending the message.
+
+
+
+
+        Asynchronous Communication
+        ------------------------
+                Definition:
+                --------------
+                    In asynchronous communication, the sender sends a message and does not 
+                    wait for the receiver to respond. The sender can continue processing other 
+                    tasks while the receiver processes the message independently.
+                
+                
+                
+                
+                Features:
+                --------------
+                        Non-blocking Operation: 
+                        --------------
+                            The sender is not blocked and can perform other tasks after sending the message.
+                        
+                        Decoupling: 
+                        --------------
+                            The sender and receiver do not need to be available simultaneously.
+                        
+                        Message Queues:
+                        --------------
+                            Often uses message queues to store and forward messages.
+                
+                
+                Advantages:
+                --------------
+                        Efficiency: 
+                        --------------
+                            Improves system efficiency by allowing the sender to perform other tasks instead of waiting.
+                        
+                        
+                        Scalability: 
+                        --------------
+                            Better suited for scalable systems as it decouples sender and receiver operations.
+                
+                
+                
+                
+                
+                
+                Disadvantages:
+                --------------
+                        Complexity: 
+                        --------------
+                        More complex to implement due to the need for handling message delivery and processing asynchronously.
+                
+                
+                        Delayed Acknowledgement: 
+                        ----------------------------
+                            The sender does not receive immediate confirmation of message processing.
+                
+                
+                Use Cases:
+                --------------
+                        Email Systems: 
+                            Where messages are sent and received without requiring 
+                            the sender and receiver to be online simultaneously.
+                        
+                        
+                        Message-Oriented Middleware:
+                            Systems like RabbitMQ or Apache Kafka that handle high-throughput messaging.
+                        
+                
+                
+                
         
-        Decoupling: 
-        --------------
-            The sender and receiver do not need to be available simultaneously.
-        
-        Message Queues:
-        --------------
-            Often uses message queues to store and forward messages.
-
-
-Advantages:
---------------
-        Efficiency: 
-        --------------
-            Improves system efficiency by allowing the sender to perform other tasks instead of waiting.
         
         
-        Scalability: 
-        --------------
-            Better suited for scalable systems as it decouples sender and receiver operations.
-
-
-
-
-
-
-Disadvantages:
---------------
-        Complexity: 
-        --------------
-        More complex to implement due to the need for handling message delivery and processing asynchronously.
-
-
-        Delayed Acknowledgement: 
+        
+        Unicast Communication
         ----------------------------
-            The sender does not receive immediate confirmation of message processing.
-
-
-Use Cases:
---------------
-        Email Systems: 
-            Where messages are sent and received without requiring 
-            the sender and receiver to be online simultaneously.
-        
-        
-        Message-Oriented Middleware:
-            Systems like RabbitMQ or Apache Kafka that handle high-throughput messaging.
-        
-
-
-
-
-
-
-
-Unicast Communication
-----------------------------
-    Definition:
-    --------------
-        Unicast communication is a one-to-one communication model
-        where a single sender communicates with a single receiver.
-    
-    Features:
-    --------------
-        Direct Communication: The message is sent directly from the sender to the receiver.
-        Unique Addressing: Each message is addressed to a specific receiver.
-        Point-to-Point: Establishes a direct point-to-point communication link.
-    
-    
-    
-    Advantages:
-    --------------
-        Simplicity: Easy to implement and manage due to the direct nature of communication.
-        Efficiency: Efficient for point-to-point communication where only one receiver needs the data.
-    
-    
-    Disadvantages:
-    --------------
-        Limited Scalability:
-            Not suitable for scenarios where multiple receivers 
-            need the same data, as it requires multiple unicast transmissions.
-        
-        
-        Resource Intensive: 
-            Can be resource-intensive if the sender needs to communicate with many receivers individually.
-    
-    
-    Use Cases:
-    --------------
-        Client-Server Communication: Where a client requests data from a server.
-        Peer-to-Peer Applications: Direct communication between two nodes in a network.
-        
-    
-    
-
-
-
-
-
-
-Multicast Communication
-----------------------------
-        Definition:
-        --------------
-            Multicast communication is a one-to-many communication model
-            where a single sender transmits data to multiple receivers simultaneously.
-        
-        
-        
-        
-        Features:
-        --------------
-            Group Communication: The sender transmits messages to a group of receivers.
-            Efficient Data Distribution: Data is transmitted once and delivered to multiple receivers, reducing bandwidth usage.
-            Group Management: Requires mechanisms to manage group membership and data delivery.
-        
-        
-        
-        Advantages:
-        --------------
-            Bandwidth Efficiency: Reduces bandwidth usage by sending data once to multiple receivers.
-            Scalability: Efficiently scales to large numbers of receivers.
-        
-        
-        
-        Disadvantages:
-        --------------
-            Complexity: More complex to implement and manage due to group management and data delivery mechanisms.
-            Network Support: Requires network infrastructure that supports multicast.
+                    Definition:
+                    --------------
+                        Unicast communication is a one-to-one communication model
+                        where a single sender communicates with a single receiver.
+                    
+                    Features:
+                    --------------
+                        Direct Communication: The message is sent directly from the sender to the receiver.
+                        Unique Addressing: Each message is addressed to a specific receiver.
+                        Point-to-Point: Establishes a direct point-to-point communication link.
+                    
+                    
+                    
+                    Advantages:
+                    --------------
+                        Simplicity: Easy to implement and manage due to the direct nature of communication.
+                        Efficiency: Efficient for point-to-point communication where only one receiver needs the data.
+                    
+                    
+                    Disadvantages:
+                    --------------
+                        Limited Scalability:
+                            Not suitable for scenarios where multiple receivers 
+                            need the same data, as it requires multiple unicast transmissions.
+                        
+                        
+                        Resource Intensive: 
+                            Can be resource-intensive if the sender needs to communicate with many receivers individually.
+                    
+                    
+                    Use Cases:
+                    --------------
+                        Client-Server Communication: Where a client requests data from a server.
+                        Peer-to-Peer Applications: Direct communication between two nodes in a network.
+                        
+                    
             
         
         
-        Use Cases:
-        --------------
-            Live Streaming: Broadcasting live video or audio to multiple users.
-            Stock Market Feeds: Distributing real-time financial data to multiple subscribers.
-            Online Gaming: Sending game state updates to multiple players simultaneously.
+        
+        
+        
+        
+        Multicast Communication
+        ----------------------------
+                Definition:
+                --------------
+                    Multicast communication is a one-to-many communication model
+                    where a single sender transmits data to multiple receivers simultaneously.
+                
+                
+                
+                
+                Features:
+                --------------
+                    Group Communication: The sender transmits messages to a group of receivers.
+                    Efficient Data Distribution: Data is transmitted once and delivered to
+                                    multiple receivers, reducing bandwidth usage.
+                    Group Management: Requires mechanisms to manage group membership and data delivery.
+                
+                
+                
+                Advantages:
+                --------------
+                    Bandwidth Efficiency: Reduces bandwidth usage by sending data once to multiple receivers.
+                    Scalability: Efficiently scales to large numbers of receivers.
+                
+                
+                
+                Disadvantages:
+                --------------
+                    Complexity: More complex to implement and manage due to group management and data delivery mechanisms.
+                    Network Support: Requires network infrastructure that supports multicast.
+                    
+                
+                
+                Use Cases:
+                --------------
+                    Live Streaming: Broadcasting live video or audio to multiple users.
+                    Stock Market Feeds: Distributing real-time financial data to multiple subscribers.
+                    Online Gaming: Sending game state updates to multiple players simultaneously.
+                    
             
-    
-
+        
 
 
 
@@ -250,6 +362,40 @@ Multicast Communication
 ================================================
 4.2 Remote Procedure Call
 ================================================
+
+
+Remote Procedure Call (RPC) is a communication technology that is 
+used by one program to make a request to another program for utilizing 
+its service on a network without even knowing the network’s details. 
+
+A function call or a subroutine call are other terms for a procedure call.
+
+It is based on the client-server concept. 
+
+The client is the program that makes the request, and the server is the 
+program that gives the service. 
+
+An RPC, like a local procedure call, is based on the synchronous operation 
+that requires the requesting application to be stopped until the 
+remote process returns its results. 
+
+Multiple RPCs can be executed concurrently by utilizing lightweight processes or
+threads that share the same address space. 
+
+Remote Procedure Call program as often as possible utilizes the 
+Interface Definition Language (IDL), a determination language for describing a 
+computer program component’s Application Programming Interface (API). 
+
+In this circumstance, IDL acts as an interface between machines at either 
+end of the connection, which may be running different operating systems and programming languages.
+
+
+
+
+
+
+
+
 
 ================================================
 4.3 Message-Oriented Communication
