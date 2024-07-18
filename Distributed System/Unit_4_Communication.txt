@@ -363,6 +363,8 @@ Communication Models:
 4.2 Remote Procedure Call
 ================================================
 
+https://www.geeksforgeeks.org/remote-procedure-call-rpc-in-operating-system/
+
 
 Remote Procedure Call (RPC) is a communication technology that is 
 used by one program to make a request to another program for utilizing 
@@ -387,12 +389,87 @@ Interface Definition Language (IDL), a determination language for describing a
 computer program component’s Application Programming Interface (API). 
 
 In this circumstance, IDL acts as an interface between machines at either 
-end of the connection, which may be running different operating systems and programming languages.
+end of the connection, which may be running different operating 
+systems and programming languages.
+
+
+
+
+Advantages of RPC
+-------------------
+        Transparency: 
+            RPC makes remote calls appear as local calls, hiding 
+            the complexity of network communication from the developer.
+        
+        Simplicity: 
+            Simplifies the development of distributed applications
+            by providing a straightforward mechanism for invoking remote services.
+        
+        Modularity: 
+            Encourages a modular approach to software design, 
+            enabling clear separation of client and server functionalities.
+        
+        Language Agnostic: 
+            RPC systems often support multiple programming 
+            languages, allowing for heterogeneous environments.
+        
+        Scalability: 
+            Facilitates distribution of workloads across
+            multiple servers, enhancing scalability.
+
+
+
+Disadvantages of RPC
+-----------------------
+        Latency:
+            Network communication introduces latency, which can
+            affect the performance of applications.
+        
+        Error Handling:
+            Requires robust mechanisms to handle partial failures, 
+            such as server unavailability or network issues.
+        
+        Security: 
+            Ensuring secure transmission of data and preventing
+            unauthorized access can be challenging.
+        
+        Complexity in Debugging:
+            Debugging distributed systems can be more complex compared
+            to local systems due to network-related issues.
+        
+        Heterogeneity Handling:
+            Differences in hardware, operating systems, and data
+            representations between client and server need to be managed.
 
 
 
 
 
+
+
+
+
+
+Applications of RPC
+----------------------------
+        Distributed Computing: 
+            RPC is widely used in distributed computing
+            environments where tasks are spread across multiple systems.
+        
+        Microservices Architecture: 
+            Facilitates communication between
+            microservices in a microservices architecture.
+        
+        Client-Server Applications:
+            Used in traditional client-server 
+            applications to enable clients to invoke server-side operations.
+        
+        Cloud Services:
+            Commonly used in cloud services to
+            interact with remote APIs and services.
+        
+        Database Access:
+            Enables remote database access and management.
 
 
 
@@ -400,6 +477,55 @@ end of the connection, which may be running different operating systems and prog
 ================================================
 4.3 Message-Oriented Communication
 ================================================
+
+
+https://chaerim-kim.github.io/distributed%20systems/DS-4/
+
+
+
+
+
+
+Feature                    · RPC                                     · Message-Oriented Communication         
+---------------------------·-----------------------------------·----------------------------------------
+Communication Type         · Synchronous (typically)                       · Asynchronous                           
+Coupling                   · Tight Coupling                                · Loose Coupling                         
+Transparency               · Aims to make remote calls look local          · Explicit message exchange              
+Scalability                · Limited due to synchronous nature             · High due to asynchronous nature        
+Error Handling             · Complex, requires robust handling             · Built-in mechanisms in messaging systems
+Use Cases                  · Distributed computing, Microservices           · Event-driven systems, Real-time processing
+
+
+
+Message-oriented communication is a method of communication in distributed systems where messages are sent between applications or services through a messaging system. This method allows for asynchronous communication, meaning the sender and receiver do not need to interact with the message queue at the same time.
+
+
+Advantages
+---------------
+Asynchronous Communication: Allows systems to communicate without needing to be active simultaneously, enhancing flexibility and performance.
+Loose Coupling: Decouples the sender and receiver, allowing them to evolve independently without affecting each other.
+Scalability: Naturally supports scalability, as messages can be processed independently and in parallel.
+Reliability: Messaging systems often provide mechanisms for ensuring message delivery, such as persistent queues and acknowledgments.
+Fault Tolerance: The decoupled nature and persistent storage of messages help in building fault-tolerant systems, as messages can be retried in case of failures.
+
+
+Disadvantages
+--------------------
+Complexity: Requires handling of message order, delivery, and potential duplication, increasing system complexity.
+Latency: Asynchronous communication can introduce latency as messages may not be processed immediately.
+Infrastructure: Needs additional infrastructure, such as message brokers or queues, which can add operational overhead.
+Message Overhead: The format and metadata of messages can introduce overhead compared to direct method calls.
+Applications
+
+
+
+Applications
+Event-Driven Architectures: Used for systems that react to events, such as logging, monitoring, and notification systems.
+Microservices Communication: Facilitates communication between microservices, allowing them to remain loosely coupled.
+Real-Time Data Processing: Used in real-time systems for processing streams of data, such as in financial services or IoT.
+Workflow Automation: Enables the automation of business processes and workflows by passing messages between different components or services.
+Distributed Systems: Widely used in distributed systems to coordinate and synchronize operations between different nodes.
+
 
 ================================================
 4.4 Multicast Communication
@@ -415,4 +541,211 @@ end of the connection, which may be running different operating systems and prog
 
 
 
+==================================================================
+LAB: Implementing a Basic RPC System in Python            
+                                        START
+==================================================================
 
+In this lab, we will create a simple RPC system 
+using Python's xmlrpc library. 
+
+The lab will consist of a server that provides a
+service and a client that uses this service.
+
+     
+
+
+
+            SERVER: https://killercoda.com/killer-shell-cka/scenario/playground
+
+
+
+
+
+
+
+Step 1: Setting Up the Server
+----------------------------------
+    Create a file named rpc_server.py.
+
+
+
+
+
+controlplane $ cat > rpc_server.py 
+# rpc_server.py
+from xmlrpc.server import SimpleXMLRPCServer
+from xmlrpc.server import SimpleXMLRPCRequestHandler
+
+# Restrict to a particular path.
+class RequestHandler(SimpleXMLRPCRequestHandler):
+    rpc_paths = ('/RPC2',)
+
+# Create server
+with SimpleXMLRPCServer(('localhost', 9000), requestHandler=RequestHandler) as server:
+    server.register_introspection_functions()
+
+    # Define a function
+    def add(x, y):
+        return x + y
+
+    # Register function
+    server.register_function(add, 'add')
+
+    # Run the server's main loop
+    print("Serving RPC server on port 9000...")
+    server.serve_forever()
+
+
+
+
+
+Step 2: Setting Up the Client
+-------------------------------
+    Create a file named rpc_client.py.
+
+
+
+
+
+
+
+controlplane $ cat > rpc_client.py 
+# rpc_client.py
+import xmlrpc.client
+
+# Create a client
+with xmlrpc.client.ServerProxy("http://localhost:9000/RPC2") as proxy:
+    # Call the remote function
+    result = proxy.add(5, 3)
+    print(f"Result of add(5, 3): {result}")
+
+
+
+
+
+
+Step 3: Running the Lab
+--------------------------
+    Open two terminal windows.
+
+    In the first terminal, navigate to the 
+    directory containing rpc_server.py and run the server:
+
+
+
+
+
+terminal1
+--------------
+controlplane $ python3 rpc_server.py
+
+
+
+terminal2
+--------------
+controlplane $ python3 rpc_client.py
+
+
+
+
+
+
+
+
+terminal1
+--------------
+controlplane $ python3 rpc_server.py
+
+                    You should see the message Serving RPC server on port 9000....
+
+terminal2
+--------------
+controlplane $ python3 rpc_client.py
+                
+                    You should see the output:
+                    Result of add(5, 3): 8  
+
+
+
+Explanation
+--------------
+rpc_server.py:
+-------------
+    Uses SimpleXMLRPCServer to create an RPC server listening on localhost at port 9000.
+    Registers the add function so that it can be called remotely.
+    The server enters an infinite loop waiting for client requests.
+    
+
+rpc_client.py:
+--------------
+    Uses xmlrpc.client.ServerProxy to create a client that connects to the server.
+    Calls the add function with the parameters 5 and 3.
+    Prints the result received from the server.
+
+
+
+This simple lab demonstrates the basic concepts of RPC, including
+the server providing a service and the client utilizing that service remotely.
+
+
+
+
+
+
+
+==================================================================
+LAB: Implementing a Basic RPC System in Python            
+                                            END
+==================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+LAB: START
+==================================================================
+
+
+
+==================================================================
+LAB: END
+==================================================================
+
+
+
+
+
+==================================================================
+LAB: START
+==================================================================
+
+
+
+==================================================================
+LAB: END
+==================================================================
+
+
+
+==================================================================
+LAB: START
+==================================================================
+
+
+
+==================================================================
+LAB: END
+==================================================================
