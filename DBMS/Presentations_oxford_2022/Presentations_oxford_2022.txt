@@ -1,0 +1,801 @@
+
+
+
+
+
+
+***************************************************************************
+Presentations: BIM 4, DBMS ,2022 batch
+Mode Online: google meet
+
+
+Meet Link (Static Link) : https://meet.google.com/owp-rgkx-zab
+or
+Meet code: owp-rgkx-zab
+
+
+Time: 5:45 - 7:00 AM (75 mins)
+Start Date : 13 shrawan 2081
+
+Per day (in 75 mins , 4-5 students will perform)
+
+
+
+Slide Length : min 8 , max 14 slides
+
+
+Slide must include:
+---------------------
+	Slide 1: Title Slide,  Course Title, Unit Title, Your Name, Date
+	Slide 2,3,4,.....: topic to be discovered
+	Slide last: Conclusions , QnA
+
+
+Slide time per student : 10-14 mins
+
+
+
+
+FOR SQL DEMO: make a nessecity data for demo, create db, 
+            table, insert data(atleast 15 data) etc
+
+FOR ER : diagram and steps , entity, relations, and attribute 
+	        figure must be defined and cleared
+
+For general presentations : make your necessary assumptions
+
+
+
+
+
+Presentations Include 10 marks for exterlnal marks .i.e (10/20)
+
+
+Your PPT must be upload 20 mins or / one day 
+earlier in your chat group , before the day of
+presentations for verifications.
+
+
+
+
+If therules voilated , in any manner, the student 
+is not evaluated for marks.
+
+
+              regards
+              --------
+              
+              Subject Teacher
+***************************************************************************
+
+
+
+
+
+
+
+
+Name of the student		Date		Topics	
+------------------------------------------------------------
+
+AADARSHA CHHETRI	13 shrawan 2081
+		
+
+				Data Models, Schemas, and Instances
+				Definition of Data Models
+				Concept of Schemas
+				Instances in Databases
+
+
+
+
+
+
+AAKRITI SUBEDI		13 shrawan 2081
+	
+				Three-Schema Architecture and Data Independence
+				Internal Schema
+				Conceptual Schema
+				External Schema
+				Data Independence
+
+
+
+
+
+
+
+ANUSHKA KC		13 shrawan 2081
+
+				Definition of Database
+				Examples of Databases
+
+
+
+
+
+
+
+ARYAN NEUPANE		13 shrawan 2081
+	
+				ASTHA CHHATRI
+				Advantages of Databases
+				Data Redundancy Control
+				Data Integrity
+				Data Security
+				Data Sharing
+
+
+
+
+
+
+
+BIKALPA SHAHI		14 shrawan 2081
+
+				Database Languages and Interfaces
+				DDL (Data Definition Language)
+				DML (Data Manipulation Language)
+				DCL (Data Control Language)
+
+
+
+
+
+
+
+
+BINOD SHRESTHA		14 shrawan 2081
+
+				Database Administrator (DBA)
+				Roles and Responsibilities
+				Importance of DBA in Database Management
+
+
+
+
+
+
+
+
+Database Users		14 shrawan 2081
+
+
+				Types of Database Users
+				End Users
+				Application Programmers
+				Database Administrators
+
+
+
+
+
+
+
+BISHAL PANDEY		14 shrawan 2081
+
+				Relationship Types, Relationship Sets, 
+				Roles, and Structural Constraints
+				
+				Types of Relationships 
+				(One-to-One, One-to-Many, Many-to-Many)
+				
+				Structural Constraints
+
+
+
+
+
+
+
+
+CHADANI THAPA		15 shrawan 2081
+				Entity Types, Entity Sets, Attributes, and Keys
+				Definition of Entity Types and Entity Sets
+				Attributes and their Importance
+				Keys (Primary Key, Foreign Key, etc.)
+
+
+
+
+
+
+
+
+DIYA SHAKYA		15 shrawan 2081
+				Construct an E-R diagram for a hospital with a 
+				set of patients and a set of medical doctors. 
+				Associate with each patient, a log of various
+				tests and examinations conducted. 
+				Construct the appropriate tables for this E-R 
+				diagram and list the tables with their attributes,
+				primary key and foreign keys.
+
+
+
+
+
+
+
+
+
+
+KAILASH KHATRI		15 shrawan 2081
+
+				Case Study: Hotel Management System
+				------------------------------------
+				Relations
+				-----------
+					Guests
+						GuestID (Primary Key)
+						Name
+						Address
+						PhoneNumber
+				
+					Rooms
+						RoomID (Primary Key)
+						RoomType
+						PricePerNight
+				
+					Bookings
+						BookingID (Primary Key)
+						GuestID (Foreign Key)
+						RoomID (Foreign Key)
+						CheckInDate
+						CheckOutDate
+				
+				
+				Questions
+				---------------
+				Selection: Write a relational algebra 
+				expression to find all rooms with a price
+				per night less than $100.
+				
+				Projection: How would you list the names and
+				phone numbers of all guests?
+				
+				Join: Combine the Guests and Bookings 
+				relations to show guest names along with
+				their booking IDs.
+				
+				
+				Renaming: Rename the PhoneNumber attribute 
+				to ContactNumber in the Guests relation. 
+				What is the expression?
+				
+				
+				Set Difference: Write a relational 
+				algebra expression to list the guests who
+				have not made any bookings.
+				
+				
+				Union: How would you find all guest 
+				names and room types in a single list?
+				
+				
+				Intersection: Write a relational algebra 
+				expression to find guests who have booked 
+				the same room type multiple times.
+				
+				
+				Division: Find guests who have stayed in 
+				every room. What is the relational algebra
+				expression for this?
+				
+				Cartesian Product: Generate a relational
+				algebra expression to list all possible
+				guest and room combinations.
+				
+				Aggregation: Calculate the total revenue 
+				generated by all bookings using 
+				relational algebra.
+
+
+
+
+
+
+
+
+
+
+
+KISHOR DARLAMI		16 shrawan 2081
+				Make an ER diagram for a diagnostic lab. 
+				It should keep track of customers, raw 
+				material,professional and support staff,
+				and the reports being generated for tests. 
+				Make and state assumptions, if any.
+
+
+
+
+
+
+
+
+
+
+
+
+
+MANOJ GHIMIRE		16 shrawan 2081		BIM2018
+
+﻿
+				
+				Consider a university database for the scheduling 
+				classrooms for -final exams. 
+				This database contains data about course, section, room.
+				
+				* course with attributes name, department, and c-number
+				
+				* section with attributes s-number and enrollment,
+				and dependent as a weak entity set on course
+				
+				* room with attributes r-number, capacity, 
+				and building 
+				
+				
+				Show an E-R diagram illustrating the 
+				use of all three entity sets.
+
+
+
+
+
+
+
+
+
+
+
+
+MUNA BASHYAL		16 shrawan 2081
+
+
+			You have been tasked with designing a 
+			database for the  Census department to 
+			store all of their data, past and future. 
+			
+			The database must conform to these 
+			constraints:
+			
+				1. There has been a census every 10 years.
+				The year of each census is unique to that
+				census. There are also some notes as well
+				as the total population of the India.
+			
+				2. Each state has a unique name, and a value 
+				for its square area. Every state participates
+				individually in every census, providing 
+				its population.
+			
+				3. Every person has a unique SSN, as well as 
+				a name and birthday. Each person participates 
+				in every census by providing their age.
+			
+				4. An address has a unique identifier,
+				as well as a street name, city, state,
+				and zipcode.
+			
+				5. A person lives at only one address.
+			
+			(a) Draw an ER diagram for this database. Be sure
+			to mark the multiplicity of each 
+			relationship (1-1, 1-many, many-many, etc) of the 
+			diagram. Decide the key attributes and identify 
+			them on the diagram by underlining them. 
+			State all assumptions you make.
+			
+			(b) Translate your ER diagram into a relational schema. 
+			Select approaches that yield the fewest number of
+			relations; merge relations where appropriate. Specify
+			the key of each relation in your schema. If the names 
+			of your foreign keys do not match the primary key
+			name, please state the link in your assumptions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NAMITA THAPA MAGAR		16 shrawan 2081
+
+
+
+
+				Consider the following relational database
+					Employee (employee-name, street, city) 
+					Works (employee-Name, company-name, salary)
+					Company (company-name, city)
+					Manages (employee-name, manager-name)
+				
+				(i) find the company that has the most employees.
+				
+				(ii) find all employees in the database who live 
+				in the same city as the companies they work for.
+				
+				(iii) find the names of all employees who work 
+				for first corporation bank.
+				
+				(iv) find all the employees who don’t work 
+				for first corporation bank.
+				
+				(v) find all those employees who work for 
+				first corporation bank and earn more than ` 10,000.
+				
+				For the above queries give an expression in SQL. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+NITESH ARYAL			17 shrawan 2081			BIM 2022
+
+
+
+﻿				Draw an ER diagrams for the following scenario.
+				Make any assumption if necessary.
+				
+				A university has a many Departments. Each departments
+				have multiple teachers and one among them is head 
+				of department. Each department offers multiple courses, 
+				each being taught by a single teacher. 
+				Therefore, one teacher belongs to only one department.
+				Further, A student may enroll for many courses
+				offered by different departments. 
+				A particular course can be offered by only
+				one department.
+
+
+
+
+
+
+
+
+
+
+
+RAHUL CHAUDHARY THARU		17 shrawan 2081	
+
+
+				Types of Database Users
+				Roles of Database Administrators (DBAs)
+
+
+
+
+
+
+
+
+
+
+
+
+ROSHAN CHAUDHARY		17 shrawan 2081	
+
+				Classification of Database Management Systems
+				DBMS Architecture
+
+
+
+
+
+
+
+
+
+
+
+
+ROSHANI BHANDARI		17 shrawan 2081		BIM 2019
+
+		﻿
+		
+				Consider the following relations and
+				answer the following questions: 
+				
+					Movies
+					(movieID, movieName, releaseDate, ticketPrice, buyPrice)
+					  ------
+					Viewers
+					(viewerID, viewerName, email, phone, age)
+					 -------
+					
+					Tickets
+					(ticketID, showDateTime, screenNumber, seatNumber, viewerID, movieID)
+					-----------
+				
+				
+				Write the DDL statement to create the Tickets table.
+				
+				
+				Write SQL query to find the list of all 
+				the movies released in the month of January 2018.
+				
+				
+				Write SQL query to find the name and 
+				email of viewers whose name contains "Prakash".
+				
+				
+				Write SQL to find the name of the viewers
+				of age not less than 18 years.
+		
+
+
+
+
+
+
+
+
+
+
+
+
+SAIRAS PULAMI		18 shrawan 2081			BIM 2023
+﻿
+
+				Assume a HR database of a Company. 
+				Where primary keys are underline. 
+				
+					employees
+					(EmpID, FirstName, LastName, Salary, DeptID)
+					 -----
+					departments 
+					(DeptID, DeptName, LocationID)
+					-------
+					locations 
+					(LocationID, StreetAddress, Postal Code, City, ProvinceNo)
+					-----------
+				
+				Write the SQL queries for each 
+				of the following cases.
+				--------------------------------
+
+				a) The HR department needs a report to
+				display the EmpID, first name, salary, for
+				each employee whose salary is greater
+				than 25,000 and less than 50,000.
+				
+				
+				b) Write a query to display the last name,
+				salary, department name of all employees
+				whose department id is 26.
+				
+				
+				c) Write a query to display the first 
+				name, department ID, department name, 
+				city for all employees who works 
+				in Lalitpur.
+				
+				
+				d) Update the salary of employee 
+				with 50000 whose EmpID is 220.
+				
+				
+				e) Create a view for employees 
+				table named as EmpView with attributes
+				EmpID,FirstName and Salary.
+
+
+
+
+
+
+
+
+
+
+
+
+SAKSHAM SUBEDI			18 shrawan 2081		BIM 2024
+
+﻿
+			
+			Consider the given schema design for Department Store.
+			Customer 
+			(c_id, C_Name, address, gender, age, phone, email, created_date)
+			
+			Product 
+			(pr_id, P_name, product_price, mfg_date, exp_date)
+			
+			Purchase 
+			(id, c_id, pr_id, qunatity, total_price, entered_by, entered_at)
+			
+			
+			
+			a. Find the name and price of product whose
+			name start from 'K' and end in 'T'.
+			
+			b. Find the name of customer who purchases 'Pen'.
+			
+			c. Insert the record of new customer.
+			
+			d. Delete the product 'Pen'
+			
+			e. Increaser the price of all product by 25%
+			
+			f. Write DDL statement for creating above relation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SAMJHANA THAPA MAGAR		18 shrawan 2081	
+
+
+				Centralized and Client/Server Architectures for DBMSs
+				Centralized Architecture
+				Client/Server Architecture
+				Advantages and Disadvantages
+
+
+
+
+
+
+
+
+
+
+
+
+
+SANDESH SUBEDI			18 shrawan 2081	
+
+
+
+				Database history
+				Modern Database upto cloud database
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SUDEEP PAUDEL			19 shrawan 2081	
+
+				University Management System
+				-------------------------------
+				Relations
+				-----------
+				Students
+					StudentID (Primary Key)
+					Name
+					Major
+					GPA
+				
+				
+				Courses
+					CourseID (Primary Key)
+					CourseName
+					Credits
+				
+				
+				Enrollments
+					EnrollmentID (Primary Key)
+					StudentID (Foreign Key)
+					CourseID (Foreign Key)
+					Semester
+				
+				
+				Questions
+				-------------
+				Selection: Write a relational algebra expression
+				to find all courses with more than 3 credits.
+				
+				Projection: How would you list the names and 
+				GPAs of all students?
+				
+				Join: Combine the Students and Enrollments 
+				relations to show student names along with
+				their enrolled course IDs.
+				
+				Renaming: Rename the CourseName attribute
+				to Subject in the Courses relation. 
+				What is the expression?
+				
+				Set Difference: Write a relational algebra 
+				expression to find students who are not 
+				enrolled in any courses.
+				
+				Union: How would you find all student
+				names and course names in a single 
+				result set?
+				
+				Intersection: Find students who are enrolled
+				in both 'Mathematics' and 'Physics' courses.
+				Write the relational algebra expression for this.
+				
+				Division: Write a relational algebra 
+				expression to find students who have 
+				enrolled in every course.
+				
+				Cartesian Product: What would the result 
+				of the Cartesian product between Students 
+				and Courses look like?
+				
+				Aggregation: Calculate the total number of 
+				credits for all courses enrolled by a student
+				with StudentID = 101. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+VIPASSI KUMAR BAJRACHARYA		19 shrawan 2081			
+
+				Given two relations R1 and R2, where 
+				R1 contains N1 tuples, R2 contains N2
+				tuples and N2 > N1 > 0. 
+				
+				Determine the maximum and 
+				minimum number of tuples produced
+				by each of the following relational 
+				algebra expressions. 
+				
+				Also state any assumption about R1
+				and R2 for making the expression meaningful.
+				
+					find 
+					--------
+					(a) R1 union R2	
+					(b) R1 interection  R2
+					(c) R1 – R2
+					(d) R1 × R2
+					(e) sigma (a0) = 10  (R1)
+					(f) rho (b) (R2)
+
+
+
+
+
+
+
+
+
+
