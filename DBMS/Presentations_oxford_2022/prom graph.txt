@@ -1,0 +1,306 @@
+centos installations
+=======================
+
+
+11074
+=======================
+netstat -tnlp | grep -E '(22|111|2224|9090)'
+lsof -i :22 :111 :2224 :9090
+ss -tlnp | grep -E '(22|111|2224|9090)'
+=======================
+
+=======================
+sudo systemctl stop cockpit
+sudo systemctl disable cockpit
+sudo systemctl status cockpit
+
+netstat -tnl | grep 9090		// still in tcpv6
+systemctl stop cockpit.socket
+
+
+[root@sanjeev ~]# sudo dnf remove cockpit -y
+[root@sanjeev ~]# sudo dnf autoremove -y
+
+=======================
+
+
+
+=======================
+[root@server2 ~]# yum update -y --allowerasing --skip-broken --nobest
+[root@server2 ~]# sudo su -
+
+[root@server2 ~]# env | grep 2.2
+[root@server2 ~]# export RELEASE="2.2.1"
+=======================
+
+
+=======================
+[root@server2 ~]# useradd --no-create-home --shell /bin/false prometheus
+[root@server2 ~]# useradd --no-create-home --shell /bin/false node_exporter
+[root@server2 ~]# mkdir /etc/prometheus
+[root@server2 ~]# mkdir /var/lib/prometheus
+=======================
+
+=======================
+[root@server2 ~]# chown prometheus:prometheus /etc/prometheus
+[root@server2 ~]# chown prometheus:prometheus /var/lib/prometheus
+======================
+
+=======================
+https://prometheus.io/download/
+
+[root@server2 ~]# cd /opt/
+[root@server2 opt]# wget https://github.com/prometheus/prometheus/releases/download/v2.51.0/prometheus-2.51.0.linux-amd64.tar.gz
+
+[root@server2 opt]# tar -xvf prometheus-*.tar.gz
+
+[root@server2 opt]# cd prometheus-2.51.0.linux-amd64/
+[root@server2 prometheus-2.51.0.linux-amd64]# ls
+
+[root@server2 prometheus-2.51.0.linux-amd64]# cp prometheus /usr/local/bin
+[root@server2 prometheus-2.51.0.linux-amd64]# cp promtool /usr/local/bin
+[root@sanjeev prometheus-2.51.0.linux-amd64]# cd
+
+[root@server2 ~]# chown prometheus:prometheus /usr/local/bin/prometheus
+[root@server2 ~]# chown prometheus:prometheus /usr/local/bin/promtool
+======================
+
+=======================
+[root@server2 ~]# cp -r /opt/prometheus-2.51.0.linux-amd64/consoles /etc/prometheus/
+[root@server2 ~]# cp -r /opt/prometheus-2.51.0.linux-amd64/console_libraries/ /etc/prometheus/
+[root@server2 ~]# cp /opt/prometheus-2.51.0.linux-amd64/prometheus.yml /etc/prometheus/
+
+[root@server2 ~]# ls -l /etc/prometheus/
+
+[root@server2 ~]# chown -R prometheus:prometheus /etc/prometheus/consoles/
+[root@server2 ~]# chown -R prometheus:prometheus /etc/prometheus/console_libraries/
+[root@server2 ~]# chown -R prometheus:prometheus /etc/prometheus/prometheus.yml
+
+[root@server2 ~]# ls -l /etc/prometheus/
+======================
+
+=======================
+[root@server2 ~]# prometheus --version
+[root@server2 ~]# promtool --version
+[root@server2 ~]# cat /etc/prometheus/prometheus.yml
+======================
+
+=======================
+[root@server2 ~]# sudo -u prometheus /usr/local/bin/prometheus \
+        --config.file /etc/prometheus/prometheus.yml \
+        --storage.tsdb.path /var/lib/prometheus/ \
+        --web.console.templates=/etc/prometheus/consoles \
+        --web.console.libraries=/etc/prometheus/console_libraries
+
+
+
+[root@server2 ~]# vim /etc/systemd/system/prometheus.service
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file /etc/prometheus/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries
+
+[Install]
+WantedBy=multi-user.target
+
+
+[root@server2 ~]# systemctl daemon-reload
+[root@server2 ~]# systemctl start prometheus
+[root@server2 ~]# systemctl enable prometheus
+[root@server2 ~]# systemctl status prometheus
+
+
+ systemctl daemon-reload
+ systemctl start prometheus
+ systemctl enable prometheus
+ systemctl status prometheus
+======================
+
+=======================
+[root@server2 ~]# netstat -tnl | grep 9090
+
+[root@server2 ~]# firewall-cmd --add-port=9090/tcp --permanent
+[root@server2 ~]# firewall-cmd --reload
+
+http://192.168.1.130:9090
+======================
+
+
+
+
+
+=======================
+[root@sanjeev ~]# netstat -tnl | grep 3000
+
+[root@sanjeev ~]# cat /etc/yum.repos.d/grafana.repo
+[grafana]
+name=grafana
+baseurl=https://packages.grafana.com/enterprise/rpm
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.grafana.com/gpg.key
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+
+
+[root@sanjeev ~]# yum install grafana -y
+
+[root@sanjeev ~]# systemctl daemon-reload
+[root@sanjeev ~]# systemctl enable grafana-server.service
+[root@sanjeev ~]# systemctl start grafana-server.service
+[root@sanjeev ~]# systemctl status grafana-server.service
+
+[root@sanjeev ~]# firewall-cmd --add-port=3000/tcp --permanent
+[root@sanjeev ~]# firewall-cmd --reload
+
+http://192.168.1.130:3000/
+======================
+
+
+=======================
+username: admin
+password: admin
+
+Grafana DataSource
+	Settings Icon ->> Configuration ->> data sources
+	Home >> Connections >> Data sources
+		Type: Prometheus 
+		Prometheus URL: http://192.168.1.130:9090/
+
+======================
+
+
+
+
+
+=======================
+Install Node Exporter  [Target Machine]
+
+[root@sanjeev ~]# useradd --no-create-home --shell /bin/false node_exporter
+
+
+[root@sanjeev ~]# cd /opt/
+[root@sanjeev opt]# wget wget https://github.com/prometheus/node_exporter/releases/download/v1.2.0/node_exporter-1.2.0.linux-amd64.tar.gz
+
+
+[root@sanjeev opt]# ls -lh node_exporter-1.2.0.linux-amd64.tar.gz
+[root@sanjeev opt]# tar -xvf node_exporter-1.2.0.linux-amd64.tar.gz
+
+[root@sanjeev opt]# cd node_exporter-1.2.0.linux-amd64/
+[root@sanjeev node_exporter-1.2.0.linux-amd64]# cp node_exporter /usr/local/bin/
+
+[root@sanjeev ~]# chown prometheus:prometheus /usr/local/bin/node_exporter
+
+
+[root@sanjeev ~]#  vi /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=default.target
+
+
+[root@sanjeev ~]# systemctl daemon-reload
+[root@sanjeev ~]# systemctl enable node_exporter
+[root@sanjeev ~]# systemctl start node_exporter
+[root@sanjeev ~]# systemctl status node_exporter
+
+======================
+
+
+=======================
+Configure the Node Exporter
+ as a Prometheus target
+
+
+[root@sanjeev ~]# vim /etc/prometheus/prometheus.yml
+ 	- targets: ["localhost:9090","localhost:9100"]
+
+[root@sanjeev ~]# systemctl restart prometheus
+======================
+
+
+
+
+
+=======================
+Creating Grafana 
+Dashboard to Monitor Linux Server
+
+
+Home >>  Dashboards >> Import dashboard	
+	14513	[LOAD]
+
+======================
+
+
+
+
+
+=======================
+
+======================
+
+
+
+
+
+=======================
+
+======================
+
+
+
+
+
+=======================
+
+======================
+
+
+
+
+
+=======================
+
+======================
+
+
+
+
+
+=======================
+
+======================
+
+
+
+
+
+=======================
+
+======================
+
+
+
+
+
