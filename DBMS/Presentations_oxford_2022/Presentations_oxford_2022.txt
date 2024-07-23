@@ -158,13 +158,7 @@ BINOD SHRESTHA		14 shrawan 2081
 
 
 
-Database Users		14 shrawan 2081
 
-
-				Types of Database Users
-				End Users
-				Application Programmers
-				Database Administrators
 
 
 
