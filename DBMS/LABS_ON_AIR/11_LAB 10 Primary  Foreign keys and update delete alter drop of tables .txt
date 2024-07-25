@@ -321,8 +321,62 @@ mysql> select * from assignments;
 +---------------+-------------+---------------+
 
 
+Retrieve All Employees with Their Department Names
+
+SELECT e.employee_name, d.department_name
+FROM employees e
+JOIN assignments a ON e.employee_id = a.employee_id
+JOIN departments d ON a.department_id = d.department_id;
 
 
+ Retrieve Employees Who Are Assigned to the 'Engineering' Department
+SELECT e.employee_name
+FROM employees e
+JOIN assignments a ON e.employee_id = a.employee_id
+JOIN departments d ON a.department_id = d.department_id
+WHERE d.department_name = 'Engineering';
+
+
+List All Departments and the Number of Employees Assigned to Each
+SELECT d.department_name, COUNT(a.employee_id) AS number_of_employees
+FROM departments d
+LEFT JOIN assignments a ON d.department_id = a.department_id
+GROUP BY d.department_name;
+
+
+
+
+Find Departments with No Assigned Employees
+SELECT d.department_name
+FROM departments d
+LEFT JOIN assignments a ON d.department_id = a.department_id
+WHERE a.employee_id IS NULL;
+
+
+
+retrieve All Employee Emails Along with Their Department Names
+SELECT e.email, d.department_name
+FROM employees e
+JOIN assignments a ON e.employee_id = a.employee_id
+JOIN departments d ON a.department_id = d.department_id;
+
+
+
+
+
+
+Find Employees Who Are Not Assigned to Any Department
+SELECT e.employee_name
+FROM employees e
+LEFT JOIN assignments a ON e.employee_id = a.employee_id
+WHERE a.department_id IS NULL;
+
+
+List All Departments Along with Employee Names Assigned to Them
+SELECT d.department_name, e.employee_name
+FROM departments d
+LEFT JOIN assignments a ON d.department_id = a.department_id
+LEFT JOIN employees e ON a.employee_id = e.employee_id;
 
 ***************************************************************************
 
