@@ -403,3 +403,103 @@ mysql> select id,name,city from personal1;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------
+
+create table personal1( 
+	id int not null unique,     
+	name varchar(50) not null,     
+	age int not null check (age>=18),     
+	gender varchar(1) not null,     
+	phone varchar(10) not null unique,     
+	city varchar(15) not null default 'Butwal'
+	);
+
+
+desc personal1;
+
+ 
+
+insert into personal1 (id, name, age, gender, phone,city) 
+	values (1,"Sanjeev Thapa",20,"M", 9815489555, "Palpa");
+
+
+insert into personal1 (id, name, age, gender, phone)  
+	values (2,"Mivaan Thapa",21,"M", 9822229555);
+
+insert into personal1 (id, name, age, gender, phone)  
+	values (3,"Shila Lama",22,"F", 982222955);
+
+insert into personal1 (id, name, age, gender, phone,city)  values     
+	(4,"sunita pandey",35,"F", 981221995, "Palpa"),
+	(5,"aman rijal",26, "M", 981555, "Palpa"),
+	(6,"kririka pandey",25,"F", 981228, "Palpa"),
+	(7,"anil pandey",60,"M", 9812287, "Palpa"),
+	(8,"manju ale",26, "F",98125698, "Palpa");
+
+insert into personal1 (id, name, age, gender, phone)  values
+	(9,"Mina Lama", 35, "F", 98458125),
+	(10,"Manish KC ",22,"M", 98228598), 
+	(11,"Manoj KC ",60,"M", 9845845), 
+	(12,"Bikram Timilsina ",22,"M", 9821245), 
+	(13,"Ratana Lama",22,"F", 98458445);
+
+insert into personal1 (id, name, age, gender, phone,city)  values 
+	(14,"mina BC",38,"F", 981221996, "chitwan"),
+	(15,"muskan shrestha",29, "M", 98157, "chitwan"),
+	(16,"karishma gurug",26,"F", 981229, "chitwan"),
+	(17,"basu subedi",62,"M", 9812286, "chitwan");
+
+
+insert into personal1 (id, name, age, gender, phone,city)  values 
+	(18,"muna BC",25,"F", 98158545, "bhirawaha"),
+	(19,"divya shrestha",52, "F", 9814557, "nawalparasi"),
+	(20,"susma gurug",32,"F", 98544229, "bhirawaha"),
+	(21,"suman subedi",23,"M", 981225486, "nawalparasi"),
+	(22,"monika shrestha",19,"F", 981225445, "bhirawaha"),
+	(23,"hilsang gurug",91,"M", 9812544286, "nawalparasi"), 
+	(24,"rikma thapa",39,"F", 981782286, "kapilbastu"),
+	(25,"treya thapa",23,"F", 981562286, "bhirawaha"),
+	(26,"ganga shrestha",72,"F", 9814782286, "kapilbastu"),
+	(27,"sagar subedi",25,"M", 9814562286,"kapilbastu");
+
+
+insert into personal1 (id, name, age, gender, phone,city) 
+	values (35,"Mina Lama",22,"F", 982222956,"bhirawaha");
+
+
+
+select * from personal1;
+
+
+
+
+
+
