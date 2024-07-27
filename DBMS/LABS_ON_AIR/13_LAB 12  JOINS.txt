@@ -9,8 +9,12 @@ LAB 12 - JOINS
 
 
 
-In SQL (Structured Query Language), operators are used to perform operations on data. 
-There are several types of operators in SQL, and they can be broadly categorized into the following groups:
+In SQL (Structured Query Language), operators are used 
+to perform operations on data. 
+
+There are several types of operators in SQL, and they
+can be broadly categorized into the following groups:
+
 
 		Arithmetic Operators:
 		----------------------
