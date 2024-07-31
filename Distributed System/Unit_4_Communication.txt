@@ -324,7 +324,8 @@ Middleware
                             Middleware can facilitate integration with web 
                             services and APIs, enabling different applications
                             to interact and share functionality.
-                
+
+
                 Event Management:
                 --------------------
                         Event Handling: 
@@ -465,7 +466,8 @@ Types of communication related to middleware
                 --------------
                         Efficiency: 
                         --------------
-                            Improves system efficiency by allowing the sender to perform other tasks instead of waiting.
+                            Improves system efficiency by allowing the sender to 
+                            perform other tasks instead of waiting.
                         
                         
                         Scalability: 
@@ -481,7 +483,8 @@ Types of communication related to middleware
                 --------------
                         Complexity: 
                         --------------
-                        More complex to implement due to the need for handling message delivery and processing asynchronously.
+                        More complex to implement due to the need for handling
+                        message delivery and processing asynchronously.
                 
                 
                         Delayed Acknowledgement: 
