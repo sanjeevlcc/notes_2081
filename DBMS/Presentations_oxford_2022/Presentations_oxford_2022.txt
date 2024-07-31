@@ -79,9 +79,9 @@ is not evaluated for marks.
 Name of the student		Date		Topics	
 ------------------------------------------------------------
 
-AADARSHA CHHETRI	13 shrawan 2081
+AADARSHA CHHETRI	13 shrawan 2081		DONE
 		
-
+DONE
 				Data Models, Schemas, and Instances
 				Definition of Data Models
 				Concept of Schemas
@@ -92,7 +92,7 @@ AADARSHA CHHETRI	13 shrawan 2081
 
 
 
-AAKRITI SUBEDI		13 shrawan 2081
+AAKRITI SUBEDI		13 shrawan 2081		DONE
 	
 				Three-Schema Architecture and Data Independence
 				Internal Schema
@@ -106,7 +106,7 @@ AAKRITI SUBEDI		13 shrawan 2081
 
 
 
-ANUSHKA KC		13 shrawan 2081
+ANUSHKA KC		13 shrawan 2081		DONE
 
 				Definition of Database
 				Examples of Databases
@@ -115,11 +115,9 @@ ANUSHKA KC		13 shrawan 2081
 
 
 
-
-
-ARYAN NEUPANE		13 shrawan 2081
+ASTHA CHHATRI		13 shrawan 2081		DONE
 	
-				ASTHA CHHATRI
+				
 				Advantages of Databases
 				Data Redundancy Control
 				Data Integrity
@@ -132,7 +130,7 @@ ARYAN NEUPANE		13 shrawan 2081
 
 
 
-BIKALPA SHAHI		14 shrawan 2081
+BIKALPA SHAHI		14 shrawan 2081		ABSENT,NOT PRESENTED 	
 
 				Database Languages and Interfaces
 				DDL (Data Definition Language)
@@ -146,7 +144,7 @@ BIKALPA SHAHI		14 shrawan 2081
 
 
 
-BINOD SHRESTHA		14 shrawan 2081
+BINOD SHRESTHA		14 shrawan 2081		DONE
 
 				Database Administrator (DBA)
 				Roles and Responsibilities
@@ -167,7 +165,7 @@ BINOD SHRESTHA		14 shrawan 2081
 
 
 
-BISHAL PANDEY		14 shrawan 2081
+BISHAL PANDEY		14 shrawan 2081		ABSENT,NOT PRESENTED 
 
 				Relationship Types, Relationship Sets, 
 				Roles, and Structural Constraints
@@ -184,7 +182,9 @@ BISHAL PANDEY		14 shrawan 2081
 
 
 
-CHADANI THAPA		15 shrawan 2081
+CHADANI THAPA		15 shrawan 2081		DONE
+
+
 				Entity Types, Entity Sets, Attributes, and Keys
 				Definition of Entity Types and Entity Sets
 				Attributes and their Importance
@@ -197,7 +197,7 @@ CHADANI THAPA		15 shrawan 2081
 
 
 
-DIYA SHAKYA		15 shrawan 2081
+DIYA SHAKYA		15 shrawan 2081			DONE
 				Construct an E-R diagram for a hospital with a 
 				set of patients and a set of medical doctors. 
 				Associate with each patient, a log of various
@@ -215,7 +215,9 @@ DIYA SHAKYA		15 shrawan 2081
 
 
 
-KAILASH KHATRI		15 shrawan 2081
+KAILASH KHATRI		15 shrawan 2081		Re presentation needed in ppt not in doc
+
+
 
 				Case Study: Hotel Management System
 				------------------------------------
@@ -295,7 +297,10 @@ KAILASH KHATRI		15 shrawan 2081
 
 
 
-KISHOR DARLAMI		16 shrawan 2081
+KISHOR DARLAMI		16 shrawan 2081			ABSENT,NOT PRESENTED 
+
+
+
 				Make an ER diagram for a diagnostic lab. 
 				It should keep track of customers, raw 
 				material,professional and support staff,
@@ -314,7 +319,9 @@ KISHOR DARLAMI		16 shrawan 2081
 
 
 
-MANOJ GHIMIRE		16 shrawan 2081		BIM2018
+MANOJ GHIMIRE		16 shrawan 2081		BIM2018		
+
+			PRESENT/BUT NO ER DIAGRAM/ Re present
 
 ﻿
 				
@@ -345,7 +352,7 @@ MANOJ GHIMIRE		16 shrawan 2081		BIM2018
 
 
 
-MUNA BASHYAL		16 shrawan 2081
+MUNA BASHYAL		16 shrawan 2081			ABSENT/ HEAVY RAINFALL
 
 
 			You have been tasked with designing a 
@@ -402,7 +409,7 @@ MUNA BASHYAL		16 shrawan 2081
 
 
 
-NAMITA THAPA MAGAR		16 shrawan 2081
+NAMITA THAPA MAGAR		16 shrawan 2081			DONE
 
 
 
@@ -790,7 +797,49 @@ VIPASSI KUMAR BAJRACHARYA		19 shrawan 2081
 
 
 
+ARYAN NEUPANE
 
+
+			You have been tasked with designing a 
+			database for the  Census department to 
+			store all of their data, past and future. 
+			
+			The database must conform to these 
+			constraints:
+			
+				1. There has been a census every 10 years.
+				The year of each census is unique to that
+				census. There are also some notes as well
+				as the total population of the India.
+			
+				2. Each state has a unique name, and a value 
+				for its square area. Every state participates
+				individually in every census, providing 
+				its population.
+			
+				3. Every person has a unique SSN, as well as 
+				a name and birthday. Each person participates 
+				in every census by providing their age.
+			
+				4. An address has a unique identifier,
+				as well as a street name, city, state,
+				and zipcode.
+			
+				5. A person lives at only one address.
+			
+			(a) Draw an ER diagram for this database. Be sure
+			to mark the multiplicity of each 
+			relationship (1-1, 1-many, many-many, etc) of the 
+			diagram. Decide the key attributes and identify 
+			them on the diagram by underlining them. 
+			State all assumptions you make.
+			
+			(b) Translate your ER diagram into a relational schema. 
+			Select approaches that yield the fewest number of
+			relations; merge relations where appropriate. Specify
+			the key of each relation in your schema. If the names 
+			of your foreign keys do not match the primary key
+			name, please state the link in your assumptions
 
 
 
