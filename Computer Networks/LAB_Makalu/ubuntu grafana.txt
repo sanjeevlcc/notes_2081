@@ -1,0 +1,926 @@
+
+
+https://www.fosstechnix.com/prometheus-alertmanager-and-grafana/
+
+
+========================================
+IP – 192.168.56.107
+
+Hostname – ubuntu-server1/
+	ubuntu-server1.example.com
+
+OS version – Ubuntu 18.04.4 LTS
+========================================
+
+
+
+
+
+
+
+========================================
+Prometheus Installation
+---------------------------
+
+ apt-get update -y
+ apt-get -y install wget curl vim -y
+
+ groupadd --system prometheus
+ useradd -s /sbin/nologin --system -g prometheus prometheus
+
+ mkdir /var/lib/prometheus
+ mkdir -p /etc/prometheus/{rules,rules.d,files_sd}
+ ls -R /etc/prometheus/
+
+ cd /tmp/
+ wget https://github.com/prometheus/prometheus/releases/download/v2.22.1/prometheus-2.22.1.linux-amd64.tar.gz
+	OR
+ curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
+
+
+ tar -xvf prometheus-2.22.1.linux-amd64.tar.gz
+ cd prometheus-2.22.1.linux-amd64/
+ ls
+
+ mv prometheus promtool /usr/local/bin/
+ prometheus --version
+ promtool --version
+
+
+ cp /tmp/prometheus-2.22.1.linux-amd64/prometheus.yml /etc/prometheus/
+ cp -R /tmp/prometheus-2.22.1.linux-amd64/console_libraries/ /etc/prometheus/
+ cp -R /tmp/prometheus-2.22.1.linux-amd64/consoles/ /etc/prometheus/
+ ls -R /etc/prometheus/
+
+cat  /etc/prometheus/prometheus.yml
+
+
+for i in rules rules.d files_sd; do sudo chown -R prometheus:prometheus /etc/prometheus/${i}; done
+for i in rules rules.d files_sd; do sudo chmod -R 775 /etc/prometheus/${i}; done
+
+
+chown -R prometheus:prometheus /var/lib/prometheus/
+chown prometheus:prometheus /etc/prometheus/prometheus.yml
+chown prometheus:prometheus /etc/prometheus/consoles/
+chown prometheus:prometheus /etc/prometheus/console_libraries/
+
+
+
+vi /etc/systemd/system/prometheus.service
+[Unit]
+Description=Prometheus
+Documentation=https://prometheus.io/docs/introduction/overview/
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+ExecStart=/usr/local/bin/prometheus \
+  --config.file=/etc/prometheus/prometheus.yml \
+  --storage.tsdb.path=/var/lib/prometheus \
+  --web.console.templates=/etc/prometheus/consoles \
+  --web.console.libraries=/etc/prometheus/console_libraries \
+  --web.listen-address=0.0.0.0:9090 \
+  --web.external-url=
+SyslogIdentifier=prometheus
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+systemctl daemon-reload
+systemctl start prometheus.service
+systemctl enable prometheus.service
+systemctl status prometheus.service
+ufw allow 9090/tcp
+
+IP:9090
+========================================
+
+
+
+
+========================================
+Configure Prometheus with secure reverse proxy
+--------------------------------------------------
+apt-get install nginx -y
+
+mkdir -p /etc/nginx/ssl/
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/ubuntu-server1.key -out /etc/nginx/ssl/ubuntu-server1.pem
+Country Name :NP
+State o:LUM
+Locality :BUTWAL
+Organization :Quark Pvt.Ltd
+Organizational:DevOps
+Common N:nepal-server
+Email :sanjeev@gmail.com
+
+
+ll /etc/nginx/ssl/
+cat /etc/nginx/ssl/ubuntu-server1.key
+
+
+
+Create nginx configuration file for Prometheus.
+---------------------------------
+nginx -t
+systemctl restart nginx
+journalctl -f -u nginx.service
+========================================
+
+
+
+========================================
+Install and Configure Alert Manager
+---------------------------------------
+cd /opt/
+curl -s https://api.github.com/repos/prometheus/alertmanager/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
+tar -xvf alertmanager-0.27.0.linux-amd64.tar.gz
+
+cd alertmanager-0.27.0.linux-amd64/
+cp amtool alertmanager /usr/local/bin/
+ls /usr/local/bin
+
+
+
+
+Create nginx configuration file for Prometheus.
+----------------------------------------------
+
+
+
+Install and Configure Alert Manager
+----------------------------------
+curl -s https://api.github.com/repos/prometheus/alertmanager/releases/latest | grep browser_download_url | grep linux-amd64 | cut -d '"' -f 4 | wget -qi -
+tar -xvf alertmanager-*.tar.gz
+
+cd alertmanager-0.27.0.linux-amd64/
+alertmanager-0.27.0.linux-amd64# ls
+alertmanager-0.27.0.linux-amd64# cp alertmanager amtool /usr/local/bin/
+
+alertmanager --version
+
+useradd -rs /bin/false alertmanager
+mkdir -p /etc/alertmanager
+mkdir -p /data/alertmanager
+cp alertmanager-0.27.0.linux-amd64/alertmanager.yml /etc/alertmanager/
+chown -R alertmanager:alertmanager /data/alertmanager /etc/alertmanager/*
+ll /data/alertmanager/ /etc/alertmanager/
+
+
+vi /etc/systemd/system/alertmanager.service
+[Unit]
+Description=Alert Manager
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=alertmanager
+Group=alertmanager
+ExecStart=/usr/local/bin/alertmanager \
+  --config.file=/etc/alertmanager/alertmanager.yml \
+  --storage.path=/data/alertmanager
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+systemctl daemon-reload
+systemctl start alertmanager.service
+ systemctl enable alertmanager.service
+systemctl status alertmanager.service
+
+
+
+Configure AlertManager 
+with secure reverse proxy
+---------------------------
+
+========================================
+
+
+
+
+
+
+
+========================================
+Install and Configure Grafana
+-------------------------------
+apt-get update -y
+apt-get install -y apt-transport-https
+apt-get install -y software-properties-common wget
+
+wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
+
+echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+
+apt-get update -y
+apt install grafana -y
+
+grafana-server -v
+
+systemctl start grafana-server
+systemctl enable grafana-server
+systemctl status grafana-server
+
+ufw allow 3000
+
+IP:3000
+
+
+
+CONF grafna GUI
+----------------
+username: admin
+password: admin
+
+Grafana DataSource
+	Settings Icon ->> Configuration ->> data sources
+	Home >> Connections >> Data sources
+		Type: Prometheus 
+		Prometheus URL: http://192.168.1.130:9090/
+========================================
+
+
+
+========================================
+Install Node Exporter - target  as a localhost
+-----------------------------------------------
+useradd --no-create-home --shell /bin/false node_exporter
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz
+
+tar -xvf node_exporter-1.7.0.linux-amd64.tar.gz
+cd node_exporter-1.7.0.linux-amd64/ls
+
+cp node_exporter-1.7.0.linux-amd64/node_exporter /usr/local/bin/
+
+
+vi /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+[Service]
+Type=simple
+User=node_exporter
+Group=node_exporter
+ExecStart=/usr/local/bin/node_exporter \
+        — collector.mountstats \
+        — collector.logind \
+        — collector.processes \
+        — collector.ntp \
+        — collector.systemd \
+        — collector.tcpstat \
+        — collector.wifi
+Restart=always
+RestartSec=10s
+[Install]
+WantedBy=multi-user.target
+
+systemctl daemon-reload
+systemctl start node_exporter
+systemctl enable node_exporter
+systemctl status node_exporter
+
+
+
+Configure the Node Exporter
+ as a Prometheus target
+---------------------------
+nano /etc/prometheus/prometheus.yml
+static_configs:
+    - targets: ['localhost:9090','localhost:9100']
+
+systemctl restart prometheus.service
+systemctl status prometheus.service
+
+
+
+
+
+Creating Grafana 
+Dashboard to Monitor Linux Server
+-------------------------------------
+
+IP:3000
+
+Home >> Dashboards >> Import dashboard
+14513 [LOAD]
+DATA SOURCE = Prometheus
+========================================
+
+
+
+
+
+
+
+========================================
+NEW MACHINE - target1 CentOS
+--------------
+
+[root@worker1 ~]# cat /etc/system-release
+CentOS Stream release 8
+
+
+[root@worker1 ~]# hostname -I
+192.168.1.72
+
+
+[root@worker1 ~]# useradd --no-create-home --shell /bin/false node_exporter
+
+[root@worker1 ~]# wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz
+
+[root@worker1 ~]# tar -xvf node_exporter-1.7.0.linux-amd64.tar.gz
+
+[root@worker1 ~]# cp node_exporter-1.7.0.linux-amd64/node_exporter /usr/local/bin/
+
+[root@worker1 ~]# ll /usr/local/bin/
+
+[root@worker1 ~]# vi /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
+
+systemctl daemon-reload
+systemctl start node_exporter
+systemctl enable node_exporter
+systemctl status node_exporter
+ufw allow 9100/tcp
+
+root@server33:~# hostname -I			/// grafana dashboard IP
+192.168.1.49
+
+
+root@server33:~# vi /etc/prometheus/prometheus.yml
+static_configs:
+    - targets: ['localhost:9090','localhost:9100','192.168.1.72:9100']
+
+
+root@server33:~# systemctl restart prometheus.service
+root@server33:~# systemctl status prometheus.service
+
+192.168.1.49:3000
+Home >> Dashboards >> Import dashboard
+14513 [LOAD]
+DATA SOURCE = Prometheus
+========================================
+
+
+
+
+
+
+
+========================================
+ANOTHER NEW MACHINE - target2
+--------------
+
+
+root@master1:~# cat /etc/os-release  | grep PRETTY_NAME
+PRETTY_NAME="Ubuntu 22.04.4 LTS"
+
+
+
+[root@master1 ~]# hostname -I
+192.168.1.63
+
+[root@master1 ~]# useradd --no-create-home --shell /bin/false node_exporter
+
+[root@master1 ~]# wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz
+
+[root@master1 ~]# tar -xvf node_exporter-1.7.0.linux-amd64.tar.gz
+
+[root@master1 ~]# cp node_exporter-1.7.0.linux-amd64/node_exporter /usr/local/bin/
+
+[root@master1 ~]# ll /usr/local/bin/
+
+[root@master1 ~]# vi /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
+
+systemctl daemon-reload
+systemctl start node_exporter
+systemctl enable node_exporter
+systemctl status node_exporter
+ ufw allow 9100/tcp............... firewall of ubuntu
+
+root@server33:~# hostname -I			/// grafana dashboard IP
+192.168.1.49
+
+
+root@server33:~# vi /etc/prometheus/prometheus.yml
+static_configs:
+    - targets: ['localhost:9090','localhost:9100','192.168.1.72:9100','192.168.1.63:9100']
+
+
+root@server33:~# systemctl restart prometheus.service
+root@server33:~# systemctl status prometheus.service
+
+192.168.1.49:3000
+Home >> Dashboards >> Import dashboard
+14513 [LOAD]
+DATA SOURCE = Prometheus
+
+========================================
+
+
+
+
+
+
+
+==============mysqld_exporter==========================
+WORKING ON mysqld_exporter
+ANOTHER NEW MACHINE - target2
+---------------------------
+
+root@master1:~# cat /etc/os-release  | grep PRETTY_NAME
+PRETTY_NAME="Ubuntu 22.04.4 LTS"
+
+
+
+[root@master1 ~]# hostname -I
+192.168.1.63
+
+[root@master1:~# wget https://github.com/prometheus/mysqld_exporter/releases/download/v0.15.1/mysqld_exporter-0.15.1.linux-amd64.tar.gz
+
+root@master1:~# tar -xvf mysqld_exporter-0.15.1.linux-amd64.tar.gz
+
+root@master1:~# ll mysqld_exporter-0.15.1.linux-amd64
+
+root@master1:~# cp mysqld_exporter-0.15.1.linux-amd64/mysqld_exporter /usr/local/bin/
+
+root@master1:~# ll /usr/local/bin/
+
+
+
+root@master1:~# mysql -u root -pqpple123
+mysql> CREATE USER 'mysqld_exporter'@'localhost' IDENTIFIED BY 'Nepal@1234';
+mysql> GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'mysqld_exporter'@'localhost';
+mysql> FLUSH PRIVILEGES;
+mysql> EXIT
+
+
+root@master1:~# hostname -I
+192.168.1.63
+
+root@master1:~# vim /etc/.my.cnf
+OR
+root@master1:~# vim /etc/.mysqld_exporter.cnf
+[client]
+user=mysqld_exporter
+password=Nepal@1234
+host=192.168.1.63                       ##  db or sql IP
+
+
+root@master1:~# groupadd --system prometheus
+root@master1:~# useradd -s /sbin/nologin --system -g prometheus prometheus
+
+root@master1:~# chown root:prometheus /etc/.mysqld_exporter.cnf
+
+vi /etc/systemd/system/mysql_exporter.service
+
+ [Unit]
+ Description=Prometheus MySQL Exporter
+ After=network.target
+ User=prometheus
+ Group=prometheus
+
+ [Service]
+ Type=simple
+ Restart=always
+ ExecStart=/usr/local/bin/mysqld_exporter \
+ --config.my-cnf /etc/.mysqld_exporter.cnf \
+ --collect.global_status \
+ --collect.info_schema.innodb_metrics \
+ --collect.auto_increment.columns \
+ --collect.info_schema.processlist \
+ --collect.binlog_size \
+ --collect.info_schema.tablestats \
+ --collect.global_variables \
+ --collect.info_schema.query_response_time \
+ --collect.info_schema.userstats \
+ --collect.info_schema.tables \
+ --collect.perf_schema.tablelocks \
+ --collect.perf_schema.file_events \
+ --collect.perf_schema.eventswaits \
+ --collect.perf_schema.indexiowaits \
+ --collect.perf_schema.tableiowaits \
+ --collect.slave_status \
+ --web.listen-address=0.0.0.0:9104
+ 
+ [Install]
+ WantedBy=multi-user.target
+
+
+root@master1:~# systemctl daemon-reload
+root@master1:~# systemctl enable mysql_exporter.service
+root@master1:~# systemctl start mysql_exporter.service
+root@master1:~# systemctl status mysql_exporter.service
+root@master1:~# netstat -tnl | grep 9104
+
+root@master1:~# ufw allow 9104/tcp	...... add  firewall of sql_node_exporter
+
+BROWSE
+-------
+http://192.168.1.63:9104/targets
+
+
+grafana dashboard IP
+--------------------
+
+root@server33:~# hostname -I			/// add on grafana dashboard IP
+192.168.1.49
+
+
+root@server33:~# vi /etc/prometheus/prometheus.yml
+
+    static_configs:
+    - targets: ['localhost:9090','localhost:9100','192.168.1.72:9100']
+
+  - job_name: 'machine2'
+    static_configs:
+    - targets: ['192.168.1.63:9100']
+
+  - job_name: 'mysql_ko_metrics'
+    static_configs:
+    - targets: ['192.168.1.63:9104']
+
+
+
+root@server33:~# systemctl restart prometheus.service
+root@server33:~# systemctl status prometheus.service
+
+IP:3000
+
+192.168.1.49:3000
+
+Home >> Dashboards >> Import dashboard
+7362/ or 6239 / mysql-10110/4039[LOAD]
+DATA SOURCE = Prometheus
+
+mysql_info_schema_hreads
+========================================
+
+
+
+========================================
+root@master1:~#  apt install mysql-server -y
+root@master1:~#  systemctl status mysql
+root@master1:~#  mysql_secure_installation
+root@master1:~# mysql -u root -papple123
+----------------
+CREATE DATABASE your_database_name;
+CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON your_database_name.* TO 'your_username'@'localhost';
+FLUSH PRIVILEGES;
+----------------
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'apple123';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
+----------------
+https://github.com/sanjeevlcc/dbmslabs/blob/main/11_LAB%2010%20Primary%20%20Foreign%20keys%20and%20update%20delete%20alter%20drop%20of%20tables%20.txt
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+========================================
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
