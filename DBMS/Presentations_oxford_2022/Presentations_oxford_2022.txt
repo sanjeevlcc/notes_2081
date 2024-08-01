@@ -130,7 +130,11 @@ ASTHA CHHATRI		13 shrawan 2081		DONE
 
 
 
-BIKALPA SHAHI		14 shrawan 2081		ABSENT,NOT PRESENTED 	
+BIKALPA SHAHI		14 shrawan 2081		
+				NOT DONE/ ABSENT
+
+
+
 
 				Database Languages and Interfaces
 				DDL (Data Definition Language)
@@ -165,7 +169,11 @@ BINOD SHRESTHA		14 shrawan 2081		DONE
 
 
 
-BISHAL PANDEY		14 shrawan 2081		ABSENT,NOT PRESENTED 
+BISHAL PANDEY		14 shrawan 2081		
+			 DONE @ 17 shrawan 
+
+
+
 
 				Relationship Types, Relationship Sets, 
 				Roles, and Structural Constraints
@@ -449,7 +457,7 @@ NAMITA THAPA MAGAR		16 shrawan 2081			DONE
 
 
 NITESH ARYAL			17 shrawan 2081			BIM 2022
-
+				NOT DONE/ college drop out
 
 
 ﻿				Draw an ER diagrams for the following scenario.
@@ -476,7 +484,7 @@ NITESH ARYAL			17 shrawan 2081			BIM 2022
 
 
 RAHUL CHAUDHARY THARU		17 shrawan 2081	
-
+				NOT DONE/ ABSENT
 
 				Types of Database Users
 				Roles of Database Administrators (DBAs)
@@ -493,6 +501,9 @@ RAHUL CHAUDHARY THARU		17 shrawan 2081
 
 
 ROSHAN CHAUDHARY		17 shrawan 2081	
+				NOT DONE/ ABSENT
+
+
 
 				Classification of Database Management Systems
 				DBMS Architecture
@@ -509,7 +520,7 @@ ROSHAN CHAUDHARY		17 shrawan 2081
 
 
 ROSHANI BHANDARI		17 shrawan 2081		BIM 2019
-
+				DONE
 		﻿
 		
 				Consider the following relations and
