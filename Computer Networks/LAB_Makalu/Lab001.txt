@@ -1,1 +1,266 @@
-q
+
+
+
+
+MikroTik is a Latvian company that develops networking 
+hardware and software for Internet connectivity.
+
+They are best known for their RouterOS software, which is 
+a powerful operating system designed for 
+network routing, firewall, bandwidth management, wireless access point, 
+backhaul link, hotspot gateway, VPN server, and more.
+
+MikroTik also manufactures hardware devices like r
+outers and wireless systems.
+
+
+
+Steps to Configure MikroTik Router
+------------------------------------
+Connect to the Router:
+
+    Connect your computer to the MikroTik
+    router using an Ethernet cable.
+    
+    Open WinBox (a MikroTik configuration utility) or 
+    connect via SSH.
+
+            WINBOX
+            -----------Neighbours
+
+           in       Connect to: MAC or IP
+                  Login: admin
+                  Password: blank / or added on later
+
+
+
+
+
+
+
+==============================================================
+Setup/ Configure on router
+----------------------------
+
+
+Adding a Internet in router - WAN
+-----------------------------------
+/ip dhcp-client
+add disabled=no interface=ether1
+
+
+
+
+
+Checking a Internet inside router
+-----------------------------------
+[admin@MikroTik] > ping google.com
+  SEQ HOST                                     SIZE TTL TIME  STATUS             
+    0 142.250.194.78                             56 117 24ms 
+    1 142.250.194.78                             56 117 22ms 
+
+
+
+
+
+Adding a Internet in router towards LAN side - LAN
+-----------------------------------------------------
+/ip address
+add address=192.168.50.1/24 interface=ether5 network=192.168.50.0
+
+
+
+Adding a DNS in router
+-------------------------
+/ip dns
+set servers=8.8.8.8
+
+
+Adding a firewall in router
+-------------------------
+/ip firewall nat
+add action=masquerade chain=srcnat
+
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+Setup/ Configure on PC.laptop,host,mobile
+-------------------------------------------
+
+Step 1:
+
+
+      Win + R = command Prompt
+      ncpa.cpl
+                          Control Panel\Network and Internet\Network Connections
+
+
+Step 2: 
+      command Prompt
+      check ping ??
+
+        C:\Users\AMUHD>ping google.com
+        Ping request could not find host google.com. Please check the name and try again.
+        
+      
+Step 3: 
+
+    Ethernet  >> Properties >> TCP/IPv4
+
+    Use the foloewing IP Address
+    Ip addres : 192.168.50.10/24
+    Subnet mask: 255.255.255.0
+    Gateway: 192.168.50.1
+    
+    DNS: 8.8.8.8
+
+
+Step 4: 
+          command Prompt
+          check ping ??
+
+
+
+      C:\Users\AMUHD>ping google.com
+
+      Pinging google.com [142.250.192.174] with 32 bytes of data:
+      Reply from 142.250.192.174: bytes=32 time=27ms TTL=116
+      Reply from 142.250.192.174: bytes=32 time=22ms TTL=116
+      Reply from 142.250.192.174: bytes=32 time=28ms TTL=116
+
+
+Step 5:
+
+          C:\Users\AMUHD>ipconfig
+
+
+          Ethernet adapter Ethernet:
+          
+             Connection-specific DNS Suffix  . :
+             Link-local IPv6 Address . . . . . : fe80::b0f:62a8:430c:9572%20
+             IPv4 Address. . . . . . . . . . . : 192.168.50.10
+             Subnet Mask . . . . . . . . . . . : 255.255.255.0
+             Default Gateway . . . . . . . . . : 192.168.50.1
+          
+          
+          Wireless LAN adapter Local Area Connection* 4:
+          
+             Media State . . . . . . . . . . . : Media disconnected
+             Connection-specific DNS Suffix  . :
+
+Step 6: 
+Step 7: 
+Step 8: 
+
+
+
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+Visuize on router
+----------------------------
+
+
+
+
+check the HOST / PC / MOB in LAN IS connected on LAN 
+----------------------------------------------------
+
+
+[admin@MikroTik] > ip arp print 
+Flags: X - disabled, I - invalid, H - DHCP, D - dynamic, P - published, 
+C - complete 
+ #    ADDRESS         MAC-ADDRESS       INTERFACE                                
+ 0 DC 192.168.1.254   04:75:F9:1E:AC:7C ether1                                   
+ 1 DC 192.168.50.10   74:86:7A:37:1D:24 ether
+
+
+
+
+MAnaging the traffic / congestion idea/ Bandwidth management
+---------------------------------------------------------------
+/queue simple
+add max-limit=10M/20M name="My LAptop" target=192.168.50.10/32
+
+            Green - min
+            Yello - threshold
+            Red -max
+
+
+
+
+
+        Now check form PC
+        -------------------------
+              https://fast.com/
+
+
+
+
+[admin@MikroTik] > interface monitor-traffic interface=ether5
+           name:     ether1
+        rx-packets-per-second:      2 288
+           rx-bits-per-second:   26.7Mbps
+     fp-rx-packets-per-second:      2 255
+        fp-rx-bits-per-second:   26.3Mbps
+          rx-drops-per-second:          0
+         rx-errors-per-second:          0
+        tx-packets-per-second:      1 461
+           tx-bits-per-second:  881.5kbps
+     fp-tx-packets-per-second:      1 462
+        fp-tx-bits-per-second:  838.5kbps
+          tx-drops-per-second:          0
+    tx-queue-drops-per-second:          0
+         tx-errors-per-second:          0
+-- [Q quit|D dump|C-z pause]
+
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================
+==============================================================
+[admin@MikroTik] > system reset-configuration skip-backup=yes 
