@@ -13,6 +13,75 @@ replication and fault tolerance
 
 
 
+================================REPLICATION===========================
+
+
+-----------------------TERMINAL 1
+
+controlplane $ watch kubectl get all
+
+
+
+
+-----------------------TERMINAL 2
+
+kubectl create deployment cusapp --image=huma11994/mytomapp  --replicas 1
+kubectl create deployment cusapp --image=huma11994/mytomapp  --replicas 1
+
+
+kubectl expose deployment cusapp --type=NodePort --port=8080
+
+
+
+expose port
+-----------------------Browser
+hostname -I
+172.30.1.2 172.17.0.1 192.168.0.0 
+controlplane $ curl 172.30.1.2:31143
+
+https://c4d1f330-1a94-4cd1-a334-bb01cba0b110-10-244-4-173-31143.papa.r.killercoda.com/webapp/
+
+
+
+
+Now how to replicate
+-----------------------REPLICATION
+
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/cusapp-66757694bb-7w72t   1/1     Running   0          3m34s
+pod/cusapp-66757694bb-c2682   1/1     Running   0          2m51s
+pod/cusapp-66757694bb-gl8bm   1/1     Running   0          2m51s
+
+
+
+
+
+controlplane $ kubectl delete pod cusapp-66757694bb-7w72t
+
+
+
+
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/cusapp-66757694bb-c2682   1/1     Running   0          3m18s
+pod/cusapp-66757694bb-gl8bm   1/1     Running   0          3m18s
+pod/cusapp-66757694bb-zxzh6   1/1     Running   0          7s		// re- auto creation, that replication
+
+
+
+once more
+-----------
+
+controlplane $ kubectl delete pod cusapp-66757694bb-c2682  cusapp-66757694bb-gl8bm
+
+
+
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/cusapp-66757694bb-24w4q   1/1     Running   0          6s		// re created
+pod/cusapp-66757694bb-vqwsd   1/1     Running   0          6s		// re created
+pod/cusapp-66757694bb-zxzh6   1/1     Running   0          82s
+
+
+================================================================================================
 
 
 
@@ -21,10 +90,23 @@ replication and fault tolerance
 
 
 
-***********************SCALING / MANUAL AND AUTO*********************************************************
+
+
+***********************************************************************************************************************
+************************AUTO SCALING************************************************************************************
+***********************SCALING / MANUAL AND AUTO************************************************************************
+
+
+
+
+
+
+-----------------------TERMINAL 2
 
 METRIC COLLECTIONS
-————------------------
+----------------------
+
+
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 kubectl edit deployments.apps -n kube-system metrics-server
@@ -33,22 +115,48 @@ kubectl edit deployments.apps -n kube-system metrics-server
 			- --kubelet-insecure-tls
 :x
 
-kubectl top nodes 
+
+controlplane $ kubectl top nodes 
 
 
-TAB1
-——
+
+
+-----------------------TERMINAL 1
+controlplane $ kubectl top nodes 
+controlplane $ watch kubectl get all
+
+
+
+
+-----------------------TERMINAL 2
 kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
 kubectl autoscale deployment php-apache --cpu-percent=50 --min=2 --max=12
 
-TAB2
-——
+
+
+
+-----------------------TERMINAL 2
 kubectl run -it load-generator --rm --image=busybox --restart=Never -- sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done" 
 
-TAB1
-——
+
+
+
+
+-----------------------TERMINAL 1
 kubectl get hpa  -w
 kubectl get horizontalpodautoscalers.autoscaling  -w
+
+
+
+***********************************************************************************************************************
+**********************************************************************************************************************
+***********************************************************************************************************************
+
+
+
+
+
+
 
 
 
@@ -76,6 +184,8 @@ curl 172.30.1.2:30492
 
 
 
+
+
 ============================ ingress network policy of NGNIX , lab only-===========================
 kubectl get namespaces
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
@@ -87,13 +197,3 @@ kubectl  get all -n ingress-nginx
 
 
 
-================================================================================================
-
-kubectl create deployment cusapp --image=huma11994/mytomapp  --replicas 5
-kubectl expose deployment cusapp --type=NodePort --port=8080
-hostname -I
-172.30.1.2 172.17.0.1 192.168.0.0 
-controlplane $ curl 172.30.1.2:31143
-
-https://c4d1f330-1a94-4cd1-a334-bb01cba0b110-10-244-4-173-31143.papa.r.killercoda.com/webapp/
-================================================================================================
