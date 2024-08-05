@@ -3,6 +3,10 @@
 LAB 12 - JOINS
 -----------------------------------------------------------------------------------------
 
+docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+docker exec -ti mydb1 mysql -u root -p
+
+
 
 
 
@@ -97,10 +101,12 @@ LAB 1:  BASIC OPERATION UNDER SETS
 Example 2
 ----------
 
-mysql> create table t1(a varchar(4));
-mysql> create table t2(b varchar(4));
-mysql> insert into t1(a) values (1),(2),(3),(4),(5);
-mysql> insert into t2(b) values  (2),(3),(4);
+create table t1(a varchar(4));
+create table t2(b varchar(4));
+
+
+insert into t1(a) values (1),(2),(3),(4),(5);
+insert into t2(b) values  (2),(3),(4);
 
 mysql> desc t1;
 mysql> desc t2;
@@ -722,18 +728,28 @@ mysql> select * from new_table;
 
 Performance Impact:
 --------------------
-Cartesian products can have a severe impact on performance due to the sheer size of the result set. 
-Generating and handling a large number of rows can be resource-intensive and time-consuming.
-The lack of specific join conditions in a Cartesian product can lead to inefficient queries.
+Cartesian products can have a severe impact on
+performance dueto the sheer size of the result set. 
+
+Generating and handling a large number of rows can
+be resource-intensive and time-consuming.
+
+The lack of specific join conditions in a Cartesian 
+product can lead to inefficient queries.
 
 
 
 
 Lack of Specificity:
 --------------------
-Cartesian products do not rely on any specific join conditions or relationships between tables. 
-This lack of specificity can lead to unintended combinations of rows, producing data that may not be relevant or meaningful.
-JOINs allow for more precise control over how tables are combined, based on specified conditions.
+Cartesian products do not rely on any specific join
+conditions or relationships between tables. 
+
+This lack of specificity can lead to unintended combinations 
+of rows, producing data that may not be relevant or meaningful.
+
+JOINs allow for more precise control over how tables 
+are combined, based on specified conditions.
 
 
 
@@ -747,15 +763,20 @@ This redundancy can lead to difficulties in interpreting and analyzing the data.
 
 Limited Usefulness:
 --------------------
-Cartesian products are rarely used in practical scenarios where meaningful relationships between tables need to be established. 
-They are more of an edge case and are generally avoided in favor of more targeted JOIN operations.
+Cartesian products are rarely used in practical scenarios
+where meaningful relationships between tables need to be established. 
+
+They are more of an edge case and are generally avoided
+in favor of more targeted JOIN operations.
 
 
 
 Maintainability:
 --------------------
-Cartesian products can make queries less readable and maintainable, 
-as the lack of explicit join conditions may make it unclear why certain combinations are being produced.
+Cartesian products can make queries less readable
+and maintainable, as the lack of explicit join 
+conditions may make it unclear why certain 
+combinations are being produced.
 	
 
 
@@ -1267,43 +1288,6 @@ A ⋈ B
 Example 3
 **********
 
-
-
-
-
-
-
-
-
-
-
-*******************************************************************
--- C
-*******************************************************************
-
-
-
-
-*******************************************************************
--- C
-*******************************************************************
-
-
-
-
-*******************************************************************
--- C
-*******************************************************************
-
-
-
-
-
-
-
-*******************************************************************
--- C
-*******************************************************************
 
 
 
