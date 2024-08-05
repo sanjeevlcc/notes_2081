@@ -1,0 +1,215 @@
+
+root ➜ ~ $ lscpu 
+Architecture:                       x86_64
+CPU op-mode(s):                     32-bit, 64-bit
+CPU(s):                             4
+Thread(s) per core:                 2
+Core(s) per socket:                 2
+
+Socket(s):                          1
+Model name:                         AMD EPYC 7763 64-Core Processor
+
+
+
+
+
+
+
+root ➜ ~ $ free -mh
+              total        used        free      shared  buff/cache   available
+Mem:           15Gi       2.0Gi       5.3Gi       1.0Mi       8.3Gi        13Gi
+
+
+
+
+
+===============================================
+C
+===============================================
+
+
+root ➜ ~ $ cat > num.c
+#include <stdio.h>
+
+int main() {
+    int i;
+    
+    // Print numbers from 1 to 1 million
+    for(i = 1; i <= 1000; i++) {
+        printf("%d\n", i);
+    }
+    
+    return 0;
+}
+
+
+
+root ➜ ~ $ gcc -o num num.c
+
+root ➜ ~ $ ./num
+
+
+
+root ➜ ~ $ time ./num 
+real    0m14.023s
+user    0m0.371s
+sys     0m3.419s
+
+
+
+
+
+
+===============================================
+C++
+===============================================
+
+root ➜ ~/c++ $ cat > num.cpp 
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Print numbers from 1 to 1 million
+    for(int i = 1; i <= 1000000; i++) {
+        cout << i << endl;
+    }
+    
+    return 0;
+}
+
+
+
+
+root ➜ ~/c++ $ g++ -o num num.cpp
+root ➜ ~/c++ $ ./num
+
+
+root ➜ ~/c++ $ time ./num
+real    0m12.937s
+user    0m0.409s
+sys     0m3.579s
+
+
+
+===============================================
+Python
+===============================================
+
+
+
+root ➜ ~ $ mkdir python1
+root ➜ ~ $ cd python1/
+root ➜ ~/python1 $ 
+
+
+
+root ➜ ~/python1 $ cat > num.py
+
+# Python program to print numbers from 1 to 1 million
+def print_numbers():
+    # Print numbers from 1 to 1 million
+    for i in range(1, 1000):
+        print(i)
+
+if __name__ == "__main__":
+    print_numbers()
+
+
+
+
+
+
+root ➜ ~/python1 $ python num.py
+
+
+root ➜ ~/python1 $ time python num.py
+real    0m13.737s
+user    0m2.086s
+sys     0m4.152s
+
+
+
+
+===============================================
+Java
+===============================================
+
+root ➜ ~/java $ cat > num.java
+
+public class PrintNumbers {
+    public static void main(String[] args) {
+        // Print numbers from 1 to 1 million
+        for (int i = 1; i <= 1000000; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
+
+
+
+
+
+===============================================
+assembly language program that prints numbers from 1 to 1 million. 
+We'll use x86 assembly language for Linux (Intel syntax)
+===============================================
+
+root ➜ ~/ALP $ cat > print_numbers.asm
+
+section .data
+    nl  db 10           ; Newline character
+
+section .text
+    global _start
+
+_start:
+    mov ecx, 1          ; Initialize counter to 1
+    
+print_loop:
+    mov eax, 4          ; System call for sys_write (print)
+    mov ebx, 1          ; File descriptor 1 (stdout)
+    mov edx, 1          ; Number of bytes to write
+    mov esi, ecx        ; Load number to print into esi
+    add esi, '0'        ; Convert number to ASCII character
+    mov edi, esi        ; Move number to edi for sys_write
+    mov eax, 1          ; System call for sys_write (print)
+    int 0x80            ; Call kernel
+    
+    mov eax, ecx        ; Load current number into eax
+    inc eax             ; Increment eax
+    mov ecx, eax        ; Move incremented number back to ecx
+    
+    cmp ecx, 1000000   ; Compare current number with 1 million
+    jle print_loop     ; Jump to print_loop if less than or equal to 1 million
+
+exit:
+    mov eax, 1          ; System call for sys_exit
+    xor ebx, ebx        ; Exit code 0
+    int 0x80            ; Call kernel
+
+
+
+
+
+
+===============================================
+
+===============================================
+
+
+
+===============================================
+
+===============================================
+
+
+
+===============================================
+
+===============================================
+
+
+
