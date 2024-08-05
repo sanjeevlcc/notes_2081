@@ -3,10 +3,34 @@
 
 
 
-replication and fault tolerance
+Consistency, Replication, and Fault Tolerance
 --------------------------------------
 
 
+
+Consistency and Replication:
+------------------------------
+		Consistency ensures that all users see
+		the same data at the same time.
+		
+		Replication enhances data availability and 
+		read performance by having multiple copies of data.
+		
+		A trade-off often exists between consistency and 
+		availability (as per the CAP theorem), where achieving strong 
+		consistency might reduce availability and vice versa.
+		
+		
+		
+		Fault Tolerance is about ensuring the system continues
+		to function even when parts of it fail.
+		
+		Replication is a key strategy for fault tolerance as 
+		it ensures data remains accessible even if some replicas fail.
+		
+		Consistency mechanisms need to handle scenarios
+		where some replicas are unavailable, which can complicate
+		maintaining consistency while ensuring fault tolerance.
 
 
 
