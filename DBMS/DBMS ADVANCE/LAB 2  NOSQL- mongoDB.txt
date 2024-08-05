@@ -7,12 +7,16 @@ NoSQL
 
 
 NoSQL, which stands for "not only SQL," 
-is a term used to describe a category of database systems 
-that do not strictly adhere to the traditional relational database management 
+is a term used to describe a category of 
+database systems that do not strictly adhere
+to the traditional relational database management 
 system (RDBMS) model. 
 
-Unlike traditional SQL databases, NoSQL databases are designed to handle 
-various types of unstructured, semi-structured, or structured data.
+
+
+Unlike traditional SQL databases, NoSQL databases
+are designed to handle various types of 
+unstructured, semi-structured, or structured data.
 
 
 
@@ -30,11 +34,13 @@ NoSQL databases allow you to store and manage data without a fixed schema.
 This flexibility is particularly useful when dealing with dynamic or evolving 
 data structures.
 
+
 Horizontal scalability: 
 ------------------------
 NoSQL databases are often designed to scale horizontally, meaning they can 
 efficiently handle a growing amount of data by adding more nodes to a distributed 
 system.
+
 
 Support for different data models: 
 ----------------------------------
@@ -47,6 +53,7 @@ High performance:
 ------------------
 Many NoSQL databases are optimized for specific use cases, providing high 
 performance and low-latency access to data.
+
 
 Distributed architecture: 
 -------------------------
@@ -80,9 +87,11 @@ Column-family stores:
 Organize data into columns instead of rows (e.g., Apache Cassandra, HBase).
 
 
+
 Graph databases: 
 ------------------
 Optimize for storing and querying graph-like data structures (e.g., Neo4j).
+
 
 
 
@@ -107,8 +116,8 @@ databases depends on the specific needs and characteristics of the project
 NoSQL - MongoDB
 *******************************
 
-MongoDB is a popular open-source NoSQL database management system that falls 
-under the category of document-oriented databases. 
+MongoDB is a popular open-source NoSQL database management
+system that falls under the category of document-oriented databases. 
 
 It is designed to store, query, and retrieve data in a flexible, schema-free 
 JSON-like format known as BSON (Binary JSON). 
