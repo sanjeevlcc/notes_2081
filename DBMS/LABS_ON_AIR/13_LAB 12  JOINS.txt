@@ -1515,3 +1515,193 @@ Update the salary of employee with 50000 whose EmpiD is 220.
 
 Create a view for employees table named as EmpView with attributes EmplD,FirstName, Salary
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+****************************************************************************************************
+****************************************************************************************************
+****************************************************************************************************
+****************************************************************************************************
+
+Table Structures
+Hotel
+
+	hotel_id (Primary Key)
+	hotel_name
+	location
+	
+Room
+
+	room_id (Primary Key)
+	hotel_id (Foreign Key referencing Hotel(hotel_id))
+	room_type
+	price_per_night
+	
+Booking
+
+	booking_id (Primary Key)
+	room_id (Foreign Key referencing Room(room_id))
+	guest_name
+	check_in_date
+	check_out_date
+
+
+
+
+CREATE TABLE Hotel (
+    hotel_id INT PRIMARY KEY,
+    hotel_name VARCHAR(50),
+    location VARCHAR(50)
+);
+
+CREATE TABLE Room (
+    room_id INT PRIMARY KEY,
+    hotel_id INT,
+    room_type VARCHAR(30),
+    price_per_night DECIMAL(10, 2),
+    FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id)
+);
+
+CREATE TABLE Booking (
+    booking_id INT PRIMARY KEY,
+    room_id INT,
+    guest_name VARCHAR(50),
+    check_in_date DATE,
+    check_out_date DATE,
+    FOREIGN KEY (room_id) REFERENCES Room(room_id)
+);
+
+
+
+
+
+
+
+
+INSERT INTO Hotel (hotel_id, hotel_name, location) VALUES
+(1, 'Hotel Muna', 'Kathmandu'),
+(2, 'Hotel Annapurna', 'Pokhara'),
+(3, 'Hotel Everest', 'Biratnagar');
+
+INSERT INTO Room (room_id, hotel_id, room_type, price_per_night) VALUES
+(1, 1, 'Single', 50.00),
+(2, 1, 'Double', 80.00),
+(3, 2, 'Single', 60.00),
+(4, 2, 'Suite', 150.00),
+(5, 3, 'Double', 90.00);
+
+INSERT INTO Booking (booking_id, room_id, guest_name, check_in_date, check_out_date) VALUES
+(1, 1, 'Ramesh Thapa', '2024-08-01', '2024-08-05'),
+(2, 2, 'Sita Sharma', '2024-08-03', '2024-08-07'),
+(3, 3, 'Ganesh Pandey', '2024-08-02', '2024-08-04'),
+(4, 4, 'Bina Singh', '2024-08-10', '2024-08-15'),
+(5, 5, 'Kiran Rai', '2024-08-05', '2024-08-08');
+
+
+
+
+
+
+SQL Questions
+Basic
+
+
+
+List all hotels and their locations.
+
+SELECT hotel_name, location FROM Hotel;
+
+
+
+
+
+List all room types and their prices.
+
+SELECT room_type, price_per_night FROM Room;
+
+
+
+
+List all bookings with guest names.
+
+
+SELECT guest_name FROM Booking;
+
+
+
+
+Find the details of rooms in 'Hotel Muna'.
+
+
+SELECT * FROM Room WHERE hotel_id = 1;
+
+
+
+
+
+List all bookings made in 'Hotel Annapurna'.
+
+SELECT * FROM Booking WHERE room_id IN (SELECT room_id FROM Room WHERE hotel_id = 2);
+
+
+
+
+Find all rooms that cost more than $70 per night.
+
+
+SELECT * FROM Room WHERE price_per_night > 70;
+
+
+
+List all guests who checked in on '2024-08-01'.
+
+SELECT guest_name FROM Booking WHERE check_in_date = '2024-08-01';
+
+
+
+Find all hotels in 'Pokhara'.
+
+
+SELECT * FROM Hotel WHERE location = 'Pokhara';
+
+
+
+
+
+List all double rooms and their prices.
+
+SELECT * FROM Room WHERE room_type = 'Double';
+
+
+Find all bookings that end on '2024-08-07'.
+
+SELECT * FROM Booking WHERE check_out_date = '2024-08-07';
+****************************************************************************************************
+****************************************************************************************************
+****************************************************************************************************
+****************************************************************************************************
+
+
+
+
+
+
+
