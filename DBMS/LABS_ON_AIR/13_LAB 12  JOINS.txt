@@ -368,6 +368,7 @@ CREATE TABLE B (
 );
 
 INSERT INTO A (element) VALUES (1), (2), (3), (4);
+
 INSERT INTO B (element) VALUES (2), (4);
 
 
@@ -392,7 +393,7 @@ mysql> select * from B;
 +---------+
 
 
-mysql>create table t1 as  select m,f,r from A,B;
+mysql> select * from A,B;
 +---------+---------+
 | element | element |
 +---------+---------+
@@ -679,22 +680,27 @@ CONCLUSON: ON CARTESION PRODUCT
 		
 Size of Result Set:
 --------------------
-The Cartesian product generates a result set that is the product of the number of rows in the involved tables. 
-This can lead to an extremely large result set, especially when dealing with tables with a large number of rows.
-The result set can quickly become unmanageable and may consume a significant amount of memory.
-
+	The Cartesian product generates a result set that is the 
+	product of the number of rows in the involved tables. 
+	
+	This can lead to an extremely large result set, especially 
+	when dealing with tables with a large number of rows.
+	
+	The result set can quickly become unmanageable and may
+	consume a significant amount of memory.
+	
 
 
 ......CALCULATE SIE OF TABLE............
-
-SELECT 
-    table_name AS `Table`,
-    ROUND(((data_length + index_length) / 1024 / 1024), 2) AS `Size_MB`
-FROM 
-    information_schema.tables
-WHERE 
-    table_schema = 'your_database_name' 
-    AND table_name = 'your_table_name'; 
+	
+	SELECT 
+	    table_name AS `Table`,
+	    ROUND(((data_length + index_length) / 1024 / 1024), 2) AS `Size_MB`
+	FROM 
+	    information_schema.tables
+	WHERE 
+	    table_schema = 'your_database_name' 
+	    AND table_name = 'your_table_name'; 
 
 .............
 
@@ -707,11 +713,12 @@ FROM
 WHERE      
 	table_schema = 'db44'
   	AND table_name = 't1';
-+-------+---------+
-| Table | Size_MB |
-+-------+---------+
-| t1    |    0.02 |
-+-------+---------+
+
+	+-------+---------+
+	| Table | Size_MB |
+	+-------+---------+
+	| t1    |    0.02 |
+	+-------+---------+
 
 
 ........................
@@ -728,56 +735,60 @@ mysql> select * from new_table;
 
 Performance Impact:
 --------------------
-Cartesian products can have a severe impact on
-performance dueto the sheer size of the result set. 
-
-Generating and handling a large number of rows can
-be resource-intensive and time-consuming.
-
-The lack of specific join conditions in a Cartesian 
-product can lead to inefficient queries.
+	Cartesian products can have a severe impact on
+	performance dueto the sheer size of the result set. 
+	
+	Generating and handling a large number of rows can
+	be resource-intensive and time-consuming.
+	
+	The lack of specific join conditions in a Cartesian 
+	product can lead to inefficient queries.
 
 
 
 
 Lack of Specificity:
 --------------------
-Cartesian products do not rely on any specific join
-conditions or relationships between tables. 
-
-This lack of specificity can lead to unintended combinations 
-of rows, producing data that may not be relevant or meaningful.
-
-JOINs allow for more precise control over how tables 
-are combined, based on specified conditions.
+	Cartesian products do not rely on any specific join
+	conditions or relationships between tables. 
+	
+	This lack of specificity can lead to unintended combinations 
+	of rows, producing data that may not be relevant or meaningful.
+	
+	JOINs allow for more precise control over how tables 
+	are combined, based on specified conditions.
 
 
 
 Data Redundancy:
 --------------------
-The result set of a Cartesian product may contain redundant data, 
-especially when there are no specific conditions to filter the combinations. 
-This redundancy can lead to difficulties in interpreting and analyzing the data.
+	The result set of a Cartesian product may 
+	contain redundant data, especially when there 
+	are no specific conditions to filter the combinations. 
+	
+	This redundancy can lead to difficulties in 
+	interpreting and analyzing the data.
 
 
 
 Limited Usefulness:
 --------------------
-Cartesian products are rarely used in practical scenarios
-where meaningful relationships between tables need to be established. 
-
-They are more of an edge case and are generally avoided
-in favor of more targeted JOIN operations.
+	Cartesian products are rarely used in
+	practical scenarios where meaningful relationships 
+	between tables need to be established. 
+	
+	They are more of an edge case and are generally avoided
+	in favor of more targeted JOIN operations.
 
 
 
 Maintainability:
 --------------------
-Cartesian products can make queries less readable
-and maintainable, as the lack of explicit join 
-conditions may make it unclear why certain 
-combinations are being produced.
-	
+	Cartesian products can make queries less readable
+	and maintainable, as the lack of explicit join 
+	conditions may make it unclear why certain 
+	combinations are being produced.
+		
 
 
 
@@ -810,7 +821,8 @@ SQL/ DBMS JOINS
 
 	INNER JOIN is used when you only want rows with matching values, 
 
-	OUTER JOINs are used when you want to include unmatched rows along with matching ones. 
+	OUTER JOINs are used when you want to include 
+	unmatched rows along with matching ones. 
 
 
 
@@ -825,10 +837,15 @@ SQL/ DBMS JOINS
 
 	OUTER JOIN:
 	------------
-	Returns matching rows and all rows from one table, even if there is no match in the 			other table.
+	Returns matching rows and all rows from one table, even
+	if there is no match in the other table.
+	
+
 	Includes unmatched rows with NULL values.
 		LEFT, RIGHT, or FULL
-	determines which table's unmatched rows are included in the result
+	
+	determines which table's unmatched rows 
+	are included in the result
 
 
 
@@ -882,34 +899,46 @@ It is denoted by symbol θ.
 	1		2
 
 
+mysql> create database db6;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use db6;
+Database changed
 
 
-					-- Create Table A
-					CREATE TABLE TableA (
-					    column1 INT,
-					    column2 INT
-					);
+
+
+-- Create Table A
+CREATE TABLE TableA (
+column1 INT,
+column2 INT
+);
+
+
+-- Insert Data into Table A
+INSERT INTO TableA (column1, column2) VALUES
+(1, 1),
+(1, 2);
 					
-					-- Insert Data into Table A
-					INSERT INTO TableA (column1, column2) VALUES
-					(1, 1),
-					(1, 2);
 					
-					-- Create Table B
-					CREATE TABLE TableB (
-					    column1 INT,
-					    column2 INT
-					);
+
+-- Create Table B			
+CREATE TABLE TableB (					    
+column1 INT,					    
+column2 INT					
+);
 					
-					-- Insert Data into Table B
-					INSERT INTO TableB (column1, column2) VALUES
-					(1, 1),
-					(1, 3);
+					
+-- Insert Data into Table B					
+INSERT INTO TableB (column1, column2) VALUES					
+(1, 1),					
+(1, 3);
 
 
 
-					mysql> SELECT * FROM TableA, TableB 
-						WHERE TableA.column2 > TableB.column2;
+					
+mysql> SELECT * FROM TableA, TableB 						
+WHERE TableA.column2 > TableB.column2;
 					+---------+---------+---------+---------+
 					| column1 | column2 | column1 | column2 |
 					+---------+---------+---------+---------+
@@ -1320,20 +1349,44 @@ Example 3
 ***********BIM QUESTIONS ****************************************************
 Assume a  database of a Company. Where primary keys are underlined:
 
+
+
 employees (EmpID.., FirstName, LastName, Salary, DeplID)
+
 departments (DeptID.., DeptName, LocationID)
+
 locations (LocationID.., StreetAddress, PostalCode, City, ProvinceNo)
 
+
 Write the SQL queries for each of the following cases.
-The HR department needs a report to display the EmpID, first name, salary, for cach employce whose salary is greater than 25,000 and lcss than 50,000.
 
-Write a query to display the last namo, salary, department name of all employees whose department id is 26.
+The HR department needs a report to display the EmpID, 
+first name, salary, for cach employce whose salary is 
+greater than 25,000 and lcss than 50,000.
 
-Write a query to display the first name, department ID, department name, city for all employees who works in Lalitpur.
+
+
+
+Write a query to display the last namo, salary, department 
+name of all employees whose department id is 26.
+
+
+
+
+Write a query to display the first name, department ID,
+department name, city for all employees who works in Lalitpur.
+
+
 
 Update the salary of employee with 50000 whose EmpiD is 220.
 
-Create a view for employees table named as EmpView with attributes EmplD,FirstName, Salary
+
+
+
+Create a view for employees table named as EmpView with 
+attributes EmplD,FirstName, Salary
+
+
 
 
 -----------------
@@ -1345,6 +1398,8 @@ CREATE TABLE employees (
     Salary DECIMAL(10, 2),
     DeptID INT
 );
+
+
 
 -- Insert sample data
 INSERT INTO employees (EmpID, FirstName, LastName, Salary, DeptID) VALUES
@@ -1360,12 +1415,16 @@ INSERT INTO employees (EmpID, FirstName, LastName, Salary, DeptID) VALUES
 
 
 
+
 -- Create the departments table
 CREATE TABLE departments (
     DeptID INT PRIMARY KEY,
     DeptName VARCHAR(50),
     LocationID INT
 );
+
+
+
 
 -- Insert sample data
 INSERT INTO departments (DeptID, DeptName, LocationID) VALUES
@@ -1392,6 +1451,10 @@ CREATE TABLE locations (
     ProvinceNo INT
 );
 
+
+
+
+
 -- Insert sample data
 INSERT INTO locations (LocationID, StreetAddress, PostalCode, City, ProvinceNo) VALUES
 (101, '123 Main St', '12345', 'Example City', 1),
@@ -1416,6 +1479,12 @@ mysql> show tables;
 +-----------------+
 3 rows in set (0.00 sec)
 
+
+
+
+
+
+
 mysql> select * from departments;
 +--------+--------------------------+------------+
 | DeptID | DeptName                 | LocationID |
@@ -1431,6 +1500,13 @@ mysql> select * from departments;
 +--------+--------------------------+------------+
 8 rows in set (0.00 sec)
 
+
+
+
+
+
+
+
 mysql> select * from employees;
 +-------+-----------+----------+----------+--------+
 | EmpID | FirstName | LastName | Salary   | DeptID |
@@ -1445,6 +1521,13 @@ mysql> select * from employees;
 |     8 | Grace     | Taylor   | 58000.00 |      2 |
 +-------+-----------+----------+----------+--------+
 8 rows in set (0.00 sec)
+
+
+
+
+
+
+
 
 mysql> select * from locations;
 +------------+---------------+------------+------------------+------------+
@@ -1462,9 +1545,13 @@ mysql> select * from locations;
 8 rows in set (0.00 sec)
 
 
+
+
+
 The HR department needs a report to display 
 the EmpID, first name, salary, for 
-each employee whose salary is greater than 25,000 and less than 50,000.
+each employee whose salary is greater than 
+25,000 and less than 50,000.
 
 mysql> SELECT EmpID, FirstName, Salary
     -> FROM employees
@@ -1491,13 +1578,31 @@ Empty set (0.00 sec)
 
 
 
+
+
 Write a query to display the 
 first name, department ID, department name, city for all 
 employees who works in Lalitpur.
 
+
+
+
+
+
+
 Update the salary of employee with 50000 whose EmpiD is 220.
 
-Create a view for employees table named as EmpView with attributes EmplD,FirstName, Salary
+
+
+
+
+
+
+
+
+
+Create a view for employees table named as EmpView with 
+attributes EmplD,FirstName, Salary
 
 
 
