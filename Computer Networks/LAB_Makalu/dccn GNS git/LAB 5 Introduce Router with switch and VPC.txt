@@ -1,0 +1,280 @@
+
+
+==============================================================================
+LAB 5 Introduce Router with switch and VPC
+==============================================================================
+
+STEP 1: Download a IMAGE OF mikrotik router from official website
+	
+	https://mikrotik.com/
+	https://mikrotik.com/download
+	https://download.mikrotik.com/routeros/6.49.13/chr-6.49.13.img.zip
+
+STEP 2: EXTRACT "chr-6.49.13.img.zip" form your LOCAL FOLDER
+STEP 3: Go to GNS interface
+STEP 4: EDIT > PREFERENCES > QEMU > DISABLE (KVM/HAXM)
+STEP 5: Qemu VMs > NEW > 
+		Name : ROS
+		RAM : 256 mb
+		telnet
+		New Image: Locate " chr-6.49.13.img "		> FINISH
+	
+	EDIT > SYMBOL(browse) > loadbalancer  >> OK
+		
+		
+		
+STEP 6: FOR more ADAPTORS 
+	Qemu VMs > EDIT > Network
+		Adaptor : 2
+
+
+
+
+	
+
+
+
+
+
+==============================================================================
+
+==============================================================================
+STEP 1: Drag one ROUTER, SWICH and VPC
+STEP 2: Link all device
+STEP 3: Check TOPOLOGY summary (RED = off)
+STEP 4: Start al device (GREEN = on)
+
+STEP 5: CONSOE ALL DEVICE
+
+	
+	ON ROS-1> console
+
+	MikroTik 6.49.13 (stable)
+		MikroTik Login: admin
+		Password:  (just blank/ hit enter)
+
+
+	Change your password
+
+		new password> *****
+		repeat new password> *****
+
+			Password changed
+
+
+
+
+Removing default dhcp receive address
+------------------------------------------------
+	[admin@MikroTik] > ip dhcp-client print
+	[admin@MikroTik] > ip dhcp-client remove numbers=0
+
+
+adding IP address to interface 
+------------------------------------------------
+admin@MikroTik] > ip address add interface=ether1 address=172.17.50.1/24
+
+
+
+
+setup DNS for router
+------------------------------------------------
+[admin@MikroTik] > ip dns set servers=8.8.8.8
+
+
+
+Making NAT for private address
+------------------------------------------------
+[admin@MikroTik] > ip firewall nat add chain=srcnat action=masquerade
+
+
+
+Now checking , static ip as ARP
+------------------------------------------------
+
+[admin@MikroTik] > ip arp print follow-only
+Flags: X - disabled, I - invalid, H - DHCP, D - dynamic, P - published, C - complete
+ #    ADDRESS         MAC-ADDRESS       INTERFACE
+
+ = = =   = = =   = = =      = = =   = = =   = = =      = = =   = = =   = = =
+
+
+ = = =   = = =   = = =      = = =   = = =   = = =      = = =   = = =   = = =
+
+
+
+
+
+
+
+
+	ON VPC1 > console
+
+		PC1> show ip
+
+		PC1> ip 172.17.50.10/24
+
+		PC1> save
+
+
+		PC1> show ip
+
+			NAME        : PC1[1]
+			IP/MASK     : 172.17.50.10/24
+			GATEWAY     : 0.0.0.0
+			DNS         :
+			MAC         : 00:50:79:66:68:00
+			LPORT       : 10006
+			RHOST:PORT  : 127.0.0.1:10007
+			MTU:        : 1500
+
+
+
+
+	PC1> ping 172.17.50.1				//piging router gateway via VPC
+		84 bytes from 172.17.50.1 icmp_seq=1 ttl=64 time=31.441 ms
+
+
+	PC1> ping 172.17.50.10
+		172.17.50.10 icmp_seq=1 ttl=64 time=0.001 ms
+
+	
+
+	PC1> ip 172.17.50.10/24 172.17.50.1
+		Checking for duplicate address...
+		PC1 : 172.17.50.10 255.255.255.0 gateway 172.17.50.1
+
+	PC1> ip dns 8.8.8.8
+
+
+
+	PC1> show ip
+
+		NAME        : PC1[1]
+		IP/MASK     : 172.17.50.10/24
+		GATEWAY     : 172.17.50.1
+		DNS         : 8.8.8.8
+		MAC         : 00:50:79:66:68:00
+		LPORT       : 10006
+		RHOST:PORT  : 127.0.0.1:10007
+		MTU:        : 1500
+
+
+
+
+[admin@MikroTik] > ip arp print follow-only
+Flags: X - disabled, I - invalid, H - DHCP, D - dynamic, P - published, C - complete
+ #    ADDRESS         MAC-ADDRESS       INTERFACE
+
+ = = =   = = =   = = =      = = =   = = =   = = =      = = =   = = =   = = =
+
+ 0 DC 172.17.50.10    00:50:79:66:68:00 ether1
+
+
+
+
+PC1> ping 172.17.50.1
+84 bytes from 172.17.50.1 icmp_seq=1 ttl=64 time=20.132 ms
+84 bytes from 172.17.50.1 icmp_seq=2 ttl=64 time=8.377 ms
+84 bytes from 172.17.50.1 icmp_seq=3 ttl=64 time=9.647 ms
+
+
+
+
+
+
+CONCLUSION
+----------
+	Now ROUTER can ping VPC and 
+	VPCcan ping Router gateway tooo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FAST AND EASY WAY TO ADD AND COFIGURE ROUTER
+-----------------------------------------------
+
+	conf steps
+	----------
+	ip dhcp-client remove numbers=0
+	ip address add interface=ether1 address=172.17.50.1/24
+	ip dns set servers=8.8.8.8
+	ip firewall nat add chain=srcnat action=masquerade
+
+
+
+
+	view conf using "print"
+	-------------
+	ip address print
+	ip dns print
+	ip firewall nat print
+
+
+
+
+[admin@MikroTik] > ip address print
+Flags: X - disabled, I - invalid, D - dynamic
+ #   ADDRESS            NETWORK         INTERFACE
+ 0   172.17.50.1/24     172.17.50.0     ether1
+
+
+[admin@MikroTik] > ip dns print
+                      servers: 8.8.8.8
+              dynamic-servers:
+               use-doh-server:
+              verify-doh-cert: no
+        allow-remote-requests: no
+          max-udp-packet-size: 4096
+         query-server-timeout: 2s
+          query-total-timeout: 10s
+       max-concurrent-queries: 100
+  max-concurrent-tcp-sessions: 20
+                   cache-size: 2048KiB
+                cache-max-ttl: 1w
+                   cache-used: 24KiB
+
+
+[admin@MikroTik] > ip firewall nat print
+Flags: X - disabled, I - invalid, D - dynamic
+ 0    chain=srcnat action=masquerade
+
+
+
+
+
+
+
+
+
+
+export the conf , while design new router 
+"just copy and paste "
+----------------------------------------------------------
+
+[admin@MikroTik] > export
+
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip address
+add address=172.17.50.1/24 interface=ether1 network=172.17.50.0
+/ip dns
+set servers=8.8.8.8
+/ip firewall nat
+add action=masquerade chain=srcnat
+
+
+

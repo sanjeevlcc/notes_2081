@@ -1,0 +1,100 @@
+
+
+
+==============================================================================
+Lab 3 - Switch via multiple VPC
+==============================================================================
+
+STEP 1: Drag 3  switches and link each other first
+STEP 1 A: Drag two VPC. VPC1 and VPC2. and link to each switch
+STEP 2: Link all device
+STEP 3: Check TOPOLOGY summary (RED = off)
+STEP 4: Start all VPC (GREEN = on)
+
+STEP 5: Subnet Palpa - 192.168.10.0/24
+
+	ON VPC1 > console
+		PC1> ip 192.168.10.3/24
+
+	
+	ON VPC2 > console
+		PC2>  ip 192.168.10.2/24
+
+
+
+STEP 6: Subnet bhw - 10.20.40.0/24
+	
+	ON VPC3 > console
+		PC3> ip 10.20.40.4/24
+
+	ON VPC4 > console
+		PC4> ip 10.20.40.5/24
+
+
+
+STEP 7: Subnet Butwal - 172.17.50.0/24
+
+	ON VPC5 > console
+		PC5> ip 172.17.50.6/24
+
+	ON VPC6 > console
+		PC6> ip 172.17.50.7/24
+
+
+
+
+STEP 8:  Pinging in same subnet
+
+	PC6> ping 172.17.50.6
+		84 bytes from 172.17.50.6 icmp_seq=1 ttl=64 time=400.474 ms
+
+	
+	PC5> ping 172.17.50.7
+		84 bytes from 172.17.50.7 icmp_seq=1 ttl=64 time=0.398 ms
+
+	
+
+	PC4> ping 10.20.40.4
+		84 bytes from 10.20.40.4 icmp_seq=3 ttl=64 time=0.250 ms
+
+
+
+	PC3> ping 10.20.40.5
+		84 bytes from 10.20.40.5 icmp_seq=2 ttl=64 time=147.524 ms
+
+
+	PC2> ping 192.168.10.3
+		84 bytes from 192.168.10.3 icmp_seq=1 ttl=64 time=0.265 ms
+
+
+
+STEP 9:  Pinging in same OPPOSITE subnet
+
+
+	PC6> ping 10.20.40.5
+		No gateway found
+
+
+	PC6>  ping 192.168.10.3
+		No gateway found
+
+	PC3> ping 172.17.50.6
+		No gateway found
+
+
+
+
+STEP 10: CONCLUSION
+--------------------
+	each VPC can ping same subnet IPS
+	but cannot ping opposite or thers subnet ip 
+	eg
+		192.168.10.0/24 cannot ping 10.20.40.0/24 or 172.17.50.0/24
+		or vice versa
+
+	RESULT: No gateway found
+
+	To introduce GATEWAY.... we need ROUTER
+
+
+	CHECK next LAB 4 for add RROUTER (mikrotik as ROS router)

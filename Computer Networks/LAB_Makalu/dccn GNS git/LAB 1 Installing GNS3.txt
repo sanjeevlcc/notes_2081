@@ -1,0 +1,171 @@
+
+==============================================================================
+GNS3 INTRO
+==============================================================================
+
+GNS3, or Graphical Network Simulator-3, is an open-source network simulation 
+and emulation software. 
+
+It allows users to design, simulate, and experiment with complex network 
+topologies. GNS3 provides a graphical user interface (GUI) that enables users 
+to drag and drop routers, switches, firewalls, and other network devices onto 
+a virtual workspace, connecting them together 
+to create various network topologies.
+
+
+
+
+Key features of GNS3 include:
+=======================================
+
+Realistic Network Emulation: 
+---------------------------------
+GNS3 can emulate a wide range of networking devices, including 
+Cisco routers, switches, firewalls, and other vendor devices. 
+It uses real network operating systems (such as Cisco IOS, Juniper JunOS, etc.) 
+to provide a realistic simulation environment.
+
+
+Integration with Virtual Machines:
+--------------------------------- 
+GNS3 supports integration with virtualization platforms like VMware and VirtualBox,
+ allowing users to incorporate virtual machines (VMs) into their network 
+topologies.
+
+Packet Capture and Analysis: 
+---------------------------------
+GNS3 includes built-in packet capture capabilities, enabling users to capture 
+and analyze network traffic within their simulated environments.
+
+Community Contributions: 
+---------------------------------
+GNS3 has a vibrant community that contributes to the development of the software 
+by creating and sharing custom network device images, templates, and 
+configurations.
+
+
+Education and Training: 
+---------------------------------
+GNS3 is widely used in educational settings, such as universities and technical 
+training programs, for teaching networking concepts, practicing network 
+configurations, and preparing for industry certifications like Cisco's CCNA, 
+CCNP, and CCIE.
+
+
+Overall, GNS3 is a powerful tool for network engineers, students, and enthusiasts 
+to design, simulate, and test complex network environments without the need for 
+physical hardware
+
+
+
+
+
+
+
+==============================================================================
+GOOGLE GNS3 : https://www.gns3.com/
+==============================================================================
+
+
+==============================================================================
+Loging GNS3 : SIGN UP
+and 
+DOWNLOAD GNS3
+==============================================================================
+
+
+
+==============================================================================
+Installation Guide: 
+
+https://docs.gns3.com/docs/getting-started/installation/windows
+==============================================================================
+
+
+
+Supported Operating Systems
+-----------------------------------
+GNS3 supports the following Windows operating systems:
+
+Windows 7 SP1 (64 bit)
+Windows 8 (64 bit)
+Windows 10 (64 bit)
+Windows Server 2012 (64 bit)
+Windows Server 2016 (64 bit)
+
+
+
+Minimum Requirements
+---------------------------------------
+The following are the minimum requirements for a Windows GNS3 environment:
+
+Operating System --	 Windows 7 (64 bit) or later
+Processor -- 		 2 or more Logical cores
+Virtualization -- 	 Virtualization extensions required. 
+		  	   You may need to enable this via your computer's BIOS.
+Memory --	         4 GB RAM
+
+
+
+==============================================================================
+"simulator" VS "emulator" 
+==============================================================================
+
+
+The terms "simulator" and "emulator" are often used interchangeably, but they 
+refer to different types of software tools, especially in the context of computer 
+systems and networks. Here's a breakdown of each:
+
+Simulator:
+-----------------
+	A simulator is a software tool that models the behavior of a system or process 
+	without necessarily replicating its internal structure or components.
+
+	Simulators are typically used for performance analysis, software testing, 
+	and training purposes.
+
+	Simulators aim to provide an accurate representation of the system's 
+	behavior under various conditions, allowing users to observe and analyze 
+	its responses.
+
+	Simulators are often faster and less resource-intensive than emulators 
+	because they do not replicate the low-level details of the system being 
+	simulated.
+
+
+
+Emulator:
+---------------
+	An emulator is a software tool that replicates the behavior of one system 
+	on another system, often with a different architecture or operating 
+	environment.
+
+	Emulators mimic the hardware and software components of the original 
+	system, allowing software designed for that system to run on the emulator.
+
+	Emulators are commonly used to run legacy software on modern hardware, test
+	software compatibility across different platforms, and debug software in 
+	controlled environments.
+
+	Emulators typically require more computational resources and may run 
+	slower than the original system because they are replicating the entire 
+	system's functionality.
+
+
+
+
+In the context of networking, tools like GNS3 (Graphical Network Simulator-3) 
+and 
+Cisco's Packet Tracer 
+
+are often referred to as simulators because they model network behavior and 
+configurations withoutreplicating the actual hardware components. 
+
+However, they are sometimes also called emulators due to their ability to 
+simulate the behavior of real network devices. 
+
+The distinction between simulator and emulator in this context can be somewhat blurred.
+
+
+
+

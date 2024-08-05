@@ -1,0 +1,141 @@
+
+
+
+==============================================================================
+Check server is UP or not?
+==============================================================================
+
+Always need to be UP- Green
+
+
+
+
+
+==============================================================================
+Lab 2 - First PC to PC 
+==============================================================================
+
+make a configuraion on simple PC1 and PC2 static IP
+-----------------------------------------------------
+
+
+STEP 1: Drag two VPC. VPC1 and VPC2
+STEP 2: Link two device
+STEP 3: Check TOPOLOGY summary (RED = off)
+STEP 4: Start both VPC (GREEN = on)
+STEP 5: ON VPC1 > console
+
+
+	PC1> ip 192.168.20.5/24
+
+	PC1> save
+
+
+	PC1> show ip
+
+		NAME        : PC1[1]
+		IP/MASK     : 192.168.20.5/24
+
+
+
+	PC1> ping 192.168.20.6
+	host (192.168.20.6) not reachable		// not configured PC2
+
+
+
+
+
+STEP 6: ON VPC2 > console
+
+	PC2> ip 192.168.20.6/24
+
+
+	PC2> save
+
+
+	PC2> show ip
+
+		NAME        : PC2[1]
+	IP/MASK     : 192.168.20.6/24
+
+
+
+STEP 7: make a ping oppisite on both sides
+
+
+
+	PC1> ping 192.168.20.6
+	84 bytes from 192.168.20.6 icmp_seq=1 ttl=64 time=0.644 ms
+	84 bytes from 192.168.20.6 icmp_seq=2 ttl=64 time=0.517 ms
+
+
+	PC2> ping 192.168.20.5
+	84 bytes from 192.168.20.5 icmp_seq=1 ttl=64 time=0.619 ms
+	84 bytes from 192.168.20.5 icmp_seq=2 ttl=64 time=0.692 ms
+
+
+STEP 8: SUCESSS == PING Established
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------
+NOTE: Ping
+------
+IT is a basic network utility used to test the reachability of a host on 
+an Internet Protocol (IP) network. 
+
+It sends small packets of data to a specified destination and measures the 
+time it takes for the packets to travel to the destination and back. 
+
+
+
+
+The primary purposes of using ping are:
+---------------------------------------------
+
+	Checking Connectivity: 
+	----------------------
+	Ping is commonly used to verify whether a host is reachable over a 
+	network. 
+	If a ping command is successful, it indicates that the destination 
+	host is online and responding to network requests.
+
+
+	Measuring Round-Trip Time (RTT): 
+	-------------------------------
+	Ping measures the time it takes for a packet to travel from the sender 
+	to the destination and back. This round-trip time (RTT) is measured in
+	milliseconds and is an indicator of network latency or delay.
+
+
+
+	Testing Packet Loss: 
+	----------------------
+	Ping can also be used to detect packet loss, which occurs when packets 
+	sent from the source do not reach the destination or when packets sent 
+	back from the destination do not reach the source. 
+	High packet loss can indicate network congestion or connectivity issues.
+
+
+#ping onlinekhabar.com
+	Pinging onlinekhabar.com [104.21.11.243] with 32 bytes of data:
+	Reply from 104.21.11.243: bytes=32 time=15ms TTL=57
+	Reply from 104.21.11.243: bytes=32 time=11ms TTL=57
+	Reply from 104.21.11.243: bytes=32 time=9ms TTL=57
+	Reply from 104.21.11.243: bytes=32 time=8ms TTL=57
+
+	Ping statistics for 104.21.11.243:
+    		Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+	Approximate round trip times in milli-seconds:
+    		Minimum = 8ms, Maximum = 15ms, Average = 10ms
