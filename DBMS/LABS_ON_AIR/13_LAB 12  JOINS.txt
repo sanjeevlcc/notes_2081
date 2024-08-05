@@ -1617,6 +1617,43 @@ INSERT INTO Booking (booking_id, room_id, guest_name, check_in_date, check_out_d
 
 
 
+mysql> desc Hotel;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| hotel_id   | int         | NO   | PRI | NULL    |       |
+| hotel_name | varchar(50) | YES  |     | NULL    |       |
+| location   | varchar(50) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc Room;
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| room_id         | int           | NO   | PRI | NULL    |       |
+| hotel_id        | int           | YES  | MUL | NULL    |       |
+| room_type       | varchar(30)   | YES  |     | NULL    |       |
+| price_per_night | decimal(10,2) | YES  |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc Booking;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| booking_id     | int         | NO   | PRI | NULL    |       |
+| room_id        | int         | YES  | MUL | NULL    |       |
+| guest_name     | varchar(50) | YES  |     | NULL    |       |
+| check_in_date  | date        | YES  |     | NULL    |       |
+| check_out_date | date        | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+
 
 
 
@@ -1631,12 +1668,36 @@ List all hotels and their locations.
 SELECT hotel_name, location FROM Hotel;
 
 
+	+-----------------+------------+
+	| hotel_name      | location   |
+	+-----------------+------------+
+	| Hotel Muna      | Kathmandu  |
+	| Hotel Annapurna | Pokhara    |
+	| Hotel Everest   | Biratnagar |
+	+-----------------+------------+
+
+
 
 
 
 List all room types and their prices.
 ----------------------------------------
 SELECT room_type, price_per_night FROM Room;
+
+
+	+-----------+-----------------+
+	| room_type | price_per_night |
+	+-----------+-----------------+
+	| Single    |           50.00 |
+	| Double    |           80.00 |
+	| Single    |           60.00 |
+	| Suite     |          150.00 |
+	| Double    |           90.00 |
+	+-----------+-----------------+
+
+
+
+
 
 
 
@@ -1646,11 +1707,31 @@ List all bookings with guest names.
 SELECT guest_name FROM Booking;
 
 
+	+---------------+
+	| guest_name    |
+	+---------------+
+	| Ramesh Thapa  |
+	| Sita Sharma   |
+	| Ganesh Pandey |
+	| Bina Singh    |
+	| Kiran Rai     |
+	+---------------+
+
+
+
 
 
 Find the details of rooms in 'Hotel Muna'.
 ----------------------------------------
 SELECT * FROM Room WHERE hotel_id = 1;
+
+
++---------+----------+-----------+-----------------+
+| room_id | hotel_id | room_type | price_per_night |
++---------+----------+-----------+-----------------+
+|       1 |        1 | Single    |           50.00 |
+|       2 |        1 | Double    |           80.00 |
++---------+----------+-----------+-----------------+
 
 
 
@@ -1661,11 +1742,30 @@ List all bookings made in 'Hotel Annapurna'.
 SELECT * FROM Booking WHERE room_id IN (SELECT room_id FROM Room WHERE hotel_id = 2);
 
 
++------------+---------+---------------+---------------+----------------+
+| booking_id | room_id | guest_name    | check_in_date | check_out_date |
++------------+---------+---------------+---------------+----------------+
+|          3 |       3 | Ganesh Pandey | 2024-08-02    | 2024-08-04     |
+|          4 |       4 | Bina Singh    | 2024-08-10    | 2024-08-15     |
++------------+---------+---------------+---------------+----------------+
+
+
 
 
 Find all rooms that cost more than $70 per night.
 ----------------------------------------
 SELECT * FROM Room WHERE price_per_night > 70;
+
++---------+----------+-----------+-----------------+
+| room_id | hotel_id | room_type | price_per_night |
++---------+----------+-----------+-----------------+
+|       2 |        1 | Double    |           80.00 |
+|       4 |        2 | Suite     |          150.00 |
+|       5 |        3 | Double    |           90.00 |
++---------+----------+-----------+-----------------+
+
+
+
 
 
 
@@ -1674,10 +1774,27 @@ List all guests who checked in on '2024-08-01'.
 SELECT guest_name FROM Booking WHERE check_in_date = '2024-08-01';
 
 
++--------------+
+| guest_name   |
++--------------+
+| Ramesh Thapa |
++--------------+
+
+
+
+
+
 
 Find all hotels in 'Pokhara'.
 ----------------------------------------
 SELECT * FROM Hotel WHERE location = 'Pokhara';
+
++----------+-----------------+----------+
+| hotel_id | hotel_name      | location |
++----------+-----------------+----------+
+|        2 | Hotel Annapurna | Pokhara  |
++----------+-----------------+----------+
+
 
 
 
@@ -1687,11 +1804,33 @@ List all double rooms and their prices.
 ----------------------------------------
 SELECT * FROM Room WHERE room_type = 'Double';
 
++---------+----------+-----------+-----------------+
+| room_id | hotel_id | room_type | price_per_night |
++---------+----------+-----------+-----------------+
+|       2 |        1 | Double    |           80.00 |
+|       5 |        3 | Double    |           90.00 |
++---------+----------+-----------+-----------------+
+
+
+
+
+
+
+
+
+
 
 Find all bookings that end on '2024-08-07'.
 ----------------------------------------
 SELECT * FROM Booking WHERE check_out_date = '2024-08-07';
 
+
+
++------------+---------+-------------+---------------+----------------+
+| booking_id | room_id | guest_name  | check_in_date | check_out_date |
++------------+---------+-------------+---------------+----------------+
+|          2 |       2 | Sita Sharma | 2024-08-03    | 2024-08-07     |
++------------+---------+-------------+---------------+----------------+
 
 
 
@@ -1711,6 +1850,18 @@ SELECT R.room_id, R.room_type, H.hotel_name
 FROM Room R
 JOIN Hotel H ON R.hotel_id = H.hotel_id;
 
++---------+-----------+-----------------+
+| room_id | room_type | hotel_name      |
++---------+-----------+-----------------+
+|       1 | Single    | Hotel Muna      |
+|       2 | Double    | Hotel Muna      |
+|       3 | Single    | Hotel Annapurna |
+|       4 | Suite     | Hotel Annapurna |
+|       5 | Double    | Hotel Everest   |
++---------+-----------+-----------------+
+
+
+
 
 
 Find the total number of rooms in each hotel.
@@ -1719,6 +1870,15 @@ SELECT H.hotel_name, COUNT(R.room_id) AS total_rooms
 FROM Hotel H
 JOIN Room R ON H.hotel_id = R.hotel_id
 GROUP BY H.hotel_name;
+
++-----------------+-------------+
+| hotel_name      | total_rooms |
++-----------------+-------------+
+| Hotel Muna      |           2 |
+| Hotel Annapurna |           2 |
+| Hotel Everest   |           1 |
++-----------------+-------------+
+
 
 
 
@@ -1732,6 +1892,16 @@ JOIN Hotel H ON R.hotel_id = H.hotel_id;
 
 
 
++------------+---------------+-----------+-----------------+
+| booking_id | guest_name    | room_type | hotel_name      |
++------------+---------------+-----------+-----------------+
+|          1 | Ramesh Thapa  | Single    | Hotel Muna      |
+|          2 | Sita Sharma   | Double    | Hotel Muna      |
+|          3 | Ganesh Pandey | Single    | Hotel Annapurna |
+|          4 | Bina Singh    | Suite     | Hotel Annapurna |
+|          5 | Kiran Rai     | Double    | Hotel Everest   |
++------------+---------------+-----------+-----------------+
+
 
 
 
@@ -1741,6 +1911,16 @@ SELECT H.hotel_name, AVG(R.price_per_night) AS avg_price
 FROM Hotel H
 JOIN Room R ON H.hotel_id = R.hotel_id
 GROUP BY H.hotel_name;
+
++-----------------+------------+
+| hotel_name      | avg_price  |
++-----------------+------------+
+| Hotel Muna      |  65.000000 |
+| Hotel Annapurna | 105.000000 |
+| Hotel Everest   |  90.000000 |
++-----------------+------------+
+
+
 
 
 
@@ -1756,6 +1936,15 @@ WHERE H.hotel_name = 'Hotel Everest';
 
 
 
++------------+
+| guest_name |
++------------+
+| Kiran Rai  |
++------------+
+
+
+
+
 
 
 
@@ -1767,6 +1956,15 @@ JOIN Booking B ON R.room_id = B.room_id
 GROUP BY R.room_type;
 
 
++-----------+----------------+
+| room_type | total_bookings |
++-----------+----------------+
+| Single    |              2 |
+| Double    |              2 |
+| Suite     |              1 |
++-----------+----------------+
+
+
 
 
 
@@ -1776,6 +1974,23 @@ List all bookings with their total stay duration in days.
 SELECT B.booking_id, B.guest_name, 
        (DATEDIFF(B.check_out_date, B.check_in_date)) AS stay_duration
 FROM Booking B;
+
+
+
++------------+---------------+---------------+
+| booking_id | guest_name    | stay_duration |
++------------+---------------+---------------+
+|          1 | Ramesh Thapa  |             4 |
+|          2 | Sita Sharma   |             4 |
+|          3 | Ganesh Pandey |             2 |
+|          4 | Bina Singh    |             5 |
+|          5 | Kiran Rai     |             3 |
++------------+---------------+---------------+
+
+
+
+
+
 
 
 
@@ -1793,6 +2008,18 @@ LIMIT 1;
 
 
 
++-----------------+------------+
+| hotel_name      | avg_price  |
++-----------------+------------+
+| Hotel Annapurna | 105.000000 |
++-----------------+------------+
+
+
+
+
+
+
+
 
 
 
@@ -1804,7 +2031,13 @@ FROM Booking B
 WHERE DATEDIFF(B.check_out_date, B.check_in_date) > 3;
 
 
-
++--------------+
+| guest_name   |
++--------------+
+| Ramesh Thapa |
+| Sita Sharma  |
+| Bina Singh   |
++--------------+
 
 
 
@@ -1817,6 +2050,18 @@ FROM Hotel H
 JOIN Room R ON H.hotel_id = R.hotel_id
 JOIN Booking B ON R.room_id = B.room_id
 WHERE B.check_in_date BETWEEN '2024-08-01' AND '2024-08-31';
+
+
++-----------------+
+| hotel_name      |
++-----------------+
+| Hotel Muna      |
+| Hotel Annapurna |
+| Hotel Everest   |
++-----------------+
+
+
+
 
 
 
@@ -1835,6 +2080,15 @@ WHERE B.booking_id IS NULL;
 
 
 
+Empty set (0.00 sec)
+
+
+
+
+
+
+
+
 
 
 
@@ -1847,6 +2101,15 @@ JOIN Booking B ON R.room_id = B.room_id
 GROUP BY H.hotel_name
 ORDER BY total_bookings DESC
 LIMIT 1;
+
+
++------------+----------------+
+| hotel_name | total_bookings |
++------------+----------------+
+| Hotel Muna |              2 |
++------------+----------------+
+
+
 
 
 
@@ -1862,6 +2125,18 @@ JOIN Booking B ON R.room_id = B.room_id
 GROUP BY H.hotel_name;
 
 
++-----------------+---------------+
+| hotel_name      | total_revenue |
++-----------------+---------------+
+| Hotel Muna      |        520.00 |
+| Hotel Annapurna |        870.00 |
+| Hotel Everest   |        270.00 |
++-----------------+---------------+
+
+
+
+
+
 
 
 
@@ -1873,6 +2148,18 @@ FROM Room R
 JOIN Booking B ON R.room_id = B.room_id
 GROUP BY R.room_id, R.room_type
 HAVING booking_count > 1;
+
+
+Empty set (0.00 sec)
+
+
+
+
+
+
+
+
+
 
 
 
