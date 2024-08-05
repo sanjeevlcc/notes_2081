@@ -206,6 +206,8 @@ CHADANI THAPA		15 shrawan 2081		DONE
 
 
 DIYA SHAKYA		15 shrawan 2081			DONE
+
+
 				Construct an E-R diagram for a hospital with a 
 				set of patients and a set of medical doctors. 
 				Associate with each patient, a log of various
@@ -360,7 +362,10 @@ MANOJ GHIMIRE		16 shrawan 2081		BIM2018
 
 
 
-MUNA BASHYAL		16 shrawan 2081			ABSENT/ HEAVY RAINFALL
+MUNA BASHYAL		16 shrawan 2081			
+
+			ABSENT/ HEAVY RAINFALL
+			NOT DONE/ ABSENT
 
 
 			You have been tasked with designing a 
@@ -565,7 +570,8 @@ ROSHANI BHANDARI		17 shrawan 2081		BIM 2019
 
 
 SAIRAS PULAMI		18 shrawan 2081			BIM 2023
-﻿
+﻿				NOT DONE/ ABSENT
+
 
 				Assume a HR database of a Company. 
 				Where primary keys are underline. 
@@ -622,7 +628,7 @@ SAIRAS PULAMI		18 shrawan 2081			BIM 2023
 
 SAKSHAM SUBEDI			18 shrawan 2081		BIM 2024
 
-﻿
+﻿				NOT DONE/ ABSENT
 			
 			Consider the given schema design for Department Store.
 			Customer 
@@ -664,6 +670,7 @@ SAKSHAM SUBEDI			18 shrawan 2081		BIM 2024
 
 SAMJHANA THAPA MAGAR		18 shrawan 2081	
 
+				NOT DONE/ ABSENT
 
 				Centralized and Client/Server Architectures for DBMSs
 				Centralized Architecture
@@ -703,6 +710,9 @@ SANDESH SUBEDI			18 shrawan 2081
 
 
 SUDEEP PAUDEL			19 shrawan 2081	
+
+				NOT DONE/ ABSENT
+
 
 				University Management System
 				-------------------------------
@@ -782,6 +792,9 @@ SUDEEP PAUDEL			19 shrawan 2081
 
 VIPASSI KUMAR BAJRACHARYA		19 shrawan 2081			
 
+				NOT DONE/ ABSENT
+
+
 				Given two relations R1 and R2, where 
 				R1 contains N1 tuples, R2 contains N2
 				tuples and N2 > N1 > 0. 
@@ -808,7 +821,9 @@ VIPASSI KUMAR BAJRACHARYA		19 shrawan 2081
 
 
 
-ARYAN NEUPANE
+ARYAN NEUPANE			19 shrawan 2081			
+
+				NOT DONE/ ABSENT
 
 
 			You have been tasked with designing a 
