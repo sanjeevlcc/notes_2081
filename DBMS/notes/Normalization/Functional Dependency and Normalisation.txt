@@ -25,29 +25,50 @@ Page NO: 212
 ====================================================================================
  Database Normalization
 ====================================================================================
-Normalization is a database design technique that reduces data redundancy and eliminates 
-undesirable characteristics like Insertion, Update and Deletion Anomalies. 
+Normalization is a database design technique that reduces
+data redundancy and eliminates undesirable characteristics
+like Insertion, Update and Deletion Anomalies. 
 
-Normalization rules divides larger tables into smaller tables and links them using relationships. 
+Normalization rules divides larger tables into smaller
+tables and links them using relationships. 
 
-The purpose ofNormalisation in SQL is to eliminate redundant (repetitive) data and ensure data
-is stored logically.
+The purpose of Normalisation in SQL is to eliminate redundant
+(repetitive) data and ensure datais stored logically.
 
-            A large database defined as a single relation may result in data duplication. 
-            This repetition of data may result in:
+            A large database defined as a single relation may 
+            result in data duplication. 
+
+           This repetition of data may result in:
             
                 Making relations very large.
-                It isn't easy to maintain and update data as it would involve searching many                             records in relation.
-                Wastage and poor utilization of disk space and resources.
-                The likelihood of errors and inconsistencies increases.
-            
-            
-            So to handle these problems, we should analyze and decompose the relations with 
-            redundant data into smaller, simpler, and well-structured relations that are 
-            satisfy desirable properties. 
 
-            Normalization is a process of decomposing the relations into relations with fewer 
-            attributes.
+                It isn't easy to maintain and update 
+                data as it would involve searching many records in relation.
+
+                Wastage and poor utilization of disk space and resources.
+
+                The likelihood of errors and inconsistencies increases.
+
+
+
+
+
+            
+            So to handle these problems, we should analyze and decompose 
+            the relations with redundant data into smaller, simpler, and 
+           well-structured relations that are satisfy desirable properties. 
+
+
+
+            Normalization is a process of decomposing the relations
+            into relations with fewer attributes.
+
+
+
+
+
+
+
 
 ------------------------DOCKER------------------------------
 step 1: Login with credentials in ... https://killercoda.com/
@@ -288,8 +309,12 @@ Why Do We Need Normalization?
 ====================================================================================
 
 As we have discussed above, normalization is used to reduce data redundancy. 
-It provides a method to remove the following anomalies from the database and bring it to a 
-more consistent state:
+It provides a method to remove the following anomalies from the database
+and bring it to a more consistent state:
+
+
+
+
 
 
      what is anomalies in dbms?
@@ -303,17 +328,23 @@ more consistent state:
 
 
 
-A database anomaly is a flaw in the database that occurs because of poor planning and redundancy.
+
+
+A database anomaly is a flaw in the database that occurs
+because of poor planning and redundancy.
+
 
 Insertion anomalies: 
 ---------------------
     This occurs when we are not able to insert data into a database because 
     some attributes may be missing at the time of insertion.
 
+
 Updation anomalies: 
 ---------------------
     This occurs when the same data items are repeated with the same values and 
     are not linked to each other.
+
 
 Deletion anomalies:  
 ---------------------
