@@ -553,6 +553,9 @@ Database Normal Forms
       
       Later he joined Raymond F. Boyce to develop the theory of Boyce-Codd Normal Form.
 
+
+
+
 Database Normal Forms
 ----------------------------
                 1NF (First Normal Form)
@@ -563,10 +566,13 @@ Database Normal Forms
                 5NF (Fifth Normal Form)
                 6NF (Sixth Normal Form)
 
-The Theory of Data Normalization in MySQL server is still being developed further. 
-For example, there are discussions even on 6th Normal Form. 
+The Theory of Data Normalization in MySQL server is still
+being developed further. For example, there are discussions 
+even on 6th Normal Form. 
 
-However, in most practical applications, normalization achieves its best in 3rd Normal Form. 
+However, in most practical applications, normalization
+achieves its best in 3rd Normal Form. 
+
 
 
 
@@ -575,24 +581,38 @@ Normal Form	Description
 1NF	
      A relation is in 1NF if it contains an atomic value.
 
+
+
 2NF	
      A relation will be in 2NF if it is in 1NF and 
-     all non-key attributes are fully functional dependent on the primary key.
+     all non-key attributes are fully functional dependent
+     on the primary key.
+
 
 3NF	
      A relation will be in 3NF if it is in 2NF and 
      no transition dependency exists.
 
+
+
 BCNF	
-      A stronger definition of 3NF is known as Boyce Codd's normal form.
+      A stronger definition of 3NF is known as Boyce
+      Codd's normal form.
+
+
 
 4NF	
-      A relation will be in 4NF if it is in Boyce Codd's normal form
-      and has no multi-valued dependency.
+      A relation will be in 4NF if it is in Boyce
+      Codd's normal form and has no multi-valued
+      dependency.
+
+
+
 
 5NF	
-      A relation is in 5NF. If it is in 4NF and does not contain any 
-      join dependency, joining should be lossless.
+      A relation is in 5NF. If it is in 4NF and does
+      not contain any join dependency, joining should 
+      be lossless.
 
 
 
@@ -606,6 +626,7 @@ BCNF
 Advantages  and Disadvantages of Normalization
 ====================================================================================
 
+
 Advantages of Normalization
 ------------------------------
           Normalization helps to minimize data redundancy.
@@ -613,6 +634,9 @@ Advantages of Normalization
           Data consistency within the database.
           Much more flexible database design.
           Enforces the concept of relational integrity.
+
+
+
 
 Disadvantages of Normalization
 ------------------------------
@@ -772,6 +796,7 @@ Foreign Key:
 
 
 
+
 Composite Key:
 -----------------
          A key that consists of more than one attribute.
@@ -875,14 +900,17 @@ Composite Key:
 Functional Dependencies
 ====================================================================================
 
-Functional dependencies are the result of interrelationship between attributes or
-in between tuples in any relation.
+Functional dependencies are the result of interrelationship 
+between attributes or in between tuples in any relation.
 
 Definition : 
+--------------
 In relation R, 
     X and Y are the two subsets of the set of attributes, 
-    Y is  said to be functionally dependent on X if a given value of X (all attributes in X) 
+    Y is  said to be functionally dependent on X if a
+    given value of X (all attributes in X) 
     uniquely determines the value of Y (all attributes in Y).
+
 
 
 It is denoted by X → Y (Y depends upon X).
@@ -945,7 +973,9 @@ EXAMPLE SCNERIO
 Functional Dependency Chart/Diagram
 ====================================================================================
 
-It is the graphical representation of function dependencies among attributes in any relation. 
+It is the graphical representation of function dependencies
+among attributes in any relation. 
+
 The following four steps are followed to draw FD chart.
 
 
@@ -954,12 +984,17 @@ The following four steps are followed to draw FD chart.
           3. Write all non-prime key attributes outside the rectangle.
           4. Use arrows to show functional dependency among attributes
 
-Example. Consider the following relation:
+
+Example. 
+----------
+  Consider the following relation:
          Professor (Pfcode, Dept, Head, Time) It is assumed that
          (i) A professor can work in more than one dept.
          (ii) The time he spends in each dept is given.
          (iii) Each dept has only one head.
-   Draw the dependency diagram for the given relation by identifying the dependencies.
+
+   Draw the dependency diagram for the given 
+   relation by identifying the dependencies.
 
                                      Pfcode → Dept
                                      Dept  → Head
@@ -991,7 +1026,8 @@ Prime and Non-Prime Attributes
 ====================================================================================
       For a given relation R= {A1,A2,A3,………..,An}, 
       
-      an attribute A is a prime attribute if A is a part of any candidate key of R 
+      an attribute A is a prime attribute if A is a part of any 
+      candidate key of R 
       otherwise A is a non-prime attribute
 
                      EXAMPLE
@@ -1082,6 +1118,7 @@ Example
 
                 Sol. 
                 Consider a subset K={C, E, H} of R. 
+
                 CEH is a candidate key as all attributes does not 
                 appear on right hand side of any FD in F. 
                 
