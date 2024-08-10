@@ -50,8 +50,8 @@ controlplane $ watch kubectl get all
 -----------------------TERMINAL 2
 
 kubectl create deployment cusapp --image=huma11994/mytomapp  --replicas 1
-kubectl create deployment cusapp --image=huma11994/mytomapp  --replicas 1
 
+kubectl scale deployment cusapp --replicas 3
 
 kubectl expose deployment cusapp --type=NodePort --port=8080
 
