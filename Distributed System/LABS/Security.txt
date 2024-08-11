@@ -1,1 +1,163 @@
-s
+Setup Environment
+----------------------------
+OS: Ubuntu 22.04 LTS (or any version you're comfortable with)
+
+Tools:
+------
+    OpenSSL for encryption/decryption tasks.
+    iptables for firewall and network security rules.
+    Wireshark for network traffic analysis.
+    SELinux or AppArmor for Mandatory Access Control.
+    A web server (e.g., Apache or Nginx) to demonstrate 
+        availability and other security concepts.
+
+
+
+
+LABS
+-------
+Confidentiality (Encryption)
+Integrity (Hashing Files)
+Availability (DDoS Simulation & Mitigation)
+Authorization (User Permissions)
+Fabrication (Creating Fake Logs)
+Modification (File Tampering Detection)
+Interception (Network Traffic Analysis)
+Interruption (Service Disruption)
+
+
+
+Confidentiality
+---------------------
+Meaning: Protecting information from unauthorized
+access to ensure privacy.
+
+Example: A sensitive document is encrypted with 
+AES-256 before being emailed. Only the recipient 
+with the decryption key can read it, maintaining
+its confidentiality.
+
+
+
+
+
+Integrity
+--------------
+Meaning: Ensuring that data remains accurate 
+and unaltered during storage or transmission.
+
+
+Example: A file is hashed using SHA-256, and
+the hash is stored. Later, the file's hash is 
+recalculated to check if it has been altered. 
+If the hashes don't match, the file's 
+integrity has been compromised.
+
+
+
+
+Availability
+---------------
+Meaning: Ensuring that information and resources
+are accessible when needed.
+
+Example: A web server uses iptables to prevent
+a Denial of Service (DoS) attack, ensuring the
+website remains available to users.
+
+
+
+
+
+
+
+Authorization
+----------------
+Meaning: Granting permissions to users to access 
+certain resources based on their identity.
+
+
+Example: Only members of the developers group
+have write access to the /srv/development
+directory, while others can only read.
+
+
+
+
+
+
+
+Fabrication
+----------------
+Meaning: The unauthorized creation of data or 
+activity, often to deceive or disrupt.
+
+
+Example: A malicious user manually adds fake 
+log entries to /var/log/syslog to cover their 
+tracks or create confusion.
+
+
+
+
+
+Modification
+-----------------
+Meaning: Unauthorized changes to data or systems.
+
+
+Example: A file is altered without permission. 
+A tool like AIDE detects the modification and 
+alerts the system administrator.
+
+
+
+
+
+Interception
+---------------
+Meaning: Unauthorized access to data during its 
+transmission.
+
+
+Example: Using Wireshark to capture unencrypted 
+network traffic, allowing the attacker to read 
+sensitive information like passwords.
+
+
+
+
+
+
+Interruption
+------------------
+Meaning: Disruption of services or access to 
+information, making it unavailable.
+
+
+Example: A web server is deliberately shut
+down by an attacker, causing a service outage.
+Monitoring tools detect the interruption, and 
+the service is quickly restored.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
