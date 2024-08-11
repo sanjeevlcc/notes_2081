@@ -149,6 +149,61 @@ the service is quickly restored.
 
 
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Confidentiality
+---------------------LAB 1
+
+Meaning: Protecting information from unauthorized
+access to ensure privacy.
+
+
+
+Sender Side (Encrypting the File)
+-----------------------------------
+
+1. Create a Sensitive File:
+-----------------------
+Create a file containing sensitive information.
+
+controlplane $ echo "This is a confidential document. please open by valid person only" > file.txt
+
+
+controlplane $ cat file.txt 
+This is a confidential document. please open by valid person only
+
+
+
+
+
+
+2. Encrypt the File:
+-----------------------
+Use openssl to encrypt the file with AES-256.
+
+The command will prompt for a password. This 
+password will be required to decrypt the file
+on the receiver's side.
+
+
+controlplane $ openssl enc -aes-256-cbc -salt -in file.txt -out file.enc
+enter aes-256-cbc encryption password: apple
+Verifying - enter aes-256-cbc encryption password: apple
+
+
+
+
+
+
+controlplane $ cat file.txt 
+This is a confidential document. please open by valid person only
+
+
+controlplane $ cat file.enc 
+~kߘpFZcontrolplane $ 珀F[sQkN5ƹa6C?kPwqȖ
 
 
 
@@ -159,5 +214,278 @@ the service is quickly restored.
 
 
 
+3. Send the Encrypted File to the Receiver:
+------------------------------------------------
+Transfer the encrypted file (confidential.enc) to the receiver via a secure method (e.g., SCP, SFTP, or email).
+Example using SCP:
+
+scp file.enc user@receiver_ip:/path/to/destination/
+
+
+
+
+
+
+
+
+
+
+
+Decrypting the File on the Receiver's Side
+--------------------------------------------
+
+
+1. Receive the Encrypted File:
+--------------------------------
+The receiver gets the file file.enc 
+from the sender.
+
+
+
+2. Decrypt the File:
+----------------
+The receiver decrypts the file
+using the same password provided
+by the sender.
+
+
+controlplane $ openssl enc -aes-256-cbc -d -in file.enc -out file_decrypted.txt
+enter aes-256-cbc decryption password: apple
+
+
+
+controlplane $ cat file_decrypted.txt 
+This is a confidential document. please open by valid person only
+
+
+After entering the correct password, the receiver
+will have access to the original text
+in file_decrypted.txt.
+
+
+
+
+Summary:
+-----------
+Sender: Encrypts the file/text using openssl 
+and sends the encrypted content.
+
+
+Receiver: Decrypts the file/text using the 
+same password to access the original content.
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo "This is a confidential message." > message.txt
+openssl enc -aes-256-cbc -salt -in message.txt -out message.enc
+mail -s "Confidential Message" user@example.com < message.enc
+openssl enc -aes-256-cbc -d -in message.enc -out message_decrypted.txt
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Availability
+--------------- LAB 2
+Meaning: Ensuring that information and resources
+are accessible when needed.
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Authorization
+----------------  LAB 3
+Meaning: Granting permissions to users to access 
+certain resources based on their identity.
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Fabrication
+----------------  LAB 4
+Meaning: The unauthorized creation of data or 
+activity, often to deceive or disrupt.
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Modification
+-----------------  LAB 5
+Meaning: Unauthorized changes to data or systems.
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Interception
+---------------  LAB 6
+Meaning: Unauthorized access to data during its 
+transmission.
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Interruption
+------------------  LAB 7
+Meaning: Disruption of services or access to 
+information, making it unavailable.
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
