@@ -1,1 +1,165 @@
-ss
+
+
+
+
+terminal 1
+--------------
+controlplane $ watch kubectl get all
+
+
+
+
+
+terminal 2
+--------------
+
+controlplane $ cat >  mysql-statefulset.yaml
+
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  serviceName: mysql
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpassword
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-persistent-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+
+
+
+
+
+
+
+controlplane $ kubectl apply -f mysql-statefulset.yaml
+
+
+
+
+
+controlplane $ cat > mysql-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  ports:
+  - port: 3306
+    name: mysql
+  clusterIP: None
+  selector:
+    app: MySQL
+
+
+
+controlplane $ kubectl apply -f mysql-service.yaml
+
+
+
+
+
+
+
+
+terminal 1
+--------------
+controlplane $ watch kubectl get all
+
+NAME          READY   STATUS    RESTARTS   AGE
+pod/mysql-0   1/1     Running   0          70s
+pod/mysql-1   1/1     Running   0          46s
+pod/mysql-2   1/1     Running   0          39s
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP    9d
+service/mysql        ClusterIP   None         <none>        3306/TCP   11s
+
+NAME                     READY   AGE
+statefulset.apps/mysql   3/3     70s
+
+
+
+
+
+terminal 2
+--------------
+
+      Configure MySQL Replication
+      ----------------------------
+
+controlplane $ kubectl exec -it mysql-0 -- mysql -uroot -prootpassword -e "CREATE USER 'replication_user'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'replication_password';"
+
+controlplane $ kubectl exec -it mysql-0 -- mysql -uroot -prootpassword -e "GRANT REPLICATION SLAVE ON *.* TO 'replication_user'@'%';"
+
+controlplane $ kubectl exec -it mysql-0 -- mysql -uroot -prootpassword -e "FLUSH PRIVILEGES;"
+
+
+
+
+
+        Create Database and Table, Insert Data
+        ----------------------------------------
+controlplane $  kubectl exec -it mysql-0 -- mysql -uroot -prootpassword -e "CREATE DATABASE db1;"
+
+controlplane $ kubectl exec -it mysql-0 -- mysql -uroot -prootpassword -e "USE db1; CREATE TABLE t1 (id INT PRIMARY KEY, name VARCHAR(50), age INT, salary DECIMAL(10, 2));"
+
+controlplane $  kubectl exec -it mysql-0 -- mysql -uroot -prootpassword -e "USE db1; INSERT INTO t1 VALUES (1, 'Alice', 30, 70000), (2, 'Bob', 32, 80000), (3, 'Charlie', 29, 90000), (4, 'David', 35, 100000), (5, 'Eve', 28, 75000);"
+
+
+
+
+
+            Verify Data Propagation
+            ------------------------
+
+controlplane $  kubectl exec -it mysql-0 -- mysql -uroot -prootpassword -e "USE db1; SELECT * FROM t1;"
+
++----+---------+------+-----------+
+| id | name    | age  | salary    |
++----+---------+------+-----------+
+|  1 | Alice   |   30 |  70000.00 |
+|  2 | Bob     |   32 |  80000.00 |
+|  3 | Charlie |   29 |  90000.00 |
+|  4 | David   |   35 | 100000.00 |
+|  5 | Eve     |   28 |  75000.00 |
++----+---------+------+-----------+
+
+
+controlplane $  kubectl exec -it mysql-1 -- mysql -uroot -prootpassword -e "USE db1; SELECT * FROM t1;"
+
+controlplane $  kubectl exec -it mysql-2 -- mysql -uroot -prootpassword -e "USE db1; SELECT * FROM t1;"
+
+
+
+
