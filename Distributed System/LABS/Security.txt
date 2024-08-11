@@ -161,6 +161,32 @@ Meaning: Protecting information from unauthorized
 access to ensure privacy.
 
 
+controlplane $ kubectl get nodes
+NAME           STATUS   ROLES           AGE   VERSION
+controlplane   Ready    control-plane   9d    v1.30.0  ===>> Machine1
+node01         Ready    <none>          9d    v1.30.0  ===>> Machine2
+
+
+
+controlplane $ ssh controlplane       #Sender Side (Encrypting the File)
+
+controlplane $ hostname -I
+172.30.1.2
+
+
+
+controlplane $ ssh node01            #Receiver's Side (Decrypting the File)
+
+node01 $ hostname -I
+172.30.2.2
+
+node01 $ ping 172.30.1.2
+PING 172.30.1.2 (172.30.1.2) 56(84) bytes of data.
+64 bytes from 172.30.1.2: icmp_seq=1 ttl=60 time=0.498 ms
+64 bytes from 172.30.1.2: icmp_seq=2 ttl=60 time=0.638 ms
+
+
+
 
 Sender Side (Encrypting the File)
 -----------------------------------
@@ -169,7 +195,8 @@ Sender Side (Encrypting the File)
 -----------------------
 Create a file containing sensitive information.
 
-controlplane $ echo "This is a confidential document. please open by valid person only" > file.txt
+controlplane $ echo "This is a confidential document. please
+open by valid person only" > file.txt
 
 
 controlplane $ cat file.txt 
@@ -203,7 +230,7 @@ This is a confidential document. please open by valid person only
 
 
 controlplane $ cat file.enc 
-~kߘpFZcontrolplane $ 珀F[sQkN5ƹa6C?kPwqȖ
+Salted__Ʈ?JW|yӝ;e\CF|C j3崉er;d13}TWJ% nBA_7a;{}]ūڝ{mOg
 
 
 
@@ -221,7 +248,8 @@ Example using SCP:
 
 scp file.enc user@receiver_ip:/path/to/destination/
 
-
+controlplane $ scp file.enc root@172.30.2.2:/root                
+file.enc                                           100%   96   149.2KB/s   00:00    
 
 
 
@@ -248,13 +276,22 @@ The receiver decrypts the file
 using the same password provided
 by the sender.
 
+node01 $ whoami 
+root
 
-controlplane $ openssl enc -aes-256-cbc -d -in file.enc -out file_decrypted.txt
+node01 $ pwd
+/root
+
+node01 $ ls
+file.enc
+
+
+node01 $ openssl enc -aes-256-cbc -d -in file.enc -out file_decrypted.txtfile_decrypted.txt
 enter aes-256-cbc decryption password: apple
 
 
 
-controlplane $ cat file_decrypted.txt 
+node01 $ cat file_decrypted.txt 
 This is a confidential document. please open by valid person only
 
 
@@ -277,15 +314,6 @@ same password to access the original content.
 
 
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
 
 
 
@@ -299,6 +327,29 @@ echo "This is a confidential message." > message.txt
 openssl enc -aes-256-cbc -salt -in message.txt -out message.enc
 mail -s "Confidential Message" user@example.com < message.enc
 openssl enc -aes-256-cbc -d -in message.enc -out message_decrypted.txt
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
