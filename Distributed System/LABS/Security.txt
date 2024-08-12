@@ -1,6 +1,12 @@
+
+https://killercoda.com/killer-shell-cka/scenario/playground
+
+
+
 Setup Environment
 ----------------------------
 OS: Ubuntu 22.04 LTS (or any version you're comfortable with)
+
 
 Tools:
 ------
@@ -16,14 +22,14 @@ Tools:
 
 LABS
 -------
-Confidentiality (Encryption)
-Integrity (Hashing Files)
-Availability (DDoS Simulation & Mitigation)
-Authorization (User Permissions)
-Fabrication (Creating Fake Logs)
-Modification (File Tampering Detection)
-Interception (Network Traffic Analysis)
-Interruption (Service Disruption)
+    Confidentiality (Encryption)
+    Integrity (Hashing Files)
+    Availability (DDoS Simulation & Mitigation)
+    Authorization (User Permissions)
+    Fabrication (Creating Fake Logs)
+    Modification (File Tampering Detection)
+    Interception (Network Traffic Analysis)
+    Interruption (Service Disruption)
 
 
 
@@ -36,6 +42,8 @@ Example: A sensitive document is encrypted with
 AES-256 before being emailed. Only the recipient 
 with the decryption key can read it, maintaining
 its confidentiality.
+
+
 
 
 
