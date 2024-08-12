@@ -407,7 +407,269 @@ certain resources based on their identity.
 
 
 
+Lab Setup for Authorization
+--------------------------------
+This lab will demonstrate how to configure and manage
+authorization in Ubuntu using file permissions, user 
+groups, and sudo privileges.
 
+
+
+
+
+
+Step 1: User and Group Management
+------------------------------------
+Create Users:
+--------------
+First, create a couple of users who will
+have different levels of access.
+
+        controlplane $ sudo adduser alice
+        controlplane $ sudo adduser bob
+        
+        controlplane $ cat /etc/passwd
+
+
+Create a Group:
+---------------
+Create a user group called developers.
+
+
+        controlplane $ sudo groupadd developers
+        
+        controlplane $ cat /etc/group
+
+
+Add Users to the Group:
+-------------------------
+Add alice to the developers group.
+
+        controlplane $  sudo usermod -aG developers alice
+
+
+        controlplane $ id alice 
+        uid=1001(alice) gid=1001(alice) groups=1001(alice),1003(developers)
+        controlplane $ id bob
+        uid=1002(bob) gid=1002(bob) groups=1002(bob)
+
+
+
+
+
+Verify group membership.
+-------------------------
+controlplane $ groups alice
+alice : alice developers
+
+
+
+
+
+
+
+Step 2: File and Directory Permissions
+---------------------------------------
+
+
+
+
+drwxr-xr-x 2 root root 4096 Aug 12 01:03 dir_makalu/
+
+
+
+
+    d            rwx           r-x        r-x         2     root      developers      4096         Aug 12 01:03             dir_makalu/
+file/ dir        owner        group        others    hard    own        group         size         timestamp    
+ - / d           root         developers
+
+
+
+permission     r w x    r 4         w 2        x 1
+
+        The 770 permission means:
+            Owner (root): Read, Write, Execute (7)
+            Group (developers): Read, Write, Execute (7)
+            Others: No permissions (0)
+
+
+
+
+
+
+
+Create a Directory for the Group:
+----------------------------------
+Create a directory that only the
+developers group can access.
+
+        controlplane $ sudo mkdir dir_makalu
+        
+        
+        controlplane $ ls -ld dir_makalu/
+        drwxr-xr-x 2 root root 4096 Aug 12 01:03 dir_makalu/
+
+
+
+
+
+Set Group Ownership:
+----------------------
+Change the ownership of the directory 
+to the developers group.
+
+
+            controlplane $ sudo chown :developers dir_makalu/
+            
+            
+            controlplane $ ls -ld dir_makalu/
+            drwxr-xr-x 2 root developers 4096 Aug 12 01:03 dir_makalu/
+            
+
+
+
+Set Directory Permissions:
+-------------------------
+Allow only the owner and the group to 
+read,write, and execute files in the directory.
+
+
+
+        controlplane $ ls -ld dir_makalu/
+        drwxr-xr-x 2 root developers 4096 Aug 12 01:03 dir_makalu/
+        
+        
+        controlplane $ chmod 770 dir_makalu/
+        
+        
+        controlplane $ ls -ld dir_makalu/
+        drwxrwx--- 2 root developers 4096 Aug 12 01:03 dir_makalu/
+
+
+
+
+
+
+
+Create a File in the Directory:
+------------------------------------
+As alice, create a file in
+the /dir_makalu directory.
+
+            controlplane $ cd dir_makalu/
+            
+            controlplane $ echo "hello form chapter security in DS" > filr2.txt
+            
+            controlplane $ cat filr2.txt 
+            hello form chapter security in DS
+            
+            
+            controlplane $ ls -l filr2.txt 
+            -rw-r--r-- 1 root root 34 Aug 12 01:13 filr2.txt
+
+
+
+bob, who is not part of the developers group, will
+not have access to this file.
+
+Try accessing the file as bob:
+
+            controlplane $ pwd
+            /root/dir_makalu
+            
+            controlplane $ sudo su - bob 
+            
+            
+            bob@controlplane:~$ cd /root/dir_makalu
+            -bash: cd: /root/dir_makalu: Permission denied
+            
+            
+            bob@controlplane:~$ cat  /root/dir_makalu/filr2.txt 
+            cat: /root/dir_makalu/filr2.txt: Permission denied
+
+
+
+bob should receive a "Permission denied" error,
+demonstrating authorization control.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+unsing apache as Authorization
+------------------------------
+sudo apt install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+sudo systemctl status apache2
+
+controlplane $ cd /var/www/html/
+controlplane $ /var/www/html$ ls
+index.html
+
+OPEN PORT : 80 : BROWSER
+
+
+controlplane $ mkdir alice_dir
+controlplane $ mv index.html index1.html
+
+controlplane $ ls -l
+drwxr-xr-x 2 root root  4096 Aug 12 01:19 alice_dir
+-rw-r--r-- 1 root root 10918 Aug 12 01:17 index1.html
+
+
+
+controlplane $ echo "hello for everyone from alice" > alice_dir/file1.txt
+controlplane $ echo "hello for everyone from alice, buts its authorized only " > alice_dir/file2.txt
+
+
+controlplane $ ls -l alice_dir/
+-rw-r--r-- 1 root root 30 Aug 12 01:25 file1.txt
+-rw-r--r-- 1 root root 57 Aug 12 01:25 file2.txt
+
+
+controlplane $ useradd ram
+controlplane $ passwd ram
+controlplane $  sudo usermod -aG developers ram
+
+controlplane $ chown ram:developers alice_dir/file2.txt
+controlplane $ chmod 770 alice_dir/file2.txt 
+
+OPEN PORT : 80 : BROWSER
+
+controlplane $ ls -l alice_dir/
+-rw-r--r-- 1 root root       30 Aug 12 01:25 file1.txt
+-rwxrwx--- 1 root developers 57 Aug 12 01:25 file2.txt
+
+
+controlplane $ pwd
+/var/www/html
+
+controlplane $ sudo su - ram
+
+$ cd /var/www/html/alice_dir
+
+$ ls
+file1.txt  file2.txt
+
+$ cat file2.txt
+hello for everyone from alice, buts its authorized only 
+
+$ cat file1.txt
+hello for everyone from alice
 
 
 
@@ -440,11 +702,256 @@ Meaning: The unauthorized creation of data or
 activity, often to deceive or disrupt.
 
 
+To demonstrate fabrication in the context of an 
+Apache web server, we'll simulate an unauthorized 
+user tampering with Apache's access logs by adding 
+fake entries. 
+This type of attack can mislead administrators into 
+thinking that certain requests were made to the web 
+server when they weren't, or it can be used to cover
+the tracks of malicious activities.
 
 
+
+
+
+Step 1: Set Up Apache Web Server
+-----------------------------------
+Ensure you have Apache installed and 
+running on your Ubuntu system:
+
+Install Apache:Start and Enable Apache:
+---------------------------------------
+sudo apt update
+sudo apt install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+
+BROWSER:80
+
+
+controlplane $ mv /var/www/html/index.html  /var/www/html/index1.html
+
+BROWSER:80
+
+controlplane $ echo "<h1> hello we are on the mode of fabricated data labs </h1>" >> /var/www/html/index.html
+
+BROWSER:80
+
+
+
+
+Verify Apache is Running:
+---------------------------
+You can check if Apache is running 
+by accessing http://localhost in your 
+browser or using curl:
+
+curl http://localhost
+
+
+or
+
+BROWSER:80
+
+
+
+
+Step 2: Understand Apache Access Logs
+----------------------------------------
+Apache logs every request to its access log 
+file, typically located at:
+
+            /var/log/apache2/access.log
+
+Each entry in this file contains information such
+as the client's IP address, the date and time of
+the request, the request line, the response code,
+and more.
+
+
+
+
+        controlplane $ curl http://localhost
+        
+        controlplane $ tail -f /var/log/apache2/access.log
+        
+        127.0.0.1 - - [12/Aug/2024:02:01:05 +0000] "GET / HTTP/1.1" 200 287 "-" "curl/7.68.0"
+
+
+
+
+
+
+
+
+Step 3: Simulate Fabrication of Log Entries
+---------------------------------------------
+Let's simulate an unauthorized user (attacker)
+gaining access to the server and fabricating log 
+entries in the Apache access log.
+
+
+Gain Root Access:
+---------------------
+If the attacker has gained root access, they
+can edit any file on the system. 
+Switch to the root user:
+
+controlplane $ sudo su
+
+
+
+View the Existing Log Entries:
+--------------------------------
+You can view the existing entries in the Apache
+access log to understand the format
+
+
+controlplane $ tail -f /var/log/apache2/access.log
+
+127.0.0.1 - - [12/Aug/2024:02:01:05 +0000] "GET / HTTP/1.1" 200 287 "-" "curl/7.68.0"
+
+
+
+================
+
+
+
+
+
+
+
+
+
+
+Fabricate a Log Entry:
+------------------------
+The attacker can manually add a fabricated
+entry to the access log. For example:
+
+controlplane $ echo '192.168.1.100 - - [11/Aug/2024:14:23:45 +0000] "GET /sensitive-data HTTP/1.1" 200 1234' >> /var/log/apache2/access.log
+
+
+
+        Explanation:
+            192.168.1.100: The attacker's IP address (this can be 
+            any IP they want to fabricate).
+            
+            [11/Aug/2024:14:23:45 +0000]: The date and time the request
+            was supposedly made.
+            
+            "GET /sensitive-data HTTP/1.1": The HTTP request line 
+            (the attacker might fake a request for sensitive data).
+            
+            200: The HTTP status code, indicating a successful request.
+
+1234: The size of the response in bytes.
+
+
+
+
+
+
+
+
+Verify the Fabrication:
+---------------------------
+After the fake entry has been added, view 
+the access log to see the fabricated entry:
+
+
+
+
+
+controlplane $ tail -f /var/log/apache2/access.log
+127.0.0.1 - - [12/Aug/2024:01:59:33 +0000] "GET / HTTP/1.1" 200 287 "-" "curl/7.68.0"
+127.0.0.1 - - [12/Aug/2024:02:01:05 +0000] "GET / HTTP/1.1" 200 287 "-" "curl/7.68.0"
+
+================
+
+192.168.1.100 - - [11/Aug/2024:14:23:45 +0000] "GET /sensitive-data HTTP/1.1" 200 1234
+
+
+
+
+
+
+
+
+Step 4: Analyze the Impact
+----------------------------
+    Misleading Information:
+    --------------------------
+        The fabricated log entry could mislead administrators 
+        during an investigation. For example, they might believe 
+        that someone accessed sensitive data when, in fact, no 
+        such request was made.
+    
+    
+    Covering Tracks:
+    ----------------
+        An attacker might add fake log entries to make it look
+        like certain actions were taken by another user or at
+        a different time, potentially hiding their real activities.
+
+
+
+
+
+Step 5: Mitigation Techniques
+--------------------------------------
+To protect against log fabrication, consider the following:
+
+        Restrict Access to Logs:
+        ---------------------------
+                Only allow authorized users and processes
+                to access and modify log files. Use appropriate
+                file permissions:
+                
+                        sudo chmod 640 /var/log/apache2/access.log
+                        sudo chown root:adm /var/log/apache2/access.log
+                
+        
+        Implement Remote Logging:
+        ------------------------
+                Configure Apache to send logs to a remote, centralized 
+                logging server. This makes it much more difficult for
+                an attacker to tamper with logs
+        
+        
+        
+        Monitor and Audit Regularly:
+        --------------------------------
+                Regularly monitor and audit log files for any 
+                suspicious activity or anomalies that could indicate 
+                fabrication or other forms of tampering.
+
+
+
+
+
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -463,6 +970,125 @@ activity, often to deceive or disrupt.
 Modification
 -----------------  LAB 5
 Meaning: Unauthorized changes to data or systems.
+
+
+Modification refers to the unauthorized alteration or
+tampering of data, files, or records within a system. 
+This could involve changing configurations, altering log 
+files, modifying database entries, or altering documents. 
+The goal might be to mislead, disrupt operations, or gain 
+unauthorized access.
+
+
+
+
+
+controlplane $ ssh controlplane
+controlplane $
+
+
+controlplane $ ssh node0
+node01 $
+
+
+
+
+
+
+controlplane $ echo "this a file which is not modified, and secret file " > file.txt
+
+controlplane $ cat file.txt 
+this a file which is not modified, and secret file
+
+
+controlplane $ sha1sum file.txt 
+be2b57a6c704748ddda59e503ee753935ac043b9  file.txt
+
+controlplane $ sha256sum file.txt 
+d678425bbb79f9163fd642d5a77a15e72938ce69241a0f2e6a18332d82fbf4ce  file.txt
+
+
+node01 $ hostname -I
+172.30.2.2
+
+controlplane $ scp file.txt root@172.30.2.2:/root    
+file.txt                               100%   52    70.7KB/s   00:00 
+
+
+
+
+
+
+
+node01 $ pwd
+/root
+
+
+node01 $ ls
+file.txt 
+
+
+node01 $ cat file.txt 
+this a file which is not modified, and secret file 
+
+
+
+node01 $ sha1sum file.txt 
+be2b57a6c704748ddda59e503ee753935ac043b9  file.txt
+
+node01 $ sha256sum file.txt 
+d678425bbb79f9163fd642d5a77a15e72938ce69241a0f2e6a18332d82fbf4ce  file.txt
+
+
+
+
+
+
+
+
+
+
+Modification 
+----------------- at receiver  end, by hacker  >> node01
+
+
+node01 $ cat file.txt 
+this a file which is not modified, and secret file 
+
+
+node01 $ echo "------ added lines to modefy" >> file.txt 
+
+
+node01 $ cat file.txt 
+this a file which is not modified, and secret file 
+------ added lines to modefy
+
+
+
+
+node01 $ sha1sum file.txt 
+69c0db225a51663720b64d8f5741acc40174c77d  file.txt
+
+
+
+node01 $ sha256sum file.txt 
+3942f157e0cb38e6272db5e8002cd76b0db41410354ec93dca155ef8a38fe474  file.txt
+
+
+
+
+
+            
+            original
+            be2b57a6c704748ddda59e503ee753935ac043b9  
+            d678425bbb79f9163fd642d5a77a15e72938ce69241a0f2e6a18332d82fbf4ce
+            
+            
+            Modification 
+            69c0db225a51663720b64d8f5741acc40174c77d
+            3942f157e0cb38e6272db5e8002cd76b0db41410354ec93dca155ef8a38fe474
+
+
 
 
 
@@ -498,6 +1124,359 @@ Meaning: Unauthorized access to data during its
 transmission.
 
 
+
+        Interception refers to the unauthorized access
+        or eavesdropping on data as it is being transmitted
+        over a network.
+        This can involve intercepting communications between 
+        two parties, such as emails, web traffic, or other 
+        forms of data transmission. The attacker can read,
+        modify, or steal the data being transmitted without
+        the sender or receiver knowing.
+
+
+
+
+Lab Setup for Inception Example: Server-Client Scenario
+---------------------------------------------------------
+
+In this lab, we will create a simple client-server 
+application where the client can send commands to 
+the server. We will demonstrate how an attacker might
+inject unauthorized commands into the server, leading
+to a potential security breach.
+
+
+
+
+
+
+
+
+
+
+
+SSH and fiind IP of both
+---------------------------
+
+controlplane $ ssh controlplane   
+
+controlplane $ hostname -I
+172.30.1.2
+
+
+
+
+controlplane $ ssh node01 
+
+node01 $ hostname -I
+172.30.2.2
+
+
+
+
+
+
+Step 1: Set Up the Server
+------------------------
+
+
+We will create a simple Python server that listens
+for commands from a client and executes them. 
+This setup is vulnerable to command injection,
+illustrating an inception scenario.
+
+
+            Create the Server Script:
+            ------------------------------
+            Create a Python script named server.py:
+
+
+controlplane $ cat > server.py 
+
+import socket
+import os
+
+def handle_client(client_socket):
+    command = client_socket.recv(1024).decode("utf-8")
+    print(f"Received command: {command}")
+
+    # Vulnerable: Directly execute the received command
+    output = os.popen(command).read()
+    client_socket.send(output.encode("utf-8"))
+    client_socket.close()
+
+def main():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind(("0.0.0.0", 9999))
+    server.listen(5)
+    print("Server listening on port 9999...")
+
+    while True:
+        client_socket, addr = server.accept()
+        print(f"Accepted connection from {addr}")
+        handle_client(client_socket)
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+event for malicious activity
+--------------------------------
+
+controlplane $ mkdir /tmp/apple
+
+controlplane $ touch /tmp/f1 f2
+
+controlplane $ ls /tmp/
+
+controlplane $ ls /tmp/apple/
+
+controlplane $ ls /tmp/f1      
+
+
+
+
+
+Run the Server:
+----------------------
+Start the server by running the script:
+
+This server listens on port 9999 and executes
+any command sent by the client, returning the 
+output to the client.
+
+
+
+controlplane $ python3 server.py
+Server listening on port 9999...
+
+
+
+
+
+
+
+Step 2: Set Up the Client
+------------------------------
+Next, create a client script that sends 
+commands to the server.
+
+
+            Create the Client Script:
+            ----------------------------
+            Create a Python script named
+            client.py:
+
+
+
+
+
+
+
+
+node01 $ cat > client.py
+
+
+import socket
+
+def main():
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client.connect(("127.0.0.1", 9999))
+
+    command = input("Enter command to send to server: ")
+    client.send(command.encode("utf-8"))
+
+    response = client.recv(4096).decode("utf-8")
+    print(f"Response from server:\n{response}")
+
+    client.close()
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+
+
+
+
+Run the Client:
+---------------------
+
+This client connects to the server and sends 
+a command, then waits for and prints the 
+server's response.
+
+
+Open a new terminal window and run the
+client script:
+
+
+
+node01 $ nano client.py
+client.connect(("172.30.1.2", 9999))        // change to server IP
+
+
+
+
+
+
+
+
+
+node01 $ python3 client.py
+Enter command to send to server: rm -rf /tmp/apple
+Response from server:
+
+node01 $ python3 client.py
+Enter command to send to server: rm -rf /tmp/f1  
+Response from server:
+
+ 
+
+
+
+When prompted, enter a command such as
+ls to list files on the server. 
+The server will execute the command
+and return the output.
+
+
+
+
+
+
+
+
+
+Step 3: Demonstrate an Inception Attack
+----------------------------------------------
+An attacker could exploit this setup by 
+sending malicious commands to the server.
+
+
+Inject a Malicious Command:
+----------------------------
+Run the client script and enter a command like the following:
+        ls; rm -rf /tmp/*
+
+
+This command lists files (a benign action) but then
+also tries to delete all files in the /tmp directory 
+(a potentially harmful action).
+
+
+
+
+
+Enter command to send to server: rm -rf /*            ## v v v dangerous
+
+
+
+
+
+Observe the Server’s Behavior:
+-------------------------------------
+The server will execute both parts of the command 
+because it does not sanitize or validate the input. 
+This demonstrates how an attacker could insert malicious
+commands into the communication stream, causing unintended 
+actions on the server.
+
+
+
+
+
+
+
+
+
+
+
+
+Step 4: Mitigation Techniques
+-----------------------------
+To protect against such inception attacks, you should
+implement input validation and avoid executing commands
+directly based on user input.
+
+
+
+            Sanitize Input:
+            -----------------
+            Modify the server.py script to sanitize or validate
+            commands before executing them:
+
+
+
+import socket
+import subprocess
+
+ALLOWED_COMMANDS = ["ls", "pwd", "whoami"]
+
+def handle_client(client_socket):
+    command = client_socket.recv(1024).decode("utf-8")
+    print(f"Received command: {command}")
+
+    if command in ALLOWED_COMMANDS:
+        output = subprocess.check_output(command, shell=True)
+    else:
+        output = b"Command not allowed!"
+
+    client_socket.send(output)
+    client_socket.close()
+
+def main():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind(("0.0.0.0", 9999))
+    server.listen(5)
+    print("Server listening on port 9999...")
+
+    while True:
+        client_socket, addr = server.accept()
+        print(f"Accepted connection from {addr}")
+        handle_client(client_socket)
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+This updated script only allows a specific set of
+commands to be executed, protecting against injection 
+of arbitrary commands.
+
+
+
+
+
+            Use Non-Shell Methods:
+            -----------------------
+                    Instead of using os.popen() or running commands
+                    directly in the shell, use safer methods like 
+                    Python’s subprocess module with non-shell execution, 
+                    or better yet, avoid executing system commands based
+                    on user input altogether.
+                    
+            
+            
+            
+            Regular Security Audits:
+            ------------------------------
+                    Regularly audit your server code for potential 
+                    security vulnerabilities, especially when dealing 
+                    with user input.
+                    
 
 
 
