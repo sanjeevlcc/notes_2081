@@ -795,16 +795,16 @@ and more.
 
 Step 3: Simulate Fabrication of Log Entries
 ---------------------------------------------
-Let's simulate an unauthorized user (attacker)
-gaining access to the server and fabricating log 
-entries in the Apache access log.
+        Let's simulate an unauthorized user (attacker)
+        gaining access to the server and fabricating log 
+        entries in the Apache access log.
 
 
 Gain Root Access:
 ---------------------
-If the attacker has gained root access, they
-can edit any file on the system. 
-Switch to the root user:
+        If the attacker has gained root access, they
+        can edit any file on the system. 
+        Switch to the root user:
 
 controlplane $ sudo su
 
@@ -812,8 +812,8 @@ controlplane $ sudo su
 
 View the Existing Log Entries:
 --------------------------------
-You can view the existing entries in the Apache
-access log to understand the format
+        You can view the existing entries in the Apache
+        access log to understand the format
 
 
 controlplane $ tail -f /var/log/apache2/access.log
