@@ -1192,7 +1192,7 @@ Non-trival FD :
 In any relation R, X → Y is non-trival if Y ⊆ X (Y is not the subset of X)
 
           EXAMPLE
-          ID   →    Name,  
+          ID     →    Name,  
           Name   →    DOB  
 
 
@@ -1283,7 +1283,7 @@ Suppose you have more than one attributes in primary key.
           a portion (proper subset) of the candidate key.
    
    
-     For example, in the t1 table, if we have a functional dependency 
+          For example, in the t1 table, if we have a functional dependency 
                  {emp_id, department_id} -> {name}, 
    
           where name depends only on a part of the candidate 
@@ -1395,8 +1395,8 @@ Transitive dependency :
         
 
 
-Example in the context of the t1 table: 
-       {emp_id} -> {department_id} -> {citizenship_id} 
+        Example in the context of the t1 table: 
+         {emp_id} -> {department_id} -> {citizenship_id} 
 
           is a transitive dependency if
           citizenship_id depends on department_id and, in turn,
@@ -1424,12 +1424,27 @@ Non-transitive dependency :
           dependent on the candidate key without involving
           any intermediate non-prime attributes.
 
-In this case, the dependency is straightforward and does not involve a chain of dependencies.
-Non-transitive dependencies are usually desirable in a normalized relational database.
 
-Example in the context of the t1 table: 
-{emp_id} -> {name, citizenship_id, email_id, department_id} is a non-transitive dependency
-because name, citizenship_id, email_id, and department_id directly depend on the candidate key emp_id.
+        
+        In this case, the dependency is straightforward 
+        and does not involve a chain of dependencies.
+        
+        Non-transitive dependencies are usually desirable
+        in a normalized relational database.
+        
+
+
+
+             
+             Example in the context of the t1 table: 
+             
+             {emp_id} -> {name, citizenship_id, email_id, department_id} 
+             is a non-transitive dependency
+             
+             because name, citizenship_id, email_id, and department_id
+             directly depend on the candidate key emp_id.
+             
+
 
 
 
@@ -1439,19 +1454,30 @@ Single Valued Dependency and Multivalued Dependency
 ---------------------------------------------------
 Single valued dependency : 
 -----------------------------
-In any relation R, if for a particular value of X, Y has single value then 
-it is known as single valued dependency.
+        In any relation R, if for a particular value 
+        of X, Y has single value then it is known as 
+        single valued dependency.
 
 
 
-A single-valued dependency occurs when the value of one attribute uniquely 
-determines the value of another attribute, and this relationship holds for all possible values in the database.
+        A single-valued dependency occurs when the value 
+        of one attribute uniquely determines the value of 
+        another attribute, and this relationship holds
+        for all possible values in the database.
 
-In other words, if attribute A determines attribute B (A -> B), and each value of
-A uniquely determines one and only one value of B, then it's a single-valued dependency.
 
-Example in the context of the t1 table: 
-{emp_id} -> {name}, meaning that each employee ID uniquely determines the employee's name.
+
+          In other words, if attribute A determines
+          attribute B (A -> B), and each value of
+          A uniquely determines one and only one
+          value of B, then it's a single-valued dependency.
+
+
+
+            
+            Example in the context of the t1 table: 
+            {emp_id} -> {name}, meaning that each employee ID 
+                                uniquely determines the employee's name.
 
 
 
@@ -1459,25 +1485,37 @@ Example in the context of the t1 table:
 
 Multivalued dependency (MVD) : 
 -----------------------------
-In any relation R, if for a particular value of X, Y has more then one value, 
-then it is known as multivalued dependency. It is denoted by 
-X →→ Y
 
 
-
-A multivalued dependency occurs when the presence of certain values in 
-one attribute uniquely determines the values in another attribute, and this relationship 
-holds for all possible values in the database.
-
-MVD is often expressed as X ->> Y, where X and Y are sets of attributes, and X uniquely 
-determines a set of values in Y.
-
-Example in the context of the t1 table: 
-    {emp_id} ->> {citizenship_id}, meaning that for each employee ID, there
-    can be multiple citizenship IDs.
-
-
-
+             In any relation R, if for a particular value
+             of X, Y has more then one value, 
+             then it is known as multivalued dependency. 
+             
+             It is denoted by 
+             X →→ Y
+             
+             
+             
+             A multivalued dependency occurs when the
+             presence of certain values in 
+             one attribute uniquely determines the
+             values in ano ther attribute, and this relationship 
+             holds for all possible values inthe database.
+             
+             
+             
+             MVD is often expressed as X ->> Y, where X and Y
+             are sets of attributes, and X uniquely 
+             determines a set of values in Y.
+             
+             
+             
+             Example in the context of the t1 table: 
+                 {emp_id} ->> {citizenship_id}, meaning that for each employee ID, there
+                 can be multiple citizenship IDs.
+             
+             
+             
 
 
 
@@ -1494,19 +1532,29 @@ or
 Properties of FD
 ====================================================================================
 
-Given a relational schema R and a set of functional dependencies F. 
 
-A functional dependency X → Y (Not in F) on R is said to be logically implied 
-by the set of functional dependencies 
-
-F on R if for relation R on the relational schema that 
-satisfies F also satisfies X → Y.
-
-
-Example. Consider the relation schema R= (A, B, C, D) and 
-              the set of FD’s F = {A→B, B→C, C→D}. 
-
-         Then the FD’s A → C, B → D and A → D are logically implied
+              Given a relational schema R and a set of functional dependencies F. 
+              
+              
+              
+              A functional dependency X → Y (Not in F) on R is said to be
+              logically implied by the set of functional dependencies 
+              
+              
+              
+              
+              F on R if for relation R on the relational schema that 
+              satisfies F also satisfies X → Y.
+              
+              
+              
+              
+              Example. Consider the relation schema R= (A, B, C, D) and 
+                            the set of FD’s F = {A→B, B→C, C→D}. 
+              
+                       Then the FD’s A → C, B → D and A → D are logically implied
+              
+              
 
 
 
@@ -1517,7 +1565,8 @@ Armstrong’s Axioms - RAT rule
 
      The following three rules called inference axioms or Armstrong’s Axioms 
      can be used to find  all the FDs logically implied by a set of FDs.
-     
+
+
      Let X, Y, Z, and W be subsets of attributes  of a relation R. 
 
 
@@ -1582,7 +1631,7 @@ Armstrong’s Axioms - RAT rule
         5. Projectivity or Decomposition. 
         ----------------------------------
         If   X → YZ holds, 
-        then  and X → Z also →
+        then  and X → Z also X → Y
         
                   NOTE:    XY → Z  
                        then X → Z and Y → Z DONT HOLD
@@ -1598,15 +1647,15 @@ Armstrong’s Axioms - RAT rule
 
 
 
-                       --------------------SUMMARY--------------------------------
-                       X → Y                 Y is a subset of X  Reflexivity. 
-                       ZX → ZY               X → Y holds and Z   Augmentation
-                       X → Z                 X → Y,Y → Z         Transitivity
-                       X → YZ                X → Y, X → Z        Union
-                       X → Y,X → Z           X → YZ              Decomposition
-                       X → Z and Y → Z       XY → Z              DONT HOLD
-                       XZ → W                XZ → W              Pseudotransitivity
-                       ----------------------------------------------------------
+                       --------------------------SUMMARY--------------------------------
+                       X → Y                 Y is a subset of X         Reflexivity.                 
+                       ZX → ZY               X → Y holds and Z          Augmentation
+                       X → Z                 X → Y,Y → Z                Transitivity
+                       X → YZ                X → Y, X → Z               Union
+                       X → Y,X → Z           X → YZ                     Decomposition
+                       X → Z and Y → Z       XY → Z                     DONT HOLD
+                       XZ → W                XZ → W                     Pseudotransitivity
+                       --------------------------------------------------------------------
 
 
 
@@ -1691,24 +1740,34 @@ Armstrong’s Axioms - RAT rule
 Closure of an Attribute
 ====================================================================================
 
-Closure of an Attribute can be defined as a set of attributes that can be functionally determined from it.
+          Closure of an Attribute can be defined as a set of
+          attributes that can be functionally determined from it.
+          
+                                              OR
+          
+          Closure of a set F of FDs is the set F+ of all FDs that
+          can be inferred from F
+          
+          
+          
+          Closure of a set of attributes X concerning F is the 
+          set X+ of all attributes that are functionally determined by X
+          
 
-                                    OR
 
-Closure of a set F of FDs is the set F+ of all FDs that can be inferred from F
 
-Closure of a set of attributes X concerning F is the set X+ of all attributes that are functionally determined by X
 
-Pseudocode to find Closure of an Attribute
----------------------------------------------
-         Determine X+, the closure of X under functional dependency set F
-         X Closure : = will contain X itself;
-         Repeat the process as:
-         old X Closure  : = X Closure;
-         for each functional dependency P → Q in FD set do
-         if X Closure is subset of P then X Closure := X Closure U Q ;
-           Repeat until ( X Closure = old X Closure);
 
+           Pseudocode to find Closure of an Attribute
+           ---------------------------------------------
+                    Determine X+, the closure of X under functional dependency set F
+                    X Closure : = will contain X itself;
+                    Repeat the process as:
+                    old X Closure  : = X Closure;
+                    for each functional dependency P → Q in FD set do
+                    if X Closure is subset of P then X Closure := X Closure U Q ;
+                      Repeat until ( X Closure = old X Closure);
+           
 
 
 
@@ -1769,6 +1828,20 @@ Pseudocode to find Closure of an Attribute
                  CK : AEH, BEH, DEH 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ====================================================================================
 Keys and Functional Dependencie
 OR
@@ -1782,50 +1855,59 @@ Finding candidate key
      having a set of FD’s F= { A→BC, CD→E,B→D,E→A}. 
      
      List all the candidate keys of relation R. 
-     Also find primary key, prime attributes and non-prime attributes.
+     Also find primary key, prime attributes
+     and non-prime attributes.
      
 
+
+
+
 Sol. 
-There are 5 attributes, which gives a large number of subsets of R. To reduce the 
-number of subsets to be considered, we should start with single attributes, then take subsets 
-mentioned on LHS of all FD’s. If they are candidate keys, then ignore all subsets having 
-these attributes (2nd condition of candidate key).
+             
+             There are 5 attributes, which gives a large number of 
+             subsets of R. To reduce the number of subsets to be 
+             considered, we should start with single attributes, then
+             take subsets mentioned on LHS of all FD’s. 
+             
+             
+             If they are candidate keys, then ignore all subsets 
+             having these attributes (2nd condition of candidate key).
+             
+                     First of all try all individual attributes
+                     Try A, then A+
+                      = ABCDE = R, So A is a candidate key. 
+                     
+                     Try B, then B+
+                      = BD ≠ R, So B is not a candidate key.
+                     
+                     Try C, then C+
+                      = C ≠ R, So C is not a candidate key. 
+                     
+                     Try D, then D+
+                      = D ≠ R, So D is not a candidate key. 
+                     
+                     Try E, then E+
+                      = ABCDE = R, So E is a candidate key.
+                     
+                     Now try CD, then CD+ = ABCDE = R, so CD is a candidate key. 
+                     
+                     You can ignore all the subsets having A, E and CD. 
+                     
+                     Thus only two subsets are left i.e. BC and BD
+                     
+                     Try BC, then BC+
+                     = ABCDE =R, so BC is a candidate key. 
+                     
+                     Finaly, try BD, then BD+
+                      =BD ≠R, So B is not a candidate key.
+                     
+                     So, candidate keys of R are A, E, BC and CD.
+                     
+                     Consider one of them as primary keys.
 
-First of all try all individual attributes
-Try A, then A+
- = ABCDE = R, So A is a candidate key. 
-
-Try B, then B+
- = BD ≠ R, So B is not a candidate key.
-
-Try C, then C+
- = C ≠ R, So C is not a candidate key. 
-
-Try D, then D+
- = D ≠ R, So D is not a candidate key. 
-
-Try E, then E+
- = ABCDE = R, So E is a candidate key.
-
-Now try CD, then CD+ = ABCDE = R, so CD is a candidate key. 
-
-You can ignore all the subsets having A, E and CD. 
-
-Thus only two subsets are left i.e. BC and BD
-
-Try BC, then BC+
-= ABCDE =R, so BC is a candidate key. 
-
-Finaly, try BD, then BD+
- =BD ≠R, So B is not a candidate key.
-
-So, candidate keys of R are A, E, BC and CD.
-
-Consider one of them as primary keys.
-
-Take BC as a primary key, so Prime Attributes are B and C 
-and non-prime attributes are A,D and E.
-
+                     Take BC as a primary key, so Prime Attributes are B and C 
+                     and non-prime attributes are A,D and E.
+                     
 
 
 
@@ -1887,9 +1969,14 @@ ubsets of XY i.e. either X or Y is Super Key.
 
 
 
+
+
+
  Example
 -----------
 https://www.javatpoint.com/dbms-candidate-key
+
+
 
 
 
@@ -1922,10 +2009,13 @@ So, we have-
         = { A , C , D , E , F }               ( Using EC → D )
         = { A , B , C , D , E , F }           ( Using A → B )
 
- 
+
+
+
 We conclude that CE can determine all the attributes of the given relation.
 
 So, CE is the only possible candidate key of the relation.
+
 
 
 
