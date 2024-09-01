@@ -2615,6 +2615,19 @@ B -> C
 then A -> C   i.e transitive dpendency
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 example
 ------------
         -----------------------------
@@ -2622,21 +2635,111 @@ example
         -----------------------------
         1          lumbini    butwal
         2          gandaki    pokhara
-        3          lumbini    butwl
+        3          lumbini    butwal
         4          gandaki    pokhara
         5          koshi      ktm
         -----------------------------
 
-here, PK = CK = roll_no
-   FD : roll_no -> provinence, city
-        provinence -> city
 
-so, roll_no -> provinence, provinence -> city
-  then      roll_no -> city 
-            i.e transitive dpendency, not 3NF
 
-since : PK = CK = roll_no   i.e PA
-           roll_no -> city  i.e NPA -> NPA , voilates 3nf
+1. First Normal Form (1NF)
+         A table is in 1NF if:
+         
+         All column values are atomic (indivisible).
+         Each column contains only one value per row.
+
+
+
+
+2. Second Normal Form (2NF)
+           A table is in 2NF if:
+           
+           It is in 1NF.
+           There are no partial dependencies of any column on
+           the primary key (i.e., no non-key attribute is dependent
+           on part of a composite primary key).
+           
+           Here, let's assume roll_no is the primary key.
+           Each roll_no uniquely identifies a student, and both
+           provinence and city are fully dependent on roll_no.
+           Therefore, the table is in 2NF because all non-key 
+           attributes (provinence, city) depend on the entire 
+           primary key (roll_no), which is not a composite key.
+
+
+
+3. Third Normal Form (3NF)
+           A table is in 3NF if:
+           
+           It is in 2NF.
+             There are no transitive dependencies, meaning 
+             non-key attributes do not depend on other non-key attributes.
+           
+           
+           In this table:
+                provinence and city are both non-key attributes.
+                There is a potential transitive dependency where
+                city might depend on provinence. For example, the 
+                province "Lumbini" always corresponds to the city
+                "Butwal" (although there is a typo in "butwl"), and 
+                "Gandaki" always corresponds to "Pokhara".
+           
+      
+
+
+
+        Original Table
+        -----------------------------
+        roll_no  provinence   city
+        -----------------------------
+        1          lumbini    butwal
+        2          gandaki    pokhara
+        3          lumbini    butwal
+        4          gandaki    pokhara
+        5          koshi      ktm
+        -----------------------------
+      
+
+
+           
+            Table student
+                  -----------------------------
+                   roll_no  provinence   
+                   -----------------------------
+                   1          lumbini    
+                   2          gandaki    
+                   3          lumbini    
+                   4          gandaki    
+                   5          koshi      
+                   -----------------------------
+           
+           New Table: ProvinceCity
+                   -----------------------------
+                     provinence   city
+                   -----------------------------
+                     lumbini    butwal
+                     gandaki    pokhara
+                     koshi      ktm
+                   -----------------------------
+           
+
+
+                    here, PK = CK = roll_no
+                       FD : roll_no -> provinence, city
+                            provinence -> city
+                    
+                    so, roll_no -> provinence, provinence -> city
+                      then      roll_no -> city 
+                                i.e transitive dpendency, not 3NF
+                    
+                    since : PK = CK = roll_no   i.e PA
+                               roll_no -> city  i.e NPA -> NPA , voilates 3nf
+
+
+
+
+
+
 
 
 EXAMPLE
@@ -2669,24 +2772,24 @@ Employee Code     	Employee Name	     Employee Zipcode	       Employee City
         103	          Stephanie	          110064	               Hari Nagar
 --------------------------------------------------------------------------------
 
-In 3NF, we remove transitive dependencies by 
-ensuring that every non-prime attribute 
-is non-transitively dependent on the primary key.
-
-
-The above table is not in 3NF because it has 
-Employee Code -> Employee City transitive dependency because:
-
-          Employee Code -> Employee Zipcode
-          Employee Zipcode -> Employee City
-
-Also, Employee Zipcode is not a super key and Employee City is 
-not a prime attribute.
-
-To remove transitive dependency from this table and normalize
-it into the third normal form, we can decompose 
-the <EmployeeDetail> table into the following two tables:
-
+           In 3NF, we remove transitive dependencies by 
+           ensuring that every non-prime attribute 
+           is non-transitively dependent on the primary key.
+           
+           
+           The above table is not in 3NF because it has 
+           Employee Code -> Employee City transitive dependency because:
+           
+                     Employee Code -> Employee Zipcode
+                     Employee Zipcode -> Employee City
+           
+           Also, Employee Zipcode is not a super key and Employee City is 
+           not a prime attribute.
+           
+           To remove transitive dependency from this table and normalize
+           it into the third normal form, we can decompose 
+           the <EmployeeDetail> table into the following two tables:
+           
 
 
          EmployeeDetail
@@ -2710,11 +2813,11 @@ the <EmployeeDetail> table into the following two tables:
                      110064	           Hari Nagar
                ------------------------------------
 
-Thus, we’ve converted the <EmployeeDetail> table into 3NF
-by decomposing it into <EmployeeDetail> and <EmployeeLocation> 
-tables as they are in 2NF and they don’t 
-have any transitive dependency.
-
+        Thus, we’ve converted the <EmployeeDetail> table into 3NF
+        by decomposing it into <EmployeeDetail> and <EmployeeLocation> 
+        tables as they are in 2NF and they don’t 
+        have any transitive dependency.
+        
 
 
 
@@ -2844,9 +2947,227 @@ Table 2: (Voter ID, Name)
                    NPL654321789      	  Arjun Bhattarai
                    NPL789012345	        Sita Acharya
                    -----------------------------------------
-====================================================================================
+
+
+
+
+
+
 
 ====================================================================================
+BIM 2023 April
+====================================================================================
+
+https://bimstudynotes.com/database-management-system-tu-paper-bim-study-notes/
+
+Question: Determine the normal form of the above student table. 
+If it is not in 3NF, normalize it to 3NF.
+
++-----------+-------------+----------+-------------------+--------+------------------------+
+| StudentID | StudentName | CourseID | Course Name       | Credit | Contact_No             |
++-----------+-------------+----------+-------------------+--------+------------------------+
+| 101       | Ram         | IT220    | DBMS              | 3      | 9841XXXXXX, 5573XXXX   |
+| 102       | Sita        | IT220    | DBMS              | 3      | 9950XXXXXX             |
+| 103       | John        | IT218    | DSA with JAVA     | 3      | 9371XXXXXX, 2365XXXX   |
+| 104       | Jenny       | ECO201   | Micro Economics   | 3      | 9985XXXXXX, 4395XXXX   |
++-----------+-------------+----------+-------------------+--------+------------------------+
+
+
+
+
+Answer:
+
+
+Step 1: Check for First Normal Form (1NF)
+
+        Requirement for 1NF:
+        All columns must contain atomic (indivisible) values.
+        Each entry in a column must be unique.
+        
+        Analysis:
+        The Contact_No column contains multiple phone numbers
+        in some rows (e.g., 9841XXXXXX, 5573XXXX for StudentID 101),
+        which means it is not atomic.
+        
+        Conclusion:
+        The table is not in 1NF because it has a non-atomic
+        field (Contact_No).
+
+
+        Conversion to 1NF:
+        To convert to 1NF, separate each contact number
+        into individual rows to ensure all values are atomic.
+        
+        1NF Table Structure:
+
+        +-----------+-------------+----------+-------------------+--------+-------------+
+        | StudentID | StudentName | CourseID | Course Name       | Credit | Contact_No  |
+        +-----------+-------------+----------+-------------------+--------+-------------+
+        | 101       | Ram         | IT220    | DBMS              | 3      | 9841XXXXXX  |
+        | 101       | Ram         | IT220    | DBMS              | 3      | 5573XXXX    |
+        | 102       | Sita        | IT220    | DBMS              | 3      | 9950XXXXXX  |
+        | 103       | John        | IT218    | DSA with JAVA     | 3      | 9371XXXXXX  |
+        | 103       | John        | IT218    | DSA with JAVA     | 3      | 2365XXXX    |
+        | 104       | Jenny       | ECO201   | Micro Economics   | 3      | 9985XXXXXX  |
+        | 104       | Jenny       | ECO201   | Micro Economics   | 3      | 4395XXXX    |
+        +-----------+-------------+----------+-------------------+--------+-------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 2: Check for Second Normal Form (2NF)
+
+
+             Requirement for 2NF:
+             The table must be in 1NF.
+             All non-key attributes must be fully functionally 
+             dependent on the primary key (no partial dependency).
+             
+             
+             Analysis:
+             Assuming StudentID is the primary key:
+             The non-key attributes (StudentName, CourseID, Course Name,
+             Credit, Contact_No) depend on StudentID.
+             However, CourseID determines Course Name and Credit, 
+             showing a partial dependency when combined with StudentID.
+             
+             
+             Conclusion:
+             The table is in 1NF but not in 2NF because 
+             Course Name and Credit are partially dependent on CourseID
+             rather than the entire primary key (StudentID).
+             
+             
+             Conversion to 2NF:
+             To convert to 2NF, remove partial dependencies by 
+             creating separate tables for Course information.
+             
+             2NF Table Structures:
+             
+             Student Table:
+             +-----------+-------------+-------------+
+             | StudentID | StudentName | Contact_No  |
+             +-----------+-------------+-------------+
+             | 101       | Ram         | 9841XXXXXX  |
+             | 101       | Ram         | 5573XXXX    |
+             | 102       | Sita        | 9950XXXXXX  |
+             | 103       | John        | 9371XXXXXX  |
+             | 103       | John        | 2365XXXX    |
+             | 104       | Jenny       | 9985XXXXXX  |
+             | 104       | Jenny       | 4395XXXX    |
+             +-----------+-------------+-------------+
+
+
+
+            Course Table:
+            +----------+-------------------+--------+
+            | CourseID | Course Name       | Credit |
+            +----------+-------------------+--------+
+            | IT220    | DBMS              | 3      |
+            | IT218    | DSA with JAVA     | 3      |
+            | ECO201   | Micro Economics   | 3      |
+            +----------+-------------------+--------+
+
+
+
+            StudentCourse Table:
+            +-----------+----------+
+            | StudentID | CourseID |
+            +-----------+----------+
+            | 101       | IT220    |
+            | 102       | IT220    |
+            | 103       | IT218    |
+            | 104       | ECO201   |
+            +-----------+----------+
+
+
+
+
+
+
+
+
+Step 3: Check for Third Normal Form (3NF)
+           
+           Requirement for 3NF:
+           The table must be in 2NF.
+           There should be no transitive 
+           dependencies (non-key attributes should 
+           not depend on other non-key attributes).
+           
+           
+           Analysis:
+           In the 2NF tables, all non-key attributes 
+           are directly dependent on the primary key
+           of each table.
+           There are no transitive dependencies; all
+           attributes are fully functionally dependent 
+           on their respective primary keys.
+           
+           
+           Conclusion:
+           The tables are now in 3NF.
+           
+           
+           Final 3NF Tables:
+           Student Table (3NF):
+           
+
+
+            
+            Student Table (3NF):
+            +-----------+-------------+-------------+
+            | StudentID | StudentName | Contact_No  |
+            +-----------+-------------+-------------+
+            | 101       | Ram         | 9841XXXXXX  |
+            | 101       | Ram         | 5573XXXX    |
+            | 102       | Sita        | 9950XXXXXX  |
+            | 103       | John        | 9371XXXXXX  |
+            | 103       | John        | 2365XXXX    |
+            | 104       | Jenny       | 9985XXXXXX  |
+            | 104       | Jenny       | 4395XXXX    |
+            +-----------+-------------+-------------+
+            
+            Course Table (3NF):
+            +----------+-------------------+--------+
+            | CourseID | Course Name       | Credit |
+            +----------+-------------------+--------+
+            | IT220    | DBMS              | 3      |
+            | IT218    | DSA with JAVA     | 3      |
+            | ECO201   | Micro Economics   | 3      |
+            +----------+-------------------+--------+
+            
+            
+            StudentCourse Table (3NF):
+            +-----------+----------+
+            | StudentID | CourseID |
+            +-----------+----------+
+            | 101       | IT220    |
+            | 102       | IT220    |
+            | 103       | IT218    |
+            | 104       | ECO201   |
+            +-----------+----------+
+            
+            
+            The student table has now been successfully 
+            normalized to Third Normal Form (3NF), eliminating 
+            all partial and transitive dependencies.
+            
+
+
+
+
+
+
 
 
 
