@@ -31,20 +31,20 @@ SYLLABUS
 ==========================================================================
 
 
-Transaction processing is a fundamental aspect of modern database systems, 
-facilitating the reliable and efficient management of data in various 
-applications. 
-
-In this context, a transaction refers to a logical unit of work
-that consists of one or more database operations, such as reads, writes,
-or updates. 
-
-These operations are typically performed as a single, indivisible unit 
-to maintain data integrity and consistency.
-
-Transaction processing systems (TPS) are responsible for 
-executing and managing transactions in a reliable and efficient manner.
-
+        Transaction processing is a fundamental aspect of modern database systems, 
+        facilitating the reliable and efficient management of data in various 
+        applications. 
+        
+        In this context, a transaction refers to a logical unit of work
+        that consists of one or more database operations, such as reads, writes,
+        or updates. 
+        
+        These operations are typically performed as a single, indivisible unit 
+        to maintain data integrity and consistency.
+        
+        Transaction processing systems (TPS) are responsible for 
+        executing and managing transactions in a reliable and efficient manner.
+        
 
 
 
@@ -62,15 +62,19 @@ context of database transactions
 +------------------------+  +------------+  +------------------+
 
 
+
 // Initially data is been brought from HD via RAM to CPU
 +------------------------+         +------------+        +------------------+
 |          CPU           | <====   |    RAM     |  <==== |    Hard Disk     |
 +------------------------+         +------------+        +------------------+
 
+
+
 // CPU logically process and send back to HD via RAM
 +------------------------+         +------------+        +------------------+
 |          CPU           | ====>   |    RAM     |  ====> |    Hard Disk     |
 +------------------------+         +------------+        +------------------+
+
 
 // CPU performs (add, sub etc , eg A=A + 10) and send to RAM for temp hold
 finally commit saves to HD via RDBMS software.
@@ -78,6 +82,9 @@ finally commit saves to HD via RDBMS software.
 |          CPU           | <====>  |    RAM         |  ====> |    Hard Disk     |
 |  ALU + - * /           |         |RD/WR/rollback  |        |       Commit     |
 +------------------------+         +----------------+        +------------------+
+
+
+
 
 
 
@@ -174,6 +181,7 @@ Read OPERATION:
 
 
 
+
 Write OPERATION: 
 ------------------
         A write operation in a database transaction involves 
@@ -219,6 +227,7 @@ Write OPERATION:
       |              Apply changes to the database         |
       +----------------------------------------------------
 
+
         -------------------------
         After transactions
         Sita = 150, Ram = 350
@@ -240,6 +249,7 @@ Write OPERATION:
                 The values of Sita and Ram are 
                 updated to 150 and 350, respectively, 
                 after the transaction.
+
 
 
 
@@ -309,6 +319,7 @@ Rollback OPERATION:
 
 
 
+
 Commit OPERATION: 
 ------------------
         Committing a transaction in a database context means
@@ -326,13 +337,13 @@ Commit OPERATION:
 
 
 
-           +-----------+   +-----------+   +-----------+
-           |   Read A  |   |   Read B  |   |   Read B  |
-           +-----------+   +-----------+   +-----------+
-           |   A=1500  |   |   B=1200  |   |   B=1200  |
-           +-----------+   +-----------+   +-----------+
-                    |             |             |
-                    |             |             |
+           +-----------+   +-----------+   
+           |   Read A  |   |   Read B  |  
+           +-----------+   +-----------+   
+           |   A=1500  |   |   B=1200  |   
+           +-----------+   +-----------+   
+                    |             |             
+                    |             |             
            +----------------+  +----------------+   
            |   Write A      |  |   Write B      |  
            |   (A=A-300)    |  |   (B=B+300)    |  
@@ -344,6 +355,8 @@ Commit OPERATION:
                        +--------------+
                        |   Commit     |
                        +--------------+
+
+
 
 
 
@@ -370,7 +383,8 @@ ACID
           state, adhering to all integrity constraints and business rules. 
           Consistency ensures that the database transitions from one
           valid state to another valid state after each transaction.
-      
+
+
       Isolation: 
       ---------------
           Each transaction should be isolated from other transactions
@@ -379,7 +393,8 @@ ACID
           Isolation ensures that the intermediate states of transactions
           are not visible to other transactions until they are committed. 
           This prevents interference and maintains data integrity.
-      
+
+
       Durability: 
       ---------------
           Once a transaction is committed, its effects should be 
@@ -424,6 +439,7 @@ ACID
 
 
 
+
 ==========================================================================
 Desirable Properties of Transactions
 ==========================================================================
@@ -434,71 +450,99 @@ Desirable Properties of Transactions:
 ---------------------------------------------
 
 
+        
+        ACID Properties: 
+        ---------------
+            The desirable properties of transactions are often 
+            summarized using the acronym ACID:
+            
+            Atomicity: 
+                Transactions are all-or-nothing operations.
+            Consistency: 
+                Transactions preserve the consistency of the database.
+            Isolation: 
+                Transactions execute independently of each other and do not interfere.
+            Durability: 
+                Committed transactions persist even in the face of system failures.
+        
+        
+        
+        
+        Concurrency Control:
+        ------------------------------
 
-ACID Properties: 
----------------
-    The desirable properties of transactions are often 
-    summarized using the acronym ACID:
-    
-    Atomicity: 
-        Transactions are all-or-nothing operations.
-    Consistency: 
-        Transactions preserve the consistency of the database.
-    Isolation: 
-        Transactions execute independently of each other and do not interfere.
-    Durability: 
-        Committed transactions persist even in the face of system failures.
+                Concurrency Control is a database management mechanism that 
+                ensures that database transactions are executed concurrently
+                without violating the integrity of the data. 
+                
+                In multi-user environments, multiple transactions may occur 
+                simultaneously, leading to potential conflicts if not properly managed.
+                
+                Concurrency control aims to maintain consistency and isolation 
+                in the database despite these concurrent operations
+                
 
-
-
-
-Concurrency Control:
-------------------------------
-    Effective concurrency control mechanisms are essential for
-    managing concurrent execution of transactions while preserving
-    consistency and isolation. 
-    
-    Techniques such as locking, timestamp ordering, and multi-version 
-    concurrency control are commonly employed to ensure correct interleaving
-    of transactions.
-
-
-
-Recovery Management: 
-------------------------------
-    Robust recovery mechanisms are necessary to restore the database to
-    a consistent state after system failures. 
-    
-    This involves techniques such as logging changes to the database,
-    maintaining a write-ahead log, and performing recovery procedures 
-    such as rollbacks or roll-forwards.
-
-
-
-High Availability: 
-------------------------------
-    Transaction processing systems should aim to achieve high 
-    availability to ensure continuous access to data and
-    uninterrupted operation, even in the face of hardware 
-    failures, network issues, or other disruptions. 
-    
-    Redundancy, failover mechanisms, and disaster recovery plans 
-    contribute to achieving high availability.
-
-
-
-Scalability: 
-------------------------------
-    Transaction processing systems should be designed to scale 
-    efficiently to handle increasing workloads and growing datasets. 
-    
-    Scalability can be achieved through techniques such as sharding, 
-    replication, and vertical or horizontal scaling of hardware resources.
+            Effective concurrency control mechanisms are essential for
+            managing concurrent execution of transactions while preserving
+            consistency and isolation. 
+            
+            Techniques such as locking, timestamp ordering, and multi-version 
+            concurrency control are commonly employed to ensure correct interleaving
+            of transactions.
+        
+        
+        
+        Recovery Management: 
+        ------------------------------
+            Robust recovery mechanisms are necessary to restore the database to
+            a consistent state after system failures. 
+            
+            This involves techniques such as logging changes to the database,
+            maintaining a write-ahead log, and performing recovery procedures 
+            such as rollbacks or roll-forwards.
+        
+        
+        
+        High Availability: 
+        ------------------------------
+            Transaction processing systems should aim to achieve high 
+            availability to ensure continuous access to data and
+            uninterrupted operation, even in the face of hardware 
+            failures, network issues, or other disruptions. 
+            
+            Redundancy, failover mechanisms, and disaster recovery plans 
+            contribute to achieving high availability.
+        
+        
+        
+        Scalability: 
+        ------------------------------
+            Transaction processing systems should be designed to scale 
+            efficiently to handle increasing workloads and growing datasets. 
+            
+            Scalability can be achieved through techniques such as sharding, 
+            replication, and vertical or horizontal scaling of hardware resources.
 
 
 
 
 
+
+
+............................................................................... 
+Scalability, High Availability
+............................................................................... 
+https://killercoda.com/killer-shell-cka/scenario/playground
+
+watch kubectl get all
+
+kubectl create deployment mysql --image=mysql:8.0
+kubectl set env deployment/mysql MYSQL_ROOT_PASSWORD=1234
+kubectl expose deployment mysql --port=3306 --target-port=3306 --name=mysql-service
+kubectl scale deployment mysql --replicas=3
+
+kubectl delete pod mysql-6585ddffb7-xxxxx                #can auto scale, shelf heal
+.....................................................................................      
 
 
 
@@ -725,6 +769,7 @@ Disadvantages of Serial Schedule:
 
 
 
+
 Advantages of Parallel Schedule:
 ----------------------------------
         Higher Throughput:
@@ -748,6 +793,7 @@ Advantages of Parallel Schedule:
                 Parallel execution can lead to reduced transaction 
                 latency and faster response times, especially in
                 systems with high concurrency requirements.
+
 
 
 
@@ -780,8 +826,18 @@ Problems in concurrency
         However, concurrency can lead to several problems, which 
         are typically addressed through concurrency control mechanisms. 
 
+
+
+
+
+
+
+
+
 Here are some common problems in concurrency and their types:
 --------------------------------------------------------------------
+
+
 
 1. Lost Update:
 -----------------
@@ -862,12 +918,14 @@ Here are some common problems in concurrency and their types:
 
 3. Incorrect Summary Problem
 ----------------------------
-The Incorrect summary problem occurs when there 
-is an incorrect sum of the two data.
+        The Incorrect summary problem occurs when there 
+        is an incorrect sum of the two data.
+        
+        This happens when a transaction tries to sum two
+        data using an aggregate function and the
+        value of any one of the data get changed by another transaction.
 
-This happens when a transaction tries to sum two
-data using an aggregate function and the
-value of any one of the data get changed by another transaction.
+
 
         Example: 
         ----------
@@ -997,6 +1055,9 @@ value of any one of the data get changed by another transaction.
         its consecutive reads, which is the essence 
         of the Non-Repeatable Read problem.
         
+
+
+
 
 
 4. Phantom Read:
@@ -1143,6 +1204,9 @@ maintain data consistency.
 
 
 
+
+
+
 comparison between Immediate Update and Deferred Update:
 --------------------------------------------------------------------------------
 Aspect	        Immediate Update	        Deferred Update
@@ -1192,6 +1256,8 @@ Redo Logging (REDO):
         they are applied to the database. These logs contain information 
         about the modifications made by each transaction. During recovery, 
         the changes logged are reapplied (redone) to the database.
+
+
 
 
 Shadow Paging:
@@ -1309,7 +1375,8 @@ impact of catastrophic events and ensure business continuity.
                         Utilize redundant storage solutions such as 
                         RAID (Redundant Array of Independent Disks) to protect 
                         against hardware failures and ensure data availability.
-                
+
+
                 Cloud Backup:
                 ----------------
                         Consider leveraging cloud-based backup solutions
