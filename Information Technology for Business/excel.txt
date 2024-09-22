@@ -1,0 +1,168 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ID	Name	Age	Gender	English Marks	Maths Marks	Nepali Marks	Address	Mobile
+101	Suman Sharma	19	Male	75	68	82	Kathmandu	9841234567
+102	Anita Thapa	20	Female	82	79	85	Pokhara	9807654321
+103	Ramesh Karki	18	Male	64	72	80	Lalitpur	9812345678
+104	Sunita Giri	21	Female	90	88	92	Bhaktapur	9848765432
+105	Rajendra Rai	22	Male	58	65	70	Dharan	9801234567
+106	Maya Gurung	19	Female	77	74	80	Hetauda	9844321876
+107	Prakash Bista	20	Male	83	69	78	Biratnagar	9819876543
+108	Sita Rijal	18	Female	88	85	89	Chitwan	9809765432
+109	Krishna Shrestha	22	Male	72	66	79	Butwal	9823456789
+110	Laxmi Khadka	21	Female	85	81	90	Janakpur	9843123456
+111	Deepak Singh	23	Male	61	58	67	Birgunj	9801122334
+112	Kamala Dhakal	19	Female	79	83	87	Dhangadhi	9841237890
+113	Mahesh Acharya	20	Male	74	76	81	Nepalgunj	9807654890
+114	Asha Pandey	21	Female	89	90	93	Itahari	9812348976
+115	Suraj Tamang	18	Male	65	70	72	Kirtipur	9846789123
+116	Gita Adhikari	20	Female	84	87	91	Bhairahawa	9805432167
+117	Arun Neupane	19	Male	76	68	83	Damak	9810123456
+118	Sabina Lama	18	Female	78	79	85	Banepa	9809987654
+119	Kiran Magar	22	Male	60	62	71	Tulsipur	9847865432
+120	Anju KC	21	Female	81	84	88	Ghorahi	9803456123
+121	Binod Dhungana	23	Male	73	67	80	Tikapur	9843126789
+122	Manisha Shahi	20	Female	86	91	94	Baglung	9807890123
+123	Suresh Gautam	19	Male	68	71	75	Kalaiya	9816785432
+124	Rina Raut	18	Female	91	89	95	Rajbiraj	9805678901
+125	Kishor Rijal	22	Male	63	64	77	Malangwa	9843456781
+126	Nisha KC	19	Female	80	82	86	Gaighat	9809123456
+127	Pramod Shrestha	21	Male	59	63	69	Dhulikhel	9814329876
+128	Sarita Oli	18	Female	87	88	91	Bardibas	9808912345
+129	Bishal BK	23	Male	62	60	73	Kawasoti	9845671234
+130	Sunil Yadav	20	Male	70	78	84	Birgunj	9806789123
+
+
+
+1. Total Marks Calculation (Sum of Marks)
+-----------------------------------------
+=SUM(E2:G2)
+
+
+
+
+
+
+2. Average Marks Calculation
+-----------------------------------------
+=AVERAGE(E2:G2)
+
+
+
+3. Count of Male and Female Students (Using COUNTIF)
+-----------------------------------------
+
+=COUNTIF(D2:D31, "Female")
+
+
+
+
+4. Highest Marks in English (Using MAX)
+-----------------------------------------
+
+=MAX(E2:E31)
+
+
+
+
+5. Lowest Marks in Maths (Using MIN)
+-----------------------------------------
+=MIN(F2:F31)
+
+
+
+6. Number of Students Scoring Above 80 in Nepali (Using COUNTIF)
+-----------------------------------------
+
+=COUNTIF(G2:G31, ">80")
+
+
+7. If Marks Are Passing (IF Statement)
+-----------------------------------------
+=IF(AND(E2>=40, F2>=40, G2>=40), "Pass", "Fail")
+
+
+
+To classify students based on their total 
+marks into Second Division, First Division,
+and Distinction using an IF statement in Excel, 
+you can use the following formula:
+-----------------------------------------
+
+=IF([Total Marks] > 80, "Distinction", 
+    IF([Total Marks] >= 60, "First Division", 
+    IF([Total Marks] >= 40, "Second Division", "Fail")))
+
+
+=IF(H2 > 80, "Distinction", 
+    IF(H2 >= 60, "First Division", 
+    IF(H2 >= 40, "Second Division", "Fail")))
+
+
+
+
+-----------------------------------------
+
+-----------------------------------------
+
+-----------------------------------------
+
+-----------------------------------------
+
+-----------------------------------------
+
+-----------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
