@@ -1,0 +1,15 @@
+https://colab.research.google.com/drive/1B93z1nbqxeXhnEosPW1Fkd9PD6NBK_v4#scrollTo=MgCmBc0aA0n0
+https://www.kaggle.com/datasets/balaka18/email-spam-classification-dataset-csv/discussion?sort=hotness
+
+https://www.kaggle.com/datasets/sarahhimeko/vietnamese-online-news-csv-dataset
+
+
+
+
+
+import pandas as pd
+#loading dataset with pandas
+
+datase = pd.read_csv("/content/emails.csv")
+
+datase.head()
