@@ -54,18 +54,15 @@ After completing this course, the students will be able:
 
 
 
-Unit I: Introduction to Information Technology in
-Business (6 Hours)
-1.1 Overview of computer system
-1.2 Definition and Scope of Information Technology
-(IT)
-1.3 Role and Importance of IT in Modern Businesses
-1.4 Key IT Trends Transforming Businesses
-1.5 Overview of IT Applications in Various Business
-Functions (Finance, Marketing, HR, Operations)
-1.6 Digital Transformation and Its Impact on Business
-1.7 The Future of IT in Business
-
+Unit I: Introduction to Information Technology in Business (6 Hours)
+    1.1 Overview of computer system
+    1.2 Definition and Scope of Information Technology(IT)
+    1.3 Role and Importance of IT in Modern Businesses
+    1.4 Key IT Trends Transforming Businesses
+    1.5 Overview of IT Applications in Various Business Functions (Finance, Marketing, HR, Operations)
+    1.6 Digital Transformation and Its Impact on Business
+    1.7 The Future of IT in Business
+    
 
 
 
@@ -74,106 +71,83 @@ Functions (Finance, Marketing, HR, Operations)
 
 
 Unit II: Computer Hardware (10 Hours)
-2.1 Basic Components: Input, Output, Processing,
-Storage
-2.2 Types of Computers (Desktops, Laptops,
-Servers, Mobile Devices)
-2.3 Hardware Components
-2.4 Central Processing Unit (CPU)
-2.5 Memory (RAM, ROM)
-2.6 Storage Devices (Hard Drives, SSDs, External
-Storage)
-2.7 Input and Output Devices (Working principle,
-application)
-2.7.1 Keystroke Devices
-2.7.2 Touch Devices
-2.7.3 Voice-Controlled Devices
-2.7.4 Movement-Controlled Devices
- Game Controllers (joysticks, gamepads, and VR
-controllers.),
- Gesture-Control Devices, Leap Motion for
-touchless interaction.
-2.7.5 Brain-Computer Interface (BCI):
-2.8.6 Wearables:
- Smart glasses, AR/VR headsets (e.g., Oculus,
-HoloLens).
-2.7.7 Haptic Feedback Gloves:
- Used in VR and advanced interaction systems.
-2.7.8 Biosensors:
- Devices that track physiological data (e.g., heart
-rate monitors).
-2.7.9 Data Scanning Devices
- Barcodes, QR code scanners.
- RFID: Radio Frequency Identification scanners
-for contactless identification.
- Biometric Scanners: Fingerprint, iris scanners.
-2.7.10 Digitizers:
- Graphics tablets, touch-sensitive stylus input.
-2.7.11 Microphones:
- Analog, digital, condenser microphones for voice
-input.
-2.7.12 Electronic Cards Based Devices
- Smart cards, debit/credit cards with NFC/RFID
-technology.
-2.7.13 Speech Recognition Devices
-2.7.14 Vision-Based Devices
- Cameras, LiDAR, infrared sensors, facial
-recognition systems.
-2.8 Output Devices (Working principle, application)
- Monitors: CRT, LED, OLED screens.
- Printers: Inkjet, laser, 3D printers.
- Projectors: DLP, LCD.
- Audio Output: Speakers, headphones, and
-surround sound systems.
- Tactile Output: Braille readers, haptic feedback
-systems.
-
-
+    2.1 Basic Components: Input, Output, Processing,Storage
+    2.2 Types of Computers (Desktops, Laptops,Servers, Mobile Devices)
+    2.3 Hardware Components
+    2.4 Central Processing Unit (CPU)
+    2.5 Memory (RAM, ROM)
+    2.6 Storage Devices (Hard Drives, SSDs, External Storage)
+    2.7 Input and Output Devices (Working principle, application)
+        2.7.1 Keystroke Devices
+        2.7.2 Touch Devices
+        2.7.3 Voice-Controlled Devices
+        2.7.4 Movement-Controlled Devices
+              * Game Controllers (joysticks, gamepads, and VRcontrollers.),
+              * Gesture-Control Devices, Leap Motion for touchless interaction.
+    2.7.5 Brain-Computer Interface (BCI):
+    2.8.6 Wearables:
+        * Smart glasses, AR/VR headsets (e.g., Oculus, HoloLens).
+    2.7.7 Haptic Feedback Gloves:
+        *  Used in VR and advanced interaction systems.
+    2.7.8 Biosensors:
+        * Devices that track physiological data (e.g., heart rate monitors).
+    2.7.9 Data Scanning Devices
+        * Barcodes, QR code scanners.
+        * RFID: Radio Frequency Identification scanners for contactless identification.
+        * Biometric Scanners: Fingerprint, iris scanners.
+    2.7.10 Digitizers:
+        * Graphics tablets, touch-sensitive stylus input.
+    2.7.11 Microphones:
+        * Analog, digital, condenser microphones for voice input.
+    2.7.12 Electronic Cards Based Devices
+        *  Smart cards, debit/credit cards with NFC/RFID technology.
+    2.7.13 Speech Recognition Devices
+    2.7.14 Vision-Based Devices
+        *  Cameras, LiDAR, infrared sensors, facial recognition systems.
+    2.8 Output Devices (Working principle, application)
+        *  Monitors: CRT, LED, OLED screens.
+        *  Printers: Inkjet, laser, 3D printers.
+        *  Projectors: DLP, LCD.
+        *  Audio Output: Speakers, headphones, and surround sound systems.
+        *  Tactile Output: Braille readers, haptic feedback systems.
+        
+    
 
 
 Unit III: Computer Software (8 Hours)
-3.1 Software and its characteristics
-3.2 System Software (Operating Systems and Utility
-software)
-3.3 Application Software (Word Processors,
-Spreadsheets, Business Applications)
-3.4 Application of Software Across Industries
-3.5 Enterprise Software:
- ERP systems (Application of SAP, Oracle).
- CRM software (Salesforce).
- Supply Chain Management software.
-3.6 Web Based Software Applications:
- E-commerce platforms
- Social media platforms.
-3.7 Mobile Applications:
- Android, iOS, Mobile app and their use
-3.8 Custom vs. Off-the-Shelf Software:
-3.9 Off-the-shelf solutions for general use (e.g.,
-Microsoft Office, Open Office).
-3.10 Choosing the Right Software for Business
-3.11 Software license types and legal use of software
+    3.1 Software and its characteristics
+    3.2 System Software (Operating Systems and Utility software)
+    3.3 Application Software (Word Processors, Spreadsheets, Business Applications)
+    3.4 Application of Software Across Industries
+    3.5 Enterprise Software:
+        *  ERP systems (Application of SAP, Oracle).
+        *  CRM software (Salesforce).
+        *  Supply Chain Management software.
+    3.6 Web Based Software Applications:
+        *  E-commerce platforms
+        *  Social media platforms.
+    3.7 Mobile Applications:
+        *  Android, iOS, Mobile app and their use
+    3.8 Custom vs. Off-the-Shelf Software:
+    3.9 Off-the-shelf solutions for general use (e.g., Microsoft Office, Open Office).
+    3.10 Choosing the Right Software for Business
+    3.11 Software license types and legal use of software
 
 
 
 
 Unit IV: Computer Networks (8 Hours)
-4.1. Introduction
-4.2. Basic Elements of a communication system
-4.3. Data Transmission Modes (Simplex, Half
-Duplex, Full Duplex)
-4.4. Data Transmission Media (Twisted-pair wire,
-coaxial cable, Optical fibers, Microwave system
-Communication satellite)
-4.5. Types of Computer Network (PAN, LAN, CAN,
-MAN and WAN), Differences, advantages
-disadvantages
-4.6. Network Topologies, advantages, disadvantages
-4.7. Introduction to IP Addressing (IPv4, IPv6)
-4.8. Role of IP in security networks
-4.9. Static and Dynamic IP Addressing
-4.10. Securing IP Networks, Firewalls, IPSec and
-VPNs
-
+    4.1. Introduction
+    4.2. Basic Elements of a communication system
+    4.3. Data Transmission Modes (Simplex, Half Duplex, Full Duplex)
+    4.4. Data Transmission Media (Twisted-pair wire, coaxial cable, Optical fibers, Microwave system Communication satellite)
+    4.5. Types of Computer Network (PAN, LAN, CAN, MAN and WAN), Differences, advantages disadvantages
+    4.6. Network Topologies, advantages, disadvantages
+    4.7. Introduction to IP Addressing (IPv4, IPv6)
+    4.8. Role of IP in security networks
+    4.9. Static and Dynamic IP Addressing
+    4.10. Securing IP Networks, Firewalls, IPSec and VPNs
+    
 
 
 
@@ -183,39 +157,31 @@ VPNs
 
 
 Unit V: Database Management System (8 Hours)
-5.1. Introduction to Databases
-5.2. Importance of Data in Business Decision Making
-5.3. Types of Data: Structured vs. Unstructured
-5.4. Database Management Systems (DBMS)
-5.5. Relational Databases (Tables, Queries, Reports)
-5.6. Introduction to SQL (Structured Query
-Language)
-5.7. Basics of Data Storage and Retrieval
-5.8. Introduction to Big Data and Its Business
-Applications
-5.9. Data Security and Ethical Considerations
+    5.1. Introduction to Databases
+    5.2. Importance of Data in Business Decision Making
+    5.3. Types of Data: Structured vs. Unstructured
+    5.4. Database Management Systems (DBMS)
+    5.5. Relational Databases (Tables, Queries, Reports)
+    5.6. Introduction to SQL (Structured Query Language)
+    5.7. Basics of Data Storage and Retrieval
+    5.8. Introduction to Big Data and Its Business Applications
+    5.9. Data Security and Ethical Considerations
+    
 
 
 
 
 
-
-Unit VI: Computer Tools in Data Processing and
-Application (8 Hours)
-6.1. Basics of Data Analysis (Spreadsheets, Power BI)
-6.2. Data Visualization (Charts, Graphs, Scatter Plots)
-6.3. Collaboration Tools (Google Workspace, Microsoft
-Teams)
-6.4. Using Computer Tools for Business Scenarios
-(Report writing, data extraction and presentation)
- Tools for creating business reports and
-summaries
- Tools for financial data analysis and business
-analytic
- Tools for Market Trends analysis and
-visualization
- Tools for scheduling and monitoring
-
+Unit VI: Computer Tools in Data Processing and Application (8 Hours)
+    6.1. Basics of Data Analysis (Spreadsheets, Power BI)
+    6.2. Data Visualization (Charts, Graphs, Scatter Plots)
+    6.3. Collaboration Tools (Google Workspace, Microsoft Teams)
+    6.4. Using Computer Tools for Business Scenarios (Report writing, data extraction and presentation)
+      *  Tools for creating business reports and summaries
+      *  Tools for financial data analysis and business analytic
+      *  Tools for Market Trends analysis and visualization
+      *  Tools for scheduling and monitoring
+      
 
 
 
