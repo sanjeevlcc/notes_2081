@@ -1,164 +1,231 @@
-Syllabus: Information Technology for Business
-Course Overview
-This course explores the role of information technology (IT) in business environments.
-It covers IT systems, data management, and technological strategies that enhance business
-operations, decision-making, and competitiveness. Students will gain practical knowledge
-of how IT tools and concepts can be applied to solve business problems and drive growth.
 
-            1. Introduction to Information Technology in Business
-                  1.1. Overview of Information Technology
-                  Definition and importance of IT in business
-                  Historical development of IT and its impact on business
-                    
-                  1.2. Types of Information Systems
-                  Transaction Processing Systems (TPS)
-                  Management Information Systems (MIS)
-                  Decision Support Systems (DSS)
-                  Executive Information Systems (EIS)
-                  
-                  1.3. IT and Business Strategy
-                  Aligning IT with business goals
-                  Role of IT in strategic planning and competitive advantage
-                
-                
-            
-            
-            2. Data Management and Databases
-                  
-                  2.1. Introduction to Databases
-                  Definition and types of databases (Relational, NoSQL)
-                  Database Management Systems (DBMS)
-                  
-                  2.2. Database Design
-                  Entity-Relationship (ER) modeling
-                  Normalization and schema design
-                  
-                  2.3. SQL and Querying
-                  Basic SQL commands (SELECT, INSERT, UPDATE, DELETE)
-                  Advanced querying techniques
-                  
-                  2.4. Data Warehousing and Business Intelligence
-                  Concepts of data warehousing
-                  Business Intelligence (BI) tools and techniques
-                
-                
-            
-            3. Information Systems Development and Management
-                
-                3.1. System Development Life Cycle (SDLC)
-                Phases of SDLC (Planning, Analysis, Design, Implementation, Maintenance)
-                Agile and Waterfall methodologies
-                
-                3.2. Project Management in IT
-                IT project management principles
-                Tools and techniques for project management (Gantt charts, PERT)
-                
-                3.3. Change Management
-                Managing IT-related change in organizations
-                Strategies for effective change management
-            
-            
-            
-            
-            
-            4. Networking and Telecommunications
-            
-                4.1. Basics of Networking
-                Network types (LAN, WAN, MAN)
-                Network components and topologies
-                
-                4.2. Network Security
-                Importance of network security
-                Security protocols and measures (firewalls, encryption)
-                
-                4.3. Emerging Technologies
-                Cloud computing and its business applications
-                Internet of Things (IoT) and its impact on business
-            
-            
-            
-            
-            5. E-Business and E-Commerce
-            
-                  5.1. E-Business Models
-                  Types of e-business models (B2B, B2C, C2C, C2B)
-                  Benefits and challenges of e-business
-                  
-                  5.2. E-Commerce Technologies
-                  Payment systems and gateways
-                  Security and privacy issues in e-commerce
-                  
-                  5.3. Digital Marketing
-                  Online marketing strategies (SEO, SEM, social media)
-                  Analytics and metrics for digital marketing
-                  
-            
-            
-            
-            
-            
-            
-            
-            6. Information Systems for Decision Making
-            
-                6.1. Decision Support Systems (DSS)
-                Components and functions of DSS
-                Application of DSS in business decision-making
-                
-                6.2. Business Analytics
-                Types of business analytics (descriptive, predictive, prescriptive)
-                Tools and techniques for data analysis
-                
-            
-            
-            
-            
-            7. Ethical and Social Issues in IT
-            
-                7.1. IT Ethics and Privacy
-                Ethical considerations in IT usage
-                Privacy issues and data protection regulations (GDPR, CCPA)
-                
-                7.2. IT Governance
-                Frameworks and policies for IT governance
-                Role of governance in managing IT risks
-            
-            
-            
-            
-            8. Emerging Trends and Future Directions
-                
-                8.1. Trends in IT for Business
-                Artificial Intelligence (AI) and Machine Learning (ML)
-                Blockchain technology and its applications
-                
-                8.2. Future Directions
-                Predictive analytics and big data
-                The impact of technological advancements on business
-            
-            
-            
-            
-            Course Projects and Assessment
-            
-                  Case Studies and Group Projects
-                      Real-world business problems and IT solutions
-                      Analysis and presentation of IT-related business cases
-                  
-                  
-                  Assignments and Quizzes
-                      Regular assignments to reinforce learning
-                      Quizzes to assess understanding of key concepts
-                  
-                  
-                  Exams
-                      Mid-term and final exams to evaluate comprehensive understanding
-                  
-                  
-            
-            
-            Recommended Reading and Resources
-                Textbooks on IT and business integration
-                Articles and case studies from business and IT journals
-                Online resources and tools for hands-on practice
+
+
+                             Pokhara University
+                        Faculty of Management Studies
+
+Course code: ICT 110                                              Full marks: 100
+Course title: IT for Business                                     Pass marks: 45
+Nature of the course: Theory & Practice                           Credit hours: 3.0
+Year 1, Semester I                                                Total hours: 48
+
+
+Level: Bachelor
+Program: BBA/BBA (Finance)/BBA (TT)
+
+
+
+1. Course Description
+-------------------------
+IT for Business is a basic course for bachelor level students 
+who intend to develop their conceptual knowledge in IT use
+for business and management with its application in real life
+practice. This course creates the conceptual knowledge of 
+computers used in business in the dayto-day operations of
+any type of work in the office and personal life as well.
+This course has five units. The first unit explains the concept
+of computers and their organization. The second unit
+provides knowledge about computer number systems. The third unit 
+describes the various accessories used in the computer system, mainly 
+input output devices. The fourth unit provides
+various outlines about data communication and computer network. 
+The fifth unit explains about
+operating systems, email and internet and security system.
+
+
+2. General Objectives
+-------------------------
+The general course objectives are to enhance the ability of students
+with the conceptual of fundamental knowledge about the computer system, IT 
+and business application and hardware components of computer as well. 
+After completing this course, the students will be able:
+            * To understand basic computer concepts, functions, and components.
+            *  To explore number systems, conversions, and computer codes.
+            * To identify various computer accessories and their uses.
+            * To learn about data communication, computer networks, and their topologies.
+            *  To understand computer software, operating systems, internet protocols, 
+               and security measures.
+
+
+
+
+3. Contents in Details
+-------------------------
+
+
+
+Unit I: Introduction to Information Technology in
+Business (6 Hours)
+1.1 Overview of computer system
+1.2 Definition and Scope of Information Technology
+(IT)
+1.3 Role and Importance of IT in Modern Businesses
+1.4 Key IT Trends Transforming Businesses
+1.5 Overview of IT Applications in Various Business
+Functions (Finance, Marketing, HR, Operations)
+1.6 Digital Transformation and Its Impact on Business
+1.7 The Future of IT in Business
+
+
+
+
+
+
+
+
+Unit II: Computer Hardware (10 Hours)
+2.1 Basic Components: Input, Output, Processing,
+Storage
+2.2 Types of Computers (Desktops, Laptops,
+Servers, Mobile Devices)
+2.3 Hardware Components
+2.4 Central Processing Unit (CPU)
+2.5 Memory (RAM, ROM)
+2.6 Storage Devices (Hard Drives, SSDs, External
+Storage)
+2.7 Input and Output Devices (Working principle,
+application)
+2.7.1 Keystroke Devices
+2.7.2 Touch Devices
+2.7.3 Voice-Controlled Devices
+2.7.4 Movement-Controlled Devices
+ Game Controllers (joysticks, gamepads, and VR
+controllers.),
+ Gesture-Control Devices, Leap Motion for
+touchless interaction.
+2.7.5 Brain-Computer Interface (BCI):
+2.8.6 Wearables:
+ Smart glasses, AR/VR headsets (e.g., Oculus,
+HoloLens).
+2.7.7 Haptic Feedback Gloves:
+ Used in VR and advanced interaction systems.
+2.7.8 Biosensors:
+ Devices that track physiological data (e.g., heart
+rate monitors).
+2.7.9 Data Scanning Devices
+ Barcodes, QR code scanners.
+ RFID: Radio Frequency Identification scanners
+for contactless identification.
+ Biometric Scanners: Fingerprint, iris scanners.
+2.7.10 Digitizers:
+ Graphics tablets, touch-sensitive stylus input.
+2.7.11 Microphones:
+ Analog, digital, condenser microphones for voice
+input.
+2.7.12 Electronic Cards Based Devices
+ Smart cards, debit/credit cards with NFC/RFID
+technology.
+2.7.13 Speech Recognition Devices
+2.7.14 Vision-Based Devices
+ Cameras, LiDAR, infrared sensors, facial
+recognition systems.
+2.8 Output Devices (Working principle, application)
+ Monitors: CRT, LED, OLED screens.
+ Printers: Inkjet, laser, 3D printers.
+ Projectors: DLP, LCD.
+ Audio Output: Speakers, headphones, and
+surround sound systems.
+ Tactile Output: Braille readers, haptic feedback
+systems.
+
+
+
+
+Unit III: Computer Software (8 Hours)
+3.1 Software and its characteristics
+3.2 System Software (Operating Systems and Utility
+software)
+3.3 Application Software (Word Processors,
+Spreadsheets, Business Applications)
+3.4 Application of Software Across Industries
+3.5 Enterprise Software:
+ ERP systems (Application of SAP, Oracle).
+ CRM software (Salesforce).
+ Supply Chain Management software.
+3.6 Web Based Software Applications:
+ E-commerce platforms
+ Social media platforms.
+3.7 Mobile Applications:
+ Android, iOS, Mobile app and their use
+3.8 Custom vs. Off-the-Shelf Software:
+3.9 Off-the-shelf solutions for general use (e.g.,
+Microsoft Office, Open Office).
+3.10 Choosing the Right Software for Business
+3.11 Software license types and legal use of software
+
+
+
+
+Unit IV: Computer Networks (8 Hours)
+4.1. Introduction
+4.2. Basic Elements of a communication system
+4.3. Data Transmission Modes (Simplex, Half
+Duplex, Full Duplex)
+4.4. Data Transmission Media (Twisted-pair wire,
+coaxial cable, Optical fibers, Microwave system
+Communication satellite)
+4.5. Types of Computer Network (PAN, LAN, CAN,
+MAN and WAN), Differences, advantages
+disadvantages
+4.6. Network Topologies, advantages, disadvantages
+4.7. Introduction to IP Addressing (IPv4, IPv6)
+4.8. Role of IP in security networks
+4.9. Static and Dynamic IP Addressing
+4.10. Securing IP Networks, Firewalls, IPSec and
+VPNs
+
+
+
+
+
+
+
+
+
+Unit V: Database Management System (8 Hours)
+5.1. Introduction to Databases
+5.2. Importance of Data in Business Decision Making
+5.3. Types of Data: Structured vs. Unstructured
+5.4. Database Management Systems (DBMS)
+5.5. Relational Databases (Tables, Queries, Reports)
+5.6. Introduction to SQL (Structured Query
+Language)
+5.7. Basics of Data Storage and Retrieval
+5.8. Introduction to Big Data and Its Business
+Applications
+5.9. Data Security and Ethical Considerations
+
+
+
+
+
+
+Unit VI: Computer Tools in Data Processing and
+Application (8 Hours)
+6.1. Basics of Data Analysis (Spreadsheets, Power BI)
+6.2. Data Visualization (Charts, Graphs, Scatter Plots)
+6.3. Collaboration Tools (Google Workspace, Microsoft
+Teams)
+6.4. Using Computer Tools for Business Scenarios
+(Report writing, data extraction and presentation)
+ Tools for creating business reports and
+summaries
+ Tools for financial data analysis and business
+analytic
+ Tools for Market Trends analysis and
+visualization
+ Tools for scheduling and monitoring
+
+
+
+
+
+
+
+
+
+
+
+
+
 
