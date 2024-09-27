@@ -15,6 +15,8 @@ Program: BBA/BBA (Finance)/BBA (TT)
 
 
 
+
+
 1. Course Description
 -------------------------
 IT for Business is a basic course for bachelor level students 
@@ -33,6 +35,9 @@ The fifth unit explains about
 operating systems, email and internet and security system.
 
 
+
+
+
 2. General Objectives
 -------------------------
 The general course objectives are to enhance the ability of students
@@ -49,12 +54,16 @@ After completing this course, the students will be able:
 
 
 
+
+
+
 3. Contents in Details
 -------------------------
 
 
 
 Unit I: Introduction to Information Technology in Business (6 Hours)
+---------------------------------------------------------------------
     1.1 Overview of computer system
     1.2 Definition and Scope of Information Technology(IT)
     1.3 Role and Importance of IT in Modern Businesses
