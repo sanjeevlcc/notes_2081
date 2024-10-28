@@ -1,0 +1,123 @@
+
+
+
+Assignment_1
+_______________
+
+Subject : Information Technology for Business
+
+Date of Assignment Published: 11 kartik 2081
+Date of Assignment Submission: 1 Mangsir 2081
+
+After completion of Assignment send the mail on : sanjeev@cct.edu.np
+
+
+
+
+There will be two assignments form unit 1 and unit 2.
+
+This assignments hold 10 marks for final exam result.
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Unit 1:
+
+
+https://github.com/sanjeevlcc/notes_2081/blob/main/Information%20Technology%20for%20Business/Notes_Manaslu/Unit%201.pdf
+
+
+
+
+
+Assignment must be in loose sheet, hand written hard copy_____________ from page no 14 - page 20
+And snap via any scanner application tools , like cam scanner , 
+and send it to given mail .
+
+save file format  as ...... your_name_unit_1.pdf          (eg : mina kc is the name then .... Mina_KC_Unit_1.pdf )
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+For unit 2, 
+
+
+make the contents in word file only , no hand written .
+find the images of each topics (and paste it ) and mention some 3-5 points for each topic ( soft witting)
+
+
+and send it to given mail .
+
+save file format  as ...... your_name_unit_2.doc          (eg : mina kc is the name then .... Mina_KC_Unit_2.doc )
+
+
+
+
+
+
+
+Topic included
+-------------------
+
+
+Unit 2 Computer Hardware 
+    2.1 Basic Components: Input, Output, Processing,Storage
+    2.2 Types of Computers (Desktops, Laptops,Servers, Mobile Devices)
+    2.3 Hardware Components
+    2.4 Central Processing Unit (CPU)
+    2.5 Memory (RAM, ROM)
+    2.6 Storage Devices (Hard Drives, SSDs, External Storage)
+    2.7 Input and Output Devices (Working principle, application)
+        2.7.1 Keystroke Devices
+        2.7.2 Touch Devices
+        2.7.3 Voice-Controlled Devices
+        2.7.4 Movement-Controlled Devices
+              * Game Controllers (joysticks, gamepads, and VRcontrollers.),
+              * Gesture-Control Devices, Leap Motion for touchless interaction.
+    2.7.5 Brain-Computer Interface (BCI):
+    2.8.6 Wearables:
+        * Smart glasses, AR/VR headsets (e.g., Oculus, HoloLens).
+    2.7.7 Haptic Feedback Gloves:
+        *  Used in VR and advanced interaction systems.
+    2.7.8 Biosensors:
+        * Devices that track physiological data (e.g., heart rate monitors).
+    2.7.9 Data Scanning Devices
+        * Barcodes, QR code scanners.
+        * RFID: Radio Frequency Identification scanners for contactless identification.
+        * Biometric Scanners: Fingerprint, iris scanners.
+    2.7.10 Digitizers:
+        * Graphics tablets, touch-sensitive stylus input.
+    2.7.11 Microphones:
+        * Analog, digital, condenser microphones for voice input.
+    2.7.12 Electronic Cards Based Devices
+        *  Smart cards, debit/credit cards with NFC/RFID technology.
+    2.7.13 Speech Recognition Devices
+    2.7.14 Vision-Based Devices
+        *  Cameras, LiDAR, infrared sensors, facial recognition systems.
+    2.8 Output Devices (Working principle, application)
+        *  Monitors: CRT, LED, OLED screens.
+        *  Printers: Inkjet, laser, 3D printers.
+        *  Projectors: DLP, LCD.
+        *  Audio Output: Speakers, headphones, and surround sound systems.
+        *  Tactile Output: Braille readers, haptic feedback systems.
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+Thank you , any query or Questions , Facebook chat or buzz me on 9865093594 . Thank you
