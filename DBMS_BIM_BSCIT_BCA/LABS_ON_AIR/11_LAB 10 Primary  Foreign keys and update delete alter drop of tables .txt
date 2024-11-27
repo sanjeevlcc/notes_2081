@@ -159,8 +159,8 @@ mysql> select * from orders;
 
 ***************************************************************************
 
-EXAMPLE 2
------------------
+		   EXAMPLE 2
+		-----------------
 
 
 
@@ -266,7 +266,7 @@ mysql> INSERT INTO departments (department_name) VALUES
 ('Marketing'), 
 ('Engineering'), 
 ('Sales'), 
-('Research and Development');;
+('Research and Development');
 
 -- Insert data into the 'assignments' table
 mysql> INSERT INTO assignments (employee_id, department_id) VALUES 
@@ -275,7 +275,7 @@ mysql> INSERT INTO assignments (employee_id, department_id) VALUES
 (3, 3), -- Rajendra Sharma assigned to Marketing 
 (4, 2), -- Anita Tamang assigned to Finance 
 (5, 5), -- Bijay Thapa assigned to Sales 
-(6, 6) -- Sunita Bhandari assigned to Research and Development;
+(6, 6); -- Sunita Bhandari assigned to Research and Development;
 
 
 
@@ -321,15 +321,34 @@ mysql> select * from assignments;
 +---------------+-------------+---------------+
 
 
-Retrieve All Employees with Their Department Names
 
+
+	Retrieve All Employees with Their Department Names
+	++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT e.employee_name, d.department_name
 FROM employees e
 JOIN assignments a ON e.employee_id = a.employee_id
 JOIN departments d ON a.department_id = d.department_id;
 
+		
+		+-----------------+--------------------------+
+		| employee_name   | department_name          |
+		+-----------------+--------------------------+
+		| Santosh Gurung  | Engineering              |
+		| Priya Rai       | Human Resources          |
+		| Rajendra Sharma | Marketing                |
+		| Anita Tamang    | Finance                  |
+		| Bijay Thapa     | Sales                    |
+		| Sunita Bhandari | Research and Development |
+		+-----------------+--------------------------+
+		
 
- Retrieve Employees Who Are Assigned to the 'Engineering' Department
+
+
+
+
+	Retrieve Employees Who Are Assigned to the 'Engineering' Department
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT e.employee_name
 FROM employees e
 JOIN assignments a ON e.employee_id = a.employee_id
@@ -337,46 +356,102 @@ JOIN departments d ON a.department_id = d.department_id
 WHERE d.department_name = 'Engineering';
 
 
-List All Departments and the Number of Employees Assigned to Each
+		+----------------+
+		| employee_name  |
+		+----------------+
+		| Santosh Gurung |
+		+----------------+
+
+
+	List All Departments and the Number of Employees Assigned to Each
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT d.department_name, COUNT(a.employee_id) AS number_of_employees
 FROM departments d
 LEFT JOIN assignments a ON d.department_id = a.department_id
 GROUP BY d.department_name;
 
+		+--------------------------+---------------------+
+		| department_name          | number_of_employees |
+		+--------------------------+---------------------+
+		| Human Resources          |                   1 |
+		| Finance                  |                   1 |
+		| Marketing                |                   1 |
+		| Engineering              |                   1 |
+		| Sales                    |                   1 |
+		| Research and Development |                   1 |
+		+--------------------------+---------------------+
 
 
-
-Find Departments with No Assigned Employees
+	Find Departments with No Assigned Employees
+	++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT d.department_name
 FROM departments d
 LEFT JOIN assignments a ON d.department_id = a.department_id
 WHERE a.employee_id IS NULL;
 
 
+		Empty set (0.00 sec)
 
-retrieve All Employee Emails Along with Their Department Names
+
+
+
+
+	retrieve All Employee Emails Along with Their Department Names
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT e.email, d.department_name
 FROM employees e
 JOIN assignments a ON e.employee_id = a.employee_id
 JOIN departments d ON a.department_id = d.department_id;
 
 
+		+----------------------+--------------------------+
+		| email                | department_name          |
+		+----------------------+--------------------------+
+		| anita@example.com    | Finance                  |
+		| bijay@example.com    | Sales                    |
+		| priya@example.com    | Human Resources          |
+		| rajendra@example.com | Marketing                |
+		| santosh@example.com  | Engineering              |
+		| sunita@example.com   | Research and Development |
+		+----------------------+--------------------------+
 
 
 
-
-Find Employees Who Are Not Assigned to Any Department
+	Find Employees Who Are Not Assigned to Any Department
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT e.employee_name
 FROM employees e
 LEFT JOIN assignments a ON e.employee_id = a.employee_id
 WHERE a.department_id IS NULL;
 
 
+		Empty set (0.00 sec)
+
+
+
+
+
+
 List All Departments Along with Employee Names Assigned to Them
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 SELECT d.department_name, e.employee_name
 FROM departments d
 LEFT JOIN assignments a ON d.department_id = a.department_id
 LEFT JOIN employees e ON a.employee_id = e.employee_id;
+
+
+		+--------------------------+-----------------+
+		| department_name          | employee_name   |
+		+--------------------------+-----------------+
+		| Human Resources          | Priya Rai       |
+		| Finance                  | Anita Tamang    |
+		| Marketing                | Rajendra Sharma |
+		| Engineering              | Santosh Gurung  |
+		| Sales                    | Bijay Thapa     |
+		| Research and Development | Sunita Bhandari |
+		+--------------------------+-----------------+
+
+
 
 ***************************************************************************
 
@@ -405,7 +480,26 @@ LEFT JOIN employees e ON a.employee_id = e.employee_id;
 
 
 
-
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		SELECT - extracts data from a database
+		INSERT INTO - inserts new data into a database
+		CREATE DATABASE - creates a new database
+		CREATE TABLE - creates a new table
+		
+		
+		UPDATE - updates data in a database
+		DELETE - deletes data from a database
+		ALTER DATABASE - modifies a database
+		
+		ALTER TABLE - modifies a table
+		DROP TABLE - deletes a table
+		
+		CREATE INDEX - creates an index (search key)
+		DROP INDEX - deletes an index
+		
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
@@ -422,23 +516,6 @@ LAB 10-A - Working with INSERT and DELETE data inside a table
 -----------------------------------------------------------------------------------------
 
 
-SELECT - extracts data from a database
-INSERT INTO - inserts new data into a database
-CREATE DATABASE - creates a new database
-CREATE TABLE - creates a new table
-
-
-UPDATE - updates data in a database
-DELETE - deletes data from a database
-ALTER DATABASE - modifies a database
-
-ALTER TABLE - modifies a table
-DROP TABLE - deletes a table
-
-CREATE INDEX - creates an index (search key)
-DROP INDEX - deletes an index
-
-
 
 
 
@@ -449,49 +526,54 @@ DROP INDEX - deletes an index
 
 
 mysql> select * from employees;
-+-------------+-----------------+----------------------+
-| employee_id | employee_name   | email                |
-+-------------+-----------------+----------------------+
-|           1 | Santosh Gurung  | santosh@example.com  |
-|           2 | Priya Rai       | priya@example.com    |
-|           3 | Rajendra Sharma | rajendra@example.com |
-|           4 | Anita Tamang    | anita@example.com    |
-|           5 | Bijay Thapa     | bijay@example.com    |
-|           6 | Sunita Bhandari | sunita@example.com   |
-+-------------+-----------------+----------------------+
+	+-------------+-----------------+----------------------+
+	| employee_id | employee_name   | email                |
+	+-------------+-----------------+----------------------+
+	|           1 | Santosh Gurung  | santosh@example.com  |
+	|           2 | Priya Rai       | priya@example.com    |
+	|           3 | Rajendra Sharma | rajendra@example.com |
+	|           4 | Anita Tamang    | anita@example.com    |
+	|           5 | Bijay Thapa     | bijay@example.com    |
+	|           6 | Sunita Bhandari | sunita@example.com   |
+	+-------------+-----------------+----------------------+
 
 mysql> INSERT INTO employees (employee_name, email) 
-	VALUES ('Parvati Gurung', 'parvati@example.com')
+	VALUES ('Parvati Gurung', 'parvati@example.com');
+
 
 mysql> select * from employees;
-+-------------+-----------------+----------------------+
-| employee_id | employee_name   | email                |
-+-------------+-----------------+----------------------+
-|           1 | Santosh Gurung  | santosh@example.com  |
-|           2 | Priya Rai       | priya@example.com    |
-|           3 | Rajendra Sharma | rajendra@example.com |
-|           4 | Anita Tamang    | anita@example.com    |
-|           5 | Bijay Thapa     | bijay@example.com    |
-|           6 | Sunita Bhandari | sunita@example.com   |
-|           7 | Parvati Gurung  | parvati@example.com  |
-+-------------+-----------------+----------------------+
+	+-------------+-----------------+----------------------+
+	| employee_id | employee_name   | email                |
+	+-------------+-----------------+----------------------+
+	|           1 | Santosh Gurung  | santosh@example.com  |
+	|           2 | Priya Rai       | priya@example.com    |
+	|           3 | Rajendra Sharma | rajendra@example.com |
+	|           4 | Anita Tamang    | anita@example.com    |
+	|           5 | Bijay Thapa     | bijay@example.com    |
+	|           6 | Sunita Bhandari | sunita@example.com   |
+	|           7 | Parvati Gurung  | parvati@example.com  |
+	+-------------+-----------------+----------------------+
 
 mysql> DELETE FROM employees WHERE employee_id = 7;
 Query OK, 1 row affected (0.01 sec)
 
+
+
+
+
 mysql> select * from employees;
-+-------------+-----------------+----------------------+
-| employee_id | employee_name   | email                |
-+-------------+-----------------+----------------------+
-|           1 | Santosh Gurung  | santosh@example.com  |
-|           2 | Priya Rai       | priya@example.com    |
-|           3 | Rajendra Sharma | rajendra@example.com |
-|           4 | Anita Tamang    | anita@example.com    |
-|           5 | Bijay Thapa     | bijay@example.com    |
-|           6 | Sunita Bhandari | sunita@example.com   |
-+-------------+-----------------+----------------------+
-
-
+	+-------------+-----------------+----------------------+
+	| employee_id | employee_name   | email                |
+	+-------------+-----------------+----------------------+
+	|           1 | Santosh Gurung  | santosh@example.com  |
+	|           2 | Priya Rai       | priya@example.com    |
+	|           3 | Rajendra Sharma | rajendra@example.com |
+	|           4 | Anita Tamang    | anita@example.com    |
+	|           5 | Bijay Thapa     | bijay@example.com    |
+	|           6 | Sunita Bhandari | sunita@example.com   |
+	+-------------+-----------------+----------------------+
+	
+	
 
 
 
@@ -514,43 +596,45 @@ LAB 10-B - Working with ALTER and DROP with a table ( and UPDATE tooo)
 mysql> ALTER TABLE employees 	
 	ADD COLUMN date_of_birth DATE;
 
+
+
 mysql> select * from employees;
-+-------------+-----------------+----------------------+---------------+
-| employee_id | employee_name   | email                | date_of_birth |
-+-------------+-----------------+----------------------+---------------+
-|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
-|           2 | Priya Rai       | priya@example.com    | NULL          |
-|           3 | Rajendra Sharma | rajendra@example.com | NULL          |
-|           4 | Anita Tamang    | anita@example.com    | NULL          |
-|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
-|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
-+-------------+-----------------+----------------------+---------------+
+	+-------------+-----------------+----------------------+---------------+
+	| employee_id | employee_name   | email                | date_of_birth |
+	+-------------+-----------------+----------------------+---------------+
+	|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
+	|           2 | Priya Rai       | priya@example.com    | NULL          |
+	|           3 | Rajendra Sharma | rajendra@example.com | NULL          |
+	|           4 | Anita Tamang    | anita@example.com    | NULL          |
+	|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
+	|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
+	+-------------+-----------------+----------------------+---------------+
 
 
 
 
 mysql> -- Insert two new rows
 mysql> INSERT INTO employees (employee_name, email, date_of_birth)
-    -> VALUES
-    ->     ('Amit Thapa', 'amit@example.com', '1987-08-12'),
-    ->     ('Komal Bhattarai', 'komal@example.com', '1993-04-28');
+   	 VALUES
+	 ('Amit Thapa', 'amit@example.com', '1987-08-12'),
+         ('Komal Bhattarai', 'komal@example.com', '1993-04-28');
 
 
 
 mysql> select * from employees;
-+-------------+-----------------+----------------------+---------------+
-| employee_id | employee_name   | email                | date_of_birth |
-+-------------+-----------------+----------------------+---------------+
-|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
-|           2 | Priya Rai       | priya@example.com    | NULL          |
-|           3 | Rajendra Sharma | rajendra@example.com | NULL          |
-|           4 | Anita Tamang    | anita@example.com    | NULL          |
-|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
-|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
-|           8 | Amit Thapa      | amit@example.com     | 1987-08-12    |
-|           9 | Komal Bhattarai | komal@example.com    | 1993-04-28    |
-+-------------+-----------------+----------------------+---------------+
-
+	+-------------+-----------------+----------------------+---------------+
+	| employee_id | employee_name   | email                | date_of_birth |
+	+-------------+-----------------+----------------------+---------------+
+	|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
+	|           2 | Priya Rai       | priya@example.com    | NULL          |
+	|           3 | Rajendra Sharma | rajendra@example.com | NULL          |
+	|           4 | Anita Tamang    | anita@example.com    | NULL          |
+	|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
+	|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
+	|           8 | Amit Thapa      | amit@example.com     | 1987-08-12    |
+	|           9 | Komal Bhattarai | komal@example.com    | 1993-04-28    |
+	+-------------+-----------------+----------------------+---------------+
+	
 
 
 
@@ -597,24 +681,27 @@ mysql> UPDATE employees SET date_of_birth =
 		WHEN employee_name = 'Anita Tamang' THEN '1972-11-25'         
 		-- Add more cases for other employees as needed     
 
-		END 
+	END 
 	WHERE employee_name IN ('Rajendra Sharma', 'Anita Tamang');
 
 
 
+
+
+
 mysql> SELECT * FROM employees;
-+-------------+-----------------+----------------------+---------------+
-| employee_id | employee_name   | email                | date_of_birth |
-+-------------+-----------------+----------------------+---------------+
-|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
-|           2 | Priya Rai       | priya@example.com    | NULL          |
-|           3 | Rajendra Sharma | rajendra@example.com | 1980-03-18    |
-|           4 | Anita Tamang    | anita@example.com    | 1972-11-25    |
-|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
-|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
-|           8 | Amit Thapa      | amit@example.com     | 1987-08-12    |
-|           9 | Komal Bhattarai | komal@example.com    | 1993-04-28    |
-+-------------+-----------------+----------------------+---------------+
+	+-------------+-----------------+----------------------+---------------+
+	| employee_id | employee_name   | email                | date_of_birth |
+	+-------------+-----------------+----------------------+---------------+
+	|           1 | Santosh Gurung  | santosh@example.com  | NULL          |
+	|           2 | Priya Rai       | priya@example.com    | NULL          |
+	|           3 | Rajendra Sharma | rajendra@example.com | 1980-03-18    |
+	|           4 | Anita Tamang    | anita@example.com    | 1972-11-25    |
+	|           5 | Bijay Thapa     | bijay@example.com    | NULL          |
+	|           6 | Sunita Bhandari | sunita@example.com   | NULL          |
+	|           8 | Amit Thapa      | amit@example.com     | 1987-08-12    |
+	|           9 | Komal Bhattarai | komal@example.com    | 1993-04-28    |
+	+-------------+-----------------+----------------------+---------------+
 ************************************************************************************************************
 
 
@@ -654,13 +741,19 @@ EXAMPLE 3
 
 
 -- Create a new database
-CREATE DATABASE IF NOT EXISTS school_database;
+mysql> CREATE DATABASE  school_db;
+
+
+
 
 -- Switch to the newly created database
-USE school_database;
+mysql> USE school_db;
+
+
+
 
 -- Create the 'students' table
-CREATE TABLE  students (
+mysql> CREATE TABLE  students (
     std_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     mobile VARCHAR(15),
@@ -675,7 +768,7 @@ CREATE TABLE  students (
 
 
 -- Insert 25 rows of data into the 'students' table
-INSERT INTO students (name, mobile, gender, address, DOB, salary, marks_social, marks_maths) VALUES
+mysql> INSERT INTO students (name, mobile, gender, address, DOB, salary, marks_social, marks_maths) VALUES
 ('Amit Poudel', '9841000000', 'Male', 'Kathmandu, Nepal', '1998-05-15', 50000.00, 85, 90),
 ('Sarita Gurung', '9812345678', 'Female', 'Pokhara, Nepal', '1999-08-20', 45000.00, 78, 92),
 ('Rajesh Dhakal', '9865432109', 'Male', 'Butwal, Nepal', '1997-12-10', 55000.00, 92, 88),
@@ -703,6 +796,62 @@ INSERT INTO students (name, mobile, gender, address, DOB, salary, marks_social, 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+mysql> select * from students;
++--------+-------------------+------------+--------+-------------------+------------+----------+--------------+-------------+
+| std_id | name              | mobile     | gender | address           | DOB        | salary   | marks_social | marks_maths |
++--------+-------------------+------------+--------+-------------------+------------+----------+--------------+-------------+
+|      1 | Amit Poudel       | 9841000000 | Male   | Kathmandu, Nepal  | 1998-05-15 | 50000.00 |           85 |          90 |
+|      2 | Sarita Gurung     | 9812345678 | Female | Pokhara, Nepal    | 1999-08-20 | 45000.00 |           78 |          92 |
+|      3 | Rajesh Dhakal     | 9865432109 | Male   | Butwal, Nepal     | 1997-12-10 | 55000.00 |           92 |          88 |
+|      4 | Anita Rai         | 9809876543 | Female | Dharan, Nepal     | 2000-03-25 | 48000.00 |           75 |          85 |
+|      5 | Santosh Shrestha  | 9856789012 | Male   | Biratnagar, Nepal | 1996-09-02 | 60000.00 |           89 |          94 |
+|      6 | Pratima Khadka    | 9843210987 | Female | Butwal, Nepal     | 1999-11-18 | 52000.00 |           80 |          91 |
+|      7 | Nabin Thapa       | 9811001100 | Male   | Pokhara, Nepal    | 1997-07-07 | 53000.00 |           88 |          89 |
+|      8 | Rita Maharjan     | 9867543210 | Female | Lalitpur, Nepal   | 2001-02-14 | 47000.00 |           82 |          93 |
+|      9 | Sunil Bhandari    | 9856781234 | Male   | Birgunj, Nepal    | 1998-04-30 | 56000.00 |           91 |          87 |
+|     10 | Priya Sharma      | 9812345678 | Female | Dang, Nepal       | 1996-12-12 | 51000.00 |           79 |          92 |
+|     11 | Dinesh Thapa      | 9845678901 | Male   | Itahari, Nepal    | 2000-08-05 | 54000.00 |           87 |          90 |
+|     12 | Puja Adhikari     | 9812345678 | Female | Nepalgunj, Nepal  | 1999-01-22 | 49000.00 |           76 |          88 |
+|     13 | Roshan Shrestha   | 9861234567 | Male   | Hetauda, Nepal    | 1997-06-14 | 58000.00 |           90 |          85 |
+|     14 | Anju Bista        | 9841001100 | Female | Butwal, Nepal     | 1998-10-11 | 50000.00 |           83 |          94 |
+|     15 | Binod Khanal      | 9812345678 | Male   | Chitwan, Nepal    | 1996-03-28 | 59000.00 |           92 |          87 |
+|     16 | Sunita Regmi      | 9856789012 | Female | Dharan, Nepal     | 1997-09-15 | 48000.00 |           84 |          89 |
+|     17 | Rajendra Shrestha | 9843210987 | Male   | Nepalgunj, Nepal  | 2000-01-10 | 55000.00 |           88 |          91 |
+|     18 | Gita Lama         | 9811001100 | Female | Biratnagar, Nepal | 1998-11-23 | 51000.00 |           79 |          93 |
+|     19 | Suman Magar       | 9867543210 | Male   | Lalitpur, Nepal   | 1999-05-19 | 53000.00 |           86 |          90 |
+|     20 | Anita Tamang      | 9856781234 | Female | Hetauda, Nepal    | 1997-02-08 | 47000.00 |           81 |          92 |
+|     21 | Suresh KC         | 9812345678 | Male   | Chitwan, Nepal    | 1998-07-03 | 56000.00 |           89 |          88 |
+|     22 | Manisha Thapa     | 9845678901 | Female | Birgunj, Nepal    | 2001-04-15 | 49000.00 |           77 |          94 |
+|     23 | Ramesh Aryal      | 9812345678 | Male   | Dang, Nepal       | 1999-10-20 | 52000.00 |           87 |          86 |
+|     24 | Laxmi Bhandari    | 9861234567 | Female | Itahari, Nepal    | 1996-12-28 | 57000.00 |           90 |          87 |
++--------+-------------------+------------+--------+-------------------+------------+----------+--------------+-------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Basics:
 ***********
 
@@ -722,7 +871,7 @@ VALUES ('Nisha Adhikari', '9876543210', 'Female', 'Biratnagar, Nepal', '1998-06-
 
 Update the address for a specific student:
 ------------------------------------------------------------
-UPDATE students SET address = 'Kathmandu, Nepal' WHERE name = 'Amit Poudel';
+UPDATE students SET address = 'Dang, Nepal' WHERE name = 'Amit Poudel';
 
 
 
@@ -752,7 +901,8 @@ SELECT name FROM students WHERE marks_social > 90 OR marks_maths > 90;
 
 
 
-Retrieve the list of students and their assigned department (assuming there's a related department table):
+Retrieve the list of students and their assigned department
+(assuming there's a related department table):
 ------------------------------------------------------------
 SELECT students.name, assignments.department_id, departments.department_name
 FROM students
