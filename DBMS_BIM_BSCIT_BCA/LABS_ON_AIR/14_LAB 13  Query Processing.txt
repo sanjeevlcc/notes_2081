@@ -1,0 +1,209 @@
+
+
+Here are three tables for a restaurant management system:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    FullName VARCHAR(50),
+    PhoneNumber VARCHAR(15),
+    Address VARCHAR(100)
+);
+
+
+
+
+
+CREATE TABLE Menu (
+    MenuID INT PRIMARY KEY AUTO_INCREMENT,
+    ItemName VARCHAR(50),
+    Category VARCHAR(20),
+    Price DECIMAL(10, 2)
+);
+
+
+
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    MenuID INT,
+    Quantity INT,
+    OrderDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (MenuID) REFERENCES Menu(MenuID)
+);
+
+
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    MenuID INT,
+    Quantity INT,
+    OrderDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (MenuID) REFERENCES Menu(MenuID)
+);
+
+
+
+
+INSERT INTO Customers (FullName, PhoneNumber, Address) VALUES
+('Suman Khadka', '9801234567', 'Kathmandu'),
+('Nisha Shrestha', '9812345678', 'Bhaktapur'),
+('Pradeep Rai', '9823456789', 'Lalitpur'),
+('Anisha Basnet', '9802345678', 'Pokhara'),
+('Saroj Gurung', '9813456789', 'Chitwan');
+
+
+
+INSERT INTO Menu (ItemName, Category, Price) VALUES
+('Momo', 'Snacks', 150.00),
+('Dal Bhat', 'Main Course', 250.00),
+('Chowmein', 'Snacks', 120.00),
+('Sekuwa', 'Main Course', 300.00),
+('Tea', 'Beverage', 30.00),
+('Coffee', 'Beverage', 50.00),
+('Pakauda', 'Snacks', 100.00),
+('Thakali Set', 'Main Course', 350.00),
+('Jhol Momo', 'Snacks', 180.00),
+('Cold Drink', 'Beverage', 40.00);
+
+
+
+
+INSERT INTO Orders (CustomerID, MenuID, Quantity) VALUES
+(1, 1, 2),
+(2, 3, 1),
+(3, 5, 4),
+(4, 7, 3),
+(5, 2, 1),
+(1, 6, 2),
+(2, 8, 1),
+(3, 9, 3),
+(4, 4, 2),
+(5, 10, 5);
+
+
+
+            Query Processing Examples
+            ----------------------------
+
+    Example 1: List All Customers
+    ++++++++++++++++++++++++++++++
+
+mysql> SELECT * FROM Customers;
++------------+----------------+-------------+-----------+
+| CustomerID | FullName       | PhoneNumber | Address   |
++------------+----------------+-------------+-----------+
+|          1 | Suman Khadka   | 9801234567  | Kathmandu |
+|          2 | Nisha Shrestha | 9812345678  | Bhaktapur |
+|          3 | Pradeep Rai    | 9823456789  | Lalitpur  |
+|          4 | Anisha Basnet  | 9802345678  | Pokhara   |
+|          5 | Saroj Gurung   | 9813456789  | Chitwan   |
++------------+----------------+-------------+-----------+
+
+
+
+
+
+
+
+
+    Example 2: List Menu Items in the "Snacks" Category
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+mysql> SELECT * FROM Menu WHERE Category = 'Snacks';
++--------+-----------+----------+--------+
+| MenuID | ItemName  | Category | Price  |
++--------+-----------+----------+--------+
+|      1 | Momo      | Snacks   | 150.00 |
+|      3 | Chowmein  | Snacks   | 120.00 |
+|      7 | Pakauda   | Snacks   | 100.00 |
+|      9 | Jhol Momo | Snacks   | 180.00 |
++--------+-----------+----------+--------+
+
+
+
+
+
+
+
+
+    Example 3: Find Total Orders Made by Customer with ID 1
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+mysql> SELECT SUM(Quantity) AS TotalOrders FROM Orders WHERE CustomerID = 1;
++-------------+
+| TotalOrders |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+    Example 4: List All Orders with Item Names and Customer Names
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+mysql> SELECT 
+    Orders.OrderID,
+    Customers.FullName AS CustomerName,
+    Menu.ItemName AS ItemName,
+    Orders.Quantity,
+    Orders.OrderDate
+FROM Orders
+JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+JOIN Menu ON Orders.MenuID = Menu.MenuID;
+
++---------+----------------+-------------+----------+---------------------+
+| OrderID | CustomerName   | ItemName    | Quantity | OrderDate           |
++---------+----------------+-------------+----------+---------------------+
+|       1 | Suman Khadka   | Momo        |        2 | 2024-11-27 23:56:19 |
+|       6 | Suman Khadka   | Coffee      |        2 | 2024-11-27 23:56:19 |
+|       2 | Nisha Shrestha | Chowmein    |        1 | 2024-11-27 23:56:19 |
+|       7 | Nisha Shrestha | Thakali Set |        1 | 2024-11-27 23:56:19 |
+|       3 | Pradeep Rai    | Tea         |        4 | 2024-11-27 23:56:19 |
+|       8 | Pradeep Rai    | Jhol Momo   |        3 | 2024-11-27 23:56:19 |
+|       4 | Anisha Basnet  | Pakauda     |        3 | 2024-11-27 23:56:19 |
+|       9 | Anisha Basnet  | Sekuwa      |        2 | 2024-11-27 23:56:19 |
+|       5 | Saroj Gurung   | Dal Bhat    |        1 | 2024-11-27 23:56:19 |
+|      10 | Saroj Gurung   | Cold Drink  |        5 | 2024-11-27 23:56:19 |
++---------+----------------+-------------+----------+---------------------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+
+
+    Example 5: Calculate Total Revenue Generated
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    
+mysql> SELECT SUM(Menu.Price * Orders.Quantity) AS TotalRevenue
+FROM Orders
+JOIN Menu ON Orders.MenuID = Menu.MenuID;
+
++--------------+
+| TotalRevenue |
++--------------+
+|      2880.00 |
++--------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
