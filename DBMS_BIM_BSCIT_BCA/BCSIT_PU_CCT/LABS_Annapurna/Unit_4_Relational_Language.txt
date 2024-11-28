@@ -1,0 +1,242 @@
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+A company database containing tables for Accounts, Finance, and HR, including 
+some sample data with a Nepali flavor. Let's proceed step by step:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+SQL Tables
++++++++++++++
+    Employees: Stores employee details.
+    Departments: Stores department information (e.g., HR, Finance).
+    Salaries: Tracks salary details for employees.
+    Transactions: Tracks financial transactions in the company.
+
+
+
+mysql> create database my_company;
+
+mysql> use my_company;
+
+
+
+
+
+
+1. Create Departments Table
+++++++++++++++++++++++++++
+
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY AUTO_INCREMENT,
+    DepartmentName VARCHAR(50) NOT NULL
+);
+
+
+
+
+2. Create Employees Table
+++++++++++++++++++++++++++
+
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY AUTO_INCREMENT,
+    FullName VARCHAR(50) NOT NULL,
+    Gender VARCHAR(10),
+    DepartmentID INT,
+    PhoneNumber VARCHAR(15),
+    Email VARCHAR(50),
+    Address VARCHAR(100),
+    JoinDate DATE,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
+
+
+
+
+
+
+
+
+
+3. Create Salaries Table
+++++++++++++++++++++++++++
+CREATE TABLE Salaries (
+    SalaryID INT PRIMARY KEY AUTO_INCREMENT,
+    EmployeeID INT,
+    BasicSalary DECIMAL(10, 2),
+    Bonus DECIMAL(10, 2),
+    Deduction DECIMAL(10, 2),
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+
+
+
+
+4. Create Transactions Table
+++++++++++++++++++++++++++++
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY AUTO_INCREMENT,
+    TransactionDate DATE,
+    Description VARCHAR(100),
+    Amount DECIMAL(10, 2),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
+
+
+
+Insert Data into Departments
++++++++++++++++++++++++++++++++++++++++
+INSERT INTO Departments (DepartmentName) VALUES
+('HR'),
+('Finance'),
+('Accounts'),
+('IT'),
+('Operations');
+
+
+
+
+
+
+Insert Data into Employees
+++++++++++++++++++++++++++
+
+INSERT INTO Employees (FullName, Gender, DepartmentID, PhoneNumber, Email, Address, JoinDate) VALUES
+('Ram Shrestha', 'Male', 1, '9800001111', 'ram.hr@company.com', 'Kathmandu', '2023-01-15'),
+('Sita Gurung', 'Female', 2, '9800002222', 'sita.finance@company.com', 'Pokhara', '2022-05-20'),
+('Bikash Thapa', 'Male', 3, '9800003333', 'bikash.accounts@company.com', 'Lalitpur', '2021-03-12'),
+('Aarati Khadka', 'Female', 1, '9800004444', 'aarati.hr@company.com', 'Bhaktapur', '2023-06-18'),
+('Gopal Magar', 'Male', 4, '9800005555', 'gopal.it@company.com', 'Biratnagar', '2022-12-10');
+
+
+
+
+
+Insert Data into Salaries
+++++++++++++++++++++++++++
+
+INSERT INTO Salaries (EmployeeID, BasicSalary, Bonus, Deduction) VALUES
+(1, 40000, 5000, 2000),
+(2, 50000, 7000, 3000),
+(3, 45000, 6000, 2500),
+(4, 42000, 4000, 1500),
+(5, 48000, 8000, 3500);
+
+
+
+
+
+
+Insert Data into Transactions
++++++++++++++++++++++++++++++++++++++++
+
+INSERT INTO Transactions (TransactionDate, Description, Amount, DepartmentID) VALUES
+('2024-01-10', 'Office Supplies Purchase', 15000, 1),
+('2024-01-15', 'Salary Payment', 250000, 2),
+('2024-01-20', 'Server Maintenance', 50000, 4),
+('2024-01-25', 'Client Payment Received', 100000, 3),
+('2024-01-30', 'Annual Bonus Distribution', 75000, 1);
+
+
+
+
+
+
+
+
+
+Dispaly all  Data from Tables
+++++++++++++++++++++++++++++++++
+
+
+mysql> select * from Departments;
+          +--------------+----------------+
+          | DepartmentID | DepartmentName |
+          +--------------+----------------+
+          |            1 | HR             |
+          |            2 | Finance        |
+          |            3 | Accounts       |
+          |            4 | IT             |
+          |            5 | Operations     |
+          +--------------+----------------+
+
+
+
+
+
+
+mysql> select * from Employees;
++------------+---------------+--------+--------------+-------------+-----------------------------+------------+------------+
+| EmployeeID | FullName      | Gender | DepartmentID | PhoneNumber | Email                       | Address    | JoinDate   |
++------------+---------------+--------+--------------+-------------+-----------------------------+------------+------------+
+|          1 | Ram Shrestha  | Male   |            1 | 9800001111  | ram.hr@company.com          | Kathmandu  | 2023-01-15 |
+|          2 | Sita Gurung   | Female |            2 | 9800002222  | sita.finance@company.com    | Pokhara    | 2022-05-20 |
+|          3 | Bikash Thapa  | Male   |            3 | 9800003333  | bikash.accounts@company.com | Lalitpur   | 2021-03-12 |
+|          4 | Aarati Khadka | Female |            1 | 9800004444  | aarati.hr@company.com       | Bhaktapur  | 2023-06-18 |
+|          5 | Gopal Magar   | Male   |            4 | 9800005555  | gopal.it@company.com        | Biratnagar | 2022-12-10 |
++------------+---------------+--------+--------------+-------------+-----------------------------+------------+------------+
+
+
+
+
+
+
+
+mysql> select * from Salaries;
++----------+------------+-------------+---------+-----------+
+| SalaryID | EmployeeID | BasicSalary | Bonus   | Deduction |
++----------+------------+-------------+---------+-----------+
+|        1 |          1 |    40000.00 | 5000.00 |   2000.00 |
+|        2 |          2 |    50000.00 | 7000.00 |   3000.00 |
+|        3 |          3 |    45000.00 | 6000.00 |   2500.00 |
+|        4 |          4 |    42000.00 | 4000.00 |   1500.00 |
+|        5 |          5 |    48000.00 | 8000.00 |   3500.00 |
++----------+------------+-------------+---------+-----------+
+
+
+
+
+
+
+mysql> select * from Transactions;
++---------------+-----------------+---------------------------+-----------+--------------+
+| TransactionID | TransactionDate | Description               | Amount    | DepartmentID |
++---------------+-----------------+---------------------------+-----------+--------------+
+|             1 | 2024-01-10      | Office Supplies Purchase  |  15000.00 |            1 |
+|             2 | 2024-01-15      | Salary Payment            | 250000.00 |            2 |
+|             3 | 2024-01-20      | Server Maintenance        |  50000.00 |            4 |
+|             4 | 2024-01-25      | Client Payment Received   | 100000.00 |            3 |
+|             5 | 2024-01-30      | Annual Bonus Distribution |  75000.00 |            1 |
++---------------+-----------------+---------------------------+-----------+--------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
