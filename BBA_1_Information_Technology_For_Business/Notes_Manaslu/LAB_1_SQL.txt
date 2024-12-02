@@ -1,0 +1,187 @@
+Below is an example SQL structure for a College Management System with two tables and sample data entries in Nepali (translated to English):
+
+1. Tables
+Table 1: Students
+This table stores student-related data such as student ID, name, course, and enrollment year.
+
+sql
+Copy code
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Gender VARCHAR(10),
+    DateOfBirth DATE,
+    EnrollmentYear INT,
+    Course VARCHAR(50)
+);
+Table 2: Teachers
+This table stores teacher-related data such as teacher ID, name, department, and salary.
+
+sql
+Copy code
+CREATE TABLE Teachers (
+    TeacherID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10, 2),
+    HireDate DATE
+);
+2. Insert Data (Nepali Data in English)
+Insert Data into Students Table
+sql
+Copy code
+INSERT INTO Students (StudentID, FirstName, LastName, Gender, DateOfBirth, EnrollmentYear, Course)
+VALUES
+(1, 'Sushil', 'Shrestha', 'Male', '1998-05-12', 2016, 'Computer Science'),
+(2, 'Aasha', 'Rai', 'Female', '1999-07-20', 2017, 'Business Studies'),
+(3, 'Prakash', 'Lama', 'Male', '2000-01-15', 2018, 'Electrical Engineering'),
+(4, 'Sita', 'Thapa', 'Female', '1998-10-25', 2016, 'Medicine'),
+(5, 'Ramesh', 'Kumar', 'Male', '1997-03-10', 2015, 'Law'),
+(6, 'Sabina', 'Ghimire', 'Female', '2000-04-03', 2018, 'Agriculture'),
+(7, 'Hari', 'Poudel', 'Male', '1996-12-29', 2014, 'Architecture'),
+(8, 'Nikita', 'Acharya', 'Female', '2001-09-14', 2019, 'Nursing'),
+(9, 'Rajesh', 'Joshi', 'Male', '1999-05-22', 2017, 'Mechanical Engineering'),
+(10, 'Deepika', 'Koirala', 'Female', '2000-12-04', 2018, 'Physics'),
+(11, 'Manoj', 'Shahi', 'Male', '1997-08-17', 2015, 'Mathematics'),
+(12, 'Juna', 'Chhetri', 'Female', '1998-02-11', 2016, 'Social Sciences'),
+(13, 'Sanjay', 'Adhikari', 'Male', '2000-06-30', 2018, 'Chemistry'),
+(14, 'Puja', 'Rana', 'Female', '1999-11-03', 2017, 'Economics'),
+(15, 'Shyam', 'Bhandari', 'Male', '1997-05-18', 2015, 'Statistics'),
+(16, 'Maya', 'Thakuri', 'Female', '2001-08-21', 2019, 'Veterinary Sciences'),
+(17, 'Bishal', 'Bista', 'Male', '1998-04-05', 2016, 'Biotechnology'),
+(18, 'Anjali', 'Rupakheti', 'Female', '2000-11-13', 2018, 'Tourism Management'),
+(19, 'Gopal', 'Nepali', 'Male', '1996-06-16', 2014, 'Education'),
+(20, 'Nirmala', 'Maharjan', 'Female', '2000-02-10', 2018, 'Humanities');
+Insert Data into Teachers Table
+sql
+Copy code
+INSERT INTO Teachers (TeacherID, FirstName, LastName, Department, Salary, HireDate)
+VALUES
+(1, 'Binod', 'Shrestha', 'Computer Science', 50000.00, '2016-01-10'),
+(2, 'Pramila', 'Rai', 'Business Studies', 45000.00, '2017-03-15'),
+(3, 'Rohit', 'Kumar', 'Electrical Engineering', 60000.00, '2018-02-05'),
+(4, 'Suman', 'Thapa', 'Medicine', 70000.00, '2016-05-20'),
+(5, 'Madhav', 'Adhikari', 'Law', 55000.00, '2015-06-25'),
+(6, 'Sarita', 'Ghimire', 'Agriculture', 48000.00, '2018-04-14'),
+(7, 'Rajendra', 'Poudel', 'Architecture', 65000.00, '2014-12-10'),
+(8, 'Nisha', 'Joshi', 'Nursing', 50000.00, '2019-07-08'),
+(9, 'Pradeep', 'Koirala', 'Mechanical Engineering', 75000.00, '2017-10-30'),
+(10, 'Bipana', 'Acharya', 'Physics', 70000.00, '2018-01-12');
+3. Perform SQL Queries
+Basic Queries
+Select all students:
+
+sql
+Copy code
+SELECT * FROM Students;
+Select all teachers:
+
+sql
+Copy code
+SELECT * FROM Teachers;
+Select students enrolled in the year 2016:
+
+sql
+Copy code
+SELECT FirstName, LastName FROM Students WHERE EnrollmentYear = 2016;
+Select students in 'Computer Science' course:
+
+sql
+Copy code
+SELECT * FROM Students WHERE Course = 'Computer Science';
+Find teachers in 'Business Studies' department:
+
+sql
+Copy code
+SELECT * FROM Teachers WHERE Department = 'Business Studies';
+Intermediate Queries
+Count the total number of students:
+
+sql
+Copy code
+SELECT COUNT(*) FROM Students;
+Find the average salary of all teachers:
+
+sql
+Copy code
+SELECT AVG(Salary) FROM Teachers;
+Select students who have 'Female' gender:
+
+sql
+Copy code
+SELECT FirstName, LastName FROM Students WHERE Gender = 'Female';
+List all teachers hired after 2017:
+
+sql
+Copy code
+SELECT FirstName, LastName FROM Teachers WHERE HireDate > '2017-01-01';
+Find the student with the highest enrollment year:
+
+sql
+Copy code
+SELECT FirstName, LastName, EnrollmentYear FROM Students ORDER BY EnrollmentYear DESC LIMIT 1;
+Advanced Queries
+List all students and their corresponding teachers:
+
+sql
+Copy code
+SELECT Students.FirstName AS StudentName, Teachers.FirstName AS TeacherName
+FROM Students
+JOIN Teachers ON Students.Course = Teachers.Department;
+Find the average salary of teachers in each department:
+
+sql
+Copy code
+SELECT Department, AVG(Salary) AS AverageSalary
+FROM Teachers
+GROUP BY Department;
+Select students who are enrolled in either 'Mechanical Engineering' or 'Computer Science':
+
+sql
+Copy code
+SELECT FirstName, LastName, Course FROM Students WHERE Course IN ('Mechanical Engineering', 'Computer Science');
+Update the salary of a teacher (e.g., increase by 10%):
+
+sql
+Copy code
+UPDATE Teachers SET Salary = Salary * 1.10 WHERE TeacherID = 1;
+Delete a teacher who no longer works at the institution (e.g., TeacherID = 10):
+
+sql
+Copy code
+DELETE FROM Teachers WHERE TeacherID = 10;
+Find all students whose first name starts with 'S':
+
+sql
+Copy code
+SELECT * FROM Students WHERE FirstName LIKE 'S%';
+Find all students who are not enrolled in 'Law' or 'Engineering':
+
+sql
+Copy code
+SELECT FirstName, LastName FROM Students WHERE Course NOT IN ('Law', 'Engineering');
+Count how many students belong to each course:
+
+sql
+Copy code
+SELECT Course, COUNT(*) AS NumberOfStudents FROM Students GROUP BY Course;
+Get the name and salary of the highest-paid teacher:
+
+sql
+Copy code
+SELECT FirstName, LastName, MAX(Salary) AS HighestSalary FROM Teachers;
+Find all students who enrolled before 2018 and have a 'Male' gender:
+
+sql
+Copy code
+SELECT FirstName, LastName, EnrollmentYear, Gender FROM Students WHERE EnrollmentYear < 2018 AND Gender = 'Male';
+Conclusion
+This setup creates two tables—Students and Teachers—and provides a variety of basic, intermediate, and advanced queries to manage and manipulate data. These queries demonstrate the power of SQL in managing college-related information and performing tasks like sorting, filtering, aggregation, and updating records.
+
+
+
+
+
+
