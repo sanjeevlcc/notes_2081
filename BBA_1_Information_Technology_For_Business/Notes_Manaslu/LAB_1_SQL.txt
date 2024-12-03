@@ -1,185 +1,539 @@
-Below is an example SQL structure for a College Management System with two tables and sample data entries in Nepali (translated to English):
+
+
+
+
+***************************************************************************
+
+========= USING Mysql Community/ phpadmin/ docker ==============
+
+------------------------DOCKER------------------------------
+step 1: Login with credentials in ... https://killercoda.com/
+step 2: Choose any scnerio. Ubuntu or CKA or Playground(login)
+    https://killercoda.com/killer-shell-cka/scenario/playground
+
+step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+step 4: docker exec -ti mydb1 bash
+step 5: mysql -u root -p
+
+
+***************************************************************************
+
+
+Below is an example SQL structure for a College Management System 
+with two tables and sample data :
+
+
+Create dataabase and insert into it
+-----------------------------------
+
+mysql> create database db11;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use  db11;
+Database changed
+
+
+
+
+
 
 1. Tables
+-------------
 Table 1: Students
-This table stores student-related data such as student ID, name, course, and enrollment year.
+    This table stores student-related data
+    such as student ID, name, course, and enrollment year.
 
-sql
-Copy code
-CREATE TABLE Students (
-    StudentID INT PRIMARY KEY,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Gender VARCHAR(10),
-    DateOfBirth DATE,
-    EnrollmentYear INT,
-    Course VARCHAR(50)
-);
+
+mysql>  CREATE TABLE Students (
+        StudentID INT PRIMARY KEY,
+        FirstName VARCHAR(50),
+        LastName VARCHAR(50),
+        Gender VARCHAR(10),
+        DateOfBirth DATE,
+        EnrollmentYear INT,
+        Course VARCHAR(50)
+    );
+
+
+
 Table 2: Teachers
-This table stores teacher-related data such as teacher ID, name, department, and salary.
+This table stores teacher-related 
+data such as teacher ID, name, department, and salary.
 
-sql
-Copy code
-CREATE TABLE Teachers (
-    TeacherID INT PRIMARY KEY,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Department VARCHAR(50),
-    Salary DECIMAL(10, 2),
-    HireDate DATE
-);
-2. Insert Data (Nepali Data in English)
+
+mysql>  CREATE TABLE Teachers (
+        TeacherID INT PRIMARY KEY,
+        FirstName VARCHAR(50),
+        LastName VARCHAR(50),
+        Department VARCHAR(50),
+        Salary DECIMAL(10, 2),
+        HireDate DATE
+    );
+
+
+
+2. Insert Data 
+------------------------
 Insert Data into Students Table
-sql
-Copy code
-INSERT INTO Students (StudentID, FirstName, LastName, Gender, DateOfBirth, EnrollmentYear, Course)
-VALUES
-(1, 'Sushil', 'Shrestha', 'Male', '1998-05-12', 2016, 'Computer Science'),
-(2, 'Aasha', 'Rai', 'Female', '1999-07-20', 2017, 'Business Studies'),
-(3, 'Prakash', 'Lama', 'Male', '2000-01-15', 2018, 'Electrical Engineering'),
-(4, 'Sita', 'Thapa', 'Female', '1998-10-25', 2016, 'Medicine'),
-(5, 'Ramesh', 'Kumar', 'Male', '1997-03-10', 2015, 'Law'),
-(6, 'Sabina', 'Ghimire', 'Female', '2000-04-03', 2018, 'Agriculture'),
-(7, 'Hari', 'Poudel', 'Male', '1996-12-29', 2014, 'Architecture'),
-(8, 'Nikita', 'Acharya', 'Female', '2001-09-14', 2019, 'Nursing'),
-(9, 'Rajesh', 'Joshi', 'Male', '1999-05-22', 2017, 'Mechanical Engineering'),
-(10, 'Deepika', 'Koirala', 'Female', '2000-12-04', 2018, 'Physics'),
-(11, 'Manoj', 'Shahi', 'Male', '1997-08-17', 2015, 'Mathematics'),
-(12, 'Juna', 'Chhetri', 'Female', '1998-02-11', 2016, 'Social Sciences'),
-(13, 'Sanjay', 'Adhikari', 'Male', '2000-06-30', 2018, 'Chemistry'),
-(14, 'Puja', 'Rana', 'Female', '1999-11-03', 2017, 'Economics'),
-(15, 'Shyam', 'Bhandari', 'Male', '1997-05-18', 2015, 'Statistics'),
-(16, 'Maya', 'Thakuri', 'Female', '2001-08-21', 2019, 'Veterinary Sciences'),
-(17, 'Bishal', 'Bista', 'Male', '1998-04-05', 2016, 'Biotechnology'),
-(18, 'Anjali', 'Rupakheti', 'Female', '2000-11-13', 2018, 'Tourism Management'),
-(19, 'Gopal', 'Nepali', 'Male', '1996-06-16', 2014, 'Education'),
-(20, 'Nirmala', 'Maharjan', 'Female', '2000-02-10', 2018, 'Humanities');
+
+
+
+mysql>  INSERT INTO Students (StudentID, FirstName, LastName, Gender, DateOfBirth, EnrollmentYear, Course)
+        VALUES
+        (1, 'Sushil', 'Shrestha', 'Male', '1998-05-12', 2016, 'Computer Science'),
+        (2, 'Aasha', 'Rai', 'Female', '1999-07-20', 2017, 'Business Studies'),
+        (3, 'Prakash', 'Lama', 'Male', '2000-01-15', 2018, 'Electrical Engineering'),
+        (4, 'Sita', 'Thapa', 'Female', '1998-10-25', 2016, 'Medicine'),
+        (5, 'Ramesh', 'Kumar', 'Male', '1997-03-10', 2015, 'Law'),
+        (6, 'Sabina', 'Ghimire', 'Female', '2000-04-03', 2018, 'Agriculture'),
+        (7, 'Hari', 'Poudel', 'Male', '1996-12-29', 2014, 'Architecture'),
+        (8, 'Nikita', 'Acharya', 'Female', '2001-09-14', 2019, 'Nursing'),
+        (9, 'Rajesh', 'Joshi', 'Male', '1999-05-22', 2017, 'Mechanical Engineering'),
+        (10, 'Deepika', 'Koirala', 'Female', '2000-12-04', 2018, 'Physics'),
+        (11, 'Manoj', 'Shahi', 'Male', '1997-08-17', 2015, 'Mathematics'),
+        (12, 'Juna', 'Chhetri', 'Female', '1998-02-11', 2016, 'Social Sciences'),
+        (13, 'Sanjay', 'Adhikari', 'Male', '2000-06-30', 2018, 'Chemistry'),
+        (14, 'Puja', 'Rana', 'Female', '1999-11-03', 2017, 'Economics'),
+        (15, 'Shyam', 'Bhandari', 'Male', '1997-05-18', 2015, 'Statistics'),
+        (16, 'Maya', 'Thakuri', 'Female', '2001-08-21', 2019, 'Veterinary Sciences'),
+        (17, 'Bishal', 'Bista', 'Male', '1998-04-05', 2016, 'Biotechnology'),
+        (18, 'Anjali', 'Rupakheti', 'Female', '2000-11-13', 2018, 'Tourism Management'),
+        (19, 'Gopal', 'Nepali', 'Male', '1996-06-16', 2014, 'Education'),
+        (20, 'Nirmala', 'Maharjan', 'Female', '2000-02-10', 2018, 'Humanities');
+
+
+
+
+
 Insert Data into Teachers Table
-sql
-Copy code
-INSERT INTO Teachers (TeacherID, FirstName, LastName, Department, Salary, HireDate)
-VALUES
-(1, 'Binod', 'Shrestha', 'Computer Science', 50000.00, '2016-01-10'),
-(2, 'Pramila', 'Rai', 'Business Studies', 45000.00, '2017-03-15'),
-(3, 'Rohit', 'Kumar', 'Electrical Engineering', 60000.00, '2018-02-05'),
-(4, 'Suman', 'Thapa', 'Medicine', 70000.00, '2016-05-20'),
-(5, 'Madhav', 'Adhikari', 'Law', 55000.00, '2015-06-25'),
-(6, 'Sarita', 'Ghimire', 'Agriculture', 48000.00, '2018-04-14'),
-(7, 'Rajendra', 'Poudel', 'Architecture', 65000.00, '2014-12-10'),
-(8, 'Nisha', 'Joshi', 'Nursing', 50000.00, '2019-07-08'),
-(9, 'Pradeep', 'Koirala', 'Mechanical Engineering', 75000.00, '2017-10-30'),
-(10, 'Bipana', 'Acharya', 'Physics', 70000.00, '2018-01-12');
-3. Perform SQL Queries
-Basic Queries
+
+
+mysql>  INSERT INTO Teachers (TeacherID, FirstName, LastName, Department, Salary, HireDate)
+        VALUES
+        (1, 'Binod', 'Shrestha', 'Computer Science', 50000.00, '2016-01-10'),
+        (2, 'Pramila', 'Rai', 'Business Studies', 45000.00, '2017-03-15'),
+        (3, 'Rohit', 'Kumar', 'Electrical Engineering', 60000.00, '2018-02-05'),
+        (4, 'Suman', 'Thapa', 'Medicine', 70000.00, '2016-05-20'),
+        (5, 'Madhav', 'Adhikari', 'Law', 55000.00, '2015-06-25'),
+        (6, 'Sarita', 'Ghimire', 'Agriculture', 48000.00, '2018-04-14'),
+        (7, 'Rajendra', 'Poudel', 'Architecture', 65000.00, '2014-12-10'),
+        (8, 'Nisha', 'Joshi', 'Nursing', 50000.00, '2019-07-08'),
+        (9, 'Pradeep', 'Koirala', 'Mechanical Engineering', 75000.00, '2017-10-30'),
+        (10, 'Bipana', 'Acharya', 'Physics', 70000.00, '2018-01-12');
+
+
+
+                            3. Perform SQL Queries
+                    -------------------------------------
+
+
+                                Basic Queries(Find)
+                            -----------------------
+
+
+
 Select all students:
+------------------------------------
+mysql>  SELECT * FROM Students;
 
-sql
-Copy code
-SELECT * FROM Students;
+
+
 Select all teachers:
+------------------------------------
+mysql>  SELECT * FROM Teachers;
 
-sql
-Copy code
-SELECT * FROM Teachers;
+
++-----------+-----------+-----------+--------+-------------+----------------+------------------------+
+| StudentID | FirstName | LastName  | Gender | DateOfBirth | EnrollmentYear | Course                 |
++-----------+-----------+-----------+--------+-------------+----------------+------------------------+
+|         1 | Sushil    | Shrestha  | Male   | 1998-05-12  |           2016 | Computer Science       |
+|         2 | Aasha     | Rai       | Female | 1999-07-20  |           2017 | Business Studies       |
+|         3 | Prakash   | Lama      | Male   | 2000-01-15  |           2018 | Electrical Engineering |
+|         4 | Sita      | Thapa     | Female | 1998-10-25  |           2016 | Medicine               |
+|         5 | Ramesh    | Kumar     | Male   | 1997-03-10  |           2015 | Law                    |
+|         6 | Sabina    | Ghimire   | Female | 2000-04-03  |           2018 | Agriculture            |
+|         7 | Hari      | Poudel    | Male   | 1996-12-29  |           2014 | Architecture           |
+|         8 | Nikita    | Acharya   | Female | 2001-09-14  |           2019 | Nursing                |
+|         9 | Rajesh    | Joshi     | Male   | 1999-05-22  |           2017 | Mechanical Engineering |
+|        10 | Deepika   | Koirala   | Female | 2000-12-04  |           2018 | Physics                |
+|        11 | Manoj     | Shahi     | Male   | 1997-08-17  |           2015 | Mathematics            |
+|        12 | Juna      | Chhetri   | Female | 1998-02-11  |           2016 | Social Sciences        |
+|        13 | Sanjay    | Adhikari  | Male   | 2000-06-30  |           2018 | Chemistry              |
+|        14 | Puja      | Rana      | Female | 1999-11-03  |           2017 | Economics              |
+|        15 | Shyam     | Bhandari  | Male   | 1997-05-18  |           2015 | Statistics             |
+|        16 | Maya      | Thakuri   | Female | 2001-08-21  |           2019 | Veterinary Sciences    |
+|        17 | Bishal    | Bista     | Male   | 1998-04-05  |           2016 | Biotechnology          |
+|        18 | Anjali    | Rupakheti | Female | 2000-11-13  |           2018 | Tourism Management     |
+|        19 | Gopal     | Nepali    | Male   | 1996-06-16  |           2014 | Education              |
+|        20 | Nirmala   | Maharjan  | Female | 2000-02-10  |           2018 | Humanities             |
++-----------+-----------+-----------+--------+-------------+----------------+------------------------+
+20 rows in set (0.00 sec)
+
+
+
+
+
+
+
 Select students enrolled in the year 2016:
+------------------------------------
+mysql>  SELECT FirstName, LastName FROM Students WHERE EnrollmentYear = 2016;
 
-sql
-Copy code
-SELECT FirstName, LastName FROM Students WHERE EnrollmentYear = 2016;
+
++-----------+----------+
+| FirstName | LastName |
++-----------+----------+
+| Sushil    | Shrestha |
+| Sita      | Thapa    |
+| Juna      | Chhetri  |
+| Bishal    | Bista    |
++-----------+----------+
+4 rows in set (0.00 sec)
+
+
+
+
+
 Select students in 'Computer Science' course:
+------------------------------------
+mysql>  SELECT * FROM Students WHERE Course = 'Computer Science';
 
-sql
-Copy code
-SELECT * FROM Students WHERE Course = 'Computer Science';
++-----------+-----------+----------+--------+-------------+----------------+------------------+
+| StudentID | FirstName | LastName | Gender | DateOfBirth | EnrollmentYear | Course           |
++-----------+-----------+----------+--------+-------------+----------------+------------------+
+|         1 | Sushil    | Shrestha | Male   | 1998-05-12  |           2016 | Computer Science |
++-----------+-----------+----------+--------+-------------+----------------+------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
 Find teachers in 'Business Studies' department:
+------------------------------------
+mysql>  SELECT * FROM Teachers WHERE Department = 'Business Studies';
 
-sql
-Copy code
-SELECT * FROM Teachers WHERE Department = 'Business Studies';
-Intermediate Queries
+
++-----------+-----------+----------+------------------+----------+------------+
+| TeacherID | FirstName | LastName | Department       | Salary   | HireDate   |
++-----------+-----------+----------+------------------+----------+------------+
+|         2 | Pramila   | Rai      | Business Studies | 45000.00 | 2017-03-15 |
++-----------+-----------+----------+------------------+----------+------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+                        Intermediate Queries
+              -----------------------------------------
+
+
 Count the total number of students:
+------------------------------------ 
+mysql>  SELECT COUNT(*) FROM Students;
 
-sql
-Copy code
-SELECT COUNT(*) FROM Students;
++----------+
+| COUNT(*) |
++----------+
+|       20 |
++----------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
 Find the average salary of all teachers:
+------------------------------------
+mysql>  SELECT AVG(Salary) FROM Teachers;
 
-sql
-Copy code
-SELECT AVG(Salary) FROM Teachers;
++--------------+
+| AVG(Salary)  |
++--------------+
+| 58800.000000 |
++--------------+
+1 row in set (0.00 sec)
+
+
+
+
+
 Select students who have 'Female' gender:
+------------------------------------
+mysql>  SELECT FirstName, LastName FROM Students WHERE Gender = 'Female';
 
-sql
-Copy code
-SELECT FirstName, LastName FROM Students WHERE Gender = 'Female';
+
++-----------+-----------+
+| FirstName | LastName  |
++-----------+-----------+
+| Aasha     | Rai       |
+| Sita      | Thapa     |
+| Sabina    | Ghimire   |
+| Nikita    | Acharya   |
+| Deepika   | Koirala   |
+| Juna      | Chhetri   |
+| Puja      | Rana      |
+| Maya      | Thakuri   |
+| Anjali    | Rupakheti |
+| Nirmala   | Maharjan  |
++-----------+-----------+
+10 rows in set (0.00 sec)
+
+
+
+
 List all teachers hired after 2017:
+------------------------------------
+mysql>  SELECT FirstName, LastName FROM Teachers WHERE HireDate > '2017-01-01';
 
-sql
-Copy code
-SELECT FirstName, LastName FROM Teachers WHERE HireDate > '2017-01-01';
+
++-----------+----------+
+| FirstName | LastName |
++-----------+----------+
+| Pramila   | Rai      |
+| Rohit     | Kumar    |
+| Sarita    | Ghimire  |
+| Nisha     | Joshi    |
+| Pradeep   | Koirala  |
+| Bipana    | Acharya  |
++-----------+----------+
+6 rows in set (0.00 sec)
+
+
+
+
 Find the student with the highest enrollment year:
+------------------------------------
+mysql>  SELECT FirstName, LastName, EnrollmentYear FROM Students ORDER BY EnrollmentYear DESC LIMIT 1;
 
-sql
-Copy code
-SELECT FirstName, LastName, EnrollmentYear FROM Students ORDER BY EnrollmentYear DESC LIMIT 1;
-Advanced Queries
++-----------+----------+----------------+
+| FirstName | LastName | EnrollmentYear |
++-----------+----------+----------------+
+| Nikita    | Acharya  |           2019 |
++-----------+----------+----------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+                                Advanced Queries
+                        -------------------------------------
+
 List all students and their corresponding teachers:
+------------------------------------------------------
 
-sql
-Copy code
-SELECT Students.FirstName AS StudentName, Teachers.FirstName AS TeacherName
+mysql>  SELECT Students.FirstName AS StudentName, Teachers.FirstName AS TeacherName
 FROM Students
 JOIN Teachers ON Students.Course = Teachers.Department;
-Find the average salary of teachers in each department:
 
-sql
-Copy code
-SELECT Department, AVG(Salary) AS AverageSalary
++-------------+-------------+
+| StudentName | TeacherName |
++-------------+-------------+
+| Sushil      | Binod       |
+| Aasha       | Pramila     |
+| Prakash     | Rohit       |
+| Sita        | Suman       |
+| Ramesh      | Madhav      |
+| Sabina      | Sarita      |
+| Hari        | Rajendra    |
+| Nikita      | Nisha       |
+| Rajesh      | Pradeep     |
+| Deepika     | Bipana      |
++-------------+-------------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+Find the average salary of teachers in each department:
+------------------------------------------------------
+ 
+mysql>  SELECT Department, AVG(Salary) AS AverageSalary
 FROM Teachers
 GROUP BY Department;
+
+
++------------------------+---------------+
+| Department             | AverageSalary |
++------------------------+---------------+
+| Agriculture            |  48000.000000 |
+| Architecture           |  65000.000000 |
+| Business Studies       |  45000.000000 |
+| Computer Science       |  50000.000000 |
+| Electrical Engineering |  60000.000000 |
+| Law                    |  55000.000000 |
+| Mechanical Engineering |  75000.000000 |
+| Medicine               |  70000.000000 |
+| Nursing                |  50000.000000 |
+| Physics                |  70000.000000 |
++------------------------+---------------+
+
+
+
+
+
 Select students who are enrolled in either 'Mechanical Engineering' or 'Computer Science':
+-------------------------------------------------------------------------------------------
+ 
+mysql>  SELECT FirstName, LastName, Course FROM Students WHERE Course IN ('Mechanical Engineering', 'Computer Science');
 
-sql
-Copy code
-SELECT FirstName, LastName, Course FROM Students WHERE Course IN ('Mechanical Engineering', 'Computer Science');
++-----------+----------+------------------------+
+| FirstName | LastName | Course                 |
++-----------+----------+------------------------+
+| Sushil    | Shrestha | Computer Science       |
+| Rajesh    | Joshi    | Mechanical Engineering |
++-----------+----------+------------------------+
+2 rows in set (0.00 sec)
+
+
+
+
+
 Update the salary of a teacher (e.g., increase by 10%):
+--------------------------------------------------------
+ 
+mysql>  UPDATE Teachers SET Salary = Salary * 1.10 WHERE TeacherID = 1;
 
-sql
-Copy code
-UPDATE Teachers SET Salary = Salary * 1.10 WHERE TeacherID = 1;
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+
+
+
 Delete a teacher who no longer works at the institution (e.g., TeacherID = 10):
+------------------------------------------------------------------------------------
+ 
+mysql>  DELETE FROM Teachers WHERE TeacherID = 10;
 
-sql
-Copy code
-DELETE FROM Teachers WHERE TeacherID = 10;
+Query OK, 1 row affected (0.00 sec)
+
+
+
+
+
 Find all students whose first name starts with 'S':
+------------------------------------------------------
+ 
+mysql>  SELECT * FROM Students WHERE FirstName LIKE 'S%';
 
-sql
-Copy code
-SELECT * FROM Students WHERE FirstName LIKE 'S%';
++-----------+-----------+----------+--------+-------------+----------------+------------------+
+| StudentID | FirstName | LastName | Gender | DateOfBirth | EnrollmentYear | Course           |
++-----------+-----------+----------+--------+-------------+----------------+------------------+
+|         1 | Sushil    | Shrestha | Male   | 1998-05-12  |           2016 | Computer Science |
+|         4 | Sita      | Thapa    | Female | 1998-10-25  |           2016 | Medicine         |
+|         6 | Sabina    | Ghimire  | Female | 2000-04-03  |           2018 | Agriculture      |
+|        13 | Sanjay    | Adhikari | Male   | 2000-06-30  |           2018 | Chemistry        |
+|        15 | Shyam     | Bhandari | Male   | 1997-05-18  |           2015 | Statistics       |
++-----------+-----------+----------+--------+-------------+----------------+------------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
 Find all students who are not enrolled in 'Law' or 'Engineering':
+-----------------------------------------------------------------------
+ 
+mysql>  SELECT FirstName, LastName FROM Students WHERE Course NOT IN ('Law', 'Engineering');
 
-sql
-Copy code
-SELECT FirstName, LastName FROM Students WHERE Course NOT IN ('Law', 'Engineering');
++-----------+-----------+
+| FirstName | LastName  |
++-----------+-----------+
+| Sushil    | Shrestha  |
+| Aasha     | Rai       |
+| Prakash   | Lama      |
+| Sita      | Thapa     |
+| Sabina    | Ghimire   |
+| Hari      | Poudel    |
+| Nikita    | Acharya   |
+| Rajesh    | Joshi     |
+| Deepika   | Koirala   |
+| Manoj     | Shahi     |
+| Juna      | Chhetri   |
+| Sanjay    | Adhikari  |
+| Puja      | Rana      |
+| Shyam     | Bhandari  |
+| Maya      | Thakuri   |
+| Bishal    | Bista     |
+| Anjali    | Rupakheti |
+| Gopal     | Nepali    |
+| Nirmala   | Maharjan  |
++-----------+-----------+
+19 rows in set (0.00 sec)
+
+
+
+
 Count how many students belong to each course:
+------------------------------------------------------
+ 
+mysql>  SELECT Course, COUNT(*) AS NumberOfStudents FROM Students GROUP BY Course;
 
-sql
-Copy code
-SELECT Course, COUNT(*) AS NumberOfStudents FROM Students GROUP BY Course;
++------------------------+------------------+
+| Course                 | NumberOfStudents |
++------------------------+------------------+
+| Agriculture            |                1 |
+| Architecture           |                1 |
+| Biotechnology          |                1 |
+| Business Studies       |                1 |
+| Chemistry              |                1 |
+| Computer Science       |                1 |
+| Economics              |                1 |
+| Education              |                1 |
+| Electrical Engineering |                1 |
+| Humanities             |                1 |
+| Law                    |                1 |
+| Mathematics            |                1 |
+| Mechanical Engineering |                1 |
+| Medicine               |                1 |
+| Nursing                |                1 |
+| Physics                |                1 |
+| Social Sciences        |                1 |
+| Statistics             |                1 |
+| Tourism Management     |                1 |
+| Veterinary Sciences    |                1 |
++------------------------+------------------+
+20 rows in set (0.00 sec)
+
+
+
 Get the name and salary of the highest-paid teacher:
+------------------------------------------------------
+ 
+mysql>  SELECT FirstName, LastName, MAX(Salary) AS HighestSalary FROM Teachers;
 
-sql
-Copy code
-SELECT FirstName, LastName, MAX(Salary) AS HighestSalary FROM Teachers;
+
+
 Find all students who enrolled before 2018 and have a 'Male' gender:
+---------------------------------------------------------------------------
+ 
+mysql>  SELECT FirstName, LastName, EnrollmentYear, Gender FROM Students WHERE EnrollmentYear < 2018 AND Gender = 'Male';
 
-sql
-Copy code
-SELECT FirstName, LastName, EnrollmentYear, Gender FROM Students WHERE EnrollmentYear < 2018 AND Gender = 'Male';
-Conclusion
-This setup creates two tables—Students and Teachers—and provides a variety of basic, intermediate, and advanced queries to manage and manipulate data. These queries demonstrate the power of SQL in managing college-related information and performing tasks like sorting, filtering, aggregation, and updating records.
-
++-----------+----------+----------------+--------+
+| FirstName | LastName | EnrollmentYear | Gender |
++-----------+----------+----------------+--------+
+| Sushil    | Shrestha |           2016 | Male   |
+| Ramesh    | Kumar    |           2015 | Male   |
+| Hari      | Poudel   |           2014 | Male   |
+| Rajesh    | Joshi    |           2017 | Male   |
+| Manoj     | Shahi    |           2015 | Male   |
+| Shyam     | Bhandari |           2015 | Male   |
+| Bishal    | Bista    |           2016 | Male   |
+| Gopal     | Nepali   |           2014 | Male   |
++-----------+----------+----------------+--------+
+8 rows in set (0.00 sec)
 
 
 
