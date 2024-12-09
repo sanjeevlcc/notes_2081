@@ -1,0 +1,233 @@
+
+
+
+
+              ++++++++++++++++++++++++++++++
+                internal model questions
+              ++++++++++++++++++++++++++++++ Unit 1 2 5
+
+
+
+Short Questions:
+---------------------
+    What is the role of Information Technology in modern businesses?
+    Define Information Technology and explain its scope in business.
+    List two key IT trends that are transforming businesses today.
+    Explain the impact of digital transformation on businesses.
+    Name three business functions where IT applications are used.
+    
+    What is the function of the Central Processing Unit (CPU) in a computer system?
+    Explain the difference between RAM and ROM in terms of memory storage.
+    What are some examples of storage devices used in modern computers?
+    Describe the working principle of touch devices.
+    What are the applications of biometric scanners?
+    What is the role of haptic feedback gloves in virtual reality?
+    Name two types of input devices used for game controllers.
+    Give two examples of output devices and their applications.
+    
+    What is a Database Management System (DBMS)?
+    Explain the concept of relational databases with an example.
+    What is SQL and how is it used in databases?
+    What is the role of queries and reports in a relational database?
+    Explain the basics of data storage and retrieval in a database system.
+
+
+
+
+
+Long Questions:
+--------------------
+    Discuss the overview of a computer system and explain its components in the context of business applications.
+    Describe the importance and role of Information Technology in modern businesses, and provide examples of how IT is used in various business functions like finance, marketing, and HR.
+    What is digital transformation? Discuss its impact on business operations and provide examples of industries that have successfully adopted digital transformation.
+    
+    Discuss the importance of input devices in computer systems. Provide examples of various input devices and their applications, such as voice-controlled devices and movement-controlled devices.
+    Explain the function and application of different output devices, such as monitors, printers, and projectors.
+    
+    Explain the differences between structured and unstructured data. How are these types of data stored and managed in a DBMS?
+    Describe the components of a Database Management System (DBMS) and their functions. How do DBMSs help in data organization and retrieval?
+    What are the basic functions of SQL? Explain how SQL queries are used to retrieve and manipulate data in a relational database.
+
+
+
+Question: SQL
+    Create a table named Students in a school management 
+    database with the following columns:
+    
+    Students (StudentID , FirstName, LastName, DateOfBirth, Grade, EnrollmentDate)
+          
+          Q no 1 :   Create a table according to yours parameter needed
+          
+          Q no 2 :   Inserting Data into the Table
+          
+          Q no 3 :   Retrieve all information from the Students table.
+          
+          Q no 4 :   Retrieve the first name and grade of all students.
+          
+          Q no 5 :   Retrieve all students who are in grade 10.
+          
+          Q no 6 :   Retrieve the information of students whose first name is 'John'.
+    
+
+
+
+                                Solution 1 :
+                                
+                                          CREATE TABLE Students (
+                                              StudentID INT PRIMARY KEY,
+                                              FirstName VARCHAR(50),
+                                              LastName VARCHAR(50),
+                                              DateOfBirth DATE,
+                                              Grade VARCHAR(10),
+                                              EnrollmentDate DATE
+                                          );
+                                
+                                
+                                Solution 2 :
+                                
+                                
+                                        INSERT INTO Students (StudentID, FirstName, LastName, DateOfBirth, Grade, EnrollmentDate)
+                                        VALUES
+                                        (1, 'Ram', 'KC', '2005-05-10', '10', '2020-08-01'),
+                                        (2, 'Suma', 'MC', '2006-03-22', '9', '2021-06-15'),
+                                        (3, 'Bob', 'Grg', '2005-11-14', '10', '2020-08-01');
+                                
+                                
+                                Solution 3 :
+                                
+                                          SELECT * FROM Students;
+                                
+                                Solution 4 :
+                                
+                                         SELECT FirstName, Grade FROM Students;
+                                
+                                Solution 5 :
+                                
+                                         SELECT * FROM Students WHERE Grade = '10';
+                                
+                                Solution 6 :
+                                
+                                         SELECT * FROM Students WHERE FirstName = 'John';
+                                
+
+
+
+
+Question: SQL
+
+          Create a table named Rooms in a hotel management 
+          system with the following columns:
+          
+                      RoomID (Primary Key)
+                      RoomType
+                      PricePerNight
+                      AvailabilityStatus (Available/Occupied)
+                      CheckInDate
+          
+          
+          
+          Q No 1:        Create a table structure name = rooms
+          Q No 2:        Inserting Data into the Table
+          Q No 3:        Retrieve all room information.
+          Q No 4:        Retrieve room types and their price per night.
+          Q No 5:        Retrieve all available rooms.
+          Q No 6:        Retrieve rooms where the check-in date is '2024-12-03'.
+          
+
+
+Solution 1
+
+
+        CREATE TABLE Rooms (
+            RoomID INT PRIMARY KEY,
+            RoomType VARCHAR(50),
+            PricePerNight DECIMAL(10, 2),
+            AvailabilityStatus VARCHAR(20),
+            CheckInDate DATE
+        );
+
+
+
+
+
+
+
+Solution 2
+
+
+
+INSERT INTO Rooms (RoomID, RoomType, PricePerNight, AvailabilityStatus, CheckInDate)
+VALUES
+(101, 'Single', 100.00, 'Available', '2024-12-01'),
+(102, 'Double', 150.00, 'Occupied', '2024-12-05'),
+(103, 'Suite', 250.00, 'Available', '2024-12-03');
+
+
+
+
+
+
+Solution 3
+
+SELECT * FROM Rooms;
+
+
+
+
+
+
+
+Solution 4
+
+SELECT RoomType, PricePerNight FROM Rooms;
+
+
+
+
+
+
+
+
+Solution 5
+
+SELECT * FROM Rooms WHERE AvailabilityStatus = 'Available';
+
+
+
+
+
+
+
+
+Solution 6
+
+SELECT * FROM Rooms WHERE CheckInDate = '2024-12-03';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              ++++++++++++++++++++++++++++++
+                send UP model questions
+              ++++++++++++++++++++++++++++++ LATER
