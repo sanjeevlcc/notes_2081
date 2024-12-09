@@ -1,0 +1,140 @@
+
+
+
+Simulation and Modeling (3–1–3)
+
+
+
+Evaluation:
+
+      Sessional: Theory (30), Practical (20), Total (50)
+      Final: Theory (50), Total (50)
+      Overall Total: 100
+
+
+
+
+Course Objective:
+
+      To introduce the details of modeling and simulation technologies to the students.
+      
+      To provide the students with knowledge of discrete and continuous systems, generation
+      of random variables, and analysis of simulation output and simulation languages.
+      
+
+
+
+
+Course Contents:
+
+
+      1. Introduction to Modeling and Simulation (4 hrs)
+          1.1 System Concept
+          1.2 System Environment
+          1.3 Stochastic Activities
+          1.4 Continuous and Discrete System
+          1.5 System Modeling
+          1.6 Types of Models
+          1.7 Principles of Modeling
+          1.8 Area of Application
+          1.9 Verification and Validation of Model
+      
+      
+      
+      2. System Simulation (8 hrs)
+          2.1 The Techniques of Simulation – Monte Carlo Method
+          2.2 Problems Depicting Monte Carlo Method
+          2.3 Comparison of Simulation and Analytical Methods
+          2.4 Experimental Nature of Simulation
+          2.5 Types of System Simulation
+          2.6 Distributed Lag Models
+          2.7 Cobweb Models
+          2.8 Steps of Simulation Study
+          2.9 Time Advancement Mechanism
+          2.10 Queuing Models and Their Characteristics
+          2.11 Queuing Discipline
+          2.12 Measures of Queues (Single Server Queuing System)
+      
+      
+      
+      3. Continuous System (8 hrs)
+          3.1 Continuous System Simulation and System Dynamics
+          3.2 Continuous System Models
+          3.3 Differential Equations – Linear Differential Equation
+          3.4 Non-linear Differential Equation
+      
+      
+      
+      4. Discrete System Simulation (8 hrs)
+          4.1 Discrete System Simulation
+          4.2 Representation of Time
+          4.3 Generation of Arrival Patterns
+          4.4 Simulation of Telephone System
+          4.5 Gathering Statistics
+          4.6 Counters and Summary Statistics
+          4.7 Measuring Utilization and Occupancy
+          4.8 Recording Distribution and Transit Time
+          4.9 Discrete Simulation Languages
+      
+      
+      
+      5. Probability Concepts and Random Number Generation (5 hrs)
+          5.1 Probability Concepts in Simulation – Stochastic Variable
+          5.2 Discrete Probability Function
+          5.3 Continuous Probability Function
+          5.4 Random Numbers
+          5.5 Properties of Random Numbers
+          5.6 Pseudo-Random Numbers
+          5.7 Techniques for Generating Random Numbers
+          5.8 Test for Random Number Generation:
+          5.8.1 Uniformity Test (K-S Test and Chi-Square Test)
+          5.8.2 Independence Test (Runs Test and Auto-Correlation Test)
+      
+      
+      
+      6. Simulation Languages (6 hrs)
+          6.1 Types of Simulation Languages
+          6.2 Discrete Systems Modeling and Simulation with GPSS
+          6.3 GPSS Program Applications
+          6.4 SIMSCRIPT – Organization of a SIMSCRIPT Program
+          6.5 SIMSCRIPT Programs
+      
+      
+      
+      7. Analysis of Simulation Output (6 hrs)
+          7.1 Nature of the Problem
+          7.2 Estimation Methods
+          7.3 Simulation Run Statistics
+          7.4 Replication of Run
+          7.5 Elimination of Initial Bias
+      
+
+
+
+
+Laboratory:
+    Develop a simulation model on a topic initiated by the student or provided by the instructor.
+    Oral presentation and demonstration must be part of the laboratory project report.
+
+
+Textbooks:
+  G. Gorden, System Simulation, Prentice Hall of India.
+  A.M. Law and W.D. Kelton, Simulation Modeling and Analysis, McGraw Hill, 1991.
+
+
+References:
+  J.A. Spriest and G.C. Vansteenkiste, Computer-Aided Modeling and Simulation, Academic Press.
+  A.M. Law and R.F. Parry, Simulation: A Problem-Solving Approach, Addison Wesley.
+  Narsingh Deo, System Simulation with Digital Computer.
+  
+
+
+
+
+
+
+
+
+
+
+
