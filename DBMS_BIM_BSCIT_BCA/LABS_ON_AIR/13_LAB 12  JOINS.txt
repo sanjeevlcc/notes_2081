@@ -70,36 +70,74 @@ can be broadly categorized into the following groups:
 LAB 1:  BASIC OPERATION UNDER SETS
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-	-- Create students table
-		CREATE TABLE students (
-    			student_id INT PRIMARY KEY,
-    			student_name VARCHAR(50),
-    			grade VARCHAR(10)
-			);
+-- Create students table
 
-
-	-- Create teachers table
-		CREATE TABLE teachers (
-   		 teacher_id INT PRIMARY KEY,
-    		teacher_name VARCHAR(50),
-    		subject VARCHAR(30)
-		);
-
-
-	-- Insert 3 more rows into students table
-		INSERT INTO students VALUES (5, 'Sita KC', 'English');
-		INSERT INTO students VALUES (6, 'Ramesh Sharma', 'Science');
-		INSERT INTO students VALUES (7, 'Puja Thapa', 'Math');
-
-	-- Insert 3 more rows into teachers table
-		INSERT INTO teachers VALUES (105, 'Rajiv Kumar', 'Science');
-		INSERT INTO teachers VALUES (106, 'Aarti Singh', 'Nepali');
-		INSERT INTO teachers VALUES (107, 'Bikram Thakur', 'Social');
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    grade VARCHAR(10)
+);
 
 
 
-Example 2
-----------
+
+-- Create teachers table
+
+CREATE TABLE teachers (
+    teacher_id INT PRIMARY KEY,
+    teacher_name VARCHAR(50),
+    subject VARCHAR(30)
+);
+
+
+
+-- Insert 3 more rows into students table
+
+INSERT INTO students VALUES (5, 'Sita KC', 'English');
+INSERT INTO students VALUES (6, 'Ramesh Sharma', 'Science');
+INSERT INTO students VALUES (7, 'Puja Thapa', 'Math');
+
+
+
+
+
+
+
+-- Insert 3 more rows into teachers table
+
+INSERT INTO teachers VALUES (105, 'Rajiv Kumar', 'Science');
+INSERT INTO teachers VALUES (106, 'Aarti Singh', 'Nepali');
+INSERT INTO teachers VALUES (107, 'Bikram Thakur', 'Social');
+
+
+
+
+
+
+mysql> SELECT * FROM students;
++------------+---------------+---------+
+| student_id | student_name  | grade   |
++------------+---------------+---------+
+|          5 | Sita KC       | English |
+|          6 | Ramesh Sharma | Science |
+|          7 | Puja Thapa    | Math    |
++------------+---------------+---------+
+
+
+mysql> SELECT * FROM teachers;
++------------+---------------+---------+
+| teacher_id | teacher_name  | subject |
++------------+---------------+---------+
+|        105 | Rajiv Kumar   | Science |
+|        106 | Aarti Singh   | Nepali  |
+|        107 | Bikram Thakur | Social  |
++------------+---------------+---------+
+
+
+
+		----------
+		Example 2
+		----------
 
 create table t1(a varchar(4));
 create table t2(b varchar(4));
@@ -346,7 +384,7 @@ mysql> select * from  teachers,students;
 
 
 
-EXAMPLE 2
+EXAMPLE 3
 ----------
 
 	EG: FROM above 
@@ -363,9 +401,16 @@ CREATE TABLE A (
     element INT
 );
 
+
+
+
 CREATE TABLE B (
     element INT
 );
+
+
+
+
 
 INSERT INTO A (element) VALUES (1), (2), (3), (4);
 
@@ -833,6 +878,7 @@ SQL/ DBMS JOINS
 	Returns only matching rows from both tables.
 	Excludes unmatched rows.
 	THETHA , EQUI, NATURAL
+
 
 
 	OUTER JOIN:
@@ -1631,6 +1677,8 @@ attributes EmplD,FirstName, Salary
 ****************************************************************************************************
 
 Table Structures
+
+
 Hotel
 
 	hotel_id (Primary Key)
@@ -1716,6 +1764,10 @@ mysql> desc Hotel;
 +------------+-------------+------+-----+---------+-------+
 3 rows in set (0.01 sec)
 
+
+
+
+
 mysql> desc Room;
 +-----------------+---------------+------+-----+---------+-------+
 | Field           | Type          | Null | Key | Default | Extra |
@@ -1726,6 +1778,9 @@ mysql> desc Room;
 | price_per_night | decimal(10,2) | YES  |     | NULL    |       |
 +-----------------+---------------+------+-----+---------+-------+
 4 rows in set (0.00 sec)
+
+
+
 
 mysql> desc Booking;
 +----------------+-------------+------+-----+---------+-------+
@@ -1741,29 +1796,146 @@ mysql> desc Booking;
 
 
 
+INSERT INTO Hotel (hotel_id, hotel_name, location) VALUES
+(4, 'Hotel Royal', 'Chitwan'),
+(5, 'Hotel Paradise', 'Lalitpur'),
+(6, 'Hotel Galaxy', 'Bhaktapur'),
+(7, 'Hotel Sunrise', 'Dharan'),
+(8, 'Hotel Horizon', 'Butwal');
+
+
+
+
+INSERT INTO Room (room_id, hotel_id, room_type, price_per_night) VALUES
+(6, 4, 'Suite', 200.00),
+(7, 4, 'Double', 120.00),
+(8, 5, 'Single', 70.00),
+(9, 5, 'Suite', 250.00),
+(10, 6, 'Single', 60.00),
+(11, 6, 'Double', 100.00),
+(12, 7, 'Suite', 180.00),
+(13, 7, 'Double', 90.00),
+(14, 8, 'Single', 65.00),
+(15, 8, 'Suite', 220.00);
 
 
 
 
 
-SQL Questions
---------------------
+INSERT INTO Booking (booking_id, room_id, guest_name, check_in_date, check_out_date) VALUES
+(6, 6, 'Keshav Giri', '2024-08-12', '2024-08-16'),
+(7, 7, 'Nisha Bhandari', '2024-08-14', '2024-08-18'),
+(8, 8, 'Aarav Shrestha', '2024-08-15', '2024-08-20'),
+(9, 9, 'Maya Devi', '2024-08-17', '2024-08-22'),
+(10, 10, 'Rohit Khanal', '2024-08-10', '2024-08-12'),
+(11, 11, 'Sandesh Lama', '2024-08-11', '2024-08-14'),
+(12, 12, 'Sanjana Rai', '2024-08-20', '2024-08-25'),
+(13, 13, 'Bipin Shahi', '2024-08-18', '2024-08-22'),
+(14, 14, 'Priya Basnet', '2024-08-19', '2024-08-23'),
+(15, 15, 'Anish Poudel', '2024-08-21', '2024-08-24');
+
+
+
+
+
+mysql> select * from Hotel;
++----------+-----------------+------------+
+| hotel_id | hotel_name      | location   |
++----------+-----------------+------------+
+|        1 | Hotel Muna      | Kathmandu  |
+|        2 | Hotel Annapurna | Pokhara    |
+|        3 | Hotel Everest   | Biratnagar |
+|        4 | Hotel Royal     | Chitwan    |
+|        5 | Hotel Paradise  | Lalitpur   |
+|        6 | Hotel Galaxy    | Bhaktapur  |
+|        7 | Hotel Sunrise   | Dharan     |
+|        8 | Hotel Horizon   | Butwal     |
++----------+-----------------+------------+
+
+
+
+
+mysql>  select * from Room;
++---------+----------+-----------+-----------------+
+| room_id | hotel_id | room_type | price_per_night |
++---------+----------+-----------+-----------------+
+|       1 |        1 | Single    |           50.00 |
+|       2 |        1 | Double    |           80.00 |
+|       3 |        2 | Single    |           60.00 |
+|       4 |        2 | Suite     |          150.00 |
+|       5 |        3 | Double    |           90.00 |
+|       6 |        4 | Suite     |          200.00 |
+|       7 |        4 | Double    |          120.00 |
+|       8 |        5 | Single    |           70.00 |
+|       9 |        5 | Suite     |          250.00 |
+|      10 |        6 | Single    |           60.00 |
+|      11 |        6 | Double    |          100.00 |
+|      12 |        7 | Suite     |          180.00 |
+|      13 |        7 | Double    |           90.00 |
+|      14 |        8 | Single    |           65.00 |
+|      15 |        8 | Suite     |          220.00 |
++---------+----------+-----------+-----------------+
+
+
+
+
+
+
+mysql>  select * from Booking;
++------------+---------+----------------+---------------+----------------+
+| booking_id | room_id | guest_name     | check_in_date | check_out_date |
++------------+---------+----------------+---------------+----------------+
+|          1 |       1 | Ramesh Thapa   | 2024-08-01    | 2024-08-05     |
+|          2 |       2 | Sita Sharma    | 2024-08-03    | 2024-08-07     |
+|          3 |       3 | Ganesh Pandey  | 2024-08-02    | 2024-08-04     |
+|          4 |       4 | Bina Singh     | 2024-08-10    | 2024-08-15     |
+|          5 |       5 | Kiran Rai      | 2024-08-05    | 2024-08-08     |
+|          6 |       6 | Keshav Giri    | 2024-08-12    | 2024-08-16     |
+|          7 |       7 | Nisha Bhandari | 2024-08-14    | 2024-08-18     |
+|          8 |       8 | Aarav Shrestha | 2024-08-15    | 2024-08-20     |
+|          9 |       9 | Maya Devi      | 2024-08-17    | 2024-08-22     |
+|         10 |      10 | Rohit Khanal   | 2024-08-10    | 2024-08-12     |
+|         11 |      11 | Sandesh Lama   | 2024-08-11    | 2024-08-14     |
+|         12 |      12 | Sanjana Rai    | 2024-08-20    | 2024-08-25     |
+|         13 |      13 | Bipin Shahi    | 2024-08-18    | 2024-08-22     |
+|         14 |      14 | Priya Basnet   | 2024-08-19    | 2024-08-23     |
+|         15 |      15 | Anish Poudel   | 2024-08-21    | 2024-08-24     |
++------------+---------+----------------+---------------+----------------+
+
+
+
+
+
+
+
+
+
+
+				SQL Questions
+				--------------------
 
 Basic
 ----------
 
 List all hotels and their locations.
 ----------------------------------------
-SELECT hotel_name, location FROM Hotel;
 
 
-	+-----------------+------------+
-	| hotel_name      | location   |
-	+-----------------+------------+
-	| Hotel Muna      | Kathmandu  |
-	| Hotel Annapurna | Pokhara    |
-	| Hotel Everest   | Biratnagar |
-	+-----------------+------------+
+
+
+mysql> SELECT hotel_name, location FROM Hotel;
++-----------------+------------+
+| hotel_name      | location   |
++-----------------+------------+
+| Hotel Muna      | Kathmandu  |
+| Hotel Annapurna | Pokhara    |
+| Hotel Everest   | Biratnagar |
+| Hotel Royal     | Chitwan    |
+| Hotel Paradise  | Lalitpur   |
+| Hotel Galaxy    | Bhaktapur  |
+| Hotel Sunrise   | Dharan     |
+| Hotel Horizon   | Butwal     |
++-----------------+------------+
 
 
 
@@ -1771,18 +1943,29 @@ SELECT hotel_name, location FROM Hotel;
 
 List all room types and their prices.
 ----------------------------------------
-SELECT room_type, price_per_night FROM Room;
 
 
-	+-----------+-----------------+
-	| room_type | price_per_night |
-	+-----------+-----------------+
-	| Single    |           50.00 |
-	| Double    |           80.00 |
-	| Single    |           60.00 |
-	| Suite     |          150.00 |
-	| Double    |           90.00 |
-	+-----------+-----------------+
+
+mysql> SELECT room_type, price_per_night FROM Room;
++-----------+-----------------+
+| room_type | price_per_night |
++-----------+-----------------+
+| Single    |           50.00 |
+| Double    |           80.00 |
+| Single    |           60.00 |
+| Suite     |          150.00 |
+| Double    |           90.00 |
+| Suite     |          200.00 |
+| Double    |          120.00 |
+| Single    |           70.00 |
+| Suite     |          250.00 |
+| Single    |           60.00 |
+| Double    |          100.00 |
+| Suite     |          180.00 |
+| Double    |           90.00 |
+| Single    |           65.00 |
+| Suite     |          220.00 |
++-----------+-----------------+
 
 
 
@@ -1793,18 +1976,28 @@ SELECT room_type, price_per_night FROM Room;
 
 List all bookings with guest names.
 ----------------------------------------
-SELECT guest_name FROM Booking;
 
 
-	+---------------+
-	| guest_name    |
-	+---------------+
-	| Ramesh Thapa  |
-	| Sita Sharma   |
-	| Ganesh Pandey |
-	| Bina Singh    |
-	| Kiran Rai     |
-	+---------------+
+mysql> SELECT guest_name FROM Booking;
++----------------+
+| guest_name     |
++----------------+
+| Ramesh Thapa   |
+| Sita Sharma    |
+| Ganesh Pandey  |
+| Bina Singh     |
+| Kiran Rai      |
+| Keshav Giri    |
+| Nisha Bhandari |
+| Aarav Shrestha |
+| Maya Devi      |
+| Rohit Khanal   |
+| Sandesh Lama   |
+| Sanjana Rai    |
+| Bipin Shahi    |
+| Priya Basnet   |
+| Anish Poudel   |
++----------------+
 
 
 
@@ -1812,9 +2005,10 @@ SELECT guest_name FROM Booking;
 
 Find the details of rooms in 'Hotel Muna'.
 ----------------------------------------
-SELECT * FROM Room WHERE hotel_id = 1;
 
 
+
+mysql> SELECT * FROM Room WHERE hotel_id = 1;
 +---------+----------+-----------+-----------------+
 | room_id | hotel_id | room_type | price_per_night |
 +---------+----------+-----------+-----------------+
@@ -1826,11 +2020,14 @@ SELECT * FROM Room WHERE hotel_id = 1;
 
 
 
+
+
+
 List all bookings made in 'Hotel Annapurna'.
 ----------------------------------------
-SELECT * FROM Booking WHERE room_id IN (SELECT room_id FROM Room WHERE hotel_id = 2);
 
 
+mysql> SELECT * FROM Booking WHERE room_id IN (SELECT room_id FROM Room WHERE hotel_id = 2);
 +------------+---------+---------------+---------------+----------------+
 | booking_id | room_id | guest_name    | check_in_date | check_out_date |
 +------------+---------+---------------+---------------+----------------+
@@ -1841,17 +2038,31 @@ SELECT * FROM Booking WHERE room_id IN (SELECT room_id FROM Room WHERE hotel_id 
 
 
 
+
+
+
+
+
 Find all rooms that cost more than $70 per night.
 ----------------------------------------
-SELECT * FROM Room WHERE price_per_night > 70;
 
+
+mysql> SELECT * FROM Room WHERE price_per_night > 70;
 +---------+----------+-----------+-----------------+
 | room_id | hotel_id | room_type | price_per_night |
 +---------+----------+-----------+-----------------+
 |       2 |        1 | Double    |           80.00 |
 |       4 |        2 | Suite     |          150.00 |
 |       5 |        3 | Double    |           90.00 |
+|       6 |        4 | Suite     |          200.00 |
+|       7 |        4 | Double    |          120.00 |
+|       9 |        5 | Suite     |          250.00 |
+|      11 |        6 | Double    |          100.00 |
+|      12 |        7 | Suite     |          180.00 |
+|      13 |        7 | Double    |           90.00 |
+|      15 |        8 | Suite     |          220.00 |
 +---------+----------+-----------+-----------------+
+
 
 
 
@@ -1891,14 +2102,19 @@ SELECT * FROM Hotel WHERE location = 'Pokhara';
 
 List all double rooms and their prices.
 ----------------------------------------
-SELECT * FROM Room WHERE room_type = 'Double';
 
+mysql> SELECT * FROM Room WHERE room_type = 'Double';
 +---------+----------+-----------+-----------------+
 | room_id | hotel_id | room_type | price_per_night |
 +---------+----------+-----------+-----------------+
 |       2 |        1 | Double    |           80.00 |
 |       5 |        3 | Double    |           90.00 |
+|       7 |        4 | Double    |          120.00 |
+|      11 |        6 | Double    |          100.00 |
+|      13 |        7 | Double    |           90.00 |
 +---------+----------+-----------+-----------------+
+
+
 
 
 
@@ -1947,7 +2163,19 @@ JOIN Hotel H ON R.hotel_id = H.hotel_id;
 |       3 | Single    | Hotel Annapurna |
 |       4 | Suite     | Hotel Annapurna |
 |       5 | Double    | Hotel Everest   |
+|       6 | Suite     | Hotel Royal     |
+|       7 | Double    | Hotel Royal     |
+|       8 | Single    | Hotel Paradise  |
+|       9 | Suite     | Hotel Paradise  |
+|      10 | Single    | Hotel Galaxy    |
+|      11 | Double    | Hotel Galaxy    |
+|      12 | Suite     | Hotel Sunrise   |
+|      13 | Double    | Hotel Sunrise   |
+|      14 | Single    | Hotel Horizon   |
+|      15 | Suite     | Hotel Horizon   |
 +---------+-----------+-----------------+
+
+
 
 
 
@@ -1966,7 +2194,16 @@ GROUP BY H.hotel_name;
 | Hotel Muna      |           2 |
 | Hotel Annapurna |           2 |
 | Hotel Everest   |           1 |
+| Hotel Royal     |           2 |
+| Hotel Paradise  |           2 |
+| Hotel Galaxy    |           2 |
+| Hotel Sunrise   |           2 |
+| Hotel Horizon   |           2 |
 +-----------------+-------------+
+
+
+
+
 
 
 
@@ -1981,15 +2218,28 @@ JOIN Hotel H ON R.hotel_id = H.hotel_id;
 
 
 
-+------------+---------------+-----------+-----------------+
-| booking_id | guest_name    | room_type | hotel_name      |
-+------------+---------------+-----------+-----------------+
-|          1 | Ramesh Thapa  | Single    | Hotel Muna      |
-|          2 | Sita Sharma   | Double    | Hotel Muna      |
-|          3 | Ganesh Pandey | Single    | Hotel Annapurna |
-|          4 | Bina Singh    | Suite     | Hotel Annapurna |
-|          5 | Kiran Rai     | Double    | Hotel Everest   |
-+------------+---------------+-----------+-----------------+
++------------+----------------+-----------+-----------------+
+| booking_id | guest_name     | room_type | hotel_name      |
++------------+----------------+-----------+-----------------+
+|          1 | Ramesh Thapa   | Single    | Hotel Muna      |
+|          2 | Sita Sharma    | Double    | Hotel Muna      |
+|          3 | Ganesh Pandey  | Single    | Hotel Annapurna |
+|          4 | Bina Singh     | Suite     | Hotel Annapurna |
+|          5 | Kiran Rai      | Double    | Hotel Everest   |
+|          6 | Keshav Giri    | Suite     | Hotel Royal     |
+|          7 | Nisha Bhandari | Double    | Hotel Royal     |
+|          8 | Aarav Shrestha | Single    | Hotel Paradise  |
+|          9 | Maya Devi      | Suite     | Hotel Paradise  |
+|         10 | Rohit Khanal   | Single    | Hotel Galaxy    |
+|         11 | Sandesh Lama   | Double    | Hotel Galaxy    |
+|         12 | Sanjana Rai    | Suite     | Hotel Sunrise   |
+|         13 | Bipin Shahi    | Double    | Hotel Sunrise   |
+|         14 | Priya Basnet   | Single    | Hotel Horizon   |
+|         15 | Anish Poudel   | Suite     | Hotel Horizon   |
++------------+----------------+-----------+-----------------+
+
+
+
 
 
 
@@ -2007,7 +2257,14 @@ GROUP BY H.hotel_name;
 | Hotel Muna      |  65.000000 |
 | Hotel Annapurna | 105.000000 |
 | Hotel Everest   |  90.000000 |
+| Hotel Royal     | 160.000000 |
+| Hotel Paradise  | 160.000000 |
+| Hotel Galaxy    |  80.000000 |
+| Hotel Sunrise   | 135.000000 |
+| Hotel Horizon   | 142.500000 |
 +-----------------+------------+
+
+
 
 
 
@@ -2048,9 +2305,9 @@ GROUP BY R.room_type;
 +-----------+----------------+
 | room_type | total_bookings |
 +-----------+----------------+
-| Single    |              2 |
-| Double    |              2 |
-| Suite     |              1 |
+| Single    |              5 |
+| Double    |              5 |
+| Suite     |              5 |
 +-----------+----------------+
 
 
@@ -2066,15 +2323,25 @@ FROM Booking B;
 
 
 
-+------------+---------------+---------------+
-| booking_id | guest_name    | stay_duration |
-+------------+---------------+---------------+
-|          1 | Ramesh Thapa  |             4 |
-|          2 | Sita Sharma   |             4 |
-|          3 | Ganesh Pandey |             2 |
-|          4 | Bina Singh    |             5 |
-|          5 | Kiran Rai     |             3 |
-+------------+---------------+---------------+
++------------+----------------+---------------+
+| booking_id | guest_name     | stay_duration |
++------------+----------------+---------------+
+|          1 | Ramesh Thapa   |             4 |
+|          2 | Sita Sharma    |             4 |
+|          3 | Ganesh Pandey  |             2 |
+|          4 | Bina Singh     |             5 |
+|          5 | Kiran Rai      |             3 |
+|          6 | Keshav Giri    |             4 |
+|          7 | Nisha Bhandari |             4 |
+|          8 | Aarav Shrestha |             5 |
+|          9 | Maya Devi      |             5 |
+|         10 | Rohit Khanal   |             2 |
+|         11 | Sandesh Lama   |             3 |
+|         12 | Sanjana Rai    |             5 |
+|         13 | Bipin Shahi    |             4 |
+|         14 | Priya Basnet   |             4 |
+|         15 | Anish Poudel   |             3 |
++------------+----------------+---------------+
 
 
 
@@ -2097,11 +2364,11 @@ LIMIT 1;
 
 
 
-+-----------------+------------+
-| hotel_name      | avg_price  |
-+-----------------+------------+
-| Hotel Annapurna | 105.000000 |
-+-----------------+------------+
++-------------+------------+
+| hotel_name  | avg_price  |
++-------------+------------+
+| Hotel Royal | 160.000000 |
++-------------+------------+
 
 
 
@@ -2120,13 +2387,20 @@ FROM Booking B
 WHERE DATEDIFF(B.check_out_date, B.check_in_date) > 3;
 
 
-+--------------+
-| guest_name   |
-+--------------+
-| Ramesh Thapa |
-| Sita Sharma  |
-| Bina Singh   |
-+--------------+
++----------------+
+| guest_name     |
++----------------+
+| Ramesh Thapa   |
+| Sita Sharma    |
+| Bina Singh     |
+| Keshav Giri    |
+| Nisha Bhandari |
+| Aarav Shrestha |
+| Maya Devi      |
+| Sanjana Rai    |
+| Bipin Shahi    |
+| Priya Basnet   |
++----------------+
 
 
 
@@ -2147,6 +2421,11 @@ WHERE B.check_in_date BETWEEN '2024-08-01' AND '2024-08-31';
 | Hotel Muna      |
 | Hotel Annapurna |
 | Hotel Everest   |
+| Hotel Royal     |
+| Hotel Paradise  |
+| Hotel Galaxy    |
+| Hotel Sunrise   |
+| Hotel Horizon   |
 +-----------------+
 
 
@@ -2160,6 +2439,8 @@ WHERE B.check_in_date BETWEEN '2024-08-01' AND '2024-08-31';
 
 Advanced
 ------------
+
+
 List all rooms that have never been booked.
 ----------------------------------------
 SELECT R.room_id, R.room_type
@@ -2220,6 +2501,11 @@ GROUP BY H.hotel_name;
 | Hotel Muna      |        520.00 |
 | Hotel Annapurna |        870.00 |
 | Hotel Everest   |        270.00 |
+| Hotel Royal     |       1280.00 |
+| Hotel Paradise  |       1600.00 |
+| Hotel Galaxy    |        420.00 |
+| Hotel Sunrise   |       1260.00 |
+| Hotel Horizon   |        920.00 |
 +-----------------+---------------+
 
 
@@ -2256,8 +2542,7 @@ Empty set (0.00 sec)
 
 Find the guest who has the longest total stay across all bookings.
 ----------------------------------------
-SELECT B.guest_name, SUM(DATEDIFF(B.check_out_date, B.check_in_date)) AS total_stay
-FROM Booking
+
 
 
 
