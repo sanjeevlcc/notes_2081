@@ -1,15 +1,34 @@
-> .yml file content
 
-name: simple ci workflow
-on:
-  push:
-    branches:
-      - main
 
-jobs:
-  mytestbuild:
-    runs-on: ubuntu-latest
+https://www.cse.iitd.ac.in/~srsarangi/archbook/archbook.pdf
 
-    steps:
-     - name: PRINT A TEST MESSSAGE
-       run: echo "hello from $GITHUB_ACTOR!"
+
+
+
+
+https://mrcet.com/downloads/digital_notes/ECE/III%20Year/07012023/COMPUTER%20ORGANIZATION%20AND%20ARCHITECTURE.pdf
+
+
+
+
+
+
+https://archive.nptel.ac.in/courses/106/104/106104073/
+
+
+
+
+https://cse.iitk.ac.in/users/pmalakar/acmws/CompArch_OS.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
