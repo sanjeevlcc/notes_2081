@@ -1,0 +1,140 @@
+
+
+Who is this course for?
+============================
+The course is designed for Kubernetes/platform admins, platform/software developers, machine learning engineers, data scientists, data engineers, site reliability engineers, and anyone interested in understanding the anatomy of a machine learning tool kit that harnesses the true power of Kubernetes.
+
+
+
+What prerequisites should you have?
+=======================================
+Kubeflow by its nature is a collaborative solution and growing community. We’d love it if you took this course and found ways to contribute to Kubeflow (more on that later)! In order to set you up for success, we have provided a list of topics that might help you hit the ground running when taking this course. It's not a major issue if you aren’t a SME in these topics, but brushing up on them or reading some of the references we provide might help you digest the content a bit easier. The resources below are meant to be helpful, but are by no means required for the completion of this course.
+
+1. Experience with Cloud Computing
+
+Cloud computing. The concept that has taken over the world. Is it just someone else’s computers? Is it REALLY infinite in scale? The GPU shortage might be bringing us all back to reality when it comes to how fast or large the cloud can scale. That being said, with the rise of technologies like Kubernetes, the cloud is more accessible than ever. Understanding core cloud concepts will help you understand Kubeflow, as well as the distributions we will discuss.
+
+Learn more here:
+
+Introduction to Cloud Infrastructure Technologies (LFS151): a free course offered by the Linux Foundation.
+The Engineering Room Ep.13: Kelsey Hightower On Kubernetes & Cloud Computing: a great video of two heavy hitters in this space discussing cloud computing.
+Cloudy with a chance of Kelsey Hightower Go Time episode, a great podcast that discusses the origin of Kubernetes.
+2. Familiarity with DevOps and Cloud Native Principles
+
+Cloud computing isn’t going anywhere any time soon, but the definition of “cloud native” is tough. It can often be seen as a buzzword and since everyone seems to have their own definition, we asked Google’s Bard for a definition. In theory, Bard pulls from many many sources, so here is how a generative AI tool defines cloud native: “Cloud native builds apps to thrive in the cloud, not just exist. It's about Microservices, Containers, Automation, Resilience, and Observability - think Lego blocks, not monoliths. This shift boosts agility, cuts costs, and keeps users happy, making cloud native the future of building modern apps” The Bard's definition resonates closely with our understanding of what cloud native is all about.  Here are some good resources to learn more and be ready to dive into what makes Kubeflow “cloud native”.
+
+Introduction to DevOps and Site Reliability Engineering (LFS162): a free course offered by the Linux Foundation.
+DevOps and SRE Fundamentals (LFS261): a course offered by the Linux Foundation, with hands-on lab exercises.
+SRE for Everyone Else, with Steve McGhee on the Kubernetes podcast is a great discussion around adopting SRE and release engineering principles.
+The SRE handbook is a fantastic resource that even has chapters on data pipelines!
+The Phoenix Project: A good book recommendation for the less technical folks or really anyone who has ever worked in a company trying to adopt DevOps.
+3. Some Basic Programming Experience with Python
+
+For a good free option, Automate the Boring Stuff is a fantastic resource with hands-on projects to get some Python experience.
+A good paid, more structured option for university credits is the Georgia Tech Professional Certificate in Introduction to Python Programming.
+4. Experience with Technical Documentation
+
+There is an art to reading technical documentation. It’s such an art form that modern AI strategies are seeking to reduce the need to actually read the docs. The Kubeflow docs are a great place to start if you aren’t used to reading technical documentation. The goal of this course is to help consolidate that information, but diving into the documentation might be helpful.
+
+5. Experience with Open Source Projects in general
+
+Open source is a concept that can be difficult to wrap our heads around. Do people really contribute free code? How do organizations obtain the necessary support for open source software, whether it's for addressing bugs or ensuring reliable performance and security in their deployments? ? Is the software really free? We will discuss these topics a bit more in our distribution section, but some open source software (OSS) fluency might help you engage with the community and other projects at a later date.
+
+Here are some good resources:
+
+The Cathedral and the Bazaar is a famous essay on open source software.
+Cloud Native Computing Foundation Official Site discusses how open source projects are managed and supported.
+Why Open Source Misses the Point of Free Software is a great GNU blog on open source and the point of free software.
+Creating Effective Documentation for Developers (LFC112): a course offered by the Linux Foundation.
+Open Source Licensing Basics for Software Developers (LFC191): a course offered by the Linux Foundation.
+6. Basic Understanding of Kubernetes and Containers 
+
+For this introductory course, we won't go too deep into Kuberenetes, but this all does run on Kubernetes. Think of Kuberentes as the engine and not the car. Our MLOPs teams are race car drivers. Here are some resources on Kubernetes and containers.
+
+The Official Kubernetes Documentation has all you need to know about Kubernetes. 
+Introduction to Kubernetes (LFS158): a free course offered by the Linux Foundation.
+Containers Fundamentals (LFS253): a course offered by the Linux Foundation, with hands-on lab exercises.
+The Certified Kubernetes Administrator Training Curriculum might give you a good learning path.
+What’s a Linux Container (RedHat) is a Red Hat blog with graphics on how containers work.
+The cloud computing resources we provided above will help you with this topic as well!
+
+
+
+
+
+
+
+What does it prepare you for?
+===============================
+This introductory course unveils the potential of Kubeflow, an open source platform revolutionizing Machine Learning (ML) deployment. Through a blend of theoretical foundations and practical video walkthroughs, you'll gain critical insights into:
+
+The landscape of ML development and deployment challenges
+Kubeflow's architecture and key components
+Data preparation, model training, serving, and management within Kubeflow
+Integrating Kubeflow with existing software tools and cloud environments
+Best practices for MLOps and model lifecycle management
+Gaining confidence in these foundational concepts will empower you to contribute to the vibrant Kubeflow community, engage in further exploration, and apply your newfound knowledge to real-world ML projects
+
+
+
+
+What does it NOT prepare you for?
+======================================
+This course is an introduction to Kubeflow and machine learning operations and is not designed to discuss the deeper operationalizations of Kubeflow and the nitty gritty implementation details. This course is also not designed to tell you how to prevent hallucinations in your LLMs or deploy ethical applications, but will give you the tools to explore those concepts based on your desired outcomes.
+
+
+
+
+How is the course formatted?
+================================
+In order to make it easier to distinguish the various types of content in the course, we use the color coding and formats below:
+
+Dark blue: Text typed at the command line
+
+Green: Output
+
+Black: File content
+
+Brown: File/Directory names
+
+Light blue: Hyperlink
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Meet Your Instructor: Chase Christensen
+============================================
+Chase is a presales engineer, and solutions architect focused on helping organizations drive value from the tools they are exploring or integrating. Chase began his career in QA testing, where he developed an appreciation for automated testing and deployment. From there, he was responsible for a multi-vendor, multi-platform hybrid research and innovation lab at the vendor-added reseller Insight, where he was introduced to Kubernetes. He achieved the CKA, CKAD, and CKS certifications and decided to pivot to the ML world on Kubernetes by joining the Arrikto Enterprise Kubeflow team. He believes in open source as a transparent and people-centric approach to driving value for data professionals and (although no longer at Arrikto) has been working with organizations adopting Kubeflow and training internal teams on Kubeflow as a project for three years. During his free time, he enjoys hiking and exploring the Colorado wilderness.
+
+Special Thanks:
+A special thanks to Ben Reutter for the multi-media support! We couldn't have delivered such high-quality video content without him. Thank you Ben!
+
+
+
+
+
+
+
+Linux Foundation
+============================
+The Linux Foundation is the world’s leading home for collaboration on open source software, hardware, standards, and data. Linux Foundation projects are critical to the world’s infrastructure, including Linux, Kubernetes, Node.js, ONAP, PyTorch, RISC-V, SPDX, OpenChain, and more. The Linux Foundation focuses on leveraging best practices and addressing the needs of contributors, users, and solution providers to create sustainable models for open collaboration. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see its trademark usage page. Linux is a registered trademark of Linus Torvalds.
+
+
+
+
+
+
+
+
+
