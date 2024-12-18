@@ -1,0 +1,125 @@
+
+Infrastructure Technologies (LFS151)
+
+https://training.linuxfoundation.org/training/introduction-to-cloud-infrastructure-technologies/?_gl=1*1dsuxcp*_gcl_au*NjU4OTY3MjE0LjE3MzA3MDI4ODY.*_ga*ODkxMTgyNjEwLjE3MjI4MjQ3Nzc.*_ga_EMX7DDZMX4*MTczNDUxNjAyNS45LjEuMTczNDUxNjI3MS4zNS4wLjA.
+
+
+====================================
+
+a great podcast that discusses the origin of Kubernetes.
+
+https://changelog.com/gotime/114
+
+
+
+====================================
+
+a great video of two heavy hitters in this space discussing cloud computing.
+
+https://www.youtube.com/watch?v=zkEYxCmPGqU
+
+
+
+====================================
+Introduction to DevOps and Site Reliability Engineering (LFS162)
+
+https://training.linuxfoundation.org/training/introduction-to-devops-and-site-reliability-engineering-lfs162/?_gl=1*kklxkh*_gcl_au*NjU4OTY3MjE0LjE3MzA3MDI4ODY.*_ga*ODkxMTgyNjEwLjE3MjI4MjQ3Nzc.*_ga_EMX7DDZMX4*MTczNDUxNjAyNS45LjEuMTczNDUxNjYxMy42MC4wLjA.
+
+
+
+
+
+====================================
+
+on the Kubernetes podcast is a great discussion around adopting SRE and release engineering principles.
+
+https://kubernetespodcast.com/episode/152-sre-for-everyone-else/
+
+
+
+====================================
+
+is a fantastic resource that even has chapters on data pipelines!
+
+https://sre.google/sre-book/table-of-contents/
+
+
+====================================
+
+
+A good book recommendation for the less 
+technical folks or really anyone who has ever
+ worked in a company trying to adopt DevOps.
+
+https://www.goodreads.com/en/book/show/17255186
+
+
+
+====================================
+or a good free option, Automate the Boring Stuff 
+is a fantastic resource with hands-on projects
+ to get some Python experience.
+
+https://automatetheboringstuff.com/
+
+
+
+====================================
+
+The Cathedral and the Bazaar is a famous essay 
+on open source software.
+
+https://users.ece.utexas.edu/~perry/education/382v-s08/papers/raymond.pdf
+
+
+====================================
+
+Open Source Licensing Basics for Software Developers (LFC191): a course offered by the Linux Foundation.
+
+https://training.linuxfoundation.org/training/open-source-licensing-basics-for-software-developers/?_gl=1*1f2j5av*_gcl_au*NjU4OTY3MjE0LjE3MzA3MDI4ODY.*_ga*ODkxMTgyNjEwLjE3MjI4MjQ3Nzc.*_ga_EMX7DDZMX4*MTczNDUxNjAyNS45LjEuMTczNDUxNjczNS4yMS4wLjA.
+
+
+====================================
+
+
+Introduction to Kubernetes (LFS158)
+
+https://training.linuxfoundation.org/training/introduction-to-kubernetes/?_gl=1*t0k3gv*_gcl_au*NjU4OTY3MjE0LjE3MzA3MDI4ODY.*_ga*ODkxMTgyNjEwLjE3MjI4MjQ3Nzc.*_ga_EMX7DDZMX4*MTczNDUxNjAyNS45LjEuMTczNDUxNzE4Mi4zMS4wLjA.
+
+
+====================================
+
+What’s a Linux Container (RedHat) is a Red Hat blog with graphics on how containers work.
+
+https://www.redhat.com/en/topics/containers/whats-a-linux-container
+
+
+====================================
+
+
+
+
+
+
+====================================
+
+
+
+
+
+
+====================================
+
+
+
+
+
+====================================
+====================================
+
+
+====================================
+
+====================================
+
+
