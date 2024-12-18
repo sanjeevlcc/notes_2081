@@ -1,5 +1,21 @@
 
 
+
+
+
+
+
+********************************************************************
+********************************************************************
+
+01. Course Introduction
+
+********************************************************************
+********************************************************************
+
+
+
+
 Who is this course for?
 ============================
 The course is designed for Kubernetes/platform admins, platform/software developers, machine learning engineers, data scientists, data engineers, site reliability engineers, and anyone interested in understanding the anatomy of a machine learning tool kit that harnesses the true power of Kubernetes.
@@ -426,12 +442,192 @@ A duck detection model may seem like a silly example, but let’s consider it fo
 
 
 
+A Duck Image Detection Model
+================================
+
+
+What if we train a model to be an automated version of your duck watcher friend? We would need a model that our application asks, “Is this a duck?” much like sifting through all the pictures with a duck expert while asking similar questions. How would we train a duck detection model?
+
+We still need a duck expert for the first step, which is to prepare the dataset. Machine learning teams spend much time finding and curating data; this project is no exception! We must first manually label images of ducks as duck or not_duck. This manual labeling step is called human in the loop. Initially, humans have to intervene in processes like image detection.
+
+Humans create the labels themselves. The model is only as good as the data and the human’s ability to develop valuable labels. Adjusting the data to improve the model is a data-centric approach to AI. Tuning the model to work better with the data is called a model-centric approach to AI. 
+
+Human-in-the-Loop Machine Learning by Robert (Munro) Monarch is an excellent resource if you want to learn more.
+
+https://www.manning.com/books/human-in-the-loop-machine-learning
+
+https://www.cse.wustl.edu/~jain/cse591-18/ftp/ml_human.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+Pseudocode for Duck or Not_Duck Detection Using Machine Learning
+================================
+
+
+Continuing with our example, let's assume we have consulted an expert and have some labeled duck data that we trust. Now, let's look at some pseudocode for a duck-or-not-duck detection model that uses our duck data:
+
+// Step 1: Prepare the labeled dataset
+labeledData = loadDataset("duck_images_dataset.csv")
+// Example dataset format: [image_path, label]
+// label is either "duck" or "not_duck"
+
+// Step 2: Preprocess the data
+preprocessedData = preprocessData(labeledData)
+// Preprocessing steps include resizing images, normalizing pixel values, etc.
+
+// Step 3: Split the dataset into training and testing sets trainSet, testSet = splitDataset(preprocessedData, trainSize=0.8)
+
+// Step 4: Initialize the machine learning model
+// For simplicity, let's assume we're using a convolutional neural network (CNN) suitable for image classification
+model = initializeCNNModel()
+
+// Step 5: Train the model on the training set
+trainModel(model, trainSet)
+
+// Step 6: Evaluate the model on the testing set to check its performance
+evaluationResults = evaluateModel(model, testSet)
+print("Model accuracy on test set:", evaluationResults.accuracy)
+
+// Step 7: Use the trained model to predict new images
+function predictDuck(image):
+    preprocessedImage = preprocessImage(image)
+    prediction = model.predict(preprocessedImage)
+    if prediction == "duck":
+        return "This is a duck."
+    else:
+        return "This is not a duck."
+
+
+
+
+
+
+A Smarter Duck Detector
+================================
+
+
+We are making progress! We have a model that can predict whether or not the image is or is not a duck. We are now ready to sort some pictures. Or are we?
+
+The model can determine if the image is or is not a duck, but then what? We still need to create a book of duck photographs with the pictures. This step requires an application. The application will use the model to get an is_duck or not_duck response like any other function call, but can then use that value to do something with the duck image. Here is an example of a prediction response from our duck detection model:
+
+{
+  "prediction": "duck",
+  "confidence": 0.95,
+  "message": "This is a duck."
+}
+
+The prediction is the model's classification result, indicating that the image has been identified as a duck.
+
+The confidence is a decimal value representing the model's confidence in its prediction, on a scale from 0 to 1, where 1 indicates absolute certainty. In this case, the model is 95% confident in its prediction.
+
+The message provides a human-readable interpretation of the prediction, which directly corresponds to the outcome of the pseudo-code's conditional logic.
+
+
+
+
+
+
+
+
+Pseudocode for an Application Calling a Duck Identification Model
+================================
+
+
+Below is more pseudocode where our model puts the duck and not_duck images into a dictionary. We are using a dictionary for simplicity's sake, but the application will have the sorted pictures and can then build an online book or other output with those images.
+
+// Step 1: Load the pre-trained duck identification model
+model = loadModel("path/to/duck_identification_model")
+
+// Step 2: Define the path for input images
+inputImagePath = "path/to/input/images"
+
+// Step 3: Process and predict each image in the input path
+processImages(inputImagePath)
+
+// Function to load the pre-trained model
+function loadModel(modelPath):
+    // Load and return the model from the specified path
+    // This could involve deserializing the model file into a model object
+      return model
+
+// Function to process images in the specified path
+function processImages(imagePath):
+    // Retrieve a list of image files from the specified path
+    imageFiles = getImageFiles(imagePath)
+
+    // Loop through each image file
+    for imageFile in imageFiles:
+    // Load the image
+    image = loadImage(imageFile)
+
+    // Preprocess the image for the model
+    preprocessedImage = preprocessImageForModel(image)
+
+    // Predict if the image is a duck
+    isDuck = predictDuck(preprocessedImage, model)
+
+    // Initialize an empty dictionary to act as the fake "duck_book" object
+    duck_book = {"duck": [], "not_duck": []}
+
+    // Handle the prediction result
+    if isDuck:
+      print(imageFile + " is a duck.")
+      duck_book["duck"].append(imageFile)
+    else:
+      print(imageFile + " is not a duck.")
+      duck_book["not_duck"].append(imageFile)
+
+And just like that, our duck detector can now sift through our images and create a book. You might be asking:
+
+How does a model detect ducks if we didn’t explain to it what a ”duck” is?
+Does our model look for specific feather patterns, colors, beak size, or plumage?
+Do we teach models to detect a duck the same way we teach humans?
+
+
+
+
+
+
+
 ================================
 
 
 
 
+
 ================================
+
+
+
+
+
+================================
+
+
+
+
+
+================================
+
+
+
+
+
+================================
+
+
+
+
+
 
 
 ********************************************************************
