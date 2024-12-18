@@ -135,6 +135,179 @@ The Linux Foundation is the world’s leading home for collaboration on open sou
 
 
 
+Linux Foundation Events
+================================ https://events.linuxfoundation.org/
+
+Over 85,000 open source technologists and leaders worldwide gather at Linux Foundation events annually to share ideas, learn and collaborate. Linux Foundation events are the meeting place of choice for open source maintainers, developers, architects, infrastructure managers, and sysadmins and technologists leading open source program offices, and other critical leadership functions.
+
+These events are the best place to gain visibility within the open source community quickly and advance open source development work by forming connections with the people evaluating and creating the next generation of technology. They provide a forum to share and gain knowledge, help organizations identify software trends early to inform future technology investments, connect employers with talent, and showcase technologies and services to influential open source professionals, media, and analysts around the globe.
+
+To learn more about the Linux Foundation events and to register, click here.
+
+
+
+
+
+
+Linux Foundation Education
+================================
+https://training.linuxfoundation.org/?_gl=1%2A1a0zr5m%2A_gcl_au%2ANjU4OTY3MjE0LjE3MzA3MDI4ODY.%2A_ga%2AODkxMTgyNjEwLjE3MjI4MjQ3Nzc.%2A_ga_EMX7DDZMX4%2AMTczNDUxNjAyNS45LjEuMTczNDUxODI0MC42MC4wLjA.
+
+
+The Linux Foundation Education Group works with expert instructors and experienced open source developers to create training courses for every level of experience, from complete newbies to veteran developers, as well as certification exams which demonstrate your skills to potential employers in a trusted verifiable way.
+
+To get more information about specific courses and certification exams offered by the Linux Foundation, including technical requirements and other logistics, visit the Linux Foundation Education website.
+
+
+
+
+
+
+
+
+
+https://www.youtube.com/watch?v=jwG5sXJzC-c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************************************************
+********************************************************************
+02. The Model Application Relationship and the Power 
+of Reproducibility
+
+********************************************************************
+********************************************************************
+
+
+
+
+Chapter Overview
+================================
+
+Welcome! This course will prepare you for an exciting new role within the data world, whether that be a data scientist, machine learning engineer, or any other machine learning operations (MLOPs) role. The first path to success as a part of a machine learning-oriented team is understanding the landscape of machine learning development and deployment challenges. Still, since that topic is complex, we will take it one step at a time.
+
+
+
+
+
+Learning Objectives
+================================
+
+By the end of this chapter, you should be able to:
+
+Discuss the importance of reproducibility and replicability.
+Explain the value behind applications' containerization in the context of replicability, reproducibility, and model deployment.
+Discuss the model and application relationship.
+Define the term “features” in the context of ML/AI.
+
+
+Model or Application?
+================================
+
+
+Models and applications both work together to drive better business outcomes. New data professionals often have questions about how models and applications are related. Do we need applications if we have models? Do models replace the role of developers? This section will answer those questions by exploring how applications and models work together.
+
+
+
+
+
+
+
+
+
+What is a Model?
+================================
+
+
+A model takes data as a request and responds with a prediction based on learned patterns. Just like your brain tries to connect something it observes within the context of your life, the model takes in data and processes it to predict using its training experience. One typical example is a recommendation engine. A recommendation engine is a model that learns from your choices, like the movies you watch, to predict and suggest new ones you might like. It's like a friend who knows your tastes and recommends films based on what you've enjoyed. This engine constantly improves its suggestions by learning from your viewing history. In a recommendation model, the data includes user interaction data, such as items viewed, purchased, or rated; user demographic information; item attributes, like genre, author, and release date for movies or books; and sometimes contextual information, like the time of day or location. The prediction output contains items the user will likely be interested in. This prediction is based on analyzing the data to understand user preferences and behavior patterns and applying them to a distribution. In a movie recommendation system, the prediction could be the movies the user will likely enjoy watching based on their past viewing history and preferences.
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+********************************************************************
+********************************************************************
+xx
+********************************************************************
+********************************************************************
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
 
 
 
