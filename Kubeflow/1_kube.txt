@@ -539,7 +539,7 @@ The message provides a human-readable interpretation of the prediction, which di
 
 
 Pseudocode for an Application Calling a Duck Identification Model
-================================
+===================================================================
 
 
 Below is more pseudocode where our model puts the duck and not_duck images into a dictionary. We are using a dictionary for simplicity's sake, but the application will have the sorted pictures and can then build an online book or other output with those images.
@@ -597,20 +597,63 @@ Do we teach models to detect a duck the same way we teach humans?
 
 
 
-
+Deftly Dive into Duck Deep Learning
 ================================
 
 
 
+We are about to go deeper (no pun intended) than we need to, but for those wondering how a deep learning model learns, this section will help build a foundational understanding.
+
+The model identifies ducks in images, not by explicitly searching for specific features like a "green bill" or "webbed feet', but by analyzing more abstract patterns and characteristics through its layers. Like onions, deep learning networks contain layers. Each layer activates specific nodes at certain magnitudes to pass information onto the next layer. The first layer is called the input layer, and the final layer is the output layer. In a Convolutional Neural Network (CNN), the initial layers may begin by detecting simple edges and textures.
+
+In contrast, deeper layers combine these initial findings into more complex patterns that are not immediately recognizable to humans. These features would appear increasingly strange to humans as the data progresses through the network. The model learns these features during training by adjusting its internal parameters to reduce prediction errors, effectively identifying what combinations of abstract patterns map to a duck. The loss function is reduced through backpropagation and gradient descent to find a global minimum. The network leverages the chain rule for those who went through the pains of calculus. The chain rule is good for something besides tedious problem sets and is the star of backpropagation. The unique feature representation allows the model to generalize from the training data and accurately identify ducks in new, unseen images, even if the specific appearance varies widely from the examples it was trained on. We won’t need to go much deeper than that for this course. When using Kubeflow, we will have the power to use frameworks to build deep learning networks and kick-off training jobs. Here is a great video titled, "What is a Neural Network" that can help you digest this information if you are unfamiliar with deep learning or want to learn more. Again, do not worry if you don’t fully understand deep learning. It won’t impact your ability to succeed in this course.
 
 
+
+
+
+Convolutional Neural Network (CNN) : https://en.wikipedia.org/wiki/Convolutional_neural_network
+
+
+
+ loss function: https://developers.google.com/machine-learning/crash-course/linear-regression/loss
+
+backpropagation and gradient descent  : https://developers.google.com/machine-learning/crash-course/linear-regression/loss
+
+
+ chain rule : https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/a/chain-rule-review
+
+
+"What is a Neural Network: https://www.youtube.com/watch?v=aircAruvnKk
+
+
+
+
+
+
+The Application Summarized
 ================================
 
 
+While our example was a vast oversimplification, think of the model as the brain and the application as the body, taking actions based on the brain's outputted predictions from the data it receives. The success of your application results from a delicate balance between the application and the model. The model could be embedded in the application lifecycle or operate as a model as a service, where it is deployed as a cloud endpoint.
+
+Managing both the model lifecycle and application lifecycle can be complex, especially as we look to minimize technical debt. Technical debt is one of the consequences of prioritizing quick, immediate solutions in coding over more thorough, sustainable approaches. It involves a balance between solving problems fast and avoiding the creation of future issues due to hastily written code. Ignoring technical debt can lead to increased costs and complications. As the system evolves, integrating new features with old code becomes more difficult and expensive, similar to how unpaid loans accumulate interest over time. If you want to learn about machine learning technical debt, check out this Google research paper: "Machine Learning: The High Interest Credit Card of Technical Debt".
 
 
 
-================================
+"Machine Learning: The High Interest Credit Card of Technical Debt".
+https://research.google/pubs/machine-learning-the-high-interest-credit-card-of-technical-debt/
+
+
+
+https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43146.pdf
+
+
+
+
+
+Machine Learning Features and Feature Stores
+==================================================
 
 
 
