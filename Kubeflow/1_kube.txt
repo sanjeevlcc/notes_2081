@@ -1,4 +1,176 @@
 
+Introduction to AI/ML Toolkits with Kubeflow (LFS147)
+********************************************************
+
+
+
+
+01. Course Introduction
+
+            Course Information
+
+            The Linux Foundation
+
+
+02. The Model Application Relationship and the Power of Reproducibility
+
+            Introduction
+            
+            Models Versus Applications: Do We Still Need Both
+            
+            Machine Learning Features and Feature Stores
+            
+            The Value of Replicable, Reproducible, and Reliable Models
+            
+            Chapter Wrap-Up
+
+            Knowledge Check
+
+
+03. The Model Development Lifecycle
+
+            Introduction
+            
+            The Model Development Lifecycle
+            
+            Chapter Summary
+            
+            Knowledge Check
+
+
+4. MLOps and Machine Learning Toolkits
+
+            Introduction
+            
+            Are DevOps and MLOps the Same?
+            
+            Machine Learning Operations (MLOps)
+            
+            Machine Learning Toolkits
+            
+            Machine Learning Toolkit Components
+            
+            MLOps Maturity Levels
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+05. The Origin of Kubeflow
+
+            Introduction
+            
+            The Kubeflow Project
+            
+            Kubeflow’s Value Proposition
+            
+            Kubeflow's Architecture
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+06. Kubeflow Distributions
+
+            Introduction
+            
+            Open Source Contributors: Vendor or End User?
+            
+            Distributions: Open Core vs. Open Source
+            
+            Kubeflow Distributions and Raw Manifests
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+07. The Kubeflow Dashboard and Notebooks
+
+            Introduction
+            
+            The Kubeflow Central Dashboard
+            
+            Kubeflow Notebooks
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+
+
+08. The Unified Training Operator and Machine Learning Frameworks
+
+            Introduction
+            
+            Distributed Frameworks
+            
+            Complexity and Kubernetes
+            
+            The Kubeflow Training Operator and Supported Frameworks
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+09. Kubeflow Pipelines
+
+            Introduction
+            
+            The Importance of Task Scheduling and Pipelines
+            
+            How Containers Improve Task Scheduling
+            
+            Kubeflow Pipelines
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+10. Conquering Katib
+
+            Introduction
+            
+            Hyperparameter Tuning
+            
+            Intro to AutoML with Katib
+            
+            Katib Neural Architecture Search
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+11. Common Kubeflow Integrations
+
+            Introduction
+            
+            Volcano
+            
+            Kserve
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+12. Course Completion
+
+            Completing the Course
+             Notes
 
 
 
@@ -14,6 +186,11 @@
 ********************************************************************
 
 
+                        01. Course Introduction
+                        
+                                    Course Information
+                                    
+                                    The Linux Foundation
 
 
 Who is this course for?
@@ -219,11 +396,39 @@ of Reproducibility
 ********************************************************************
 ********************************************************************
 
+02. The Model Application Relationship and the Power of Reproducibility
+
+            Introduction
+            
+            Models Versus Applications: Do We Still Need Both
+            
+            Machine Learning Features and Feature Stores
+            
+            The Value of Replicable, Reproducible, and Reliable Models
+            
+            Chapter Wrap-Up
+            
+            Knowledge Check
+
+
+
+
+
+
+
+
+Introduction
+            Chapter Overview
+            Learning Objectives
 
 
 
 Chapter Overview
 ================================
+
+
+
+
 
 Welcome! This course will prepare you for an exciting new role within the data world, whether that be a data scientist, machine learning engineer, or any other machine learning operations (MLOPs) role. The first path to success as a part of a machine learning-oriented team is understanding the landscape of machine learning development and deployment challenges. Still, since that topic is complex, we will take it one step at a time.
 
@@ -652,9 +857,253 @@ https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/
 
 
 
+
+
+
+
+
+
 Machine Learning Features and Feature Stores
+Features
 ==================================================
 
+The term feature is one of those overloaded words in technology. Professionals from the application development world can justifiably confuse application features (i.e., specific functionalities or capabilities within a software application) with data science features ( the detailed attributes and indicators data scientists discover within datasets). This section seeks to demystify what we mean by features when exploring datasets during model development.
+
+When we created the Duck Detection Application earlier, we glossed over the features concept, but it is worth revisiting. In machine learning, features are like specific pieces of information that help the computer recognize patterns or make decisions—almost like clues in a puzzle that the computer uses to learn from data. For example, in our machine learning model designed to identify ducks, features might include the color of the feathers, the shape of the beak, the size of the duck, and the pattern of its quack. Each of these characteristics (or features) helps the computer learn to recognize whether a given image or sound is of a duck. The strange part of deep learning we discussed is that the features the deep learning network finds aren’t human-inputted. The network finds unique pixel mappings, edge detections, etc. Computers see the world differently. If we were to print the features the network finds and show them to a human, they wouldn’t think, “Of course, that is how you identify a duck.” Instead, a human might say, “What a bunch of gibberish!”. The complex nature of deep learning is why you might hear people referring to deep learning networks as “black boxes” since humans cannot easily interpret the model’s logic.
+
+
+
+
+
+
+
+
+Machine Learning Features and Feature Stores
+Feature Stores
+================================
+
+You may have heard of feature stores while exploring the ML/AI world. The feature store most widely adopted in the Kubeflow community is Feast, which is in alpha. The concept of a feature store is more closely associated with traditional machine learning workflows. It is a centralized location where engineered features are stored, managed, and accessed. These features are manually designed and extracted from the data before being used to train models. We will not go into any more details on the nature of feature stores or the Feast project, but If you want more information on Kubeflow’s features store integrations, you can explore the Kubeflow Documentation. Additionally, this Kaggle competition blog can help you understand a day in the life of a data scientist and where features come into play during model development.
+
+
+
+Feast: https://feast.dev/
+
+ Kubeflow Documentation: https://www.kubeflow.org/docs/external-add-ons/feast/introduction/
+
+
+
+ Kaggle competition blog  ;       https://towardsdatascience.com/predicting-the-survival-of-titanic-passengers-30870ccc7e8
+
+
+
+
+
+
+
+
+The Value of Replicable, Reproducible, and Reliable Models
+Previous Lesson
+Developing and Deploying our Duck Classifier
+================================
+
+
+As we dive into developing and deploying our duck detection model, we may improve it and make it a more robust Duck Classifier model, where we not only detect ducks but sort them into categories based on what type of duck they are. But before we go further, it's crucial to understand the principles of reproducibility and replicability. These concepts ensure our model's integrity and reliability and enhance its usability in real-world applications. This section will define these terms within the framework of our new duck classifier project and how containerization can help support our reproducibility and replicability objectives.
+
+
+
+
+
+
+
+The Value of Replicable, Reproducible, and Reliable Models
+Reproducibility
+================================
+
+
+In our Duck Classifier model, reproducibility means using the same dataset of duck and non-duck images, along with the identical model architecture and parameters, to achieve the same accuracy and performance metrics. This principle ensures that other developers or researchers can validate our findings and trust the model's reliability when using our exact setup. Achieving reproducibility involves meticulous documentation of our model's architecture (something many engineers dread), the training process, and the dataset used—ensuring that anyone with access to our resources can replicate our experiment with the same outcome. This step is critical for establishing the model's credibility and collaborative potential. Imagine a scenario where the next iteration of our duck model (the Duck Classifier) starts identifying ordinary mallards as rare mandarin ducks based on slight variations in lighting or background. Our predictions could lead to misinformed birdwatching enthusiasts, inadequate data collection for conservation efforts, or frustrated educators trying to engage students. Reproducibility ensures that it behaves as expected when we deploy our model in a classroom, a research project, or a mobile app for bird enthusiasts—delivering reliable and consistent classifications of ducks and non-duck entities alike.
+
+
+
+
+
+
+
+The Value of Replicable, Reproducible, and Reliable Models
+Replicability
+================================
+
+Replicability involves testing our Duck Classifier model with new, unseen datasets of bird images while maintaining the same model systems and expecting similar performance levels. This step is critical for demonstrating the model's utility across diverse real-world scenarios beyond the controlled conditions of the initial training set. Challenges in replicability include sourcing relevant and sufficiently varied new data that accurately represents the broader application context of duck identification—for instance, introducing images from different geographical locations, captured under various lighting conditions, or featuring ducks in dynamic postures. Successfully replicating our model's performance on new data underlines its robustness and adaptability. These are essential qualities for a tool designed for enthusiasts, researchers, and conservationists who may leverage your model.
+
+ 
+
+
+
+
+
+
+
+
+The Value of Replicable, Reproducible, and Reliable Models
+Determinism
+================================
+
+
+Reproducibility and replicability are two concepts that are closely related and fundamental concepts when it comes to scientific rigor and the model development lifecycle. This topic gets tricky when discussing determinism, which refers to the principle that any process or algorithm operates predictably, producing the same output for a given input every time. An algorithm's initial conditions, parameters, and input data determine its behavior without any randomness or unpredictability in its execution or outcomes. In deterministic machine learning models, if you replicate the training process with the same data and parameters, you will always obtain the same model with weights and biases, leading to identical predictions for the same input data. Determinism is crucial in contexts where reproducibility and consistency of results are essential, such as in safety-critical applications or when diagnosing issues and improving models. Here is a wonderful GTC Silicon Valley talk on the topic to learn more.
+
+
+GTC Silicon Valley talk  : https://www.youtube.com/watch?v=TB07_mUMt0U
+
+
+
+
+The Value of Replicable, Reproducible, and Reliable Models
+Containerization and Reproducibility
+================================
+
+
+
+The quest for reproducibility is a shared goal in site reliability and software engineering. Reproducibility illuminates how systems "scale and fail", which paves the way for innovations in reliability through technologies like containerization. Gone are the "well, it worked on my machine" discussions. Containerization brings a level of consistency and security previously unattainable, allowing us to build and deploy applications and, by extension, our Duck Classifier model that we know will run across the wild west of customer environments. Deploying our Duck Classifier model becomes a streamlined process, capable of execution anywhere a container runtime exists. Adopting a model registry akin to MLflow or utilizing object storage like MinIO enhances our model's reproducibility and manageability. These tools allow us to serialize and store our Duck Classifier model, making it readily deployable consistently, mirroring the containerization strategies of traditional applications. The serialization of models is an entirely different art form we will touch upon later. Still, it is how we can efficiently store our models and use a serverless pattern to pull a model and deploy it similarly to a container.
+
+
+
+
+ MLflow :            https://mlflow.org/
+
+ MinIO :              https://github.com/minio/minio               
+
+
+serialization of models            :https://en.wikipedia.org/wiki/Serialization
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Value of Replicable, Reproducible, and Reliable Models
+Containerization and Security
+================================
+
+
+
+
+Containerization's ability to build an application (or model) in different locations yet achieve identical outcomes verifiable by hashing is revolutionary. Hashing with build tools allows us to bet on consistency and repeatability. Two builds with the same inputs should output matching results—the term for identical inputs leading to similar outputs every time is idempotency.
+
+For a more in-depth explanation, consult Chapter 8: Release Engineering of The SRE Handbook.
+
+A real-world example of the critical nature of containerization is the infamous SolarWinds hack. Had the team built its update twice in two places and hashed them, they might have noticed the malicious code injection. Hashing ensures the integrity of build systems and safeguards against compromise. In our scenario, we could also deploy our model with Kubernetes, use authentication and authorization sidecar policies, and restrict network ingress and egress. Deploying a reproducible model in a packaged manner on Kubernetes to orchestrate the rest of the story can and will continue to improve our model’s security in layers.
+
+For more on software supply chain, check out these resources:
+
+The Sigstore project page
+kubernetes-sigs/bom
+
+
+
+ hashing : https://www.okta.com/identity-101/hashing-algorithms/
+
+Chapter 8: Release Engineering of The SRE Handbook.
+                        https://sre.google/sre-book/release-engineering/
+                        
+                        https://sre.google/sre-book/table-of-contents/
+
+
+
+ SolarWinds hack : https://www.npr.org/2021/04/16/985439655/a-worst-nightmare-cyberattack-the-untold-story-of-the-solarwinds-hack
+
+
+
+The Sigstore project page : https://www.sigstore.dev/
+
+
+kubernetes-sigs/bom:  https://github.com/kubernetes-sigs/bom
+
+
+
+
+
+
+
+
+
+
+
+
+
+Chapter Wrap-Up
+Chapter Summary
+================================
+
+
+The goal of this chapter was to walk through a pseudo-model development and deployment in preparation for a discussion around the model development lifecycle. We learned about the model-application relationship, the value of reproducibility and replicability, and what technologies can help support our machine-learning initiative.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************************************************
+********************************************************************
+03. The Model Development Lifecycle
+********************************************************************
+********************************************************************
+
+03. The Model Development Lifecycle
+
+            Introduction
+            
+            The Model Development Lifecycle
+            
+            Chapter Summary
+            
+            Knowledge Check
+
+
+
+
+
+
+
+
+
+            Introduction
+                        Chapter Overview
+                        Learning Objectives
+
+
+Introduction
+Chapter Overview
+================================
+
+
+What framework do we use to help understand the birth and retirement of a model? Where do we start when we want to build a model that provides value to the business? What tools do we use? This chapter will answer all of these questions as we explore the model development life cycle.
+
+
+
+
 
 
 
@@ -665,10 +1114,189 @@ Machine Learning Features and Feature Stores
 
 
 
+
+
+
+
+
 ================================
 
 
 
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
+
+
+
+
+================================
 
 
 
@@ -684,12 +1312,8 @@ xx
 
 
 
-================================
 
 
-
-
-================================
 
 
 
@@ -699,8 +1323,681 @@ xx
 
 
 
+
+
+
+
+
+
 ================================
 
 
 
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+********************************************************************
+********************************************************************
+xx
+********************************************************************
+********************************************************************
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+********************************************************************
+********************************************************************
+xx
+********************************************************************
+********************************************************************
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+********************************************************************
+********************************************************************
+xx
+********************************************************************
+********************************************************************
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+********************************************************************
+********************************************************************
+xx
+********************************************************************
+********************************************************************
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
+
+
+
+
+
+
+
+================================
 
