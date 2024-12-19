@@ -1127,10 +1127,80 @@ Explain data-centric vs. model-centric model development.
 
 
 
+                                                                                                                                    
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Model Development Lifecycle
+            A Model for Model Development
+            The Problem Definition and Scoping Stage
+            Duck Application Problem Definition
+            Data Extraction Stage
+            Data Analysis Stage
+            Data Preparation Stage
+            Model Training Stage
+            The Data in Data Science
+            Model Serving
+            Model Monitoring
+            Model Retiring
+
+
+
+
+
+
+
+
+
+
+
+
+The Model Development Lifecycle
+A Model for Model Development
+================================
+The model development lifecycle is the journey from concept to development to retiring a model. We know execution matters for many ML professionals, so think of the model development lifecycle as a framework you can use to plan out your machine learning project and create a cohesive path to production. Not all teams will formally follow each of these steps. The model development lifecycle is there merely to provide guidance. Sometimes, teams are small enough that one person can handle multiple steps alone. Once teams begin to scale, they will specialize and consider a more robust model development lifecycle strategy. This section is about the stages of the model development life cycle and how an organization can begin implementing them.
+
+
+
+            ................................................................................................................................................................................
+                        Define the Problem -> Data Extraction -> Data Analysis -> Data Preparation -> Model Training -> Model Serving -> Model Monitoring -> Model Retirement            ................................................................................................................................................................................
+            
+            
+
+
+
+
+
+
+ The Model Development Lifecycle
+The Problem Definition and Scoping Stage
 ================================
 
 
+The first stage of the model development lifecycle is about scoping and determining if we can solve a problem with data. To be successful at this stage, organizations must have an apparent problem they are trying to solve. Without a clear problem statement, the rest of the model development lifecycle becomes infinitely more complicated.
+
+Some questions that need answering are:
+
+What problem are you trying to solve?
+How can data help you solve it?
+If a non-autonomous system or person were to solve this problem, what steps/skills/information would they require to get the job done?
 
 
 
@@ -1138,9 +1208,21 @@ Explain data-centric vs. model-centric model development.
 
 
 
-
+The Model Development Lifecycle
+Duck Application Problem Definition
 ================================
 
+Our previously discussed Duck Classifier project uses machine learning to accurately identify and classify duck images among various other bird species from a collection of wildlife photographs.
+
+We are addressing the following problem statement:
+
+We require a system that enables users to classify ducks in images easily without needing Avian biology or machine learning expertise. Although we possess a comprehensive dataset of bird images, we aim to direct users efficiently to specific information about ducks, including visual characteristics and species details, based on their queries. Our application requires an intuitive interface that doesn't demand users to learn complex query languages or undergo extensive training to use the application.
+
+This scenario calls for a deep-learning model capable of accurately analyzing images and distinguishing ducks from other birds. The goal is clear. We want to provide an automated solution that feels seamless for the user, akin to having a knowledgeable guide (previously our duck-watching friend) who can instantly identify ducks in any photograph.
+
+We understand that just like a skilled birder uses years of experience and knowledge to identify species, our model needs to learn from a large and diverse dataset of bird images. The dataset should include ducks and similar-looking species to ensure the model can discern subtle differences and accurately classify pictures. We may need more than one dataset if we need a larger distribution of image types. Providing the model with its knowledge base of images will ensure it aligns with expert identification methods and delivers reliable results.
+
+By defining what we need from the model and the application, we're setting the stage for developing a user-friendly tool that empowers enthusiasts, researchers, and the curious public to recognize and learn about ducks in their natural habitats.
 
 
 
@@ -1148,21 +1230,55 @@ Explain data-centric vs. model-centric model development.
 
 
 
-
-
+The Model Development Lifecycle
+Data Extraction Stage
 ================================
 
+The adventure begins as we access the crucial data to train our model to distinguish ducks from other birds. 
+You might have heard the saying, "Data is the new oil." Well, that rings especially true here. However, just 
+like drilling for oil, extracting data comes with challenges and considerations.
+
+Key Factors to Consider During Data Extraction
+
+            Close Access to Data
+                        Do we have the means to access high-quality images of ducks and other birds necessary
+                        for training our model? Securing a diverse and comprehensive dataset is crucial for the model to 
+                        learn effectively.
+            
+            Close Data Gathering Methods
+                        How are we collecting these images? Are we using publicly available datasets, partnering
+                        with duck groups, or deploying field teams to capture the data firsthand?
+            
+            Close Volume of Data
+                        Is the dataset large and varied enough to cover the multitude of duck species, their habitats, and 
+                        behaviors, ensuring our model can generalize well across different scenarios? Not having balanced
+                        data can become problematic when we run into overfitting, where the model may not recognize the
+                        features of less common ducks. We may need to use techniques like the Synthetic Minority Over-sampling 
+                        Technique (SMOTE) or other tools to improve our dataset.
+                        https://arxiv.org/abs/1106.1813
+            
+            
+            Close Data Freshness
+                        How current is our data? For the model to remain relevant, it is trained on recent
+                        images that reflect the current state of duck populations and their environments.
+            
+            Close Data Format and Accessibility
+                        Is the data structured for efficient querying and processing? Ensuring the data is 
+                        usable is critical for smooth progression through the model development stages.
 
 
 
 
 
 
+Navigating these questions highlights the complex problem of effectively structuring, storing, gathering, and accessing data—a task where data engineers shine as unsung heroes. While data scientists and machine learning engineers often have more star power, the data engineers lay the groundwork by ensuring the data pipeline is robust, scalable, and efficient.
 
+Tools
+At this stage, the following ETL (Extract, Transform, Load) tools are often used: https://aws.amazon.com/what-is/etl/
 
-
-================================
-
+Talend                        https://www.talend.com/
+Apache Beam                        https://beam.apache.org/
+ 
 
 
 
