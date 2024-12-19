@@ -1287,14 +1287,45 @@ Apache Beam                        https://beam.apache.org/
 
 
 
-
+The Model Development Lifecycle
+Data Analysis Stage
 ================================
 
 
+The data analysis stage is a crucial exploration of our dataset's heart. In this phase, we GO DEEP into the imagery of ducks and other bird subjects, aiming to unravel the features that will inform our model's learning process.
+
+
+Key Factors to Consider During Data Analysis
+
+Close Data Relevance
+Does our dataset contain the right mix of images to train our model effectively? We cannot feed our network the same picture or pictures with the ducks doing the same thing. We need diversity because, in the real world, ducks can be in all sorts of environments, and we want to be able to classify them effectively.
+
+Close Feature Importance
+What aspects of the images are crucial for distinguishing ducks from other birds? Identifying key features, be it color, texture, shape, or background elements, is fundamental in teaching our model to recognize ducks accurately.
+
+Close Data Cleaning
+What anomalies or inconsistencies need addressing in our dataset? Cleaning the data might involve removing duplicates, correcting labels, or filtering out low-quality images to ensure our model trains on the best possible data. Giving the model poorly labeled or bad images will impact our results. Imagine having 3,000 images of ducks and needing 1,000 pictures tagged. How would you know all 1,000 images are accurate and not the root of your modeling woes? What does a “good label” look like? Teams have to write labeling guides. Here is a great blog titled "How to Write Data Labeling/Annotation Guidelines" that walks through this painful yet necessary task. Your labelers are also human and can inject bias into your models.            https://eugeneyan.com/writing/labeling-guidelines/
+
+
+Close Feature Engineering
+Are there features we need to develop or extract to enhance our model's learning capability? This step could involve creating new attributes, such as identifying specific duck patterns or behaviors from the images that are not immediately apparent but may significantly impact the model's accuracy.
 
 
 
 
+
+Tools
+At this stage, standard tools like Pandas are used for data manipulation, and Matplotlib or Seaborn are used for data visualization. Additionally, notebooks offer an interactive environment where these analyses can be performed, documented, and shared.
+
+
+
+https://pandas.pydata.org/
+
+https://matplotlib.org/
+
+https://seaborn.pydata.org/
+
+https://www.kubeflow.org/docs/components/notebooks/
 
 
 
