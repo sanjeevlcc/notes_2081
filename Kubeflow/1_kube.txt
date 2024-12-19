@@ -1,4 +1,7 @@
 
+test in pro, or live in lie
+
+
 Introduction to AI/ML Toolkits with Kubeflow (LFS147)
 ********************************************************
 
@@ -1106,11 +1109,17 @@ What framework do we use to help understand the birth and retirement of a model?
 
 
 
-
-
+Introduction
+Learning Objectives
 ================================
 
 
+By the end of this chapter, you should be able to:
+
+Discuss the individual steps of the model development lifecycle and their purpose.
+Define common pain points for the individual steps within the model development lifecycle.
+Review some of the tools used as part of the specific steps in the model development lifecycle.
+Explain data-centric vs. model-centric model development.
 
 
 
