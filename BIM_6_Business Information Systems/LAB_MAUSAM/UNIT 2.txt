@@ -1,6 +1,14 @@
 
 
 
+Six Sigma
+---------------
+Six Sigma is a set of methodologies and tools used to improve business
+processes by reducing defects and errors, minimizing variation, and increasing
+quality and efficiency. The goal of Six Sigma is to achieve a level of quality
+that is nearly perfect, with only 3.4 defects per million opportunities.
+
+
 
 
 https://www.simplilearn.com/what-is-six-sigma-a-complete-overview-article#:~:text=Six%20Sigma%20is%20a%20set,3.4%20defects%20per%20million%20opportunities.
