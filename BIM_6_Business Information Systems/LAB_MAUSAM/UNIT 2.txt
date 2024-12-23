@@ -1,1 +1,189 @@
-sa
+
+
+
+
+
+https://www.simplilearn.com/what-is-six-sigma-a-complete-overview-article#:~:text=Six%20Sigma%20is%20a%20set,3.4%20defects%20per%20million%20opportunities.
+
+
+https://www.itea.org/wp-content/uploads/2021/07/1-2_Introduction-to-Lean-Six-Sigma.pdf
+
+
+
+
+
+
+
+LAB 
+---------------------
+
+
+
+
+STEP 1
+----------
+
+      killercoda.com/killer-shell-cka/scenario/playground
+
+
+STEP 2
+----------
+
+    docker run -d -p 8888:8888 huma11994/ml2025
+
+
+
+
+                           ---------
+                              CASE
+                            ---------
+Six Sigma case scenario for iPhone production, let's
+assume the production of 1 million (10 lakh) 
+iPhone 15 units in 2024. 
+
+
+            
+            
+            We will calculate the number of defective pieces for different 
+            Sigma levels (3, 4, 5, and 6 Sigma), 
+            analyze standard deviation (SD), 
+            mean, 
+            variance,
+            and create relevant visualizations 
+            such as a normal distribution graph and 
+            sigma-level graphs using Python.
+            
+            
+            
+            Here is the breakdown for each sigma level:
+            
+            Six Sigma: 3.4 defects per million units (DPMO).
+            Five Sigma: 233 defects per million units.
+            Four Sigma: 6,210 defects per million units.
+            Three Sigma: 66,807 defects per million units.
+            
+
+
+
+Python Code 
+
+---------------------------------------------------------
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Total production
+total_production = 1000000
+
+# Defects per million for different sigma levels
+defects_per_million = {
+    '3 Sigma': 66807,  # 3 defects per 1000 units
+    '4 Sigma': 6210,   # 4 defects per 1000 units
+    '5 Sigma': 233,    # 5 defects per 1000 units
+    '6 Sigma': 3.4     # 6 defects per 1000 units
+}
+
+# Calculate the number of defective pieces for each sigma level
+defective_pieces = {sigma: int(total_production * (defects / 1000000)) for sigma, defects in defects_per_million.items()}
+
+# Print defective pieces for each sigma level
+for sigma, defective in defective_pieces.items():
+    print(f"{sigma}: {defective} defective pieces")
+
+# Create a normal distribution for defect analysis (for 6 Sigma case)
+mean = 0  # Assuming mean defects is 0
+sd = 3.4  # Standard deviation corresponding to 6 Sigma
+x = np.linspace(-4 * sd, 4 * sd, 1000)  # Creating a range for the x-axis
+y = (1/(sd * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mean)/sd)**2)  # Normal distribution formula
+
+# Create a plot
+plt.figure(figsize=(10, 6))
+plt.plot(x, y, label="Normal Distribution (6 Sigma)", color='b')
+plt.fill_between(x, y, color='skyblue', alpha=0.5)
+plt.title('Defect Distribution for 6 Sigma', fontsize=16)
+plt.xlabel('Defective Pieces (Deviation from Mean)', fontsize=12)
+plt.ylabel('Probability Density', fontsize=12)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Now let's plot a graph for defects at different sigma levels
+
+# Sigma level vs defective pieces
+sigma_levels = ['3 Sigma', '4 Sigma', '5 Sigma', '6 Sigma']
+defective_counts = list(defective_pieces.values())
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x=sigma_levels, y=defective_counts, palette='viridis')
+plt.title('Defective Pieces at Different Sigma Levels', fontsize=16)
+plt.xlabel('Sigma Level', fontsize=12)
+plt.ylabel('Number of Defective Pieces', fontsize=12)
+plt.grid(True)
+plt.show()
+
+# Statistics: Mean, Variance, and Standard Deviation
+mean_defects = np.mean(defective_counts)
+variance_defects = np.var(defective_counts)
+std_dev_defects = np.std(defective_counts)
+
+print(f"Mean Defective Pieces: {mean_defects}")
+print(f"Variance of Defective Pieces: {variance_defects}")
+print(f"Standard Deviation of Defective Pieces: {std_dev_defects}")
+
+
+----------------------------------------------------------------------------
+            3 Sigma: 66807 defective pieces
+            4 Sigma: 6210 defective pieces
+            5 Sigma: 233 defective pieces
+            6 Sigma: 3 defective pieces
+
+
+
+
+
+          Mean Defective Pieces: 18313.25
+          Variance of Defective Pieces: 790073286.1875
+          Standard Deviation of Defective Pieces: 28108.242317645905
+
+
+
+
+Explanation:
+------------
+    Defective Pieces Calculation:
+        We calculate the number of defective pieces
+        based on the defects per million for each sigma level.
+    
+    
+    Normal Distribution Graph: 
+        For the 6 Sigma case, 
+        we assume a mean of zero and a standard deviation corresponding 
+        to the 6 Sigma defect rate. A normal distribution graph is generated 
+        to show the defect distribution.
+        
+    
+    Bar Plot for Defective Pieces: 
+        This shows the number of defective pieces at each sigma level.
+    
+    
+    Statistics (Mean, Variance, and Standard Deviation): 
+        These are calculated and printed to give insights into the 
+        distribution of defective pieces.
+    
+
+
+Expected Output:
+------------------
+Defective pieces for each sigma level (3 Sigma, 4 Sigma, 5 Sigma, and 6 Sigma).
+
+A graph showing the normal distribution for the 6 Sigma case.
+
+A bar graph comparing the number of defective pieces at different sigma levels.
+
+Mean, Variance, and Standard Deviation of defective pieces across the sigma levels.
+
+
+
+
+
+
