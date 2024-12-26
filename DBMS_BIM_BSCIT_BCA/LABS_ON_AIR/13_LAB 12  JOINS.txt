@@ -2556,6 +2556,571 @@ Find the guest who has the longest total stay across all bookings.
 ****************************************************************************************************
 
 
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    date_of_birth DATE
+);
+
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    course_duration INT
+);
+
+CREATE TABLE enrollments (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    enrollment_date DATE,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+
+
+
+
+
+-- Insert students
+INSERT INTO students (student_id, first_name, last_name, date_of_birth) VALUES
+(1, 'Sita', 'Sharma', '2000-01-15'),
+(2, 'Hari', 'Shrestha', '1999-12-10'),
+(3, 'Aarav', 'Pandit', '2001-03-25'),
+(4, 'Pooja', 'Chhetri', '2000-07-11'),
+(5, 'Ravi', 'Koirala', '1998-05-18'),
+(6, 'Sanjay', 'Rai', '2000-02-28'),
+(7, 'Nisha', 'Tamang', '2001-09-05'),
+(8, 'Ram', 'Bhandari', '2000-06-23'),
+(9, 'Krishna', 'Adhikari', '1999-10-30'),
+(10, 'Maya', 'Thapa', '2001-11-12'),
+(11, 'Gita', 'Yadav', '1998-04-22'),
+(12, 'Suman', 'Gurung', '2001-08-13'),
+(13, 'Kiran', 'Maharjan', '2000-03-19'),
+(14, 'Deepa', 'Poudel', '2001-01-06'),
+(15, 'Bikash', 'Bista', '1999-07-07');
+
+-- Insert courses
+INSERT INTO courses (course_id, course_name, course_duration) VALUES
+(1, 'Computer Science', 4),
+(2, 'Mathematics', 3),
+(3, 'Physics', 2),
+(4, 'Engineering', 5),
+(5, 'English', 2);
+
+-- Insert enrollments
+INSERT INTO enrollments (enrollment_id, student_id, course_id, enrollment_date) VALUES
+(1, 1, 1, '2023-02-15'),
+(2, 2, 2, '2023-03-12'),
+(3, 3, 3, '2023-04-10'),
+(4, 4, 4, '2023-05-22'),
+(5, 5, 5, '2023-06-25'),
+(6, 6, 1, '2023-07-19'),
+(7, 7, 2, '2023-08-14'),
+(8, 8, 3, '2023-09-23'),
+(9, 9, 4, '2023-10-18'),
+(10, 10, 5, '2023-11-05'),
+(11, 11, 1, '2023-12-07'),
+(12, 12, 2, '2024-01-15'),
+(13, 13, 3, '2024-02-20'),
+(14, 14, 4, '2024-03-12'),
+(15, 15, 5, '2024-04-03');
+
+
+
+
+
+
+SQL Join Operations
+--------------------
+
+Inner Join (students and enrollments):
+---------------------------------------------
+SELECT s.first_name, s.last_name, e.enrollment_date
+FROM students s
+INNER JOIN enrollments e ON s.student_id = e.student_id;
+
+
++------------+-----------+-----------------+
+| first_name | last_name | enrollment_date |
++------------+-----------+-----------------+
+| Sita       | Sharma    | 2023-02-15      |
+| Hari       | Shrestha  | 2023-03-12      |
+| Aarav      | Pandit    | 2023-04-10      |
+| Pooja      | Chhetri   | 2023-05-22      |
+| Ravi       | Koirala   | 2023-06-25      |
+| Sanjay     | Rai       | 2023-07-19      |
+| Nisha      | Tamang    | 2023-08-14      |
+| Ram        | Bhandari  | 2023-09-23      |
+| Krishna    | Adhikari  | 2023-10-18      |
+| Maya       | Thapa     | 2023-11-05      |
+| Gita       | Yadav     | 2023-12-07      |
+| Suman      | Gurung    | 2024-01-15      |
+| Kiran      | Maharjan  | 2024-02-20      |
+| Deepa      | Poudel    | 2024-03-12      |
+| Bikash     | Bista     | 2024-04-03      |
++------------+-----------+-----------------+
+
+
+
+
+
+
+Inner Join (students, enrollments, and courses):
+----------------------------------------------------
+SELECT s.first_name, s.last_name, e.enrollment_date
+FROM students s
+LEFT JOIN enrollments e ON s.student_id = e.student_id;
+
+
++------------+-----------+------------------+-----------------+
+| first_name | last_name | course_name      | enrollment_date |
++------------+-----------+------------------+-----------------+
+| Sita       | Sharma    | Computer Science | 2023-02-15      |
+| Sanjay     | Rai       | Computer Science | 2023-07-19      |
+| Gita       | Yadav     | Computer Science | 2023-12-07      |
+| Hari       | Shrestha  | Mathematics      | 2023-03-12      |
+| Nisha      | Tamang    | Mathematics      | 2023-08-14      |
+| Suman      | Gurung    | Mathematics      | 2024-01-15      |
+| Aarav      | Pandit    | Physics          | 2023-04-10      |
+| Ram        | Bhandari  | Physics          | 2023-09-23      |
+| Kiran      | Maharjan  | Physics          | 2024-02-20      |
+| Pooja      | Chhetri   | Engineering      | 2023-05-22      |
+| Krishna    | Adhikari  | Engineering      | 2023-10-18      |
+| Deepa      | Poudel    | Engineering      | 2024-03-12      |
+| Ravi       | Koirala   | English          | 2023-06-25      |
+| Maya       | Thapa     | English          | 2023-11-05      |
+| Bikash     | Bista     | English          | 2024-04-03      |
++------------+-----------+------------------+-----------------+
+
+
+
+
+
+
+
+
+
+
+List the students who have enrolled in the 'Computer Science' course.
+-------------------------------------------------------------------
+
+
+SELECT s.first_name, s.last_name
+FROM students s
+INNER JOIN enrollments e ON s.student_id = e.student_id
+INNER JOIN courses c ON e.course_id = c.course_id
+WHERE c.course_name = 'Computer Science';
+
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Sita       | Sharma    |
+| Sanjay     | Rai       |
+| Gita       | Yadav     |
++------------+-----------+
+
+
+
+
+
+
+
+Find the students who are enrolled in both 'Computer Science' 
+and 'Mathematics' courses.
+-------------------------------------------------------------------
+
+SELECT s.first_name, s.last_name
+FROM students s
+INNER JOIN enrollments e ON s.student_id = e.student_id
+INNER JOIN courses c ON e.course_id = c.course_id
+WHERE c.course_name IN ('Computer Science', 'Mathematics')
+GROUP BY s.student_id
+HAVING COUNT(DISTINCT c.course_id) = 2;
+
+
+
+
+Empty set (0.02 sec)
+
+
+
+
+
+
+
+Get the students who are enrolled in courses but not in the 'Engineering' course.
+-------------------------------------------------------------------
+
+SELECT s.first_name, s.last_name
+FROM students s
+INNER JOIN enrollments e ON s.student_id = e.student_id
+INNER JOIN courses c ON e.course_id = c.course_id
+WHERE c.course_name != 'Engineering';
+
+
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Sita       | Sharma    |
+| Sanjay     | Rai       |
+| Gita       | Yadav     |
+| Hari       | Shrestha  |
+| Nisha      | Tamang    |
+| Suman      | Gurung    |
+| Aarav      | Pandit    |
+| Ram        | Bhandari  |
+| Kiran      | Maharjan  |
+| Ravi       | Koirala   |
+| Maya       | Thapa     |
+| Bikash     | Bista     |
++------------+-----------+
+
+
+
+
+
+
+
+
+
+Find the names of students who are enrolled in more than one course.
+-------------------------------------------------------------------
+
+
+SELECT s.first_name, s.last_name
+FROM students s
+INNER JOIN enrollments e ON s.student_id = e.student_id
+GROUP BY s.student_id
+HAVING COUNT(e.course_id) > 1;
+
+Empty set (0.08 sec)
+
+
+
+
+
+
+
+
+
+List students and the names of the courses they are enrolled in, showing 'No Course' for those who have not enrolled in any course.
+-------------------------------------------------------------------
+
+
+
+SELECT s.first_name, s.last_name, COALESCE(c.course_name, 'No Course') AS course_name
+FROM students s
+LEFT JOIN enrollments e ON s.student_id = e.student_id
+LEFT JOIN courses c ON e.course_id = c.course_id;
+
+
+
++------------+-----------+------------------+
+| first_name | last_name | course_name      |
++------------+-----------+------------------+
+| Sita       | Sharma    | Computer Science |
+| Hari       | Shrestha  | Mathematics      |
+| Aarav      | Pandit    | Physics          |
+| Pooja      | Chhetri   | Engineering      |
+| Ravi       | Koirala   | English          |
+| Sanjay     | Rai       | Computer Science |
+| Nisha      | Tamang    | Mathematics      |
+| Ram        | Bhandari  | Physics          |
+| Krishna    | Adhikari  | Engineering      |
+| Maya       | Thapa     | English          |
+| Gita       | Yadav     | Computer Science |
+| Suman      | Gurung    | Mathematics      |
+| Kiran      | Maharjan  | Physics          |
+| Deepa      | Poudel    | Engineering      |
+| Bikash     | Bista     | English          |
++------------+-----------+------------------+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
