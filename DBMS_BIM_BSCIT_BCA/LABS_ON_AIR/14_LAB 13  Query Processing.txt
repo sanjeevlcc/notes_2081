@@ -4,6 +4,10 @@ Here are three tables for a restaurant management system:
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+create database d1;
+use d1;
+
+
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY AUTO_INCREMENT,
     FullName VARCHAR(50),
@@ -363,6 +367,14 @@ WHERE patient_id IN (
 );
 
 
++--------------+
+| patient_name |
++--------------+
+| Mohan Kumar  |
++--------------+
+
+
+
 
 
 
@@ -377,7 +389,11 @@ WHERE dep.department_name = 'Cardiology';
 
 
 
-
++--------------+----------------+-----------------+------------------+
+| patient_name | doctor_name    | department_name | appointment_date |
++--------------+----------------+-----------------+------------------+
+| Mohan Kumar  | Dr. Arjun Rana | Cardiology      | 2024-12-30       |
++--------------+----------------+-----------------+------------------+
 
 
 
@@ -396,7 +412,11 @@ WHERE department_name = 'Cardiology';
 
 
 
-
++--------------+----------------+-----------------+------------------+
+| patient_name | doctor_name    | department_name | appointment_date |
++--------------+----------------+-----------------+------------------+
+| Mohan Kumar  | Dr. Arjun Rana | Cardiology      | 2024-12-30       |
++--------------+----------------+-----------------+------------------+
 
 ***************************************************************
 ***************************************************************
