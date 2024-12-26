@@ -207,3 +207,200 @@ JOIN Menu ON Orders.MenuID = Menu.MenuID;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************************
+***************************************************************
+***************************************************************
+
+The tables might represent different entities like
+Patients, Doctors, Departments, Appointments, and Bills
+
+
+
+
+
+
+CREATE DATABASE db1;
+USE db1;
+
+
+
+CREATE TABLE Patients (
+    patient_id INT PRIMARY KEY AUTO_INCREMENT,
+    patient_name VARCHAR(100) NOT NULL,
+    date_of_birth DATE,
+    gender VARCHAR(10),
+    address VARCHAR(255)
+);
+
+
+CREATE TABLE Doctors (
+    doctor_id INT PRIMARY KEY AUTO_INCREMENT,
+    doctor_name VARCHAR(100) NOT NULL,
+    specialty VARCHAR(100),
+    contact_number VARCHAR(15)
+);
+
+
+
+CREATE TABLE Departments (
+    department_id INT PRIMARY KEY AUTO_INCREMENT,
+    department_name VARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE Appointments (
+    appointment_id INT PRIMARY KEY AUTO_INCREMENT,
+    patient_id INT,
+    doctor_id INT,
+    department_id INT,
+    appointment_date DATE,
+    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id),
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id),
+    FOREIGN KEY (department_id) REFERENCES Departments(department_id)
+);
+
+
+
+CREATE TABLE Bills (
+    bill_id INT PRIMARY KEY AUTO_INCREMENT,
+    appointment_id INT,
+    total_amount DECIMAL(10, 2),
+    payment_status VARCHAR(20),
+    FOREIGN KEY (appointment_id) REFERENCES Appointments(appointment_id)
+);
+
+
+
+INSERT INTO Patients (patient_name, date_of_birth, gender, address) VALUES
+('Sita Kumari', '1990-05-12', 'Female', 'Kathmandu'),
+('Ram Bahadur', '1985-09-10', 'Male', 'Pokhara'),
+('Geeta Devi', '1972-03-25', 'Female', 'Lalitpur'),
+('Mohan Kumar', '1995-11-15', 'Male', 'Butwal'),
+('Shiv Mani', '1980-06-08', 'Male', 'Dharan');
+
+
+
+
+
+INSERT INTO Doctors (doctor_name, specialty, contact_number) VALUES
+('Dr. Kumar Shrestha', 'General Surgeon', '9841234567'),
+('Dr. Meena Rai', 'Pediatrics', '9847654321'),
+('Dr. Sunita Thapa', 'Gynecology', '9811122334'),
+('Dr. Arjun Rana', 'Cardiology', '9800112233'),
+('Dr. Deepa Karki', 'Orthopedics', '9800556677');
+
+
+
+
+
+INSERT INTO Departments (department_name) VALUES
+('Surgery'),
+('Pediatrics'),
+('Gynecology'),
+('Cardiology'),
+('Orthopedics');
+
+
+
+
+INSERT INTO Appointments (patient_id, doctor_id, department_id, appointment_date) VALUES
+(1, 1, 1, '2024-12-27'),
+(2, 2, 2, '2024-12-28'),
+(3, 3, 3, '2024-12-29'),
+(4, 4, 4, '2024-12-30'),
+(5, 5, 5, '2024-12-31');
+
+
+
+INSERT INTO Bills (appointment_id, total_amount, payment_status) VALUES
+(1, 1500.00, 'Paid'),
+(2, 1200.00, 'Pending'),
+(3, 1800.00, 'Paid'),
+(4, 2000.00, 'Pending'),
+(5, 1000.00, 'Paid');
+
+
+
+Example: Get patients who have appointments with doctors in the Cardiology department.
+
+
+Without optimization (using a nested select):
+
+SELECT patient_name 
+FROM Patients
+WHERE patient_id IN (
+    SELECT patient_id
+    FROM Appointments
+    WHERE department_id = (
+        SELECT department_id
+        FROM Departments
+        WHERE department_name = 'Cardiology'
+    )
+);
+
+
+
+
+
+
+Optimized with JOIN:
+SELECT p.patient_name, d.doctor_name, dep.department_name, a.appointment_date
+FROM Appointments a
+JOIN Patients p ON a.patient_id = p.patient_id
+JOIN Doctors d ON a.doctor_id = d.doctor_id
+JOIN Departments dep ON a.department_id = dep.department_id
+WHERE dep.department_name = 'Cardiology';
+
+
+
+
+
+
+
+Common Table Expressions (CTE)
+Optimized with CTE:
+
+WITH AppointmentDetails AS (
+    SELECT p.patient_name, d.doctor_name, dep.department_name, a.appointment_date
+    FROM Appointments a
+    JOIN Patients p ON a.patient_id = p.patient_id
+    JOIN Doctors d ON a.doctor_id = d.doctor_id
+    JOIN Departments dep ON a.department_id = dep.department_id
+)
+SELECT * FROM AppointmentDetails
+WHERE department_name = 'Cardiology';
+
+
+
+
+
+***************************************************************
+***************************************************************
+***************************************************************
+
+
+
