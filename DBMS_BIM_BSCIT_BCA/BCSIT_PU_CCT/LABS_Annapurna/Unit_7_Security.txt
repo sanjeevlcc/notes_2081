@@ -15,11 +15,11 @@ docker exec -ti mydb1 mysql -u root -p
 
 
 
-
+********************************************************************************
 ********************************************************************************
 Granting and Revoking Privileges:
 ********************************************************************************
-
+********************************************************************************
 
 
 
@@ -465,6 +465,258 @@ REVOKE INSERT, UPDATE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 
 
 -- Revoke DELETE privilege from all users on Student table
 REVOKE DELETE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************************************
+********************************************************
+Database Security in SQL
+******************************************************** HASHING via md5 / encryption and decryption of data ......
+********************************************************
+
+
+
+
+
+
+
+SQL Script for Database Creation and Data Insertion
+---------------------------------------------------
+-- Step 1: Create the database
+CREATE DATABASE secure_base;
+use secure_base
+
+
+
+
+
+-- Step 2: Create a table with encryption capability
+CREATE TABLE momo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name NVARCHAR(50) NOT NULL,
+    address NVARCHAR(100) NOT NULL,
+    username NVARCHAR(50) NOT NULL,
+    password VARBINARY(256) NOT NULL
+);
+
+
+                                                NVARCHAR and VARCHAR are data types 
+                                                used in databases to store text.
+                                                Here's a comparison of the two:
+                                                
+                                                1. Character Encoding
+                                                        NVARCHAR: 
+                                                            Supports Unicode, allowing storage of 
+                                                            multilingual data (e.g., Chinese, Arabic, Cyrillic). 
+                                                            Each character typically takes up 2 bytes.
+                                                        
+                                                        VARCHAR: 
+                                                            Stores non-Unicode data, meaning it supports 
+                                                            only the database's default character set (e.g., ASCII
+                                                            or extended ASCII). Each character typically takes 1 byte.
+                                                
+                                                2. Storage Size
+                                                        NVARCHAR: 
+                                                            Requires more storage space 
+                                                            because of Unicode support (2 bytes per character).
+                                                        
+                                                        VARCHAR: 
+                                                            Requires less storage space as it stores
+                                                            characters in a single byte (in most character sets).
+                                                
+                                                3. Use Case
+                                                        NVARCHAR: 
+                                                            Ideal for applications that need to 
+                                                            store data in multiple languages or symbols that
+                                                            require Unicode representation.
+                                                        
+                                                        VARCHAR: 
+                                                            Suitable for storing data in one language
+                                                            or character set, especially if saving space is a priority.
+                                                         
+                                                4. Performance
+                                                        NVARCHAR: 
+                                                            Slightly slower due to its larger 
+                                                            size and Unicode processing.
+                                                        
+                                                        VARCHAR:
+                                                            Faster in terms of storage
+                                                            and retrieval for non-Unicode data.
+                                                            
+
+
+
+
+
+
+-- Step 3: Insert data (random Nepali-flavored data in English script)
+-- Using AES_ENCRYPT for encryption (MySQL syntax)
+
+INSERT INTO momo (name, address, username, password)
+VALUES
+('Ram', 'Kathmandu-1', 'ram123', AES_ENCRYPT('ramPassword2024', 'NepaliDataPass@2024')),
+('Sita', 'Pokhara-5', 'sita456', AES_ENCRYPT('sitaPassword2024', 'NepaliDataPass@2024')),
+('Gita', 'Lalitpur-3', 'gita789', AES_ENCRYPT('gitaPassword2024', 'NepaliDataPass@2024')),
+('Hari', 'Dharan-8', 'hari321', AES_ENCRYPT('hariPassword2024', 'NepaliDataPass@2024')),
+('Krishna', 'Butwal-6', 'krishna654', AES_ENCRYPT('krishnaPassword2024', 'NepaliDataPass@2024')),
+('Rita', 'Janakpur-2', 'rita987', AES_ENCRYPT('ritaPassword2024', 'NepaliDataPass@2024')),
+('Shyam', 'Biratnagar-4', 'shyam111', AES_ENCRYPT('shyamPassword2024', 'NepaliDataPass@2024')),
+('Laxmi', 'Chitwan-9', 'laxmi222', AES_ENCRYPT('laxmiPassword2024', 'NepaliDataPass@2024')),
+('Bina', 'Dhangadhi-7', 'bina333', AES_ENCRYPT('binaPassword2024', 'NepaliDataPass@2024')),
+('Nabin', 'Hetauda-11', 'nabin444', AES_ENCRYPT('nabinPassword2024', 'NepaliDataPass@2024'));
+
+
+
+
+
+
+SQL Script for Data Decryption and Display
+------------------------------------------------
+-- Step 4: Decrypt the data while displaying it
+
+SELECT
+    id,
+    name,
+    address,
+    username,
+    CAST(AES_DECRYPT(password, 'NepaliDataPass@2024') AS CHAR) AS decrypted_password
+FROM momo;
+
+
+
+
+
+
+mysql> select * from momo;
++----+---------+--------------+------------+--------------------------------------------------------------------+
+| id | name    | address      | username   | password                                                           |
++----+---------+--------------+------------+--------------------------------------------------------------------+
+|  1 | Ram     | Kathmandu-1  | ram123     | 0x3D74F6CD4C7B9B826C1A84A4AA4DCDB7                                 |
+|  2 | Sita    | Pokhara-5    | sita456    | 0x9DF48999793F66C72947A2DE13F7A1D0810102BB32FA2D7F68A6AAAB80171F16 |
+|  3 | Gita    | Lalitpur-3   | gita789    | 0xC452786DB36DC18727603E15A24A458B810102BB32FA2D7F68A6AAAB80171F16 |
+|  4 | Hari    | Dharan-8     | hari321    | 0x357B9DC42BBE30F403A9743867171FCD810102BB32FA2D7F68A6AAAB80171F16 |
+|  5 | Krishna | Butwal-6     | krishna654 | 0x51509C74DB18E4EFCF1EC7F3BDFC874F8D5567710CC857040254F43CC121EF92 |
+|  6 | Rita    | Janakpur-2   | rita987    | 0x8BDAF70FFE42E117AAD6DC220B80DE11810102BB32FA2D7F68A6AAAB80171F16 |
+|  7 | Shyam   | Biratnagar-4 | shyam111   | 0xDB8525935AE899730B016B005021239C1892492C5A96E5925C024344DCE95C5C |
+|  8 | Laxmi   | Chitwan-9    | laxmi222   | 0x2FABEE0255F9845BAA0C3379186F40281892492C5A96E5925C024344DCE95C5C |
+|  9 | Bina    | Dhangadhi-7  | bina333    | 0x3AA09285F0DD751A0D96A466E741BA70810102BB32FA2D7F68A6AAAB80171F16 |
+| 10 | Nabin   | Hetauda-11   | nabin444   | 0xC997F7F892D7F13800910A523FB35F981892492C5A96E5925C024344DCE95C5C |
++----+---------+--------------+------------+--------------------------------------------------------------------+ 
+                                                                    Encrypted / Cipherd password.... V V V  GOOD
+10 rows in set (0.00 sec)
+
+
+
+
+
+mysql> SELECT
+    ->     id,
+    ->     name,
+    ->     address,
+    ->     username,
+    ->     CAST(AES_DECRYPT(password, 'NepaliDataPass@2024') AS CHAR) AS decrypted_password
+    -> FROM momo;
++----+---------+--------------+------------+---------------------+
+| id | name    | address      | username   | decrypted_password  |
++----+---------+--------------+------------+---------------------+
+|  1 | Ram     | Kathmandu-1  | ram123     | ramPassword2024     |
+|  2 | Sita    | Pokhara-5    | sita456    | sitaPassword2024    |
+|  3 | Gita    | Lalitpur-3   | gita789    | gitaPassword2024    |
+|  4 | Hari    | Dharan-8     | hari321    | hariPassword2024    |
+|  5 | Krishna | Butwal-6     | krishna654 | krishnaPassword2024 |
+|  6 | Rita    | Janakpur-2   | rita987    | ritaPassword2024    |
+|  7 | Shyam   | Biratnagar-4 | shyam111   | shyamPassword2024   |
+|  8 | Laxmi   | Chitwan-9    | laxmi222   | laxmiPassword2024   |
+|  9 | Bina    | Dhangadhi-7  | bina333    | binaPassword2024    |
+| 10 | Nabin   | Hetauda-11   | nabin444   | nabinPassword2024   |
++----+---------+--------------+------------+---------------------+   
+                    Decrypted / de ciphred password ...... GOOD for MAIN for                                                                  
+                    ROOT admin only and knows key='NepaliDataPass@2024'
+10 rows in set (0.00 sec)
+
+
+
+
+
+Explanation of Steps
+--------------------------
+            Database and Table Creation: 
+                    A database named NepaliDataDB is created, and a 
+                    table momo is defined with encrypted data fields.
+            
+            Encryption Method: 
+                    The AES_ENCRYPT function in MySQL is used for encryption. 
+                    A passphrase (NepaliDataPass@2024) is used to encrypt the password field.
+            
+            Data Insertion: 
+                    Sample Nepali-flavored data (names,
+                    locations, usernames, and passwords written in English
+                    script) is encrypted and stored.
+            
+            Data Decryption: 
+                    The AES_DECRYPT function is used to decrypt 
+                    the passwords and display them as plain text when queried.
+
+
+
+Notes
+-----------
+        The AES_ENCRYPT and AES_DECRYPT functions require a 
+        passphrase to encrypt and decrypt data.
+        
+        Ensure the passphrase is securely stored and not 
+        hard-coded in production environments.
+        
+        Password management and access control are 
+        critical to securing sensitive data.
+        
+        For real-world applications, implement role-based access control (RBAC)
+        to restrict access to sensitive information.
+
+
+
+
+
 
 
 
