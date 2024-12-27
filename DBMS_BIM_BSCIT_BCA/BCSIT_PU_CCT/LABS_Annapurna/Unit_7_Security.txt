@@ -1,0 +1,486 @@
+
+
+
+
+
+
+
+docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
+docker exec -ti mydb1 mysql -u root -p
+
+
+
+
+
+
+
+
+
+********************************************************************************
+Granting and Revoking Privileges:
+********************************************************************************
+
+
+
+
+-- Create Hospital Management System (HMS) database
+CREATE DATABASE HospitalManagementSystem;
+USE HospitalManagementSystem;
+
+
+
+
+-- Create the Hospital table
+CREATE TABLE Hospital (
+    PatientID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT,
+    Gender VARCHAR(10),
+    Diagnosis VARCHAR(100),
+    RoomNumber INT
+);
+
+
+
+
+
+
+
+
+-- Create Student Management System (SMS) database
+CREATE DATABASE StudentManagementSystem;
+USE StudentManagementSystem;
+
+
+
+
+-- Create the Student table
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT,
+    Gender VARCHAR(10),
+    Major VARCHAR(50)
+);
+
+
+
+
+
+
+
+
+
+
+-- Insert 10 records into the Hospital table
+INSERT INTO HospitalManagementSystem.Hospital VALUES
+(1, 'John', 'Doe', 35, 'Male', 'Appendicitis', 101),
+(2, 'Jane', 'Smith', 42, 'Female', 'Fractured Arm', 205),
+(3, 'Mike', 'Johnson', 28, 'Male', 'Influenza', 303),
+(4, 'Emily', 'Williams', 55, 'Female', 'Diabetes', 402),
+(5, 'David', 'Brown', 47, 'Male', 'Hypertension', 105),
+(6, 'Anna', 'Miller', 32, 'Female', 'Migraine', 201),
+(7, 'Brian', 'Jones', 25, 'Male', 'Sprained Ankle', 304),
+(8, 'Sophia', 'Davis', 38, 'Female', 'Pneumonia', 102),
+(9, 'Daniel', 'Clark', 43, 'Male', 'Heart Attack', 401),
+(10, 'Olivia', 'Taylor', 29, 'Female', 'Allergy', 203);
+
+
+
+
+
+
+
+
+-- Insert 10 records into the Student table
+INSERT INTO StudentManagementSystem.Student VALUES
+(101, 'Alice', 'Johnson', 20, 'Female', 'Computer Science'),
+(102, 'Bob', 'Smith', 22, 'Male', 'Electrical Engineering'),
+(103, 'Catherine', 'Brown', 21, 'Female', 'Psychology'),
+(104, 'David', 'White', 23, 'Male', 'Mechanical Engineering'),
+(105, 'Eva', 'Williams', 19, 'Female', 'Biology'),
+(106, 'Frank', 'Jones', 24, 'Male', 'Chemistry'),
+(107, 'Grace', 'Davis', 20, 'Female', 'Business Administration'),
+(108, 'Harry', 'Clark', 22, 'Male', 'Political Science'),
+(109, 'Isabel', 'Taylor', 21, 'Female', 'Mathematics'),
+(110, 'Jack', 'Miller', 23, 'Male', 'Physics');
+
+
+
+
+
+
+mysql> select * from HospitalManagementSystem.Hospital;
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+|         3 | Mike      | Johnson  |   28 | Male   | Influenza      |        303 |
+|         4 | Emily     | Williams |   55 | Female | Diabetes       |        402 |
+|         5 | David     | Brown    |   47 | Male   | Hypertension   |        105 |
+|         6 | Anna      | Miller   |   32 | Female | Migraine       |        201 |
+|         7 | Brian     | Jones    |   25 | Male   | Sprained Ankle |        304 |
+|         8 | Sophia    | Davis    |   38 | Female | Pneumonia      |        102 |
+|         9 | Daniel    | Clark    |   43 | Male   | Heart Attack   |        401 |
+|        10 | Olivia    | Taylor   |   29 | Female | Allergy        |        203 |
++-----------+-----------+----------+------+--------+----------------+------------
+
+
+
+
+mysql> select * from StudentManagementSystem.Student;
++-----------+-----------+----------+------+--------+-------------------------+
+| StudentID | FirstName | LastName | Age  | Gender | Major                   |
++-----------+-----------+----------+------+--------+-------------------------+
+|       101 | Alice     | Johnson  |   20 | Female | Computer Science        |
+|       102 | Bob       | Smith    |   22 | Male   | Electrical Engineering  |
+|       103 | Catherine | Brown    |   21 | Female | Psychology              |
+|       104 | David     | White    |   23 | Male   | Mechanical Engineering  |
+|       105 | Eva       | Williams |   19 | Female | Biology                 |
+|       106 | Frank     | Jones    |   24 | Male   | Chemistry               |
+|       107 | Grace     | Davis    |   20 | Female | Business Administration |
+|       108 | Harry     | Clark    |   22 | Male   | Political Science       |
+|       109 | Isabel    | Taylor   |   21 | Female | Mathematics             |
+|       110 | Jack      | Miller   |   23 | Male   | Physics                 |
++-----------+-----------+----------+------+--------+-------------------------+
+
+
+
+
+
+
+
+-- Create Users
+mysql> CREATE USER 'sanjeev'@'localhost' IDENTIFIED BY 'password1';
+
+
+mysql> CREATE USER 'ohm'@'localhost' IDENTIFIED BY 'password2';
+
+
+mysql> CREATE USER 'ashok'@'localhost' IDENTIFIED BY 'password3';
+
+
+mysql> CREATE USER 'manoj'@'localhost' IDENTIFIED BY 'password4';
+
+
+.
+mysql> SELECT user FROM mysql.user;
+                    +------------------+
+                    | user             |
+                    +------------------+
+                    | root             |
+                    | ashok            |
+                    | manoj            |
+                    | mysql.infoschema |
+                    | mysql.session    |
+                    | mysql.sys        |
+                    | ohm              |
+                    | root             |
+                    | sanjeev          |
+                    +------------------+
+
+
+
+mysql> SELECT COUNT(user) AS total_users FROM mysql.user;
+                    +-------------+
+                    | total_users |
+                    +-------------+
+                    |           9 |
+                    +-------------+
+
+
+
+
+
+USE HospitalManagementSystem;
+-----------------------------------
+
+-- Create Users
+CREATE USER 'sanjeev'@'localhost' IDENTIFIED BY 'password1';
+CREATE USER 'ohm'@'localhost' IDENTIFIED BY 'password2';
+CREATE USER 'ashok'@'localhost' IDENTIFIED BY 'password3';
+CREATE USER 'manoj'@'localhost' IDENTIFIED BY 'password4';
+
+
+
+
+-- Grant SELECT privilege to Sanjeev on Hospital table
+GRANT SELECT ON Hospital TO 'sanjeev'@'localhost';
+
+-- Grant INSERT and UPDATE privileges to Ohm on Hospital table
+GRANT INSERT, UPDATE ON Hospital TO 'ohm'@'localhost';
+
+-- Grant DELETE privilege to Ashok on Hospital table
+GRANT DELETE ON Hospital TO 'ashok'@'localhost';
+
+-- Grant ALL privileges to Manoj on Hospital table
+GRANT ALL ON Hospital TO 'manoj'@'localhost';
+
+
+
+
+
+USE StudentManagementSystem;
+----------------------------------
+
+-- Grant SELECT privilege to Sanjeev on Student table
+mysql> GRANT SELECT ON Student TO 'sanjeev'@'localhost';
+
+
+
+-- Grant INSERT and UPDATE privileges to Ohm on Student table
+mysql> GRANT INSERT, UPDATE ON Student TO 'ohm'@'localhost';
+
+
+
+
+
+-- Grant DELETE privilege to Ashok on Student table
+mysql> GRANT DELETE ON Student TO 'ashok'@'localhost';
+
+
+
+
+
+-- Grant ALL privileges to Manoj on Student table
+mysql> GRANT ALL ON Student TO 'manoj'@'localhost';
+
+
+
+
+
+
+
+
+
+
+
+                    CHECKING AND ANALYSISNG
+                    ---------------------------
+
+
+USE HospitalManagementSystem;
+-----------------------------------
+
+-- Grant SELECT privilege to Sanjeev on Hospital table
+mysql> GRANT SELECT ON Hospital TO 'sanjeev'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.03 sec
+
+                    mysql> exit
+                    Bye
+                    bash-4.4# mysql -u sanjeev -p
+                    Enter password: password1
+                     
+                    mysql> USE HospitalManagementSystem;
+                    mysql> select * from Hospital;              ........works fine ok select
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+
+
+
+
+
+                              mysql> delete from Hospital where PatientID=1;          ....... dont work for delete , due to PriVILIGES
+                              ERROR 1142 (42000): DELETE command denied to user 'sanjeev'@'localhost' for table 'Hospital'
+
+
+
+
+
+
+
+
+
+-- Grant INSERT and UPDATE privileges to Ohm on Hospital table
+mysql> GRANT INSERT, UPDATE ON Hospital TO 'ohm'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.12 sec)
+
+
+                    bash-4.4# mysql -u ohm -ppassword2
+                    USE HospitalManagementSystem;
+
+                    mysql> select * from Hospital;
+                    ERROR 1142 (42000): SELECT command denied to user 'ohm'@'localhost' for table 'Hospital'
+                    
+                    
+                    mysql> INSERT INTO Hospital VALUES
+                         (11, 'Shyam', 'Dhakal', 37, 'Male', 'Appendicitis', 101);
+                    Query OK, 1 row affected (0.02 sec)                   ...... works fine PRIVILIGES WORKS 
+
+
+
+
+-- Grant DELETE privilege to Ashok on Hospital table
+mysql> GRANT DELETE ON Hospital TO 'ashok'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+
+                    bash-4.4# mysql -u ashok -ppassword3
+                    
+                    mysql> USE HospitalManagementSystem;
+                    Reading table information for completion of table and column names
+                    You can turn off this feature to get a quicker startup with -A
+                    
+                    Database changed
+
+
+
+                    mysql> select * from Hospitals;
+                    ERROR 1142 (42000): SELECT command denied to user 'ashok'@'localhost' for table 'Hospitals'
+
+
+
+
+
+
+
+
+-- Grant ALL privileges to Manoj on Hospital table
+mysql> GRANT ALL ON Hospital TO 'manoj'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+
+                    bash-4.4# mysql -u manoj -ppassword4
+                     mysql> USE HospitalManagementSystem;
+                    
+                    mysql> select * from Hospital;
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+|         3 | Mike      | Johnson  |   28 | Male   | Influenza      |        303 |
+|         4 | Emily     | Williams |   55 | Female | Diabetes       |        402 |
+|         5 | David     | Brown    |   47 | Male   | Hypertension   |        105 |
+|         6 | Anna      | Miller   |   32 | Female | Migraine       |        201 |
+|         7 | Brian     | Jones    |   25 | Male   | Sprained Ankle |        304 |
+|         8 | Sophia    | Davis    |   38 | Female | Pneumonia      |        102 |
+|         9 | Daniel    | Clark    |   43 | Male   | Heart Attack   |        401 |
+|        10 | Olivia    | Taylor   |   29 | Female | Allergy        |        203 |
+|        11 | Shyam     | Dhakal   |   37 | Male   | Appendicitis   |        101 |
++-----------+-----------+----------+------+--------+----------------+------------+
+11 rows in set (0.00 sec)
+
+
+
+
+                    mysql>  delete from Hospital where PatientID=10;
+                    Query OK, 1 row affected (0.02 sec)
+
+
+
+
+                    mysql> select * from Hospital;
++-----------+-----------+----------+------+--------+----------------+------------+
+| PatientID | FirstName | LastName | Age  | Gender | Diagnosis      | RoomNumber |
++-----------+-----------+----------+------+--------+----------------+------------+
+|         1 | John      | Doe      |   35 | Male   | Appendicitis   |        101 |
+|         2 | Jane      | Smith    |   42 | Female | Fractured Arm  |        205 |
+|         3 | Mike      | Johnson  |   28 | Male   | Influenza      |        303 |
+|         4 | Emily     | Williams |   55 | Female | Diabetes       |        402 |
+|         5 | David     | Brown    |   47 | Male   | Hypertension   |        105 |
+|         6 | Anna      | Miller   |   32 | Female | Migraine       |        201 |
+|         7 | Brian     | Jones    |   25 | Male   | Sprained Ankle |        304 |
+|         8 | Sophia    | Davis    |   38 | Female | Pneumonia      |        102 |
+|         9 | Daniel    | Clark    |   43 | Male   | Heart Attack   |        401 |
+|        11 | Shyam     | Dhakal   |   37 | Male   | Appendicitis   |        101 |
++-----------+-----------+----------+------+--------+----------------+------------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+                    CHECKING AND ANALYSISNG
+                    ---------------------------
+
+
+
+USE StudentManagementSystem;
+----------------------------------
+
+-- Grant SELECT privilege to Sanjeev on Student table
+mysql> GRANT SELECT ON Student TO 'sanjeev'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+
+-- Grant INSERT and UPDATE privileges to Ohm on Student table
+mysql> GRANT INSERT, UPDATE ON Student TO 'ohm'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+
+
+
+-- Grant DELETE privilege to Ashok on Student table
+mysql> GRANT DELETE ON Student TO 'ashok'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+
+
+
+-- Grant ALL privileges to Manoj on Student table
+mysql> GRANT ALL ON Student TO 'manoj'@'localhost';
+Query OK, 0 rows affected, 1 warning (0.12 sec)
+
+
+
+
+
+
+
+
+
+
+
+                    CHECKING AND ANALYSISNG
+                    ---------------------------
+
+For Hospital Management System (HMS) Database:
+------------------------------------------------------
+
+USE HospitalManagementSystem;
+
+-- Revoke SELECT privilege from all users on Hospital table
+REVOKE SELECT ON Hospital FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+-- Revoke INSERT and UPDATE privileges from all users on Hospital table
+REVOKE INSERT, UPDATE ON Hospital FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+-- Revoke DELETE privilege from all users on Hospital table
+REVOKE DELETE ON Hospital FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+
+
+
+
+
+                      CHECKING AND ANALYSISNG
+                    ---------------------------
+For Student Management System (SMS) Database:
+------------------------------------------------------
+USE StudentManagementSystem;
+
+-- Revoke SELECT privilege from all users on Student table
+REVOKE SELECT ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+-- Revoke INSERT and UPDATE privileges from all users on Student table
+REVOKE INSERT, UPDATE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+-- Revoke DELETE privilege from all users on Student table
+REVOKE DELETE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@'localhost', 'manoj'@'localhost';
+
+
+
