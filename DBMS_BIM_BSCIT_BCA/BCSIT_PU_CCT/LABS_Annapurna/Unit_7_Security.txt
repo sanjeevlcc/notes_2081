@@ -502,6 +502,414 @@ REVOKE DELETE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@
 
 
 
+********************************************************
+********************************************************
+ENC and DEC
+******************************************************** 
+********************************************************
+            COPY BACK of  ....... controlplane $ ....... ONLY
+
+
+
+
+Step 1: 
+Install package, run browser(80), remove file, 
+add yours content file
+---------------------------
+
+controlplane $ sudo apt install apache2 -y
+
+
+
+http://<your_server_ip>            #open port 80
+or
+https://254435fd-3cdd-400d-b798-ce5d9192b88c-10-244-4-216-80.spch.r.killercoda.com/
+
+
+
+controlplane $ cd /var/www/html/
+controlplane $ rm index.html
+
+controlplane $ cat > plain_file.txt
+            
+            hello for the lab of security.....
+            
+            this is a plain text file ....
+
+
+
+
+
+
+Step 2: Encrypt the File
+---------------------------
+Use the openssl command to encrypt the file with AES:
+
+controlplane $ openssl enc -aes-256-cbc -salt -in plain_file.txt -out encrypted_file.txt
+enter aes-256-cbc encryption password: apple
+Verifying - enter aes-256-cbc encryption password: apple
+
+
+
+        Explanation:
+        --------------
+                    enc: Invoke the encryption command.
+                    -aes-256-cbc: Use AES encryption with a 256-bit key in CBC mode.
+                    -salt: Add a salt to strengthen encryption.
+                    -in plain_file.txt: Input file to encrypt.
+                    -out encrypted_file.bin: Output encrypted file.
+
+
+
+
+
+
+
+Step 3: refesh the browser
+---------------------------
+NOW refesh the browser and try to open both files
+
+
+
+
+Step 4: read via terminal
+---------------------------
+controlplane $ ls
+encrypted_file.txt  plain_file.txt
+
+
+
+controlplane $ cat > plain_file.txt
+            
+            hello for the lab of security.....
+            
+            this is a plain text file ....
+
+
+
+
+controlplane $ cat encrypted_file.txt 
+Salted__9:#E4,_~<9nJV&FЦpWRnR"FG%w<4
+
+
+
+
+
+
+
+
+
+Step 5: Decrypt the File
+---------------------------
+Use the openssl command to decrypt the file:
+
+controlplane $ openssl enc -d -aes-256-cbc -in encrypted_file.txt -out decrypted_
+file.txt
+enter aes-256-cbc decryption password:
+
+
+
+                Explanation:
+                ---------------
+                        -d: Decrypt mode.
+                        -in encrypted_file.bin: Input encrypted file.
+                        -out decrypted_file.txt: Output decrypted file.
+
+
+
+
+
+
+
+Step 6: refesh the browser
+---------------------------
+NOW refesh the browser and try to open both files
+
+
+
+
+Step 7: read via terminal
+---------------------------
+
+controlplane $ ls
+decrypted_file.txt  encrypted_file.txt  plain_file.txt
+
+            controlplane $ cat decrypted_file.txt 
+            
+            hello for the lab of security.....
+            
+            this is a plain text file ....
+
+
+
+
+
+
+
+
+
+********************************************************
+********************************************************
+
+******************************************************** 
+********************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************************************
+********************************************************
+CIA Triad
+******************************************************** 
+********************************************************
+            COPY BACK of  ....... controlplane $ ....... ONLY
+
+
+
+
+
+To perform a CIA Triad (Confidentiality, Integrity, and Availability) 
+
+lab on the files (decrypted_file.txt, encrypted_file.txt, and plain_file.txt),
+
+follow these steps:
+
+
+
+
+Step 1: Assess Confidentiality
+--------------------------------------
+        Confidentiality refers to ensuring that only 
+        authorized users can access the file's data.
+        
+        We will test encryption to ensure confidentiality.
+        
+        Check Encryption of Files: 
+        --------------------------
+            Ensure the encrypted file
+            is not human-readable (i.e., it is protected).
+
+
+controlplane $ cat encrypted_file.txt
+Salted__9:#E4,_~<9nJV&FЦpWRnR"FG%w<4
+                                    oSIcontrolplane $ 
+
+
+
+            The output should be unreadable (binary content). 
+            If the content is readable, the encryption process
+            did not work correctly.
+
+
+
+        Decrypt the File: 
+        ----------------------
+            To test if only authorized users can read
+            the file, you need the password used for encryption.
+
+controlplane $ openssl enc -d -aes-256-cbc -in encrypted_file.txt -out decrypted_file_test.txt
+enter aes-256-cbc decryption password: apple
+
+
+            Enter the password used during encryption 
+            when prompted. If you don’t have the correct password,
+            the output will not be usable.
+            
+
+
+
+
+
+
+Step 2: Assess Integrity
+------------------------------
+            Integrity ensures that the file has not been tampered
+            with and remains in its original state.
+            
+            Generate a Hash for the Original File:
+            ---------------------------------------
+                    Use sha256sum to
+                    generate the hash of the original (plaintext) file.
+                    
+                    This hash can be used to verify the integrity of the 
+                    file after encryption or transmission.
+                    
+
+
+controlplane $ sha256sum plain_file.txt
+08753afe94ce71ead13933c0bb380697254590ddc25952f4ca7723a64ea91676  plain_file.txt
+
+
+
+            Generate a Hash for the Decrypted File:
+            ---------------------------------------
+                    After decrypting the file, generate a hash of
+                    the decrypted file.
+        
+controlplane $ sha256sum decrypted_file.txt
+08753afe94ce71ead13933c0bb380697254590ddc25952f4ca7723a64ea91676  decrypted_file.
+
+                    Compare this hash to the hash of the original file.
+                    If they match, the file has maintained its integrity.
+                    If the hashes are different, the file has been modified
+                    or corrupted.
+                    
+
+
+
+
+
+Step 3: Assess Availability
+----------------------------
+            Availability ensures that the file is accessible when
+            needed and is not corrupted or lost.
+            
+            Check the File Availability: 
+            ------------------------------
+                    Ensure the files are accessible in the current directory.
+            
+
+controlplane $ ls -l decrypted_file.txt encrypted_file.txt plain_file.txt
+-rw-r--r-- 1 root root 69 Dec 27 07:52 decrypted_file.txt
+-rw-r--r-- 1 root root 96 Dec 27 07:50 encrypted_file.txt
+-rw-r--r-- 1 root root 69 Dec 27 07:46 plain_file.txt
+
+
+
+
+            Make a Backup for Availability: 
+            --------------------------------
+                    Create a backup 
+                    of the original file to ensure that it is available 
+                    even if the original file is lost or corrupted.
+
+controlplane $ cp plain_file.txt plain_file_backup.txt
+
+
+controlplane $ ls -l
+-rw-r--r-- 1 root root 69 Dec 27 07:52 decrypted_file.txt
+-rw-r--r-- 1 root root 69 Dec 27 08:05 decrypted_file_test.txt
+-rw-r--r-- 1 root root 96 Dec 27 07:50 encrypted_file.txt
+-rw-r--r-- 1 root root 69 Dec 27 07:46 plain_file.txt
+-rw-r--r-- 1 root root 69 Dec 27 08:10 plain_file_backup.txt
+
+
+
+controlplane $ cat plain_file_backup.txt 
+
+            hello for the lab of security.....
+            
+            this is a plain text file ....
+
+
+
+
+Simulate File Corruption (Optional for testing):
+-----------------------------------------------
+
+        You can corrupt the file (e.g., truncate it or modify it) 
+        to see if it affects availability.
+
+controlplane $ echo "Corrupted data" >> plain_file.txt
+
+
+        After corruption, try to access the file:
+
+
+controlplane $ cat plain_file.txt
+            
+            hello for the lab of security.....
+            
+            this is a plain text file ....
+            
+            Corrupted data
+
+
+
+
+
+        If you get readable data, you might have
+        compromised the file's availability. To restore it, 
+        you would use the backup you created earlier:
+
+
+controlplane $ cp plain_file_backup.txt plain_file.txt
+
+controlplane $ cat plain_file.txt 
+
+            hello for the lab of security.....
+            
+            this is a plain text file ....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Summary of CIA Evaluation
+---------------------------------
+        After performing these tests, you should
+        summarize your findings as follows:
+                    
+                    Confidentiality: 
+                        Was the file securely encrypted, and can it only
+                        be accessed by those with the correct decryption key?
+                    
+                    
+                    Integrity: 
+                        Did the hash comparison indicate that the 
+                        file maintained its integrity throughout encryption, 
+                        decryption, and storage?
+                    
+                    
+                    Availability: 
+                        Were you able to back up the file and restore it
+                        if necessary? Was the file available for access?
+                    
+
+
+
+******************************************************** 
+********************************************************
+          
+
+
+
+
+
+
+
 
 
 
@@ -513,8 +921,6 @@ REVOKE DELETE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@
 Database Security in SQL
 ******************************************************** HASHING via md5 / encryption and decryption of data ......
 ********************************************************
-
-
 
 
 
