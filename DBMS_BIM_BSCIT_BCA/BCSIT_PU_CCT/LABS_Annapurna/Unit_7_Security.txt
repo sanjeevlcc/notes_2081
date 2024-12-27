@@ -502,6 +502,12 @@ REVOKE DELETE ON Student FROM 'sanjeev'@'localhost', 'ohm'@'localhost', 'ashok'@
 
 
 
+
+
+
+
+
+
 ********************************************************
 ********************************************************
 ENC and DEC
@@ -648,11 +654,11 @@ decrypted_file.txt  encrypted_file.txt  plain_file.txt
 
 
 
-********************************************************
-********************************************************
 
 ******************************************************** 
 ********************************************************
+
+
 
 
 
@@ -743,6 +749,8 @@ enter aes-256-cbc decryption password: apple
 
 
 
+
+
 Step 2: Assess Integrity
 ------------------------------
             Integrity ensures that the file has not been tampered
@@ -771,11 +779,18 @@ controlplane $ sha256sum plain_file.txt
 controlplane $ sha256sum decrypted_file.txt
 08753afe94ce71ead13933c0bb380697254590ddc25952f4ca7723a64ea91676  decrypted_file.
 
+
+
+
+
                     Compare this hash to the hash of the original file.
                     If they match, the file has maintained its integrity.
                     If the hashes are different, the file has been modified
                     or corrupted.
                     
+
+
+
 
 
 
@@ -805,6 +820,7 @@ controlplane $ ls -l decrypted_file.txt encrypted_file.txt plain_file.txt
                     of the original file to ensure that it is available 
                     even if the original file is lost or corrupted.
 
+
 controlplane $ cp plain_file.txt plain_file_backup.txt
 
 
@@ -817,6 +833,7 @@ controlplane $ ls -l
 
 
 
+
 controlplane $ cat plain_file_backup.txt 
 
             hello for the lab of security.....
@@ -826,16 +843,20 @@ controlplane $ cat plain_file_backup.txt
 
 
 
+
 Simulate File Corruption (Optional for testing):
 -----------------------------------------------
 
-        You can corrupt the file (e.g., truncate it or modify it) 
-        to see if it affects availability.
+            You can corrupt the file (e.g., truncate it or modify it) 
+            to see if it affects availability.
 
 controlplane $ echo "Corrupted data" >> plain_file.txt
 
 
-        After corruption, try to access the file:
+            After corruption, try to access the file:
+
+
+
 
 
 controlplane $ cat plain_file.txt
@@ -850,9 +871,11 @@ controlplane $ cat plain_file.txt
 
 
 
-        If you get readable data, you might have
-        compromised the file's availability. To restore it, 
-        you would use the backup you created earlier:
+
+            If you get readable data, you might have
+            compromised the file's availability. To restore it, 
+            you would use the backup you created earlier:
+
 
 
 controlplane $ cp plain_file_backup.txt plain_file.txt
@@ -870,39 +893,41 @@ controlplane $ cat plain_file.txt
 
 
 
-
-
-
-
-
-
-
-Summary of CIA Evaluation
----------------------------------
-        After performing these tests, you should
-        summarize your findings as follows:
-                    
-                    Confidentiality: 
-                        Was the file securely encrypted, and can it only
-                        be accessed by those with the correct decryption key?
-                    
-                    
-                    Integrity: 
-                        Did the hash comparison indicate that the 
-                        file maintained its integrity throughout encryption, 
-                        decryption, and storage?
-                    
-                    
-                    Availability: 
-                        Were you able to back up the file and restore it
-                        if necessary? Was the file available for access?
-                    
+        
+        
+        Summary of CIA Evaluation
+        ---------------------------------
+                After performing these tests, you should
+                summarize your findings as follows:
+                            
+                            Confidentiality: 
+                                Was the file securely encrypted, and can it only
+                                be accessed by those with the correct decryption key?
+                            
+                            
+                            Integrity: 
+                                Did the hash comparison indicate that the 
+                                file maintained its integrity throughout encryption, 
+                                decryption, and storage?
+                            
+                            
+                            Availability: 
+                                Were you able to back up the file and restore it
+                                if necessary? Was the file available for access?
+                            
 
 
 
 ******************************************************** 
 ********************************************************
           
+
+
+
+
+
+
+
 
 
 
