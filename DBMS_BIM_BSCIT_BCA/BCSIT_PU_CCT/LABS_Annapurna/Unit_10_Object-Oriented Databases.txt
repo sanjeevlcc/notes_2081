@@ -1,0 +1,92 @@
+
+
+
+
+
+Run a PostgreSQL Container
+---------------------------------------------
+Create and run a PostgreSQL container 
+with the desired configuration.
+
+
+
+sudo docker run --name my_postgres \
+  -e POSTGRES_USER=janki \
+  -e POSTGRES_PASSWORD=neupane \
+  -e POSTGRES_DB=momo \
+  -p 5432:5432 \
+  -d postgres
+
+
+              
+              --name my_postgres: Assigns a name to the container.
+              
+              -e POSTGRES_USER: Sets the PostgreSQL username.
+              
+              -e POSTGRES_PASSWORD: Sets the PostgreSQL password.
+              
+              -e POSTGRES_DB: Specifies the name of the database to create.
+              
+              -p 5432:5432: Maps the container's PostgreSQL port (5432) to your host.
+              
+              -d postgres: Runs the container in detached mode using the PostgreSQL image.
+              
+
+
+
+
+
+
+
+Access the PostgreSQL Database
+---------------------------------------------
+To connect to the PostgreSQL database inside the container:
+
+docker exec -it my_postgres_container psql -U my_user -d my_database
+or
+psql -h localhost -U my_user -d my_database
+
+
+
+docker exec -it my_postgres bash
+or
+psql -U janki -d momo
+
+
+---------------------------------------------
+
+
+
+
+
+
+
+
+---------------------------------------------
+
+
+
+
+
+
+
+
+---------------------------------------------
+
+
+
+
+
+
+
+
+---------------------------------------------
+
+
+
+
+
+
+
+
+
