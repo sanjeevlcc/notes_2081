@@ -1,0 +1,1770 @@
+
+
+
+
+
+
+
+
+
+
+
+            R and Python in a Jupyter Notebook
+          **************************************
+
+
+
+
+
+
+
+Step 1: Run the Docker Container
+-----------------------------------------------
+docker pull jupyter/datascience-notebook
+
+docker run  --name momo -p 8888:8888 jupyter/datascience-noteboo
+k
+
+
+
+
+
+Step 2: Access Jupyter Notebook
+-----------------------------------------------
+
+http://localhost:8888
+
+
+
+          Use the Token: The terminal will display a token 
+          that you need to copy and paste into the
+          browser to access Jupyter. 
+          It will look something like:
+
+http://127.0.0.1:8888/?token=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
+
+jupyter server list
+
+
+
+
+
+
+
+Step 3: Using R and Python in Jupyter
+-----------------------------------------------
+
+
+        Once you open the Jupyter Notebook interface, you
+        can create a new notebook with either Python or R as
+        the kernel.
+        
+        To use Python:
+        Create a new notebook and select the Python 3 kernel.
+        
+        
+        To use R:
+        Create a new notebook and select the R kernel.
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 4: Example Code in Both R and Python
+-----------------------------------------------
+
+Python Example:
+-------------------
+# Python: Basic plot using matplotlib
+import matplotlib.pyplot as plt
+
+# Create a simple plot
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+plt.plot(x, y)
+plt.title("Basic Plot in Python")
+plt.show()
+
+
+
+
+
+
+
+
+R Example:
+----------------
+# R: Basic plot using ggplot2
+library(ggplot2)
+
+data <- data.frame(
+  x = c(1, 2, 3, 4, 5),
+  y = c(1, 4, 9, 16, 25)
+)
+
+ggplot(data, aes(x=x, y=y)) +
+  geom_line() +
+  labs(title="Basic Plot in R", x="X Axis", y="Y Axis")
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bar Plot
+*************************************
+A bar plot is useful for comparing 
+values of categorical data
+
+
+
+------------------------------Python Example
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Example data
+data = {'Category': ['A', 'B', 'C', 'D'],
+        'Values': [23, 45, 12, 56]}
+
+# Create a DataFrame
+import pandas as pd
+df = pd.DataFrame(data)
+
+# Create a bar plot
+sns.barplot(x='Category', y='Values', data=df)
+
+# Add title and labels
+plt.title('Bar Plot Example')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.show()
+
+
+
+
+
+------------------------------R Example
+# Example data
+categories <- c("A", "B", "C", "D")
+values <- c(23, 45, 12, 56)
+
+# Create a bar plot
+barplot(values, names.arg = categories, col = "blue", main = "Bar Plot Example", xlab = "Categories", ylab = "Values")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pie Chart
+*************************************
+
+
+------------------------------Python Example
+# Example data
+sizes = [23, 45, 12, 56]
+labels = ['A', 'B', 'C', 'D']
+
+# Create a pie chart
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+
+# Add title
+plt.title('Pie Chart Example')
+plt.show()
+
+
+
+
+
+
+
+------------------------------R Example
+# Example data
+sizes <- c(23, 45, 12, 56)
+labels <- c("A", "B", "C", "D")
+
+# Create a pie chart
+pie(sizes, labels = labels, col = rainbow(length(labels)), main = "Pie Chart Example")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Histogram
+*************************************
+
+------------------------------Python Example-
+# Generate random data
+import numpy as np
+data = np.random.normal(loc=0, scale=1, size=1000)
+
+# Create a histogram
+sns.histplot(data, kde=True)
+
+# Add title and labels
+plt.title('Histogram Example')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+
+
+
+
+
+
+
+------------------------------R Example
+# Generate random data
+data <- rnorm(1000)
+
+# Create a histogram
+hist(data, col = "skyblue", main = "Histogram Example", xlab = "Value", ylab = "Frequency", breaks = 30)
+
+
+
+
+
+
+
+
+
+
+
+
+Heatmap
+*************************************
+A heatmap is used to visualize data in matrix form,
+with color gradients to represent values.
+
+------------------------------Python Example
+# Generate a correlation matrix for demonstration
+data = np.random.rand(10, 12)
+corr_matrix = np.corrcoef(data)
+
+# Create a heatmap
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+
+# Add title
+plt.title('Heatmap Example')
+plt.show()
+
+
+
+
+
+
+
+------------------------------R Example-
+# Generate a random correlation matrix
+data <- matrix(rnorm(100), nrow = 10)
+corr_matrix <- cor(data)
+
+# Create a heatmap
+heatmap(corr_matrix, main = "Heatmap Example", col = heat.colors(256), scale = "column")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Regression 
+*************************************
+Regression in Python using Seaborn and Matplotlib
+We'll go through three common types of regression:
+
+            Linear Regression
+            Polynomial Regression
+            Logistic Regression
+
+
+For this, we’ll use Seaborn for plotting and Scikit-learn 
+for fitting regression models. Let’s create a few examples
+with visualizations for each.
+
+
+
+
+Linear regression is used when there is a 
+linear relationship between the independent
+variable (X) and dependent variable (Y).
+
+------------------------------Python  1. Linear Regression
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Create sample data
+np.random.seed(0)
+X = np.random.rand(100, 1) * 10  # Independent variable
+y = 3 * X + np.random.randn(100, 1) * 3  # Dependent variable with noise
+
+# Fit linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict using the model
+y_pred = model.predict(X)
+
+# Plotting
+sns.scatterplot(x=X.flatten(), y=y.flatten(), color='blue', label='Data')
+plt.plot(X, y_pred, color='red', label='Linear Fit')
+plt.title("Linear Regression")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.legend()
+plt.show()
+
+
+
+
+
+Regression in R using ggplot2
+------------------------------R Example
+
+# Linear regression in R
+library(ggplot2)
+
+# Create sample data
+set.seed(0)
+X <- runif(100, 0, 10)
+y <- 3 * X + rnorm(100, 0, 3)
+
+# Create a data frame
+data <- data.frame(X, y)
+
+# Fit linear regression model
+model <- lm(y ~ X, data = data)
+
+# Plot data and linear regression line
+ggplot(data, aes(x = X, y = y)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", col = "red") +
+  labs(title = "Linear Regression", x = "X", y = "Y")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Polynomial Regression
+*************************************
+Polynomial regression is used when the
+data is better fit by a curve.
+
+
+
+
+------------------------------Python   Polynomial Regression
+
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+
+# Generate sample data with non-linear relationship
+X = np.linspace(0, 10, 100).reshape(-1, 1)
+y = X**2 + np.random.randn(100, 1) * 5
+
+# Polynomial regression model
+degree = 3
+model = make_pipeline(PolynomialFeatures(degree), LinearRegression())
+model.fit(X, y)
+
+# Predict and plot
+y_pred = model.predict(X)
+sns.scatterplot(x=X.flatten(), y=y.flatten(), color='blue', label='Data')
+plt.plot(X, y_pred, color='red', label=f'Polynomial Degree {degree}')
+plt.title("Polynomial Regression")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.legend()
+plt.show()
+
+
+
+
+
+
+------------------------------R     Polynomial Regression
+# Polynomial regression in R
+degree <- 3
+model <- lm(y ~ poly(X, degree), data = data)
+
+# Plot data and polynomial regression curve
+ggplot(data, aes(x = X, y = y)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", formula = y ~ poly(x, degree), color = "red") +
+  labs(title = paste("Polynomial Regression Degree", degree), x = "X", y = "Y")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Logistic Regression
+*************************************
+Logistic regression is used for classification 
+tasks (binary outcomes).
+
+
+
+------------------------------Python  Logistic Regression
+from sklearn.linear_model import LogisticRegression
+import numpy as np
+
+# Generate a simple binary classification dataset
+X = np.random.randn(100, 2)
+y = (X[:, 0] + X[:, 1] > 0).astype(int)
+
+# Fit logistic regression model
+model = LogisticRegression()
+model.fit(X, y)
+
+# Prediction probabilities
+y_pred_prob = model.predict_proba(X)[:, 1]
+
+# Visualize decision boundary
+sns.scatterplot(x=X[:, 0], y=X[:, 1], hue=y, palette='coolwarm', s=100)
+plt.title("Logistic Regression Decision Boundary")
+plt.xlabel("X1")
+plt.ylabel("X2")
+plt.show()
+
+
+
+
+
+
+
+------------------------------R Example Logistic Regression
+
+# Logistic regression in R
+set.seed(0)
+X <- matrix(rnorm(200), ncol = 2)
+y <- ifelse(X[, 1] + X[, 2] > 0, 1, 0)
+
+# Fit logistic regression model
+model <- glm(y ~ X[, 1] + X[, 2], family = binomial)
+
+# Create a data frame for visualization
+data <- data.frame(X1 = X[, 1], X2 = X[, 2], y = factor(y))
+
+# Plot logistic regression results
+library(ggplot2)
+ggplot(data, aes(x = X1, y = X2, color = y)) +
+  geom_point() +
+  labs(title = "Logistic Regression", x = "X1", y = "X2") +
+  scale_color_manual(values = c("blue", "red"))
+
+
+
+
+
+
+
+Summary of Regression Types and Visualizations
+------------------------------
+
+          Linear Regression: 
+              Best for datasets with a linear
+              relationship between X and Y.
+          
+          Polynomial Regression: 
+              Used when the relationship 
+              between X and Y is non-linear.
+          
+          Logistic Regression: 
+              Used for binary classification tasks, 
+              like determining if an outcome 
+              is 0 or 1 based on features.
+
+
+    Both Python and R offer powerful tools for
+    regression analysis and visualization. In Python,
+    we used Seaborn and Matplotlib, while in R, we 
+    used ggplot2 for plotting. 
+    
+    The visualizations help you understand the
+    fitted models and decision boundaries, making
+    regression analysis more interpretable.
+    
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************
+
+
+------------------------------Python 
+
+
+
+
+
+
+
+------------------------------R Example
+
+
+
+
+
