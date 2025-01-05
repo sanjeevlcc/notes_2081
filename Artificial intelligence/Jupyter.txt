@@ -22,9 +22,11 @@ Step 1: Run the Docker Container
 -----------------------------------------------
 docker pull jupyter/datascience-notebook
 
-docker run  --name momo -p 8888:8888 jupyter/datascience-noteboo
-k
+docker run  --name momo -p 8888:8888 jupyter/datascience-notebook
 
+docker run -it --rm -p 10000:8888 -v "${PWD}":/home/jovyan/work quay.io/jupyter/datascience-notebook:2024-12-23
+
+docker run -d -p 10000:8888 -v "${PWD}":/home/jovyan/work quay.io/jupyter/datascience-notebook:2024-12-23
 
 
 
