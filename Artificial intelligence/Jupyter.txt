@@ -1,7 +1,7 @@
 
 
 
-
+https://killercoda.com/killer-shell-cka/scenario/playground
 
 
 
@@ -564,6 +564,8 @@ Summary of Regression Types and Visualizations
               is 0 or 1 based on features.
 
 
+
+
     Both Python and R offer powerful tools for
     regression analysis and visualization. In Python,
     we used Seaborn and Matplotlib, while in R, we 
@@ -581,10 +583,74 @@ Summary of Regression Types and Visualizations
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mean, median, mode, quartiles, and percentiles,
 *************************************
 
 
+
+calculate the mean, median, mode, quartiles, and
+percentiles on a dataset of 10 values and 
+visualize a normal distribution.
+
+
+
+
 ------------------------------Python 
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+# Generate 10 random data points (normally distributed)
+data = np.random.normal(loc=0, scale=1, size=10)
+
+# Calculate basic statistics
+mean = np.mean(data)
+median = np.median(data)
+#mode = stats.mode(data)[0][0]
+q1 = np.percentile(data, 25)  # First quartile
+q3 = np.percentile(data, 75)  # Third quartile
+percentile_90 = np.percentile(data, 90)
+
+# Print out the statistics
+print("Data: ", data)
+print(f"Mean: {mean}")
+print(f"Median: {median}")
+#print(f"Mode: {mode}")
+print(f"First Quartile (Q1): {q1}")
+print(f"Third Quartile (Q3): {q3}")
+print(f"90th Percentile: {percentile_90}")
+
+# Visualize the normal distribution with data points
+plt.figure(figsize=(8, 6))
+sns.histplot(data, kde=True, color="skyblue", bins=10, stat="density")
+
+# Mark the statistics on the plot
+plt.axvline(mean, color='r', linestyle='--', label=f'Mean: {mean:.2f}')
+plt.axvline(median, color='g', linestyle='--', label=f'Median: {median:.2f}')
+plt.axvline(q1, color='b', linestyle='--', label=f'Q1: {q1:.2f}')
+plt.axvline(q3, color='orange', linestyle='--', label=f'Q3: {q3:.2f}')
+plt.axvline(percentile_90, color='purple', linestyle='--', label=f'90th Percentile: {percentile_90:.2f}')
+
+# Add title and labels
+plt.title("Normal Distribution with Statistics")
+plt.xlabel("Data Points")
+plt.ylabel("Density")
+plt.legend()
+plt.show()
 
 
 
@@ -593,6 +659,44 @@ Summary of Regression Types and Visualizations
 
 
 ------------------------------R Example
+# Generate 10 random data points from a normal distribution
+set.seed(0)
+data <- rnorm(10)
+
+# Calculate basic statistics
+mean_data <- mean(data)
+median_data <- median(data)
+mode_data <- as.numeric(names(sort(table(data), decreasing = TRUE)[1]))
+q1_data <- quantile(data, 0.25)  # First quartile
+q3_data <- quantile(data, 0.75)  # Third quartile
+percentile_90_data <- quantile(data, 0.90)
+
+# Print out the statistics
+cat("Data: ", data, "\n")
+cat("Mean: ", mean_data, "\n")
+cat("Median: ", median_data, "\n")
+cat("Mode: ", mode_data, "\n")
+cat("First Quartile (Q1): ", q1_data, "\n")
+cat("Third Quartile (Q3): ", q3_data, "\n")
+cat("90th Percentile: ", percentile_90_data, "\n")
+
+# Visualize the normal distribution with data points
+library(ggplot2)
+
+# Create a data frame for plotting
+data_frame <- data.frame(x = data)
+
+# Plot data with a normal distribution curve
+ggplot(data_frame, aes(x = x)) +
+  geom_histogram(aes(y = ..density..), bins = 10, fill = "skyblue", alpha = 0.7) +
+  stat_function(fun = dnorm, args = list(mean = mean_data, sd = sd(data)), color = "red") +
+  geom_vline(aes(xintercept = mean_data), color = "red", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = median_data), color = "green", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = q1_data), color = "blue", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = q3_data), color = "orange", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = percentile_90_data), color = "purple", linetype = "dashed", size = 1) +
+  labs(title = "Normal Distribution with Statistics", x = "Data Points", y = "Density") +
+  theme_minimal()
 
 
 
@@ -610,11 +714,60 @@ Summary of Regression Types and Visualizations
 
 
 
-
+Mean 
 *************************************
 
 
 ------------------------------Python 
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Generate 15 random data points from a normal distribution
+data = np.random.normal(loc=0, scale=1, size=15)
+
+# Calculate the mean
+mean = np.mean(data)
+
+# Plotting
+plt.figure(figsize=(8, 6))
+sns.histplot(data, kde=True, color="skyblue", bins=15, stat="density")
+
+# Mark the mean on the plot
+plt.axvline(mean, color='red', linestyle='--', label=f'Mean: {mean:.2f}')
+
+# Title and labels
+plt.title("Normal Distribution with Isolated Mean (15 Data Points)")
+plt.xlabel("Data Points")
+plt.ylabel("Density")
+plt.legend()
+plt.show()
+
+# Print the data and mean
+print("Data:", data)
+print(f"Mean: {mean}")
+
+
+
+Explanation 
+            Generate Data: 
+            We generate 15 data points drawn
+            from a normal distribution 
+            using np.random.normal().
+            
+            Calculate Mean: 
+            The mean is calculated using np.mean().
+            
+            Plot: 
+            A histogram is plotted with Seaborn's
+            histplot() and a Kernel Density Estimate (KDE)
+            curve. The mean is marked with a red dashed
+            line.
+            
+            Print:
+            The generated data and the calculated
+            mean are printed.
 
 
 
@@ -623,6 +776,50 @@ Summary of Regression Types and Visualizations
 
 
 ------------------------------R Example
+# Generate 15 random data points from a normal distribution
+set.seed(0)
+data <- rnorm(15)
+
+# Calculate the mean
+mean_data <- mean(data)
+
+# Plotting
+library(ggplot2)
+ggplot(data.frame(x = data), aes(x = x)) +
+  geom_histogram(aes(y = ..density..), bins = 15, fill = "skyblue", alpha = 0.7) +
+  stat_function(fun = dnorm, args = list(mean = mean_data, sd = sd(data)), color = "red") +
+  geom_vline(aes(xintercept = mean_data), color = "red", linetype = "dashed", size = 1) +
+  labs(title = "Normal Distribution with Isolated Mean (15 Data Points)", x = "Data Points", y = "Density") +
+  theme_minimal()
+
+# Print the data and mean
+cat("Data: ", data, "\n")
+cat("Mean: ", mean_data, "\n")
+
+
+
+
+
+
+Explanation 
+            Generate Data: 
+            We generate 15 data points drawn from a normal 
+            distribution using rnorm().
+            
+            Calculate Mean: 
+            The mean is calculated using mean().
+            
+            
+            Plot: 
+            A histogram is plotted using ggplot2, and a
+            Kernel Density Estimate (KDE) curve is added 
+            with stat_function(). The mean is marked with
+            a red dashed line.
+            
+            
+            Print:
+            The generated data and the calculated mean are printed.
+            
 
 
 
@@ -632,29 +829,87 @@ Summary of Regression Types and Visualizations
 
 
 
-
-
-
-
-
-
-
-
-
+Median 
 *************************************
 
 
 ------------------------------Python 
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Generate 15 random data points from a normal distribution
+data = np.random.normal(loc=0, scale=1, size=15)
+
+# Calculate the median
+median = np.median(data)
+
+# Plotting
+plt.figure(figsize=(8, 6))
+sns.histplot(data, kde=True, color="skyblue", bins=15, stat="density")
+
+# Mark the median on the plot
+plt.axvline(median, color='green', linestyle='--', label=f'Median: {median:.2f}')
+
+# Title and labels
+plt.title("Normal Distribution with Isolated Median (15 Data Points)")
+plt.xlabel("Data Points")
+plt.ylabel("Density")
+plt.legend()
+plt.show()
+
+# Print the data and median
+print("Data:", data)
+print(f"Median: {median}")
 
 
+
+Explanation of Python Code:
+Generate Data: We generate 15 data points drawn from a normal distribution using np.random.normal().
+
+Calculate Median: The median is calculated using np.median().
+
+Plot: A histogram is plotted with Seaborn's histplot() and a Kernel Density Estimate (KDE) curve. The median is marked with a green dashed line.
+
+Print: The generated data and the calculated median are printed.
 
 
 
 
 
 ------------------------------R Example
+# Generate 15 random data points from a normal distribution
+set.seed(0)
+data <- rnorm(15)
+
+# Calculate the median
+median_data <- median(data)
+
+# Plotting
+library(ggplot2)
+ggplot(data.frame(x = data), aes(x = x)) +
+  geom_histogram(aes(y = ..density..), bins = 15, fill = "skyblue", alpha = 0.7) +
+  stat_function(fun = dnorm, args = list(mean = mean(data), sd = sd(data)), color = "red") +
+  geom_vline(aes(xintercept = median_data), color = "green", linetype = "dashed", size = 1) +
+  labs(title = "Normal Distribution with Isolated Median (15 Data Points)", x = "Data Points", y = "Density") +
+  theme_minimal()
+
+# Print the data and median
+cat("Data: ", data, "\n")
+cat("Median: ", median_data, "\n")
 
 
+
+
+
+Explanation of R Code:
+Generate Data: We generate 15 data points drawn from a normal distribution using rnorm().
+
+Calculate Median: The median is calculated using median().
+
+Plot: A histogram is plotted using ggplot2, and a Kernel Density Estimate (KDE) curve is added with stat_function(). The median is marked with a green dashed line.
+
+Print: The generated data and the calculated median are printed.
 
 
 
