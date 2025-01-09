@@ -18,7 +18,9 @@ LAB 11 - COMMIT AND ROLLBACK COMMAND operator with select/where
 	To changes back in of old changes
 	Roll back of update command
 	Mistakenly command to be revert
-	Data changes or edit bhayexiiii, sankha lagyooooo bhane , back to same data revert or rollback garne .
+
+	Data changes or edit bhayexiiii, sankha lagyooooo bhane , back to
+	same data revert or rollback garne .
 
 
 	# rollback;					//one step back
@@ -29,7 +31,7 @@ LAB 11 - COMMIT AND ROLLBACK COMMAND operator with select/where
 
 
 	These commands works on
-	---------------------------
+	---------------------------WRITE access
 	1.	INSERT
 	2.	UPDATE
 	3.	DELETE
