@@ -1,0 +1,140 @@
+
+
+
+
+
+Normalize the problem to BCNF
+---------------------------
+
++----------------+----------------+------------------+------------------------+--------------------------+
+| CustomerID     | Name           | Address          | Orders1                |  Order 2                 |
++----------------+----------------+------------------+------------------------+--------------------------+
+| 1              | Ram Shrestha   | Kathmandu        | Order1: Rice, 5kg, 600  | Order2: Oil, 1L, 250     |
+| 2              | Sita Lama      | Bhaktapur        | Order1: Sugar, 3kg, 150 | Order2: Tea, 1pkt, 100   |
+| 3              | Hari Gurung    | Pokhara          | Order1: Salt, 2kg, 60   | Order2: Coffee, 1pkt, 500|
+| 4              | Gita Magar     | Lalitpur         | Order1: Dal, 2kg, 400   | Order2: Ghee, 1kg, 1000  |
++----------------+----------------+------------------+-------------------------+--------------------------+
+
+
+
+
+
+1NF (First Normal Form)
+----------------------------
+To convert to 1NF, we eliminate repeating groups 
+by separating orders into individual rows.
+
+
+1NF_Table
++----------------+----------------+------------------+-----------+--------+---------+
+| CustomerID     | Name           | Address          | Item      | Qty    | Price   |
++----------------+----------------+------------------+-----------+--------+---------+
+| 1              | Ram Shrestha   | Kathmandu        | Rice      | 5kg    | 600     |
+| 1              | Ram Shrestha   | Kathmandu        | Oil       | 1L     | 250     |
+| 2              | Sita Lama      | Bhaktapur        | Sugar     | 3kg    | 150     |
+| 2              | Sita Lama      | Bhaktapur        | Tea       | 1pkt   | 100     |
+| 3              | Hari Gurung    | Pokhara          | Salt      | 2kg    | 60      |
+| 3              | Hari Gurung    | Pokhara          | Coffee    | 1pkt   | 500     |
+| 4              | Gita Magar     | Lalitpur         | Dal       | 2kg    | 400     |
+| 4              | Gita Magar     | Lalitpur         | Ghee      | 1kg    | 1000    |
++----------------+----------------+------------------+-----------+--------+---------+
+
+
+
+
+2NF (Second Normal Form)
+---------------------------
+To convert to 2NF, we remove partial dependencies. 
+Here, Item, Qty, and Price depend on OrderID, not on 
+the entire composite key (CustomerID + OrderID).
+
+We create two tables:
+
+
+
+
+
+Customer_Table
++----------------+----------------+------------------+
+| CustomerID     | Name           | Address          |
++----------------+----------------+------------------+
+| 1              | Ram Shrestha   | Kathmandu        |
+| 2              | Sita Lama      | Bhaktapur        |
+| 3              | Hari Gurung    | Pokhara          |
+| 4              | Gita Magar     | Lalitpur         |
++----------------+----------------+------------------+
+
+
+Order_Table
++-----------+----------------+-----------+--------+---------+
+| OrderID   | CustomerID     | Item      | Qty    | Price   |
++-----------+----------------+-----------+--------+---------+
+| 1         | 1              | Rice      | 5kg    | 600     |
+| 2         | 1              | Oil       | 1L     | 250     |
+| 3         | 2              | Sugar     | 3kg    | 150     |
+| 4         | 2              | Tea       | 1pkt   | 100     |
+| 5         | 3              | Salt      | 2kg    | 60      |
+| 6         | 3              | Coffee    | 1pkt   | 500     |
+| 7         | 4              | Dal       | 2kg    | 400     |
+| 8         | 4              | Ghee      | 1kg    | 1000    |
++-----------+----------------+-----------+--------+---------+
+
+
+
+
+3NF (Third Normal Form)
+---------------------------
+To convert to 3NF, we remove transitive dependencies. 
+Here, Price depends on Item. We create a separate Item table:
+
+
+Item_Table
++-----------+--------+---------+
+| Item      | Qty    | Price   |
++-----------+--------+---------+
+| Rice      | 5kg    | 600     |
+| Oil       | 1L     | 250     |
+| Sugar     | 3kg    | 150     |
+| Tea       | 1pkt   | 100     |
+| Salt      | 2kg    | 60      |
+| Coffee    | 1pkt   | 500     |
+| Dal       | 2kg    | 400     |
+| Ghee      | 1kg    | 1000    |
++-----------+--------+---------+
+
+
+
+
+Order_Table
++-----------+----------------+-----------+
+| OrderID   | CustomerID     | Item      |
++-----------+----------------+-----------+
+| 1         | 1              | Rice      |
+| 2         | 1              | Oil       |
+| 3         | 2              | Sugar     |
+| 4         | 2              | Tea       |
+| 5         | 3              | Salt      |
+| 6         | 3              | Coffee    |
+| 7         | 4              | Dal       |
+| 8         | 4              | Ghee      |
++-----------+----------------+-----------+
+
+
+
+
+BCNF (Boyce-Codd Normal Form)
+---------------------------
+The tables are already in BCNF because 
+there are no functional dependencies that violate BCNF rules
+
+
+
+
+
+Final Normalized Structure:
+---------------------------
+Customer Table: Stores customer details.
+Order Table: Links customers to their orders.
+Item Table: Stores unique items with their quantities and prices.
+
+
