@@ -1,0 +1,412 @@
+Student Name
+-----------------
+Aadarsh Bhattarai
+Aishwarya Pandey
+Ajay Kunwar
+Amit Paudel
+Ankit Chapagain
+Arpit  Kattel
+Arun Bista
+Arun Sunar
+Aryan Bhandari
+Aswin G.C.
+Ayusha Gaire
+Bandana Sharma
+Barsha Nepali
+Bibek Bhusal
+Bijan Adhikari
+Bindhya Shakya (PU)
+Bishnu Prasad Gupta
+Denish K.c.
+Durga Sharki
+Janaki Neupane
+Kripesh Karki
+Kritika Rana Khand
+Kushal Neupane
+Lovejoy Khatri
+Milam Saru Magar
+Mohammad Faheem Khan
+Nikit Lohani
+Niranjan Chaudhary
+Nishan Thapa
+Prashant Danguriya
+Rajani Bhusal
+Ranjan Aryal
+Ranjeeta Belbase (PU)
+Sandesh Parajuli
+Sandipa Shrestha 
+Siya Singh Kshetri
+Smit Paudel (PU)
+Sulochan Karki
+Suraj Kumar Shrestha (PU)
+Surakshya Nepali (PU)
+Surya Psd Khanal
+Sushil Bhandari
+Tejendra Dharikar
+Yubraj Poudel
+
+
+
+
+
+
+
+
+
+
+***************************************************************************
+Presentations: BCSIT 3, DBMS 
+
+
+Mode Online: google meet
+
+Meet Link (Static Link) : 
+
+            https://meet.google.com/owp-rgkx-zab
+            or
+            Meet code: owp-rgkx-zab
+
+
+
+Time: 6.00 - 7:15 PM (75 mins)
+Start Date : 13 shrawan 2081
+
+Per day (in 75 mins , 4-5 students will perform)
+Acceptable Slide : .ppt, or .pdf   / no online link
+
+
+Slide Length : min 8 , max 14 slides
+
+
+
+Slide must include:
+---------------------
+	Slide 1: Title Slide,  Course Title, Unit Title, Your Name, Date
+	Slide 2,3,4,.....: topic to be discovered
+	Slide last: Conclusions , QnA
+
+
+Slide time per student : 10-14 mins
+
+
+
+
+            FOR SQL DEMO: make a nessecity data for demo, create db, 
+                        table, insert data (atleast 15 data) etc (prepare previously)
+            
+            FOR ER : diagram and steps , entity, relations, and attribute 
+            	        figure must be defined and cleared
+            
+            For general presentations : make your necessary assumptions
+
+
+
+
+
+Presentations Include 10 marks for external marks .i.e (10/20)
+
+
+        Your PPT must be upload 20 mins or / one day 
+        earlier in your facebook chat group , before the day of
+        presentations for verifications.
+
+
+
+
+    NOTE
+    ------------
+    If the rules voilated , in any manner, the student 
+    is not evaluated for marks.
+
+
+              regards
+              --------
+              
+              Subject Teacher: Sanjeev Thapa
+***************************************************************************
+
+
+
+
+
+
+
+
+Name of the student	          	Date	      	Topics	
+-----------------------------------------------------
+
+Aadarsh Bhattarai – 
+
+              NOrmalize the table as  1NF, 2NF, 3NF, BCNF
+              
+              +----------------+----------------+------------------+------------------------+--------------------------+
+              | CustomerID     | Name           | Address          | Orders1                |  Order 2                 |
+              +----------------+----------------+------------------+------------------------+--------------------------+
+              | 1              | Ram Shrestha   | Kathmandu        | Order1: Rice, 5kg, 600  | Order2: Oil, 1L, 250     |
+              | 2              | Sita Lama      | Bhaktapur        | Order1: Sugar, 3kg, 150 | Order2: Tea, 1pkt, 100   |
+              | 3              | Hari Gurung    | Pokhara          | Order1: Salt, 2kg, 60   | Order2: Coffee, 1pkt, 500|
+              | 4              | Gita Magar     | Lalitpur         | Order1: Dal, 2kg, 400   | Order2: Ghee, 1kg, 1000  |
+              +----------------+----------------+------------------+-------------------------+--------------------------+
+
+
+
+
+
+Aishwarya Pandey – Query cost estimation
+
+
+
+
+
+Ajay Kunwar – Introduction to Entity-Relationship Model
+
+
+
+
+
+Amit Paudel – Security and integrity violations
+
+
+
+
+
+Ankit Chapagain – Lock-based concurrency control
+
+
+
+
+
+Arpit Kattel – Concepts of DDL, DML, DCL
+
+
+
+
+
+Arun Bista – Joins and types
+
+
+
+
+
+Arun Sunar – History, database system, and its applications
+
+
+
+
+
+Aryan Bhandari – Conceptual, logical, and physical models
+
+
+
+
+
+Aswin G.C. – SQL – Data types, operators
+
+
+
+
+
+Ayusha Gaire – Timestamp concept
+
+
+
+
+
+Bandana Sharma – Attributes and keys
+
+
+
+
+
+Barsha Nepali – Importance of normalization
+
+
+
+
+
+Bibek Bhusal – Encryption and decryption
+
+
+
+
+
+Bijan Adhikari – Database manager and users
+
+
+
+
+
+Bindhya Shakya (PU) – Query optimization
+
+
+
+
+
+Bishnu Prasad Gupta – Concurrent execution
+
+
+
+
+
+Denish K.C. – Security and views
+
+
+
+
+
+Durga Sharki – Functions: Aggregate and Built-in functions
+
+
+
+
+
+Janaki Neupane – Functional Dependencies: Definition, trivial and non-trivial FD, closure of FD set
+
+
+
+
+
+Kripesh Karki – Manipulation commands (INSERT, UPDATE, DELETE, SELECT)
+
+
+
+
+
+Kritika Rana Khand – Relationship types and sets
+
+
+
+
+
+Kushal Neupane – Access control
+
+
+
+
+
+Lovejoy Khatri – Set operations and sub-queries
+
+
+
+
+
+Milam Saru Magar – Application architecture (one-tier, two-tier, n-tier)
+
+
+
+
+
+Mohammad Faheem Khan – Characteristics of DBMS
+
+
+
+
+
+Nikit Lohani – E-R diagrams
+
+
+
+
+
+Niranjan Chaudhary – Security and integrity violations
+
+
+
+
+
+Nishan Thapa – Evaluation of expressions
+
+
+
+
+
+Prashant Danguriya – Views and types
+
+
+
+
+
+Rajani Bhusal – Needs of security
+
+
+
+
+
+Ranjan Aryal – Schemas and instances
+
+
+
+
+
+Ranjeeta Belbase (PU) – Data abstraction and independence
+
+
+
+
+
+Sandesh Parajuli – Authorization
+
+
+
+
+
+Sandipa Shrestha – Structure: Creation, alteration, drop, constraints
+
+
+
+
+
+Siya Singh Kshetri – Introduction to query processing
+
+
+
+
+
+Smit Paudel (PU) – Data abstraction and independence
+
+
+
+
+
+Sulochan Karki – Introduction to transaction
+
+
+
+
+
+Suraj Kumar Shrestha (PU) – Normalization: Integrity and domain constraints
+
+
+
+
+
+Surakshya Nepali (PU) – Aggregate functions and usage of group by, having, order by
+
+
+
+
+
+Surya Psd Khanal – Primary and foreign key constraints
+
+
+
+
+
+Sushil Bhandari – Serializability concept
+
+
+
+
+
+Tejendra Dharikar – Sub-queries and nested queries
+
+
+
+
+
+Yubraj Poudel – Query operations
+
+
+
+
+
