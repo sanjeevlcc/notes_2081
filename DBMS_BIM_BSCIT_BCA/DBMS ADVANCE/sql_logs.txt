@@ -138,6 +138,44 @@ Viewing Database and Table Information:
 
 ===================DEMO=======================
 
+Summary:
+            Terminal 1 shows the commands entered by the user.
+            
+            Terminal 2 logs the server-side actions resulting from 
+                        those commands, along with timestamps and session information (thread 9).
+            
+                        This dual view can be useful for debugging,
+                        monitoring, or auditing database activity.
+            
+
+
+
+
+
+2025-01-11T10:28:45.178699Z
+-----------------------------------
+The timestamp                    2025-01-11T10:28:45.178699Z               provides
+precise information about when a specific query was executed 
+on the MySQL server. Here's the breakdown:
+
+
+
+
+
+            2025-01-11:
+                        The date when the query was executed (January 11, 2025).
+            
+            T:
+                        Separator between the date and time, indicating that the 
+                        following part represents the time.
+            
+            10:28:45.178699: 
+                        The time of the query execution in hours, minutes, seconds, 
+                        and microseconds (10 hours, 28 minutes, 45.178699 seconds).
+            
+            Z:
+                        Indicates that the timestamp is in UTC (Coordinated Universal Time).
+            
 
 __________________________________________________________
 
