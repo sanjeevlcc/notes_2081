@@ -1,7 +1,7 @@
 docker run --name sql-lab -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=testdb -p 3306:3306 -d mysql:latest
 
 docker run --name my-adminer -p 8080:8080 --link sql-lab:db -d adminer:latest
----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------- FOR GUI CLIENT
 
 
 
