@@ -429,38 +429,6 @@ Barsha Nepali –
 
 
 
-Bibek Bhusal – 
-/////////////////////		
-		 E-commerce Website Database System
-		
-		
-		Scenario Overview
-			An e-commerce company has recently decided to implement 
-			a new database management system (DBMS) to handle various aspects 
-			of their online store, including product catalog, customer information,
-			inventory management, and order processing. The company is moving
-			from a basic file-based system to a DBMS to better manage their 
-			growing data, enhance customer experience, and streamline internal processes.
-			
-			The main goal is to provide better product search capabilities, faster 
-			order processing, and reliable customer support, all while ensuring
-			data consistency and security.
-		
-		
-		Questions
-			How would a DBMS help the company manage large volumes of customer 
-			data, transactions, and product information more effectively than
-			a traditional file system?
-			
-			Given that the company’s e-commerce platform needs to scale and 
-			provide web access for thousands of customers, which architecture (one-tier,
-			two-tier, or n-tier) would be most suitable for their DBMS, and why?
-			
-			How would a Database Manager (DBM) ensure that only authorized 
-			personnel can access sensitive customer data (e.g., payment details, 
-			addresses) while allowing employees to perform necessary tasks like 
-			updating product availability?
-
 
 
 
@@ -480,6 +448,9 @@ Bijan Adhikari
 
 			SQL Data Types and Operators
 			Make Practical Demonstration Using SQL under
+
+
+
 
 
 
@@ -797,7 +768,7 @@ Online Shopping Platform
 
 
 
-Rajani Bhusal – Needs of security
+Rajani Bhusal – 
 +++++++++++++++++++++++++
 		Introduction to the ER model, its purpose, and when to use it.
 		Definition of entity types.
@@ -814,6 +785,41 @@ Ranjan Aryal –
 +++++++++++++++++++++++++
 
 
+		
+		 E-commerce Website Database System
+		
+		
+		Scenario Overview
+			An e-commerce company has recently decided to implement 
+			a new database management system (DBMS) to handle various aspects 
+			of their online store, including product catalog, customer information,
+			inventory management, and order processing. The company is moving
+			from a basic file-based system to a DBMS to better manage their 
+			growing data, enhance customer experience, and streamline internal processes.
+			
+			The main goal is to provide better product search capabilities, faster 
+			order processing, and reliable customer support, all while ensuring
+			data consistency and security.
+		
+		
+		Questions
+			How would a DBMS help the company manage large volumes of customer 
+			data, transactions, and product information more effectively than
+			a traditional file system?
+			
+			Given that the company’s e-commerce platform needs to scale and 
+			provide web access for thousands of customers, which architecture (one-tier,
+			two-tier, or n-tier) would be most suitable for their DBMS, and why?
+			
+			How would a Database Manager (DBM) ensure that only authorized 
+			personnel can access sensitive customer data (e.g., payment details, 
+			addresses) while allowing employees to perform necessary tasks like 
+			updating product availability?
+
+
+
+
+
 
 
 Ranjeeta Belbase (PU) – 
@@ -825,14 +831,59 @@ Ranjeeta Belbase (PU) –
 		Make Practical Demonstration Using SQL
 		
 
+
+
+
 Sandesh Parajuli –
 +++++++++++++++++++++++++
+
+Case Scenario: Library Management System
+		
+		Tables and Attributes
+			Books: BookID, Title, Author, Genre, PublishedYear, AvailableCopies
+			Members: MemberID, Name, MembershipType, JoinDate, Email, Phone
+			BorrowRecords: RecordID, MemberID, BookID, BorrowDate, ReturnDate, FineAmount
+			
+			
+		
+		Questions for the Library Management System
+			Which books are currently available in the library (i.e., AvailableCopies > 0)?
+			List all members who have borrowed books more than three times.
+			Which books are overdue for return based on their ReturnDate?
+			Find the total fine collected from all members.
+			Which genres of books are most frequently borrowed by members?
+			Retrieve the details of members who have borrowed books authored by a specific writer (e.g., "J.K. Rowling").
+			Identify books that were published before the year 2000 and are still available in the library.
+			Find members with an active borrowing record who joined after a specific date.
+			List all members with pending fines, including the total fine amount for each.
+			Which books have never been borrowed by any member?
+
 
 
 
 
 Sandipa Shrestha – 
 +++++++++++++++++++++++++
+
+
+              Normalize the table as  1NF, 2NF, 3NF, BCNF
+              
+              +----------------+----------------+------------------+------------------------+--------------------------+
+              | CustomerID     | Name           | Address          | Orders1                |  Order 2                 |
+              +----------------+----------------+------------------+------------------------+--------------------------+
+              | 1              | Ram Shrestha   | Kathmandu        | Order1: Rice, 5kg, 600  | Order2: Oil, 1L, 250     |
+              | 2              | Sita Lama      | Bhaktapur        | Order1: Sugar, 3kg, 150 | Order2: Tea, 1pkt, 100   |
+              | 3              | Hari Gurung    | Pokhara          | Order1: Salt, 2kg, 60   | Order2: Coffee, 1pkt, 500|
+              | 4              | Gita Magar     | Lalitpur         | Order1: Dal, 2kg, 400   | Order2: Ghee, 1kg, 1000  |
+              +----------------+----------------+------------------+-------------------------+--------------------------+
+
+
+
+
+
+
+
+
 
 
 
@@ -871,13 +922,90 @@ Siya Singh Kshetri –
 Smit Paudel (PU) –
 +++++++++++++++++++++++++
 
+ E-commerce Website Database System
+		
+		
+		Scenario Overview
+			An e-commerce company has recently decided to implement 
+			a new database management system (DBMS) to handle various aspects 
+			of their online store, including product catalog, customer information,
+			inventory management, and order processing. The company is moving
+			from a basic file-based system to a DBMS to better manage their 
+			growing data, enhance customer experience, and streamline internal processes.
+			
+			The main goal is to provide better product search capabilities, faster 
+			order processing, and reliable customer support, all while ensuring
+			data consistency and security.
+		
+		
+		Questions
+			How would a DBMS help the company manage large volumes of customer 
+			data, transactions, and product information more effectively than
+			a traditional file system?
+			
+			Given that the company’s e-commerce platform needs to scale and 
+			provide web access for thousands of customers, which architecture (one-tier,
+			two-tier, or n-tier) would be most suitable for their DBMS, and why?
+			
+			How would a Database Manager (DBM) ensure that only authorized 
+			personnel can access sensitive customer data (e.g., payment details, 
+			addresses) while allowing employees to perform necessary tasks like 
+			updating product availability?
+
+
+
+
+
 
 Sulochan Karki – 
 +++++++++++++++++++++++++
 
+		Implementing Access Control
+			Show how access control is configured using SQL 
+			(e.g., GRANT, REVOKE statements).
+		
+		Diagram/Illustration:
+			Security Model: Create a diagram showing how security mechanisms
+			like authentication, access control, and encryption work 
+			in a database system.
+		
+		Assumptions: 
+			If needed, assume a database system and explain
+			the security mechanisms in a hypothetical scenario.
+
+
+
+
+
 
 Suraj Kumar Shrestha (PU) –
 +++++++++++++++++++++++++
+		
+		Make Practical Demonstration Using SQL under
+		
+		Tables with Attributes
+			Employees: EmployeeID, Name, Position, DepartmentID, Salary, HireDate
+			Departments: DepartmentID, DepartmentName, ManagerID, Location
+			Projects: ProjectID, ProjectName, DepartmentID, StartDate, EndDate, Budget
+		
+		Questions from the Tables
+			What is the total budget of all projects handled by a specific department?
+			Which employees are working in the "IT" department?
+			List all projects that are scheduled to end within the next month.
+			Find the department with the highest number of employees.
+			Retrieve the details of the manager of a specific department.
+			Which employees were hired after a specific date and are part of a specific department?
+			List all departments and their respective projects, including project budgets.
+			Find employees who are not assigned to any project.
+			Identify the department handling the most expensive project.
+			What is the average salary of employees in each department?
+		
+
+
+
+
+
+
 
 
 
