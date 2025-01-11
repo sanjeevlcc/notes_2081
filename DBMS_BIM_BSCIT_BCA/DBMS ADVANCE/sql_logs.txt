@@ -1,3 +1,9 @@
+docker run --name sql-lab -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=testdb -p 3306:3306 -d mysql:latest
+
+docker run --name my-adminer -p 8080:8080 --link sql-lab:db -d adminer:latest
+---------------------------------------------------------------------------------------
+
+
 
 
 https://killercoda.com/killer-shell-cka/scenario/playground
@@ -125,6 +131,241 @@ Viewing Database and Table Information:
                       INSERT INTO table_name (column1, column2) VALUES ('value1', 'value2');
                       SELECT * FROM table_name;
                       
+
+
+
+
+
+===================DEMO=======================
+
+
+__________________________________________________________
+
+
+TERMINAL 1
+-------------------------
+controlplane $ tail -f /var/log/mysql/general.log 
+
+
+
+
+TERMINAL 2
+-------------------------
+2025-01-11T10:28:31.672783Z         9 Connect   root@localhost on  using Socket
+2025-01-11T10:28:31.673266Z         9 Query     select @@version_comment limit 1
+
+__________________________________________________________
+
+
+
+__________________________________________________________
+
+
+TERMINAL 1
+-------------------------
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db1                |
+| db11               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use db11;
+Database changed
+
+
+
+TERMINAL 2
+-------------------------
+2025-01-11T10:28:45.178699Z         9 Query     show databases
+2025-01-11T10:28:51.383866Z         9 Query     SELECT DATABASE()
+
+
+2025-01-11T10:28:51.384142Z         9 Init DB   db11
+2025-01-11T10:28:51.385128Z         9 Query     show databases
+2025-01-11T10:28:51.386327Z         9 Query     show tables
+
+__________________________________________________________
+
+
+
+
+
+
+
+
+__________________________________________________________
+
+
+TERMINAL 1
+-------------------------
+mysql> CREATE TABLE hospitals (     
+    -> hospital_id INT PRIMARY KEY AUTO_INCREMENT,     
+    -> hospital_name VARCHAR(255) NOT NULL,     
+    -> location VARCHAR(100) NOT NULL,     
+    -> capacity INT,     
+    -> specialties VARCHAR(255),     
+    -> rating FLOAT );
+Query OK, 0 rows affected (0.04 sec)
+
+
+mysql> INSERT INTO hospitals (hospital_name, location, capacity, specialties, rating) VALUES
+    -> ('City General Hospital', 'City A', 300, 'General Medicine', 4.5),     
+    -> ('Central Regional Hospital', 'City B', 250, 'Cardiology, Orthopedics', 4.2),
+    -> ('Unity Hospital', 'City C', 200, 'Pediatrics, Surgery', 4.8);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+
+
+
+
+
+
+
+TERMINAL 2
+-------------------------
+2025-01-11T10:31:23.646498Z         9 Query     CREATE TABLE hospitals (     
+hospital_id INT PRIMARY KEY AUTO_INCREMENT,     
+hospital_name VARCHAR(255) NOT NULL,     
+location VARCHAR(100) NOT NULL,     
+capacity INT,     
+specialties VARCHAR(255),     
+rating FLOAT )
+
+
+
+2025-01-11T10:32:13.890046Z         9 Query     INSERT INTO hospitals (hospital_name, location, capacity, specialties, rating) VALUES
+('City General Hospital', 'City A', 300, 'General Medicine', 4.5),     
+('Central Regional Hospital', 'City B', 250, 'Cardiology, Orthopedics', 4.2),
+('Unity Hospital', 'City C', 200, 'Pediatrics, Surgery', 4.8)
+
+
+__________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+__________________________________________________________
+
+
+TERMINAL 1
+-------------------------
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update  hospitals set  location="dharan" where hospital_id=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> commit;
+Query OK, 0 rows affected (0.01 sec)
+
+
+
+
+
+
+TERMINAL 2
+-------------------------
+2025-01-11T10:33:13.807045Z         9 Query     START TRANSACTION
+2025-01-11T10:33:20.016591Z         9 Query     update  hospitals set  location="dharan" where hospital_id=2
+2025-01-11T10:33:23.493295Z         9 Query     commit
+
+
+__________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+__________________________________________________________
+
+
+TERMINAL 1
+-------------------------
+
+
+
+
+
+TERMINAL 2
+-------------------------
+
+
+__________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+__________________________________________________________
+
+
+TERMINAL 1
+-------------------------
+
+
+
+
+
+TERMINAL 2
+-------------------------
+
+
+__________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+__________________________________________________________
+
+
+TERMINAL 1
+-------------------------
+
+
+
+
+
+TERMINAL 2
+-------------------------
+
+
+__________________________________________________________
+
+
+
 
 
 
