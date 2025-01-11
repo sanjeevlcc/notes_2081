@@ -182,15 +182,15 @@ __________________________________________________________
 
 TERMINAL 1
 -------------------------
-controlplane $ tail -f /var/log/mysql/general.log 
-
-
+controlplane $ sudo mysql -u root -p
 
 
 TERMINAL 2
 -------------------------
+controlplane $ tail -f /var/log/mysql/general.log 
 2025-01-11T10:28:31.672783Z         9 Connect   root@localhost on  using Socket
 2025-01-11T10:28:31.673266Z         9 Query     select @@version_comment limit 1
+
 
 __________________________________________________________
 
@@ -213,6 +213,7 @@ mysql> show databases;
 
 mysql> use db11;
 Database changed
+
 
 
 
@@ -264,6 +265,7 @@ Records: 3  Duplicates: 0  Warnings: 0
 
 
 
+
 TERMINAL 2
 -------------------------
 2025-01-11T10:31:23.646498Z         9 Query     CREATE TABLE hospitals (     
@@ -273,6 +275,7 @@ location VARCHAR(100) NOT NULL,
 capacity INT,     
 specialties VARCHAR(255),     
 rating FLOAT )
+
 
 
 
