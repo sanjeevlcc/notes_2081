@@ -228,11 +228,19 @@ Aadarsh Bhattarai –
 
 
 
+
+
+
+
+
 Aishwarya Pandey – 
 
 		Role-Based Access Control (RBAC)
 		SQL Demo: Creating roles, assigning privileges, and applying access control
 		Example SQL statements: CREATE ROLE, GRANT, REVOKE
+
+
+
 
 
 
@@ -268,12 +276,77 @@ Ajay Kunwar -
 
 
 
+
+
+
 Amit Paudel – 
 
 
 
+		Scenario Overview
+			Imagine you are managing the database of a large e-commerce platform.
+			The platform stores critical customer data, transaction logs, product 
+			information, and inventory records. Due to the high volume of transactions, 
+			the system is susceptible to various types of failures. Your team needs 
+			to implement a robust backup and recovery system to ensure the 
+			availability, consistency, and integrity of the data in case of failures
+			like system crashes, hardware malfunctions, or software bugs.
+		
+		
+		Topics / Questions on Backup and Recovery
+		
+			Topic: Classifying failures and their impact on the database
+			Case: Your e-commerce platform experiences a sudden hardware failure.
+			The system crashes, causing incomplete transactions and potential data loss.
+		
+		Questions:
+		
+			What types of failures can occur in an e-commerce database 
+			system (e.g., hardware, software, human error), and how do
+			these failures affect data integrity and availability?
+			
+			How would you classify the failure if a user’s transaction 
+			is only partially processed due to a system crash?
+			
+			What mechanisms would you put in place to prevent system
+			failure from leading to catastrophic data loss in a busy e-commerce platform?
+			
+
+
 
 Ankit Chapagain – 
+
+
+		Online Shopping Platform
+		
+		
+		Scenario Overview
+			You are managing the database of an online shopping platform 
+			where customers browse, place orders, and make payments. The database
+			handles complex queries, from fetching product details to calculating 
+			discounts and processing orders. The system needs to efficiently 
+			process queries to ensure fast response times and a seamless user 
+			experience, even during high traffic periods.
+			
+		
+		Questions
+			How would you describe the importance of query processing 
+			in an e-commerce database system?
+			
+			
+			What are the key steps involved in processing a query on 
+			an online shopping platform's database?
+			
+			
+			What methods would you use to optimize a query that retrieves
+			all customer orders made within a specific time period?
+			
+			
+			How the JOIN operation is used in processing a query that
+			retrieves details of a customer's order along with product information.
+
+
+
 
 
 
@@ -371,9 +444,35 @@ Aswin G.C. –
 
 
 
-Ayusha Gaire – Timestamp concept
+Ayusha Gaire – 
 
-
+		Online Shopping Platform
+		
+		
+		Scenario Overview
+			You are managing the database of an online shopping platform 
+			where customers browse, place orders, and make payments. The database
+			handles complex queries, from fetching product details to calculating 
+			discounts and processing orders. The system needs to efficiently 
+			process queries to ensure fast response times and a seamless user 
+			experience, even during high traffic periods.
+			
+		
+		Questions
+			How would you describe the importance of query processing 
+			in an e-commerce database system?
+			
+			
+			What are the key steps involved in processing a query on 
+			an online shopping platform's database?
+			
+			
+			What methods would you use to optimize a query that retrieves
+			all customer orders made within a specific time period?
+			
+			
+			How the JOIN operation is used in processing a query that
+			retrieves details of a customer's order along with product information.
 
 
 
@@ -407,7 +506,53 @@ Barsha Nepali –
 
 
 
-Bibek Bhusal – Encryption and decryption
+
+
+
+
+
+
+
+Bibek Bhusal – 
+		
+		 E-commerce Website Database System
+		
+		
+		Scenario Overview
+			An e-commerce company has recently decided to implement 
+			a new database management system (DBMS) to handle various aspects 
+			of their online store, including product catalog, customer information,
+			inventory management, and order processing. The company is moving
+			from a basic file-based system to a DBMS to better manage their 
+			growing data, enhance customer experience, and streamline internal processes.
+			
+			The main goal is to provide better product search capabilities, faster 
+			order processing, and reliable customer support, all while ensuring
+			data consistency and security.
+		
+		
+		Questions
+			How would a DBMS help the company manage large volumes of customer 
+			data, transactions, and product information more effectively than
+			a traditional file system?
+			
+			Given that the company’s e-commerce platform needs to scale and 
+			provide web access for thousands of customers, which architecture (one-tier,
+			two-tier, or n-tier) would be most suitable for their DBMS, and why?
+			
+			How would a Database Manager (DBM) ensure that only authorized 
+			personnel can access sensitive customer data (e.g., payment details, 
+			addresses) while allowing employees to perform necessary tasks like 
+			updating product availability?
+
+
+
+
+
+
+
+
+
 
 
 
@@ -419,13 +564,93 @@ Bijan Adhikari – Database manager and users
 
 
 
-Bindhya Shakya (PU) – Query optimization
+Bindhya Shakya (PU)
+
+
+ E-commerce Website Database System
+		
+		
+		Scenario Overview
+			An e-commerce company has recently decided to implement 
+			a new database management system (DBMS) to handle various aspects 
+			of their online store, including product catalog, customer information,
+			inventory management, and order processing. The company is moving
+			from a basic file-based system to a DBMS to better manage their 
+			growing data, enhance customer experience, and streamline internal processes.
+			
+			The main goal is to provide better product search capabilities, faster 
+			order processing, and reliable customer support, all while ensuring
+			data consistency and security.
+		
+		
+		Questions
+			How would a DBMS help the company manage large volumes of customer 
+			data, transactions, and product information more effectively than
+			a traditional file system?
+			
+			Given that the company’s e-commerce platform needs to scale and 
+			provide web access for thousands of customers, which architecture (one-tier,
+			two-tier, or n-tier) would be most suitable for their DBMS, and why?
+			
+			How would a Database Manager (DBM) ensure that only authorized 
+			personnel can access sensitive customer data (e.g., payment details, 
+			addresses) while allowing employees to perform necessary tasks like 
+			updating product availability?
 
 
 
 
 
-Bishnu Prasad Gupta – Concurrent execution
+
+
+
+
+
+
+
+
+
+
+
+
+Bishnu Prasad Gupta
+
+
+			Hospital Management System Database
+			
+			Scenario Overview
+				A hospital is implementing a database management system (DBMS) to 
+				streamline and automate its operations, which include managing patient 
+				records, doctor appointments, medical inventory, billing, and staff
+				management. The hospital needs a centralized system to track patient 
+				history, doctors' schedules, medical supplies, and financial 
+				transactions securely. This move aims to improve efficiency, 
+				reduce human error, and ensure data privacy.
+			
+			
+			
+			
+			Questions 
+				How have database systems evolved to cater to complex healthcare management
+				needs? Provide examples of similar applications in the healthcare industry.
+				
+				Given the hospital's need for a scalable system that can be accessed by 
+				multiple branches and departments (e.g., emergency, outpatient, billing),
+				which application architecture (one-tier, two-tier, or n-tier) would be 
+				most appropriate, and why?
+				
+				How does data independence in a hospital management system allow for 
+				future updates to patient records or medical history fields without 
+				disrupting ongoing operations?
+				
+				Who are the key users of the hospital management database (e.g., medical
+				staff, billing department, IT staff), and what kind of roles and permissions 
+				would the Database Manager need to assign to each group?
+
+
+
+
+
 
 
 
@@ -441,21 +666,92 @@ Denish K.C. –
 
 
 
-Durga Sharki – Functions: Aggregate and Built-in functions
+
+
+
+
+Durga Sharki 
+
+
+			Hospital Management System Database
+			
+			Scenario Overview
+				A hospital is implementing a database management system (DBMS) to 
+				streamline and automate its operations, which include managing patient 
+				records, doctor appointments, medical inventory, billing, and staff
+				management. The hospital needs a centralized system to track patient 
+				history, doctors' schedules, medical supplies, and financial 
+				transactions securely. This move aims to improve efficiency, 
+				reduce human error, and ensure data privacy.
+			
+			
+			
+			
+			Questions 
+				How have database systems evolved to cater to complex healthcare management
+				needs? Provide examples of similar applications in the healthcare industry.
+				
+				Given the hospital's need for a scalable system that can be accessed by 
+				multiple branches and departments (e.g., emergency, outpatient, billing),
+				which application architecture (one-tier, two-tier, or n-tier) would be 
+				most appropriate, and why?
+				
+				How does data independence in a hospital management system allow for 
+				future updates to patient records or medical history fields without 
+				disrupting ongoing operations?
+				
+				Who are the key users of the hospital management database (e.g., medical
+				staff, billing department, IT staff), and what kind of roles and permissions 
+				would the Database Manager need to assign to each group?
 
 
 
 
 
-Janaki Neupane – Functional Dependencies: Definition, trivial and non-trivial FD, closure of FD set
+
+Janaki Neupane – 
+
+
+		Online Banking System
+		
+		Scenario Overview
+			You are managing the database system for an online banking platform. 
+			The system supports multiple users who can perform transactions 
+			simultaneously, such as transferring money between accounts, checking
+			balances, and updating personal details. To ensure the integrity and 
+			consistency of the data, it’s important to control concurrency and
+			handle transactions effectively, especially when multiple users
+			perform operations at the same time.
+		
+		Questions 
+			What are the ACID properties of a transaction, and how do they contribute 
+			to ensuring the integrity of banking data?
+			
+			
+			Can you give an example of a situation where two concurrent transactions
+			might violate serializability in an online banking system?
+			
+			
+			How do locks (shared and exclusive) help maintain consistency when
+			multiple users access bank accounts simultaneously?
+			
+			
+			What are the differences between shared locks and exclusive locks 
+			in the context of a banking system’s transaction management?
+			
+	
 
 
 
 
+Kripesh Karki 
 
-Kripesh Karki – Manipulation commands (INSERT, UPDATE, DELETE, SELECT)
-
-
+		draw a basic ER diagram for the Hospital Management System
+		that includes entities such as Patients, Doctors, Appointments,
+		Medical Records, and Bills? Show the relationships between 
+		these entities with appropriate cardinalities 
+		
+		
 
 
 
@@ -470,13 +766,13 @@ Kritika Rana Khand –
 
 
 
-Kushal Neupane – Access control
 
 
 
 
 
-Lovejoy Khatri – Set operations and sub-queries
+
+
 
 
 
@@ -497,7 +793,7 @@ Milam Saru Magar –
 
 
 
-Mohammad Faheem Khan – Characteristics of DBMS
+Mohammad Faheem Khan – 
 
 
 		E-R Diagrams
@@ -510,26 +806,39 @@ Mohammad Faheem Khan – Characteristics of DBMS
 
 
 
+
+
 Nikit Lohani – E-R diagrams
 
 		Topic: What are DDL, DML, and DCL?
-		MAke Practical Demonstration Using SQL under  DDL, DML, and DCL
+		Make Practical Demonstration Using SQL under  DDL, DML, and DCL
 		
 
 
-Niranjan Chaudhary – Security and integrity violations
+
+
+
+Niranjan Chaudhary –
+
+
+		Design ER diagram
+		
+		A hospital is implementing a database management system (DBMS) 
+		to streamline its operations, which include managing patient records,
+		doctor appointments, medical inventory, billing, and staff management. To ensure that the 
+		system is efficient and easy to navigate, an Entity-Relationship (ER) diagram needs to be designed. This ER 
+		diagram will illustrate the relationships between different entities,
+		such as patients, doctors, hospital staff, medical records, and appointments.
 
 
 
 
 
-Nishan Thapa – Evaluation of expressions
+
+Nishan Thapa –
 
 
 
-
-
-Prashant Danguriya – Views and types
 
 
 
@@ -569,8 +878,7 @@ Sandesh Parajuli – Authorization
 
 
 
-Sandipa Shrestha – Structure: Creation, alteration, drop, constraints
-
+Sandipa Shrestha – 
 
 
 
@@ -578,7 +886,33 @@ Sandipa Shrestha – Structure: Creation, alteration, drop, constraints
 Siya Singh Kshetri – 
 
 
-
+		Case Scenario: Library Management System
+		
+		Scenario Overview
+			You are tasked with optimizing the database of a library
+			management system. The system allows users to search for
+			books, check availability, borrow, and return books. Librarians
+			manage book inventories, track borrowed books, and issue fines
+			for overdue items. Efficient query processing is crucial for 
+			providing timely responses to users, especially when dealing
+			with large volumes of book and transaction data.
+		
+		Questions 
+		
+			What are the challenges associated with processing multiple 
+			queries simultaneously in a library system, especially during peak hours?
+			
+			How does the system determine which query plan to choose when multiple 
+			queries request similar information (e.g., searching for books within 
+			the same category)?
+			
+			What approach would you take to optimize queries that calculate overdue
+			fines for users who have borrowed multiple books from various genres?
+			
+			How does query optimization improve response time during peak usage, such as
+			when many users are searching for books simultaneously?
+		
+		
 
 
 Smit Paudel (PU) – Data abstraction and independence
@@ -587,9 +921,7 @@ Smit Paudel (PU) – Data abstraction and independence
 
 
 
-Sulochan Karki – Introduction to transaction
-
-
+Sulochan Karki – 
 
 
 
