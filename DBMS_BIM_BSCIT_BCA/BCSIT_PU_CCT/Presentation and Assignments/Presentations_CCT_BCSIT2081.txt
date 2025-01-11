@@ -55,76 +55,139 @@ Yubraj Poudel
 
 
 ***************************************************************************
-Presentations: BCSIT 3, DBMS 
-
-
-Mode Online: google meet
-
-Meet Link (Static Link) : 
-
-            https://meet.google.com/owp-rgkx-zab
-            or
-            Meet code: owp-rgkx-zab
-
-
-
-Time: 6.00 - 7:15 PM (75 mins)
-Start Date : 13 shrawan 2081
-
-Per day (in 75 mins , 4-5 students will perform)
-Acceptable Slide : .ppt, or .pdf   / no online link
-
-
-Slide Length : min 8 , max 14 slides
-
-
-
-Slide must include:
----------------------
-	Slide 1: Title Slide,  Course Title, Unit Title, Your Name, Date
-	Slide 2,3,4,.....: topic to be discovered
-	Slide last: Conclusions , QnA
-
-
-Slide time per student : 10-14 mins
-
-
-
-
-            FOR SQL DEMO: make a nessecity data for demo, create db, 
-                        table, insert data (atleast 15 data) etc (prepare previously)
-            
-            FOR ER : diagram and steps , entity, relations, and attribute 
-            	        figure must be defined and cleared
-            
-            For general presentations : make your necessary assumptions
-
-
-
-
-
-Presentations Include 10 marks for external marks .i.e (10/20)
-
-
-        Your PPT must be upload 20 mins or / one day 
-        earlier in your facebook chat group , before the day of
-        presentations for verifications.
-
-
-
-
-    NOTE
-    ------------
-    If the rules voilated , in any manner, the student 
-    is not evaluated for marks.
-
-
-              regards
-              --------
-              
-              Subject Teacher: Sanjeev Thapa
 ***************************************************************************
 
+
+
+Presentations: BCSIT 3 - DBMS
+==============================
+	Mode: Online (Google Meet)
+	
+	Meet Link:
+	https://meet.google.com/owp-rgkx-zab
+	Meet Code: owp-rgkx-zab
+	
+	Time: 6:00 PM - 7:15 PM (75 mins)
+	Start Date: 13 Shrawan 2081
+
+
+
+
+
+
+
+Presentation Guidelines
+==============================
+	Number of Students per Day: 4-5 students
+	Presentation Duration per Student: 10-14 minutes
+	Slide Format: PowerPoint (.ppt) or PDF (No online links)
+	Slide Length: Minimum 8, Maximum 14 slides
+
+
+
+
+
+Slide Structure
+==============================
+	Slide 1:
+	-----------	
+		Title Slide
+		Course Title
+		Unit Title
+		Your Name
+		Date
+	
+	
+	
+	Slide 2 ,3,4 ,5 ....n :
+	-----------		
+		Main content on the assigned topic, divided
+		into clear sections (e.g., introduction, detailed 
+		explanation, examples, etc.)
+
+
+
+
+	Final Slide:
+	-----------		
+		Conclusions
+		Q&A
+
+
+
+
+
+
+Special Requirements for Topics
+==============================
+	For SQL Demo:
+	-------------
+		Prepare necessary data for demo (create a
+		database, table, insert at least 15 records)
+		
+		Show the SQL commands for table creation 
+		and insertion of data during your demo
+	
+	
+	
+	For ER Diagram:
+	-----------
+		Diagram and steps must be included
+		Clearly define entities, relationships, and attributes
+		Provide a well-structured figure
+	
+	
+	For General Presentations:
+	------------------------------
+		Make necessary assumptions where required
+		Be clear about the concepts and explain them step by step
+
+
+
+Submission Instructions
+==============================
+	Upload your PPT to the Facebook chat
+	group 20 minutes to 1 day before your 
+	resentation for verification.
+	
+	This is mandatory; any delay or failure to
+	upload will result in disqualification 
+	from evaluation.
+
+
+
+Grading Criteria
+==============================
+	External Marks: The presentation will be graded out of 10/20 for final.
+
+
+
+
+
+Important Notes
+==============================
+	Ensure your slides are clear, well-organized, 
+	and free from errors.
+	
+	Failure to follow the rules (e.g., submitting late,
+	not uploading the PPT in time, or any other
+	violations) will result in no evaluation for the student.
+
+
+
+
+
+
+
+Regards,
+	Sanjeev Thapa
+	Subject Teacher
+
+
+
+
+***************************************************************************
+***************************************************************************
 
 
 
