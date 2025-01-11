@@ -79,7 +79,7 @@ Presentations: BCSIT 3 - DBMS
 Presentation Guidelines
 ==============================
 	Number of Students per Day: 4-5 students
-	Presentation Duration per Student: 10-14 minutes
+	Presentation Duration per Student: 10 minutes
 	Slide Format: PowerPoint (.ppt) or PDF (No online links)
 	Slide Length: Minimum 8, Maximum 14 slides
 
@@ -148,7 +148,7 @@ Submission Instructions
 ==============================
 	Upload your PPT to the Facebook chat
 	group 20 minutes to 1 day before your 
-	resentation for verification.
+	presentation for verification.
 	
 	This is mandatory; any delay or failure to
 	upload will result in disqualification 
@@ -195,12 +195,25 @@ Regards,
 
 
 
+
+
+
+
+
+
+
+
+
 Name of the student	          	Date	      	Topics	
------------------------------------------------------
+-----------------------------------------------------------------
+
+
+
+
 
 Aadarsh Bhattarai – 
 
-              NOrmalize the table as  1NF, 2NF, 3NF, BCNF
+              Normalize the table as  1NF, 2NF, 3NF, BCNF
               
               +----------------+----------------+------------------+------------------------+--------------------------+
               | CustomerID     | Name           | Address          | Orders1                |  Order 2                 |
@@ -215,56 +228,145 @@ Aadarsh Bhattarai –
 
 
 
-Aishwarya Pandey – Query cost estimation
+Aishwarya Pandey – 
+
+		Role-Based Access Control (RBAC)
+		SQL Demo: Creating roles, assigning privileges, and applying access control
+		Example SQL statements: CREATE ROLE, GRANT, REVOKE
 
 
 
 
 
-Ajay Kunwar – Introduction to Entity-Relationship Model
+
+Ajay Kunwar -
+
+
+		Case Scenario: Hospital Management System
+
+		
+		
+		Tables and Attributes
+			Patients: PatientID, Name, Age, Gender, ContactNumber, AdmissionDate, DoctorID
+			Doctors: DoctorID, Name, Specialization, ContactNumber, Department, ExperienceYears
+			Appointments: AppointmentID, PatientID, DoctorID, AppointmentDate, Diagnosis, Prescription
+		
+		
+		
+		Questions for the Hospital Management System
+			Which patients are currently admitted in the hospital (i.e., have no appointment for discharge)?
+			List all doctors who specialize in "Cardiology" and have more than 10 years of experience.
+			Find patients who have been assigned to a specific doctor (e.g., DoctorID = 101).
+			Identify appointments scheduled for the upcoming week.
+			Which doctors are handling the maximum number of patients?
+			Retrieve details of patients who have been admitted for more than 10 days.
+			Which doctors belong to the "Pediatrics" department?
+			Find all appointments where the diagnosis includes "Diabetes."
+			Which patients have not had any appointments since their admission date?
+			List the total number of patients treated by each doctor.
+
+
+
+
+Amit Paudel – 
+
+
+
+
+Ankit Chapagain – 
+
+
+
+
+Arpit Kattel – 
+
+		Encryption and Decryption
+		Techniques of Data Encryption and Decryption
+		SQL Demo: Demonstrating encryption and decryption of sensitive data using SQL functions
+		Example SQL commands: ENCRYPT, DECRYPT, HASH, DECRYPT BY KEY
+
+
+
+
+Arun Bista – 
+
+		
+		Make Practical Demonstration Using SQL under
+		
+		Tables with Attributes
+			Employees: EmployeeID, Name, Position, DepartmentID, Salary, HireDate
+			Departments: DepartmentID, DepartmentName, ManagerID, Location
+			Projects: ProjectID, ProjectName, DepartmentID, StartDate, EndDate, Budget
+		
+		Questions from the Tables
+			What is the total budget of all projects handled by a specific department?
+			Which employees are working in the "IT" department?
+			List all projects that are scheduled to end within the next month.
+
+
+
+Arun Sunar – 
+
+		Case Scenario: Library Management System
+		
+		Tables and Attributes
+			Books: BookID, Title, Author, Genre, PublishedYear, AvailableCopies
+			Members: MemberID, Name, MembershipType, JoinDate, Email, Phone
+			BorrowRecords: RecordID, MemberID, BookID, BorrowDate, ReturnDate, FineAmount
+			
+			
+		
+		Questions for the Library Management System
+			Which books are currently available in the library (i.e., AvailableCopies > 0)?
+			List all members who have borrowed books more than three times.
+			Which books are overdue for return based on their ReturnDate?
+			Find the total fine collected from all members.
+			Which genres of books are most frequently borrowed by members?
+			Retrieve the details of members who have borrowed books authored by a specific writer (e.g., "J.K. Rowling").
+			Identify books that were published before the year 2000 and are still available in the library.
+			Find members with an active borrowing record who joined after a specific date.
+			List all members with pending fines, including the total fine amount for each.
+			Which books have never been borrowed by any member?
+			
 
 
 
 
 
-Amit Paudel – Security and integrity violations
+
+
+Aryan Bhandari – 
+
+			SQL Data Types and Operators
+			Make Practical Demonstration Using SQL under
 
 
 
 
 
-Ankit Chapagain – Lock-based concurrency control
 
+Aswin G.C. –
 
-
-
-
-Arpit Kattel – Concepts of DDL, DML, DCL
-
-
-
-
-
-Arun Bista – Joins and types
-
-
-
-
-
-Arun Sunar – History, database system, and its applications
-
-
-
-
-
-Aryan Bhandari – Conceptual, logical, and physical models
-
-
-
-
-
-Aswin G.C. – SQL – Data types, operators
-
+		
+		Make Practical Demonstration Using SQL under
+		
+		Tables with Attributes
+			Employees: EmployeeID, Name, Position, DepartmentID, Salary, HireDate
+			Departments: DepartmentID, DepartmentName, ManagerID, Location
+			Projects: ProjectID, ProjectName, DepartmentID, StartDate, EndDate, Budget
+		
+		Questions from the Tables
+			What is the total budget of all projects handled by a specific department?
+			Which employees are working in the "IT" department?
+			List all projects that are scheduled to end within the next month.
+			Find the department with the highest number of employees.
+			Retrieve the details of the manager of a specific department.
+			Which employees were hired after a specific date and are part of a specific department?
+			List all departments and their respective projects, including project budgets.
+			Find employees who are not assigned to any project.
+			Identify the department handling the most expensive project.
+			What is the average salary of employees in each department?
+		
 
 
 
@@ -275,15 +377,33 @@ Ayusha Gaire – Timestamp concept
 
 
 
-Bandana Sharma – Attributes and keys
+Bandana Sharma – 
+
+
+		Implementing Access Control
+			Show how access control is configured using SQL 
+			(e.g., GRANT, REVOKE statements).
+		
+		Diagram/Illustration:
+			Security Model: Create a diagram showing how security mechanisms
+			like authentication, access control, and encryption work 
+			in a database system.
+		
+		Assumptions: 
+			If needed, assume a database system and explain
+			the security mechanisms in a hypothetical scenario.
 
 
 
 
 
-Barsha Nepali – Importance of normalization
+Barsha Nepali – 
 
-
+		Attributes and Keys
+		Types of attributes: Simple, Composite, Derived, Multivalued.
+		Primary keys and foreign keys.
+		Diagram: Example with primary and foreign keys in an ER diagram.
+		
 
 
 
@@ -311,9 +431,13 @@ Bishnu Prasad Gupta – Concurrent execution
 
 
 
-Denish K.C. – Security and views
+Denish K.C. – 
 
-
+		Relationship Types and Sets
+		Definition and types of relationships: One-to-One, One-to-Many, Many-to-Many.
+		Examples of relationship types and their real-world implications.
+		Diagram: Relationship between entities (e.g., Employee-Department).
+		
 
 
 
@@ -335,8 +459,13 @@ Kripesh Karki – Manipulation commands (INSERT, UPDATE, DELETE, SELECT)
 
 
 
-Kritika Rana Khand – Relationship types and sets
+Kritika Rana Khand – 
 
+		Relationship Types and Sets
+		Definition and types of relationships: One-to-One, One-to-Many, Many-to-Many.
+		Examples of relationship types and their real-world implications.
+		Diagram: Relationship between entities (e.g., Employee-Department).
+		
 
 
 
@@ -353,7 +482,16 @@ Lovejoy Khatri – Set operations and sub-queries
 
 
 
-Milam Saru Magar – Application architecture (one-tier, two-tier, n-tier)
+Milam Saru Magar –
+
+		E-R Diagrams
+		How to draw and interpret ER diagrams.
+		Use cases and examples of ER diagrams.
+		Diagram: A sample ER diagram for a university system, showing students, courses, and instructors.
+		
+
+
+
 
 
 
@@ -362,13 +500,21 @@ Milam Saru Magar – Application architecture (one-tier, two-tier, n-tier)
 Mohammad Faheem Khan – Characteristics of DBMS
 
 
+		E-R Diagrams
+		How to draw and interpret ER diagrams.
+		Use cases and examples of ER diagrams.
+		Diagram: A sample ER diagram for a libary system, showing students, courses, and instructors, books etc.
+
+
+
 
 
 
 Nikit Lohani – E-R diagrams
 
-
-
+		Topic: What are DDL, DML, and DCL?
+		MAke Practical Demonstration Using SQL under  DDL, DML, and DCL
+		
 
 
 Niranjan Chaudhary – Security and integrity violations
@@ -391,6 +537,13 @@ Prashant Danguriya – Views and types
 
 Rajani Bhusal – Needs of security
 
+		Introduction to the ER model, its purpose, and when to use it.
+		Definition of entity types.
+		Examples of entity types in a business context (e.g., Employee, Product).
+		Diagram: Example of an entity type representation.
+
+
+
 
 
 
@@ -403,9 +556,12 @@ Ranjan Aryal – Schemas and instances
 
 Ranjeeta Belbase (PU) – Data abstraction and independence
 
-
-
-
+		Discuss how normalization improves database integrity, performance, and 
+		reduces redundancy. Also, explain when denormalization may be used for
+		performance optimization in read-heavy applications like data warehouses.
+		
+		Make Practical Demonstration Using SQL
+		
 
 Sandesh Parajuli – Authorization
 
@@ -419,7 +575,7 @@ Sandipa Shrestha – Structure: Creation, alteration, drop, constraints
 
 
 
-Siya Singh Kshetri – Introduction to query processing
+Siya Singh Kshetri – 
 
 
 
@@ -443,27 +599,80 @@ Suraj Kumar Shrestha (PU) – Normalization: Integrity and domain constraints
 
 
 
-Surakshya Nepali (PU) – Aggregate functions and usage of group by, having, order by
+Surakshya Nepali (PU) – 
+
+
+		Conceptual, Logical, and Physical Models
+		
+		Explanation of each model:
+		Conceptual Model: High-level representation, focuses on user requirements.
+		Logical Model: Abstract representation with data structures and relationships.
+		Physical Model: Implementation details, such as file storage and indexing.
 
 
 
 
 
-Surya Psd Khanal – Primary and foreign key constraints
+Surya Psd Khanal – 
 
 
 
+              Normalize the table as  1NF, 2NF, 3NF, BCNF
+              
+              +----------------+----------------+------------------+------------------------+--------------------------+
+              | CustomerID     | Name           | Address          | Orders1                |  Order 2                 |
+              +----------------+----------------+------------------+------------------------+--------------------------+
+              | 1              | Ram Shrestha   | Kathmandu        | Order1: Rice, 5kg, 600  | Order2: Oil, 1L, 250     |
+              | 2              | Sita Lama      | Bhaktapur        | Order1: Sugar, 3kg, 150 | Order2: Tea, 1pkt, 100   |
+              | 3              | Hari Gurung    | Pokhara          | Order1: Salt, 2kg, 60   | Order2: Coffee, 1pkt, 500|
+              | 4              | Gita Magar     | Lalitpur         | Order1: Dal, 2kg, 400   | Order2: Ghee, 1kg, 1000  |
+              +----------------+----------------+------------------+-------------------------+--------------------------+
 
 
-Sushil Bhandari – Serializability concept
+
+Sushil Bhandari – 
 
 
+		Topic: Understanding Functional Dependencies
 
 
+		Example:
+		
+			Scenario: In an e-commerce system, a table contains order details.
+			
+			Table:
+			OrderID	CustomerID	CustomerName	ProductID	ProductName
+			1001	1	Alice	P101	Laptop
+			1002	1	Alice	P102	Mouse
+			1003	2	Bob	P101	Laptop
+			
+			
+			FD:
+			OrderID → CustomerID, CustomerName, ProductID, ProductName
+			CustomerID → CustomerName
+		
+		
+		Why Important: Helps identify unnecessary redundancy.
+		
 
-Tejendra Dharikar – Sub-queries and nested queries
 
+Tejendra Dharikar – 
 
+		Importance of Normalization
+		
+		Example: Consider a table storing information about employees, 
+		their departments, and project assignments.
+		
+		Before Normalization (Non-normalized table):
+		
+		EmployeeID	EmployeeName	Department	Project
+		101	John	HR	Payroll
+		102	Mike	IT	System
+		101	John	HR	System
+		103	Sarah	IT	Payroll
+		
+		This table contains redundancy. Normalization helps 
+		avoid this and reduces storage.
 
 
 
