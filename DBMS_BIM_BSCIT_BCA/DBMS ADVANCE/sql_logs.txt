@@ -1,0 +1,131 @@
+
+
+https://killercoda.com/killer-shell-cka/scenario/playground
+
+Installing MySQL Server on Ubuntu:
+----------------------------------------------------
+
+            sudo apt update
+            sudo apt install mysql-server
+            
+            
+            
+            
+            
+              
+            Once installed, secure the MySQL
+              installation by running:
+            ----------------------------------------------------
+            sudo mysql_secure_installation        
+                  sudo systemctl start mysql
+                  sudo systemctl enable mysql
+
+
+
+
+
+  
+Accessing the MySQL Command-Line Interface:
+----------------------------------------------------
+
+                Log in to MySQL as the root user:
+              ---------------------------------
+              sudo mysql -u root -p
+
+              Enter the root password when prompted.
+
+
+
+Viewing System Logs:
+----------------------------------------------------
+
+  
+                  MySQL logs can be found in the default log 
+                  directory (/var/log/mysql/). Common logs include:
+
+
+  
+                Error Log: Contains information on server 
+                  startup, shutdown, and critical errors.
+                
+                              sudo cat /var/log/mysql/error.log
+
+
+  
+                General Query Log: Tracks all queries
+                  (must be enabled in MySQL configuration file).
+
+  
+                Slow Query Log: Logs queries that 
+                  take longer than a defined threshold.
+                
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+Monitoring Logs in Real-Time:
+----------------------------------------------------
+        To monitor logs like the error log in
+          real-time, use the tail command:
+        
+                sudo tail -f /var/log/mysql/error.log
+
+
+
+
+  
+Enabling and Configuring Query Logs:
+----------------------------------------------------
+          Edit the MySQL configuration file:
+          
+                  sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+                      general_log = 1
+                      general_log_file = /var/log/mysql/general.log
+          
+          
+                sudo systemctl restart mysql
+                
+                sudo tail -f /var/log/mysql/error.log
+                sudo tail -f /var/log/mysql/general.log
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Viewing Database and Table Information:
+------------------------------------------- PEFORM any SQL operation now
+
+
+                      SHOW DATABASES;
+                      Select a database:
+                      USE database_name;
+                      SHOW TABLES;
+                      DESCRIBE table_name;
+                      INSERT INTO table_name (column1, column2) VALUES ('value1', 'value2');
+                      SELECT * FROM table_name;
+                      
+
+
+
+
