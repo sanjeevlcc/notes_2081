@@ -5,132 +5,139 @@
 ***************************************************************************
 
 
-
-Presentations: BCSIT 3 - DBMS
-==============================
-	Mode: Online (Google Meet)
-	
-	Meet Link:
-	https://meet.google.com/owp-rgkx-zab
-	Meet Code: owp-rgkx-zab
-	
-	Time: 6:00 PM - 7:15 PM (75 mins)
-	Start Date: 13 Shrawan 2081
-
-
-
-
-
-
-
-Presentation Guidelines
-==============================
-	Number of Students per Day: 4-5 students
-	Presentation Duration per Student: 10 minutes
-	Slide Format: PowerPoint (.ppt) or PDF (No online links)
-	Slide Length: Minimum 8, Maximum 14 slides
-
-
-
-
-
-Slide Structure
-==============================
-	Slide 1:
-	-----------	
-		Title Slide
-		Course Title
-		Unit Title
-		Your Name
-		Date
-	
-	
-	
-	Slide 2 ,3,4 ,5 ....n :
-	-----------		
-		Main content on the assigned topic, divided
-		into clear sections (e.g., introduction, detailed 
-		explanation, examples, etc.)
-
-
-
-
-	Final Slide:
-	-----------		
-		Conclusions
-		Q&A
-
-
-
-
-
-
-Special Requirements for Topics
-==============================
-	For SQL Demo:
-	-------------
-		Prepare necessary data for demo (create a
-		database, table, insert at least 15 records)
 		
-		Show the SQL commands for table creation 
-		and insertion of data during your demo
-	
-	
-	
-	For ER Diagram:
-	-----------
-		Diagram and steps must be included
-		Clearly define entities, relationships, and attributes
-		Provide a well-structured figure
-	
-	
-	For General Presentations:
-	------------------------------
-		Make necessary assumptions where required
-		Be clear about the concepts and explain them step by step
+		Presentations: BCSIT 3 - DBMS
+		==============================
+			Mode: Online (Google Meet)
+			
+			Meet Link:
+			https://meet.google.com/owp-rgkx-zab
+			Meet Code: owp-rgkx-zab
+			
+			Time: 6:00 PM - 7:15 PM (75 mins)
+			Start Date: 2 Magh 2081
+		
+		
+		
+		
+		
+		
+		
+		Presentation Guidelines
+		==============================
+			Number of Students per Day: 4-5 students
+			Presentation Duration per Student: 10 minutes
+			Slide Format: PowerPoint (.ppt) or PDF (No online links)
+			Slide Length: Minimum 8, Maximum 14 slides
+		
+		
+		
+		
+		
+		Slide Structure
+		==============================
+			Slide 1:
+			-----------	
+				Title Slide
+				Course Title
+				Unit Title
+				Your Name
+				Date
+			
+			
+			
+			Slide 2 ,3,4 ,5 ....n :
+			-----------		
+				Main content on the assigned topic, divided
+				into clear sections (e.g., introduction, detailed 
+				explanation, examples, etc.)
+		
+		
+		
+		
+			Final Slide:
+			-----------		
+				Conclusions
+				Q&A
+		
+		
+		
+		
+		
+		
+		Special Requirements for Topics
+		==============================
+
+			For SQL Demo:
+			-------------
+				Prepare necessary data for demo (create a
+				database, table, insert at least 15 records)
+				
+				Show the SQL commands for table creation 
+				and insertion of data during your demo
+			
+
+
+			
+			For ER Diagram:
+			-----------
+				Diagram and steps must be included
+				Clearly define entities, relationships, and attributes
+				Provide a well-structured figure
+			
 
 
 
-Submission Instructions
-==============================
-	Upload your PPT to the Facebook chat
-	group 20 minutes to 1 day before your 
-	presentation for verification.
-	
-	This is mandatory; any delay or failure to
-	upload will result in disqualification 
-	from evaluation.
-
-
-
-Grading Criteria
-==============================
-	External Marks: The presentation will be graded out of 10/20 for final.
-
-
-
-
-
-Important Notes
-==============================
-	Ensure your slides are clear, well-organized, 
-	and free from errors.
-	
-	Failure to follow the rules (e.g., submitting late,
-	not uploading the PPT in time, or any other
-	violations) will result in no evaluation for the student.
-
-
-
-
-
-
-
-Regards,
-	Sanjeev Thapa
-	Subject Teacher
-
-
+			For General Presentations:
+			------------------------------
+				Make necessary assumptions where required
+				Be clear about the concepts and explain them step by step
+		
+		
+		
+		
+		
+		Submission Instructions
+		==============================
+			Upload your PPT to the Facebook chat
+			group 60 minutes before your 
+			presentation for verification.
+			
+			This is mandatory; any delay or failure to
+			upload will result in disqualification 
+			from evaluation.
+		
+		
+		
+		
+		Grading Criteria
+		==============================
+			External Marks: The presentation will be graded out of 10/20 for final.
+		
+		
+		
+		
+		
+		Important Notes
+		==============================
+			Ensure your slides are clear, well-organized, 
+			and free from errors.
+			
+			Failure to follow the rules (e.g., submitting late,
+			not uploading the PPT in time, or any other
+			violations) will result in no evaluation for the student.
+		
+		
+		
+		
+		
+		
+		
+		Regards,
+			Sanjeev Thapa
+			Subject Teacher
+		
+		
 
 
 ***************************************************************************
@@ -159,7 +166,8 @@ Name of the student	          	Date	      	Topics
 
 
 Aadarsh Bhattarai – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    2 Magh 2081 
+
 
               Normalize the table as  1NF, 2NF, 3NF, BCNF
               
@@ -181,8 +189,19 @@ Aadarsh Bhattarai –
 
 
 
+
+
+
+
+
+
+
 Aishwarya Pandey – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    2 Magh 2081 
+
+
+
+
 		Role-Based Access Control (RBAC)
 		SQL Demo: Creating roles, assigning privileges, and applying access control
 		Example SQL statements: CREATE ROLE, GRANT, REVOKE
@@ -195,8 +214,19 @@ Aishwarya Pandey –
 
 
 
+
+
+
+
+
+
+
+
+
+
 Ajay Kunwar -
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    2 Magh 2081 
+
 
 		Case Scenario: Hospital Management System
 
@@ -227,8 +257,22 @@ Ajay Kunwar -
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Amit Paudel – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    2 Magh 2081 
 
 
 		Scenario Overview
@@ -300,7 +344,12 @@ Amit Paudel –
 
 
 Arpit Kattel – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    2 Magh 2081 
+
+
+
+
+
 		Encryption and Decryption
 		Techniques of Data Encryption and Decryption
 		SQL Demo: Demonstrating encryption and decryption of sensitive data using SQL functions
@@ -309,8 +358,12 @@ Arpit Kattel –
 
 
 
+
+
+
+
 Arun Bista – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    3 Magh 2081 
 		
 		Make Practical Demonstration Using SQL under
 		
@@ -326,8 +379,15 @@ Arun Bista –
 
 
 
+
+
+
+
+
+
+
 Arun Sunar – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    3 Magh 2081 
 		Case Scenario: Library Management System
 		
 		Tables and Attributes
@@ -365,7 +425,7 @@ Arun Sunar –
 
 
 Aswin G.C. –
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    3 Magh 2081 
 		
 		Make Practical Demonstration Using SQL under
 		
@@ -392,8 +452,17 @@ Aswin G.C. –
 
 
 
+
+
+
+
+
+
+
+
+
 Bandana Sharma – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    3 Magh 2081 
 
 		Implementing Access Control
 			Show how access control is configured using SQL 
@@ -412,8 +481,23 @@ Bandana Sharma –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Barsha Nepali – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    3 Magh 2081 
+
+
+
 		Attributes and Keys
 		Types of attributes: Simple, Composite, Derived, Multivalued.
 		Primary keys and foreign keys.
@@ -443,7 +527,7 @@ Barsha Nepali –
 
 
 Bijan Adhikari 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    4 Magh 2081 
 
 
 			SQL Data Types and Operators
@@ -456,8 +540,18 @@ Bijan Adhikari
 
 
 
+
+
+
+
+
+
+
+
+
+
 Bindhya Shakya (PU)
-+++++++++++++++++++++++++
+++++++++++++++++++++++++++    4 Magh 2081 
 
  E-commerce Website Database System
 		
@@ -506,7 +600,7 @@ Bindhya Shakya (PU)
 
 
 Bishnu Prasad Gupta
-+++++++++++++++++++++++++
+++++++++++++++++++++++++++    4 Magh 2081 
 
 			Hospital Management System Database
 			
@@ -549,7 +643,11 @@ Bishnu Prasad Gupta
 
 
 Denish K.C. – 
-+++++++++++++++++++++++++
+++++++++++++++++++++++++++    4 Magh 2081 
+
+
+
+
 		Relationship Types and Sets
 		Definition and types of relationships: One-to-One, One-to-Many, Many-to-Many.
 		Examples of relationship types and their real-world implications.
@@ -562,8 +660,19 @@ Denish K.C. –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 Durga Sharki 
-+++++++++++++++++++++++++
+++++++++++++++++++++++++++    6 Magh 2081 
 
 			Hospital Management System Database
 			
@@ -601,8 +710,20 @@ Durga Sharki
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Janaki Neupane – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    6 Magh 2081 
 
 		Online Banking System
 		
@@ -636,8 +757,21 @@ Janaki Neupane –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Kripesh Karki 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    6 Magh 2081 
 
 
 		draw a basic ER diagram for the Hospital Management System
@@ -649,8 +783,22 @@ Kripesh Karki
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Kritika Rana Khand – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    6 Magh 2081 
 
 
 		Relationship Types and Sets
@@ -675,7 +823,11 @@ Kritika Rana Khand –
 
 
 Milam Saru Magar –
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    6 Magh 2081 
+
+
+
+
 		E-R Diagrams
 		How to draw and interpret ER diagrams.
 		Use cases and examples of ER diagrams.
@@ -690,7 +842,7 @@ Milam Saru Magar –
 
 
 Mohammad Faheem Khan – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    7 Magh 2081 
 
 		E-R Diagrams
 		How to draw and interpret ER diagrams.
@@ -704,8 +856,8 @@ Mohammad Faheem Khan –
 
 
 
-Nikit Lohani – E-R diagrams
-+++++++++++++++++++++++++
+Nikit Lohani –
++++++++++++++++++++++++++    7 Magh 2081 
 
 
 		Topic: What are DDL, DML, and DCL?
@@ -716,27 +868,15 @@ Nikit Lohani – E-R diagrams
 
 
 
-Niranjan Chaudhary –
-//////////////////////
-
-		Design ER diagram
-		
-		A hospital is implementing a database management system (DBMS) 
-		to streamline its operations, which include managing patient records,
-		doctor appointments, medical inventory, billing, and staff management. To ensure that the 
-		system is efficient and easy to navigate, an Entity-Relationship (ER) diagram needs to be designed. This ER 
-		diagram will illustrate the relationships between different entities,
-		such as patients, doctors, hospital staff, medical records, and appointments.
-
 
 
 
 
 
 Nishan Thapa –
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    7 Magh 2081 
 
-Online Shopping Platform
+		Online Shopping Platform
 		
 		
 		Scenario Overview
@@ -768,8 +908,23 @@ Online Shopping Platform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 Rajani Bhusal – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    7 Magh 2081 
+
+
+
+
 		Introduction to the ER model, its purpose, and when to use it.
 		Definition of entity types.
 		Examples of entity types in a business context (e.g., Employee, Product).
@@ -781,8 +936,21 @@ Rajani Bhusal –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Ranjan Aryal – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    7 Magh 2081 
 
 
 		
@@ -822,8 +990,26 @@ Ranjan Aryal –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Ranjeeta Belbase (PU) – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    8 Magh 2081 
+
+
+
+
 		Discuss how normalization improves database integrity, performance, and 
 		reduces redundancy. Also, explain when denormalization may be used for
 		performance optimization in read-heavy applications like data warehouses.
@@ -834,8 +1020,21 @@ Ranjeeta Belbase (PU) –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Sandesh Parajuli –
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    8 Magh 2081 
 
 Case Scenario: Library Management System
 		
@@ -862,8 +1061,18 @@ Case Scenario: Library Management System
 
 
 
+
+
+
+
+
+
+
+
+
+
 Sandipa Shrestha – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    8 Magh 2081 
 
 
               Normalize the table as  1NF, 2NF, 3NF, BCNF
@@ -888,7 +1097,7 @@ Sandipa Shrestha –
 
 
 Siya Singh Kshetri – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    8 Magh 2081 
 
 		Case Scenario: Library Management System
 		
@@ -916,11 +1125,23 @@ Siya Singh Kshetri –
 			How does query optimization improve response time during peak usage, such as
 			when many users are searching for books simultaneously?
 		
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Smit Paudel (PU) –
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    8 Magh 2081 
 
  E-commerce Website Database System
 		
@@ -957,8 +1178,14 @@ Smit Paudel (PU) –
 
 
 
+
+
+
+
+
+
 Sulochan Karki – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    9 Magh 2081 
 
 		Implementing Access Control
 			Show how access control is configured using SQL 
@@ -978,8 +1205,16 @@ Sulochan Karki –
 
 
 
+
+
+
+
+
+
+
+
 Suraj Kumar Shrestha (PU) –
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    9 Magh 2081 
 		
 		Make Practical Demonstration Using SQL under
 		
@@ -1010,7 +1245,7 @@ Suraj Kumar Shrestha (PU) –
 
 
 Surakshya Nepali (PU) – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    9 Magh 2081 
 
 		Conceptual, Logical, and Physical Models
 		
@@ -1023,8 +1258,20 @@ Surakshya Nepali (PU) –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Surya Psd Khanal – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    9 Magh 2081 
 
 
               Normalize the table as  1NF, 2NF, 3NF, BCNF
@@ -1040,8 +1287,21 @@ Surya Psd Khanal –
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Sushil Bhandari – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    9 Magh 2081 
 
 		Topic: Understanding Functional Dependencies
 
@@ -1066,8 +1326,18 @@ Sushil Bhandari –
 		
 
 
+
+
+
+
+
+
+
+
 Tejendra Dharikar – 
-+++++++++++++++++++++++++
++++++++++++++++++++++++++    9 Magh 2081 
+
+
 		Importance of Normalization
 		
 		Example: Consider a table storing information about employees, 
