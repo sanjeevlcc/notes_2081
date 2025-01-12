@@ -309,36 +309,6 @@ Amit Paudel –
  
 
 
-		Online Shopping Platform
-		
-		
-		Scenario Overview
-			You are managing the database of an online shopping platform 
-			where customers browse, place orders, and make payments. The database
-			handles complex queries, from fetching product details to calculating 
-			discounts and processing orders. The system needs to efficiently 
-			process queries to ensure fast response times and a seamless user 
-			experience, even during high traffic periods.
-			
-		
-		Questions
-			How would you describe the importance of query processing 
-			in an e-commerce database system?
-			
-			
-			What are the key steps involved in processing a query on 
-			an online shopping platform's database?
-			
-			
-			What methods would you use to optimize a query that retrieves
-			all customer orders made within a specific time period?
-			
-			
-			How the JOIN operation is used in processing a query that
-			retrieves details of a customer's order along with product information.
-
-
-
 
 
 
@@ -530,8 +500,36 @@ Bijan Adhikari
 +++++++++++++++++++++++++    4 Magh 2081 
 
 
-			SQL Data Types and Operators
-			Make Practical Demonstration Using SQL under
+			
+
+
+		Online Shopping Platform
+		
+		
+		Scenario Overview
+			You are managing the database of an online shopping platform 
+			where customers browse, place orders, and make payments. The database
+			handles complex queries, from fetching product details to calculating 
+			discounts and processing orders. The system needs to efficiently 
+			process queries to ensure fast response times and a seamless user 
+			experience, even during high traffic periods.
+			
+		
+		Questions
+			How would you describe the importance of query processing 
+			in an e-commerce database system?
+			
+			
+			What are the key steps involved in processing a query on 
+			an online shopping platform's database?
+			
+			
+			What methods would you use to optimize a query that retrieves
+			all customer orders made within a specific time period?
+			
+			
+			How the JOIN operation is used in processing a query that
+			retrieves details of a customer's order along with product information.
 
 
 
