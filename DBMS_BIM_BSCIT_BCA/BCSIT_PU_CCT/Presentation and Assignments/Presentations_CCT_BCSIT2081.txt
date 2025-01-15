@@ -1,6 +1,10 @@
 
 
 
+Recording_link
+
+https://drive.google.com/drive/folders/1Y0v4_sMV7lgvwGbz1jQF3OhwA8NZj7R2?usp=sharing
+
 ***************************************************************************
 ***************************************************************************
 
@@ -166,7 +170,7 @@ Name of the student	          	Date	      	Topics
 
 
 Aadarsh Bhattarai – 
-+++++++++++++++++++++++++    2 Magh 2081 
++++++++++++++++++++++++++  ABSENT   2 Magh 2081 
 
 
               Normalize the table as  1NF, 2NF, 3NF, BCNF
@@ -197,7 +201,7 @@ Aadarsh Bhattarai –
 
 
 Aishwarya Pandey – 
-+++++++++++++++++++++++++    2 Magh 2081 
++++++++++++++++++++++++++  ABSENT  2 Magh 2081 
 
 
 
@@ -314,7 +318,7 @@ Amit Paudel –
 
 
 Arpit Kattel – 
-+++++++++++++++++++++++++    2 Magh 2081 
++++++++++++++++++++++++++  ABSENT  2 Magh 2081 
 
 
 
