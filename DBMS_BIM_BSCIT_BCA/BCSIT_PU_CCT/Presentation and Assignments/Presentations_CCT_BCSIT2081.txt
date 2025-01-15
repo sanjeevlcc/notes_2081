@@ -225,7 +225,7 @@ Aishwarya Pandey –
 
 
 Ajay Kunwar -
-+++++++++++++++++++++++++    2 Magh 2081 
++++++++++++++++++++++++++  DONE / COMPLETED    2 Magh 2081 
 
 
 		Case Scenario: Hospital Management System
@@ -272,7 +272,7 @@ Ajay Kunwar -
 
 
 Amit Paudel – 
-+++++++++++++++++++++++++    2 Magh 2081 
++++++++++++++++++++++++++ DONE / COMPLETED   2 Magh 2081 
 
 
 		Scenario Overview
