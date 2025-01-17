@@ -337,7 +337,7 @@ Arpit Kattel –
 
 
 Arun Bista – 
-+++++++++++++++++++++++++    3 Magh 2081 
++++++++++++++++++++++++++  ABSENT  3 Magh 2081 
 		
 		Make Practical Demonstration Using SQL under
 		
@@ -361,7 +361,7 @@ Arun Bista –
 
 
 Arun Sunar – 
-+++++++++++++++++++++++++    3 Magh 2081 
++++++++++++++++++++++++++  ABSENT  3 Magh 2081 
 		Case Scenario: Library Management System
 		
 		Tables and Attributes
@@ -399,7 +399,7 @@ Arun Sunar –
 
 
 Aswin G.C. –
-+++++++++++++++++++++++++    3 Magh 2081 
++++++++++++++++++++++++++  ABSENT  3 Magh 2081 
 		
 		Make Practical Demonstration Using SQL under
 		
@@ -436,7 +436,7 @@ Aswin G.C. –
 
 
 Bandana Sharma – 
-+++++++++++++++++++++++++    3 Magh 2081 
++++++++++++++++++++++++++  ABSENT  3 Magh 2081 
 
 		Implementing Access Control
 			Show how access control is configured using SQL 
@@ -468,7 +468,7 @@ Bandana Sharma –
 
 
 Barsha Nepali – 
-+++++++++++++++++++++++++    3 Magh 2081 
++++++++++++++++++++++++++   DONE / COMPLETED   3 Magh 2081 
 
 
 
@@ -501,7 +501,7 @@ Barsha Nepali –
 
 
 Bijan Adhikari 
-+++++++++++++++++++++++++    4 Magh 2081 
++++++++++++++++++++++++++  ABSENT  4 Magh 2081 
 
 
 			
@@ -553,7 +553,7 @@ Bijan Adhikari
 
 
 Bindhya Shakya (PU)
-++++++++++++++++++++++++++    4 Magh 2081 
+++++++++++++++++++++++++++  DONE / COMPLETED    4 Magh 2081 
 
  E-commerce Website Database System
 		
@@ -602,7 +602,7 @@ Bindhya Shakya (PU)
 
 
 Bishnu Prasad Gupta
-++++++++++++++++++++++++++    4 Magh 2081 
+++++++++++++++++++++++++++  ABSENT  4 Magh 2081 
 
 			Hospital Management System Database
 			
@@ -645,7 +645,7 @@ Bishnu Prasad Gupta
 
 
 Denish K.C. – 
-++++++++++++++++++++++++++    4 Magh 2081 
+++++++++++++++++++++++++++  ABSENT  4 Magh 2081 
 
 
 
