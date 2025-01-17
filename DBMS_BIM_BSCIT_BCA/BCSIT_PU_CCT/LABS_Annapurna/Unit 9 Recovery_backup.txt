@@ -46,6 +46,10 @@ cd /var/www/html/
 
           Expose port in 80
 
+            https://5d54f376-0572-4153-bda6-c7bc6564cb26-10-244-6-149-80.papa.r.killercoda.com/
+
+
+
 rm -rf index.html
 touch file1.txt
 
@@ -71,6 +75,14 @@ cat > file1.txt
 
 
 cat file1.txt 
+
+
+
+
+
+
+
+
 
 
 
@@ -234,8 +246,8 @@ mysql> select * from  Customers;
 +------------+------------------+------------------------------+------------+--------------------------+
 | CustomerID | Name             | Email                        | Phone      | Address                  |
 +------------+------------------+------------------------------+------------+--------------------------+
-|          6 | Madan Khadka     | madan.khadka@example.com     | 9802345678 | Baneshwor, Kathmandu     |
-|          7 | Rita Tamang      | rita.tamang@example.com      | 9813456789 | Bhaktapur, Bhaktapur     |
+|          1 | Ram Shrestha     | ram.shrestha@example.com     | 9812345678 | Basantapur, Kathmandu     |
+|          2 | Sita Sharma      | sita.sharma@example.com      | 9845678912 | Lakeside, Pokhara         |
 ...
 .
 ...
@@ -252,17 +264,17 @@ mysql> select * from  Customers;
 
 
 
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| CompanyDB          |
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-5 rows in set (0.00 sec)
+          mysql> show databases;
+          +--------------------+
+          | Database           |
+          +--------------------+
+  >>>>>>> | CompanyDB          |  <<<<<<
+          | information_schema |
+          | mysql              |
+          | performance_schema |
+          | sys                |
+          +--------------------+
+          5 rows in set (0.00 sec)
 
 
 
@@ -279,32 +291,46 @@ mysql> show databases;
 
 
 
-
+++++++++++++++++++++++++++++++++++++++
 Step 1: Full Backup
------------------------
-Perform a complete backup of the database. This captures all data
-and is typically done weekly.
-
-
-controlplane $ mysqldump -u root -p CompanyDB > FullBackup_CompanyDB.sql
-Enter password: 
-
-
-controlplane $ cp FullBackup_CompanyDB.sql FullBackup_CompanyDB.txt
-
-controlplane $ ls
-FullBackup_CompanyDB.sql  FullBackup_CompanyDB.txt  file1.txt
+++++++++++++++++++++++++++++++++++++++
+        Perform a complete backup of the database. This captures all data
+        and is typically done weekly.
 
 
 
 
+              
+              
+              controlplane $ pwd
+              /var/www/html
+              
+              
+              
+              
+              
+              controlplane $ mysqldump -u root -p CompanyDB > FullBackup_CompanyDB.sql
+              Enter password: 
+              
+              
+              controlplane $ cp FullBackup_CompanyDB.sql FullBackup_CompanyDB.txt
+              
+              controlplane $ ls
+              FullBackup_CompanyDB.sql  FullBackup_CompanyDB.txt  file1.txt
+              
+              
 
 
 
 
 
 
+
+++++++++++++++++++++++++++++++++++++++
 Step 2: Incremental Backup
+++++++++++++++++++++++++++++++++++++++
+
+
 After the full backup, perform incremental backups 
 daily. These backups store only the changes made 
 since the last backup.
@@ -312,20 +338,48 @@ since the last backup.
 
 
 
+          Since MySQL doesn't natively support incremental backups 
+          via mysqldump, this typically requires binary logging. 
+          To enable and back up the binary logs:
+          
+          
+                  # Enable binary logging in MySQL configuration (if not already enabled)
+                  sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+                  
+                  # Add or modify:
+                  log_bin = /var/log/mysql/mysql-bin.log
+                  
+                  # Restart MySQL to apply changes
+                  sudo systemctl restart mysql
+                  
+                  # Backup binary logs (incremental changes since the last backup)
+                  cp /var/log/mysql/mysql-bin.* /tmp/
 
 
 
 
 
+
+++++++++++++++++++++++++++++++++++++++
 Step 3: Differential Backup
+++++++++++++++++++++++++++++++++++++++
+
+
 
         Perform a differential backup at the end of 
         each business day. This backup includes all changes 
         since the last full backup.
 
+
+
 controlplane $ mysql -u root -p
-mysql> select * from  Customers;
+
+mysql> select * from  CompanyDB.Customers;
+
 mysql> insert into CompanyDB.Customers() value (36,"solo kc", "soslo@gmail.com","12345","tansen,palpa");
+
+
+
 
 
 controlplane $ mysqldump -u root -p --databases CompanyDB > DifferentialBackup_CompanyDB.sql
@@ -367,11 +421,35 @@ DifferentialBackup_CompanyDB.txt  FullBackup_CompanyDB.txt
 
 
 
+                        **********************************
+                        **********************************
+                                  Restore
+                        **********************************
+                        **********************************
+
+mysql -u root -p CompanyDB < FullBackup_CompanyDB.sql
 
 
+Download Script (Optional)
+Create a script to automate the backup and download process:
 
+#!/bin/bash
+# Backup Script
 
+BACKUP_DIR="/tmp"
+LOCAL_DIR="~/Downloads"
+DB_NAME="CompanyDB"
+USER="root"
 
+# Full Backup
+mysqldump -u $USER -p $DB_NAME > $BACKUP_DIR/FullBackup_${DB_NAME}.sql
+
+# Differential Backup
+mysqldump -u $USER -p --databases $DB_NAME > $BACKUP_DIR/DifferentialBackup_${DB_NAME}.sql
+
+# Download Backups
+#scp $USER@server_ip:$BACKUP_DIR/FullBackup_${DB_NAME}.sql $LOCAL_DIR/
+#scp $USER@server_ip:$BACKUP_DIR/DifferentialBackup_${DB_NAME}.sql $LOCAL_DIR/
 
 
 
