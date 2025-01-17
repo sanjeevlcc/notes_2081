@@ -28,6 +28,16 @@ Workflow Explanation:
 
 
 
+
+
+
+
+
+
+
+
+
+
 SQL package Installations
 --------------------------------
 https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
@@ -39,8 +49,16 @@ mysql_secure_installation
 
 
 
-Apache package Installations for dowload
---------------------------------
+
+
+
+
+
+
+
+
+Apache package Installations for download
+----------------------------------------------
 sudo apt-get  install apache2 -y
 cd /var/www/html/
 
@@ -396,12 +414,13 @@ DifferentialBackup_CompanyDB.txt  FullBackup_CompanyDB.txt
 
 
 
+controlplane $ crontab -l
+controlplane $ crontab -e
+* * * * * mysqldump -u root  CompanyDB > /var/www/html/1FullBackup_CompanyDB.txt
 
 
-
-
-
-
+              0 2 * * *: This cron schedule runs the script at 2:00 AM every day.
+              Adjust the schedule as needed.
 
 
 
