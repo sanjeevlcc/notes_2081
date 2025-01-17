@@ -1,0 +1,443 @@
+
+
+
+
+                        **********************************
+                        **********************************
+                                  Backup and Restore
+                        **********************************
+                        **********************************
+
+
+
+
+
+
+
+Workflow Explanation:
+--------------------------------
+      Full Backup is the foundation for all subsequent backups.
+      
+      Incremental Backups are faster and smaller but require
+      all backups (full and incremental) to restore.
+      
+      Differential Backups are larger than incremental but 
+      require only the latest full backup and the differential
+      backup to restore.
+
+
+
+
+SQL package Installations
+--------------------------------
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
+
+sudo apt install mysql-server -y
+sudo systemctl start mysql.service
+mysql_secure_installation
+
+
+
+
+Apache package Installations for dowload
+--------------------------------
+sudo apt-get  install apache2 -y
+cd /var/www/html/
+
+          Expose port in 80
+
+rm -rf index.html
+touch file1.txt
+
+
+cat > file1.txt 
+      
+      hello you will see sql contenet latel
+      
+      
+      bello
+      ..
+      ..
+
+
+
+
+
+
+
+
+
+
+
+
+cat file1.txt 
+
+
+
+
+
+
+
+
+
+
+
+Scenario:
+
+Company Database Backup System
+--------------------------------
+
+    You are managing a database for a company that stores 
+    customer and order information. The database consists 
+    of two tables:
+
+
+
+# Login to MySQL as root or a user with sufficient privileges
+mysql -u root -p
+
+
+
+# Create the database
+CREATE DATABASE CompanyDB;
+
+
+
+
+# Use the database
+USE CompanyDB;
+
+
+
+# Create Customers table
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Email VARCHAR(100),
+    Phone VARCHAR(15),
+    Address VARCHAR(255)
+);
+
+
+
+# Create Orders table
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(10, 2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+
+
+# Insert sample data
+INSERT INTO Customers (CustomerID, Name, Email, Phone, Address) VALUES
+(1, 'Ram Shrestha', 'ram.shrestha@example.com', '9812345678', 'Basantapur, Kathmandu'),
+(2, 'Sita Sharma', 'sita.sharma@example.com', '9845678912', 'Lakeside, Pokhara'),
+(3, 'Hari Poudel', 'hari.poudel@example.com', '9801234567', 'Putalisadak, Kathmandu'),
+(4, 'Gita Acharya', 'gita.acharya@example.com', '9823456789', 'Mahendranagar, Kanchanpur'),
+(5, 'Bishnu Thapa', 'bishnu.thapa@example.com', '9865432101', 'Dharan, Sunsari');
+
+INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
+(101, 1, '2025-01-15', 1500.75),
+(102, 2, '2025-01-16', 3200.00),
+(103, 3, '2025-01-17', 2100.50),
+(104, 4, '2025-01-18', 4500.00),
+(105, 5, '2025-01-19', 1250.25);
+
+
+
+
+EXIT;
+
+
+
+some more data 
+----------------------
+
+INSERT INTO Customers (CustomerID, Name, Email, Phone, Address) VALUES
+(6, 'Madan Khadka', 'madan.khadka@example.com', '9802345678', 'Baneshwor, Kathmandu'),
+(7, 'Rita Tamang', 'rita.tamang@example.com', '9813456789', 'Bhaktapur, Bhaktapur'),
+(8, 'Keshav Adhikari', 'keshav.adhikari@example.com', '9824567890', 'Damak, Jhapa'),
+(9, 'Meena Karki', 'meena.karki@example.com', '9846789102', 'Hetauda, Makwanpur'),
+(10, 'Sunil Gurung', 'sunil.gurung@example.com', '9809876543', 'Pokhara, Kaski'),
+(11, 'Anita Lama', 'anita.lama@example.com', '9861234567', 'Biratnagar, Morang'),
+(12, 'Prakash Bista', 'prakash.bista@example.com', '9808765432', 'Chitwan, Bharatpur'),
+(13, 'Sarita Rai', 'sarita.rai@example.com', '9815678901', 'Itahari, Sunsari'),
+(14, 'Kamal Bhattarai', 'kamal.bhattarai@example.com', '9856789012', 'Dhangadhi, Kailali'),
+(15, 'Saraswati Subedi', 'saraswati.subedi@example.com', '9867890123', 'Gongabu, Kathmandu'),
+(16, 'Manoj Magar', 'manoj.magar@example.com', '9803456789', 'Kirtipur, Kathmandu'),
+(17, 'Nirmala Basnet', 'nirmala.basnet@example.com', '9845678923', 'Birtamod, Jhapa'),
+(18, 'Kiran Shahi', 'kiran.shahi@example.com', '9801234500', 'Tansen, Palpa'),
+(19, 'Bina Maharjan', 'bina.maharjan@example.com', '9812345690', 'Patan, Lalitpur'),
+(20, 'Rajendra Pariyar', 'rajendra.pariyar@example.com', '9823456701', 'Nepalgunj, Banke'),
+(21, 'Puspa Dhungana', 'puspa.dhungana@example.com', '9865432123', 'Baglung, Baglung'),
+(22, 'Sanjay Pathak', 'sanjay.pathak@example.com', '9843214567', 'Gaur, Rautahat'),
+(23, 'Jyoti Thapa', 'jyoti.thapa@example.com', '9801237890', 'Tikapur, Kailali'),
+(24, 'Ramesh KC', 'ramesh.kc@example.com', '9802346712', 'Gorkha, Gorkha'),
+(25, 'Pratima Pant', 'pratima.pant@example.com', '9811235678', 'Syangja, Syangja'),
+(26, 'Laxmi Pandey', 'laxmi.pandey@example.com', '9845678123', 'Janakpur, Dhanusha'),
+(27, 'Dilip Saud', 'dilip.saud@example.com', '9806781234', 'Amargadhi, Dadeldhura'),
+(28, 'Kavita Khatiwada', 'kavita.khatiwada@example.com', '9867123456', 'Dhulikhel, Kavre'),
+(29, 'Subash Dahal', 'subash.dahal@example.com', '9807654321', 'Sankhu, Kathmandu'),
+(30, 'Kalpana Regmi', 'kalpana.regmi@example.com', '9841234567', 'Bhanu, Tanahun'),
+(31, 'Suraj Pokharel', 'suraj.pokharel@example.com', '9809871234', 'Lamjung, Besisahar'),
+(32, 'Asha Ghimire', 'asha.ghimire@example.com', '9868901234', 'Ramechhap, Ramechhap'),
+(33, 'Rajeev Raut', 'rajeev.raut@example.com', '9801122334', 'Okhaldhunga, Okhaldhunga'),
+(34, 'Pramod Kharel', 'pramod.kharel@example.com', '9812340023', 'Dhankuta, Dhankuta'),
+(35, 'Maya Rana', 'maya.rana@example.com', '9865551234', 'Tulsipur, Dang');
+
+
+
+
+INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
+(106, 6, '2025-01-17', 1750.50),
+(107, 7, '2025-01-17', 2200.00),
+(108, 8, '2025-01-17', 3500.75),
+(109, 9, '2025-01-17', 1450.00),
+(110, 10, '2025-01-17', 4200.30),
+(111, 11, '2025-01-18', 3100.10),
+(112, 12, '2025-01-18', 2750.50),
+(113, 13, '2025-01-18', 5000.00),
+(114, 14, '2025-01-18', 2300.45),
+(115, 15, '2025-01-18', 1850.90),
+(116, 16, '2025-01-19', 3600.60),
+(117, 17, '2025-01-19', 2450.75),
+(118, 18, '2025-01-19', 1200.00),
+(119, 19, '2025-01-19', 2950.20),
+(120, 20, '2025-01-19', 4100.75),
+(121, 21, '2025-01-20', 1500.00),
+(122, 22, '2025-01-20', 2250.60),
+(123, 23, '2025-01-20', 3400.75),
+(124, 24, '2025-01-20', 2600.00),
+(125, 25, '2025-01-20', 1900.40),
+(126, 26, '2025-01-21', 3100.75),
+(127, 27, '2025-01-21', 3300.00),
+(128, 28, '2025-01-21', 4500.90),
+(129, 29, '2025-01-21', 2750.50),
+(130, 30, '2025-01-21', 3850.00),
+(131, 31, '2025-01-22', 2200.75),
+(132, 32, '2025-01-22', 3100.50),
+(133, 33, '2025-01-22', 1850.25),
+(134, 34, '2025-01-22', 4300.60),
+(135, 35, '2025-01-22', 3950.40);
+
+
+
+
+
+
+
+
+mysql> select * from  Customers;
++------------+------------------+------------------------------+------------+--------------------------+
+| CustomerID | Name             | Email                        | Phone      | Address                  |
++------------+------------------+------------------------------+------------+--------------------------+
+|          6 | Madan Khadka     | madan.khadka@example.com     | 9802345678 | Baneshwor, Kathmandu     |
+|          7 | Rita Tamang      | rita.tamang@example.com      | 9813456789 | Bhaktapur, Bhaktapur     |
+...
+.
+...
+
+|         35 | Maya Rana        | maya.rana@example.com        | 9865551234 | Tulsipur, Dang           |
++------------+------------------+------------------------------+------------+--------------------------+
+30 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| CompanyDB          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 1: Full Backup
+-----------------------
+Perform a complete backup of the database. This captures all data
+and is typically done weekly.
+
+
+controlplane $ mysqldump -u root -p CompanyDB > FullBackup_CompanyDB.sql
+Enter password: 
+
+
+controlplane $ cp FullBackup_CompanyDB.sql FullBackup_CompanyDB.txt
+
+controlplane $ ls
+FullBackup_CompanyDB.sql  FullBackup_CompanyDB.txt  file1.txt
+
+
+
+
+
+
+
+
+
+
+Step 2: Incremental Backup
+After the full backup, perform incremental backups 
+daily. These backups store only the changes made 
+since the last backup.
+
+
+
+
+
+
+
+
+
+Step 3: Differential Backup
+
+        Perform a differential backup at the end of 
+        each business day. This backup includes all changes 
+        since the last full backup.
+
+controlplane $ mysql -u root -p
+mysql> select * from  Customers;
+mysql> insert into CompanyDB.Customers() value (36,"solo kc", "soslo@gmail.com","12345","tansen,palpa");
+
+
+controlplane $ mysqldump -u root -p --databases CompanyDB > DifferentialBackup_CompanyDB.sql
+
+controlplane $ cp DifferentialBackup_CompanyDB.sql DifferentialBackup_CompanyDB.txt
+
+
+controlplane $ ls
+DifferentialBackup_CompanyDB.sql  FullBackup_CompanyDB.sql  file1.txt
+DifferentialBackup_CompanyDB.txt  FullBackup_CompanyDB.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
