@@ -12,7 +12,7 @@ Installing MySQL Server on Ubuntu:
 ----------------------------------------------------
 
             sudo apt update
-            sudo apt install mysql-server
+            sudo apt install mysql-server -y
             
             
             
@@ -142,7 +142,8 @@ Summary:
             Terminal 1 shows the commands entered by the user.
             
             Terminal 2 logs the server-side actions resulting from 
-                        those commands, along with timestamps and session information (thread 9).
+                        those commands, along with timestamps and session 
+                        information (thread 9).
             
                         This dual view can be useful for debugging,
                         monitoring, or auditing database activity.
@@ -154,7 +155,11 @@ Summary:
 
 2025-01-11T10:28:45.178699Z
 -----------------------------------
-The timestamp                    2025-01-11T10:28:45.178699Z               provides
+The timestamp    
+
+            2025-01-11T10:28:45.178699Z               
+
+provides
 precise information about when a specific query was executed 
 on the MySQL server. Here's the breakdown:
 
