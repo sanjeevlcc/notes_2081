@@ -1,0 +1,902 @@
+
+
+
+What is Active Learning
+------------------------------
+    Encourages students to engage actively in the learning process through 
+    activities like group work, debates, or hands-on exercises, rather than
+    passively listening.
+
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+                  ********************
+                  EXAMPLE / CASE
+                  ********************
+
+Case Study: 
+      Exploring Computer Hardware and Software through 
+      Active Learning
+
+
+Case Title: 
+    "Building a Tech-Savvy World: Understanding 
+    Computer Hardware and Software"
+
+
+
+Scenario Overview
+    A start-up company, Techify, is planning to launch its first 
+    product, a user-friendly personal computer tailored for
+    students and small businesses. The company needs a detailed
+    understanding of computer hardware and software to ensure 
+    the product is competitive and meets user needs. The team of 
+    five students—Ram, Sita, Gita, Hari, and Suman—are assigned
+    as consultants to help Techify.
+
+
+
+
+Learning Objectives
+    Understand the components of computer hardware and their functions.
+    Differentiate between system software and application software.
+    Explore the interaction between hardware and software in a computer system.
+    Apply critical thinking to solve real-world technology challenges.
+    Collaborate effectively in a team.
+
+
+
+
+Roles and Group Tasks
+      Each student takes on a specific role, contributing their 
+      unique perspectives:
+            
+            Ram (Hardware Specialist):
+                Focuses on the physical components of the computer, such as the 
+                CPU, motherboard, RAM, storage devices, and input/output devices.
+            
+                Identifies the hardware specifications needed for the new computer.
+            
+            
+            
+            Sita (Software Analyst):
+                Explains the types of software (system software like 
+                operating systems, and application software like
+                productivity tools).
+            
+                Evaluates the compatibility of 
+                hardware with different software solutions.
+            
+            
+            Gita (Tech Integration Expert):
+                Explores how hardware and software interact to perform 
+                tasks.
+                
+                Suggests optimizations to improve system 
+                performance and user experience.
+            
+            
+            
+            Hari (Market Researcher):
+                Analyzes the needs of the target audience (students
+                and small businesses).
+                
+                Investigates trends in hardware and software preferences.
+            
+            
+            Suman (Project Manager):
+                Oversees the group’s activities, ensures effective 
+                collaboration, and prepares the final presentation.
+                
+                Encourages debates on conflicting ideas to arrive at 
+                the best solutions.
+            
+
+
+
+
+
+
+Activity Plan
+--------------------
+      1. Group Research and Discussion
+          Task: Each student researches their area and shares findings in a group discussion.
+          Goal: Build a foundational understanding of computer hardware and software.
+          Outcome: A shared document summarizing the team's insights.
+          
+      
+      2. Debates
+          Topic 1: "Which is more important for a computer’s performance: Hardware or Software?"
+          Topic 2: "Should the focus be on creating specialized software for 
+                    existing hardware or upgrading hardware to support advanced software?"
+          Goal: Encourage critical thinking and diverse perspectives.
+      
+      
+      3. Problem-Solving Challenge
+            Scenario: The prototype computer has excellent hardware 
+            specifications but lacks optimized software. The team must decide:
+      
+                  Should they focus on developing a custom operating system?
+                  Should they integrate existing software (e.g., Windows, Linux)?
+      
+                  Task: Evaluate the pros and cons of each option and present recommendations.
+      
+      
+      
+      
+      4. Creative Presentation
+            Task: Design a visual presentation showcasing:
+                  The relationship between hardware and software.
+                  The group's recommendations for Techify’s product.
+            
+            Format: Infographics, flowcharts, or even a short skit to illustrate the concepts.
+      
+      
+      5. Reflection and Feedback
+            Activity: Each student reflects on:
+                What they learned about hardware and software.
+                How collaboration and debates helped refine their understanding.
+            
+            Outcome: Peer feedback on contributions and insights gained.
+
+
+Expected Outcomes
+      A comprehensive understanding of computer hardware and software.
+      Enhanced teamwork, critical thinking, and presentation skills.
+      Meaningful insights into how technology meets user needs.
+      
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+********************************************************
+                TOPIC/ STUDENTS
+********************************************************
+
+
+GROUP 1
+************** 21 Jan 2025
+
+Eugene Rai
+Anjana Baraghare
+Nirman Subedi
+Nishan Pandey
+Usha Bashyal
+
+
+Case Title: "
+Building a Tech-Savvy World: Understanding Computer Hardware and Software"
+
+
+Learning Objectives
+      Understand the components of computer hardware and their functions.
+      Differentiate between system software and application software.
+      Explore the interaction between hardware and software in a computer system.
+      Apply critical thinking to solve real-world technology challenges.
+      Collaborate effectively in a team.
+
+
+
+
+Roles and Group Tasks
+  Each student takes on a specific role, contributing their unique perspectives:
+      
+      Eugene Rai (Hardware Specialist):
+          Focuses on the physical components of the computer, such as the CPU,
+          motherboard, RAM, storage devices, and input/output devices.
+          
+          Identifies the hardware specifications needed for the new computer.
+          
+      
+      Anjana Baraghare (Software Analyst):
+          Explains the types of software (system software like operating systems, and
+          application software like productivity tools).
+          
+          Evaluates the compatibility of hardware with different software solutions.
+          
+      
+      Nirman Subedi (Tech Integration Expert):
+          Explores how hardware and software interact to perform tasks.
+          Suggests optimizations to improve system performance and user experience.
+          
+      
+      Nishan Pandey (Market Researcher):
+          Analyzes the needs of the target audience (students and small businesses).
+          Investigates trends in hardware and software preferences.
+          
+          
+      Usha Bashyal (Project Manager):
+          Oversees the group’s activities, ensures effective collaboration, and prepares the final presentation.
+          Encourages debates on conflicting ideas to arrive at the best solutions.
+
+
+Activity Plan
+      1. Group Research and Discussion
+        Task: Each student researches their area and shares findings in a group discussion.
+        Goal: Build a foundational understanding of computer hardware and software.
+        Outcome: A shared document summarizing the team's insights.
+      
+      
+      2. Debates
+        Topic 1: "Which is more important for a computer’s performance: Hardware or Software?"
+        Topic 2: "Should the focus be on creating specialized software for existing hardware or upgrading hardware to support advanced software?"
+        Goal: Encourage critical thinking and diverse perspectives.
+      
+      
+      3. Problem-Solving Challenge
+        Scenario: The prototype computer has excellent hardware specifications but lacks optimized software. The team must decide:
+        Should they focus on developing a custom operating system?
+        Should they integrate existing software (e.g., Windows, Linux)?
+        Task: Evaluate the pros and cons of each option and present recommendations.
+      
+      
+      4. Creative Presentation
+        Task: Design a visual presentation showcasing:
+        The relationship between hardware and software.
+        The group's recommendations for Techify’s product.
+        Format: Infographics, flowcharts, or even a short skit to illustrate the concepts.
+      
+      
+      5. Reflection and Feedback
+        Activity: Each student reflects on:
+        What they learned about hardware and software.
+        How collaboration and debates helped refine their understanding.
+        Outcome: Peer feedback on contributions and insights gained.
+
+
+Expected Outcomes
+    A comprehensive understanding of computer hardware and software.
+    Enhanced teamwork, critical thinking, and presentation skills.
+    Meaningful insights into how technology meets user needs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 2
+**************
+
+Aneesh Pun
+Alisha Sunar
+Monika Gautam(PU)
+Bipin Pnadey(PU)
+
+
+Case Title:  Building a Database for a Retail Store
+
+Objective: 
+    Understand the basics of relational databases, 
+    structured data, and SQL.
+
+Scenario: 
+    A retail store wants to transition from a 
+    manual system to a database system to manage inventory, 
+    sales, and customer data.
+
+
+
+
+
+
+
+
+Roles:
+      Aneesh Pun (Database Designer): 
+          Focuses on creating the database schema (tables,
+          attributes, and relationships).
+      
+      Alisha Sunar (Data Analyst): 
+          Identifies the types of data 
+          (structured/unstructured) required and ensures the database supports
+          business decision-making.
+      
+      Monika Gautam(PU) (SQL Specialist):
+          Demonstrates how to create, retrieve, and 
+          manipulate data using basic SQL queries.
+      
+      Bipin Pnadey(PU) (Business Analyst): 
+          Explains how this database can enhance 
+          business decisions and evaluates data security concerns.
+
+
+
+Activity Plan:
+      Group Discussion:
+          Define tables for the database (e.g., Inventory, Sales, Customers).
+          Debate the structure and relationships among the tables.
+      
+      SQL Practice:
+          Write basic SQL queries (e.g., creating tables, inserting data,
+          querying sales for the last month).
+      
+      Presentation:
+          Present the database design and its benefits to the store.
+      
+      Reflection:
+          Discuss lessons learned about relational databases and SQL.
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 3
+**************
+
+Eugene Rai
+Anjana Baraghare
+Nirman Subedi
+Nishan Pandey
+Usha Bashyal
+
+
+Case Title: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 3
+**************
+
+Eugene Rai
+Anjana Baraghare
+Nirman Subedi
+Nishan Pandey
+Usha Bashyal
+
+
+Case Title: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 3
+**************
+
+Eugene Rai
+Anjana Baraghare
+Nirman Subedi
+Nishan Pandey
+Usha Bashyal
+
+
+Case Title: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 3
+**************
+
+Eugene Rai
+Anjana Baraghare
+Nirman Subedi
+Nishan Pandey
+Usha Bashyal
+
+
+Case Title: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
