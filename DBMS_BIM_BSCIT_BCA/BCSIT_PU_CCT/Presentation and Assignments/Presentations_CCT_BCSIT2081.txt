@@ -725,7 +725,7 @@ Durga Sharki
 
 
 Janaki Neupane – 
-+++++++++++++++++++++++++    6 Magh 2081 
++++++++++++++++++++++++++ DONE / COMPLETED   6 Magh 2081 
 
 		Online Banking System
 		
@@ -773,7 +773,7 @@ Janaki Neupane –
 
 
 Kripesh Karki 
-+++++++++++++++++++++++++    6 Magh 2081 
++++++++++++++++++++++++++  DONE / COMPLETED  6 Magh 2081 
 
 
 		draw a basic ER diagram for the Hospital Management System
@@ -800,7 +800,7 @@ Kripesh Karki
 
 
 Kritika Rana Khand – 
-+++++++++++++++++++++++++    6 Magh 2081 
++++++++++++++++++++++++++  DONE / COMPLETED  6 Magh 2081 
 
 
 		Relationship Types and Sets
