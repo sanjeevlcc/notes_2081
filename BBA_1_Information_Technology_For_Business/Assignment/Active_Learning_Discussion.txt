@@ -23,6 +23,8 @@ What is Active Learning
                   EXAMPLE / CASE
                   ********************
 
+
+
 Case Study: 
       Exploring Computer Hardware and Software through 
       Active Learning
@@ -305,7 +307,7 @@ Expected Outcomes
 
 
 GROUP 2
-**************
+************** 22 Jan 2025
 
 Aneesh Pun
 Alisha Sunar
@@ -380,7 +382,7 @@ Activity Plan:
 
 
 GROUP 3
-**************
+************** 22 Jan 2025
 
 Himal kafle(PU)
 Bhawana Pangeni
@@ -457,7 +459,7 @@ Activity Plan:
 
 
 GROUP 4
-**************
+************** 26 Jan 2025
 
 Ritika Bada
 Astha Thapa
@@ -542,16 +544,92 @@ Expected Outcomes
 
 
 GROUP 5
-**************
+************** 26 Jan 2025
 
-Eugene Rai
-Anjana Baraghare
-Nirman Subedi
-Nishan Pandey
-Usha Bashyal
+Nitesh Karki
+Pankaj Kurmi
+Prakriti k.c
+Priya Neupane
+Puspa Thapa
 
 
-Case Title: 
+
+Case Title: Defining IT’s Scope in Business Growth
+
+
+Objective: 
+    Analyze the scope and importance of IT in driving
+    business growth and innovation.
+
+
+Scenario: 
+    A startup is unsure how IT can contribute to its growth
+    and needs advice on leveraging technology.
+
+
+
+Roles:
+
+        Nitesh Karki (IT Strategist): 
+            Defines the broad scope of IT in business functions, including 
+            operations and customer engagement.
+        
+        Pankaj Kurmi (Technology Advisor): 
+            Identifies specific IT tools and platforms suitable for startups.
+        
+        Prakriti k.c (Cost Analyst):
+            Evaluates the cost implications and return on investment of 
+            implementing IT solutions.
+        
+        Priya Neupane (Risk Manager): 
+            Highlights potential risks of IT adoption, including cybersecurity
+            threats and implementation challenges.
+        
+        Puspa Thapa: 
+            Role of AI for business development.
+
+
+
+
+
+Activity Plan:
+        Scenario-Based Brainstorming:
+                Discuss how IT can address specific challenges faced 
+                by the startup, such as limited market reach or inefficient processes.
+        
+        Problem-Solving Task:
+                Design an IT adoption plan for the startup, outlining
+                priorities, budget, and expected outcomes.
+        
+        Role-Play Presentation:
+                Each student presents their perspective to
+                the "startup founder" (role-played by peers or the instructor).
+            
+
+
+Expected Outcomes
+        Enhanced Understanding: 
+                Students will gain a holistic view of IT’s role in modern businesses.
+        
+        Practical Insights: 
+                Activities will connect theoretical concepts to real-world applications.
+        
+        Critical Thinking and Collaboration: 
+                Students will improve problem-solving and teamwork 
+                skills through discussion and role-play.
+                
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -578,7 +656,121 @@ Case Title:
 
 
 GROUP 6
-**************
+************** 27 Jan 2025
+
+
+Bidhya Subedi
+Sachin Chudali
+Abisha Saru
+Sandhya Rijal 
+Kritika Tandan(PU)
+
+
+
+Case Title:  Key IT Trends Shaping Modern Businesses
+
+
+
+Objective: 
+    Explore emerging IT trends and their impact on 
+    business innovation and competitiveness.
+
+
+Scenario: 
+    A tech conference invites students to present 
+    on the latest IT trends that are transforming industries.
+
+
+
+
+
+
+
+
+Roles:
+        Sachin Chudali (AI/ML Advocate): 
+            Discusses the role of artificial intelligence and machine
+            learning in decision-making and automation.
+        
+        Bidhya Subedi (Cloud Computing Specialist): 
+            Explains the benefits of cloud solutions for scalability
+            and cost-efficiency.
+        
+        Abisha Saru (Cybersecurity Expert): 
+            Highlights the importance of securing digital assets and data.
+        
+        Kritika Tandan(PU) (Big Data Analyst): 
+            Focuses on the impact of data analytics on customer 
+            insights and business strategies.
+        
+        Sandhya Rijal : 
+            Diferentiate how ML ad AI differentiate with examples.
+
+
+
+Activity Plan:
+        Debate:
+            Each student argues for their trend as the most impactful
+            for businesses today.
+        
+        Case Study Analysis:
+            Examine a real-world example of a business successfully
+            leveraging one or more of these IT trends.
+        
+        Group Conclusion:
+            Collaboratively identify which trend offers the most immediate value for businesses.
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 7
+************** 27 Jan 2025
+
+Jasmine Pun Magar
+Monika Gupta(PU)
+Abishak Pandey(PU)
+kishor Panthi(PU)
+sanam Ale 
+
+
+Case Title: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 7
+************** cc Jan 2025
 
 Eugene Rai
 Anjana Baraghare
@@ -604,6 +796,60 @@ Case Title:
 
 
 
+
+
+
+
+
+
+
+
+GROUP 7
+************** cc Jan 2025
+
+Eugene Rai
+Anjana Baraghare
+Nirman Subedi
+Nishan Pandey
+Usha Bashyal
+
+
+Case Title: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 7
+************** cc Jan 2025
+
+Eugene Rai
+Anjana Baraghare
+Nirman Subedi
+Nishan Pandey
+Usha Bashyal
+
+
+Case Title: 
 
 
 
