@@ -13,30 +13,33 @@ What is Active Learning
 
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
 
                   ********************
-                  EXAMPLE / CASE
+                    EXAMPLE / CASE
                   ********************
 
 
 
 Case Study: 
+------------
       Exploring Computer Hardware and Software through 
       Active Learning
 
 
 Case Title: 
+------------
     "Building a Tech-Savvy World: Understanding 
     Computer Hardware and Software"
 
 
 
 Scenario Overview
+------------------
     A start-up company, Techify, is planning to launch its first 
     product, a user-friendly personal computer tailored for
     students and small businesses. The company needs a detailed
@@ -49,6 +52,7 @@ Scenario Overview
 
 
 Learning Objectives
+------------------------
     Understand the components of computer hardware and their functions.
     Differentiate between system software and application software.
     Explore the interaction between hardware and software in a computer system.
@@ -59,6 +63,7 @@ Learning Objectives
 
 
 Roles and Group Tasks
+------------------------
       Each student takes on a specific role, contributing their 
       unique perspectives:
             
@@ -159,8 +164,13 @@ Expected Outcomes
 
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
 
 
 
@@ -183,96 +193,107 @@ Nishan Pandey
 Usha Bashyal
 
 
-Case Title: "
+Case Title: 
+----------------
 Building a Tech-Savvy World: Understanding Computer Hardware and Software"
 
-
-Learning Objectives
-      Understand the components of computer hardware and their functions.
-      Differentiate between system software and application software.
-      Explore the interaction between hardware and software in a computer system.
-      Apply critical thinking to solve real-world technology challenges.
-      Collaborate effectively in a team.
-
-
-
-
-Roles and Group Tasks
-  Each student takes on a specific role, contributing their unique perspectives:
-      
-      Eugene Rai (Hardware Specialist):
-          Focuses on the physical components of the computer, such as the CPU,
-          motherboard, RAM, storage devices, and input/output devices.
-          
-          Identifies the hardware specifications needed for the new computer.
-          
-      
-      Anjana Baraghare (Software Analyst):
-          Explains the types of software (system software like operating systems, and
-          application software like productivity tools).
-          
-          Evaluates the compatibility of hardware with different software solutions.
-          
-      
-      Nirman Subedi (Tech Integration Expert):
-          Explores how hardware and software interact to perform tasks.
-          Suggests optimizations to improve system performance and user experience.
-          
-      
-      Nishan Pandey (Market Researcher):
-          Analyzes the needs of the target audience (students and small businesses).
-          Investigates trends in hardware and software preferences.
-          
-          
-      Usha Bashyal (Project Manager):
-          Oversees the group’s activities, ensures effective collaboration, and prepares the final presentation.
-          Encourages debates on conflicting ideas to arrive at the best solutions.
-
-
-Activity Plan
-      1. Group Research and Discussion
-        Task: Each student researches their area and shares findings in a group discussion.
-        Goal: Build a foundational understanding of computer hardware and software.
-        Outcome: A shared document summarizing the team's insights.
-      
-      
-      2. Debates
-        Topic 1: "Which is more important for a computer’s performance: Hardware or Software?"
-        Topic 2: "Should the focus be on creating specialized software for existing hardware or upgrading hardware to support advanced software?"
-        Goal: Encourage critical thinking and diverse perspectives.
-      
-      
-      3. Problem-Solving Challenge
-        Scenario: The prototype computer has excellent hardware specifications but lacks optimized software. The team must decide:
-        Should they focus on developing a custom operating system?
-        Should they integrate existing software (e.g., Windows, Linux)?
-        Task: Evaluate the pros and cons of each option and present recommendations.
-      
-      
-      4. Creative Presentation
-        Task: Design a visual presentation showcasing:
-        The relationship between hardware and software.
-        The group's recommendations for Techify’s product.
-        Format: Infographics, flowcharts, or even a short skit to illustrate the concepts.
-      
-      
-      5. Reflection and Feedback
-        Activity: Each student reflects on:
-        What they learned about hardware and software.
-        How collaboration and debates helped refine their understanding.
-        Outcome: Peer feedback on contributions and insights gained.
-
-
-Expected Outcomes
-    A comprehensive understanding of computer hardware and software.
-    Enhanced teamwork, critical thinking, and presentation skills.
-    Meaningful insights into how technology meets user needs.
-
-
-
-
-
-
+        
+        Learning Objectives
+        ------------------------
+              Understand the components of computer hardware and their functions.
+              Differentiate between system software and application software.
+              Explore the interaction between hardware and software in a computer system.
+              Apply critical thinking to solve real-world technology challenges.
+              Collaborate effectively in a team.
+        
+        
+        
+        
+        Roles and Group Tasks
+        ------------------------
+              Each student takes on a specific role, contributing their unique perspectives:
+              
+              Eugene Rai (Hardware Specialist):
+                  Focuses on the physical components of the computer, such as the CPU,
+                  motherboard, RAM, storage devices, and input/output devices.
+                  
+                  Identifies the hardware specifications needed for the new computer.
+                  
+              
+              Anjana Baraghare (Software Analyst):
+                  Explains the types of software (system software like operating systems, and
+                  application software like productivity tools).
+                  
+                  Evaluates the compatibility of hardware with different software solutions.
+                  
+              
+              Nirman Subedi (Tech Integration Expert):
+                  Explores how hardware and software interact to perform tasks.
+                  Suggests optimizations to improve system performance and user experience.
+                  
+              
+              Nishan Pandey (Market Researcher):
+                  Analyzes the needs of the target audience (students and small businesses).
+                  Investigates trends in hardware and software preferences.
+                  
+                  
+              Usha Bashyal (Project Manager):
+                  Oversees the group’s activities, ensures effective collaboration, and 
+                  prepares the final presentation.
+                  Encourages debates on conflicting ideas to arrive at the best solutions.
+        
+        
+        
+        
+        
+        Activity Plan
+        ----------------
+              1. Group Research and Discussion
+                Task: Each student researches their area and shares findings in a group discussion.
+                Goal: Build a foundational understanding of computer hardware and software.
+                Outcome: A shared document summarizing the team's insights.
+              
+              
+              2. Debates
+                Topic 1: "Which is more important for a computer’s performance: Hardware or Software?"
+                Topic 2: "Should the focus be on creating specialized software for existing hardware 
+                         or upgrading hardware to support advanced software?"
+                Goal: Encourage critical thinking and diverse perspectives.
+              
+              
+              3. Problem-Solving Challenge
+                Scenario: The prototype computer has excellent hardware specifications but lacks optimized 
+                          software. The team must decide:
+                Should they focus on developing a custom operating system?
+                Should they integrate existing software (e.g., Windows, Linux)?
+                Task: Evaluate the pros and cons of each option and present recommendations.
+              
+              
+              4. Creative Presentation
+                Task: Design a visual presentation showcasing:
+                The relationship between hardware and software.
+                The group's recommendations for Techify’s product.
+                Format: Infographics, flowcharts, or even a short skit to illustrate the concepts.
+              
+              
+              5. Reflection and Feedback
+                Activity: Each student reflects on:
+                What they learned about hardware and software.
+                How collaboration and debates helped refine their understanding.
+                Outcome: Peer feedback on contributions and insights gained.
+        
+        
+        Expected Outcomes
+        -------------------
+            A comprehensive understanding of computer hardware and software.
+            Enhanced teamwork, critical thinking, and presentation skills.
+            Meaningful insights into how technology meets user needs.
+        
+        
+        
+        
+        
+        
 
 
 
@@ -313,61 +334,77 @@ Aneesh Pun
 Alisha Sunar
 Monika Gautam(PU)
 Bipin Pnadey(PU)
+Ismile Khadka
+
 
 
 Case Title:  Building a Database for a Retail Store
 
-Objective: 
-    Understand the basics of relational databases, 
-    structured data, and SQL.
-
-Scenario: 
-    A retail store wants to transition from a 
-    manual system to a database system to manage inventory, 
-    sales, and customer data.
-
-
-
-
-
-
-
-
-Roles:
-      Aneesh Pun (Database Designer): 
-          Focuses on creating the database schema (tables,
-          attributes, and relationships).
-      
-      Alisha Sunar (Data Analyst): 
-          Identifies the types of data 
-          (structured/unstructured) required and ensures the database supports
-          business decision-making.
-      
-      Monika Gautam(PU) (SQL Specialist):
-          Demonstrates how to create, retrieve, and 
-          manipulate data using basic SQL queries.
-      
-      Bipin Pnadey(PU) (Business Analyst): 
-          Explains how this database can enhance 
-          business decisions and evaluates data security concerns.
-
-
-
-Activity Plan:
-      Group Discussion:
-          Define tables for the database (e.g., Inventory, Sales, Customers).
-          Debate the structure and relationships among the tables.
-      
-      SQL Practice:
-          Write basic SQL queries (e.g., creating tables, inserting data,
-          querying sales for the last month).
-      
-      Presentation:
-          Present the database design and its benefits to the store.
-      
-      Reflection:
-          Discuss lessons learned about relational databases and SQL.
-      
+        Objective:
+        ----------------
+            Understand the basics of relational databases, 
+            structured data, and SQL.
+        
+        
+        
+        
+        
+        Scenario: 
+        ----------------
+            A retail store wants to transition from a 
+            manual system to a database system to manage inventory, 
+            sales, and customer data.
+        
+        
+        
+        
+        
+        
+        
+        
+        Roles:
+        --------
+              Aneesh Pun (Database Designer): 
+                  Focuses on creating the database schema (tables,
+                  attributes, and relationships).
+              
+              Alisha Sunar (Data Analyst): 
+                  Identifies the types of data 
+                  (structured/unstructured) required and ensures the database supports
+                  business decision-making.
+              
+              Monika Gautam(PU) (SQL Specialist):
+                  Demonstrates how to create, retrieve, and 
+                  manipulate data using basic SQL queries.
+              
+              Bipin Pnadey(PU) (Business Analyst): 
+                  Explains how this database can enhance 
+                  business decisions and evaluates data security concerns.
+        
+            Ismile Khadka:
+                Why to use SQL? Demonstrate different types DBMS technlogies.
+        
+        
+        
+        
+        
+        
+        Activity Plan:
+        ----------------
+              Group Discussion:
+                  Define tables for the database (e.g., Inventory, Sales, Customers).
+                  Debate the structure and relationships among the tables.
+              
+              SQL Practice:
+                  Write basic SQL queries (e.g., creating tables, inserting data,
+                  querying sales for the last month).
+              
+              Presentation:
+                  Present the database design and its benefits to the store.
+              
+              Reflection:
+                  Discuss lessons learned about relational databases and SQL.
+              
 
 
 
@@ -393,56 +430,60 @@ Pritam pantha
 
 Case Title: Designing a Network for a Small Office
 
-Objective: 
-        Understand network types, topologies, and IP addressing
-        by designing a functional office network.
-
-Scenario:
-
-        A small office with 20 employees needs a 
-        computer network to support efficient communication,
-        data sharing, and internet access.
-
-
-
-
-
-Roles:
+        Objective: 
+        ----------------
+                Understand network types, topologies, and IP addressing
+                by designing a functional office network.
         
-        Simran Thapa  (Network Designer): 
-                Decides the type of network (LAN or MAN) and 
-                appropriate topology (e.g., star, bus).
         
-        Himal kafle(PU) (Transmission Media Expert): 
-                Selects suitable transmission media (e.g., twisted pair,
-                coaxial, optical fiber) based on cost and performance.
         
-        Bhawana Pangeni (IP Address Specialist):
-                Configures static and dynamic IP addressing schemes for 
-                devices in the network.
         
-        Sofiya Gurung (Security Specialist): 
-                Recommends basic security measures like firewalls and 
-                VPNs to protect the network.
+        Scenario:
+        ----------------
+                A small office with 20 employees needs a 
+                computer network to support efficient communication,
+                data sharing, and internet access.
         
-        Pritam pantha (Wireless Expert) :
-                Analyse how both transmission media works.
         
-
-Activity Plan:
-
-    Group Discussion:
-        Plan the network, including topology, media, and addressing.
-    
-    Problem-Solving Task:
-        Resolve issues like limited IP availability and media cost-effectiveness.
-    
-    Presentation:
-        Create a diagram of the proposed network and justify design choices.
-    
-    Reflection:
-        Discuss lessons learned and potential challenges in real-world implementation.
-
+        
+        
+        
+        Roles:
+        --------        
+                Simran Thapa  (Network Designer): 
+                        Decides the type of network (LAN or MAN) and 
+                        appropriate topology (e.g., star, bus).
+                
+                Himal kafle(PU) (Transmission Media Expert): 
+                        Selects suitable transmission media (e.g., twisted pair,
+                        coaxial, optical fiber) based on cost and performance.
+                
+                Bhawana Pangeni (IP Address Specialist):
+                        Configures static and dynamic IP addressing schemes for 
+                        devices in the network.
+                
+                Sofiya Gurung (Security Specialist): 
+                        Recommends basic security measures like firewalls and 
+                        VPNs to protect the network.
+                
+                Pritam pantha (Wireless Expert) :
+                        Analyse how both transmission media works.
+                
+        
+        Activity Plan:
+        ----------------
+                Group Discussion:
+                    Plan the network, including topology, media, and addressing.
+                
+                Problem-Solving Task:
+                    Resolve issues like limited IP availability and media cost-effectiveness.
+                
+                Presentation:
+                    Create a diagram of the proposed network and justify design choices.
+                
+                Reflection:
+                    Discuss lessons learned and potential challenges in real-world implementation.
+            
 
 
 
@@ -471,63 +512,70 @@ Aarati Neupane
 
 Case Title: Securing a Computer Network
 
-
-Objective:
-    Learn about network security tools like firewalls,
-    IPSec, and VPNs to protect IP networks.
-
-
-Scenario: 
-    A university is concerned about unauthorized access to its
-    network and wants to implement better security measures.
-
-
-
-
-Roles:
-
-        Ritika Bada (Firewall Specialist): 
-            Explains how firewalls can block unauthorized access and filters network traffic.
         
-        Astha Thapa (IPSec Advocate):
-            Highlights how IPSec ensures secure communication over the network.
+        Objective:
+        ----------------
+            Learn about network security tools like firewalls,
+            IPSec, and VPNs to protect IP networks.
         
-        Rohit Chaudhary (VPN Specialist):
-            Discusses the advantages of VPNs for secure remote access.
         
-        Anshika Gupta  (Threat Analyst): 
-            Identifies potential security threats and suggests a layered approach to protection.
+        Scenario: 
+        ----------------
+            A university is concerned about unauthorized access to its
+            network and wants to implement better security measures.
         
-        Aarati Neupane (Hacker):
-            Tries to attack the system network.
-
-
-
-Activity Plan:
-
-        Problem-Solving Exercise:
-            Identify vulnerabilities in the university's current network and propose solutions.
         
-        Role-Play:
-            Conduct a mock security audit where each student presents their solutions 
-            to the university's IT team (role-played by peers or instructor).
         
-        Group Presentation:
-            Share a detailed security plan with diagrams and practical recommendations.
-
-
-Expected Outcomes
-        Increased Understanding: 
-                Students gain practical knowledge of network
-                design, IP addressing, and security.
         
-        Collaboration and Communication: 
-                Students learn to work in teams 
-                and present technical concepts effectively.
+        Roles:
+        ----------------
+                Ritika Bada (Firewall Specialist): 
+                    Explains how firewalls can block unauthorized access and filters network traffic.
+                
+                Astha Thapa (IPSec Advocate):
+                    Highlights how IPSec ensures secure communication over the network.
+                
+                Rohit Chaudhary (VPN Specialist):
+                    Discusses the advantages of VPNs for secure remote access.
+                
+                Anshika Gupta  (Threat Analyst): 
+                    Identifies potential security threats and suggests a layered approach to protection.
+                
+                Aarati Neupane (Hacker):
+                    Tries to attack the system network.
         
-        Real-World Application:
-                Students develop solutions to realistic problems in networking.
-
+        
+        
+        Activity Plan:
+        ----------------
+                Problem-Solving Exercise:
+                    Identify vulnerabilities in the university's current network and propose solutions.
+                
+                Role-Play:
+                    Conduct a mock security audit where each student presents their solutions 
+                    to the university's IT team (role-played by peers or instructor).
+                
+                Group Presentation:
+                    Share a detailed security plan with diagrams and practical recommendations.
+        
+        
+        
+        
+        
+        
+        Expected Outcomes
+        ------------------------
+                Increased Understanding: 
+                        Students gain practical knowledge of network
+                        design, IP addressing, and security.
+                
+                Collaboration and Communication: 
+                        Students learn to work in teams 
+                        and present technical concepts effectively.
+                
+                Real-World Application:
+                        Students develop solutions to realistic problems in networking.
+        
 
 
 
@@ -546,7 +594,7 @@ Expected Outcomes
 GROUP 5
 ************** 26 Jan 2025
 
-Nitesh Karki
+Kritika Gyawali
 Pankaj Kurmi
 Prakriti k.c
 Priya Neupane
@@ -557,67 +605,75 @@ Puspa Thapa
 Case Title: Defining IT’s Scope in Business Growth
 
 
-Objective: 
-    Analyze the scope and importance of IT in driving
-    business growth and innovation.
-
-
-Scenario: 
-    A startup is unsure how IT can contribute to its growth
-    and needs advice on leveraging technology.
-
-
-
-Roles:
-
-        Nitesh Karki (IT Strategist): 
-            Defines the broad scope of IT in business functions, including 
-            operations and customer engagement.
+        Objective: 
+        ----------------
+            Analyze the scope and importance of IT in driving
+            business growth and innovation.
         
-        Pankaj Kurmi (Technology Advisor): 
-            Identifies specific IT tools and platforms suitable for startups.
         
-        Prakriti k.c (Cost Analyst):
-            Evaluates the cost implications and return on investment of 
-            implementing IT solutions.
+        Scenario: 
+        ----------------
+            A startup is unsure how IT can contribute to its growth
+            and needs advice on leveraging technology.
         
-        Priya Neupane (Risk Manager): 
-            Highlights potential risks of IT adoption, including cybersecurity
-            threats and implementation challenges.
         
-        Puspa Thapa: 
-            Role of AI for business development.
-
-
-
-
-
-Activity Plan:
-        Scenario-Based Brainstorming:
-                Discuss how IT can address specific challenges faced 
-                by the startup, such as limited market reach or inefficient processes.
         
-        Problem-Solving Task:
-                Design an IT adoption plan for the startup, outlining
-                priorities, budget, and expected outcomes.
-        
-        Role-Play Presentation:
-                Each student presents their perspective to
-                the "startup founder" (role-played by peers or the instructor).
-            
-
-
-Expected Outcomes
-        Enhanced Understanding: 
-                Students will gain a holistic view of IT’s role in modern businesses.
-        
-        Practical Insights: 
-                Activities will connect theoretical concepts to real-world applications.
-        
-        Critical Thinking and Collaboration: 
-                Students will improve problem-solving and teamwork 
-                skills through discussion and role-play.
+        Roles:
+        --------
+                Nitesh Karki (IT Strategist): 
+                    Defines the broad scope of IT in business functions, including 
+                    operations and customer engagement.
                 
+                Pankaj Kurmi (Technology Advisor): 
+                    Identifies specific IT tools and platforms suitable for startups.
+                
+                Prakriti k.c (Cost Analyst):
+                    Evaluates the cost implications and return on investment of 
+                    implementing IT solutions.
+                
+                Priya Neupane (Risk Manager): 
+                    Highlights potential risks of IT adoption, including cybersecurity
+                    threats and implementation challenges.
+                
+                Puspa Thapa: 
+                    Role of AI for business development.
+        
+        
+        
+        
+        
+        Activity Plan:
+        ----------------
+                Scenario-Based Brainstorming:
+                        Discuss how IT can address specific challenges faced 
+                        by the startup, such as limited market reach or inefficient processes.
+                
+                Problem-Solving Task:
+                        Design an IT adoption plan for the startup, outlining
+                        priorities, budget, and expected outcomes.
+                
+                Role-Play Presentation:
+                        Each student presents their perspective to
+                        the "startup founder" (role-played by peers or the instructor).
+                    
+        
+        
+        
+        
+        
+        
+        Expected Outcomes:
+        ------------------------
+                Enhanced Understanding: 
+                        Students will gain a holistic view of IT’s role in modern businesses.
+                
+                Practical Insights: 
+                        Activities will connect theoretical concepts to real-world applications.
+                
+                Critical Thinking and Collaboration: 
+                        Students will improve problem-solving and teamwork 
+                        skills through discussion and role-play.
+                        
 
 
 
@@ -669,57 +725,67 @@ Kritika Tandan(PU)
 
 Case Title:  Key IT Trends Shaping Modern Businesses
 
+            
+            
+            Objective: 
+            ----------------
+                Explore emerging IT trends and their impact on 
+                business innovation and competitiveness.
 
 
-Objective: 
-    Explore emerging IT trends and their impact on 
-    business innovation and competitiveness.
+            
+            Scenario: 
+            ----------------
+                A tech conference invites students to present 
+                on the latest IT trends that are transforming industries.
+            
+            
+            
+            
+            Roles:
+            --------
+                    Sachin Chudali (AI/ML Advocate): 
+                        Discusses the role of artificial intelligence and machine
+                        learning in decision-making and automation.
+                    
+                    Bidhya Subedi (Cloud Computing Specialist): 
+                        Explains the benefits of cloud solutions for scalability
+                        and cost-efficiency.
+                    
+                    Abisha Saru (Cybersecurity Expert): 
+                        Highlights the importance of securing digital assets and data.
+                    
+                    Kritika Tandan(PU) (Big Data Analyst): 
+                        Focuses on the impact of data analytics on customer 
+                        insights and business strategies.
+                    
+                    Sandhya Rijal : 
+                        Diferentiate how ML ad AI differentiate with examples.
+            
+            
+            
+            
+            
+            Activity Plan:
+            ----------------
+                    Debate:
+                        Each student argues for their trend as the most impactful
+                        for businesses today.
+                    
+                    Case Study Analysis:
+                        Examine a real-world example of a business successfully
+                        leveraging one or more of these IT trends.
+                    
+                    Group Conclusion:
+                        Collaboratively identify which trend offers the most immediate value for businesses.
+                    
+            
+            
+            
 
 
-Scenario: 
-    A tech conference invites students to present 
-    on the latest IT trends that are transforming industries.
 
 
-
-
-
-
-
-
-Roles:
-        Sachin Chudali (AI/ML Advocate): 
-            Discusses the role of artificial intelligence and machine
-            learning in decision-making and automation.
-        
-        Bidhya Subedi (Cloud Computing Specialist): 
-            Explains the benefits of cloud solutions for scalability
-            and cost-efficiency.
-        
-        Abisha Saru (Cybersecurity Expert): 
-            Highlights the importance of securing digital assets and data.
-        
-        Kritika Tandan(PU) (Big Data Analyst): 
-            Focuses on the impact of data analytics on customer 
-            insights and business strategies.
-        
-        Sandhya Rijal : 
-            Diferentiate how ML ad AI differentiate with examples.
-
-
-
-Activity Plan:
-        Debate:
-            Each student argues for their trend as the most impactful
-            for businesses today.
-        
-        Case Study Analysis:
-            Examine a real-world example of a business successfully
-            leveraging one or more of these IT trends.
-        
-        Group Conclusion:
-            Collaboratively identify which trend offers the most immediate value for businesses.
-        
 
 
 
@@ -744,7 +810,189 @@ kishor Panthi(PU)
 sanam Ale 
 
 
-Case Title: 
+Case Title:  Debating Input and Output Device Innovations
+
+        
+        Objective:
+        ------------
+                Explore the role of innovative input and output
+                devices in enhancing user experiences.
+        
+        
+        
+        Scenario: 
+        ------------
+                A tech company is debating which devices to prioritize
+                in their next-generation VR/AR system.
+        
+        
+        
+        
+        
+        
+        
+        
+        Roles:
+        ------------
+                Jasmine Pun Magar (Input Advocate): 
+                        Argues for advanced input devices like gesture-control systems,
+                        brain-computer interfaces (BCIs), or voice recognition.
+                
+                
+                Abishak Pandey(PU) (Output Advocate):
+                        Focuses on output innovations such as haptic 
+                        gloves, OLED displays, and immersive audio systems.
+                
+                
+                kishor Panthi(PU) (Market Analyst): 
+                        Evaluates user needs and market trends to identify which 
+                        innovations have higher demand.
+                
+                
+                Monika Gupta(PU) (Ethics and Accessibility Specialist):
+                        Discusses ethical and accessibility considerations, such as
+                        inclusivity and potential misuse of technologies.
+                
+                sanam Ale : 
+                        Discuss how input output work together in real case 
+                        scnerio likes games , office softwares
+        
+        
+        
+        
+        Activity Plan:
+        ----------------
+                Debate:
+                        Teams argue the benefits of input vs. output device innovations.
+                
+                Group Analysis:
+                        Identify the most promising technologies for the VR/AR 
+                        system based on cost, usability, and innovation.
+                
+                Report Creation:
+                        Compile findings into a report with recommendations 
+                        for the company.
+                        
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 8
+************** 28 Jan 2025
+
+Ramesh Saru
+Sandhya Aryal
+Krishna Kunwar(PU)
+Anjil Pantha
+Bipana Adhikari(PU)
+
+
+
+Case Title:  Building the Perfect Workstation
+        
+        
+        Objective: 
+        --------------
+                Understand the selection and integration of computer 
+                hardware components for a specific use case.
+        
+        
+        
+        Scenario:
+        --------------
+                A graphic designer needs a custom-built workstation
+                for 3D rendering, video editing, and VR content creation.
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        Roles:
+        --------------
+                Ramesh Saru (CPU and Memory Specialist): 
+                        Determines the appropriate CPU (e.g., number of cores, clock speed) 
+                        and memory (RAM and ROM) requirements.
+                
+                
+                Sandhya Aryal (Storage and Input Device Expert):
+                        Suggests suitable storage devices (HDD, SSD) and input 
+                        devices like graphics tablets or VR controllers.
+                
+                
+                Anjil Pantha (Output Device Advisor): 
+                        Recommends the best monitors (e.g., OLED), printers,
+                        and VR/AR output devices.
+                        
+                
+                Bipana Adhikari(PU) (Vision and Haptic Device Analyst):
+                        Evaluates the role of vision-based devices (e.g., LiDAR, cameras)
+                        and haptic feedback systems.
+                
+                Krishna Kunwar(PU):
+                    Types of market video rendring software and its resources needed.
+        
+        
+        
+        
+        
+        Activity Plan:
+        --------------
+                Group Research and Discussion:
+                    Each student researches their assigned components and 
+                    presents their findings.
+                
+                
+                Problem-Solving Task:
+                    Design a complete workstation setup within a budget, addressing 
+                    the designer’s needs.
+                
+                
+                Presentation:
+                        Create a proposal that explains the selected components and 
+                        their advantages for the designer's tasks.
+                
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -770,27 +1018,97 @@ Case Title:
 
 
 GROUP 7
-************** cc Jan 2025
-
-Eugene Rai
-Anjana Baraghare
-Nirman Subedi
-Nishan Pandey
-Usha Bashyal
+************** 28 Jan 2025
 
 
-Case Title: 
+Amrit Pandey
+Anush Bhandari
+Asmita Chaudhary
+Babita Karki
 
 
-
-
-
-
-
-
-
-
-
+Case Title: Enhancing Accessibility through Hardware Innovations
+        
+        
+        
+        Objective: 
+        ------------
+                Learn about hardware innovations that improve accessibility 
+                for differently-abled users.
+        
+        
+        
+        Scenario:
+        ------------
+                A non-profit organization seeks to equip schools 
+                for visually and hearing-impaired students with
+                the latest accessible hardware devices.
+                
+        
+        
+        
+        
+        
+        
+        Roles:
+        --------
+                Amrit Pandey (Audio-Tactile Specialist): 
+                        Focuses on tactile output devices like Braille 
+                        readers and haptic feedback systems.
+                
+                
+                Anush Bhandari (Vision Device Specialist):
+                        Evaluates vision-based devices such as LiDAR 
+                        for navigation and AR/VR headsets.
+                
+                
+                Babita Karki (Speech and Voice Expert): 
+                        Analyzes the role of speech recognition 
+                        devices and advanced microphones.
+                
+                
+                Asmita Chaudhary (Cost-Benefit Analyst): 
+                        Assesses the affordability and scalability
+                        of these devices for schools.
+        
+        
+        
+        
+        Activity Plan:
+        ----------------
+                Group Brainstorming:
+                    Discuss hardware needs for accessibility
+                    in schools and identify suitable devices.
+                
+                Case Study Analysis:
+                    Examine a school that successfully
+                    implemented accessible hardware.
+                
+                
+                Proposal Development:
+                    Create a detailed plan for equipping a 
+                    school, including device specifications,
+                    costs, and benefits.
+                
+        
+        
+        Expected Outcomes
+        --------------------
+                    Practical Understanding: 
+                            Students will learn the roles of hardware components
+                            in various real-world contexts.
+                    
+                    
+                    Teamwork Skills:
+                            Collaboration will help students explore diverse
+                            perspectives and develop cohesive solutions.
+                    
+                    
+                    Critical Thinking: 
+                            Activities encourage problem-solving, 
+                            debate, and innovation.
+                            
+                            
 
 
 
@@ -805,447 +1123,81 @@ Case Title:
 
 
 GROUP 7
-************** cc Jan 2025
-
-Eugene Rai
-Anjana Baraghare
-Nirman Subedi
-Nishan Pandey
-Usha Bashyal
-
-
-Case Title: 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-GROUP 7
-************** cc Jan 2025
-
-Eugene Rai
-Anjana Baraghare
-Nirman Subedi
-Nishan Pandey
-Usha Bashyal
-
-
-Case Title: 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+************** 29 Jan 2025
+
+
+
+
+Binod Bakabal
+Manish Khanal(pu)
+Ritika K.C 
+Safal khadka
+
+
+
+
+Case Title:  The Role of IT in Transforming Business Functions
+
+
+        Objective: 
+        ------------
+                Understand the applications and importance of IT
+                in different business functions such as Finance, Marketing, HR, and Operations.
+        
+        
+        
+        
+        Scenario: 
+        ------------
+                A medium-sized company plans to digitize its business processes.
+                Each department is exploring IT solutions to improve efficiency
+                and decision-making.
+                
+        
+        
+        
+        
+        
+        Roles:
+        --------
+                    Binod Bakabal (Finance IT Specialist): 
+                            Explains IT applications in financial management, such as ERP 
+                            systems, budgeting software, and blockchain for transactions.
+                            
+                    
+                    Manish Khanal(pu) (Marketing IT Specialist):
+                                Focuses on digital marketing tools, social media
+                                analytics, and CRM systems.
+                                
+                    
+                    Ritika K.C (HR IT Specialist):
+                            Highlights IT tools for recruitment, payroll, 
+                            and employee performance tracking.
+                    
+                    
+                    Safal khadka (Operations IT Specialist):
+                            Discusses IT in inventory management, supply chain 
+                            systems, and process automation.
+                            
+        
+        
+        
+        
+        Activity Plan:
+        ----------------            
+                    Group Research and Discussion:
+                            Each student researches their assigned area and
+                            presents their findings.
+                    
+                    Scenario-Based Problem-Solving:
+                            Collaboratively identify IT solutions for the company’s 
+                            pain points, such as high operational costs or low 
+                            customer engagement.
+                    
+                    
+                    Presentation:
+                            Create a joint proposal for the company’s IT
+                            transformation strategy.
+        
 
 
