@@ -844,7 +844,7 @@ Milam Saru Magar –
 
 
 Mohammad Faheem Khan – 
-+++++++++++++++++++++++++    7 Magh 2081 
++++++++++++++++++++++++++  ABSENT  7 Magh 2081 
 
 		E-R Diagrams
 		How to draw and interpret ER diagrams.
@@ -859,7 +859,7 @@ Mohammad Faheem Khan –
 
 
 Nikit Lohani –
-+++++++++++++++++++++++++    7 Magh 2081 
++++++++++++++++++++++++++  ABSENT  7 Magh 2081 
 
 
 		Topic: What are DDL, DML, and DCL?
@@ -876,7 +876,7 @@ Nikit Lohani –
 
 
 Nishan Thapa –
-+++++++++++++++++++++++++    7 Magh 2081 
++++++++++++++++++++++++++  ABSENT  7 Magh 2081 
 
 		Online Shopping Platform
 		
@@ -922,7 +922,7 @@ Nishan Thapa –
 
 
 Rajani Bhusal – 
-+++++++++++++++++++++++++    7 Magh 2081 
++++++++++++++++++++++++++  DONE / COMPLETE  7 Magh 2081 
 
 
 
@@ -952,7 +952,7 @@ Rajani Bhusal –
 
 
 Ranjan Aryal – 
-+++++++++++++++++++++++++    7 Magh 2081 
++++++++++++++++++++++++++ ABSENT   7 Magh 2081 
 
 
 		
