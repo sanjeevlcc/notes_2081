@@ -382,33 +382,166 @@ Activity Plan:
 GROUP 3
 **************
 
-Eugene Rai
-Anjana Baraghare
-Nirman Subedi
-Nishan Pandey
-Usha Bashyal
+Himal kafle(PU)
+Bhawana Pangeni
+Simran Thapa 
+Sofiya Gurung
+Pritam pantha
 
 
-Case Title: 
+Case Title: Designing a Network for a Small Office
 
+Objective: 
+        Understand network types, topologies, and IP addressing
+        by designing a functional office network.
 
+Scenario:
 
-
-
-
-
-
-
-
-
-
-
+        A small office with 20 employees needs a 
+        computer network to support efficient communication,
+        data sharing, and internet access.
 
 
 
 
 
-GROUP 3
+Roles:
+        
+        Simran Thapa  (Network Designer): 
+                Decides the type of network (LAN or MAN) and 
+                appropriate topology (e.g., star, bus).
+        
+        Himal kafle(PU) (Transmission Media Expert): 
+                Selects suitable transmission media (e.g., twisted pair,
+                coaxial, optical fiber) based on cost and performance.
+        
+        Bhawana Pangeni (IP Address Specialist):
+                Configures static and dynamic IP addressing schemes for 
+                devices in the network.
+        
+        Sofiya Gurung (Security Specialist): 
+                Recommends basic security measures like firewalls and 
+                VPNs to protect the network.
+        
+        Pritam pantha (Wireless Expert) :
+                Analyse how both transmission media works.
+        
+
+Activity Plan:
+
+    Group Discussion:
+        Plan the network, including topology, media, and addressing.
+    
+    Problem-Solving Task:
+        Resolve issues like limited IP availability and media cost-effectiveness.
+    
+    Presentation:
+        Create a diagram of the proposed network and justify design choices.
+    
+    Reflection:
+        Discuss lessons learned and potential challenges in real-world implementation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 4
+**************
+
+Ritika Bada
+Astha Thapa
+Rohit Chaudhary
+Anshika Gupta 
+Aarati Neupane
+
+
+
+Case Title: Securing a Computer Network
+
+
+Objective:
+    Learn about network security tools like firewalls,
+    IPSec, and VPNs to protect IP networks.
+
+
+Scenario: 
+    A university is concerned about unauthorized access to its
+    network and wants to implement better security measures.
+
+
+
+
+Roles:
+
+        Ritika Bada (Firewall Specialist): 
+            Explains how firewalls can block unauthorized access and filters network traffic.
+        
+        Astha Thapa (IPSec Advocate):
+            Highlights how IPSec ensures secure communication over the network.
+        
+        Rohit Chaudhary (VPN Specialist):
+            Discusses the advantages of VPNs for secure remote access.
+        
+        Anshika Gupta  (Threat Analyst): 
+            Identifies potential security threats and suggests a layered approach to protection.
+        
+        Aarati Neupane (Hacker):
+            Tries to attack the system network.
+
+
+
+Activity Plan:
+
+        Problem-Solving Exercise:
+            Identify vulnerabilities in the university's current network and propose solutions.
+        
+        Role-Play:
+            Conduct a mock security audit where each student presents their solutions 
+            to the university's IT team (role-played by peers or instructor).
+        
+        Group Presentation:
+            Share a detailed security plan with diagrams and practical recommendations.
+
+
+Expected Outcomes
+        Increased Understanding: 
+                Students gain practical knowledge of network
+                design, IP addressing, and security.
+        
+        Collaboration and Communication: 
+                Students learn to work in teams 
+                and present technical concepts effectively.
+        
+        Real-World Application:
+                Students develop solutions to realistic problems in networking.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GROUP 5
 **************
 
 Eugene Rai
@@ -438,43 +571,13 @@ Case Title:
 
 
 
-GROUP 3
-**************
-
-Eugene Rai
-Anjana Baraghare
-Nirman Subedi
-Nishan Pandey
-Usha Bashyal
-
-
-Case Title: 
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-GROUP 3
+GROUP 6
 **************
 
 Eugene Rai
