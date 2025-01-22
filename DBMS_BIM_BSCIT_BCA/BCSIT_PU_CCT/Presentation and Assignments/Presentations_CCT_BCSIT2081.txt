@@ -1187,7 +1187,7 @@ Smit Paudel (PU) –
 
 
 Sulochan Karki – 
-+++++++++++++++++++++++++    9 Magh 2081 
++++++++++++++++++++++++++    ABSENT    9 Magh 2081 
 
 		Implementing Access Control
 			Show how access control is configured using SQL 
@@ -1216,7 +1216,7 @@ Sulochan Karki –
 
 
 Suraj Kumar Shrestha (PU) –
-+++++++++++++++++++++++++    9 Magh 2081 
++++++++++++++++++++++++++   DONE / COMPLETE  9 Magh 2081 
 		
 		Make Practical Demonstration Using SQL under
 		
@@ -1247,7 +1247,7 @@ Suraj Kumar Shrestha (PU) –
 
 
 Surakshya Nepali (PU) – 
-+++++++++++++++++++++++++    9 Magh 2081 
++++++++++++++++++++++++++  DONE / COMPLETE   9 Magh 2081 
 
 		Conceptual, Logical, and Physical Models
 		
@@ -1273,7 +1273,7 @@ Surakshya Nepali (PU) –
 
 
 Surya Psd Khanal – 
-+++++++++++++++++++++++++    9 Magh 2081 
++++++++++++++++++++++++++   DONE / COMPLETE  9 Magh 2081 
 
 
               Normalize the table as  1NF, 2NF, 3NF, BCNF
@@ -1303,7 +1303,7 @@ Surya Psd Khanal –
 
 
 Sushil Bhandari – 
-+++++++++++++++++++++++++    9 Magh 2081 
++++++++++++++++++++++++++   ABSENT   9 Magh 2081 
 
 		Topic: Understanding Functional Dependencies
 
@@ -1337,7 +1337,7 @@ Sushil Bhandari –
 
 
 Tejendra Dharikar – 
-+++++++++++++++++++++++++    9 Magh 2081 
++++++++++++++++++++++++++   DONE / COMPLETE  9 Magh 2081 
 
 
 		Importance of Normalization
