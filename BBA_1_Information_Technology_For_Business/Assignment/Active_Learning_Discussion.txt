@@ -184,7 +184,7 @@ Expected Outcomes
 
 
 GROUP 1
-************** 21 Jan 2025
+************** 21 Jan 2025          COMPLETED
 
 Eugene Rai
 Anjana Baraghare
@@ -328,7 +328,7 @@ Building a Tech-Savvy World: Understanding Computer Hardware and Software"
 
 
 GROUP 2
-************** 22 Jan 2025
+************** 22 Jan 2025         RETAKE
 
 Aneesh Pun
 Alisha Sunar
@@ -419,11 +419,11 @@ Case Title:  Building a Database for a Retail Store
 
 
 GROUP 3
-************** 22 Jan 2025
+************** 22 Jan 2025         COMPLETED
 
 Himal kafle(PU)
 Bhawana Pangeni
-Simran Thapa 
+Simran Thapa         ..................Need to Present
 Sofiya Gurung
 Pritam pantha
 
@@ -500,10 +500,10 @@ Case Title: Designing a Network for a Small Office
 
 
 GROUP 4
-************** 26 Jan 2025
+************** 26 Jan 2025         COMPLETED
 
 Ritika Bada
-Astha Thapa
+Astha Thapa  ...................... RETAKE
 Rohit Chaudhary
 Anshika Gupta 
 Aarati Neupane
@@ -592,10 +592,10 @@ Case Title: Securing a Computer Network
 
 
 GROUP 5
-************** 26 Jan 2025
+************** 26 Jan 2025         COMPLETED
 
-Kritika Gyawali
-Pankaj Kurmi
+Kritika Gyawali        ,,,,,,,,,,,,ABSENT
+Pankaj Kurmi           ,,,,,,,,,,,,ABSENT
 Prakriti k.c
 Priya Neupane
 Puspa Thapa
@@ -712,10 +712,10 @@ Case Title: Defining IT’s Scope in Business Growth
 
 
 GROUP 6
-************** 27 Jan 2025
+************** 27 Jan 2025          COMPLETED
 
 
-Bidhya Subedi
+Bidhya Subedi        .............. RETAKE
 Sachin Chudali
 Abisha Saru
 Sandhya Rijal 
@@ -801,10 +801,10 @@ Case Title:  Key IT Trends Shaping Modern Businesses
 
 
 GROUP 7
-************** 27 Jan 2025
+************** 27 Jan 2025         COMPLETED
 
-Jasmine Pun Magar
-Monika Gupta(PU)
+Jasmine Pun Magar        ...........RETAKE
+Monika Gupta(PU)         ...........RETAKE
 Abishak Pandey(PU)
 kishor Panthi(PU)
 sanam Ale 
@@ -896,7 +896,7 @@ Case Title:  Debating Input and Output Device Innovations
 
 
 GROUP 8
-************** 28 Jan 2025
+************** 28 Jan 2025        COMPLETED
 
 Ramesh Saru
 Sandhya Aryal
