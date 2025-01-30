@@ -90,3 +90,91 @@ psql -U janki -d momo
 
 
 
+
+
+
+*******************************************************************
+*******************************************************************
+What is an Object-Oriented Database?
+----------------------------------------
+        An Object-Oriented Database (OODB) is a database
+        management system (DBMS) that supports the storage 
+        and manipulation of data in the form of objects, 
+        which are instances of classes. 
+        
+        These objects can contain both data (attributes) 
+        and methods (functions or procedures) that operate
+        on the data. OODBs are designed to work seamlessly
+        with object-oriented programming languages
+        like Java, C++, and Python.
+
+
+
+    
+    Types of Object-Oriented Databases
+    --------------------------------------
+            Pure Object-Oriented Databases:
+
+                These databases are designed from the ground up to
+                support object-oriented principles.
+                
+                Examples: Versant, ObjectStore.
+                
+            
+            
+            Object-Relational Databases (ORDBMS):
+
+                These databases extend relational databases with
+                object-oriented features.
+                
+                Examples: PostgreSQL, Oracle.
+            
+            
+            
+            
+            Hybrid Object-Oriented Databases:
+
+                These databases combine features of both relational
+                and object-oriented databases.
+                
+                Examples: Db4o, ZODB.
+    
+    
+
+
+
+    
+    Where is it Used?
+    ---------------------
+          Complex Data Structures: 
+          
+              OODBs are used in applications that require
+              complex data structures, such as multimedia,
+              CAD/CAM systems, and scientific applications.
+              
+          
+          
+          Real-Time Systems: 
+          
+              They are used in real-time systems where 
+              performance and data integrity are critical.
+          
+          
+          
+          Web Applications: 
+          
+              OODBs can be used in web applications that
+              require high performance and scalability.
+          
+          
+          
+          Gaming: 
+          
+              They are used in gaming applications where 
+              complex data structures and relationships 
+              are common.
+    
+
+
+
+
