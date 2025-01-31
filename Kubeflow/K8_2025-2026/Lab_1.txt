@@ -1,0 +1,936 @@
+
+
+Kubernetes (K8s)
+------------------------
+      It is an open-source container orchestration platform
+      designed to automate the deployment, scaling, and 
+      management of containerized applications. It simplifies 
+      operations like load balancing, networking, and 
+      resource allocation for applications running in 
+      containers (e.g., Docker).
+      
+
+
+Example of K8s with Frontend & Backend
+-------------------------------------------
+Scenario: 
+  A web app with a React frontend, Node.js 
+  backend, and PostgreSQL database.
+      
+      Frontend:
+          Deployment: Runs React app in NGINX containers.
+          Service: Exposed via LoadBalancer or Ingress for external access.
+      
+      Backend:
+          Deployment: Node.js API serving REST endpoints.
+          Service: Internal ClusterIP to communicate with the frontend.
+      
+      Database:
+          StatefulSet: PostgreSQL with persistent volumes for data storage.
+          ConfigMap/Secret: Stores database credentials.
+      
+      
+Interaction: Frontend sends requests to the 
+      backend service (e.g., backend-service:3000), which 
+      connects to the PostgreSQL StatefulSet.
+      
+
+
+
+
+
+Key Features of Kubernetes
+-----------------------------
+          Auto-Scaling: 
+          
+                Adjusts pods based on CPU/memory usage 
+                (e.g., scaling from 2 to 10 pods during a sale).
+          
+          
+          
+          
+          Self-Healing: 
+          
+                Restarts failed containers or reschedules
+                pods to healthy nodes.
+          
+          
+          
+          Rolling Updates: 
+          
+                Deploys updates without downtime (e.g., v1 to v2 of an app).
+          
+          
+          
+          Service Discovery: 
+          
+                Pods communicate via DNS
+                (e.g., backend-service.namespace.svc.cluster.local).
+          
+          
+          Storage Orchestration: 
+          
+                Mounts cloud storage (e.g., AWS EBS) to pods.
+          
+
+
+
+
+
+
+
+
+
+Merits of Kubernetes
+----------------------------
+
+            Portability: 
+                  Run the same cluster on AWS, on-prem, or
+                  hybrid (e.g., migrating from EKS to GKE).
+            
+            
+            
+            High Availability: 
+                  Pods distributed across nodes prevent downtime
+                  (e.g., surviving node failures).
+                  
+            
+            
+            Cost Efficiency: 
+                  Optimizes resource usage via bin packing
+                  (e.g., reducing cloud costs by 30%).
+                  
+            
+            
+            Ecosystem: 
+                  Rich tooling (Helm, Prometheus) simplifies 
+                  CI/CD and monitoring.
+
+
+
+Example: An e-commerce site handles Black Friday traffic with auto-scaling.
+
+
+
+
+
+
+Demerits of Kubernetes
+------------------------
+          Complexity: 
+              Steep learning curve for networking (CNI plugins) 
+              and YAML configurations.
+          
+          
+          
+          Overhead:
+              Requires significant resources for small apps 
+              (e.g., a simple blog might not need K8s).
+          
+          
+          
+          Operational Cost: 
+              Managing clusters demands expertise 
+              (e.g., hiring DevOps engineers).
+          
+          
+          
+          Networking Challenges: 
+              Debugging Ingress or service mesh (Istio) 
+              issues can be time-consuming.
+              
+
+
+Example: A small team wastes weeks debugging a misconfigured Ingress controller.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Types of Pod controllers
+--------------------------------
+
+      - **Deployment**:   Stateless apps (e.g., web servers, APIs).
+
+      - **StatefulSet**:  Stateful apps (e.g., databases, message queues).
+
+      - **DaemonSet**:    Node-level services (e.g., logging, monitoring).
+
+      - **ReplicaSet**:   Ensures a fixed number of Pod replicas 
+                             (used internally by Deployments).
+
+      - **Job**:          One-time or batch tasks (e.g., data processing).
+
+      - **CronJob**:      Scheduled tasks (e.g., backups, reports).
+
+      - **ReplicationController**:   Legacy (use ReplicaSet instead).
+
+
+
+
+
+
+
+
+
+
+
+1. Deployment
+--------------------
+      Purpose: 
+            Manages stateless applications (e.g., web servers, APIs).
+      
+      Features:
+            Supports rolling updates and rollbacks.
+            Scales Pods up or down.
+            Self-healing (replaces failed Pods).
+      
+      Example:
+          A React frontend app with 3 replicas:
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+
+
+
+
+
+
+
+
+
+
+
+2. StatefulSet
+--------------------------
+
+        Purpose: 
+              Manages stateful applications (e.g., databases, message queues).
+        
+        Features:
+              Maintains stable, unique network identities (e.g., pod-0, pod-1).
+              Ensures ordered deployment and scaling.
+              Uses persistent storage (e.g., PersistentVolumes).
+        
+        Example:
+            A PostgreSQL database with 2 replicas:
+
+
+
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-statefulset
+spec:
+  replicas: 2
+  serviceName: postgres
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
+
+
+
+
+
+
+
+
+
+3. DaemonSet
+---------------------
+      Purpose: 
+            Ensures a copy of a Pod runs on every node (or a subset of nodes).
+      
+      Features:
+            Used for node-level services (e.g., logging, monitoring, networking).
+            Automatically adds/removes Pods when nodes join/leave the cluster.
+      
+      
+      Example:
+            A logging agent (e.g., Fluentd) on every node:
+      
+
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-daemonset
+spec:
+  selector:
+    matchLabels:
+      name: fluentd
+  template:
+    metadata:
+      labels:
+        name: fluentd
+    spec:
+      containers:
+      - name: fluentd
+        image: fluentd:latest
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+
+
+
+
+
+
+
+
+
+
+
+4. ReplicaSet
+-------------------
+      Purpose: 
+              Ensures a specified number of Pod replicas are running.
+      
+      Features:
+            Used internally by Deployments.
+            Self-healing (replaces failed Pods).
+      
+      Example:
+          A simple ReplicaSet for 3 NGINX Pods:
+      
+
+
+
+
+
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+
+
+
+
+
+
+
+
+
+
+
+5. Job
+------------
+      Purpose: 
+          Runs a task to completion (e.g., batch jobs, one-time tasks).
+      
+      Features:
+          Ensures the task runs successfully.
+          Can run multiple Pods in parallel.
+      
+      Example:
+          A batch job to process data:
+
+
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: data-processor-job
+spec:
+  completions: 3
+  parallelism: 2
+  template:
+    spec:
+      containers:
+      - name: processor
+        image: busybox
+        command: ["sh", "-c", "echo Processing data..."]
+      restartPolicy: Never
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. CronJob
+--------------
+        Purpose: 
+            Runs Jobs on a schedule (e.g., backups, reports).
+        
+        Features:
+            Uses cron syntax for scheduling.
+            Creates Jobs at specified intervals.
+        
+        Example:
+            A daily backup job:
+
+
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daily-backup
+spec:
+  schedule: "0 0 * * *"  # Runs at midnight every day
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: busybox
+            command: ["sh", "-c", "echo Running backup..."]
+          restartPolicy: OnFailure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. ReplicationController (Legacy)
+------------------------------------
+      Purpose: 
+            Older version of ReplicaSet.
+      
+      Features:
+          Ensures a specified number of Pod replicas are running.
+          Lacks advanced features like rolling updates.
+      
+      Example:
+          A simple ReplicationController:
+
+
+
+
+
+
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-rc
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
