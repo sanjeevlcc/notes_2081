@@ -1,0 +1,505 @@
+
+make a lab on python and peform 
+1.data collections(raw data) under 2 variables...
+2. organize,
+3. summarize,
+4. analyze,
+5. synthesize,
+6. make decession ( as data and visulize it)
+
+
+=====================
+
+
+Step 1: Data Collection (Raw Data)
+We’ll collect raw data under two variables. For simplicity, let’s assume we’re
+ collecting data on "Hours Studied" and "Exam Score" for a group of students.
+
+import pandas as pd
+import numpy as np
+
+# Step 1: Data Collection (Raw Data)
+# Create raw data for two variables: Hours Studied and Exam Score
+data = {
+    'Hours_Studied': [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    'Exam_Score': [40, 50, 60, 65, 70, 80, 85, 90, 95, 98]
+}
+
+# Convert the data into a pandas DataFrame
+df = pd.DataFrame(data)
+print("Raw Data Collected:")
+print(df)
+
+
+
+=====================
+
+
+Step 2: Organize the Data
+Organize the data into a structured format (already done 
+in Step 1 using a DataFrame).
+
+
+
+
+# Step 2: Organize the Data
+# The data is already organized in a pandas DataFrame
+print("\nOrganized Data:")
+print(df)
+
+
+
+
+
+=====================
+
+
+Step 3: Summarize the Data
+Summarize the data using descriptive statistics.
+
+
+
+
+# Step 3: Summarize the Data
+summary = df.describe()
+print("\nSummary Statistics:")
+print(summary)
+
+
+
+
+
+=====================
+
+
+
+Step 4: Analyze the Data
+Analyze the data to find patterns or relationships. For example, we
+ can calculate the correlation between the two variables.
+
+
+
+# Step 4: Analyze the Data
+correlation = df.corr()
+print("\nCorrelation Matrix:")
+print(correlation)
+
+
+
+
+
+
+
+
+
+=====================
+
+
+
+
+Step 5: Synthesize the Data
+Synthesize the data by creating new insights. For example, we can
+ calculate the average score per hour studied.
+
+
+
+
+
+# Step 5: Synthesize the Data
+df['Score_Per_Hour'] = df['Exam_Score'] / df['Hours_Studied']
+print("\nSynthesized Data (Score Per Hour):")
+print(df)
+
+
+=====================
+
+
+
+
+Step 6: Make Decisions and Visualize the Data
+Visualize the data to make informed decisions. We’ll use a 
+scatter plot to visualize the relationship between hours studied and exam scores.
+
+
+import matplotlib.pyplot as plt
+
+# Step 6: Make Decisions and Visualize the Data
+plt.figure(figsize=(8, 6))
+plt.scatter(df['Hours_Studied'], df['Exam_Score'], color='blue', label='Data Points')
+plt.title('Hours Studied vs Exam Score')
+plt.xlabel('Hours Studied')
+plt.ylabel('Exam Score')
+plt.grid(True)
+plt.legend()
+plt.show()
+
+# Decision: Based on the scatter plot, there is a positive correlation between hours studied and exam scores.
+# Students who study more tend to score higher on exams.
+
+
+
+
+
+
+=====================
+
+
+
+
+
+Full Code
+
+
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Step 1: Data Collection (Raw Data)
+data = {
+    'Hours_Studied': [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    'Exam_Score': [40, 50, 60, 65, 70, 80, 85, 90, 95, 98]
+}
+df = pd.DataFrame(data)
+print("Raw Data Collected:")
+print(df)
+
+# Step 2: Organize the Data
+print("\nOrganized Data:")
+print(df)
+
+# Step 3: Summarize the Data
+summary = df.describe()
+print("\nSummary Statistics:")
+print(summary)
+
+# Step 4: Analyze the Data
+correlation = df.corr()
+print("\nCorrelation Matrix:")
+print(correlation)
+
+# Step 5: Synthesize the Data
+df['Score_Per_Hour'] = df['Exam_Score'] / df['Hours_Studied']
+print("\nSynthesized Data (Score Per Hour):")
+print(df)
+
+# Step 6: Make Decisions and Visualize the Data
+plt.figure(figsize=(8, 6))
+plt.scatter(df['Hours_Studied'], df['Exam_Score'], color='blue', label='Data Points')
+plt.title('Hours Studied vs Exam Score')
+plt.xlabel('Hours Studied')
+plt.ylabel('Exam Score')
+plt.grid(True)
+plt.legend()
+plt.show()
+
+
+
+=====================
+
+
+
+
+Output
+Raw Data: Displayed as a DataFrame.
+
+Organized Data: Same as raw data but structured.
+
+Summary Statistics: Mean, standard deviation, min, max, etc.
+
+Correlation Matrix: Shows the correlation between hours studied and exam scores.
+
+Synthesized Data: A new column Score_Per_Hour is added.
+
+
+
+
+
+
+
+
+
+
+=====================
+
+Conclusion
+
+The scatter plot shows a positive correlation between hours studied and exam scores.
+
+Decision: Encourage students to study more hours to improve their exam scores.
+
+
+
+
+
+
+
+
+
+
+
+=====================
+
+
+Example 1: Sales vs Advertising Budget
+Scenario: A company wants to analyze the relationship between its advertising budget and sales revenue.
+
+
+
+
+
+
+Example 2: Temperature vs Ice Cream Sales
+Scenario: An ice cream shop wants to analyze how temperature affects ice cream sales.
+
+
+
+
+Example 3: Study Hours vs Sleep Hours
+Scenario: A student wants to analyze the relationship between the number of hours they study and the number of hours they sleep.
+
+
+
+Key Takeaways
+Example 1: Advertising budget and sales revenue have a positive relationship.
+
+Example 2: Temperature and ice cream sales have a positive relationship.
+
+Example 3: Study hours and sleep hours have a negative relationship.
+=====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================
+
+
+
+
+Example 1: Sales, Advertising Budget, and Customer Satisfaction
+Scenario: A company wants to analyze the relationship between sales, advertising budget, and customer satisfaction.
+
+
+
+
+
+Example 2: Temperature, Ice Cream Sales, and Humidity
+Scenario: An ice cream shop wants to analyze how temperature and humidity affect ice cream sales.
+
+
+Example 3: Study Hours, Sleep Hours, and Exam Scores
+Scenario: A student wants to analyze how study hours and sleep hours affect their exam scores.
+
+
+
+Example 3: Study Hours, Sleep Hours, and Exam Scores
+Scenario: A student wants to analyze how study hours and sleep hours affect their exam scores.
+
+
+Key Takeaways
+Example 1: Advertising budget, sales revenue, and customer satisfaction are interrelated.
+
+Example 2: Temperature and humidity affect ice cream sales.
+
+Example 3: Study hours and sleep hours impact exam scores.
+
+
+=====================
+
+
+
+
+
+
+
+
+
+
+
+=====================
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Data
+data = {
+    'Advertising_Budget': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    'Sales_Revenue': [1500, 2500, 3500, 4500, 5500, 6500, 7500, 8500, 9500, 10500],
+    'Customer_Satisfaction': [70, 75, 80, 85, 90, 92, 94, 95, 96, 98]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Visualize the relationship using a 3D scatter plot
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(df['Advertising_Budget'], df['Sales_Revenue'], df['Customer_Satisfaction'], c='blue', marker='o')
+ax.set_xlabel('Advertising Budget ($)')
+ax.set_ylabel('Sales Revenue ($)')
+ax.set_zlabel('Customer Satisfaction (%)')
+ax.set_title('Advertising Budget vs Sales Revenue vs Customer Satisfaction')
+plt.show()
+
+# Correlation matrix
+correlation_matrix = df.corr()
+print("Correlation Matrix:")
+print(correlation_matrix)
+
+
+
+
+
+
+
+=====================
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Data
+data = {
+    'Temperature': [20, 22, 25, 27, 30, 32, 35, 37, 40, 42],
+    'Humidity': [60, 55, 50, 45, 40, 35, 30, 25, 20, 15],
+    'Ice_Cream_Sales': [100, 120, 150, 170, 200, 220, 250, 270, 300, 320]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Visualize the relationship using a pair plot
+sns.pairplot(df)
+plt.suptitle('Pair Plot: Temperature, Humidity, and Ice Cream Sales', y=1.02)
+plt.show()
+
+# Correlation matrix
+correlation_matrix = df.corr()
+print("Correlation Matrix:")
+print(correlation_matrix)
+
+
+
+
+
+
+
+=====================
+
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Data
+data = {
+    'Study_Hours': [4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    'Sleep_Hours': [8, 7.5, 7, 6.5, 6, 5.5, 5, 4.5, 4, 3.5],
+    'Exam_Score': [60, 65, 70, 75, 80, 85, 90, 92, 94, 95]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Visualize the relationship using a heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Heatmap: Study Hours, Sleep Hours, and Exam Scores')
+plt.show()
+
+# Visualize the relationship using a 3D scatter plot
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(df['Study_Hours'], df['Sleep_Hours'], df['Exam_Score'], c='green', marker='o')
+ax.set_xlabel('Study Hours')
+ax.set_ylabel('Sleep Hours')
+ax.set_zlabel('Exam Score')
+ax.set_title('Study Hours vs Sleep Hours vs Exam Score')
+plt.show()
+
+
+
+
+
+
+=====================
+
+
+
+
+
+
+
+
+
+
+
+=====================
+
+
+
+
+
+
+
+
+
+
+
+=====================
+
+
+
+
+
+
+
+
+
+
+
+=====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================
+
+
+
+
+
+
+
+
+
+
+
+
+
