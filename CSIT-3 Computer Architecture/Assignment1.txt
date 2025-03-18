@@ -1,0 +1,67 @@
+
+Deadline: 30 march 2081
+
+
+
+Short Questions
+======================
+What is Binary Coded Decimal (BCD)?
+Explain the concept of complements in number representation.
+Convert the decimal number 25 into Excess-3 code.
+How does parity checking help in error detection?
+Define Register Transfer Language (RTL).
+Differentiate between logical shift and arithmetic shift.
+Design a parity generator circuit for odd parity.
+
+What is the Stored Program Concept?
+Define Operation Code (Opcode).
+What is the function of a Control Unit in a basic computer?
+Explain the purpose of a Control Address Register.
+What is an Instruction Format?
+Differentiate between RISC and CISC architectures.
+What are the major components of a CPU?
+
+What is Flynn’s Classification in parallel processing?
+Define pipelining and give an example.
+What are pipeline conflicts?
+Explain Booth’s Multiplication Algorithm.
+Differentiate between Isolated I/O and Memory-Mapped I/O.
+What is the purpose of Cache Memory?
+Define Hit & Miss Ratio in cache memory.
+
+
+
+
+Long Questions
+========================
+Explain floating-point representation with an example.
+Demonstrate arithmetic with complements using the subtraction of two binary numbers.
+Compare and contrast Gray code and Excess-3 code.
+Discuss the significance of overflow detection in computer arithmetic.
+Design a 4-bit binary adder-subtractor circuit with an explanation.
+Explain the working mechanism of a hardware shifter for arithmetic shift operations.
+Justify the need for different types of microoperations in digital systems.
+
+Explain the Instruction Cycle of a Basic Computer with a flowchart.
+Describe the Common Bus System for a Basic Computer.
+Discuss the different types of Addressing Modes with examples.
+Explain the concept of Microprogrammed Control and its significance.
+Compare and contrast Memory Reference Instructions and Input-Output Instructions.
+Explain Address Sequencing in Microprogrammed Control with an example.
+Discuss the advantages and disadvantages of RISC and CISC architectures.
+
+Explain the concept of pipelining and derive the Speedup Equation.
+Describe Instruction Level Pipelining with three- and four-segment pipeline models.
+Discuss the addition and subtraction of signed 2’s complement data with examples.
+Booth algorithm for : (-6) * -(9)
+Explain the working mechanism of Direct Memory Access (DMA) and its advantages.
+Compare and contrast Programmed I/O, Interrupt-Initiated I/O, and DMA.
+Explain Associative Memory with its hardware organization and operations.
+Discuss the different levels of memory hierarchy and their significance in computer architecture.
+
+
+
+
+
+
+
