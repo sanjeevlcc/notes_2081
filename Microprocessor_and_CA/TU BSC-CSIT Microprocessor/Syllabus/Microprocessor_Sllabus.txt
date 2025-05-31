@@ -1,0 +1,121 @@
+                                              Microprocessor
+                                        =======================
+Course Title: Microprocessor                                                 Full Marks: 60 + 20 + 20
+Course No: CSC167                                                            Pass Marks: 24 + 8 + 8
+Nature of the Course: Theory + Lab                                           Credit Hrs: 3
+Semester: II
+
+
+Course Description: 
+This course contains of fundamental concepts of computer organization,
+basic I/O interfaces and Interrupts operations.
+
+
+Course Objectives: 
+The course objective is to introduce the operation, programming and
+application of microprocessor.
+
+
+
+
+
+
+Course Contents:
+-------------------
+Unit1: Introduction (4 Hrs.)
+------------------------------
+Introduction to Microprocessor, Components of a Microprocessor: Registers, ALU and control &
+timing, System bus (data, address and control bus), Microprocessor systems with bus
+organization
+
+
+
+
+Unit 2: Basic Architecture (7 Hrs.)
+------------------------------------
+Microprocessor Architecture and Operations, Memory, I/O devices, Memory and I/O operations,
+8085 Microprocessor Architecture, Address, Data And Control Buses, 8085 Pin Functions,
+Demultiplexing of Buses, Generation Of Control Signals
+
+
+
+Unit 3: Instruction Cycle (3 Hrs.)
+------------------------------------
+Fetch Operation and Timing Diagram; Execute Operation and Timing Diagram, Instruction
+Cycle, Machine Cycle, T-States, T-States, Memory Interfacing
+
+
+
+
+Unit 4: Assembly Language Programming (10 Hrs.)
+------------------------------------------------
+Assembly instruction format, Instruction Types, Mnemonics, Operands, Macro assemblers,
+Linking, Assembler directives, Addressing Modes, Simple sequence programs, Flags, Branch,
+Jumps, While-Do, Repeat-Until, If-Then-Else and Multiple If-then Programs, Debugging
+
+
+
+Unit 5: Basic I/O, Memory R/W and Interrupt Operations (6 Hrs.)
+-----------------------------------------------------------------
+Memory Read, Memory Write, I/O Read, I/O Write, Direct Memory Access, Interrupt, Types,
+Interrupt Masking
+
+
+
+Unit 6: Input/ Output Interfaces (6 Hrs.)
+------------------------------------------
+Interfacing Concepts, Ports, Interfacing Of I/O Devices, Interrupts In 8085, Programmable
+Interrupt Controller 8259A, Programmable Peripheral Interface 8255A
+
+
+
+
+
+
+Unit 7: Advanced Microprocessors (9 Hrs.)
+--------------------------------------------
+8086: logical block diagram and segments, 80286: Architecture, Registers, (Real/Protected
+mode), Privilege levels, descriptor cache, Memory access in GDT and LDT, multitasking,
+addressing modes, flag register 80386: Architecture, Register organization, Memory access in
+protected mode, Paging
+
+
+
+Laboratory Works:
+------------------------
+The laboratory work includes Assembly language programming using 8085/8086/8088 trainer
+kit. The programming should include: Arithmetic operation, base conversion, conditional
+branching etc. The lab work list may include following concepts:
+      1. Assembly language program using 8085 microprocessor kit.
+      2. Use of all types of instructions and addressing modes.
+      3. Arrays and the concept of Multiplications and Division operations on Microprocessor.
+      4. Assembly language programming, using any types of Assembler, including the different
+          functions of Int 10h, and 12h
+
+
+
+Text Books:
+----------------
+1. Ramesh S.Gaonkar, Microprocessor Architecture, Programming, and Applications with
+8085, Prentice Hall
+
+
+
+
+Reference Books:
+-----------------
+1. A.P.Malvino and J.A.Brown, Digital Computer Electronics, 3rd Edition, Tata McGraw
+Hill D.V.Hall, Microprocessors and Interfacingv – Programming and Hardware, McGraw
+Hill
+2. 8000 to 8085 Introduction to 8085 Microprocessor for Engineers and Scientists,
+A.K.Gosh, Prentice Hall
+
+
+
+
+
+
+
+
+
+
