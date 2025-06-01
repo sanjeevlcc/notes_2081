@@ -1,0 +1,639 @@
+
+
+
+
+
+
+========================================================================================================
+Unit 4: Assembly Language Programming (10 Hrs.)
+------------------------------------------------
+Assembly instruction format, Instruction Types, Mnemonics, Operands, Macro assemblers,
+Linking, Assembler directives, Addressing Modes, Simple sequence programs, Flags, Branch,
+Jumps, While-Do, Repeat-Until, If-Then-Else and Multiple If-then Programs, Debugging
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+1. Assembly Instruction Format
+========================================================================================================
+
+Structure of 8085 Instructions
+-----------------------------------
+      An 8085 assembly instruction consists of:
+      
+              Label (optional): LOOP: MVI A, 05H
+              Opcode (Mnemonic): MOV, ADD, JMP
+              Operand(s): A, B or 2050H
+              Comment (optional): ; Initialize counter
+
+
+Example:
+----------
+START:  MVI A, 25H      ; Load 25H into A (2-byte instruction)
+        MOV B, A         ; Copy A to B (1-byte)
+        HLT              ; Halt (1-byte)
+
+
+
+
+
+Instruction Lengths:
+----------------------
+      1-byte: MOV A, B
+      
+      2-byte: MVI A, 05H
+      
+      3-byte: LXI H, 2050H
+
+
+
+
+========================================================================================================
+2. Instruction Types
+========================================================================================================
+
+  Type	                  Function	                              Examples
+----------            --------------------                    -----------------
+Data Transfer	      Move data between registers/memory	    MOV A, B, LDA 2050H
+Arithmetic	        Add, subtract, increment	              ADD B, INR C, DCR M
+Logical            	AND, OR, XOR, rotate	                  ANA B, RRC, XRI 0FH
+Branch	            Jump, call, return	                    JZ LOOP, CALL SUB1, RET
+Machine Control    	Halt, interrupt	                        HLT, EI, DI
+
+
+
+
+
+
+
+
+========================================================================================================
+3. Mnemonics & Operands
+========================================================================================================
+
+Common Mnemonics:
+---------------------
+          MOV: Move data
+          
+          MVI: Move immediate data
+          
+          LXI: Load 16-bit address
+          
+          LDA/STA: Load/store accumulator from/to memory
+
+Operand Types:
+------------------------
+          Register: MOV A, B
+          
+          Immediate: MVI A, 05H
+          
+          Memory: LDA 2050H
+          
+          Implied: STC (Set Carry Flag)
+
+
+
+
+
+
+
+========================================================================================================
+4. Macro Assemblers & Directives
+========================================================================================================
+
+Macro Example:
+----------------
+        ; Define a macro to add two numbers
+        ADD_MACRO MACRO num1, num2
+                  MVI A, num1
+                  ADI num2
+                  ENDM
+        
+        ; Use the macro
+        ADD_MACRO 05H, 03H
+
+
+
+Assembler Directives:
+------------------------
+Directive		    	Purpose		          	Example
+----------        ----------          --------
+ORG	        Set program origin			  ORG 2000H
+DB		      Define byte	DATA: 		    DB 01H, 02H
+DW		      Define word (16-bit)			ADDR: DW 2050H
+EQU		      Assign constant			      PORT1 EQU 80H
+END		      End of program			      END
+
+
+
+
+
+========================================================================================================
+5. Addressing Modes
+========================================================================================================
+
+
+   Mode	                      Description                                	Example
+-----------------------------------------------------------------------------------------
+Immediate	              Operand is part of instruction	              	MVI A, 05H
+Register	              Operands are registers	              	        MOV A, B
+Direct	              	Operand is memory address	              	      LDA 2050H
+Indirect	              Register holds memory address	              	  LDAX B
+Implied	              	No explicit operand	              	            CMA (Complement A)
+
+
+
+
+
+
+========================================================================================================
+6. Simple Sequence Programs
+========================================================================================================
+
+
+Example: Add Two Numbers
+-----------------------------
+       MVI A, 05H     ; Load 05H into A
+       MVI B, 03H     ; Load 03H into B
+       ADD B          ; A = A + B
+       STA 2050H      ; Store result at 2050H
+       HLT            ; Halt
+
+
+
+
+
+========================================================================================================
+7. Flags & Conditional Branches
+========================================================================================================
+
+8085 Flag Register (PSW):
+------------------------------
+            S (Sign): Set if result is negative
+            Z (Zero): Set if result is zero
+            AC (Aux Carry): Carry from bit 3 to 4
+            P (Parity): Set if even number of 1s
+            CY (Carry): Carry from MSB
+
+
+
+
+Branch Instructions:
+-------------------------------
+
+      Instruction            	Action	                  Example
+      -----------------------------------------------------------------
+          JZ              	Jump if zero	             	JZ LOOP
+          JNZ             	Jump if not zero            JNZ LOOP
+          JC             		Jump if carry	             	JC ERROR
+          JNC	             	Jump if no carry            JNC NEXT
+      
+
+
+
+
+========================================================================================================
+8. Control Structures
+========================================================================================================
+
+
+(A) While-Do Loop
+------------------------
+
+       MVI C, 0AH     ; Initialize counter (10 times)
+LOOP:  DCR C          ; Decrement counter
+       JNZ LOOP       ; Repeat until C=0
+       HLT
+
+
+
+
+
+
+(B) Repeat-Until
+------------------
+LOOP:  IN 80H         ; Read input port
+       CPI 00H        ; Compare with 0
+       JZ LOOP        ; Repeat if input=0
+       HLT
+
+
+
+
+
+(C) If-Then-Else
+----------------------
+
+       LDA 2050H      ; Load value
+       CPI 10H        ; Compare with 10H
+       JC LESS        ; Jump if A < 10H
+       MVI A, 01H     ; Else block
+       JMP END
+LESS:  MVI A, 00H
+END:   HLT
+
+
+
+
+
+
+(D) Multiple If-Then
+--------------------------
+
+       LDA 2050H
+       CPI 01H
+       JZ CASE1
+       CPI 02H
+       JZ CASE2
+       JMP DEFAULT
+CASE1: MVI B, 01H
+       JMP END
+CASE2: MVI B, 02H
+DEFAULT: MVI B, 00H
+END:   HLT
+
+
+
+
+
+
+
+
+========================================================================================================
+9. Debugging Techniques
+========================================================================================================
+
+
+Using Simulators:
+        8085 Simulator IDE to step-through code.
+
+Breakpoints:
+        Pause execution at specific addresses.
+
+Register Checks:
+        Verify flag/register values after each instruction.
+
+Memory Inspection:
+        Use LDA/STA to check memory contents.
+
+
+
+
+
+
+
+
+========================================================================================================
+10. Practical Examples
+========================================================================================================
+
+
+Example 1: Sum of Array Elements
+-------------------------------------
+
+       LXI H, ARRAY   ; HL points to array
+       MVI C, 05H     ; Counter=5
+       MVI A, 00H     ; Clear accumulator
+LOOP:  ADD M          ; A = A + [HL]
+       INX H          ; Next array element
+       DCR C          ; Decrement counter
+       JNZ LOOP       ; Repeat until C=0
+       STA SUM        ; Store result
+       HLT
+ARRAY: DB 01H, 02H, 03H, 04H, 05H
+SUM:   DB 00H
+
+
+
+Example 2: Find Maximum Number
+---------------------------------
+       LXI H, DATA    ; Point to data
+       MOV A, M       ; Load first number
+       MVI C, 04H     ; Compare 4 times
+LOOP:  INX H          ; Next number
+       CMP M          ; Compare A with [HL]
+       JNC SKIP       ; Jump if A >= [HL]
+       MOV A, M       ; Update A with larger value
+SKIP:  DCR C
+       JNZ LOOP
+       STA MAX
+       HLT
+DATA:  DB 12H, 34H, 56H, 78H, 9AH
+MAX:   DB 00H
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+MCQs
+========================================================================================================
+
+╭─────────────────────────────────────────────────────────╮
+│               **Unit 2: 8085 Microprocessor MCQs**       │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│ 1. The 8085 microprocessor is a:                       │
+│    a) 4-bit processor                                 │
+│    b) 8-bit processor                                 │
+│    c) 16-bit processor                                │
+│    d) 32-bit processor                                │
+│                                                         │
+│ 2. How many address lines does the 8085 have?          │
+│    a) 8                                               │
+│    b) 16                                              │
+│    c) 20                                              │
+│    d) 32                                              │
+│                                                         │
+│ 3. The 8085 can address up to ______ of memory.        │
+│    a) 64 KB                                            │
+│    b) 1 MB                                             │
+│    c) 16 MB                                            │
+│    d) 4 GB                                             │
+│                                                         │
+│ 4. Which pin is used for serial input in 8085?         │
+│    a) SOD                                             │
+│    b) SID                                             │
+│    c) INTR                                            │
+│    d) READY                                           │
+│                                                         │
+│ 5. The interrupt RST 7.5 is:                          │
+│    a) Maskable                                        │
+│    b) Non-maskable                                    │
+│    c) Software interrupt                              │
+│    d) None of the above                               │
+│                                                         │
+│ 6. Which register pair forms the 16-bit stack pointer? │
+│    a) BC                                              │
+│    b) DE                                              │
+│    c) HL                                              │
+│    d) SP                                              │
+│                                                         │
+│ 7. The timing and control unit generates:              │
+│    a) Clock signals                                   │
+│    b) Control signals (RD, WR)                        │
+│    c) Both a and b                                    │
+│    d) Only data bus signals                           │
+│                                                         │
+│ 8. Which flag is set if the result of an operation is  │
+│    zero?                                              │
+│    a) Sign (S)                                        │
+│    b) Zero (Z)                                        │
+│    c) Carry (CY)                                      │
+│    d) Parity (P)                                      │
+│                                                         │
+│ 9. The 8085 uses _____ for I/O addressing.            │
+│    a) Memory-mapped I/O                               │
+│    b) Isolated I/O                                    │
+│    c) Both a and b                                    │
+│    d) None                                            │
+│                                                         │
+│10. The instruction "MOV A, M" uses which addressing    │
+│    mode?                                              │
+│    a) Immediate                                       │
+│    b) Register                                        │
+│    c) Indirect                                        │
+│    d) Direct                                          │
+│                                                         │
+│11. What is the function of the HLT instruction?       │
+│    a) Halt the processor                              │
+│    b) Jump to subroutine                              │
+│    c) Reset the system                                │
+│    d) Enable interrupts                               │
+│                                                         │
+│12. The 8085 has ___ general-purpose registers.         │
+│    a) 4                                               │
+│    b) 6                                               │
+│    c) 8                                               │
+│    d) 10                                              │
+│                                                         │
+│13. Which instruction adds the contents of a register   │
+│    to the accumulator?                                │
+│    a) ADD                                             │
+│    b) ADI                                             │
+│    c) SUB                                             │
+│    d) INR                                             │
+│                                                         │
+│14. The 8085's program counter is ___ bits wide.       │
+│    a) 8                                               │
+│    b) 16                                              │
+│    c) 20                                              │
+│    d) 32                                              │
+│                                                         │
+│15. The signal IO/M=1 indicates:                       │
+│    a) Memory operation                                │
+│    b) I/O operation                                   │
+│    c) Interrupt cycle                                 │
+│    d) Halt state                                      │
+│                                                         │
+│16. Which instruction loads the accumulator directly   │
+│    from memory?                                       │
+│    a) LDAX                                            │
+│    b) LDA                                             │
+│    c) LXI                                             │
+│    d) MOV                                             │
+│                                                         │
+│17. The 8085's clock speed is typically:               │
+│    a) 1-5 MHz                                         │
+│    b) 10-20 MHz                                       │
+│    c) 50-100 MHz                                      │
+│    d) 1 GHz+                                          │
+│                                                         │
+│18. The RST instruction is used for:                   │
+│    a) Software interrupts                             │
+│    b) Hardware interrupts                             │
+│    c) Register storage                                │
+│    d) Memory access                                   │
+│                                                         │
+│19. The 8085's ALU performs operations on ___ data.     │
+│    a) 4-bit                                           │
+│    b) 8-bit                                           │
+│    c) 16-bit                                          │
+│    d) 32-bit                                          │
+│                                                         │
+│20. Which of the following is a 3-byte instruction?    │
+│    a) MOV A, B                                        │
+│    b) MVI A, 05H                                      │
+│    c) LXI H, 2050H                                    │
+│    d) HLT                                             │
+│                                                         │
+│21. The 8085's interrupt vector table starts at:        │
+│    a) 0000H                                           │
+│    b) 0800H                                           │
+│    c) 8000H                                           │
+│    d) FFFFH                                           │
+│                                                         │
+│22. The instruction "CALL 2050H" uses ___ bytes.       │
+│    a) 1                                               │
+│    b) 2                                               │
+│    c) 3                                               │
+│    d) 4                                               │
+│                                                         │
+│23. Which register holds the result of arithmetic      │
+│    operations?                                        │
+│    a) B                                               │
+│    b) C                                               │
+│    c) Accumulator (A)                                 │
+│    d) D                                               │
+│                                                         │
+│24. The 8085's SID pin is used for:                   │
+│    a) Serial input                                   │
+│    b) Serial output                                  │
+│    c) Interrupt request                              │
+│    d) Clock signal                                   │
+│                                                         │
+│25. The instruction "DAA" is used for:                │
+│    a) Decimal adjustment                             │
+│    b) Direct memory access                           │
+│    c) Disabling interrupts                           │
+│    d) Data arithmetic                                │
+│                                                         │
+╰─────────────────────────────────────────────────────────╯
+
+╭─────────────────────────────────────────────────────────╮
+│                    **Answer Key**                      │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│ 1. b     6. d     11. a     16. b     21. a            │
+│ 2. b     7. c     12. b     17. a     22. c            │
+│ 3. a     8. b     13. a     18. a     23. c            │
+│ 4. b     9. b     14. b     19. b     24. a            │
+│ 5. a    10. c     15. b     20. c     25. a            │
+│                                                         │
+╰─────────────────────────────────────────────────────────╯
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
+
+
+
+
+
+
+========================================================================================================
+
+========================================================================================================
+
+
+
