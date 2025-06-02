@@ -60,12 +60,12 @@ Instruction Lengths:
 ========================================================================================================
 
   Type	                  Function	                              Examples
-----------            --------------------                    -----------------
-Data Transfer	      Move data between registers/memory	    MOV A, B, LDA 2050H
-Arithmetic	        Add, subtract, increment	              ADD B, INR C, DCR M
-Logical            	AND, OR, XOR, rotate	                  ANA B, RRC, XRI 0FH
+----------            ------------------------------------        ------------------------
+Data Transfer	      Move data between registers/memory	        MOV A, B, LDA 2050H
+Arithmetic	            Add, subtract, increment	              ADD B, INR C, DCR M
+Logical            	AND, OR, XOR, rotate	                    ANA B, RRC, XRI 0FH
 Branch	            Jump, call, return	                    JZ LOOP, CALL SUB1, RET
-Machine Control    	Halt, interrupt	                        HLT, EI, DI
+Machine Control    	Halt, interrupt	                          HLT, EI, DI
 
 
 
@@ -88,6 +88,8 @@ Common Mnemonics:
           
           LDA/STA: Load/store accumulator from/to memory
 
+
+
 Operand Types:
 ------------------------
           Register: MOV A, B
@@ -108,29 +110,50 @@ Operand Types:
 4. Macro Assemblers & Directives
 ========================================================================================================
 
-Macro Example:
-----------------
-        ; Define a macro to add two numbers
-        ADD_MACRO MACRO num1, num2
-                  MVI A, num1
-                  ADI num2
-                  ENDM
-        
-        ; Use the macro
-        ADD_MACRO 05H, 03H
+A macro is a sequence of instructions that is defined once but can be 
+used multiple times in a program. When the assembler encounters a macro call, 
+it replaces it with the predefined sequence of instructions.
+
+
+
+
+                  Macro Example:
+                  ----------------
+                  ; Define a macro to add two numbers
+                  ADD_NUMS MACRO NUM1, NUM2
+                      MOV A, NUM1
+                      ADD NUM2
+                      ENDM
+                  
+                  ; Using the macro in code
+                  ADD_NUMS 05H, 0AH  ; This will be replaced with MOV A,05H and ADD 0AH
+
+
+
+Macro Assembler
+---------------
+A macro assembler is an assembler that supports macro definitions 
+and expansions. It processes macros before generating the actual
+machine code. Popular 8085 macro assemblers include:
+
+            ASM85
+            MAC85
+            Cross assemblers like ALP (Advanced Assembler Package)
+            
+
 
 
 
 Assembler Directives:
 ------------------------
-Directive		    	Purpose		          	Example
-----------        ----------          --------
-ORG	        Set program origin			  ORG 2000H
-DB		      Define byte	DATA: 		    DB 01H, 02H
-DW		      Define word (16-bit)			ADDR: DW 2050H
-EQU		      Assign constant			      PORT1 EQU 80H
-END		      End of program			      END
-
+      Directive		  Purpose		                      	Example
+      ----------        ---------------------                -----------------------
+      ORG	            Set program origin		      	  ORG 2000H
+      DB		      Define byte	DATA: 		              DB 01H, 02H
+      DW		      Define word (16-bit)			        ADDR: DW 2050H
+      EQU		      Assign constant			              PORT1 EQU 80H
+      END		      End of program			              END
+      
 
 
 
@@ -188,12 +211,12 @@ Example: Add Two Numbers
 Branch Instructions:
 -------------------------------
 
-      Instruction            	Action	                  Example
+      Instruction            	Action	                 Example
       -----------------------------------------------------------------
-          JZ              	Jump if zero	             	JZ LOOP
+          JZ              	Jump if zero	          JZ LOOP
           JNZ             	Jump if not zero            JNZ LOOP
-          JC             		Jump if carry	             	JC ERROR
-          JNC	             	Jump if no carry            JNC NEXT
+          JC             	Jump if carry	          JC ERROR
+          JNC	             Jump if no carry           JNC NEXT
       
 
 
