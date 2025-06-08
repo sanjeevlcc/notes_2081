@@ -1,0 +1,228 @@
+ 
+
+Assignment Details – Lumbini City College
+-------------------------------------------------------
+
+
+
+📅 Date of Assignment Published:
+	9 June 2025
+
+📅 Date of Assignment Submission:
+	22 June 2025
+
+
+
+📝 Submission Instructions:
+
+Use loose sheet copy.
+
+Ensure your full name is clearly written on each page.
+
+
+
+Submit both:
+
+	Handwritten hard copy (physically)
+
+	Scanned copy via CamScanner (as a single PDF file)
+	     ➤ Send to: sanjeev.thapa@lcc.edu.np
+	     ➤ Deadline: On 22 June 2025, by 6:00 PM onwards
+
+
+
+
+📚 Assignment Structure:
+
+Total of two assignments
+
+Each assignment carries 20 marks
+
+Marks contribute to final exam result
+
+
+
+
+
+
+==========================================================
+Unit 1: Introduction 
+==========================================================
+  Basic Questions:
+  -------------------
+    What is a microprocessor?
+    What is a microcontroller?
+    Can you name the primary components of a computer system?
+    What is the role of the CPU in a computer?
+    What is the difference between RAM and ROM?
+    What is Von Neumann architecture?
+    What is Harvard architecture?
+    Name one application of a microprocessor and one application of a microcontroller.
+
+
+What is a microprocessor? Briefly describe its role in a 
+computer system.
+
+Explain the main components of a microprocessor: registers, 
+ALU, and control & timing unit.
+
+What is a system bus? Describe the functions of data bus, 
+address bus, and control bus.
+
+How do the different components of a microprocessor interact
+ through the system bus?
+
+Describe the structure of a microprocessor system using bus 
+organization with a suitable diagram.
+
+
+
+
+
+==========================================================
+Unit 2 3 4 : 
+==========================================================
+
+Basic Questions:
+-------------------
+    What is the 8085 microprocessor?
+    How many pins does the 8085 microprocessor have?
+    What is the function of the accumulator in the 8085 microprocessor?
+    What are the primary functions of the ALU in the 8085 microprocessor?
+    What is the role of the program counter in the 8085 microprocessor?
+    Name any two data transfer instructions in the 8085 instruction set.
+    What is an interrupt in the context of microprocessors?
+    What are the main types of addressing modes in the 8085 microprocessor?
+
+
+Advanced Questions:
+-------------------
+    Describe the pin configuration of the 8085 microprocessor in detail.
+    Explain the functional block diagram of the 8085 microprocessor, focusing on the role of each block.
+    How does the timing and control unit of the 8085 microprocessor manage the execution of instructions?
+    Detail the different types of interrupts in the 8085 microprocessor and how they are prioritized.
+    Explain the concept of T-states in the context of the 8085 microprocessor's timing diagram.
+    Peform Timing diagram of 
+        MVI A,35h
+        MOV B,C
+        LDA 2051h
+        STA 2021h
+    Expain addressing modes of 8085 processor.
+    What is the status of flag on 
+        FF + 01
+        19-28
+        35 + AD
+    Compute with suitable example of rotate instructions of 8085.
+    Write an assembly language program for the 8085 microprocessor to add two 8-bit numbers and store the result.
+    Discuss how the 8085 microprocessor handles arithmetic overflow.
+    How do machine control instructions differ from other instructions in the 8085 instruction set, and why are they important?
+
+
+
+
+Fill in the blanks/ Write quesions and dotted answers to in yur copy
+--------------------------------------------------------------------------
+
+    A microprocessor is often referred to as the ______ of a computer system.
+
+    The data bus in a computer system is typically ______ bits wide in an 8085 microprocessor.
+
+    An interrupt signals the CPU to ______ the current program and execute a special set of instructions.
+
+    The control unit generates ______ signals to manage the timing and control of various operations in the CPU.
+
+    In Harvard architecture, simultaneous access to data and instructions is possible, improving the overall ______ of the system.
+
+    Microprocessors have revolutionized computing by enabling the development of ______ systems capable of complex processing tasks.
+
+
+
+
+
+ALP in 8085
+-------------
+Write an 8085 assembly program to add two 8-bit numbers.
+Question: Write an assembly language program to add two 8-bit numbers stored in memory locations 2000H and 2001H, and store the result in memory location 2002H.
+
+Write an 8085 assembly program to subtract two 8-bit numbers.
+Question: Write an assembly language program to subtract the 8-bit number stored at memory location 2001H from the number stored at memory location 2000H, and store the result in memory location 2002H.
+
+Write an 8085 assembly program to move data from one memory location to another.
+Question: Write an assembly language program to copy the data from memory location 3000H to memory location 3001H.
+
+Write an 8085 assembly program to increment a number by 1.
+Question: Write an assembly language program to increment the 8-bit number stored in memory location 4000H by 1 and store the result back in the same memory location.
+
+Write an 8085 assembly program to find the complement of a number.
+Question: Write an assembly language program to find the complement of the 8-bit number stored at memory location 5000H and store the result in memory location 5001H.
+
+
+
+Advanced Assembly Programming Questions
+-----------------------------------------
+Write an 8085 assembly program to add two 16-bit numbers.
+Question: Write an assembly language program to add two 16-bit numbers stored in memory locations 4000H-4001H and 4002H-4003H, and store the result in memory locations 4004H-4005H.
+
+
+Write an 8085 assembly program to find the largest number in an array.
+Question: Write an assembly language program to find the largest number in an array of 10 numbers stored in memory locations starting from 6000H, and store the result in memory location 600AH.
+
+Write an 8085 assembly program to sort an array in ascending order.
+Question: Write an assembly language program to sort an array of 10 numbers stored in memory locations starting from 7000H in ascending order.
+
+
+Write an 8085 assembly program to multiply two 8-bit numbers.
+Question: Write an assembly language program to multiply two 8-bit numbers stored at memory locations 8000H and 8001H, and store the 16-bit result in memory locations 8002H and 8003H.
+
+
+Write an 8085 assembly program to check if a number is even or odd.
+Question: Write an assembly language program to check if the 8-bit number stored at memory location B000H is even or odd. Store 00H at memory location B001H if the number is even, and 01H if the number is odd.
+
+
+
+
+
+==========================================================
+Unit 4: Assembly Language Programming
+==========================================================
+What is the format of an assembly instruction? Explain the roles of mnemonics and operands with examples.
+
+Describe different types of instructions in assembly language. How do they differ based on their function?
+
+What are assembler directives and addressing modes? Explain their purpose with suitable examples.
+
+Write a simple assembly program demonstrating conditional execution using If-Then-Else or While-Do constructs.
+
+What is the purpose of debugging in assembly programming? Describe the process and tools commonly used.
+
+
+
+
+
+
+==========================================================
+Unit 5: Basic I/O, Memory R/W and Interrupt Operations
+==========================================================
+
+Explain the operations of Memory Read and Memory Write with the help of timing diagrams or control signals.
+
+Differentiate between I/O Read and I/O Write operations. How are these managed by the control unit?
+
+What is Direct Memory Access (DMA)? Describe its working mechanism and advantages.
+
+Define an interrupt. What are the different types of interrupts in a microprocessor system?
+
+What is interrupt masking? How does it help in managing multiple interrupt requests?
+
+
+
+
+
+
+
+
+
+
+
+
+
