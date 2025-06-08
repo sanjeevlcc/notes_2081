@@ -1,0 +1,253 @@
+ 
+
+Assignment Details – Crimson College of Technology
+-------------------------------------------------------
+
+
+
+📅 Date of Assignment Published:
+	9 June 2025
+
+📅 Date of Assignment Submission:
+	22 June 2025
+
+
+
+📝 Submission Instructions:
+
+Use loose sheet copy.
+
+Ensure your full name is clearly written on each page.
+
+
+
+Submit both:
+
+	Handwritten hard copy (physically)
+
+	Scanned copy via CamScanner (as a single PDF file)
+	     ➤ Send to: sanjeev.thapa@lcc.edu.np
+	     ➤ Deadline: On 22 June 2025, by 6:00 PM onwards
+
+
+
+
+📚 Assignment Structure:
+
+Total of three assignments
+
+Each assignment carries 20 marks
+
+Marks contribute to final exam result
+
+
+
+
+
+
+==========================================================
+Unit 1: An Overview of Computer and Microprocessor
+==========================================================
+  Basic Questions:
+  -------------------
+    What is a microprocessor?
+    What is a microcontroller?
+    Can you name the primary components of a computer system?
+    What is the role of the CPU in a computer?
+    What is the difference between RAM and ROM?
+    What is Von Neumann architecture?
+    What is Harvard architecture?
+    Name one application of a microprocessor and one application of a microcontroller.
+
+
+
+Advanced Questions:
+-------------------
+    How does a microprocessor execute instructions?
+    Explain the difference between a microprocessor and a microcontroller with examples.
+    Describe the function of the control unit within a CPU.
+    How do input/output devices communicate with the CPU in a computer system?
+    Compare and contrast Von Neumann and Harvard architectures in terms of performance and application.
+    How does the architecture of a computer influence its performance and capabilities?
+    Discuss the impact of microprocessors on modern computing technology.
+    Explain how microcontrollers are used in embedded systems with a real-world example.
+
+
+==========================================================
+Unit 2 3 : Architectural and Assembly Language Programming of 8085
+==========================================================
+
+Basic Questions:
+-------------------
+    What is the 8085 microprocessor?
+    How many pins does the 8085 microprocessor have?
+    What is the function of the accumulator in the 8085 microprocessor?
+    What are the primary functions of the ALU in the 8085 microprocessor?
+    What is the role of the program counter in the 8085 microprocessor?
+    Name any two data transfer instructions in the 8085 instruction set.
+    What is an interrupt in the context of microprocessors?
+    What are the main types of addressing modes in the 8085 microprocessor?
+
+
+Advanced Questions:
+-------------------
+    Describe the pin configuration of the 8085 microprocessor in detail.
+    Explain the functional block diagram of the 8085 microprocessor, focusing on the role of each block.
+    How does the timing and control unit of the 8085 microprocessor manage the execution of instructions?
+    Detail the different types of interrupts in the 8085 microprocessor and how they are prioritized.
+    Explain the concept of T-states in the context of the 8085 microprocessor's timing diagram.
+    Peform Timing diagram of 
+        MVI A,35h
+        MOV B,C
+        LDA 2051h
+        STA 2021h
+    Expain addressing modes of 8085 processor.
+    What is the status of flag on 
+        FF + 01
+        19-28
+        35 + AD
+    Compute with suitable example of rotate instructions of 8085.
+    Write an assembly language program for the 8085 microprocessor to add two 8-bit numbers and store the result.
+    Discuss how the 8085 microprocessor handles arithmetic overflow.
+    How do machine control instructions differ from other instructions in the 8085 instruction set, and why are they important?
+
+
+
+
+Fill in the blanks/ Write quesions and dotted answers to in yur copy
+--------------------------------------------------------------------------
+
+    A microprocessor is often referred to as the ______ of a computer system.
+
+    The data bus in a computer system is typically ______ bits wide in an 8085 microprocessor.
+
+    An interrupt signals the CPU to ______ the current program and execute a special set of instructions.
+
+    The control unit generates ______ signals to manage the timing and control of various operations in the CPU.
+
+    In Harvard architecture, simultaneous access to data and instructions is possible, improving the overall ______ of the system.
+
+    Microprocessors have revolutionized computing by enabling the development of ______ systems capable of complex processing tasks.
+
+
+
+
+
+ALP in 8085
+-------------
+Write an 8085 assembly program to add two 8-bit numbers.
+Question: Write an assembly language program to add two 8-bit numbers stored in memory locations 2000H and 2001H, and store the result in memory location 2002H.
+
+Write an 8085 assembly program to subtract two 8-bit numbers.
+Question: Write an assembly language program to subtract the 8-bit number stored at memory location 2001H from the number stored at memory location 2000H, and store the result in memory location 2002H.
+
+Write an 8085 assembly program to move data from one memory location to another.
+Question: Write an assembly language program to copy the data from memory location 3000H to memory location 3001H.
+
+Write an 8085 assembly program to increment a number by 1.
+Question: Write an assembly language program to increment the 8-bit number stored in memory location 4000H by 1 and store the result back in the same memory location.
+
+Write an 8085 assembly program to find the complement of a number.
+Question: Write an assembly language program to find the complement of the 8-bit number stored at memory location 5000H and store the result in memory location 5001H.
+
+
+
+Advanced Assembly Programming Questions
+-----------------------------------------
+Write an 8085 assembly program to add two 16-bit numbers.
+Question: Write an assembly language program to add two 16-bit numbers stored in memory locations 4000H-4001H and 4002H-4003H, and store the result in memory locations 4004H-4005H.
+
+
+Write an 8085 assembly program to find the largest number in an array.
+Question: Write an assembly language program to find the largest number in an array of 10 numbers stored in memory locations starting from 6000H, and store the result in memory location 600AH.
+
+Write an 8085 assembly program to sort an array in ascending order.
+Question: Write an assembly language program to sort an array of 10 numbers stored in memory locations starting from 7000H in ascending order.
+
+
+Write an 8085 assembly program to multiply two 8-bit numbers.
+Question: Write an assembly language program to multiply two 8-bit numbers stored at memory locations 8000H and 8001H, and store the 16-bit result in memory locations 8002H and 8003H.
+
+
+Write an 8085 assembly program to check if a number is even or odd.
+Question: Write an assembly language program to check if the 8-bit number stored at memory location B000H is even or odd. Store 00H at memory location B001H if the number is even, and 01H if the number is odd.
+
+
+
+
+
+==========================================================
+Unit 4 CPU Fundamental
+==========================================================
+Define CPU organization and explain its major components with their
+functions.
+
+What is register organization in a CPU? Describe how the data 
+path facilitates instruction execution.
+
+Explain the purpose of the Arithmetic and Logic Unit (ALU) and 
+how it works with registers.
+
+Draw a simple CPU structure and label its main components 
+including the control unit, ALU, and registers.
+
+What are two key design principles followed in modern CPU 
+systems to improve performance?
+
+
+==========================================================
+Unit  5 Control Unit Design
+==========================================================
+Explain the role of the control unit in managing and coordinating
+the operations of a processor.
+
+Describe the working principle of a hardwired control unit. 
+What are the key inputs and logic components involved?
+
+What is a microprogrammed control unit? Define microinstructions
+ and explain their types.
+
+Draw and explain the architecture of a microprogrammed control unit.
+
+Discuss the practical applications of both hardwired and
+ microprogrammed control units in computer systems.
+
+
+
+
+==========================================================
+Unit  6 Computer Arithmetic
+==========================================================
+
+Explain the difference between signed and unsigned binary 
+number representation. Provide examples for each.
+
+How is addition performed in signed and unsigned binary numbers? 
+Illustrate with examples.
+
+Describe the steps involved in binary subtraction using signed numbers.
+
+
+What is Booth’s algorithm? Describe its working process with 
+an example of signed multiplication.
+
+Peform Booth Multpliation on : 
+	7 x 3
+	-7 x 3
+	7 x -3
+	-7 x  -3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
