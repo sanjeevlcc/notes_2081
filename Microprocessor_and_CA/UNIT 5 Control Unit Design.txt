@@ -321,90 +321,110 @@ Overview
         More flexible than hardwired control but slower due to memory access.
         Commonly used in CISC processors (e.g., x86).
 
+
+
+
+
+
 Microinstruction Basics
 -----------------------
-(A) What is a Microinstruction?
-A low-level instruction that defines control signals for one CPU cycle.
+        (A) What is a Microinstruction?
+                A low-level instruction that defines control signals for one CPU cycle.
+                Stored in Control Memory (ROM/PROM).
+        
+                Example:
+                        Microinstruction Format:
+                        | ALU_Op | RegWrite | MemRead | MemWrite | Next_Address |
+        
+        
+        
+        (B) Microprogram Execution Flow
+                Fetch Macro-Instruction (e.g., ADD B) → Decoded to a starting microaddress.
+                Sequencer fetches microinstructions from Control Memory.
+                Control Signals are activated based on the microinstruction.
+                Next Microaddress is determined (sequential or branch).
 
-Stored in Control Memory (ROM/PROM).
 
-Example:
 
-plaintext
-Microinstruction Format:
-| ALU_Op | RegWrite | MemRead | MemWrite | Next_Address |
-(B) Microprogram Execution Flow
-Fetch Macro-Instruction (e.g., ADD B) → Decoded to a starting microaddress.
 
-Sequencer fetches microinstructions from Control Memory.
 
-Control Signals are activated based on the microinstruction.
 
-Next Microaddress is determined (sequential or branch).
 
-3. Types of Microinstructions
+Types of Microinstructions
+----------------------------
 Microinstructions can be classified based on encoding style:
 
 (A) Horizontal Microinstructions
 Features:
+        One bit per control signal (long microinstruction word).
+        Highly parallel (multiple operations in one cycle)
+        No decoding needed → faster but wider memory.
+        
+        Example:
+                | ALU_ADD (1) | RegWrite (1) | MemRead (0) | MemWrite (0) | ... |
 
-One bit per control signal (long microinstruction word).
 
-Highly parallel (multiple operations in one cycle).
 
-No decoding needed → faster but wider memory.
-
-Example:
-
-plaintext
-| ALU_ADD (1) | RegWrite (1) | MemRead (0) | MemWrite (0) | ... |
 (B) Vertical Microinstructions
 Features:
+        Encoded fields (shorter microinstruction word).
+        Requires decoding logic → slower but compact.
+        Limited parallelism (only a few operations per cycle).
+        
+        Example:
+                | ALU_Op (2 bits) | Mem_Op (2 bits) | ... |
 
-Encoded fields (shorter microinstruction word).
 
-Requires decoding logic → slower but compact.
 
-Limited parallelism (only a few operations per cycle).
 
-Example:
 
-plaintext
-| ALU_Op (2 bits) | Mem_Op (2 bits) | ... |
-(C) Comparison Table
-Feature	Horizontal	Vertical
-Control Bits	One per signal (wide)	Encoded (narrow)
-Speed	Faster (no decode)	Slower (needs decode)
-Flexibility	High parallelism	Limited parallelism
-Memory Usage	Large	Compact
-4. Microinstruction Sequencing
+
+Comparison Table
+------------------
+Feature	                Horizontal	        Vertical
+----------             -------------------      ----------------
+Control Bits	        One per signal (wide)	Encoded (narrow)
+Speed	                Faster (no decode)	Slower (needs decode)
+Flexibility	        High parallelism	Limited parallelism
+Memory Usage	        Large	                Compact
+
+
+
+
+
+
+Microinstruction Sequencing
+--------------------------------
 Microinstructions are executed in two main ways:
 
 (A) Sequential Execution
-Default flow: Next microaddress = Current + 1
-
-Used for linear operations (e.g., MOV, ADD).
+        Default flow: Next microaddress = Current + 1
+        Used for linear operations (e.g., MOV, ADD).
 
 (B) Branching
-Based on:
+        Based on:
+                Condition flags (Zero, Carry).
+                Opcode type (Jump, Call).
+        
+        Example:
+        If (ZeroFlag == 1) → Jump to Microaddress 25  
+        Else → Continue sequentially  
+        
 
-Condition flags (Zero, Carry).
 
-Opcode type (Jump, Call).
 
-Example:
+Advantages & Disadvantages
+--------------------------------
+        Advantages	                              Disadvantages
+✔ Flexible (easy to modify)	                ❌ Slower (memory access)
+✔ Simpler design (software-like)	        ❌ Higher latency
+✔ Good for CISC (complex instructions)	        ❌ Needs extra memory
 
-plaintext
-If (ZeroFlag == 1) → Jump to Microaddress 25  
-Else → Continue sequentially  
-5. Advantages & Disadvantages
-Advantages	Disadvantages
-✔ Flexible (easy to modify)	❌ Slower (memory access)
-✔ Simpler design (software-like)	❌ Higher latency
-✔ Good for CISC (complex instructions)	❌ Needs extra memory
-6. Applications
+
+
+Applications
+-----------------
 CISC processors (Intel x86, IBM zSeries).
-
 Legacy systems where instruction sets evolve.
 
 
