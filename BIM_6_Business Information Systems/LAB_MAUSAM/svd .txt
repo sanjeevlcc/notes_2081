@@ -1,0 +1,176 @@
+Case Question (Real-World Framing)
+----------------------------------------------
+Can we use symptom data (Fever, Cough, Fatigue) to understand the
+latent structure among patients and diagnoses using SVD? Could
+this help cluster or relate patients based on common patterns for 
+  decision support in diagnostics?
+
+Patient | Fever | Cough | Fatigue | Diagnosis
+••••••••••••••••••••••••••••••••••••••••••••
+P1      |   3   |   7   |    4    |  Asthma
+P2      |   6   |   2   |    8    |  Malaria
+P3      |   1   |   9   |    5    |  Asthma
+P4      |   8   |   4   |    3    |  Dengue
+P5      |   5   |   6   |    7    |  Malaria
+
+  
+Sol
+----------------
+
+
+Matrix Construction (Data Matrix)
+  --------------------------------
+We remove the categorical "Diagnosis" temporarily and build a numerical matrix:
+
+Let this be matrix A, size 5 × 3 (patients × symptoms).
+
+
+  
+| Patient | Fever | Cough | Fatigue |
+| ------- | ----- | ----- | ------- |
+| P1      | 3     | 7     | 4       |
+| P2      | 6     | 2     | 8       |
+| P3      | 1     | 9     | 5       |
+| P4      | 8     | 4     | 3       |
+| P5      | 5     | 6     | 7       |
+
+
+
+
+
+SVD Overview
+  -------------
+SVD decomposes matrix A as:
+
+      A=U  Σ  V 
+      
+          Where:
+              U = Patient relationships (5×3)
+              Σ = Diagonal matrix with singular values (3×3)
+              Vᵀ = Symptom relationships (3×3)
+              
+              
+
+
+
+Python Code (SVD Execution)
+---------------------------------
+
+import numpy as np
+import pandas as pd
+from numpy.linalg import svd
+
+# Step 1: Create matrix
+A = np.array([
+    [3, 7, 4],
+    [6, 2, 8],
+    [1, 9, 5],
+    [8, 4, 3],
+    [5, 6, 7]
+])
+
+# Step 2: Apply SVD
+U, S, VT = svd(A)
+
+# Convert singular values to diagonal matrix
+S_matrix = np.zeros((5, 3))
+S_matrix[:3, :3] = np.diag(S)
+
+# Print components
+print("U (Patient latent features):\n", U)
+print("\nΣ (Singular Values):\n", S)
+print("\nVᵀ (Symptom latent features):\n", VT)
+
+# Optional: Reconstruct to check
+A_reconstructed = U @ S_matrix @ VT
+print("\nReconstructed A:\n", np.round(A_reconstructed, 2))
+
+
+
+
+
+
+
+
+Interpretation of SVD Results
+  -----------------------------------
+
+
+🔹 Singular Values Σ
+Large singular values imply dominant latent patterns.
+
+If S = [18.84, 5.03, 1.44] (example), most of the data variance is 
+  explained by the first 1–2 components.
+
+
+  
+🔹 Vᵀ – Symptom Patterns
+Each row (of Vᵀ) shows a latent dimension:
+
+Row 1 might show that "Fatigue + Fever" is a strong diagnostic signal.
+
+Row 2 could show contrasting relationships between "Cough vs Fever".
+
+
+
+
+  
+🔹 U – Patient Loadings
+Rows of U show how much each patient aligns with latent features:
+
+If P1 and P3 project similarly, they may belong to similar diagnostic
+  clusters (e.g., both have Asthma).
+
+P2 and P5 may cluster if their values in U are close → likely Malaria.
+
+
+
+
+  
+✅  Case Insights and Use
+  -----------------------------
+🎯 Diagnosis Clustering:
+Patients with similar rows in U share latent
+  symptom patterns → could belong to same disease.
+
+Helps reduce dimensionality, visualize patient clusters, or 
+  assist ML-based prediction.
+
+
+  
+🎯 Feature Understanding:
+High values in rows of Vᵀ highlight which symptoms are most 
+  influential in explaining variability.
+
+E.g., if fatigue dominates a component → it's crucial for diagnosis differentiation.
+
+
+
+
+  
+✅ Conclusion
+SVD reveals hidden symptom patterns among patients. It shows that:
+
+Patients can be grouped based on symptom intensity and variation.
+
+Symptoms like Fever and Fatigue often co-occur in latent dimensions.
+
+The decomposition helps us reduce dimensional complexity and could 
+  guide clinical decision support tools or symptom clustering for diagnosis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
