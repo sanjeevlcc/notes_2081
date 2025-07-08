@@ -1,0 +1,881 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EXAMPLE SCNERIO ********************************************************************************
+
+
+# Sanjeev Thapa - Online Course Platform
+# Table 1: courses (course_id, title, category, level, price)
+# Table 2: enrollments (enrollment_id, course_id, student_name, enrollment_date, progress)
+
+# • List all courses in the "Technology" category.
+# • Find courses where title contains "Python".
+# • Show courses priced BETWEEN 100 and 500.
+# • Retrieve courses with level = 'Beginner'.
+# • List enrollments by student "Sita Rai".
+# • Find enrollments before '2024-01-01'.
+# • Show students with progress > 75%.
+# • JOIN: Display course titles with enrolled student names.
+# • JOIN: Find courses with no enrollments.
+# • List categories with more than 5 courses offered.
+----------------------------------------------------------------------
+                        -- Create the database
+                        CREATE DATABASE OnlineCourseNepal;
+                        USE OnlineCourseNepal;
+                        
+                        -- Table 1: courses
+                        CREATE TABLE courses (
+                            course_id INT PRIMARY KEY AUTO_INCREMENT,
+                            title VARCHAR(100),
+                            category VARCHAR(50),
+                            level VARCHAR(20),
+                            price DECIMAL(10,2)
+                        );
+                        
+                        -- Table 2: enrollments
+                        CREATE TABLE enrollments (
+                            enrollment_id INT PRIMARY KEY AUTO_INCREMENT,
+                            course_id INT,
+                            student_name VARCHAR(100),
+                            enrollment_date DATE,
+                            progress INT,
+                            FOREIGN KEY (course_id) REFERENCES courses(course_id)
+                        );
+
+            
+            -- Insert 10 courses
+            INSERT INTO courses (title, category, level, price) VALUES
+            ('Python Programming Basic', 'Technology', 'Beginner', 300),
+            ('Advanced Java', 'Technology', 'Advanced', 600),
+            ('Digital Marketing in Nepal', 'Business', 'Intermediate', 400),
+            ('Graphic Design Fundamentals', 'Creative', 'Beginner', 250),
+            ('Excel for Finance', 'Business', 'Intermediate', 350),
+            ('Mobile App Development', 'Technology', 'Advanced', 700),
+            ('Photography Basics', 'Creative', 'Beginner', 200),
+            ('SEO Strategies 2024', 'Business', 'Intermediate', 500),
+            ('Data Science with R', 'Technology', 'Advanced', 800),
+            ('Web Development Bootcamp', 'Technology', 'Beginner', 450);
+            
+            -- Insert 10 enrollments
+            INSERT INTO enrollments (course_id, student_name, enrollment_date, progress) VALUES
+            (1, 'Sita Rai', '2023-11-12', 85),
+            (2, 'Ram Bahadur', '2024-01-15', 40),
+            (3, 'Kamal Thapa', '2023-12-01', 95),
+            (4, 'Sunita Sharma', '2024-02-20', 60),
+            (1, 'Aashish Shrestha', '2024-05-01', 78),
+            (6, 'Ramesh Karki', '2023-09-11', 55),
+            (7, 'Kiran Gurung', '2024-04-03', 72),
+            (9, 'Rekha Basnet', '2024-06-10', 88),
+            (2, 'Bikash Lama', '2023-07-30', 20),
+            (5, 'Dipika Khadka', '2024-03-18', 92);
+
+
+
+
+
+                      
+                      -- Insert 10 more courses
+                      INSERT INTO courses (title, category, level, price) VALUES
+                      ('Nepali Language for Beginners', 'Language', 'Beginner', 150),
+                      ('Advanced Excel Techniques', 'Business', 'Advanced', 550),
+                      ('Ethical Hacking Basics', 'Technology', 'Intermediate', 650),
+                      ('Creative Writing Workshop', 'Creative', 'Intermediate', 300),
+                      ('Machine Learning with Python', 'Technology', 'Advanced', 900),
+                      ('Public Speaking Skills', 'Personal Development', 'Beginner', 200),
+                      ('Photography Advanced', 'Creative', 'Advanced', 450),
+                      ('Social Media Marketing', 'Business', 'Beginner', 350),
+                      ('Flutter Mobile Apps', 'Technology', 'Intermediate', 700),
+                      ('Yoga for Health', 'Personal Development', 'Beginner', 180);
+                      
+                      -- Insert 10 more enrollments
+                      INSERT INTO enrollments (course_id, student_name, enrollment_date, progress) VALUES
+                      (11, 'Anil Thapa', '2024-05-05', 40),
+                      (12, 'Maya Gurung', '2023-11-25', 60),
+                      (13, 'Hari KC', '2024-03-15', 75),
+                      (14, 'Suman Shrestha', '2024-01-20', 30),
+                      (15, 'Nisha Rai', '2024-06-01', 55),
+                      (16, 'Ram Shahi', '2023-12-12', 90),
+                      (17, 'Gita Basnet', '2024-02-10', 80),
+                      (18, 'Binod Thapa', '2023-10-30', 70),
+                      (19, 'Pooja Koirala', '2024-04-18', 65),
+                      (20, 'Suresh Maharjan', '2024-06-15', 85);
+                      
+                      
+                      
+
+
+
+      
+      -- 1. List all courses in the "Technology" category.
+      SELECT * FROM courses WHERE category = 'Technology';
+      
+      -- 2. Find courses where title contains "Python".
+      SELECT * FROM courses WHERE title LIKE '%Python%';
+      
+      -- 3. Show courses priced BETWEEN 100 and 500.
+      SELECT * FROM courses WHERE price BETWEEN 100 AND 500;
+      
+      -- 4. Retrieve courses with level = 'Beginner'.
+      SELECT * FROM courses WHERE level = 'Beginner';
+      
+      -- 5. List enrollments by student "Sita Rai".
+      SELECT * FROM enrollments WHERE student_name = 'Sita Rai';
+      
+      -- 6. Find enrollments before '2024-01-01'.
+      SELECT * FROM enrollments WHERE enrollment_date < '2024-01-01';
+      
+      -- 7. Show students with progress > 75%.
+      SELECT * FROM enrollments WHERE progress > 75;
+      
+      -- 8. JOIN: Display course titles with enrolled student names.
+      SELECT e.student_name, c.title
+      FROM enrollments e
+      JOIN courses c ON e.course_id = c.course_id;
+      
+      -- 9. JOIN: Find courses with no enrollments.
+      SELECT c.title
+      FROM courses c
+      LEFT JOIN enrollments e ON c.course_id = e.course_id
+      WHERE e.course_id IS NULL;
+      
+      -- 10. List categories with more than 1 course offered.
+      SELECT category, COUNT(*) AS total_courses
+      FROM courses
+      GROUP BY category
+      HAVING COUNT(*) > 1;
+
+
+********************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# 1. Aaditya Pangeni - Library Management
+# Table 1: books (book_id, title, author, genre, available)
+# Table 2: borrowers (borrower_id, name, email, membership_date)
+
+# • List all books in the "Fantasy" genre.
+# • Find books with titles containing "Harry Potter".
+# • Count books with fewer than 3 available copies.
+# • Show books authored by "J.K. Rowling".
+# • Retrieve borrowers who joined before "2023-01-01".
+# • Show borrowers with emails ending in "@yahoo.com".
+# • Find borrowers whose name starts with "A".
+# • JOIN: Display books borrowed by each borrower.
+# • JOIN: Find borrowers who never borrowed a book.
+# • List genres with more than 5 books.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 2. Aashish Bhusal - School Management
+# Table 1: students (student_id, name, grade, city)
+# Table 2: courses (course_id, course_name, teacher, credits)
+
+# • List students in grade "10" from "Kathmandu".
+# • Find students whose names start with "A".
+# • Count students per city.
+# • Show students where grade IN (9,10).
+# • Retrieve courses taught by "Mr. Sharma".
+# • Show courses with more than 4 credits.
+# • Find courses with names containing "Math".
+# • JOIN: Display students and their enrolled courses.
+# • JOIN: Find courses with no students enrolled.
+# • List teachers handling more than 2 courses.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 3. Aashish Chaudhary - Hospital Management
+# Table 1: patients (patient_id, name, age, diagnosis)
+# Table 2: appointments (appointment_id, patient_id, doctor, date)
+
+# • List patients diagnosed with "Fever".
+# • Find patients aged below 12.
+# • Count patients per diagnosis.
+# • Show patients with name LIKE '%sh%'.
+# • Retrieve appointments on "2023-05-15".
+# • Show appointments where doctor is "Dr. Shrestha".
+# • Find appointments between "2023-01-01" and "2023-12-31".
+# • JOIN: Display patients and their doctors.
+# • JOIN: Find patients without appointments.
+# • List diagnoses with at least 5 patients.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 4. Alisha Neupane - Hotel Booking
+# Table 1: guests (guest_id, name, check_in, check_out)
+# Table 2: rooms (room_id, guest_id, type, price)
+
+# • List guests staying in "Deluxe" rooms.
+# • Find guests checking in after "2023-06-01".
+# • Count guests who stayed more than 3 days.
+# • Show guests with name ending in "a".
+# • Retrieve rooms priced above $200.
+# • Show rooms of type "Suite".
+# • List rooms in descending order of price.
+# • JOIN: Display guests and their room types.
+# • JOIN: Find rooms not booked by any guest.
+# • List the most expensive booking per guest.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 5. Amisha Kumari Gurau - E-Commerce
+# Table 1: products (product_id, name, category, price)
+# Table 2: orders (order_id, product_id, customer, quantity)
+
+# • List products in the "Electronics" category.
+# • Find products priced between $50 and $200.
+# • Count products priced over $500.
+# • Show products with name containing "Phone".
+# • Count orders with quantity > 2.
+# • Retrieve orders placed by customer "Sita".
+# • Show orders where product_id IN (2,4,6).
+# • JOIN: Display customers and their orders.
+# • JOIN: Find products never ordered.
+# • List categories with average price > $100.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 6. Anannye Karki - Gym Management
+# Table 1: members (member_id, name, age, plan)
+# Table 2: trainers (trainer_id, member_id, specialization)
+
+# • List members on the "Premium" plan.
+# • Find members aged 18-25.
+# • Count members per plan.
+# • Show members with names containing "ya".
+# • Retrieve trainers specializing in "Yoga".
+# • Show trainers whose name starts with "R".
+# • List all unique specializations.
+# • JOIN: Display members and their trainers.
+# • JOIN: Find trainers with no assigned members.
+# • List the most common specialization among trainers.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 7. Anil Taramu Magar - Restaurant
+# Table 1: menu (item_id, name, category, price)
+# Table 2: orders (order_id, item_id, customer, date)
+
+# • List items in the "Dessert" category.
+# • Find items priced below $10.
+# • Count items in each category.
+# • Show menu items with names ending in 'a'.
+# • Retrieve orders placed on "2023-08-15".
+# • Show orders by customer "Hari".
+# • Find orders where price > 15.
+# • JOIN: Display customers and their orders.
+# • JOIN: Find items never ordered.
+# • List categories with average price > $15.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 8. Anita Gyawali - Airline Booking
+# Table 1: passengers (passenger_id, name, flight, seat)
+# Table 2: flights (flight_id, destination, departure)
+
+# • List passengers on flight "NY101".
+# • Find passengers with window seats ("A" or "F").
+# • Count passengers per flight.
+# • Show passengers whose names start with "S".
+# • Retrieve flights to "Dubai".
+# • Show flights departing after "12:00 PM".
+# • Find flights with destination IN ('Qatar', 'India').
+# • JOIN: Display passengers and their flight details.
+# • JOIN: Find flights with no passengers.
+# • List the most popular destination.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 9. Arpit Bk - Movie Theater
+# Table 1: movies (movie_id, title, genre, duration)
+# Table 2: tickets (ticket_id, movie_id, customer, showtime)
+
+# • List movies in the "Action" genre.
+# • Find movies longer than 2 hours.
+# • Count movies by genre.
+# • Show movie titles starting with "The".
+# • Retrieve tickets for the "7:00 PM" show.
+# • Show customers who bought more than 2 tickets.
+# • Find tickets where movie_id IN (1, 3, 5).
+# • JOIN: Display customers and their booked movies.
+# • JOIN: Find movies with no tickets sold.
+# • List the highest-grossing movie.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 10. Barish Rana - Car Rental
+# Table 1: cars (car_id, model, type, price_per_day)
+# Table 2: rentals (rental_id, car_id, customer, days)
+
+# • List cars of type "SUV".
+# • Find cars priced below $50/day.
+# • Count cars per type.
+# • Show cars with model LIKE '%Ford%'.
+# • Retrieve rentals longer than 5 days.
+# • Find rentals by customer "Kiran".
+# • Show rentals where days BETWEEN 3 and 10.
+# • JOIN: Display customers and their rented cars.
+# • JOIN: Find cars never rented.
+# • List the most profitable car type.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 11. Bipin Khatri - E-Learning System
+# Table 1: students (student_id, name, course, city, enrollment_date)
+# Table 2: modules (module_id, course, title, duration, instructor)
+
+# • List all students enrolled in 'Python Programming'.
+# • Find students from cities IN ('Kathmandu', 'Pokhara').
+# • Select students whose name starts with 'S'.
+# • Retrieve students who enrolled between '2023-01-01' and '2023-06-30'.
+# • List all modules under 'Data Science' course.
+# • Show modules longer than 3 hours.
+# • Find modules where the instructor name contains 'Kumar'.
+# • JOIN: Display each student with their corresponding course modules.
+# • JOIN: Find modules with no students enrolled.
+# • List courses with more than 5 modules.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 12. Jenit Lal Shakya - Library System
+# Table 1: books (book_id, title, author, genre, available_copies)
+# Table 2: members (member_id, name, email, membership_date)
+
+# • List all books in the 'History' genre.
+# • Show books where title contains 'World War'.
+# • Find books with available_copies < 5.
+# • Select books authored by 'John Smith'.
+# • List members who joined before '2022-01-01'.
+# • Find members with emails ending in '@gmail.com'.
+# • Retrieve members whose name matches regex '^A.*'.
+# • JOIN: Show which members borrowed which books.
+# • JOIN: Find members who never borrowed any book.
+# • List authors with more than 3 books in the library.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 13. Kristal Shrestha - Fitness Club
+# Table 1: members (member_id, name, age, plan, join_date)
+# Table 2: sessions (session_id, trainer, type, duration, member_id)
+
+# • Find members with plan = 'Gold'.
+# • List members between age 20 and 30.
+# • Select members who joined in 2024.
+# • Show members whose names contain 'ri'.
+# • List all Yoga sessions.
+# • Find sessions with duration > 1 hour.
+# • Show sessions with trainer name LIKE '%Rita%'.
+# • JOIN: Show each member and their booked sessions.
+# • JOIN: List members without any session booked.
+# • Count number of members per plan.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 14. Kushal Pariyar - Car Rental System
+# Table 1: cars (car_id, model, type, price_per_day)
+# Table 2: rentals (rental_id, car_id, customer_name, days, start_date)
+
+# • List all cars of type 'Sedan'.
+# • Find cars priced between 30 and 70 per day.
+# • Retrieve cars where model LIKE '%Toyota%'.
+# • Show cars not of type 'SUV'.
+# • Find rentals for more than 5 days.
+# • List rentals starting after '2024-05-01'.
+# • Show customer names that start with 'A'.
+# • JOIN: Display car details for each rental.
+# • JOIN: Find cars that were never rented.
+# • List top 3 most rented car models.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 15. Marshal Poudel - Hospital System
+# Table 1: patients (patient_id, name, gender, age, diagnosis)
+# Table 2: visits (visit_id, patient_id, doctor, visit_date, fee)
+
+# • List patients diagnosed with 'Diabetes'.
+# • Find male patients under 30.
+# • Show patients whose name ends with 'a'.
+# • Select patients aged BETWEEN 25 and 50.
+# • Retrieve visits conducted by 'Dr. Smith'.
+# • List visits after '2023-01-01'.
+# • Find visits where fee > 500.
+# • JOIN: Display patients and their doctors.
+# • JOIN: Find patients who have never visited.
+# • Count number of visits per doctor.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 16. Misti Adhikari - Online Shopping System
+# Table 1: products (product_id, name, category, price)
+# Table 2: orders (order_id, product_id, customer_name, quantity, order_date)
+
+# • List all products in 'Clothing'.
+# • Find products priced below 100.
+# • Show products whose name includes 'Shirt'.
+# • Retrieve products in categories IN ('Electronics', 'Books').
+# • List orders made on '2024-12-25'.
+# • Show orders where quantity > 2.
+# • Find customer names with 'gmail.com' in email.
+# • JOIN: Display order details with product names.
+# • JOIN: Find products never ordered.
+# • List top-selling categories.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 17. Mohit Shrestha - Airline Reservation
+# Table 1: passengers (passenger_id, name, seat_no, flight_no)
+# Table 2: flights (flight_no, departure, destination, date, time)
+
+# • List passengers in flight 'AI202'.
+# • Find passengers with seat_no ending in 'A'.
+# • Show passengers with name LIKE 'M%'.
+# • Retrieve passengers whose flight_no IN ('QF11', 'EK202').
+# • List flights to 'Dubai'.
+# • Show flights departing after '18:00'.
+# • Find flights on '2024-11-11'.
+# • JOIN: Display passengers with flight details.
+# • JOIN: Find flights with no passengers.
+# • Count passengers per destination.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 18. Pranit Udas - Food Delivery System
+# Table 1: restaurants (restaurant_id, name, cuisine, location)
+# Table 2: orders (order_id, restaurant_id, customer, total, order_date)
+
+# • List restaurants offering 'Italian' cuisine.
+# • Find restaurants in 'Lalitpur'.
+# • Retrieve restaurant names starting with 'T'.
+# • Show restaurants with cuisine IN ('Indian', 'Chinese').
+# • List orders over total > 500.
+# • Retrieve orders made on '2024-07-01'.
+# • Show customers whose name includes 'ra'.
+# • JOIN: Show each order with restaurant name.
+# • JOIN: Find restaurants that received no orders.
+# • Calculate total revenue per restaurant.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 19. Pritam Pokhrel - Event Management
+# Table 1: events (event_id, title, type, date, organizer)
+# Table 2: participants (participant_id, event_id, name, email)
+
+# • List events of type 'Conference'.
+# • Find events organized by 'TechNepal'.
+# • Show events after '2023-10-01'.
+# • Retrieve events where title LIKE '%Summit%'.
+# • List participants with emails ending in '@yahoo.com'.
+# • Find participants with name starting with 'P'.
+# • Show participants in event_id IN (101, 105, 110).
+# • JOIN: Display events and their participants.
+# • JOIN: Find events with no participants.
+# • Count participants per event.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 20. Rajan Bhattrai - Music Streaming Platform
+# Table 1: songs (song_id, title, artist, genre, duration)
+# Table 2: playlists (playlist_id, song_id, user_name, added_on)
+
+# • List songs in the 'Pop' genre.
+# • Find songs longer than 4 minutes.
+# • Show songs by artist LIKE '%Nepali%'.
+# • Retrieve songs with title matching regex 'Love.*'.
+# • List playlists created by 'user123'.
+# • Find songs added before '2024-01-01'.
+# • Show users who added more than 10 songs.
+# • JOIN: Show playlists with song and artist info.
+# • JOIN: Find songs never added to any playlist.
+# • List artists with most songs in playlists.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 21. Riwaz Subedi - Real Estate Portal
+# Table 1: properties (property_id, type, price, city, listed_date)
+# Table 2: agents (agent_id, name, property_id, contact)
+
+# • List properties in 'Kathmandu'.
+# • Show properties priced between 50000 and 100000.
+# • Retrieve properties of type = 'Apartment'.
+# • Find properties listed after '2023-06-01'.
+# • Show agents with name starting with 'R'.
+# • Find agents managing property_id IN (2,4,6).
+# • Retrieve agents with contact ending in '999'.
+# • JOIN: Show property listings with agent details.
+# • JOIN: Find properties without assigned agents.
+# • Count properties per city.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 22. Rohit Partel - Hotel Management
+# Table 1: guests (guest_id, name, checkin, checkout, city)
+# Table 2: rooms (room_id, type, price, guest_id)
+
+# • List guests from 'Bhaktapur'.
+# • Find guests whose checkout is after '2024-09-01'.
+# • Show guests staying for more than 3 days.
+# • Retrieve guests where name contains 'it'.
+# • List rooms of type 'Deluxe'.
+# • Show rooms priced above 150.
+# • Retrieve rooms not booked (guest_id IS NULL).
+# • JOIN: Display guest names with room details.
+# • JOIN: Find rooms not occupied by any guest.
+# • Total revenue generated from room bookings.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 23. Sadhana Gyawali - Movie Theater
+# Table 1: movies (movie_id, title, genre, duration)
+# Table 2: bookings (booking_id, movie_id, user, showtime)
+
+# • List movies of genre 'Drama'.
+# • Find movies longer than 2.5 hours.
+# • Retrieve movies with title LIKE 'The%'.
+# • Show movies of duration BETWEEN 90 and 150.
+# • Find bookings made by user 'Anisha'.
+# • Retrieve bookings for showtime '7:00 PM'.
+# • Show users who booked more than 3 tickets.
+# • JOIN: Display movie titles in each booking.
+# • JOIN: List movies without any bookings.
+# • Total bookings per movie.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 24. Saurav Dhakal - School System
+# Table 1: students (student_id, name, grade, admission_date)
+# Table 2: results (result_id, student_id, subject, marks)
+
+# • List students in grade 12.
+# • Find students who joined after '2022-03-01'.
+# • Show students with names ending in 'l'.
+# • Retrieve students where grade IN (10, 11).
+# • Show results for subject = 'Math'.
+# • Find results where marks BETWEEN 60 AND 80.
+# • Show students scoring above 90.
+# • JOIN: Display student names with subject marks.
+# • JOIN: Find students with no results yet.
+# • Average marks per subject.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 25. Sulav Gyawali - Ride Sharing App
+# Table 1: drivers (driver_id, name, city, rating)
+# Table 2: rides (ride_id, driver_id, customer, date, fare)
+
+# • List drivers in 'Butwal'.
+# • Find drivers with rating > 4.5.
+# • Show drivers whose name includes 'al'.
+# • Retrieve drivers rated BETWEEN 3 and 5.
+# • List rides on date '2024-04-10'.
+# • Find rides with fare over 1000.
+# • Show customers whose name starts with 'S'.
+# • JOIN: Display driver name with each ride.
+# • JOIN: Find drivers who never had a ride.
+# • Highest earning driver.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 26. Usha Rana - Pharmacy Management
+# Table 1: medicines (med_id, name, category, price)
+# Table 2: sales (sale_id, med_id, customer, quantity, date)
+
+# • List all 'Antibiotic' medicines.
+# • Find medicines priced < 100.
+# • Show medicine names starting with 'Par'.
+# • Retrieve medicines in categories IN ('Painkiller', 'Vitamin').
+# • List sales made on '2024-06-01'.
+# • Show sales where quantity > 5.
+# • Find customers with name LIKE '%an%'.
+# • JOIN: Show medicine and sale details.
+# • JOIN: Find medicines never sold.
+# • Total revenue per category.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 27. Utsav Saru - Logistics Company
+# Table 1: shipments (ship_id, item, origin, destination, status)
+# Table 2: drivers (driver_id, name, ship_id, assigned_date)
+
+# • List shipments going to 'Biratnagar'.
+# • Show shipments with status = 'Delivered'.
+# • Find shipments with item LIKE '%Box%'.
+# • Retrieve shipments from 'Pokhara'.
+# • Show drivers assigned after '2024-02-01'.
+# • Find drivers with name ending in 'n'.
+# • Retrieve drivers for ship_id IN (10, 12, 15).
+# • JOIN: Display shipment details with driver name.
+# • JOIN: Find shipments without drivers.
+# • Count deliveries per destination.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
