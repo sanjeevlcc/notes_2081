@@ -4,6 +4,73 @@
 
 
 
+***************************************************************************
+Presentations: BIM 4, DBMS ,2022 batch
+Mode Online: google meet
+
+
+Meet Link (Static Link) : https://meet.google.com/owp-rgkx-zab
+or
+Meet code: owp-rgkx-zab
+
+
+Time: 5:45 - 7:00 AM (75 mins)
+Start Date : 13 shrawan 2081
+
+Per day (in 75 mins , 4-5 students will perform)
+Acceptable Slide : .ppt, or .pdf   / no online link
+
+
+
+Slide Length : min 8 , max 14 slides
+
+
+Slide must include:
+---------------------
+	Slide 1: Title Slide,  Course Title, Unit Title, Your Name, Date
+	Slide 2,3,4,.....: topic to be discovered
+	Slide last: Conclusions , QnA
+
+
+Slide time per student : 10-14 mins
+
+
+
+
+FOR SQL DEMO: make a nessecity data for demo, create db, 
+            table, insert data(atleast 15 data) etc
+
+FOR ER : diagram and steps , entity, relations, and attribute 
+	        figure must be defined and cleared
+
+For general presentations : make your necessary assumptions
+
+
+
+
+
+Presentations Include 10 marks for exterlnal marks .i.e (10/20)
+
+
+Your PPT must be upload 20 mins or / one day 
+earlier in your chat group , before the day of
+presentations for verifications.
+
+
+
+
+If therules voilated , in any manner, the student 
+is not evaluated for marks.
+
+
+              regards
+              --------
+              
+              Subject Teacher
+***************************************************************************
+
+
+
 
 
 
