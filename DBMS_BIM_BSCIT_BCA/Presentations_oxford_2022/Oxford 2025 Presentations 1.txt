@@ -1,72 +1,113 @@
 
-
-
-
-
-
+Submission Date: 7 July 2025
 ***************************************************************************
-Presentations: BIM 4, DBMS ,2022 batch
-Mode Online: google meet
-
-
-Meet Link (Static Link) : https://meet.google.com/owp-rgkx-zab
-or
-Meet code: owp-rgkx-zab
-
-
-Time: 5:45 - 7:00 AM (75 mins)
-Start Date : 13 shrawan 2081
-
-Per day (in 75 mins , 4-5 students will perform)
-Acceptable Slide : .ppt, or .pdf   / no online link
+***************************************************************************
+***************************************************************************
+***************************************************************************
+***************************************************************************
 
 
 
-Slide Length : min 8 , max 14 slides
+Presentation Guidelines
+------------------------
+	Subject: DBMS
+	Unit: BIM 4th Semester
+	Batch: 2025
+	Mode: Online (Google Meet)
+	Start Date: 9 July 2025
+	Time:  7 AM –  8:00 AM (75 mins) 
+		or  
+	       6:30 PM – approx 7:00 PM (75 mins) ... approx ... check time 
 
 
-Slide must include:
+	Meet Link:       https://meet.google.com/fpz-brcb-fvu
+	Meet Code:      fpz-brcb-fvu
+
+
+
+
+
+Daily Presentation Flow
+---------------------------
+	Duration per session: 75 minutes	
+	Students per day: 4–5 students	
+	Time per student: 10 minutes (MAX)
+
+
+
+
+Slide Submission
 ---------------------
-	Slide 1: Title Slide,  Course Title, Unit Title, Your Name, Date
-	Slide 2,3,4,.....: topic to be discovered
-	Slide last: Conclusions , QnA
-
-
-Slide time per student : 10-14 mins
-
-
-
-
-FOR SQL DEMO: make a nessecity data for demo, create db, 
-            table, insert data(atleast 15 data) etc
-
-FOR ER : diagram and steps , entity, relations, and attribute 
-	        figure must be defined and cleared
-
-For general presentations : make your necessary assumptions
+	Format Accepted: .ppt or .pdf (No online/shared links allowed)	
+	Slide Count: Minimum 8 – Maximum 14	
+	Upload Deadline: Must be uploaded in the class group at least 20 minutes before the session or one day prior for verification.	
+	Non-compliance: Students who fail to meet submission rules will not be evaluated for marks.
 
 
 
 
 
-Presentations Include 10 marks for exterlnal marks .i.e (10/20)
+Slide Structure
+---------------------- Include every page no in slide
+
+	Slide 1 – Title Slide:	
+		Presentation Title	
+		Course Title	
+		Unit Title	
+		Your Name	
+		Date
+	
+	Slides 2 to N – Content Slides
+		Discover your topic in depth
+	
+	Final Slide – Conclusion & QnA
 
 
-Your PPT must be upload 20 mins or / one day 
-earlier in your chat group , before the day of
-presentations for verifications.
+
+
+
+Topic-Based Guidelines
+-------------------------
+	📌 For SQL Demo Topics
+		Create a sample database, tables, and insert at least 15 rows of meaningful data.
+		Ensure queries, schema, and data are explained and ready for live or screenshot demonstration.
+	
+	📌 For ER Diagram Topics
+		Include:
+			Clear ER Diagram (can be hand-drawn or tool-based)
+			Properly labeled Entities, Attributes, and Relationships
+			Step-by-step explanation of the model
+	
+	📌 For General Presentations
+		Make reasonable assumptions as needed to frame your topic.
+		Ensure clarity, flow, and relevance to the DBMS course unit.
 
 
 
 
-If therules voilated , in any manner, the student 
-is not evaluated for marks.
+
+Marks Distribution
+-------------------------
+	This presentation carries 5 marks out of 20 (for internal evaluation).
+
+⚠️ NOTE:
+	Strictly adhere to the rules. Any violation in submission, format, or timing will result in disqualification from marking.
 
 
-              regards
-              --------
-              
-              Subject Teacher
+
+
+
+
+Regards
+Subject Teacher
+
+
+
+
+***************************************************************************
+***************************************************************************
+***************************************************************************
+***************************************************************************
 ***************************************************************************
 
 
@@ -82,7 +123,14 @@ is not evaluated for marks.
 
 
 
-EXAMPLE SCNERIO ********************************************************************************
+********************************************************************************
+********************************************************************************
+********************************************************************************		
+					EXAMPLE SCNERIO 
+********************************************************************************
+********************************************************************************
+********************************************************************************
+
 
 
 # Sanjeev Thapa - Online Course Platform
@@ -100,6 +148,10 @@ EXAMPLE SCNERIO ****************************************************************
 # • JOIN: Find courses with no enrollments.
 # • List categories with more than 5 courses offered.
 ----------------------------------------------------------------------
+
+	SQL Lab
+
+
                         -- Create the database
                         CREATE DATABASE OnlineCourseNepal;
                         USE OnlineCourseNepal;
@@ -244,6 +296,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+9 July 2025 ............ 7:00 AM
+
+
 
 # 1. Aaditya Pangeni - Library Management
 # Table 1: books (book_id, title, author, genre, available)
@@ -265,6 +320,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+9 July 2025 ............ 7:00 AM
+
+
+
 # 2. Aashish Bhusal - School Management
 # Table 1: students (student_id, name, grade, city)
 # Table 2: courses (course_id, course_name, teacher, credits)
@@ -297,6 +356,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+9 July 2025 ............ 7:00 AM
+
+
+
 # 3. Aashish Chaudhary - Hospital Management
 # Table 1: patients (patient_id, name, age, diagnosis)
 # Table 2: appointments (appointment_id, patient_id, doctor, date)
@@ -317,6 +380,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+9 July 2025 ............ 7:00 AM
+
+
+
 # 4. Alisha Neupane - Hotel Booking
 # Table 1: guests (guest_id, name, check_in, check_out)
 # Table 2: rooms (room_id, guest_id, type, price)
@@ -339,6 +406,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+9 July 2025 ............ 7:00 AM
+
+
+
 # 5. Amisha Kumari Gurau - E-Commerce
 # Table 1: products (product_id, name, category, price)
 # Table 2: orders (order_id, product_id, customer, quantity)
@@ -361,6 +432,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+10 July 2025 ............ 7:30 AM
+
+
+
 # 6. Anannye Karki - Gym Management
 # Table 1: members (member_id, name, age, plan)
 # Table 2: trainers (trainer_id, member_id, specialization)
@@ -384,6 +459,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+10 July 2025 ............ 7:30 AM
+
+
+
 # 7. Anil Taramu Magar - Restaurant
 # Table 1: menu (item_id, name, category, price)
 # Table 2: orders (order_id, item_id, customer, date)
@@ -408,6 +487,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+10 July 2025 ............ 7:30 AM
+
+
+
 # 8. Anita Gyawali - Airline Booking
 # Table 1: passengers (passenger_id, name, flight, seat)
 # Table 2: flights (flight_id, destination, departure)
@@ -429,6 +512,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+10 July 2025 ............ 7:30 AM
+
+
+
 # 9. Arpit Bk - Movie Theater
 # Table 1: movies (movie_id, title, genre, duration)
 # Table 2: tickets (ticket_id, movie_id, customer, showtime)
@@ -456,6 +543,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+10 July 2025 ............ 7:30 AM
+
+
+
 # 10. Barish Rana - Car Rental
 # Table 1: cars (car_id, model, type, price_per_day)
 # Table 2: rentals (rental_id, car_id, customer, days)
@@ -480,6 +571,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+11 July 2025 ............ 7:30 AM
+
+
+
 # 11. Bipin Khatri - E-Learning System
 # Table 1: students (student_id, name, course, city, enrollment_date)
 # Table 2: modules (module_id, course, title, duration, instructor)
@@ -502,6 +597,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+11 July 2025 ............ 7:30 AM
+
+
+
 # 12. Jenit Lal Shakya - Library System
 # Table 1: books (book_id, title, author, genre, available_copies)
 # Table 2: members (member_id, name, email, membership_date)
@@ -528,6 +627,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+11 July 2025 ............ 7:30 AM
+
+
+
 # 13. Kristal Shrestha - Fitness Club
 # Table 1: members (member_id, name, age, plan, join_date)
 # Table 2: sessions (session_id, trainer, type, duration, member_id)
@@ -555,6 +658,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+11 July 2025 ............ 7:30 AM
+
+
+
 # 14. Kushal Pariyar - Car Rental System
 # Table 1: cars (car_id, model, type, price_per_day)
 # Table 2: rentals (rental_id, car_id, customer_name, days, start_date)
@@ -580,6 +687,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+11 July 2025 ............ 7:30 AM
+
+
+
 # 15. Marshal Poudel - Hospital System
 # Table 1: patients (patient_id, name, gender, age, diagnosis)
 # Table 2: visits (visit_id, patient_id, doctor, visit_date, fee)
@@ -605,6 +716,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
+
 # 16. Misti Adhikari - Online Shopping System
 # Table 1: products (product_id, name, category, price)
 # Table 2: orders (order_id, product_id, customer_name, quantity, order_date)
@@ -630,6 +745,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
 # 17. Mohit Shrestha - Airline Reservation
 # Table 1: passengers (passenger_id, name, seat_no, flight_no)
 # Table 2: flights (flight_no, departure, destination, date, time)
@@ -656,6 +774,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
 # 18. Pranit Udas - Food Delivery System
 # Table 1: restaurants (restaurant_id, name, cuisine, location)
 # Table 2: orders (order_id, restaurant_id, customer, total, order_date)
@@ -683,6 +804,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
 # 19. Pritam Pokhrel - Event Management
 # Table 1: events (event_id, title, type, date, organizer)
 # Table 2: participants (participant_id, event_id, name, email)
@@ -713,6 +837,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
 # 20. Rajan Bhattrai - Music Streaming Platform
 # Table 1: songs (song_id, title, artist, genre, duration)
 # Table 2: playlists (playlist_id, song_id, user_name, added_on)
@@ -741,6 +868,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
 # 21. Riwaz Subedi - Real Estate Portal
 # Table 1: properties (property_id, type, price, city, listed_date)
 # Table 2: agents (agent_id, name, property_id, contact)
@@ -773,6 +903,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
 # 22. Rohit Partel - Hotel Management
 # Table 1: guests (guest_id, name, checkin, checkout, city)
 # Table 2: rooms (room_id, type, price, guest_id)
@@ -806,6 +939,9 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 July 2025 ............ 8:00 AM
+
+
 # 23. Sadhana Gyawali - Movie Theater
 # Table 1: movies (movie_id, title, genre, duration)
 # Table 2: bookings (booking_id, movie_id, user, showtime)
@@ -838,6 +974,12 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+13 July 2025 ............ 7:00 PM
+
+
+
+
+
 # 24. Saurav Dhakal - School System
 # Table 1: students (student_id, name, grade, admission_date)
 # Table 2: results (result_id, student_id, subject, marks)
@@ -866,6 +1008,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+13 July 2025 ............ 7:00 PM
+
+
+
 # 25. Sulav Gyawali - Ride Sharing App
 # Table 1: drivers (driver_id, name, city, rating)
 # Table 2: rides (ride_id, driver_id, customer, date, fare)
@@ -893,6 +1039,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+13 July 2025 ............ 7:00 PM
+
+
+
 # 26. Usha Rana - Pharmacy Management
 # Table 1: medicines (med_id, name, category, price)
 # Table 2: sales (sale_id, med_id, customer, quantity, date)
@@ -927,6 +1077,10 @@ EXAMPLE SCNERIO ****************************************************************
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+13 July 2025 ............ 7:00 PM
+
+
+
 # 27. Utsav Saru - Logistics Company
 # Table 1: shipments (ship_id, item, origin, destination, status)
 # Table 2: drivers (driver_id, name, ship_id, assigned_date)
