@@ -295,139 +295,6 @@ Subject Teacher
 
 
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-9 July 2025 ............ 7:00 AM
-
-
-
-# 1. Aaditya Pangeni - Library Management
-# Table 1: books (book_id, title, author, genre, available)
-# Table 2: borrowers (borrower_id, name, email, membership_date)
-
-# • List all books in the "Fantasy" genre.
-# • Find books with titles containing "Harry Potter".
-# • Count books with fewer than 3 available copies.
-# • Show books authored by "J.K. Rowling".
-# • Retrieve borrowers who joined before "2023-01-01".
-# • Show borrowers with emails ending in "@yahoo.com".
-# • Find borrowers whose name starts with "A".
-# • JOIN: Display books borrowed by each borrower.
-# • JOIN: Find borrowers who never borrowed a book.
-# • List genres with more than 5 books.
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-9 July 2025 ............ 7:00 AM
-
-
-
-# 2. Aashish Bhusal - School Management
-# Table 1: students (student_id, name, grade, city)
-# Table 2: courses (course_id, course_name, teacher, credits)
-
-# • List students in grade "10" from "Kathmandu".
-# • Find students whose names start with "A".
-# • Count students per city.
-# • Show students where grade IN (9,10).
-# • Retrieve courses taught by "Mr. Sharma".
-# • Show courses with more than 4 credits.
-# • Find courses with names containing "Math".
-# • JOIN: Display students and their enrolled courses.
-# • JOIN: Find courses with no students enrolled.
-# • List teachers handling more than 2 courses.
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-9 July 2025 ............ 7:00 AM
-
-
-
-# 3. Aashish Chaudhary - Hospital Management
-# Table 1: patients (patient_id, name, age, diagnosis)
-# Table 2: appointments (appointment_id, patient_id, doctor, date)
-
-# • List patients diagnosed with "Fever".
-# • Find patients aged below 12.
-# • Count patients per diagnosis.
-# • Show patients with name LIKE '%sh%'.
-# • Retrieve appointments on "2023-05-15".
-# • Show appointments where doctor is "Dr. Shrestha".
-# • Find appointments between "2023-01-01" and "2023-12-31".
-# • JOIN: Display patients and their doctors.
-# • JOIN: Find patients without appointments.
-# • List diagnoses with at least 5 patients.
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-9 July 2025 ............ 7:00 AM
-
-
-
-# 4. Alisha Neupane - Hotel Booking
-# Table 1: guests (guest_id, name, check_in, check_out)
-# Table 2: rooms (room_id, guest_id, type, price)
-
-# • List guests staying in "Deluxe" rooms.
-# • Find guests checking in after "2023-06-01".
-# • Count guests who stayed more than 3 days.
-# • Show guests with name ending in "a".
-# • Retrieve rooms priced above $200.
-# • Show rooms of type "Suite".
-# • List rooms in descending order of price.
-# • JOIN: Display guests and their room types.
-# • JOIN: Find rooms not booked by any guest.
-# • List the most expensive booking per guest.
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-9 July 2025 ............ 7:00 AM
-
-
-
-# 5. Amisha Kumari Gurau - E-Commerce
-# Table 1: products (product_id, name, category, price)
-# Table 2: orders (order_id, product_id, customer, quantity)
-
-# • List products in the "Electronics" category.
-# • Find products priced between $50 and $200.
-# • Count products priced over $500.
-# • Show products with name containing "Phone".
-# • Count orders with quantity > 2.
-# • Retrieve orders placed by customer "Sita".
-# • Show orders where product_id IN (2,4,6).
-# • JOIN: Display customers and their orders.
-# • JOIN: Find products never ordered.
-# • List categories with average price > $100.
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
 
 
 
@@ -1095,6 +962,154 @@ Subject Teacher
 # • JOIN: Display shipment details with driver name.
 # • JOIN: Find shipments without drivers.
 # • Count deliveries per destination.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+14 July 2025 ............ 7:00 PM
+
+
+
+# 1. Aaditya Pangeni - Library Management
+# Table 1: books (book_id, title, author, genre, available)
+# Table 2: borrowers (borrower_id, name, email, membership_date)
+
+# • List all books in the "Fantasy" genre.
+# • Find books with titles containing "Harry Potter".
+# • Count books with fewer than 3 available copies.
+# • Show books authored by "J.K. Rowling".
+# • Retrieve borrowers who joined before "2023-01-01".
+# • Show borrowers with emails ending in "@yahoo.com".
+# • Find borrowers whose name starts with "A".
+# • JOIN: Display books borrowed by each borrower.
+# • JOIN: Find borrowers who never borrowed a book.
+# • List genres with more than 5 books.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+14 July 2025 ............ 7:00 PM
+
+
+
+# 2. Aashish Bhusal - School Management
+# Table 1: students (student_id, name, grade, city)
+# Table 2: courses (course_id, course_name, teacher, credits)
+
+# • List students in grade "10" from "Kathmandu".
+# • Find students whose names start with "A".
+# • Count students per city.
+# • Show students where grade IN (9,10).
+# • Retrieve courses taught by "Mr. Sharma".
+# • Show courses with more than 4 credits.
+# • Find courses with names containing "Math".
+# • JOIN: Display students and their enrolled courses.
+# • JOIN: Find courses with no students enrolled.
+# • List teachers handling more than 2 courses.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+14 July 2025 ............ 7:00 PM
+
+
+
+# 3. Aashish Chaudhary - Hospital Management
+# Table 1: patients (patient_id, name, age, diagnosis)
+# Table 2: appointments (appointment_id, patient_id, doctor, date)
+
+# • List patients diagnosed with "Fever".
+# • Find patients aged below 12.
+# • Count patients per diagnosis.
+# • Show patients with name LIKE '%sh%'.
+# • Retrieve appointments on "2023-05-15".
+# • Show appointments where doctor is "Dr. Shrestha".
+# • Find appointments between "2023-01-01" and "2023-12-31".
+# • JOIN: Display patients and their doctors.
+# • JOIN: Find patients without appointments.
+# • List diagnoses with at least 5 patients.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+14 July 2025 ............ 7:00 PM
+
+
+
+# 4. Alisha Neupane - Hotel Booking
+# Table 1: guests (guest_id, name, check_in, check_out)
+# Table 2: rooms (room_id, guest_id, type, price)
+
+# • List guests staying in "Deluxe" rooms.
+# • Find guests checking in after "2023-06-01".
+# • Count guests who stayed more than 3 days.
+# • Show guests with name ending in "a".
+# • Retrieve rooms priced above $200.
+# • Show rooms of type "Suite".
+# • List rooms in descending order of price.
+# • JOIN: Display guests and their room types.
+# • JOIN: Find rooms not booked by any guest.
+# • List the most expensive booking per guest.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+14 July 2025 ............ 7:00 PM
+
+
+
+# 5. Amisha Kumari Gurau - E-Commerce
+# Table 1: products (product_id, name, category, price)
+# Table 2: orders (order_id, product_id, customer, quantity)
+
+# • List products in the "Electronics" category.
+# • Find products priced between $50 and $200.
+# • Count products priced over $500.
+# • Show products with name containing "Phone".
+# • Count orders with quantity > 2.
+# • Retrieve orders placed by customer "Sita".
+# • Show orders where product_id IN (2,4,6).
+# • JOIN: Display customers and their orders.
+# • JOIN: Find products never ordered.
+# • List categories with average price > $100.
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
