@@ -438,11 +438,15 @@ Subject Teacher
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-11 July 2025 ............ 7:30 AM
+11 July 2025 ............ 7:30 AM   
 
 
 
-# 11. Bipin Khatri - E-Learning System
+# 11. Bipin Khatri - E-Learning System       
+
+------ COMPLETED -------------
+
+
 # Table 1: students (student_id, name, course, city, enrollment_date)
 # Table 2: modules (module_id, course, title, duration, instructor)
 
@@ -465,6 +469,12 @@ Subject Teacher
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 11 July 2025 ............ 7:30 AM
+
+
+
+
+------ COMPLETED -------------
+
 
 
 
@@ -497,6 +507,9 @@ Subject Teacher
 11 July 2025 ............ 7:30 AM
 
 
+------ COMPLETED -------------
+
+
 
 # 13. Kristal Shrestha - Fitness Club
 # Table 1: members (member_id, name, age, plan, join_date)
@@ -526,6 +539,11 @@ Subject Teacher
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 11 July 2025 ............ 7:30 AM
+
+
+
+------ COMPLETED -------------
+
 
 
 
