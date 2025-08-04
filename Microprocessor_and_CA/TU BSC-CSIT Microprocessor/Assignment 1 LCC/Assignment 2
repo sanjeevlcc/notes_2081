@@ -1,0 +1,100 @@
+
+
+
+
+
+
+********************************  2081  ********************************  
+                            SECTION A
+                      ----------------------
+                    Attempt any TWO questions.
+                --------------------------------
+
+Explain the internal architecture of the 8085 microprocessor with a labeled block diagram.
+
+What is the ALE signal? Draw a timing diagram for the LDA 5000H instruction and explain the machine cycles involved.
+
+Explain the LHLD and SHLD instructions. Ten 8-bit data values are stored starting from memory location 6000H. Write an 8085 assembly program to calculate their sum and store the result (sum and carry) starting from 9500H.
+
+
+
+                                  SECTION B
+                              ----------------
+                          Attempt any EIGHT questions.
+                      --------------------------------
+Explain memory segments and segment registers in the 8086 microprocessor.
+
+Write an assembly language program (ALP) to convert the string “computer science” to uppercase using a 16-bit microprocessor.
+
+Explain different types of I/O instructions. Differentiate between memory-mapped I/O and I/O-mapped I/O.
+
+What is a vectored interrupt? Explain maskable and non-maskable interrupts in the 8085 microprocessor.
+
+Explain different addressing modes in the 8085 microprocessor.
+
+Explain the register organization in the 80386 microprocessor.
+
+List the limitations of parallel communication. Explain the different operation modes of the 8255A PPI.
+
+What is a descriptor? Explain the use of a segment descriptor in physical address conversion in the 80286 microprocessor.
+
+Write short notes on any TWO of the following:
+
+Flags in the 8085 MPU
+	DMA
+
+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+********************************  2080  ********************************  
+
+                                    SECTION A
+                                ----------------
+                          Attempt any TWO questions.
+                ----------------------------------------
+
+
+Differentiate between the 8085 and 8086 microprocessors. Explain the concept of demultiplexing the address bus and why it is required.
+
+Write an 8085 assembly program to calculate the factorial of a number.
+
+Draw a block diagram of the 80286 microprocessor and explain its components.
+
+
+
+
+
+                                    SECTION B
+                                ----------------
+                          Attempt any EIGHT questions.
+                          --------------------------------
+
+
+What is paging? Explain memory access in protected mode.
+
+What is the importance of DMA? Explain its working mechanism.
+
+List different types of ports. Explain the key features of the 8259A programmable interrupt controller.
+
+Differentiate between an instruction cycle and a machine cycle. Draw the timing diagram for MVI A, 32H.
+
+Write an assembly program to reverse a given string.
+
+Explain different types of system buses and indicate whether they are unidirectional or bidirectional.
+
+What is the significance of interrupt masking? Differentiate between vectored and polled interrupts.
+
+Illustrate memory access using the Global Descriptor Table (GDT).
+
+Write short notes on any TWO of the following:
+	Jumps
+	Accumulator
+
+
