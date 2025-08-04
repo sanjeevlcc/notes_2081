@@ -1,0 +1,143 @@
+# ....................................................................................
+# Microprocessor Lab Report
+# ....................................................................................
+# Course         : Microprocessor & Interfacing
+# Lab Instructor : _________________
+# Student Name   : _________________
+# Roll No.       : _______       Date: ________
+# ....................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# =============================== Lab 1: 8-Bit Arithmetic Operations (8085) ===============================
+# Objective: Perform addition, subtraction, multiplication, and division using 8085.
+
+# ------------------------------ 8-Bit Addition ------------------------------
+# Data : Store two 8-bit numbers at 2050H and 2051H.
+# Task : Add them and store the result at 2052H (sum) and 2053H (carry).
+# Mnemonics & Hex Code : Write the program with comments.
+
+# ------------------------------ 8-Bit Subtraction ------------------------------
+# Data : Subtract the number at 2051H from 2050H.
+# Task : Store the result at 2052H and borrow at 2053H.
+# Hex Code : Provide the machine code for SUB and SBB instructions.
+
+# ------------------------------ 8-Bit Multiplication (Repeated Addition) ------------------------------
+# Data : Multiply two numbers at 2050H and 2051H.
+# Task : Store the 16-bit result at 2052H (LSB) and 2053H (MSB).
+# Algorithm : Explain the logic in steps.
+
+# ------------------------------ 8-Bit Division (Repeated Subtraction) ------------------------------
+# Data : Divide the number at 2050H by 2051H.
+# Task : Store quotient at 2052H and remainder at 2053H.
+# Flowchart : Draw the logic flow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# =============================== Lab 2: Data Manipulation & Sorting (8085) ===============================
+# Objective: Implement array operations using 8085.
+
+# ------------------------------ DAD (Double Add) Operation ------------------------------
+# Data : Load HL with 2000H and DE with 3000H.
+# Task : Add them using DAD and store the result at 4000H.
+# Flag Impact : Explain how CY flag is affected.
+
+# ------------------------------ Sorting an Array (Ascending Order) ------------------------------
+# Data : 5 numbers stored from 2500H.
+# Task : Sort using bubble sort and store the result in-place.
+# Code : Write the program with a loop structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# =============================== Lab 3: 16-Bit Arithmetic (8086) ===============================
+# Objective: Perform 16-bit operations using 8086.
+
+# ------------------------------ 16-Bit Addition & Subtraction ------------------------------
+# Data : Two 16-bit numbers at DS:1000H and DS:1002H.
+# Task : Store results at DS:1010H (sum) and DS:1014H (difference).
+# Mnemonics : Use AX, BX registers.
+
+# ------------------------------ 16-Bit Multiplication & Division ------------------------------
+# Data : Numbers in AX and BX.
+# Task : Compute product (32-bit) and quotient/remainder.
+# Code : Use MUL and DIV instructions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# =============================== Lab 4: String Manipulation (8086) ===============================
+# Objective: Perform string operations in 8086.
+
+# ------------------------------ String Reverse ("hello world") ------------------------------
+# Data : Store the string at DS:2000H.
+# Task : Reverse words (output: "world hello").
+# Algorithm : Use REP MOVSB and stack operations.
+
+# ------------------------------ String Concatenation ------------------------------
+# Data : Two strings at DS:3000H and DS:3020H.
+# Task : Combine them and store at DS:3050H.
+# Code : Use CLD and LODSW/STOSW.
+
+# ....................................................................................
