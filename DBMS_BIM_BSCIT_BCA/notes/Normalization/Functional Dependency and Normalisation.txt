@@ -1,9 +1,9 @@
 
 
 
-
-Functional Dependency and Normalisation
-
+                          ******************************************************************
+                                       Functional Dependency and Normalisation
+                          ******************************************************************
 
 
 
@@ -22,276 +22,149 @@ Page NO: 212
 
 
 
+
+
+
+
+
+
+
+
 ====================================================================================
- Database Normalization
+
+UNF
+---- BookstoreSales
+| SaleID | CustomerName | CustomerAddress | CustomerPhone | BooksPurchased         | AuthorNames                  | PricePerBook  | TotalAmount | SaleDate   | PaymentMethod |
+| ------ | ------------ | --------------- | ------------- | ---------------------- | ---------------------------- | ------------- | ----------- | ---------- | ------------- |
+| 101    | Ramesh Karki | Kathmandu       | 9812345678    | Book A, Book B         | Author X, Author Y           | 500, 700      | 1200.00     | 2025-08-01 | Cash          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book C, Book D, Book E | Author Z, Author W, Author Q | 400, 550, 300 | 1250.00     | 2025-08-02 | Card          |
+
+
+
+
+
+
+1NF
+----- BookstoreSales_1NF
+| SaleID | CustomerName | CustomerAddress | CustomerPhone | BookTitle | AuthorName | Price | TotalAmount | SaleDate   | PaymentMethod |
+| ------ | ------------ | --------------- | ------------- | --------- | ---------- | ----- | ----------- | ---------- | ------------- |
+| 101    | Ramesh Karki | Kathmandu       | 9812345678    | Book A    | Author X   | 500   | 1200.00     | 2025-08-01 | Cash          |
+| 101    | Ramesh Karki | Kathmandu       | 9812345678    | Book B    | Author Y   | 700   | 1200.00     | 2025-08-01 | Cash          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book C    | Author Z   | 400   | 1250.00     | 2025-08-02 | Card          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book D    | Author W   | 550   | 1250.00     | 2025-08-02 | Card          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book E    | Author Q   | 300   | 1250.00     | 2025-08-02 | Card          |
+
+
+
+
+
+
+
+2NF
+-----   Customers         AND          Sales          AND    SaleDetails 
+
+Customers  
+| CustomerID | CustomerName | CustomerAddress | CustomerPhone |
+| ---------- | ------------ | --------------- | ------------- |
+| 1          | Ramesh Karki | Kathmandu       | 9812345678    |
+| 2          | Sita Thapa   | Pokhara         | 9801122334    |
+
+
+Sales 
+| SaleID | CustomerID | TotalAmount | SaleDate   | PaymentMethod |
+| ------ | ---------- | ----------- | ---------- | ------------- |
+| 101    | 1          | 1200.00     | 2025-08-01 | Cash          |
+| 102    | 2          | 1250.00     | 2025-08-02 | Card          |
+
+
+SaleDetails 
+| SaleID | BookTitle | AuthorName | Price |
+| ------ | --------- | ---------- | ----- |
+| 101    | Book A    | Author X   | 500   |
+| 101    | Book B    | Author Y   | 700   |
+| 102    | Book C    | Author Z   | 400   |
+| 102    | Book D    | Author W   | 550   |
+| 102    | Book E    | Author Q   | 300   |
+
+
+
+
+
+3NF
+---   Books            and             SaleDetails
+
+
+
+Books
+| BookID | BookTitle | AuthorName |
+| ------ | --------- | ---------- |
+| 1      | Book A    | Author X   |
+| 2      | Book B    | Author Y   |
+| 3      | Book C    | Author Z   |
+| 4      | Book D    | Author W   |
+| 5      | Book E    | Author Q   |
+
+
+
+
+SaleDetails
+| SaleID | BookID | Price |
+| ------ | ------ | ----- |
+| 101    | 1      | 500   |
+| 101    | 2      | 700   |
+| 102    | 3      | 400   |
+| 102    | 4      | 550   |
+| 102    | 5      | 300   |
+
+
+
+
+
+Customers  
+| CustomerID | CustomerName | CustomerAddress | CustomerPhone |
+| ---------- | ------------ | --------------- | ------------- |
+| 1          | Ramesh Karki | Kathmandu       | 9812345678    |
+| 2          | Sita Thapa   | Pokhara         | 9801122334    |
+
+
+Sales 
+| SaleID | CustomerID | TotalAmount | SaleDate   | PaymentMethod |
+| ------ | ---------- | ----------- | ---------- | ------------- |
+| 101    | 1          | 1200.00     | 2025-08-01 | Cash          |
+| 102    | 2          | 1250.00     | 2025-08-02 | Card          |
+
 ====================================================================================
-Normalization is a database design technique that reduces
-data redundancy and eliminates undesirable characteristics
-like Insertion, Update and Deletion Anomalies. 
 
-Normalization rules divides larger tables into smaller
-tables and links them using relationships. 
 
-The purpose of Normalisation in SQL is to eliminate redundant
-(repetitive) data and ensure datais stored logically.
 
-            A large database defined as a single relation may 
-            result in data duplication. 
 
-           This repetition of data may result in:
-            
-                Making relations very large.
 
-                It isn't easy to maintain and update 
-                data as it would involve searching many records in relation.
 
-                Wastage and poor utilization of disk space and resources.
 
-                The likelihood of errors and inconsistencies increases.
 
 
 
+====================================================================================
 
 
-            
-            So to handle these problems, we should analyze and decompose 
-            the relations with redundant data into smaller, simpler, and 
-           well-structured relations that are satisfy desirable properties. 
 
+| SaleID | CustomerName | CustomerAddress | CustomerPhone | BooksPurchased | AuthorNames | PricePerBook  | TotalAmount | SaleDate   | PaymentMethod |
 
 
-            Normalization is a process of decomposing the relations
-            into relations with fewer attributes.
 
 
 
+| CustomerID | CustomerName | CustomerAddress | CustomerPhone | -------- | SaleID | CustomerID | TotalAmount | SaleDate   | PaymentMethod |         
 
+                        | SaleID | BookID | Price | ------------ | BookID | BookTitle | AuthorName |
 
 
 
 
-------------------------DOCKER------------------------------
-step 1: Login with credentials in ... https://killercoda.com/
-step 2: Choose any scnerio. Ubuntu or CKA or Playground
-step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
-step 4: docker exec -ti mydb1 bash
-step 5: mysql -u root -p1234
-----------------------------------------------------------------
+CLICK :   https://github.com/sanjeevlcc/notes_2081/blob/main/DBMS_BIM_BSCIT_BCA/notes/Normalization/normilization%20examples.png
 
-mysql> create database db33;
-Query OK, 1 row affected (0.02 sec)
 
-mysql> use db33;
-Database changed
-
-CREATE TABLE PatientRecords (
-    PatientID INT PRIMARY KEY NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    Gender VARCHAR(10) NOT NULL,
-    Age INT NOT NULL,
-    Address VARCHAR(100) NOT NULL,
-    PhoneNumber VARCHAR(15) NOT NULL,
-    AdmissionDate DATE NOT NULL,
-    DischargeDate DATE,
-    DoctorName VARCHAR(50) NOT NULL,
-    Diagnosis VARCHAR(100) NOT NULL,
-    RoomNumber INT NOT NULL
-);
-
-INSERT INTO PatientRecords VALUES
-(1, 'Sajan', 'Shrestha', 'Male', 32, 'Kathmandu, Nepal', '9876543210', '2023-01-15', '2023-01-25', 'Dr. Sharma', 'Common Cold', 101),
-(2, 'Aarati', 'Dahal', 'Female', 45, 'Pokhara, Nepal', '9843210765', '2023-02-02', '2023-02-10', 'Dr. Khanal', 'Hypertension', 203),
-(3, 'Rajendra', 'Gurung', 'Male', 28, 'Biratnagar, Nepal', '9812345678', '2023-03-12', '2023-03-20', 'Dr. Bhattarai', 'Gastritis', 302),
-(4, 'Sunita', 'Magar', 'Female', 60, 'Butwal, Nepal', '9867543210', '2023-04-05', '2023-04-15', 'Dr. Thapa', 'Arthritis', 105),
-(5, 'Bibek', 'Dhakal', 'Male', 38, 'Dharan, Nepal', '9801234567', '2023-05-20', '2023-06-02', 'Dr. Acharya', 'Diabetes', 201);
-
-
-
-mysql> select * from PatientRecords;          // to long table attributes
-+-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
-| PatientID | FirstName | LastName | Gender | Age | Address           | PhoneNumber | AdmissionDate | DischargeDate | DoctorName    | Diagnosis    | RoomNumber |
-+-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
-
-
-mysql> select * from PatientRecords;
-+-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
-| PatientID | FirstName | LastName | Gender | Age | Address           | PhoneNumber | AdmissionDate | DischargeDate | DoctorName    | Diagnosis    | RoomNumber |
-+-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
-|         1 | Sajan     | Shrestha | Male   |  32 | Kathmandu, Nepal  | 9876543210  | 2023-01-15    | 2023-01-25    | Dr. Sharma    | Common Cold  |        101 |
-|         2 | Aarati    | Dahal    | Female |  45 | Pokhara, Nepal    | 9843210765  | 2023-02-02    | 2023-02-10    | Dr. Khanal    | Hypertension |        203 |
-|         3 | Rajendra  | Gurung   | Male   |  28 | Biratnagar, Nepal | 9812345678  | 2023-03-12    | 2023-03-20    | Dr. Bhattarai | Gastritis    |        302 |
-|         4 | Sunita    | Magar    | Female |  60 | Butwal, Nepal     | 9867543210  | 2023-04-05    | 2023-04-15    | Dr. Thapa     | Arthritis    |        105 |
-|         5 | Bibek     | Dhakal   | Male   |  38 | Dharan, Nepal     | 9801234567  | 2023-05-20    | 2023-06-02    | Dr. Acharya   | Diabetes     |        201 |
-+-----------+-----------+----------+--------+-----+-------------------+-------------+---------------+---------------+---------------+--------------+------------+
-5 rows in set (0.00 sec)
-
-
-
-
-
-let's normalize the PatientRecords table up to the Third Normal Form (3NF). 
--+---------------+---------------+--------------+------------+
-
--- Create Doctor table
-CREATE TABLE Doctors (
-    DoctorID INT PRIMARY KEY,
-    DoctorName VARCHAR(50) UNIQUE
-);
-
--- Create Diagnoses table
-CREATE TABLE Diagnoses (
-    DiagnosisID INT PRIMARY KEY,
-    DiagnosisName VARCHAR(100) UNIQUE
-);
-
--- Create PatientRecords table with foreign keys
-CREATE TABLE PatientRecords1 (
-    PatientID INT PRIMARY KEY,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Gender VARCHAR(10),
-    Age INT,
-    Address VARCHAR(100),
-    PhoneNumber VARCHAR(15),
-    AdmissionDate DATE,
-    DischargeDate DATE,
-    DoctorID INT,
-    DiagnosisID INT,
-    RoomNumber INT,
-    FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID),
-    FOREIGN KEY (DiagnosisID) REFERENCES Diagnoses(DiagnosisID)
-);
-
-
-mysql> desc Doctors;
-+------------+-------------+------+-----+---------+-------+
-| Field      | Type        | Null | Key | Default | Extra |
-+------------+-------------+------+-----+---------+-------+
-| DoctorID   | int         | NO   | PRI | NULL    |       |
-| DoctorName | varchar(50) | YES  | UNI | NULL    |       |
-+------------+-------------+------+-----+---------+-------+
-2 rows in set (0.01 sec)
-
-mysql> desc Diagnoses;
-+---------------+--------------+------+-----+---------+-------+
-| Field         | Type         | Null | Key | Default | Extra |
-+---------------+--------------+------+-----+---------+-------+
-| DiagnosisID   | int          | NO   | PRI | NULL    |       |
-| DiagnosisName | varchar(100) | YES  | UNI | NULL    |       |
-+---------------+--------------+------+-----+---------+-------+
-2 rows in set (0.00 sec)
-
-mysql> desc PatientRecords1;
-+---------------+--------------+------+-----+---------+-------+
-| Field         | Type         | Null | Key | Default | Extra |
-+---------------+--------------+------+-----+---------+-------+
-| PatientID     | int          | NO   | PRI | NULL    |       |
-| FirstName     | varchar(50)  | YES  |     | NULL    |       |
-| LastName      | varchar(50)  | YES  |     | NULL    |       |
-| Gender        | varchar(10)  | YES  |     | NULL    |       |
-| Age           | int          | YES  |     | NULL    |       |
-| Address       | varchar(100) | YES  |     | NULL    |       |
-| PhoneNumber   | varchar(15)  | YES  |     | NULL    |       |
-| AdmissionDate | date         | YES  |     | NULL    |       |
-| DischargeDate | date         | YES  |     | NULL    |       |
-| DoctorID      | int          | YES  | MUL | NULL    |       |
-| DiagnosisID   | int          | YES  | MUL | NULL    |       |
-| RoomNumber    | int          | YES  |     | NULL    |       |
-+---------------+--------------+------+-----+---------+-------+
-12 rows in set (0.01 sec)
-
-
-
-
-
--- Insert data into Doctors table
-INSERT INTO Doctors VALUES
-(1, 'Dr. Sharma'),
-(2, 'Dr. Khanal'),
-(3, 'Dr. Bhattarai'),
-(4, 'Dr. Thapa'),
-(5, 'Dr. Acharya');
-
-
-
-
--- Insert data into Diagnoses table
-INSERT INTO Diagnoses VALUES
-(101, 'Common Cold'),
-(203, 'Hypertension'),
-(302, 'Gastritis'),
-(105, 'Arthritis'),
-(201, 'Diabetes');
-
-
-
--- Insert data into PatientRecords table with foreign keys
-INSERT INTO PatientRecords1 VALUES
-(1, 'Sajan', 'Shrestha', 'Male', 32, 'Kathmandu, Nepal', '9876543210', '2023-01-15', '2023-01-25', 1, 101, 101),
-(2, 'Aarati', 'Dahal', 'Female', 45, 'Pokhara, Nepal', '9843210765', '2023-02-02', '2023-02-10', 2, 203, 203),
-(3, 'Rajendra', 'Gurung', 'Male', 28, 'Biratnagar, Nepal', '9812345678', '2023-03-12', '2023-03-20', 3, 302, 302),
-(4, 'Sunita', 'Magar', 'Female', 60, 'Butwal, Nepal', '9867543210', '2023-04-05', '2023-04-15', 4, 105, 105),
-(5, 'Bibek', 'Dhakal', 'Male', 38, 'Dharan, Nepal', '9801234567', '2023-05-20', '2023-06-02', 5, 201, 201);
-
-
-
-
-
-
-
-mysql> select * from Doctors;
-+----------+---------------+
-| DoctorID | DoctorName    |
-+----------+---------------+
-|        5 | Dr. Acharya   |
-|        3 | Dr. Bhattarai |
-|        2 | Dr. Khanal    |
-|        1 | Dr. Sharma    |
-|        4 | Dr. Thapa     |
-+----------+---------------+
-5 rows in set (0.00 sec)
-
-mysql> select * from Diagnoses;
-+-------------+---------------+
-| DiagnosisID | DiagnosisName |
-+-------------+---------------+
-|         105 | Arthritis     |
-|         101 | Common Cold   |
-|         201 | Diabetes      |
-|         302 | Gastritis     |
-|         203 | Hypertension  |
-+-------------+---------------+
-5 rows in set (0.00 sec)
-
-mysql> select * from PatientRecords1;
-+-----------+-----------+----------+--------+------+-------------------+-------------+---------------+---------------+----------+-------------+------------+
-| PatientID | FirstName | LastName | Gender | Age  | Address           | PhoneNumber | AdmissionDate | DischargeDate | DoctorID | DiagnosisID | RoomNumber |
-+-----------+-----------+----------+--------+------+-------------------+-------------+---------------+---------------+----------+-------------+------------+
-|         1 | Sajan     | Shrestha | Male   |   32 | Kathmandu, Nepal  | 9876543210  | 2023-01-15    | 2023-01-25    |        1 |         101 |        101 |
-|         2 | Aarati    | Dahal    | Female |   45 | Pokhara, Nepal    | 9843210765  | 2023-02-02    | 2023-02-10    |        2 |         203 |        203 |
-|         3 | Rajendra  | Gurung   | Male   |   28 | Biratnagar, Nepal | 9812345678  | 2023-03-12    | 2023-03-20    |        3 |         302 |        302 |
-|         4 | Sunita    | Magar    | Female |   60 | Butwal, Nepal     | 9867543210  | 2023-04-05    | 2023-04-15    |        4 |         105 |        105 |
-|         5 | Bibek     | Dhakal   | Male   |   38 | Dharan, Nepal     | 9801234567  | 2023-05-20    | 2023-06-02    |        5 |         201 |        201 |
-+-----------+-----------+----------+--------+------+-------------------+-------------+---------------+---------------+----------+-------------+------------+
-5 rows in set (0.00 sec)
-
-
-
-CHECK REDUNDANCY
-+-----------+-----------+----------+-------
-
-mysql> INSERT INTO PatientRecords1 VALUES
-      (4, 'Sunita', 'Magar', 'Female', 60, 'Butwal, Nepal', '9867543210', '2023-04-05', '2023-04-15', 4, 105, 105);
-     ERROR 1062 (23000): Duplicate entry '4' for key 'PatientRecords1.PRIMARY'
-
-
-
-mysql> INSERT INTO Diagnoses VALUES (201, 'Diabetes');
-ERROR 1062 (23000): Duplicate entry '201' for key 'Diagnoses.PRIMARY'
-
-mysql> INSERT INTO Diagnoses VALUES (209, 'Diabetes');
-ERROR 1062 (23000): Duplicate entry 'Diabetes' for key 'Diagnoses.DiagnosisName'
+====================================================================================
 
 
 
@@ -305,235 +178,292 @@ ERROR 1062 (23000): Duplicate entry 'Diabetes' for key 'Diagnoses.DiagnosisName'
 
 
 ====================================================================================
-Why Do We Need Normalization?
+ Database Normalization
 ====================================================================================
 
-As we have discussed above, normalization is used to reduce data redundancy. 
-It provides a method to remove the following anomalies from the database
-and bring it to a more consistent state:
 
 
-
-
-
-
-     what is anomalies in dbms?
-     ---------------------------
-           something different, abnormal, peculiar, or not easily classified
-           Anomalies are irregularities or inconsistencies that occur 
-           in a database, disrupting the normal functioning and data integrity. 
+Definition:
+--------------
+       Normalization is a database design technique that reduces 
+       data redundancy and eliminates undesirable characteristics 
+       like Insertion, Update, and Deletion Anomalies.
+       
+       It works by dividing larger tables into smaller related tables and 
+       linking them using relationships (foreign keys).
+       
+       
+       
+       
            
-           They are often a result of poor database design and can lead to significant 
-           problems like data redundancy, data loss, and incorrect data.
+           Purpose of Normalization:
+           ----------------------------
+                   Remove redundant (repetitive) data
+                   Store data logically
+                   Ensure data integrity
+                   Avoid anomalies in Insert, Update, and Delete operations
+                   
 
 
 
 
+  Types of Anomalies Prevented
+  ----------------------------- rw ...... r select ........ w ins, update, del
+  
+        Insertion Anomaly – Can’t add data because other required fields are missing
+        Update Anomaly – Need to update the same information in multiple places
+        Deletion Anomaly – Deleting data accidentally removes other important info
+        
 
-A database anomaly is a flaw in the database that occurs
-because of poor planning and redundancy.
 
 
-Insertion anomalies: 
----------------------
-    This occurs when we are not able to insert data into a database because 
-    some attributes may be missing at the time of insertion.
 
 
-Updation anomalies: 
----------------------
-    This occurs when the same data items are repeated with the same values and 
-    are not linked to each other.
+Example — Bookstore Sales
+--------------------------
 
+Step 0: UNF (Unnormalized Form)
+Problem: Repeating groups, multiple values in one column, redundant customer data.
 
-Deletion anomalies:  
----------------------
-    This occurs when deleting one part of the data deletes the other necessary 
-    information from the database.
 
 
+| SaleID | CustomerName | CustomerAddress | CustomerPhone | BooksPurchased         | AuthorNames                  | PricePerBook  | TotalAmount | SaleDate   | PaymentMethod |
+| ------ | ------------ | --------------- | ------------- | ---------------------- | ---------------------------- | ------------- | ----------- | ---------- | ------------- |
+| 101    | Ramesh Karki | Kathmandu       | 9812345678    | Book A, Book B         | Author X, Author Y           | 500, 700      | 1200.00     | 2025-08-01 | Cash          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book C, Book D, Book E | Author Z, Author W, Author Q | 400, 550, 300 | 1250.00     | 2025-08-02 | Card          |
 
 
 
 
-CASE SCNERIO IN Insertion anomalies: 
--------------------------------------
-                  mysql> select * from Doctors;
-                  +----------+---------------+
-                  | DoctorID | DoctorName    |
-                  +----------+---------------+
-                  |        5 | Dr. Acharya   |
-                  |        3 | Dr. Bhattarai |
-                  |        2 | Dr. Khanal    |
-                  |        1 | Dr. Sharma    |
-                  |        4 | Dr. Thapa     |
-                  +----------+---------------+
 
 
-                  mysql> select * from Diagnoses;
-                  +-------------+---------------+
-                  | DiagnosisID | DiagnosisName |
-                  +-------------+---------------+
-                  |         105 | Arthritis     |
-                  |         101 | Common Cold   |
-                  |         201 | Diabetes      |
-                  |         302 | Gastritis     |
-                  |         203 | Hypertension  |
-                  +-------------+---------------+
 
+Step 1: 1NF (First Normal Form)
+Rule: Remove repeating groups; each field must have atomic (single) values.
 
--- Inserting a patient with a non-existing doctor ..... i.e id 10
-mysql> INSERT INTO PatientRecords1 VALUES (6, 'Ram', 'Sharma', 'Male', 45, 'Pokhara, Nepal', '9812345678', '2023-06-15', '2023-06-25', 10, 203, 303);
 
-ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_1` FOREIGN KEY (`DoctorID`) REFERENCES `Doctors` (`DoctorID`))
 
+| SaleID | CustomerName | CustomerAddress | CustomerPhone | BookTitle | AuthorName | Price | TotalAmount | SaleDate   | PaymentMethod |
+| ------ | ------------ | --------------- | ------------- | --------- | ---------- | ----- | ----------- | ---------- | ------------- |
+| 101    | Ramesh Karki | Kathmandu       | 9812345678    | Book A    | Author X   | 500   | 1200.00     | 2025-08-01 | Cash          |
+| 101    | Ramesh Karki | Kathmandu       | 9812345678    | Book B    | Author Y   | 700   | 1200.00     | 2025-08-01 | Cash          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book C    | Author Z   | 400   | 1250.00     | 2025-08-02 | Card          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book D    | Author W   | 550   | 1250.00     | 2025-08-02 | Card          |
+| 102    | Sita Thapa   | Pokhara         | 9801122334    | Book E    | Author Q   | 300   | 1250.00     | 2025-08-02 | Card          |
 
 
 
 
+Remaining issues: Customer info repeated; TotalAmount repeated for each book.
 
--- Inserting a patient with a non-existing diagnosis ..... i.e id 306
-mysql> INSERT INTO PatientRecords1 VALUES (7, 'Gita', 'Rai', 'Female', 30, 'Birgunj, Nepal', '9876543210', '2023-07-01', '2023-07-10', 3, 306, 202);
 
 
-ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_2` FOREIGN KEY (`DiagnosisID`) REFERENCES `Diagnoses` (`DiagnosisID`))
 
 
 
 
+Step 2: 2NF (Second Normal Form)
+Rule: Remove partial dependencies; move customer info to a separate table.
 
 
-CASE SCNERIO IN  Updation anomalies: 
--------------------------------------
-    Updating the name of a doctor results in inconsistencies across patient records.
 
-DISPAY QUERY that patients relate to doctors
+Customers Table
+| CustomerID | CustomerName | CustomerAddress | CustomerPhone |
+| ---------- | ------------ | --------------- | ------------- |
+| 1          | Ramesh Karki | Kathmandu       | 9812345678    |
+| 2          | Sita Thapa   | Pokhara         | 9801122334    |
 
-mysql>  SELECT PatientRecords1.FirstName, PatientRecords1.LastName, Doctors.DoctorName
-    FROM PatientRecords1
-    INNER JOIN Doctors ON PatientRecords1.DoctorID = Doctors.DoctorID;
-                                  +-----------+----------+---------------+
-                                  | FirstName | LastName | DoctorName    |
-                                  +-----------+----------+---------------+
-                                  | Sajan     | Shrestha | Dr. Sharma    |
-                                  | Aarati    | Dahal    | Dr. Khanal    |
-                                  | Rajendra  | Gurung   | Dr. Bhattarai |
-                                  | Sunita    | Magar    | Dr. Thapa     |
-                                  | Bibek     | Dhakal   | Dr. Acharya   |
-                                  +-----------+----------+---------------+
 
 
-                             OR
-                             
-                             SELECT 
-                               CONCAT(FirstName, ' ', LastName) AS PatientName,
-                               Doctors.DoctorName
-                             FROM PatientRecords1
-                             INNER JOIN Doctors ON PatientRecords1.DoctorID = Doctors.DoctorID;
-                             
-                                 +-----------------+---------------+
-                                 | PatientName     | DoctorName    |
-                                 +-----------------+---------------+
-                                 | Sajan Shrestha  | Dr. Sharma    |
-                                 | Aarati Dahal    | Dr. Khanal    |
-                                 | Rajendra Gurung | Dr. Bhattarai |
-                                 | Sunita Magar    | Dr. Thapa     |
-                                 | Bibek Dhakal    | Dr. Acharya   |
-                                 +-----------------+---------------+
+Sales Table
+| SaleID | CustomerID | TotalAmount | SaleDate   | PaymentMethod |
+| ------ | ---------- | ----------- | ---------- | ------------- |
+| 101    | 1          | 1200.00     | 2025-08-01 | Cash          |
+| 102    | 2          | 1250.00     | 2025-08-02 | Card          |
 
 
--- Update doctor's name ....
-NOW ALL RECORD RELATE TO CHANGE "Dr. Bhattarai" TO "Dr. Pokharel"
+SaleDetails Table
+| SaleID | BookTitle | AuthorName | Price |
+| ------ | --------- | ---------- | ----- |
+| 101    | Book A    | Author X   | 500   |
+| 101    | Book B    | Author Y   | 700   |
+| 102    | Book C    | Author Z   | 400   |
+| 102    | Book D    | Author W   | 550   |
+| 102    | Book E    | Author Q   | 300   |
 
-mysql> UPDATE Doctors
-     SET DoctorName = 'Dr. Pokharel'
-     WHERE DoctorID = 3;
-Query OK, 1 row affected (0.00 sec)
 
 
 
-                                           mysql> select * from Doctors;
-                                           +----------+--------------+
-                                           | DoctorID | DoctorName   |
-                                           +----------+--------------+
-                                           |        5 | Dr. Acharya  |
-                                           |        2 | Dr. Khanal   |
-                                           |        3 | Dr. Pokharel |
-                                           |        1 | Dr. Sharma   |
-                                           |        4 | Dr. Thapa    |
-                                           +----------+--------------+
-                                           5 rows in set (0.00 sec)
 
 
 
-SELECT PatientRecords1.FirstName, PatientRecords1.LastName, Doctors.DoctorName
-    FROM PatientRecords1
-    INNER JOIN Doctors ON PatientRecords1.DoctorID = Doctors.DoctorID;
+Step 3: 3NF (Third Normal Form)
+Rule: Remove transitive dependencies; author info depends on book, not sale.
 
-                                     +-----------+----------+--------------+
-                                     | FirstName | LastName | DoctorName   |
-                                     +-----------+----------+--------------+
-                                     | Sajan     | Shrestha | Dr. Sharma   |
-                                     | Aarati    | Dahal    | Dr. Khanal   |
-                                     | Rajendra  | Gurung   | Dr. Pokharel |
-                                     | Sunita    | Magar    | Dr. Thapa    |
-                                     | Bibek     | Dhakal   | Dr. Acharya  |
-                                     +-----------+----------+--------------+
 
 
+Books Table
+| BookID | BookTitle | AuthorName |
+| ------ | --------- | ---------- |
+| 1      | Book A    | Author X   |
+| 2      | Book B    | Author Y   |
+| 3      | Book C    | Author Z   |
+| 4      | Book D    | Author W   |
+| 5      | Book E    | Author Q   |
 
 
-CASE SCNERIO IN Deletion anomalies:  
--------------------------------------
 
-Deleting a doctor or diagnosis without considering patient records
+SaleDetails_3NF Table
+| SaleID | BookID | Price |
+| ------ | ------ | ----- |
+| 101    | 1      | 500   |
+| 101    | 2      | 700   |
+| 102    | 3      | 400   |
+| 102    | 4      | 550   |
+| 102    | 5      | 300   |
 
--- Deleting a doctor without considering patient records
-DELETE FROM Doctors
-WHERE DoctorID = 4;
 
--- Deleting a diagnosis without considering patient records
-DELETE FROM Diagnoses
-WHERE DiagnosisID = 105;
 
 
+CLICK :   https://github.com/sanjeevlcc/notes_2081/blob/main/DBMS_BIM_BSCIT_BCA/notes/Normalization/normilization%20examples.png
 
-mysql> select * from Doctors;
-                          +----------+--------------+
-                          | DoctorID | DoctorName   |
-                          +----------+--------------+
-                          |        5 | Dr. Acharya  |
-                          |        2 | Dr. Khanal   |
-                          |        3 | Dr. Pokharel |
-                          |        1 | Dr. Sharma   |
-                          |        4 | Dr. Thapa    |
-                          +----------+--------------+
 
+====================================================================================
 
-mysql> DELETE FROM Doctors
-    -> WHERE DoctorID = 4;
 
-ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_1` FOREIGN KEY (`DoctorID`) REFERENCES `Doctors` (`DoctorID`))
 
 
 
-mysql> select * from Diagnoses;
-                         +-------------+---------------+
-                         | DiagnosisID | DiagnosisName |
-                         +-------------+---------------+
-                         |         105 | Arthritis     |
-                         |         101 | Common Cold   |
-                         |         201 | Diabetes      |
-                         |         302 | Gastritis     |
-                         |         203 | Hypertension  |
-                         +-------------+---------------+
 
 
-mysql> DELETE FROM Diagnoses
-    -> WHERE DiagnosisID = 105;
 
 
-ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`db33`.`PatientRecords1`, CONSTRAINT `PatientRecords1_ibfk_2` FOREIGN KEY (`DiagnosisID`) REFERENCES `Diagnoses` (`DiagnosisID`))
+
+
+
+
+====================================================================================
+Anomaly in databases 
+====================================================================================
+
+        An anomaly in databases is an undesirable or inconsistent situation that happens when 
+        data is stored in a poorly structured table (usually unnormalized).
+        
+        It causes problems when inserting, updating, or deleting data, leading to:
+        
+                  Data redundancy (same information stored in multiple places)
+                  Inconsistencies (different values for the same fact)
+                  Loss of important information (when deleting)
+
+
+
+
+
+1. Insertion Anomaly
+--------------------------
+Problem: In UNF/1NF, you cannot insert certain data without adding unrelated data.
+
+           Example:
+           Suppose a new customer wants to register before making a purchase.
+               In BookstoreSales_1NF, every row requires SaleID, BookTitle, AuthorName, Price etc.
+               You cannot store just the customer info unless you also create a fake sale entry.
+           
+           | SaleID   | CustomerName | BookTitle | AuthorName | Price   | … |
+           | -------- | ------------ | --------- | ---------- | ------- | - |
+           | **NULL** | Ram Bahadur  | **???**   | **???**    | **???** | … |
+           
+
+
+Why it’s bad:
+You’re forced to insert a fake book or sale just to add a customer record.
+
+
+
+
+
+
+
+
+2. Update Anomaly
+--------------------------
+Problem: Updating a single piece of information requires multiple changes,
+          and missing one causes inconsistencies.
+
+Example:
+  Ramesh Karki changes his phone number from 9812345678 to 9811111111.
+      In BookstoreSales_1NF, his phone appears in every row of every sale he made.
+
+              Before Update
+              | SaleID | CustomerName | CustomerPhone | BookTitle |
+              | ------ | ------------ | ------------- | --------- |
+              | 101    | Ramesh Karki | 9812345678    | Book A    |
+              | 101    | Ramesh Karki | 9812345678    | Book B    |
+              
+              
+              If you forget to update even one row, you’ll have inconsistent data:
+              | SaleID | CustomerName | CustomerPhone | BookTitle |                        |
+              | ------ | ------------ | ------------- | --------- | ---------------------- |
+              | 101    | Ramesh Karki | 9811111111    | Book A    |                        |
+              | 101    | Ramesh Karki | 9812345678    | Book B    | ❌ (Old number remains) |
+
+Why it’s bad:
+Leads to data inconsistency and unreliable records.
+
+
+
+
+
+
+
+
+
+
+
+3. Deletion Anomaly
+--------------------------
+Problem: Deleting one fact accidentally removes other valuable information.
+
+Example:
+If we delete the sale record for Book A from BookstoreSales_1NF,
+and that’s the only purchase by Ramesh Karki, then all his customer details are lost.
+
+              Before deletion:
+              | SaleID | CustomerName | CustomerPhone | BookTitle |
+              | ------ | ------------ | ------------- | --------- |
+              | 101    | Ramesh Karki | 9812345678    | Book A    |
+              
+              
+              
+              
+              After deletion → Ramesh Karki’s customer profile disappears entirely.
+              
+
+
+Why it’s bad:
+We lose customer information just because we deleted a related sale.
+
+
+
+
+
+
+
+How Normalization Fixes This
+-----------------------------
+          Insertion Anomaly → Fixed by having a Customers table (can insert customer without sale).
+          
+          Update Anomaly → Fixed by storing customer info in one place only.
+          
+          Deletion Anomaly → Fixed by separating customers and sales so deleting a sale doesn’t delete the customer.
+          
+
+
+====================================================================================
+
+
+
+
+
 
 
 
@@ -566,6 +496,8 @@ Database Normal Forms
                 5NF (Fifth Normal Form)
                 6NF (Sixth Normal Form)
 
+
+
 The Theory of Data Normalization in MySQL server is still
 being developed further. For example, there are discussions 
 even on 6th Normal Form. 
@@ -578,41 +510,41 @@ achieves its best in 3rd Normal Form.
 
 Normal Form	Description
 ---------------------------
-1NF	
-     A relation is in 1NF if it contains an atomic value.
-
-
-
-2NF	
-     A relation will be in 2NF if it is in 1NF and 
-     all non-key attributes are fully functional dependent
-     on the primary key.
-
-
-3NF	
-     A relation will be in 3NF if it is in 2NF and 
-     no transition dependency exists.
-
-
-
-BCNF	
-      A stronger definition of 3NF is known as Boyce
-      Codd's normal form.
-
-
-
-4NF	
-      A relation will be in 4NF if it is in Boyce
-      Codd's normal form and has no multi-valued
-      dependency.
-
-
-
-
-5NF	
-      A relation is in 5NF. If it is in 4NF and does
-      not contain any join dependency, joining should 
-      be lossless.
+          1NF	
+               A relation is in 1NF if it contains an atomic value (no multivalues).
+          
+          
+          
+          2NF	
+               A relation will be in 2NF if it is in 1NF and 
+               all non-key attributes are fully functional dependent
+               on the primary key.
+          
+          
+          3NF	
+               A relation will be in 3NF if it is in 2NF and 
+               no transition dependency exists.
+          
+          
+          
+          BCNF	
+                A stronger definition of 3NF is known as Boyce
+                Codd's normal form.
+          
+          
+          
+          4NF	
+                A relation will be in 4NF if it is in Boyce
+                Codd's normal form and has no multi-valued
+                dependency.
+          
+          
+          
+          
+          5NF	
+                A relation is in 5NF. If it is in 4NF and does
+                not contain any join dependency, joining should 
+                be lossless.
 
 
 
@@ -626,25 +558,28 @@ BCNF
 Advantages  and Disadvantages of Normalization
 ====================================================================================
 
+           
+           Advantages of Normalization
+           ------------------------------
+                     Normalization helps to minimize data redundancy.
+                     Greater overall database organization.
+                     Data consistency within the database.
+                     Much more flexible database design.
+                     Enforces the concept of relational integrity.
+           
+           
+           
+           
+           Disadvantages of Normalization
+           ------------------------------
+                      You cannot start building the database before knowing what the user needs.
+                      The performance degrades when normalizing the relations to higher normal forms, 
+                      i.e., 4NF, 5NF.
+                      It is very time-consuming and difficult to normalize relations of a higher degree.
+                      Careless decomposition may lead to a bad database design, leading to serious problems.
 
-Advantages of Normalization
-------------------------------
-          Normalization helps to minimize data redundancy.
-          Greater overall database organization.
-          Data consistency within the database.
-          Much more flexible database design.
-          Enforces the concept of relational integrity.
 
 
-
-
-Disadvantages of Normalization
-------------------------------
-           You cannot start building the database before knowing what the user needs.
-           The performance degrades when normalizing the relations to higher normal forms, 
-           i.e., 4NF, 5NF.
-           It is very time-consuming and difficult to normalize relations of a higher degree.
-           Careless decomposition may lead to a bad database design, leading to serious problems.
 
 
 
@@ -896,21 +831,23 @@ Composite Key:
 
 
 
+
+
+
+
 ====================================================================================
 Functional Dependencies
 ====================================================================================
 
-Functional dependencies are the result of interrelationship 
+Functional dependencies are the result of interrelationships 
 between attributes or in between tuples in any relation.
 
 Definition : 
 --------------
-In relation R, 
-    X and Y are the two subsets of the set of attributes, 
-    Y is  said to be functionally dependent on X if a
-    given value of X (all attributes in X) 
-    uniquely determines the value of Y (all attributes in Y).
-
+In relation R,
+          X and Y are two subsets of attributes.
+          Y is said to be functionally dependent on X (written as X → Y)
+                     if, for a given value of X, there is exactly one unique value of Y.
 
 
 It is denoted by X → Y (Y depends upon X).
@@ -926,6 +863,14 @@ Determinant :
                          emp_id  → name  
 
 
+
+
+
+
+Explanation
+     Functional dependencies express how one attribute (or set of attributes) determines another.
+     They are not about formulas, but about uniqueness of mapping.
+     Functional dependencies are key for normalization — they help decide how to split tables.
 
 
 
@@ -961,6 +906,86 @@ EXAMPLE SCNERIO
 |     10 | Anita Rana     | NEP-345        | anita@example.com  |           108 |
 +--------+----------------+----------------+--------------------+---------------+
 
+
+
+
+
+
+
+
+
+Example — Bookstore Sales
+---------------------------
+
+          
+          Relation:
+                 Sales(SaleID, CustomerID, CustomerName, CustomerPhone, BookID, BookTitle, Price)
+          
+          
+          
+          
+          Functional Dependencies:
+                    SaleID → CustomerID, SaleDate, PaymentMethod
+                    (Each sale has one customer and payment details.)
+                    
+                    CustomerID → CustomerName, CustomerPhone
+                    (A customer’s ID determines their name and phone.)
+                    
+                    BookID → BookTitle, Price
+                    (Each book ID corresponds to one title and price.)
+                    
+          
+          
+          
+          Diagram of Functional Dependencies
+          -------------------------------------
+                        CustomerID ───────→ CustomerName
+                             │             → CustomerPhone
+                             │
+                             └── SaleID ───→ SaleDate
+                                            → PaymentMethod
+                        
+                        BookID ───────────→ BookTitle
+                                            → Price
+                        
+          
+          
+          
+          Visual Flow:
+          ---------------
+                   CustomerID  →  CustomerName, CustomerPhone
+                   SaleID      →  SaleDate, PaymentMethod
+                   BookID      →  BookTitle, Price
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          Diagram (Graph Style)
+          ----------------------
+          +------------+           +-------------------+
+          | CustomerID | ------→   | CustomerName      |
+          |            | ------→   | CustomerPhone     |
+          +------------+           +-------------------+
+          
+          +--------+               +-------------------+
+          | SaleID | ------→       | SaleDate           |
+          |        | ------→       | PaymentMethod      |
+          +--------+               +-------------------+
+          
+          +--------+               +-------------------+
+          | BookID | ------→       | BookTitle          |
+          |        | ------→       | Price              |
+          +--------+               +-------------------+
+          
+          
+          
+          
 
 
 
@@ -1026,8 +1051,7 @@ Prime and Non-Prime Attributes
 ====================================================================================
       For a given relation R= {A1,A2,A3,………..,An}, 
       
-      an attribute A is a prime attribute if A is a part of any 
-      candidate key of R 
+      an attribute A is a prime attribute if A is a part of any candidate key of R 
       otherwise A is a non-prime attribute
 
                      EXAMPLE
