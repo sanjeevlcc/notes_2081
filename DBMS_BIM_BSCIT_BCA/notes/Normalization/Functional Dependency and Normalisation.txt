@@ -1051,12 +1051,13 @@ Prime and Non-Prime Attributes
 ====================================================================================
       For a given relation R= {A1,A2,A3,………..,An}, 
       
-      an attribute A is a prime attribute if A is a part of any candidate key of R 
+      An attribute A is a prime attribute if A is a part of any candidate key of R 
       otherwise A is a non-prime attribute
 
                      EXAMPLE
                      -------
                      R(A, B, C, D, E, F, G, H) 
+
                      FD = {D→AB, B→A, C→A, F→G, H→FGD, E→A}
                      
                      Solution
@@ -1131,6 +1132,32 @@ Example
 
 
 
+
+
+              
+              EXAMPLE
+              --------------
+              
+              
+              | **BookID** | **Title**                    | **Author**           | **Price** | **PublisherID** | **PublisherName**     |
+              | ---------- | ---------------------------- | -------------------- | --------- | --------------- | --------------------- |
+              
+              Candidate Key : BookID (uniquely identifies each record)
+              
+              Prime Attributes: Attributes that are part of at least one Candidate Key are called Prime Attributes.
+                                BookID is the only Candidate Key → Prime Attribute = BookID
+              
+              Non-Prime Attributes: Attributes that are not part of any Candidate Key are called Non-Prime Attributes.
+                                    Title, Author, Price, PublisherID, PublisherName are not part of the Candidate Key.
+              
+              
+              
+
+
+
+
+
+
            Example
            -----------
            Consider a relation R(A, B, C, D, E, F, G, H) 
@@ -1187,97 +1214,77 @@ There are four major types of FD’s.
 
 
 
+
+Consider TABLE
+---------------------------------------------------------------------------------------------------------------
+| Book_ID | Title             | Author           | Publisher     | Price | Genre       | Publisher\_Location  |
+| -------- | ----------------- | ---------------- | ------------- | ----- | ----------- | ------------------- |
+| B001     | DBMS Concepts     | Navathe          | Pearson       | 500   | Education   | USA                 |
+| B002     | Operating Systems | Silberschatz     | Wiley         | 600   | Education   | USA                 |
+| B003     | Networking Basics | Tanenbaum        | Pearson       | 450   | Education   | USA                 |
+| B004     | The Alchemist     | Paulo Coelho     | HarperCollins | 350   | Fiction     | UK                  |
+| B005     | Clean Code        | Robert C. Martin | Pearson       | 700   | Programming | USA                 |
+---------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 Trival Dependency and Non-trival Dependency
 ---------------------------------------------------
 
-Trival FD : 
-----------------
-In any relation R, X → Y is trival if Y ⊆ X (Y is the subset of X).
-
-        EXAMPLE
-        Consider a table with two columns Employee_Id and Employee_Name.  
-
-
-        {Employee_id, Employee_Name}   →    Employee_Id 
-                    is a trivial functional dependency as   
-        
-        
-        Employee_Id is a subset of {Employee_Id, Employee_Name}.  
-        Also, 
-        Employee_Id → Employee_Id 
-                  and 
-        Employee_Name   →    Employee_Name 
-                    are trivial dependencies too.  
-
-
-
-Non-trival FD : 
-----------------
-In any relation R, X → Y is non-trival if Y ⊆ X (Y is not the subset of X)
-
-          EXAMPLE
-          ID     →    Name,  
-          Name   →    DOB  
-
-
-
-             EXAMPLE
-             ----------
-             Consider the Supplier-Product relation shown
-             +----+-------+------+---------+
-             | S# | City  | P#   | Quantity |
-             +----+-------+------+---------+
-             |  1 | Delhi | 1P   |      100 |
-             |  2 | Rohtak| 8P   |      200 |
-             |  3 | Pune  | 3P   |       50 |
-             |  4 | Pune  | 5P   |       75 |
-             |  5 | Rohtak| 1P   |       99 |
-             |  6 | Mau   | 5P   |      105 |
-             +----+-------+------+----------+
-
-                        (S#, P#) : S# is trival FD
-                         S# : Supplier ID
-                         P# : Product ID
-
-
-
+    Trival FD : 
+    ----------------
+    In any relation R, X → Y is trival if Y ⊆ X (Y is the subset of X).
+    
             EXAMPLE
-            ----------
-            Consider the given relation R:
-            +---+---+---+
-            | O | P | Q |
-            +---+---+---+
-            | 1 | 2 | 3 |
-            | 2 | 1 | 7 |
-            | 2 | 1 | 5 |
-            | 7 | 3 | 8 |
-            +---+---+---+
-            Write all non-trivial functional dependencies satisfied by R. 
-            Also give an example of an FD that does not hold on R.
+              A dependency is trivial if the dependent attribute is already part of the determinant.
+              
+              Example:
+              {Book_ID, Title} → Title ✅ (Trivial because Title is part of the left-hand side) 
+                      
+       
+    
+    
+    Non-trival FD : 
+    ----------------
+    In any relation R, X → Y is non-trival if Y ⊆ X (Y is not the subset of X)
+    
+              EXAMPLE
+                Dependency is non-trivial if the dependent attribute is not part of the determinant.
+                
+                Example:
+                {Book_ID} → Title ✅ (Non-trivial because Title is not part of Book_ID) 
 
-           Sol. For functional dependencies look at the data given in the table.
-           
-           – The FD O → P holds on R, 
-               since for each value of O there is a single value of P.
-           
-           – The FD O → Q does not hold on R, since in the 2nd and 3rd row, 
-               O has the same value, but Q has different values.
-           
-           The non-trivial functional dependencies are as follows:
-                         O → P, 
-                         Q → O, 
-                         Q → P, 
-                         OQ → P, 
-                         PQ → O, 
-                         Q → OP, 
-                         O → OP, 
-                         OQ → PQ,
-                         OQ → OPQ,
-                         Q → OQ, 
-                         PQ → OPQ, 
-                         Q → OPQ,
-                         P → O, 
-                         P → OP
+
+
+
+
+
+
+
+
+
+
+Single-Valued and Multivalued Dependency
+---------------------------------------------------
+Single-Valued Dependency:
+---------------------------
+    Each value of determinant determines a single value of the dependent attribute.
+        Example:
+        {Book_ID} → Price ✅ (One book has only one price)
+
+
+
+Multivalued Dependency:
+---------------------------
+  Each determinant value determines multiple independent values for another attribute.
+    Example:
+    {Author} →→ Title ✅ (An author can write multiple titles)
+
+
+
+
 
 
 
@@ -1287,33 +1294,6 @@ In any relation R, X → Y is non-trival if Y ⊆ X (Y is not the subset of X)
 
 Partial Dependency and Fully Functional Dependency 
 ---------------------------------------------------
-
-
-Partial dependency : 
-----------------------
-Suppose you have more than one attributes in primary key. 
-   
-      Let A be the non-prime key attribute. 
-          If A is not dependent upon all prime key attributes 
-          then partial dependency exists.
-   
-          A partial dependency occurs when a 
-          non-prime attribute is functionally dependent 
-          on only part of a candidate key, not the entire key.
-   
-   
-   
-          In other words, a non-prime attribute depends on only 
-          a portion (proper subset) of the candidate key.
-   
-   
-          For example, in the t1 table, if we have a functional dependency 
-                 {emp_id, department_id} -> {name}, 
-   
-          where name depends only on a part of the candidate 
-          key (emp_id), it would be a partial dependency.
-
-
 
 
 
@@ -1341,39 +1321,46 @@ Let A be the non-prime key attribute and value of A
 
 
 
+        
+        Fully Functional Dependency:
+        
+        (Assume Primary Key = {Book_ID})
+        
+        When removing any attribute from the determinant means the dependency no longer holds.
+        Example:
+        {Book_ID} → Title ✅ (Full dependency — Book_ID alone determines Title)
 
-  Example:
+
+
+
+
   
-  mysql> select * from t1;
-  +--------+----------------+----------------+--------------------+---------------+
-  | emp_id | name           | citizenship_id | email_id           | department_id |
-  +--------+----------------+----------------+--------------------+---------------+
-  |      6 | Suman Shrestha | NEP-123        | suman@example.com  |           105 |
-  |      7 | Sarita Rai     | NEP-456        | sarita@example.com |           106 |
-  |      8 | Raj Gurung     | NEP-789        | raj@example.com    |           107 |
-  |      9 | Bibek Paudel   | NEP-012        | bibek@example.com  |           105 |
-  |     10 | Anita Rana     | NEP-345        | anita@example.com  |           108 |
-  +--------+----------------+----------------+--------------------+---------------+
+Partial dependency : 
+----------------------
+Suppose you have more than one attributes in primary key. 
+   
+      Let A be the non-prime key attribute. 
+          If A is not dependent upon all prime key attributes 
+          then partial dependency exists.
+   
+          A partial dependency occurs when a 
+          non-prime attribute is functionally dependent 
+          on only part of a candidate key, not the entire key.
+   
+   
+   
+          In other words, a non-prime attribute depends on only 
+          a portion (proper subset) of the candidate key.
+   
+   
+    
+    Partial Dependency:
+    If only part of a composite key determines the dependent attribute.
+    Example:
+    (Assume composite key {Author, Publisher} is used)
+    {Author} → Publisher_Location ✅ (Publisher location depends only on Publisher, not the full key)
 
-             {emp_id} -> {name, citizenship_id, email_id, department_id} 
 
-       is a fully functional dependency because 
-       name, citizenship_id, email_id, and department_id 
-       depend   on the entire candidate key (emp_id).
-
-
-               {email_id} -> {name} 
-       is a fully functional dependency because name 
-       depends on the entire candidate key (email_id).
-
-
-          {department_id} -> {citizenship_id, email_id} 
-              
-              could be a partial dependency if 
-              citizenship_id and email_id depend only on a 
-              part of the candidate key (department_id),
-              or it could be a fully functional dependency
-              if they depend on the entire candidate key.
 
 
 
@@ -1587,6 +1574,27 @@ Properties of FD
 Armstrong’s Axioms - RAT rule
 ----------------------------------imp
 
+
+
+| BookID | Title                     | Author          | Publisher   | Price | Category     |
+| ------ | ------------------------- | --------------- | ----------- | ----- | ------------ |
+| B1     | Database Concepts         | Elmasri         | Pearson     | 500   | DBMS         |
+| B2     | Learning SQL              | Alan Beaulieu   | O’Reilly    | 450   | DBMS         |
+| B3     | Java Programming          | Herbert Schildt | McGraw-Hill | 600   | Programming  |
+| B4     | Python Crash Course       | Eric Matthes    | No Starch   | 550   | Programming  |
+| B5     | Data Science for Business | Foster Provost  | O’Reilly    | 700   | Data Science |
+
+
+
+Let’s assume the following FDs for our table:
+            BookID → Title, Author, Publisher, Price, Category
+            Title → Author, Publisher, Price, Category
+            Publisher → Category
+
+
+
+
+
      The following three rules called inference axioms or Armstrong’s Axioms 
      can be used to find  all the FDs logically implied by a set of FDs.
 
@@ -1609,10 +1617,29 @@ Armstrong’s Axioms - RAT rule
 
 
 
+
+Example:
+From BookID → Title, Author, Publisher, Price, Category
+Reflexivity says: Since {Title} is a subset of {BookID, Title}, we have BookID, Title → Title (trivial dependency).
+
+
+
+
+
+
+
+
+
       2. Augmentation. 
       -------------------
       If X → Y holds and Z is a set of attributes, 
       then ZX → ZY.
+
+
+Example:
+      Given Title → Author
+      Augment with Publisher → Title, Publisher → Author, Publisher
+
 
 
 
@@ -1628,6 +1655,13 @@ Armstrong’s Axioms - RAT rule
              Employee_Id   → Employee_Name
              Employee_Name → Address
              Employee_Id   → Address 
+
+Example:
+      BookID → Title and Title → Author
+      Therefore, BookID → Author (by transitivity).
+
+
+
 
 
 
@@ -1659,6 +1693,10 @@ Armstrong’s Axioms - RAT rule
         
                   NOTE:    XY → Z  
                        then X → Z and Y → Z DONT HOLD
+
+
+
+
 
 
 
@@ -2387,6 +2425,10 @@ INSERT INTO phone (stu_no, phone_part1, phone_part2, phone_part3) VALUES
 
 
 
+
+
+
+
 ====================================================================================
 Second Normal Form (2NF)
 ====================================================================================
@@ -2626,6 +2668,23 @@ EXAMPLE
 
 EXAMPLE
 ----------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ====================================================================================
 Third Normal Form (3NF)
