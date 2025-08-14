@@ -3455,15 +3455,217 @@ Courses
 
 
 
-====================================================================================
+
+
+
+
+
 
 ====================================================================================
+BIM 2018
+====================================================================================
+
+
+
+ProjNum | ProjName   | EmpName         | Job_Class | Charge_Hour | Hours_Worked | Total_Charge
+15      | Evergreen  | Prithvi         | Engineer  | $25         | 145          | 3625
+15      | Evergreen  | Nishi           | DBA       | $18         | 220          | 3960
+15      | Evergreen  | Rizvi, Mokshada | DBA,DBA   | $18         | 110          | 1980
+18      | Kulekhani  | Prithvi         | Engineer  | $25         | 220          | 5500
+18      | Kulekhani  | Akshat          | DBA       | $18         | 150          | 2700
+
+
+
+
+SOLUTion
+-----------
+
+
+
+Unnormalized Table (UNF)
+(Repeating groups: multiple employees with combined names like "Rizvi, Mokshada")
+
+    ProjNum | ProjName   | EmpName         | Job_Class | Charge_Hour | Hours_Worked | Total_Charge
+    15      | Evergreen  | Prithvi         | Engineer  | $25         | 145          | 3625
+    15      | Evergreen  | Nishi           | DBA       | $18         | 220          | 3960
+    15      | Evergreen  | Rizvi, Mokshada | DBA,DBA   | $18         | 110          | 1980
+    18      | Kulekhani  | Prithvi         | Engineer  | $25         | 220          | 5500
+    18      | Kulekhani  | Akshat          | DBA       | $18         | 150          | 2700
+
+
+
+
+Step 1 – 1NF (First Normal Form)
+--------------------------------------------
+  Remove repeating groups (split multiple names and multiple job classes into separate rows).
+  Ensure each field has atomic values.
+
+ProjNum | ProjName   | EmpName   | Job_Class | Charge_Hour | Hours_Worked | Total_Charge
+15      | Evergreen  | Prithvi   | Engineer  | $25         | 145          | 3625
+15      | Evergreen  | Nishi     | DBA       | $18         | 220          | 3960
+15      | Evergreen  | Rizvi     | DBA       | $18         | 110          | 1980
+15      | Evergreen  | Mokshada  | DBA       | $18         | 110          | 1980
+18      | Kulekhani  | Prithvi   | Engineer  | $25         | 220          | 5500
+18      | Kulekhani  | Akshat    | DBA       | $18         | 150          | 2700
+
+
+
+
+Step 2 – 2NF (Second Normal Form)
+--------------------------------------------
+Identify composite key: (ProjNum, EmpName)
+      Remove partial dependencies (attributes that depend only on part of the composite key).
+      ProjName depends only on ProjNum.
+      Job_Class and Charge_Hour depend only on EmpName.
+
+Projects
+ProjNum | ProjName
+15      | Evergreen
+18      | Kulekhani
+
+
+Employees
+EmpName   | Job_Class | Charge_Hour
+Prithvi   | Engineer  | $25
+Nishi     | DBA       | $18
+Rizvi     | DBA       | $18
+Mokshada  | DBA       | $18
+Akshat    | DBA       | $18
+
+
+
+Work_Assignment
+ProjNum | EmpName   | Hours_Worked | Total_Charge
+15      | Prithvi   | 145          | 3625
+15      | Nishi     | 220          | 3960
+15      | Rizvi     | 110          | 1980
+15      | Mokshada  | 110          | 1980
+18      | Prithvi   | 220          | 5500
+18      | Akshat    | 150          | 2700
+
+
+
+
+
+Step 3 – 3NF (Third Normal Form)
+--------------------------------------------
+    Remove transitive dependencies (non-key attributes depending on other non-key attributes).
+
+    Total_Charge = Charge_Hour × Hours_Worked → derived attribute → remove it from storage.
+
+
+Projects
+ProjNum | ProjName
+15      | Evergreen
+18      | Kulekhani
+
+Employees
+EmpName   | Job_Class | Charge_Hour
+Prithvi   | Engineer  | $25
+Nishi     | DBA       | $18
+Rizvi     | DBA       | $18
+Mokshada  | DBA       | $18
+Akshat    | DBA       | $18
+
+
+Work_Assignment
+ProjNum | EmpName   | Hours_Worked
+15      | Prithvi   | 145
+15      | Nishi     | 220
+15      | Rizvi     | 110
+15      | Mokshada  | 110
+18      | Prithvi   | 220
+18      | Akshat    | 150
+
+
+
+
+
+
+
+
+
+Step 4 – BCNF (Boyce-Codd Normal Form)
+
+In BCNF, for every functional dependency X → Y, X must be a superkey.
+        Current structure already satisfies BCNF:
+        ProjNum → ProjName (ProjNum is key in Projects)
+        EmpName → Job_Class, Charge_Hour (EmpName is key in Employees)
+        
+
+
+Projects
+ProjNum | ProjName
+15      | Evergreen
+18      | Kulekhani
+
+
+
+Employees
+EmpName   | Job_Class | Charge_Hour
+Prithvi   | Engineer  | $25
+Nishi     | DBA       | $18
+Rizvi     | DBA       | $18
+Mokshada  | DBA       | $18
+Akshat    | DBA       | $18
+
+
+
+
+
+Work_Assignment
+ProjNum | EmpName   | Hours_Worked
+15      | Prithvi   | 145
+15      | Nishi     | 220
+15      | Rizvi     | 110
+15      | Mokshada  | 110
+18      | Prithvi   | 220
+18      | Akshat    | 150
+
+
+
 
 
 
 ====================================================================================
-
+WORK @ HW CW
 ====================================================================================
+
+Table: Patient Treatment Data
+
+    PatNum | PatName          | DocName          | Specialty       | Fee_Per_Session | Sessions | Total_Fee
+    101    | Ramesh Thapa     | Dr. Koirala      | Cardiologist    | $50             | 5        | 250
+    101    | Ramesh Thapa     | Dr. Sharma       | Physiotherapist | $30             | 3        | 90
+    102    | Anita Shrestha   | Dr. Koirala      | Cardiologist    | $50             | 4        | 200
+    103    | Suresh Bhandari  | Dr. Sharma       | Physiotherapist | $30             | 6        | 180
+    103    | Suresh Bhandari  | Dr. Lama, Dr. Rai| Surgeon, Surgeon| $100            | 2        | 200
+  
+
+
+
+Table: Guest Booking Data
+
+      BookingID | GuestName       | RoomNo | RoomType  | Rate_Per_Night | Nights_Stay | Total_Charge
+      B01       | Sunita Pandey   | 101    | Deluxe    | $120           | 3           | 360
+      B01       | Sunita Pandey   | 202    | Suite     | $200           | 2           | 400
+      B02       | Bikash Ghimire  | 101    | Deluxe    | $120           | 4           | 480
+      B03       | Anil Khadka     | 202    | Suite     | $200           | 3           | 600
+      B03       | Anil Khadka     | 303, 304| Standard, Standard | $80 | 1 | 80
+
+
+
+
+
+Table: Vehicle Hire Data
+
+
+        HireID | CustomerName     | DriverName      | VehicleType   | Rate_Per_Hour | Hours_Hired | Total_Fare
+        H01    | Rajesh Adhikari  | Ram Bahadur     | Sedan         | $15           | 8           | 120
+        H01    | Rajesh Adhikari  | Mohan Shrestha  | SUV           | $20           | 5           | 100
+        H02    | Laxmi K.C.       | Ram Bahadur     | Sedan         | $15           | 6           | 90
+        H03    | Kiran Thapa      | Mohan Shrestha  | SUV           | $20           | 4           | 80
+        H03    | Kiran Thapa      | Suman Lama, Hari Gurung | Minibus, Minibus | $30 | 3 | 90
+        
 
 
 
