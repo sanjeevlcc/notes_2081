@@ -3255,9 +3255,52 @@ Step 3: Check for Third Normal Form (3NF)
 
 
 ====================================================================================
-
+14 august 2025 BIM new que
 ====================================================================================
 
+| Student\_ID | Course\_Id | Student\_Name | Course\_Name | Grade | Teacher      | Teacher\_Email                        |
+| ----------- | ---------- | ------------- | ------------ | ----- | ------------ | ------------------------------------- |
+| 100         | 10         | Hari          | SQL          | A     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
+| 200         | 10         | Shyam         | SQL          | B     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
+| 100         | 20         | Hari          | Python       | A     | Om Khattri   | [om@mxn.com](mailto:om@mxn.com)       |
+| 200         | 20         | Shyam         | Python       | A     | Om Khattri   | [om@mxn.com](mailto:om@mxn.com)       |
+| 300         | 10         | Gita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
+| 400         | 10         | Sita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
+| 400         | 20         | Sita          | Python       | C     | Om Khattri   | [om@mxn.com](mailto:om@mxn.com)       |
+
+
+1NF (First Normal Form)
+      Rule:
+          No repeating groups or multi-valued attributes.
+          Each cell should have atomic values.
+      
+      Our table  in 1NF because:
+            Each field contains only one value.
+            All rows are unique.
+
+
+
+| Student\_ID | Course\_Id | Student\_Name | Course\_Name | Grade | Teacher | Teacher Email                             |
+| ----------- | ---------- | ------------- | ------------ | ----- | ------- | ----------------------------------------- |
+| 100         | 10         | Ram           | SQL          | A     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
+| 200         | 10         | Sita          | SQL          | B     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
+| 100         | 20         | Ram           | Python       | A     | Manoj   | [manoj@gmail.com](mailto:manoj@gmail.com) |
+| 200         | 20         | Sita          | Python       | A     | Manoj   | [manoj@gmail.com](mailto:manoj@gmail.com) |
+| 300         | 10         | Gita          | SQL          | C     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
+| 400         | 10         | Nepali        | SQL          | C     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
+| 400         | 20         | Nepali        | Python       | C     | Om      | [om@gmail.com](mailto:om@gmail.com)       |
+
+
+
+| Student\_ID | Course\_Id | Student\_Name | Course\_Name | Grade | Teacher      | Teacher Email                         |
+| ----------- | ---------- | ------------- | ------------ | ----- | ------------ | ------------------------------------- |
+| 100         | 10         | Hari          | SQL          | A     | Ashok Gurung | [ashok@mxn.com] 
+| 200         | 10         | Shyam         | SQL          | B     | Ashok Gurung | [ashok@mxn.com] 
+| 100         | 20         | Hari          | Python       | A     | Om Khattri   | [om@mxn.com]
+| 200         | 20         | Shyam         | Python       | A     | Om Khattri   | [om@mxn.com]
+| 300         | 10         | Gita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com]
+| 400         | 10         | Sita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com]
+| 400         | 20         | Sita          | Python       | C     | Om Khattri   | [om@mxn.com]
 
 
 ====================================================================================
