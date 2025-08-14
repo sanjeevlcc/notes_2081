@@ -3258,49 +3258,201 @@ Step 3: Check for Third Normal Form (3NF)
 14 august 2025 BIM new que
 ====================================================================================
 
-| Student\_ID | Course\_Id | Student\_Name | Course\_Name | Grade | Teacher      | Teacher\_Email                        |
-| ----------- | ---------- | ------------- | ------------ | ----- | ------------ | ------------------------------------- |
-| 100         | 10         | Hari          | SQL          | A     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
-| 200         | 10         | Shyam         | SQL          | B     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
-| 100         | 20         | Hari          | Python       | A     | Om Khattri   | [om@mxn.com](mailto:om@mxn.com)       |
-| 200         | 20         | Shyam         | Python       | A     | Om Khattri   | [om@mxn.com](mailto:om@mxn.com)       |
-| 300         | 10         | Gita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
-| 400         | 10         | Sita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com](mailto:ashok@mxn.com) |
-| 400         | 20         | Sita          | Python       | C     | Om Khattri   | [om@mxn.com](mailto:om@mxn.com)       |
 
 
-1NF (First Normal Form)
-      Rule:
-          No repeating groups or multi-valued attributes.
-          Each cell should have atomic values.
+| Student_ID | Course_id | Student_Name | Course_Name | Grade | Teacher | Teacher Email    |
+|------------|-----------|--------------|-------------|-------|---------|------------------|
+| 100        | 10        | Ram          | SQL         | A     | Ashok   | ashok@cnn.com    |
+| 200        | 10        | Sita         | SQL         | B     | Ashok   | ashok@cnn.com    |
+| 100        | 20        | Ram          | Python      | A     | Om      | om@ntv.com       |
+| 200        | 20        | Sita         | Python      | A     | Om      | om@ntv.com       |
+| 300        | 10        | Hari         | SQL         | C     | Ashok   | ashok@cnn.com    |
+| 400        | 10        | Gita         | SQL         | C     | Ashok   | ashok@cnn.com    |
+| 400        | 20        | Gita         | Python      | C     | Om      | om@ntv.com       |
+
+
+
+
+1. First Normal Form (1NF)
+---------------------------------
+      Each table cell should contain a single value
+      Each record needs to be unique
+      Result: The table is already in 1NF as it meets these requirements.
+
+
+
+
+2. Second Normal Form (2NF)
+ ---------------------------------     
+      Must be in 1NF
+            All non-key attributes must depend on the entire primary key
       
-      Our table  in 1NF because:
-            Each field contains only one value.
-            All rows are unique.
+      Analysis:
+            The primary key is composite: (Student_ID, Course_id)
+            Student_Name depends only on Student_ID (partial dependency)
+            Course_Name, Teacher, and Teacher_Email depend only on Course_id (partial dependency)
+            Only Grade depends on the full primary key
+
+      Solution: Decompose into three tables:
+              Students (Student_ID, Student_Name)
+              Courses (Course_id, Course_Name, Teacher, Teacher_Email)
+              Enrollments (Student_ID, Course_id, Grade)
+
+Students:
+| Student\_ID | Student\_Name |
+| ----------- | ------------- |
+| 100         | Ram           |
+| 200         | Sita          |
+| 300         | Hari          |
+| 400         | Gita          |
+
+
+Courses:
+| Course\_ID | Course\_Name | Teacher | Teacher\_Email    
+| ---------- | ------------ | ------- | -----------------
+| 10         | SQL          | Ashok   | [ashok@cnn.com]
+| 20         | Python       | Om      | [om@ntv.com]
 
 
 
-| Student\_ID | Course\_Id | Student\_Name | Course\_Name | Grade | Teacher | Teacher Email                             |
-| ----------- | ---------- | ------------- | ------------ | ----- | ------- | ----------------------------------------- |
-| 100         | 10         | Ram           | SQL          | A     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
-| 200         | 10         | Sita          | SQL          | B     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
-| 100         | 20         | Ram           | Python       | A     | Manoj   | [manoj@gmail.com](mailto:manoj@gmail.com) |
-| 200         | 20         | Sita          | Python       | A     | Manoj   | [manoj@gmail.com](mailto:manoj@gmail.com) |
-| 300         | 10         | Gita          | SQL          | C     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
-| 400         | 10         | Nepali        | SQL          | C     | Ashok   | [ashok@gmail.com](mailto:ashok@gmail.com) |
-| 400         | 20         | Nepali        | Python       | C     | Om      | [om@gmail.com](mailto:om@gmail.com)       |
+Enrollments:
+| Student\_ID | Course\_ID | Grade |
+| ----------- | ---------- | ----- |
+| 100         | 10         | A     |
+| 200         | 10         | B     |
+| 100         | 20         | A     |
+| 200         | 20         | A     |
+| 300         | 10         | C     |
+| 400         | 10         | C     |
+| 400         | 20         | C     |
 
 
 
-| Student\_ID | Course\_Id | Student\_Name | Course\_Name | Grade | Teacher      | Teacher Email                         |
-| ----------- | ---------- | ------------- | ------------ | ----- | ------------ | ------------------------------------- |
-| 100         | 10         | Hari          | SQL          | A     | Ashok Gurung | [ashok@mxn.com] 
-| 200         | 10         | Shyam         | SQL          | B     | Ashok Gurung | [ashok@mxn.com] 
-| 100         | 20         | Hari          | Python       | A     | Om Khattri   | [om@mxn.com]
-| 200         | 20         | Shyam         | Python       | A     | Om Khattri   | [om@mxn.com]
-| 300         | 10         | Gita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com]
-| 400         | 10         | Sita          | SQL          | C     | Ashok Gurung | [ashok@mxn.com]
-| 400         | 20         | Sita          | Python       | C     | Om Khattri   | [om@mxn.com]
+
+
+3. Third Normal Form (3NF)
+---------------------------------
+            Requirements:
+                    Must be in 2NF
+                    No transitive dependencies (non-key attributes shouldn't 
+                                              depend on other non-key attributes)
+            
+            Analysis:
+                  In the Courses table, Teacher_Email depends on Teacher (not directly on Course_id)
+                  This is a transitive dependency
+            
+            Solution: Further decompose the Courses table:
+                  Courses (Course_id, Course_Name, Teacher_ID)
+                  Teachers (Teacher_ID, Teacher_Name, Teacher_Email)
+
+
+
+
+
+Teachers
+| Teacher\_ID | Teacher\_Name | Teacher\_Email                        |
+| ----------- | ------------- | --------------------
+| T1          | Ashok         | [ashok@cnn.com]
+| T2          | Om            | [om@ntv.com]
+
+
+
+
+Courses
+| Course\_ID | Course\_Name | Teacher\_ID |
+| ---------- | ------------ | ----------- |
+| 10         | SQL          | T1          |
+| 20         | Python       | T2          |
+
+
+
+
+
+
+Boyce-Codd Normal Form (BCNF)
+---------------------------------
+        Requirements:
+              Must be in 3NF
+              For every functional dependency X → Y, X must be a superkey
+        
+        Analysis:
+            All tables are already in BCNF because:
+                  In Students: Student_ID is the key
+                  In Teachers: Teacher_ID is the key
+                  In Courses: Course_id is the key
+                  In Enrollments: (Student_ID, Course_id) is the key
+
+
+
+
+
+
+
+
+---------------------------------
+Final Normalized Schema:
+---------------------------------
+
+        
+        Students (Student_ID, Student_Name)
+              PK: Student_ID
+        
+        Teachers (Teacher_ID, Teacher_Name, Teacher_Email)
+              PK: Teacher_ID
+        
+        Courses (Course_id, Course_Name, Teacher_ID)
+              PK: Course_id
+              FK: Teacher_ID references Teachers(Teacher_ID)
+        
+        Enrollments (Student_ID, Course_id, Grade)
+              PK: (Student_ID, Course_id)
+              FK: Student_ID references Students(Student_ID)
+              FK: Course_id references Courses(Course_id)
+
+
+
+
+Students:
+| Student\_ID | Student\_Name |
+| ----------- | ------------- |
+| 100         | Ram           |
+| 200         | Sita          |
+| 300         | Hari          |
+| 400         | Gita          |
+
+
+
+Enrollments:
+| Student\_ID | Course\_ID | Grade |
+| ----------- | ---------- | ----- |
+| 100         | 10         | A     |
+| 200         | 10         | B     |
+| 100         | 20         | A     |
+| 200         | 20         | A     |
+| 300         | 10         | C     |
+| 400         | 10         | C     |
+| 400         | 20         | C     |
+
+
+
+
+Teachers
+| Teacher\_ID | Teacher\_Name | Teacher\_Email                        |
+| ----------- | ------------- | --------------------
+| T1          | Ashok         | [ashok@cnn.com]
+| T2          | Om            | [om@ntv.com]
+
+
+
+
+Courses
+| Course\_ID | Course\_Name | Teacher\_ID |
+| ---------- | ------------ | ----------- |
+| 10         | SQL          | T1          |
+| 20         | Python       | T2          |
+
+
+
 
 
 ====================================================================================
