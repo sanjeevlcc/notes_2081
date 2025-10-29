@@ -1,0 +1,246 @@
+
+
+
+
+..............................................................
+II. ARTIFICIAL INTELLIGENCE (CMP 471)
+..............................................................
+
+Nature.................Theory and Practical
+Credit Hours...........3.0
+Full Marks.............100
+Pass Marks.............45
+Total Hours............48
+
+
+
+
+
+..............................................................
+1. COURSE DESCRIPTION
+..............................................................
+Introduces the concepts, approaches, and applications of Artificial Intelligence.
+Includes problem solving, knowledge representation, reasoning, neural networks,
+machine learning, natural language processing, machine vision, and expert systems.
+
+
+
+
+..............................................................
+2. GENERAL OBJECTIVES
+..............................................................
+Understand intelligent behavior in computer systems.
+Familiarize with intelligent agents and their environments.
+Identify and solve problems using AI techniques.
+Work with knowledge representation and expert systems.
+Apply neural networks and machine learning paradigms to real-world problems.
+
+
+
+
+
+
+
+
+
+
+..............................................................
+3. DETAILED COURSE CONTENTS
+..............................................................
+
+
+Unit I : Introduction to Artificial Intelligence (6 Hours)
+----------------------------------------------------------
+
+Specific objectives 
+[Understand about the fundamental concepts of AI, Scope, types and Characteristics of AI Problems]
+
+
+1.1 Introduction to AI, AI Perspectives: Acting and thinking humanly, Acting and thinking rationally
+1.2 Scope of AI
+1.2.1. Game Playing
+1.2.2. Problem Solving:
+1.2.3. Natural Language Processing
+1.2.4. Robotics
+1.2.5. Computer Vision
+1.2.6. Expert Systems
+1.3 Turing Machine and Turing Test
+1.4. Intelligent Agents, Structure of Intelligent agent, Properties of Intelligent Agents
+
+
+
+
+
+Unit II : Approaches of AI (12 Hours)
+-------------------------------------
+
+Specific objectives 
+[ Familiar with different AI approaches for problem solving and searching techniques.  ]
+
+
+2.1 Characteristics of AI Problems: Well Defined Problems, Constraint Satisfaction Problem
+2.2 Problem Formulation
+2.2.1 Problem Specification
+2.2.2 State Space Search with examples (8-puzzle, TSP, WaterJug Problem)
+2.2.3 Problem Reduction
+2.2.4 Production System
+2.2 Searching Techniques
+2.2.1 Types of Searching: Uninformed and Informed
+2.2.2 Breadth First Search (BFS)
+2.2.3 Depth First Search (DFS)
+2.2.4 Bidirectional Search
+2.2.5 Hill Climbing Search
+2.2.6 Simulated Annealing Search
+2.2.6 Greedy Search/Best First Search
+2.2.7 A* Search
+2.3 Min-Max Algorithm
+2.4 Alpha-Beta Pruning (Cutoff)
+
+
+
+Unit III : Knowledge Representation and Reasoning (10 Hours)
+-------------------------------------------------------------
+
+
+Specific objectives 
+[  Familiar with Knowledge, Knowledge representation and Approaches andReasoning. ]
+
+
+3.1 Definition and importance of Knowledge, Issues in Knowledge Representation
+3.2. Knowledge Representation Systems: Semantic Nets, Frames, Conceptual Dependencies, Scripts, Rule Based Systems(Production System), Propositional Logic, Predicate Logic
+3.3.Propositional Logic(PL): Syntax, Semantics, Formal logicconnectives, truth tables, tautology, validity, well-formedformula, Inference using Resolution,
+3.4 Backward Chaining and Forward Chaining
+3.5 Predicate Logic: FOPL, Syntax, Semantics, Quantification, Inference with FOPL, Inference using resolution
+3.6 Bayes' Rule and its use, Bayesian Networks
+3.7 Fuzzy Logic
+
+
+
+
+
+Unit IV :  Learning (10 Hours)
+-----------------------------------------------
+
+
+Specific objectives 
+[ Familiar with basic concept of Machine Learning and their applications  ]
+
+
+
+4.1 Introduction
+4.2 Concept of Learning
+4.3 Types of Learning: Supervised, Unsupervised and Reinforcement Learning
+4.4 Learning by Genetic Algorithms
+4.5 Learning with Neural Networks
+4.5.1 Introduction, Biological Neural Networks Vs. Artificial Neural Networks (ANN),
+4.5.2 Mathematical Model of ANN,
+4.5.3 Activation Functions: Linear, Step Sigmoid,
+4.5.4 Types of ANN: Feed-forward, Recurrent, Single Layered, Multi-Layered, 
+4.5.5 Application of Artificial Neural Networks, Learning by Training ANN, Perceptron Learning, Back-propagation Learning
+
+
+
+
+
+
+Unit V : Applications of AI (8 Hours)
+-------------------------------------
+
+
+
+Specific objectives 
+[  Familiar with Applications of AI  ]
+
+
+5.1 Expert Systems, Components of Expert System, Steps in Development of Expert Systems
+5.2.Natural Language Processing:
+5.2.1 Natural Language Understanding and Natural Language Generation,
+5.2.2 Steps of Natural Language Processing: Lexical Analysis (Segmentation, Morphological Analysis), Syntactic Analysis,
+Semantic Analysis, Pragmatic Analysis,
+5.3 Machine Vision Concepts:
+5.3.1 Machine vision and its applications,
+5.3.2 Components of Machine Vision System
+5.4 Robotics:  Robot Hardware (Sensors and Effectors) , Robotic Perceptions
+
+
+
+
+
+
+Unit VI : Emerging Trends in AI (2 Hours)
+-----------------------------------------
+
+
+Specific objectives 
+[  Make familiarization with emerging trends of AI and its integration in different sectors nowadays. ]
+
+
+6.1 Generative AI
+6.2 Explainable AI
+6.3 Ethical AI
+6.4 Multi-model AI
+6.5 Integration of AI in different sectors: Health care, Cyber Security, IOT, Quantum Computing
+
+............................................................................................................................
+Note: The figures in the parentheses indicate the approximate teaching hours for the respective
+units.
+............................................................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..............................................................
+4. METHODS OF INSTRUCTION
+..............................................................
+Lectures and practical sessions conducted in parallel
+to cover both theoretical and applied aspects.
+
+
+
+
+..............................................................
+5. PRACTICAL ACTIVITIES
+..............................................................
+1. Write programs for implementing simple intelligent agents.
+2. Write programs for illustrating the concepts of Uninformed Search like DFS, BFS.
+3. Write programs for illustrating the concepts of Informed Search like Greedy Best First, A*.
+4. Write programs for illustrating the concepts of Game Search like MiniMax Search.
+5. Write programs for constraint satisfaction problems like water jug, n-queen problem.
+6. Write programs for illustrating the concepts knowledge representation systems, rule based
+  (program with if then rules), predicate logic(using predicates like in Prolog)
+
+
+
+
+
+..............................................................
+6. EVALUATION SYSTEM
+..............................................................
+
+Internal Evaluation (50 Marks)
+    Attendance and participation.....10%
+    Assignments......................20%
+    Presentations / Quizzes..........10%
+    Internal Assessment (Theory).....60%
+    Practical Evaluation.............20 Marks (Reports, Viva, Projects)
+
+External Evaluation (50 Marks)
+    Semester-End Examination (Theory + Practical)
+
+Pass Criteria
+    Minimum 45% in both internal and external evaluation.
+    Minimum 80% class attendance required to sit in exam.
+
+..............................................................
+END OF COURSE OUTLINE
+..............................................................
