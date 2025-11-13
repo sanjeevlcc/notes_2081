@@ -1,0 +1,65 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+Module 12: Performance Optimization and Best Practices
+
+
+
+
+Key Topics
+      Parallel execution and forks
+      Strategy plugins (linear, free, debug)
+      Asynchronous actions and polling
+      Ansible best practices (idempotency, structure, reusability)
+      Project folder organization standards
+
+Learning Outcomes
+        Improve performance and maintain large-scale playbooks
+
+
+
+
+
+
+
+
+🧠 Purpose of These Labs
+        Teach how to enhance Ansible’s execution speed, scalability, and reliability
+        Encourage use of modular design and efficient playbook writing practices
+        Build capability to manage large-scale environments with optimal performance
+
+
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                               |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| **Lab 1**   | Introduction to Ansible Performance Optimization Concepts                                |
+| **Lab 2**   | Configuring Parallelism Using the `forks` Parameter for Faster Execution                 |
+| **Lab 3**   | Understanding and Using Strategy Plugins (`linear`, `free`, `debug`)                     |
+| **Lab 4**   | Running Asynchronous Tasks (`async` and `poll`) to Improve Efficiency                    |
+| **Lab 5**   | Using `serial` and `batch_size` for Controlled Rolling Deployments                       |
+| **Lab 6**   | Implementing Task Delegation (`delegate_to`) for Optimized Task Distribution             |
+| **Lab 7**   | Reducing Repeated Work Using Caching and Reusable Variables                              |
+| **Lab 8**   | Avoiding Unnecessary Facts Gathering and Optimizing Fact Collection (`gather_facts: no`) |
+| **Lab 9**   | Profiling Playbook Execution Using the `profile_tasks` Callback Plugin                   |
+| **Lab 10**  | Implementing Idempotency — Ensuring Tasks Only Change When Needed                        |
+| **Lab 11**  | Applying Best Practices for File and Directory Structure in Large Projects               |
+| **Lab 12**  | Version Controlling Playbooks and Roles Using Git for Team Collaboration                 |
+| **Lab 13**  | Creating Lightweight Roles and Minimizing Task Dependencies                              |
+| **Lab 14**  | Writing Efficient Conditional and Loop Statements to Avoid Redundancy                    |
+| **Lab 15**  | Conducting a Full Optimization Review — Measuring Execution Time and Improvement Impact  |
+
+
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
