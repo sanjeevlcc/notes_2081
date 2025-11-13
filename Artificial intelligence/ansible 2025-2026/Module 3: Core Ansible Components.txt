@@ -1,0 +1,61 @@
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+Module 3: Core Ansible Components
+
+
+
+
+Key Topics
+      Playbooks (definition, structure, syntax)
+      Tasks and Handlers
+      Modules (core, extra, custom)
+      Variables and Facts
+      Conditionals (when, failed_when, ignore_errors)
+      Loops (with_items, loop, until)
+      
+
+
+Learning Outcomes
+    Identify and explain key building blocks of Ansible
+    Understand control flow in automation scripts
+
+
+
+🧠 Purpose of These Labs
+      Strengthen understanding of playbook design and modular automation
+      Practice control flow, variables, and error handling for real-world reliability
+      Build confidence in writing efficient, reusable, and maintainable Ansible playbooks
+      
+| **Lab No.** | **Lab Title / Focus Area**                                                            |
+| ----------- | ------------------------------------------------------------------------------------- |
+| **Lab 1**   | Understanding Ansible Playbook Structure — YAML Syntax and Execution Flow             |
+| **Lab 2**   | Writing a Basic Playbook with Multiple Tasks (Service Installation and Start)         |
+| **Lab 3**   | Using Common Core Modules (`yum`, `apt`, `copy`, `service`, `file`) in Playbooks      |
+| **Lab 4**   | Exploring Extra Modules — System, Network, and Cloud Modules Overview                 |
+| **Lab 5**   | Creating and Using Custom Modules (Simple Python-Based Example)                       |
+| **Lab 6**   | Implementing Variables in Playbooks — Host, Group, and Inline Variables               |
+| **Lab 7**   | Managing Facts — Gathering and Using `ansible_facts` in Tasks                         |
+| **Lab 8**   | Writing Handlers to Restart Services After Configuration Changes                      |
+| **Lab 9**   | Applying Conditionals — Using `when`, `failed_when`, and `ignore_errors`              |
+| **Lab 10**  | Using Loops (`with_items`, `loop`) for Repetitive Tasks (Multiple Packages or Users)  |
+| **Lab 11**  | Combining Tasks, Handlers, and Variables in a Single Multi-Node Playbook              |
+| **Lab 12**  | Testing Playbook Execution Flow with Different Conditional Scenarios                  |
+| **Lab 13**  | Using Registered Variables and Debugging Task Outputs                                 |
+| **Lab 14**  | Handling Playbook Failures Gracefully with Control Statements                         |
+| **Lab 15**  | Optimizing and Documenting Playbooks — Best Practices for Readability and Maintenance |
+
+
+
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
