@@ -1,0 +1,60 @@
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+Module 9: Ansible Vault and Security
+
+Key Topics
+      Encrypting files and variables with Ansible Vault
+      Decrypting and editing encrypted data
+      Secure password management
+      Integrating with external secrets stores (e.g., HashiCorp Vault, AWS Secrets Manager)
+      
+
+Learning Outcomes
+      Protect credentials and sensitive information
+      Apply best security practices for automation
+
+
+
+
+
+
+
+
+🧠 Purpose of These Labs
+      Develop the ability to securely manage passwords and credentials in Ansible projects
+      Gain hands-on experience with file encryption, vault management, and external secret stores
+      Understand how to enforce security best practices in automated environments
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Introduction to Ansible Vault — Understanding Why and When to Use It                                 |
+| **Lab 2**   | Creating an Encrypted File Using `ansible-vault create`                                              |
+| **Lab 3**   | Encrypting an Existing YAML File with `ansible-vault encrypt`                                        |
+| **Lab 4**   | Viewing and Editing Encrypted Files Securely with `ansible-vault view` and `edit`                    |
+| **Lab 5**   | Using `ansible-vault decrypt` to Revert Files Back to Plaintext Safely                               |
+| **Lab 6**   | Encrypting Individual Variables Within Playbooks (`!vault` Syntax)                                   |
+| **Lab 7**   | Executing Playbooks Protected by Vault Passwords (`--ask-vault-pass` and `--vault-password-file`)    |
+| **Lab 8**   | Managing Multiple Vault Passwords with Vault IDs (`--vault-id`)                                      |
+| **Lab 9**   | Storing and Referencing Encrypted Variables in Separate Variable Files                               |
+| **Lab 10**  | Integrating Vault with Role Variables — Securing Credentials Inside Roles                            |
+| **Lab 11**  | Implementing Secure Password Management Practices (Avoiding Plaintext in Repos)                      |
+| **Lab 12**  | Using External Secrets from **HashiCorp Vault** — Integration Overview and Example                   |
+| **Lab 13**  | Using AWS Secrets Manager or SSM Parameter Store with Ansible Lookups                                |
+| **Lab 14**  | Creating a Unified Security Policy for Encrypted Automation Projects                                 |
+| **Lab 15**  | Designing a Complete Secure Deployment Workflow Using Ansible Vault and External Secrets Integration |
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
