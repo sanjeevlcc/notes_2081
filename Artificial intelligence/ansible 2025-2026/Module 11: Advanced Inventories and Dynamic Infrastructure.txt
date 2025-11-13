@@ -1,0 +1,58 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+
+Module 11: Advanced Inventories and Dynamic Infrastructure
+
+
+
+Key Topics
+    Dynamic inventory with cloud providers (AWS, Azure, GCP)
+    Using REST APIs for inventory generation
+    Fact caching and persistent data storage
+    Multi-environment inventory management
+    Inventory source plugins
+
+Learning Outcomes
+    Automate inventory updates in cloud or hybrid environments
+
+
+
+
+🧠 Purpose of These Labs
+      Develop practical understanding of dynamic inventory management across clouds
+      Learn to integrate REST APIs and external data for inventory generation
+      Build skills for multi-environment and hybrid infrastructure automation
+
+
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                     |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Introduction to Dynamic Inventories — Concept and Advantages Over Static Inventories           |
+| **Lab 2**   | Exploring Inventory Source Plugins Available in Ansible (AWS, Azure, GCP, OpenStack)           |
+| **Lab 3**   | Setting Up AWS Credentials and IAM Permissions for Dynamic Inventory Access                    |
+| **Lab 4**   | Configuring an AWS EC2 Dynamic Inventory Using the Built-in AWS Plugin                         |
+| **Lab 5**   | Creating and Running Dynamic Inventory for Azure Cloud Resources                               |
+| **Lab 6**   | Implementing a Dynamic Inventory for GCP (Google Cloud Platform)                               |
+| **Lab 7**   | Writing a Custom Python Script to Generate a REST API–Based Dynamic Inventory                  |
+| **Lab 8**   | Consuming External API Data (JSON Output) to Build Custom Inventories                          |
+| **Lab 9**   | Enabling Fact Caching to Store Host Data Persistently Between Playbook Runs                    |
+| **Lab 10**  | Configuring and Testing Persistent Data Storage Backends (JSON, Redis, Database)               |
+| **Lab 11**  | Designing a Multi-Environment Inventory Layout (Dev, QA, Prod) with Shared Variables           |
+| **Lab 12**  | Implementing Multiple Inventory Sources in a Single Project (Static + Dynamic Combination)     |
+| **Lab 13**  | Managing Hybrid Cloud Infrastructure — Dynamic Inventory for Mixed On-Prem and Cloud Nodes     |
+| **Lab 14**  | Using Inventory Source Plugins for Automatic Host Discovery and Grouping                       |
+| **Lab 15**  | Building a Complete Cloud Inventory Automation Workflow with Fact Caching and REST Integration |
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
