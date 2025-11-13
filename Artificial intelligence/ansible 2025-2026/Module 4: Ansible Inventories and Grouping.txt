@@ -1,0 +1,64 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+Module 4: Ansible Inventories and Grouping
+
+
+
+Key Topics
+        Static inventory files
+        Dynamic inventories (scripts, cloud plugins)
+        Host and group variables (host_vars, group_vars)
+        Inventory precedence and variable hierarchy
+        Fact discovery and management (setup module)
+        
+        
+
+Learning Outcomes
+      Understand inventory design and host grouping
+      Organize and manage complex infrastructures
+
+
+
+
+
+
+🧠 Purpose of These Labs
+      Build deep understanding of inventory hierarchy and structure
+      Learn to organize hosts and groups efficiently for complex automation projects
+      Master variable precedence, fact discovery, and dynamic inventory integration
+
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Creating and Understanding a Basic Static Inventory File (`hosts.ini`)                      |
+| **Lab 2**   | Grouping Hosts in Inventories — Defining `[web]`, `[db]`, and `[app]` Groups                |
+| **Lab 3**   | Assigning Variables to Individual Hosts (`host_vars`)                                       |
+| **Lab 4**   | Defining Shared Group Variables (`group_vars`) for Multiple Servers                         |
+| **Lab 5**   | Exploring Variable Precedence — Host vs. Group vs. Playbook-Level Variables                 |
+| **Lab 6**   | Using Nested Groups (Parent and Child Groups) in Inventories                                |
+| **Lab 7**   | Implementing Conditional Task Execution Based on Group Membership                           |
+| **Lab 8**   | Creating a Dynamic Inventory Script for On-Demand Host Discovery                            |
+| **Lab 9**   | Working with Dynamic Inventories for Cloud Environments (AWS / Azure / GCP Plugin Overview) |
+| **Lab 10**  | Using the `setup` Module to Gather and Analyze Host Facts                                   |
+| **Lab 11**  | Filtering and Displaying Specific Facts (e.g., OS Type, Memory, IP Addresses)               |
+| **Lab 12**  | Applying Facts and Variables Dynamically Within Playbooks                                   |
+| **Lab 13**  | Creating Custom Inventory Directories with `group_vars/` and `host_vars/` Folders           |
+| **Lab 14**  | Testing Variable Overrides and Conflict Resolution Between Inventory Levels                 |
+| **Lab 15**  | Documenting a Multi-Environment Inventory Design (Dev, QA, Prod) for Large-Scale Deployment |
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
