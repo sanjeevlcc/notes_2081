@@ -1,0 +1,68 @@
+
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+
+Module 5: Templates, Files, and Variables
+
+
+
+
+
+Key Topics
+      Jinja2 templating in Ansible
+      Variable precedence rules (playbook → inventory → command line → facts)
+      File management (copy, fetch, template, synchronize)
+      Using filters and lookups
+      Secrets and sensitive data management
+
+Learning Outcomes
+      Build dynamic configuration files using templates
+      Understand variable evaluation and ordering
+
+
+
+🧠 Purpose of These Labs
+    Enable learners to build dynamic, reusable, and secure configuration files
+    Understand variable precedence, templating logic, and secure data management
+    Develop confidence in using Jinja2 and Ansible modules for real-world automation tasks
+
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                      |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Introduction to Jinja2 Templating — Creating and Rendering Simple Templates                     |
+| **Lab 2**   | Using Variables in Templates — Injecting Dynamic Values into Configuration Files                |
+| **Lab 3**   | Creating a Template for Web Server Configuration (e.g., `index.html.j2` or `nginx.conf.j2`)     |
+| **Lab 4**   | Applying Filters in Jinja2 Templates (e.g., `upper`, `lower`, `default`, `replace`)             |
+| **Lab 5**   | Using Lookups to Read External Data (Environment Variables, Files, Commands)                    |
+| **Lab 6**   | Exploring Variable Precedence — Playbook, Inventory, and Command-Line Variables                 |
+| **Lab 7**   | Managing Files with the `copy`, `fetch`, and `file` Modules                                     |
+| **Lab 8**   | Synchronizing Files Between Nodes Using the `synchronize` Module (rsync)                        |
+| **Lab 9**   | Combining Templates and Handlers — Restarting Services After Config Updates                     |
+| **Lab 10**  | Demonstrating Variable Overriding and Fact-Based Substitution in Templates                      |
+| **Lab 11**  | Implementing Conditional Rendering Within Jinja2 Templates (`if`, `for`, `else`)                |
+| **Lab 12**  | Handling Sensitive Data Using Ansible Vault (Encrypting Variables and Files)                    |
+| **Lab 13**  | Creating a Secure Configuration Template That References Vault-Encrypted Variables              |
+| **Lab 14**  | Using External Files for Variable Management (`vars_files` and `include_vars`)                  |
+| **Lab 15**  | Building a Complete Template-Based Deployment Workflow (From Template → Copy → Restart Service) |
+
+
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+
