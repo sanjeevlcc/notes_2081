@@ -1,0 +1,61 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+Module 7: Handlers, Tags, and Notifications
+
+
+
+Key Topics
+      Handler definition and execution
+      Using tags for selective playbook execution
+      Conditional task execution
+      Task ordering and control keywords (notify, listen)
+
+Learning Outcomes
+      Control execution flow and limit tasks efficiently
+
+
+
+
+
+
+
+
+
+🧠 Purpose of These Labs
+        Learn how to trigger, manage, and control automation events efficiently
+        Understand how handlers, tags, and conditions interact in complex playbooks
+        Gain control over partial playbook runs, execution flow, and performance optimization
+
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                           |
+| ----------- | ------------------------------------------------------------------------------------ |
+| **Lab 1**   | Introduction to Handlers — Understanding Event-Driven Task Execution                 |
+| **Lab 2**   | Creating a Simple Handler to Restart a Service After Configuration Changes           |
+| **Lab 3**   | Using Multiple Handlers in a Single Playbook (e.g., Restart Web and DB Services)     |
+| **Lab 4**   | Demonstrating the `notify` Keyword — Linking Tasks to Handlers                       |
+| **Lab 5**   | Using the `listen` Keyword to Group and Trigger Multiple Handlers Together           |
+| **Lab 6**   | Implementing Conditional Task Execution (`when` Clause) with Handlers                |
+| **Lab 7**   | Using `changed_when` and `failed_when` to Control Handler Triggers                   |
+| **Lab 8**   | Tagging Tasks for Selective Playbook Execution (`--tags` and `--skip-tags`)          |
+| **Lab 9**   | Creating Tags for Specific Roles or Components (e.g., `web`, `db`, `security`)       |
+| **Lab 10**  | Running Partial Playbook Executions Using Tags (Targeted Automation)                 |
+| **Lab 11**  | Managing Task Ordering and Dependency with Handlers and Tags                         |
+| **Lab 12**  | Combining Conditional Handlers and Tags for Controlled Automation Scenarios          |
+| **Lab 13**  | Debugging Handler Execution Flow Using `ansible-playbook -vvv` and Logs              |
+| **Lab 14**  | Optimizing Playbook Performance Using Task Control and Tagging Strategies            |
+| **Lab 15**  | Designing a Full Workflow Playbook with Handlers, Tags, and Notifications Integrated |
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
