@@ -1,0 +1,63 @@
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+Module 1: Introduction to Automation and Configuration Management
+
+
+Key Topics
+      Concept of IT Automation
+      What is Configuration Management
+      Benefits of automation tools (Ansible, Puppet, Chef, SaltStack)
+      Why choose Ansible (agentless, YAML, SSH-based)
+      Overview of DevOps and Infrastructure as Code (IaC)
+      Comparison: Manual vs Automated provisioning
+
+
+Learning Outcomes
+    Understand automation fundamentals
+    Explain Ansible’s role in DevOps lifecycle
+
+
+
+
+
+
+
+🧪 Module 1 – Lab Topics: Introduction to Automation and Configuration Management
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Exploring Traditional vs. Automated Configuration — Manual Setup vs. Scripted Setup                  |
+| **Lab 2**   | Understanding Automation Tools: Comparing Ansible, Puppet, Chef, and SaltStack (Feature Exploration) |
+| **Lab 3**   | Installing and Verifying Ansible on a Control Node                                                   |
+| **Lab 4**   | Setting Up Managed Nodes and SSH Key-Based Authentication                                            |
+| **Lab 5**   | First Ansible Command — Using the `ping` Module to Verify Connectivity                               |
+| **Lab 6**   | Creating and Managing an Ansible Inventory File (Static Hosts)                                       |
+| **Lab 7**   | Running Simple Ad-hoc Commands for Package and Service Management                                    |
+| **Lab 8**   | Editing and Understanding YAML Syntax for Automation Tasks                                           |
+| **Lab 9**   | Configuring and Viewing the `ansible.cfg` File (Defaults and Overrides)                              |
+| **Lab 10**  | Exploring Ansible Facts — Gathering System Information from Remote Nodes                             |
+| **Lab 11**  | Writing a Basic Ansible Playbook for System Update and Verification                                  |
+| **Lab 12**  | Demonstrating Agentless Automation: Running Tasks via SSH Without Agents                             |
+| **Lab 13**  | Comparing Manual Server Configuration vs. Automated Ansible Playbook Execution                       |
+| **Lab 14**  | Introduction to Infrastructure as Code (IaC) — Concept Demo Using Simple Ansible Scripts             |
+| **Lab 15**  | Integrating Ansible with DevOps Workflow — Automating a Sample Deployment Pipeline Overview          |
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+
+
+
+
