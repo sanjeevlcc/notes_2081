@@ -1,0 +1,66 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+Module 6: Roles and Reusability
+
+
+
+
+
+Key Topics
+      Role concept and directory structure (tasks, handlers, vars, templates, etc.)
+      Role dependencies and metadata
+      Role defaults and overrides
+      Sharing roles with Ansible Galaxy
+      Structuring large projects with multiple roles
+
+Learning Outcomes
+      Create modular, reusable automation roles
+      Apply best practices for scalability and organization
+
+
+
+
+
+
+
+
+
+🧠 Purpose of These Labs
+      Teach how to modularize automation tasks for clarity and reuse
+      Build understanding of role dependencies, structure, and overrides
+      Prepare learners to collaborate, share, and maintain large automation environments efficiently
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                     |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Understanding the Concept of Roles and Their Importance in Automation Projects                 |
+| **Lab 2**   | Creating a New Role Using `ansible-galaxy init` Command                                        |
+| **Lab 3**   | Exploring Role Directory Structure (`tasks/`, `handlers/`, `vars/`, `templates/`, `defaults/`) |
+| **Lab 4**   | Writing Task Files for a Simple Role (e.g., Installing and Starting Apache)                    |
+| **Lab 5**   | Creating Role Handlers to Manage Service Restarts Automatically                                |
+| **Lab 6**   | Using `vars/` and `defaults/` to Define Configurable Parameters Inside a Role                  |
+| **Lab 7**   | Adding Templates to a Role (e.g., Jinja2 Template for Configuration File)                      |
+| **Lab 8**   | Testing Role Execution by Including It in a Main Playbook                                      |
+| **Lab 9**   | Managing Role Dependencies Through the `meta/main.yml` File                                    |
+| **Lab 10**  | Overriding Role Defaults from Playbook-Level Variables                                         |
+| **Lab 11**  | Combining Multiple Roles Within a Single Playbook (Web + Database + Firewall Roles)            |
+| **Lab 12**  | Structuring a Large Project Directory with Multiple Roles and Inventories                      |
+| **Lab 13**  | Downloading and Using Community Roles from Ansible Galaxy (`ansible-galaxy install`)           |
+| **Lab 14**  | Customizing a Galaxy Role to Fit Your Environment and Reusing It Across Projects               |
+| **Lab 15**  | Packaging and Sharing a Custom Role via Ansible Galaxy or Git Repository                       |
+
+
+
+
+
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
