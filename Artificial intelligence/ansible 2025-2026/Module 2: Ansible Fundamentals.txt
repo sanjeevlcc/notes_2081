@@ -1,0 +1,56 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+Module 2: Ansible Fundamentals
+
+
+
+Key Topics
+      Ansible architecture (Control Node, Managed Nodes)
+      SSH communication and agentless design
+      YAML syntax and structure
+      Ansible inventory (static and dynamic)
+      Ad-hoc commands vs Playbooks
+      Ansible configuration file (ansible.cfg)
+
+
+
+Learning Outcomes
+      Describe how Ansible communicates with nodes
+      Understand key directories and configuration hierarchy
+
+
+
+
+
+🧠 LAB and  Purpose of These Labs
+      Reinforce understanding of Ansible architecture and communication model
+      Build skills in inventory management, YAML creation, and ad-hoc operations
+      Develop the ability to configure, test, and troubleshoot automation setups
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                   |
+| ----------- | -------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Exploring Ansible Architecture — Control Node and Managed Node Setup Overview                |
+| **Lab 2**   | Configuring SSH Key-Based Access Between Control Node and Managed Nodes                      |
+| **Lab 3**   | Understanding Agentless Communication — Testing SSH-Based Automation                         |
+| **Lab 4**   | Creating and Organizing Ansible Project Directories (`/etc/ansible`, custom folders)         |
+| **Lab 5**   | Writing and Validating Basic YAML Files — Syntax, Indentation, and Structure                 |
+| **Lab 6**   | Creating a Static Inventory File with Multiple Hosts and Groups                              |
+| **Lab 7**   | Exploring Dynamic Inventory Concepts — Introduction to Cloud or Script-Based Inventories     |
+| **Lab 8**   | Running Ad-Hoc Commands for Package Installation, File Copying, and Service Control          |
+| **Lab 9**   | Using Ansible Modules (`ping`, `shell`, `copy`, `yum`, `apt`) to Perform System Tasks        |
+| **Lab 10**  | Comparing Ad-Hoc Commands vs Playbooks — When and Why to Use Each                            |
+| **Lab 11**  | Understanding and Customizing the `ansible.cfg` File (Paths, Privilege Escalation, Defaults) |
+| **Lab 12**  | Gathering and Interpreting Ansible Facts from Managed Hosts                                  |
+| **Lab 13**  | Executing First Playbook — Automating System Updates and Service Restarts                    |
+| **Lab 14**  | Troubleshooting SSH or Inventory Issues Using Ansible Debug and Verbose Mode                 |
+| **Lab 15**  | Documenting Configuration Hierarchy — Inventory, Variables, Playbooks, and Logs Mapping      |
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
