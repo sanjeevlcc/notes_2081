@@ -1,0 +1,59 @@
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+Module 17: Emerging Trends and Case Studies
+
+
+
+Key Topics
+    Ansible Automation Platform (AAP 2.x)
+    Network automation with Ansible (Cisco, Juniper, etc.)
+    Security automation (firewall, compliance, scanning)
+    Edge computing and IoT automation use cases
+    Real-world enterprise case studies
+
+Learning Outcomes
+    Recognize modern Ansible applications beyond server provisioning
+    Identify future directions in infrastructure automation
+
+
+
+
+
+
+
+🧠 Purpose of These Labs
+      Understand how Ansible is evolving through Ansible Automation Platform (AAP 2.x)
+      Explore network, security, and IoT automation in modern infrastructures
+      Analyze real-world enterprise case studies to connect classroom learning with production use cases
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                          |
+| ----------- | --------------------------------------------------------------------------------------------------- |
+| **Lab 1**   | Exploring the Features of **Ansible Automation Platform (AAP 2.x)** — Architecture and Enhancements |
+| **Lab 2**   | Setting Up Ansible Automation Platform Controller and Execution Environments                        |
+| **Lab 3**   | Using Execution Environments in AAP 2.x for Consistent, Containerized Automation                    |
+| **Lab 4**   | Introduction to Network Automation — Automating Cisco Router Configuration Using `ios_config`       |
+| **Lab 5**   | Automating Juniper Devices Using the `junos_config` and `netconf` Modules                           |
+| **Lab 6**   | Building a Multi-Vendor Network Playbook for Switch and Firewall Configuration                      |
+| **Lab 7**   | Implementing Security Automation — Managing Firewalls (e.g., Palo Alto, FortiGate) Using Ansible    |
+| **Lab 8**   | Running Compliance Checks and Security Hardening Using CIS or STIG Roles                            |
+| **Lab 9**   | Integrating Ansible with Security Scanners (OpenSCAP, Nessus, or Lynis)                             |
+| **Lab 10**  | Edge Computing Automation — Deploying Lightweight Ansible Nodes on Edge Devices                     |
+| **Lab 11**  | Automating IoT Device Configuration and Firmware Updates with Ansible                               |
+| **Lab 12**  | Orchestrating Hybrid Edge-Cloud Workflows (IoT → Cloud Sync) with Ansible Playbooks                 |
+| **Lab 13**  | Case Study: Enterprise-Scale Cloud Automation (Provisioning + Patching + Compliance)                |
+| **Lab 14**  | Case Study: Network Infrastructure Modernization Using Ansible Collections                          |
+| **Lab 15**  | Case Study: Integrating AAP 2.x with Cloud and Security Ecosystems for Full-Stack Automation        |
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
