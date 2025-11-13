@@ -1,0 +1,72 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+Module 13: Ansible Tower / AWX
+
+
+
+
+
+Key Topics
+      Overview of Ansible Tower and AWX
+      Architecture and components (web UI, database, task engine)
+      Projects, inventories, credentials, and job templates
+      Role-based access control (RBAC)
+      Scheduling, workflows, and notifications
+      REST API and CLI interaction
+      Monitoring, logging, and auditing
+
+
+
+Learning Outcomes
+      Manage enterprise automation through Tower/AWX
+      Schedule, monitor, and control playbook executions
+
+
+
+
+
+
+
+
+🧠 Purpose of These Labs
+        Gain hands-on experience with centralized automation management
+        Learn to deploy, control, and monitor playbooks through a graphical interface
+        Understand access control, scheduling, and workflow orchestration for enterprise automation
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                            |
+| ----------- | ------------------------------------------------------------------------------------- |
+| **Lab 1**   | Introduction to Ansible Tower and AWX — Understanding Architecture and Key Components |
+| **Lab 2**   | Installing AWX on a Linux Server Using Docker or Kubernetes (k3s/minikube)            |
+| **Lab 3**   | Exploring the AWX Web Interface — Dashboard, Job Status, and Activity Stream          |
+| **Lab 4**   | Creating and Configuring a New **Inventory** in Tower/AWX                             |
+| **Lab 5**   | Adding **Credentials** (SSH Keys, API Tokens, Vault Passwords) Securely               |
+| **Lab 6**   | Setting Up **Projects** by Linking to Git Repositories or Local Playbooks             |
+| **Lab 7**   | Creating and Running a **Job Template** to Execute a Playbook from Tower              |
+| **Lab 8**   | Using **Surveys** in Job Templates to Gather Runtime Input Parameters                 |
+| **Lab 9**   | Setting Up **Schedules** for Automated Playbook Execution                             |
+| **Lab 10**  | Implementing **Role-Based Access Control (RBAC)** — Managing Users and Teams          |
+| **Lab 11**  | Building **Workflows** to Chain Multiple Job Templates for Complex Deployments        |
+| **Lab 12**  | Configuring **Notifications** (Email, Slack, Webhooks) for Job Status Updates         |
+| **Lab 13**  | Monitoring Jobs, Logs, and System Events in the AWX Dashboard                         |
+| **Lab 14**  | Integrating AWX/Tower with External Systems (GitHub, Jenkins, ServiceNow)             |
+| **Lab 15**  | Backing Up and Restoring AWX/Tower Data and Configuration                             |
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+
+
+
