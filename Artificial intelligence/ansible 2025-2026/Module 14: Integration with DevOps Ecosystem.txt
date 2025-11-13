@@ -1,0 +1,64 @@
+
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+Module 14: Integration with DevOps Ecosystem
+
+
+
+
+
+Key Topics
+    Integrating Ansible with Jenkins for CI/CD
+    Git integration for version control
+    Automating container deployments (Docker, Kubernetes)
+    Using Ansible with Terraform, Helm, and Packer
+    Infrastructure as Code pipelines
+    
+    
+
+
+
+
+🧠 Purpose of These Labs
+      Teach how to integrate Ansible with major DevOps tools for seamless automation
+      Build understanding of CI/CD pipeline automation and infrastructure provisioning
+      Enable learners to design end-to-end automated deployment workflows using IaC principles
+
+
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                |
+| ----------- | ----------------------------------------------------------------------------------------- |
+| **Lab 1**   | Introduction to DevOps Toolchain — Role of Ansible in CI/CD Pipelines                     |
+| **Lab 2**   | Setting Up Git and Linking Ansible Projects to Version Control Repositories               |
+| **Lab 3**   | Using Git Branching and Versioning Strategies for Playbook Collaboration                  |
+| **Lab 4**   | Integrating Ansible with **Jenkins** — Configuring Jenkins to Run Playbooks Automatically |
+| **Lab 5**   | Building a Jenkins Pipeline for Continuous Deployment with Ansible Tasks                  |
+| **Lab 6**   | Using Jenkins Credentials and Secrets to Execute Secure Ansible Jobs                      |
+| **Lab 7**   | Automating Docker Image Creation and Container Management with Ansible Modules            |
+| **Lab 8**   | Deploying Multi-Container Applications with Ansible and **Docker Compose**                |
+| **Lab 9**   | Managing Kubernetes Cluster Resources Using Ansible (`k8s` and `helm` Modules)            |
+| **Lab 10**  | Integrating Ansible with **Terraform** for Provisioning and Configuration Automation      |
+| **Lab 11**  | Using **Helm** and **Ansible** Together for Managing Complex Kubernetes Applications      |
+| **Lab 12**  | Creating Machine Images with **Packer** and Configuring Them via Ansible Provisioners     |
+| **Lab 13**  | Designing a Complete CI/CD Workflow — Terraform → Ansible → Docker → Jenkins              |
+| **Lab 14**  | Implementing Infrastructure as Code (IaC) Pipeline Using Git + Jenkins + Ansible          |
+| **Lab 15**  | Monitoring and Auditing DevOps Pipelines for Automated Rollbacks and Recovery             |
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+
+Learning Outcomes
+    Combine Ansible with other DevOps tools for end-to-end automation
