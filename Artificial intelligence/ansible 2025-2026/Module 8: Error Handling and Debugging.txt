@@ -1,0 +1,62 @@
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
+
+
+
+
+Module 8: Error Handling and Debugging
+
+
+
+
+Key Topics
+      Error handling strategies (ignore_errors, block/rescue/always)
+      Registering and using variables
+      Debug and verbosity levels (-v, -vvv)
+      Troubleshooting failed playbooks
+      Logging and reporting
+
+
+
+Learning Outcomes
+    Handle task failures gracefully
+    Debug and optimize playbooks effectively
+
+
+
+
+
+🧠 Purpose of These Labs
+      Equip learners to gracefully handle runtime failures and automate recovery
+      Build expertise in debugging, verbosity control, and logging
+      Strengthen ability to optimize playbooks for reliability and maintainability
+
+
+| **Lab No.** | **Lab Title / Focus Area**                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------ |
+| **Lab 1**   | Introduction to Error Handling in Ansible — Understanding Task Failure Behavior            |
+| **Lab 2**   | Using `ignore_errors` to Continue Execution After Task Failures                            |
+| **Lab 3**   | Implementing the `block`, `rescue`, and `always` Sections for Structured Error Control     |
+| **Lab 4**   | Demonstrating a Recovery Playbook That Handles Service or File Errors Gracefully           |
+| **Lab 5**   | Registering Task Outputs Using `register` Variables for Error Evaluation                   |
+| **Lab 6**   | Using Registered Variables in Conditional Statements for Error-Based Actions               |
+| **Lab 7**   | Applying `failed_when` and `changed_when` Conditions to Customize Task Results             |
+| **Lab 8**   | Enabling and Using Different Verbosity Levels (`-v`, `-vv`, `-vvv`) for Detailed Debugging |
+| **Lab 9**   | Using the `debug` Module to Display Variable Values and Task Outputs                       |
+| **Lab 10**  | Troubleshooting Common Playbook Failures (Syntax, Connectivity, and Permission Errors)     |
+| **Lab 11**  | Capturing and Reviewing Ansible Logs for Post-Run Analysis                                 |
+| **Lab 12**  | Configuring Custom Logging Paths and Formats in `ansible.cfg`                              |
+| **Lab 13**  | Creating a Diagnostic Playbook to Check Node Connectivity and Module Availability          |
+| **Lab 14**  | Generating Task-Level Reports Using Callback Plugins or Registered Variables               |
+| **Lab 15**  | Building a Robust Error-Resilient Playbook Combining All Error Handling Techniques         |
+
+
+
+
+*****************************************************************************************
+*****************************************************************************************
+*****************************************************************************************
