@@ -598,9 +598,97 @@ MAIN LAB
 
 
 
-===================================================================================
+
+
+
+
+
+
+
+
+
+
 
 ===================================================================================
+🧪 Lab 3 — Installing and Verifying Ansible on a Control Node
+===================================================================================
+
+
+🎯 Objective
+
+      Install Ansible on the control node (ansible-master) and verify 
+      it’s properly configured to manage other nodes.
+      
+
+
+
+
+🧱 Lab Setup
+
+| **Host**         | **Role**     | **IP Address** | **OS**          |
+| ---------------- | ------------ | -------------- | --------------- |
+| `ansible-master` | Control Node | 192.168.5.80   | CentOS Stream 9 |
+
+
+
+
+⚙️ Step-by-Step Procedure
+Step 1: Update System Packages
+
+      [root@ansible-master ~]# dnf update -y
+      
+      This ensures your package metadata and security updates are current.
+
+
+
+
+Step 2: Enable EPEL Repository (Extra Packages for Enterprise Linux)
+
+      [root@ansible-master ~]# dnf install epel-release -y
+      
+      EPEL provides additional open-source packages like Ansible.
+
+
+
+Step 3: Install Ansible Core
+
+      [root@ansible-master ~]# dnf install ansible-core -y
+
+
+
+
+Step 4: Verify Installation
+
+[root@ansible-master ~]# ansible --version
+
+✅ Expected Output:
+
+      ansible [core 2.14.18]
+        config file = /etc/ansible/ansible.cfg
+        configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+        ansible python module location = /usr/lib/python3.9/site-packages/ansible
+        ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+        executable location = /usr/bin/ansible
+        python version = 3.9.23 (main, Aug 19 2025, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-11)] (/usr/bin/python3)
+        jinja version = 3.1.2
+        libyaml = True
+
+
+
+
+Step 5: Create a Working Directory
+
+      [root@ansible-master ~]# mkdir -p /etc/ansible
+      [root@ansible-master ~]# cd /etc/ansible
+      
+
+
+
+
+
+
+
+
 
 
 
