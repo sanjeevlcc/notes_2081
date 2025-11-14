@@ -587,8 +587,14 @@ and can manage mixed environments.
 
 
 
+MAIN LAB
+------------------------------------------
 
-
+| **Node**              | **Hostname**     | **IP Address** | **Role / Purpose**                             |
+| --------------------- | ---------------- | -------------- | ---------------------------------------------- |
+| 🏰 **ansible-master** | `ansible-master` | `192.168.5.80` | Control Node (where Ansible will be installed) |
+| 💻 **centos-node1**   | `centos-node1`   | `192.168.5.81` | Managed Node 1 (CentOS target)                 |
+| 💻 **ubuntu-node2**   | `ubuntu-node2`   | `192.168.5.83` | Managed Node 2 (Ubuntu target)                 |
 
 
 
