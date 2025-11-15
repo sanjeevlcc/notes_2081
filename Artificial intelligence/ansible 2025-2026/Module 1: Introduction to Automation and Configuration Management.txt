@@ -709,12 +709,24 @@ root@ubuntu-node2:~# python3 --version
 
 
 
+Granting ROOT privliges to user=max
+---------------------------------------
 
-
-
-
-
-
+            [root@ansible-master ~]# a
+            root    ALL=(ALL)       ALL
+            max     ALL=(ALL)       ALL            <<<<<<<<<<<<<<<<<<<<
+            
+            
+            
+            [root@centos-node1 ~]# vi /etc/sudoers
+            root    ALL=(ALL)       ALL
+            max     ALL=(ALL)       ALL            <<<<<<<<<<<<<<<<<<<<
+            
+            
+            root@ubuntu-node2:~# v
+            root    ALL=(ALL)       ALL
+            max     ALL=(ALL)       ALL            <<<<<<<<<<<<<<<<<<<<
+            
 
 ===================================================================================
 🧪 Lab 4 — Setting Up Managed Nodes and SSH Key-Based Authentication
@@ -843,7 +855,7 @@ root@ubuntu-node2:~#
 
 
 Step 3: Copy the SSH Key to Managed Nodes
-            ssh-copy-id root@192.168.5.81   <<<<<<<<<<<<<<<< root cannot login/ go by user= max
+            ssh-copy-id root@192.168.5.81   <<<<<<<<<<<<<<<< root cannot login / go by user= max
             ssh-copy-id root@192.168.5.83
 
 When prompted, enter the node’s password once.
@@ -950,6 +962,659 @@ Step 5: Create and Verify Inventory File
 
 
 ===================================================================================
+✅ Short Summary Table – Lab 3 & Lab 4
+===================================================================================
+
+
+🧪 LAB 3 — Installing & Verifying Ansible on Control Node
+---------------------------------------------------------------------------------------------------------
+| **Step**           | **Command / Action**                            | **Notes / Expected Output**     |
+| ------------------ | ----------------------------------------------- | ------------------------------- |
+| Update system      | `dnf update -y`                                 | Refresh packages                |
+| Enable EPEL        | `dnf install epel-release -y`                   | Required for Ansible            |
+| Install Ansible    | `dnf install ansible-core -y`                   | Installs core engine            |
+| Verify Ansible     | `ansible --version`                             | Shows version, python path, cfg |
+| Create Ansible dir | `mkdir -p /etc/ansible`                         | Working directory               |
+| Install Python     | `dnf install -y python3 python3-pip`            | Python 3.9.x + pip              |
+| Verify Python      | `python3 --version` / `pip3 --version`          | Confirms Python is ready        |
+| CentOS Node Python | `dnf install -y python3 python3-pip`            | Needed for Ansible modules      |
+| Ubuntu Node Python | `apt install -y python3 python3-pip`            | Python 3.13 available           |
+| Create user max    | `useradd max` (CentOS) / `adduser max` (Ubuntu) | For non-root Ansible            |
+| Give sudo          | Add to `/etc/sudoers`: `max ALL=(ALL) ALL`      | Grants privilege                |
+
+
+
+
+🧪 LAB 4 — Setting Up Managed Nodes & SSH Authentication
+-------------------------------------------------------------------
+
+| **Step**             | **Command / Action**                                              | **Notes / Expected Output**         |                     |
+| -------------------- | ----------------------------------------------------------------- | ----------------------------------- | ------------------- |
+| Install SSH (CentOS) | `dnf install -y openssh-server`                                   | Required for remote mgmt            |                     |
+| Start SSH (CentOS)   | `systemctl enable --now sshd`                                     | Status: **active (running)**        |                     |
+| Start SSH (Ubuntu)   | `systemctl enable --now ssh`                                      | SSH active                          |                     |
+| Verify running       | `systemctl status sshd                                            | grep running`                       | Shows running state |
+| Create user max      | `useradd max` / `adduser max`                                     | Same username across nodes          |                     |
+| SSH into node        | `ssh max@192.168.5.81` `ssh max@192.168.5.83`                     | Works with password                 |                     |
+| Copy SSH key         | `ssh-copy-id max@192.168.5.81` <br>`ssh-copy-id max@192.168.5.83` | After this → **passwordless login** |                     |
+| Test SSH login       | `ssh max@centos-node1` <br>`ssh max@ubuntu-node2`                 | No password prompt                  |                     |
+| Verify hostnames     | `hostname` / `hostname -I`                                        | Confirms correct nodes              |                     |
+| Create inventory     | `/etc/ansible/hosts`                                              | Defines managed hosts               |                     |
+
+
+
+
+
+
+Inventory File
+
+[all]
+centos-node1 ansible_host=192.168.5.81
+ubuntu-node2 ansible_host=192.168.5.83
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================================================
+🧪 Lab 5 — First Ansible Command Using the ping Module
+===================================================================================
+
+
+🎯 Objective
+
+Use the Ansible ping module to verify that the control node (ansible-master) can 
+successfully communicate with all managed nodes over SSH and Python.
+
+This confirms:
+            SSH access
+            Python installed correctly
+            Inventory file working
+            User authentication successful
+            
+
+
+
+⚙️ Step-by-Step Procedure
+
+Step 1 — Navigate to /etc/ansible
+
+      [max@ansible-master ~]$ cat /etc/ansible/hosts | grep 192.168.5
+      centos-node1 ansible_host=192.168.5.81
+      ubuntu-node2 ansible_host=192.168.5.83
+
+
+Step 2 — Run the First Ansible Ping Command
+
+            This command tests all hosts in the all group:
+            
+            [max@ansible-master ~]$ ansible all -m ping -u max --become
+            
+            
+            [max@ansible-master ~]$  ansible all -m ping -u max
+                              ubuntu-node2 | SUCCESS => {
+                                  "ansible_facts": {
+                                      "discovered_interpreter_python": "/usr/bin/python3"
+                                  },
+                                  "changed": false,
+                                  "ping": "pong"
+                              }
+                              centos-node1 | SUCCESS => {
+                                  "ansible_facts": {
+                                      "discovered_interpreter_python": "/usr/bin/python3"
+                                  },
+                                  "changed": false,
+                                  "ping": "pong"
+                              }
+            
+            
+            
+            [max@ansible-master ~]$  ansible all -m ping -u max  --ask-become-pass
+            BECOME password:
+            ubuntu-node2 | SUCCESS => {
+            
+
+
+
+
+===================================================================================
+🧪 Lab 6 — Creating and Managing an Ansible Inventory File (Static Hosts)
+===================================================================================
+
+
+🎯 Objective
+
+Learn how to create, organize, and manage a static Ansible inventory file
+that defines all managed nodes (CentOS, Ubuntu) with hostnames and IP addresses.
+
+By the end of this lab you will:
+            Understand Ansible inventory structure
+            Create a static /etc/ansible/hosts file
+            Define hosts, groups, variables
+            Test inventory using Ansible commands
+
+
+| **Host**         | **IP Address** | **Role**     | **User** |
+| ---------------- | -------------- | ------------ | -------- |
+| `ansible-master` | 192.168.5.80   | Control Node | max      |
+| `centos-node1`   | 192.168.5.81   | Managed Node | max      |
+| `ubuntu-node2`   | 192.168.5.83   | Managed Node | max      |
+
+
+
+⚙️ Step-by-Step Procedure
+
+Step 1 — Navigate to the Ansible Directory
+            cd /etc/ansible
+            
+            
+            If the folder doesn’t exist:
+            
+            sudo mkdir -p /etc/ansible
+
+
+
+
+
+
+Step 2 — Create the Inventory File
+
+                  Open the hosts file:
+                  
+                        sudo nano /etc/ansible/hosts
+                  
+                  Add the following:
+                  
+                        [all]
+                        centos-node1 ansible_host=192.168.5.81
+                        ubuntu-node2 ansible_host=192.168.5.83
+                  
+                  
+                  ✔️ This means:
+                  
+                              centos-node1 → 192.168.5.81
+                              
+                              ubuntu-node2 → 192.168.5.83
+                  
+                  Save and exit.
+
+
+
+
+
+
+
+
+Step 3 — Test Inventory Parsing
+           
+      [max@ansible-master ~]$ ansible all --list-hosts
+        hosts (2):
+          centos-node1
+          ubuntu-node2
+
+            
+            
+     
+
+Create Host Groups
+-----------------------------
+                  Open /etc/ansible/hosts again:
+                  
+                  [max@ansible-master ~]$ vi /etc/ansible/hosts                             
+                  
+                  [centos]
+                  centos-node1 ansible_host=192.168.5.81
+                  
+                  [ubuntu]
+                  ubuntu-node2 ansible_host=192.168.5.83
+                  
+                  [allnodes:children]
+                  centos
+                  ubuntu
+
+
+
+
+
+[max@ansible-master ~]$ ansible centos-node1 -m ping -u max
+centos-node1 | SUCCESS => {
+
+
+[max@ansible-master ~]$ ansible centos -m ping -u max
+centos-node1 | SUCCESS => {
+
+
+
+
+[max@ansible-master ~]$ ansible ubuntu -m ping -u max
+ubuntu-node2 | SUCCESS => {
+
+
+
+
+[max@ansible-master ~]$ ansible allnodes:children -m ping -u max
+[WARNING]: Could not match supplied host pattern, ignoring: children
+ubuntu-node2 | SUCCESS => {
+
+
+
+
+
+
+
+
+
+Check uptime
+---------------------
+[max@ansible-master ~]$ ansible all -m command -a "uptime" -u max
+ubuntu-node2 | CHANGED | rc=0 >>
+ 06:15:47 up 1 day,  5:14,  3 users,  load average: 0.25, 0.14, 0.05
+centos-node1 | CHANGED | rc=0 >>
+ 06:15:47 up 1 day,  5:14,  3 users,  load average: 0.25, 0.14, 0.05
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "whoami" -u max
+ubuntu-node2 | CHANGED | rc=0 >>
+max
+centos-node1 | CHANGED | rc=0 >>
+max
+
+
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "hostname" -u max
+ubuntu-node2 | CHANGED | rc=0 >>
+ubuntu-node2
+centos-node1 | CHANGED | rc=0 >>
+centos-node1
+
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "date" -u max
+ubuntu-node2 | CHANGED | rc=0 >>
+Sat Nov 15 06:19:05 UTC 2025
+centos-node1 | CHANGED | rc=0 >>
+Sat Nov 15 06:19:05 AM UTC 2025
+
+
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "cat /etc/os-release" -u max
+                  ubuntu-node2 | CHANGED | rc=0 >>
+                  PRETTY_NAME="Ubuntu 25.04"
+                  NAME="Ubuntu"
+                  VERSION_ID="25.04"
+                  VERSION="25.04 (Plucky Puffin)"
+                  VERSION_CODENAME=plucky
+                  ID=ubuntu
+                  ID_LIKE=debian
+                  HOME_URL="https://www.ubuntu.com/"
+                  SUPPORT_URL="https://help.ubuntu.com/"
+                  BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+                  PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+                  UBUNTU_CODENAME=plucky
+                  LOGO=ubuntu-logo
+                  
+                  
+                  centos-node1 | CHANGED | rc=0 >>
+                  NAME="CentOS Stream"
+                  VERSION="9"
+                  ID="centos"
+                  ID_LIKE="rhel fedora"
+                  VERSION_ID="9"
+                  PLATFORM_ID="platform:el9"
+                  PRETTY_NAME="CentOS Stream 9"
+                  ANSI_COLOR="0;31"
+                  LOGO="fedora-logo-icon"
+                  CPE_NAME="cpe:/o:centos:centos:9"
+                  HOME_URL="https://centos.org/"
+                  BUG_REPORT_URL="https://issues.redhat.com/"
+                  REDHAT_SUPPORT_PRODUCT="Red Hat Enterprise Linux 9"
+                  REDHAT_SUPPORT_PRODUCT_VERSION="CentOS Stream"
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "df -h" -u max
+ubuntu-node2 | CHANGED | rc=0 >>
+Filesystem                        Size  Used Avail Use% Mounted on
+/dev/mapper/pve-vm--207--disk--0   15G  1.2G   13G   9% /
+none                              492K  4.0K  488K   1% /dev
+efivarfs                          128K   58K   66K  47% /sys/firmware/efi/efivars
+tmpfs                              32G     0   32G   0% /dev/shm
+tmpfs                              13G  136K   13G   1% /run
+tmpfs                              32G   96K   32G   1% /tmp
+tmpfs                             5.0M     0  5.0M   0% /run/lock
+tmpfs                             6.3G  8.0K  6.3G   1% /run/user/1000
+
+
+centos-node1 | CHANGED | rc=0 >>
+Filesystem                        Size  Used Avail Use% Mounted on
+/dev/mapper/pve-vm--206--disk--0   15G  549M   14G   4% /
+none                              492K  4.0K  488K   1% /dev
+udev                               32G     0   32G   0% /dev/tty
+tmpfs                              32G     0   32G   0% /dev/shm
+tmpfs                              13G  8.2M   13G   1% /run
+tmpfs                             6.3G     0  6.3G   0% /run/user/1000
+
+
+
+
+
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "free -h" -u max
+ubuntu-node2 | CHANGED | rc=0 >>
+               total        used        free      shared  buff/cache   available
+Mem:           1.0Gi       133Mi       136Mi       204Ki       753Mi       890Mi
+Swap:          1.0Gi        52Ki       1.0Gi
+centos-node1 | CHANGED | rc=0 >>
+               total        used        free      shared  buff/cache   available
+Mem:           1.0Gi        73Mi       707Mi       8.0Mi       251Mi       950Mi
+Swap:          1.0Gi          0B       1.0Gi
+
+
+
+
+
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "hostname" -u max
+                  ubuntu-node2 | CHANGED | rc=0 >>
+                  ubuntu-node2
+                  centos-node1 | CHANGED | rc=0 >>
+                  centos-node1
+                  
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "hostname -I" -u max
+                  ubuntu-node2 | CHANGED | rc=0 >>
+                  192.168.5.83
+                  centos-node1 | CHANGED | rc=0 >>
+                  192.168.5.81
+
+
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "ip route" -u max
+            ubuntu-node2 | CHANGED | rc=0 >>
+            default via 192.168.5.1 dev eth0 proto dhcp src 192.168.5.83 metric 1024
+            192.168.4.0/22 dev eth0 proto kernel scope link src 192.168.5.83 metric 1024
+            192.168.5.1 dev eth0 proto dhcp scope link src 192.168.5.83 metric 1024
+            
+            
+            centos-node1 | CHANGED | rc=0 >>
+            default via 192.168.5.1 dev eth0 proto dhcp src 192.168.5.81 metric 100
+            192.168.4.0/22 dev eth0 proto kernel scope link src 192.168.5.81 metric 100
+
+
+
+
+
+
+
+
+
+[max@ansible-master ~]$ ansible all -m command -a "ss -tnl" -u max
+                        ubuntu-node2 | CHANGED | rc=0 >>
+                        State  Recv-Q Send-Q Local Address:Port Peer Address:Port
+                        LISTEN 0      4096         0.0.0.0:22        0.0.0.0:*
+                        LISTEN 0      4096      127.0.0.54:53        0.0.0.0:*
+                        LISTEN 0      100        127.0.0.1:25        0.0.0.0:*
+                        LISTEN 0      4096   127.0.0.53%lo:53        0.0.0.0:*
+                        LISTEN 0      100            [::1]:25           [::]:*
+                        LISTEN 0      4096            [::]:22           [::]:*
+                        
+                        
+                        centos-node1 | CHANGED | rc=0 >>
+                        State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess
+                        LISTEN 0      128          0.0.0.0:22        0.0.0.0:*
+                        LISTEN 0      128             [::]:22           [::]:*
+
+
+
+
+
+
+
+🏁 Best Quick Test Commands (Top 10)
+-----------------------------
+
+Use these 10 commands anytime to verify a node:
+
+            ansible all -m ping -u max --become
+            
+            ansible all -m command -a "whoami" -u max --become
+            
+            ansible all -m command -a "hostname" -u max --become
+            
+            ansible all -m command -a "uptime" -u max --become
+            
+            ansible all -m command -a "df -h" -u max --become
+            
+            ansible all -m command -a "free -h" -u max --become
+            
+            ansible all -m command -a "ip a" -u max --become
+            
+            ansible all -m command -a "ss -tuln" -u max --become
+            
+            ansible all -m shell -a "echo Hello from $(hostname)" -u max --become
+            
+            ansible all -m setup -u max --become
+
+
+
+
+
+
+
+===================================================================================
+🧪 Lab 7 — Running Simple Ad-hoc Commands for Package and Service Management
+===================================================================================
+
+🎯 Objective
+
+This lab teaches you how to use Ansible ad-hoc commands to:
+      Install and remove packages
+      Start, stop, enable, restart services
+      Verify service status
+      Perform package updates
+      Manage services on CentOS and Ubuntu nodes
+      
+
+| **Host**       | **IP Address** | **OS**               | **User** | **Notes**         |
+| -------------- | -------------- | -------------------- | -------- | ----------------- |
+| `centos-node1` | 192.168.5.81   | CentOS Stream 9      | max      | Uses `yum` module |
+| `ubuntu-node2` | 192.168.5.83   | Ubuntu 22.04 / 25.04 | max      | Uses `apt` module |
+| Control Node   | 192.168.5.80   | CentOS               | max      | Ansible installed |
+
+
+
+
+
+⚙️ Step-by-Step Procedure
+-----------------------------------
+✅ Part 1 — Package Management (Install / Remove / Update)
+🌐 A. Install a Package on CentOS Node
+
+                        Example package: tree
+                        
+                        ansible centos -m yum -a "name=tree state=present" -u max --become
+                        
+                        Expected Output:
+                        centos-node1 | CHANGED => { ... }
+                        
+                        Verify tree installation:
+                        ansible centos -m command -a "tree --version" -u max --become
+
+
+
+
+🌐 B. Install a Package on Ubuntu Node
+
+            Install htop:
+            
+            ansible ubuntu -m apt -a "name=htop state=present update_cache=yes" -u max --become
+            
+            
+            Verify:
+            
+            ansible ubuntu -m command -a "htop --version" -u max --become
+
+
+
+🌐 C. Remove a Package
+
+CentOS:
+
+ansible centos -m yum -a "name=tree state=absent" -u max --become
+
+
+Ubuntu:
+
+ansible ubuntu -m apt -a "name=htop state=absent" -u max --become
+
+🌐 D. Update All Packages
+
+CentOS:
+
+ansible centos -m yum -a "name=* state=latest" -u max --become
+
+
+Ubuntu:
+
+ansible ubuntu -m apt -a "upgrade=yes update_cache=yes" -u max --become
+
+✅ Part 2 — Service Management (Start / Stop / Enable / Restart)
+
+You can test any service like:
+
+SSH (sshd / ssh)
+
+Cron (crond / cron)
+
+Apache (httpd / apache2)
+
+NTP (chronyd / systemd-timesyncd)
+
+Here are universal examples:
+
+🔥 A. Start a Service
+
+CentOS (sshd):
+
+ansible centos -m service -a "name=sshd state=started" -u max --become
+
+
+Ubuntu (ssh):
+
+ansible ubuntu -m service -a "name=ssh state=started" -u max --become
+
+🔥 B. Restart a Service
+
+CentOS:
+
+ansible centos -m service -a "name=sshd state=restarted" -u max --become
+
+
+Ubuntu:
+
+ansible ubuntu -m service -a "name=ssh state=restarted" -u max --become
+
+🔥 C. Stop a Service
+ansible all -m service -a "name=cron state=stopped" -u max --become
+
+
+⚠️ Do NOT stop sshd, or you will disconnect Ansible.
+
+🔥 D. Enable Service at Boot
+
+CentOS:
+
+ansible centos -m service -a "name=sshd enabled=yes" -u max --become
+
+
+Ubuntu:
+
+ansible ubuntu -m service -a "name=ssh enabled=yes" -u max --become
+
+🔥 E. Check Service Status
+ansible all -m shell -a "systemctl status sshd | grep Active" -u max --become
+
+
+Ubuntu uses:
+
+ansible ubuntu -m shell -a "systemctl status ssh | grep Active" -u max --become
+
+📌 Extra Useful Ad-hoc Commands
+Check system uptime:
+ansible all -m command -a "uptime" -u max --become
+
+Check logged-in users:
+ansible all -m command -a "who" -u max --become
+
+Check disk usage:
+ansible all -m command -a "df -h" -u max --become
+
+Check memory usage:
+ansible all -m command -a "free -h" -u max --become
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================================================
 
 ===================================================================================
 
@@ -958,6 +1623,12 @@ Step 5: Create and Verify Inventory File
 
 
 
+===================================================================================
+
+===================================================================================
+
+
+
 
 
 
@@ -970,6 +1641,12 @@ Step 5: Create and Verify Inventory File
 
 
 
+===================================================================================
+
+===================================================================================
+
+
+
 
 
 
@@ -979,6 +1656,21 @@ Step 5: Create and Verify Inventory File
 
 
 
+
+
+
+===================================================================================
+
+===================================================================================
+
+
+
+
+
+
+===================================================================================
+
+===================================================================================
 
 
 
