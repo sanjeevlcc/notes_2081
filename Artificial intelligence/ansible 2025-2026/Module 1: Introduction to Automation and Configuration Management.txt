@@ -688,6 +688,24 @@ Step 5: Create a Working Directory
 
 
 
+[root@ansible-master ~]# dnf install -y python3 python3-pip
+[root@ansible-master ~]# python3 --version
+pip3 --version
+            Python 3.9.23
+            pip 21.3.1 from /usr/lib/python3.9/site-packages/pip (python 3.9)
+
+
+[root@centos-node1 ~]# dnf install -y python3 python3-pip
+[root@centos-node1 ~]# python3 --version
+Python 3.9.23
+
+
+root@ubuntu-node2:~# apt update -y
+root@ubuntu-node2:~# apt install -y python3 python3-pip
+root@ubuntu-node2:~# pip3 --version
+            pip 25.0 from /usr/lib/python3/dist-packages/pip (python 3.13)
+root@ubuntu-node2:~# python3 --version
+            Python 3.13.3
 
 
 
@@ -699,11 +717,232 @@ Step 5: Create a Working Directory
 
 
 ===================================================================================
-
+🧪 Lab 4 — Setting Up Managed Nodes and SSH Key-Based Authentication
 ===================================================================================
 
 
+🎯 Objective
 
+Configure secure, passwordless SSH communication between the Ansible control node and all managed nodes.
+
+
+
+
+
+
+🧱 Lab Setup
+
+| **Host**         | **IP Address** | **Role**     | **OS**          |
+| ---------------- | -------------- | ------------ | --------------- |
+| `ansible-master` | 192.168.5.80   | Control Node | CentOS Stream 9 |
+| `centos-node1`   | 192.168.5.81   | Managed Node | CentOS Stream 9 |
+| `ubuntu-node2`   | 192.168.5.83   | Managed Node | Ubuntu 22.04    |
+
+
+
+
+
+
+
+⚙️ Step-by-Step Procedure
+Step 1: Verify SSH Service on All Nodes
+
+On each managed node, make sure SSH is running:
+
+            # CentOS
+            systemctl enable --now sshd
+            
+            # Ubuntu
+            systemctl enable --now ssh
+            
+            Check status:
+            systemctl status sshd
+            
+
+
+[root@centos-node1 ~]# dnf install -y openssh-server
+[root@centos-node1 ~]# systemctl enable --now sshd
+[root@centos-node1 ~]# systemctl status sshd | grep running
+     Active: active (running) since Fri 2025-11-14 23:19:52 UTC; 9s ago
+
+
+
+root@ubuntu-node2:~# systemctl enable --now ssh
+root@ubuntu-node2:~# systemctl status sshd | grep running
+     Active: active (running) since Fri 2025-11-14 01:01:35 UTC; 22h ago
+
+
+
+
+
+
+
+
+
+Step 2: From the Control Node, Generate SSH Key Pair
+            ssh-keygen -t rsa -b 4096
+
+Press Enter for default paths and no passphrase.
+
+
+                  [root@ansible-master ~]# ssh-keygen -t rsa -b 4096      <<<<<<<<<<<<<<<<<<<<<<<
+                  Generating public/private rsa key pair.
+                  Enter file in which to save the key (/root/.ssh/id_rsa): 
+                  Enter passphrase for "/root/.ssh/id_rsa" (empty for no passphrase): 
+                  Enter same passphrase again: 
+                  Your identification has been saved in /root/.ssh/id_rsa
+                  Your public key has been saved in /root/.ssh/id_rsa.pub
+                  The key fingerprint is:
+                  SHA256:I5wrzRdQLdbfU1/8RYFqpAA3uwfwxc4UpoA1wNVhhFo root@ansible-master
+                  The key's randomart image is:
+                  +---[RSA 4096]----+
+                  |  ..=B=*+*.   .+o|
+                  |   o EB+Ooo. .  =|
+                  |    o .*=.o... .=|
+                  |   . . oo+ o. o o|
+                  |      +.S..    . |
+                  |     o o.o       |
+                  |    . + .        |
+                  |     . .         |
+                  |                 |
+                  +----[SHA256]-----+
+                  [root@ansible-master ~]# 
+
+
+
+
+
+
+[root@centos-node1 ~]# ls .ssh/
+[root@centos-node1 ~]# 
+
+root@ubuntu-node2:~# ls .ssh/
+root@ubuntu-node2:~#
+
+
+      [root@centos-node1 ~]# useradd max
+      [root@centos-node1 ~]# passwd max
+
+                  root@ubuntu-node2:~# adduser max
+                  Retype new password: 
+                  passwd: password updated successfully
+                  Changing the user information for max
+                  Enter the new value, or press ENTER for the default
+                          Full Name []: Max Thapa
+                          Room Number []: 22
+                          Work Phone []: 9865093594
+                          Home Phone []: 
+                          Other []: 
+                  Is the information correct? [Y/n] y
+
+
+
+
+
+
+
+
+Step 3: Copy the SSH Key to Managed Nodes
+            ssh-copy-id root@192.168.5.81   <<<<<<<<<<<<<<<< root cannot login/ go by user= max
+            ssh-copy-id root@192.168.5.83
+
+When prompted, enter the node’s password once.
+After this, passwordless authentication is established.
+
+
+
+                  
+                  [root@ansible-master ~]# ssh max@192.168.5.81
+                  max@192.168.5.81's password: 
+                  Last login: Fri Nov 14 23:25:29 2025 from 192.168.5.80
+                  [max@centos-node1 ~]$
+                  
+                  
+                                          [root@ansible-master ~]# ssh max@192.168.5.83
+                                          max@192.168.5.83's password: 
+                                          Welcome to Ubuntu 25.04 (GNU/Linux 6.8.12-9-pve x86_64)
+                                          
+                                           * Documentation:  https://help.ubuntu.com
+                                           * Management:     https://landscape.canonical.com
+                                           * Support:        https://ubuntu.com/pro
+                                          Last login: Fri Nov 14 23:35:05 2025 from 192.168.5.80
+                                          max@ubuntu-node2:~$ 
+
+
+
+
+            
+            [root@ansible-master ~]# ssh-copy-id max@192.168.5.81
+            max@192.168.5.81's password: 
+            
+            [root@ansible-master ~]# ssh-copy-id max@192.168.5.81
+            
+            
+
+
+Step 4: Test SSH Connection
+            ssh root@centos-node1
+            ssh root@ubuntu-node2
+
+
+✅ If you can log in without password, the setup is correct.
+Exit back to master node using:
+
+
+
+
+
+                  
+                  [root@ansible-master ~]# ssh max@192.168.5.81
+                  Last login: Fri Nov 14 23:30:33 2025 from 192.168.5.80
+                  [max@centos-node1 ~]$ hostname
+                  centos-node1
+                  [max@centos-node1 ~]$ hostname -I
+                  192.168.5.81 
+                  [max@centos-node1 ~]$ 
+                  
+                  
+                  
+                  
+                  
+                  
+                                    [root@ansible-master ~]# ssh max@192.168.5.83
+                                    Welcome to Ubuntu 25.04 (GNU/Linux 6.8.12-9-pve x86_64)
+                                    
+                                     * Documentation:  https://help.ubuntu.com
+                                     * Management:     https://landscape.canonical.com
+                                     * Support:        https://ubuntu.com/pro
+                                    Last login: Fri Nov 14 23:36:29 2025 from 192.168.5.80
+                                    max@ubuntu-node2:~$ whoami
+                                    max
+                                    max@ubuntu-node2:~$ hostname
+                                    ubuntu-node2
+                                    max@ubuntu-node2:~$ hostname -I
+                                    192.168.5.83 
+                                    max@ubuntu-node2:~$
+
+
+
+
+
+
+
+Step 5: Create and Verify Inventory File
+
+                  Create /etc/ansible/hosts:
+                  
+                              nano /etc/ansible/hosts
+                  
+                  
+                  Add:
+                  
+                              [all]
+                              centos-node1 ansible_host=192.168.5.81
+                              ubuntu-node2 ansible_host=192.168.5.83
+                  
+                  
+                  Save and exit.
+                  
 
 
 
