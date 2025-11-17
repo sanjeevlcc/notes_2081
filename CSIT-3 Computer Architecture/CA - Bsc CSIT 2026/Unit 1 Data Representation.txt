@@ -542,3 +542,298 @@ HOW UNIT 1 ENHANCES THE COMPUTER SYSTEM
                Instruction 10110010 may mean “Move data from R1 to R2”.
 
 ....................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+....................................................................................
+ MCQs (20 Questions)
+....................................................................................
+
+Q1. Computers internally store and process all types of data in:
+    (a) Decimal form
+    (b) Binary form
+    (c) Octal form
+    (d) Hexadecimal form
+
+....................................................................................
+
+Q2. In BCD (Binary Coded Decimal), the decimal number 39 is represented as:
+    (a) 0011 1001
+    (b) 0011 0011
+    (c) 0100 0001
+    (d) 1001 0011
+
+....................................................................................
+
+Q3. Which of the following is TRUE about ASCII?
+    (a) It is a 4-bit code
+    (b) It is a 7-bit or 8-bit character code
+    (c) It is used only in IBM mainframes
+    (d) It is the same as EBCDIC
+
+....................................................................................
+
+Q4. The main purpose of using complements in number representation is:
+    (a) To increase storage capacity
+    (b) To simplify subtraction and negative number representation
+    (c) To store characters efficiently
+    (d) To implement parity checking only
+
+....................................................................................
+
+Q5. The 9’s complement of the decimal number 254 is:
+    (a) 745
+    (b) 746
+    (c) 755
+    (d) 999
+
+....................................................................................
+
+Q6. In sign-magnitude representation, –13 (in 5 bits) is:
+    (a) 01101
+    (b) 10110
+    (c) 11101
+    (d) 11011
+
+....................................................................................
+
+Q7. In 1’s complement representation, the 1’s complement of 00101100 is:
+    (a) 00101100
+    (b) 00101111
+    (c) 11010011
+    (d) 11010011 (with sign bit ignored)
+
+....................................................................................
+
+Q8. In 2’s complement representation, which of the following steps is correct?
+    (a) Add 2 to the original number
+    (b) Invert all bits and subtract 1
+    (c) Invert all bits and add 1
+    (d) Just invert the MSB
+
+....................................................................................
+
+Q9. Fixed-point representation is BEST suited for:
+    (a) Very large scientific numbers
+    (b) Simple embedded systems and integer arithmetic
+    (c) Only character data
+    (d) Only error-detection codes
+
+....................................................................................
+
+Q10. The general form of floating-point representation is:
+    (a) Number = Exponent × Mantissa
+    (b) Number = Mantissa × 10^Exponent
+    (c) Number = Mantissa × 2^Exponent
+    (d) Number = Sign + Mantissa – Exponent
+
+....................................................................................
+
+Q11. Overflow in 2’s complement addition occurs when:
+    (a) Adding two numbers of opposite sign
+    (b) Adding two positive numbers gives a negative result
+    (c) Adding two negative numbers gives a negative result
+    (d) Result always has a carry-out from LSB
+
+....................................................................................
+
+Q12. In Gray code:
+    (a) Only two bits change between successive codes
+    (b) All bits change between successive codes
+    (c) Only one bit changes between successive codes
+    (d) No bit changes between successive codes
+
+....................................................................................
+
+Q13. Which of the following is a self-complementing code?
+    (a) 8421 BCD
+    (b) Excess-3
+    (c) ASCII
+    (d) EBCDIC
+
+....................................................................................
+
+Q14. In 8421 weighted code, the weights assigned (from MSB to LSB) are:
+    (a) 1, 2, 4, 8
+    (b) 8, 4, 2, 1
+    (c) 2, 4, 2, 1
+    (d) 4, 2, 1, 0
+
+....................................................................................
+
+Q15. The Excess-3 (XS-3) code of decimal digit 5 is:
+    (a) 0101
+    (b) 1000
+    (c) 0110
+    (d) 0011
+
+....................................................................................
+
+Q16. EBCDIC is primarily used:
+    (a) In mobile operating systems
+    (b) In IBM mainframe computers
+    (c) As a 4-bit microcontroller code
+    (d) Only for floating-point numbers
+
+....................................................................................
+
+Q17. A parity bit is mainly used to:
+    (a) Increase speed of CPU
+    (b) Compress data
+    (c) Detect errors in data transmission
+    (d) Encrypt secret data
+
+....................................................................................
+
+Q18. For even parity, if the data bits are 101011, the parity bit should be:
+    (a) 0
+    (b) 1
+    (c) Either 0 or 1
+    (d) Cannot be determined
+
+....................................................................................
+
+Q19. Which of the following statements about floating-point representation is TRUE?
+    (a) It can only represent integers
+    (b) It cannot represent very small numbers
+    (c) It allows a wide range of representable values
+    (d) It is not used in scientific computation
+
+....................................................................................
+
+Q20. Which is NOT a direct benefit of Data Representation in Computer Architecture?
+    (a) Design of ALU and control unit
+    (b) Reliable error detection in communication
+    (c) Efficient instruction encoding and decoding
+    (d) Increasing screen refresh rate of monitor hardware
+
+....................................................................................
+
+
+
+
+
+
+
+ANSWERS WITH REASONING
+....................................................................................
+
+Q1. (b)
+Reason: All internal processing is done using binary (0 and 1) in digital computers.
+
+Q2. (a)
+Reason: 3 = 0011, 9 = 1001 in BCD → 0011 1001.
+
+Q3. (b)
+Reason: ASCII is traditionally a 7-bit code, extended to 8 bits in many systems.
+
+Q4. (b)
+Reason: Complements (1’s, 2’s, 9’s, 10’s, etc.) are used to simplify subtraction and represent negative numbers.
+
+Q5. (b)
+Reason: For 3-digit number:
+9’s complement of 254 = 999 – 254 = 745? Wait:
+999 – 254 = 745, but options given: 745, 746, 755, 999.
+Correct is 745 → Option (a).
+(If you prefer strict 3-digit: answer = 745.)
+
+(Use: 9–2=7, 9–5=4, 9–4=5)
+
+So correct: (a)
+
+Q6. (c)
+Reason: In 5 bits, sign-magnitude: MSB = sign.
+13 in binary = 01101. For –13 → sign bit = 1 → 11101.
+
+Q7. (c)
+Reason: 1’s complement is obtained by inverting every bit:
+00101100 → 11010011.
+
+Q8. (c)
+Reason: 2’s complement = (invert all bits) + 1.
+
+Q9. (b)
+Reason: Fixed-point is simple and used in embedded systems where range requirements are limited.
+
+Q10. (c)
+Reason: In binary systems, floating-point is usually represented as Mantissa × 2^Exponent.
+
+Q11. (b)
+Reason: In 2’s complement, overflow occurs when two positive numbers give a negative result OR two negatives give a positive. Among options, (b) states a correct overflow situation.
+
+Q12. (c)
+Reason: In Gray code, only one bit changes between successive codes.
+
+Q13. (b)
+Reason: Excess-3 is self-complementing: 9’s complement is obtained by bitwise complement in XS-3.
+
+Q14. (b)
+Reason: 8421 code has weights 8, 4, 2, and 1 from MSB to LSB.
+
+Q15. (c)
+Reason: Excess-3 of 5 = (5 + 3) = 8 → 1000.
+Wait, options:
+(a) 0101
+(b) 1000
+(c) 0110
+(d) 0011
+Correct: 5 + 3 = 8 = 1000 → answer (b).
+
+Q16. (b)
+Reason: EBCDIC is mainly used in IBM mainframe systems.
+
+Q17. (c)
+Reason: Parity bit is used to detect (not correct) errors in data transmission.
+
+Q18. (a)
+Reason: Data 101011 has 4 ones (even).
+For even parity, total ones must remain even → parity bit = 0.
+
+Q19. (c)
+Reason: Floating-point can represent both very large and very small numbers → wide dynamic range.
+
+Q20. (d)
+Reason: Screen refresh rate is related to display hardware, not directly to data representation. Others are direct benefits.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
