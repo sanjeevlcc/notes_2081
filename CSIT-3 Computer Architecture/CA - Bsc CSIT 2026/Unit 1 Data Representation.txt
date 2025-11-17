@@ -6,172 +6,222 @@
 UNIT 1 : DATA REPRESENTATION  (4 Hrs)
 ....................................................................................
 
+
+
+
+
+
+
+
 1.1 DATA REPRESENTATION
 ....................................................................................
 
 • Computers store all information in BINARY (0 and 1).
 • Any type of data (numbers, text, sound, images) must be represented as bits.
+• So it is FOUNDATION of computer architecture.
+
+• Therefore, to design or understand any computer system,  
+  we must first understand how numbers, characters, and signals  
+  are represented in binary form.
+
+
+• Data Representation is required to:
+     - Perform arithmetic operations correctly.
+     - Store data in memory reliably.
+     - Process instructions inside the CPU.
+     - Communicate data between devices without errors.
+     - Design ALU, control unit, and memory circuits.
+
+
+
+• Without this chapter, we cannot understand:
+     - Register Transfer operations
+     - ALU design
+     - Memory architecture
+     - Instruction decoding
+     - CPU operations and pipelining
+     - I/O data handling
+     - Error detection and correction
+
+
+
 
 ....................................................................................
 A. BINARY REPRESENTATION
 ....................................................................................
-• Binary is a base-2 number system.
-• Digits used → {0, 1}
-• Each digit = BIT.
-
-Example:
-(13)10 = (1101)2
-(25)10 = (11001)2
-(100)10 = (1100100)2
+      • Binary is a base-2 number system.
+      • Digits used → {0, 1}
+      • Each digit = BIT.
+      
+      Example:
+      (13)10 = (1101)2
+      (25)10 = (11001)2
+      (100)10 = (1100100)2
 
 ....................................................................................
 B. BCD (Binary Coded Decimal)
 ....................................................................................
-• Each decimal digit (0–9) is represented by its 4-bit binary code.
-
-Example:
-12 in BCD
-1 → 0001
-2 → 0010
-BCD = 0001 0010
-
-• Useful in digital clocks, calculators, numeric displays.
+      • Each decimal digit (0–9) is represented by its 4-bit binary code.
+      
+      Example:
+      12 in BCD
+      1 → 0001
+      2 → 0010
+      BCD = 0001 0010
+      
+      • Useful in digital clocks, calculators, numeric displays.
 
 ....................................................................................
 C. ALPHANUMERIC REPRESENTATION
 ....................................................................................
-Characters, digits, symbols are stored using character codes.
-
-1. ASCII (American Standard Code for Information Interchange)
-   • 7-bit or 8-bit code.
-   • Example:
-       ‘A’ = 65 = 1000001
-       ‘a’ = 97 = 1100001
-       ‘0’ = 48 = 0110000
-
-2. EBCDIC (Extended Binary Coded Decimal Interchange Code)
-   • 8-bit code used by IBM systems.
-   • Example:
-       ‘A’ = 11000001
+         Characters, digits, symbols are stored using character codes.
+         
+         1. ASCII (American Standard Code for Information Interchange)
+            • 7-bit or 8-bit code.
+            • Example:
+                ‘A’ = 65 = 1000001
+                ‘a’ = 97 = 1100001
+                ‘0’ = 48 = 0110000
+         
+         2. EBCDIC (Extended Binary Coded Decimal Interchange Code)
+            • 8-bit code used by IBM systems.
+            • Example:
+                ‘A’ = 11000001
 
 ....................................................................................
 D. COMPLEMENTS
 ....................................................................................
-Complements simplify subtraction and negative number representation.
+         Complements simplify subtraction and negative number representation.
+         
+         Two types:
+               1. (r – 1)’s complement
+               2. r’s complement
 
-Two types:
-1. (r – 1)’s complement
-2. r’s complement
-Where r = base and n = number of digits.
+         Where r = base and n = number of digits.
+         
+         Formulas:
+               • r’s complement  = r^n – N
+               • (r – 1)’s comp = r^n – 1 – N
+         
+         Example:
+         Find 10’s and 9’s complement of 512.
+         r = 10, n = 3
+               10’s comp = 1000 – 512 = 488
+               9’s comp  = 488 – 1 = 487
+         
+         Complement Table:
+               Binary (r=2)     → 2’s comp, 1’s comp
+               Decimal (r=10)   → 10’s comp, 9’s comp
+               Octal (r=8)      → 8’s comp, 7’s comp
+               Hex (r=16)       → 16’s comp, 15’s comp
 
-Formulas:
-• r’s complement  = r^n – N
-• (r – 1)’s comp = r^n – 1 – N
-
-Example:
-Find 10’s and 9’s complement of 512.
-r = 10, n = 3
-10’s comp = 1000 – 512 = 488
-9’s comp  = 488 – 1 = 487
-
-Complement Table:
-Binary (r=2)     → 2’s comp, 1’s comp
-Decimal (r=10)   → 10’s comp, 9’s comp
-Octal (r=8)      → 8’s comp, 7’s comp
-Hex (r=16)       → 16’s comp, 15’s comp
 
 ....................................................................................
 E. NEGATIVE BINARY NUMBER REPRESENTATION
 ....................................................................................
 
-1. Sign-Magnitude
-   • MSB = sign bit (0 = +, 1 = –)
-   Example:
-   +11 = 0 1011
-   –11 = 1 1011
+         1. Sign-Magnitude
+            • MSB = sign bit (0 = +, 1 = –)
+                        Example:
+                        +11 = 0 1011
+                        –11 = 1 1011
+         
+         2. 1’s Complement
+            • Replace 1→0 and 0→1
+                        Example:
+                        12 = 00001100
+                        1’s complement = 11110011
+         
+         3. 2’s Complement
+            • 1’s complement + 1
+                        Example:
+                        12 = 00001100
+                        1’s comp = 11110011
+                        2’s comp = 11110100
+         
+         • Modern CPUs use 2’s complement.
 
-2. 1’s Complement
-   • Replace 1→0 and 0→1
-   Example:
-   12 = 00001100
-   1’s complement = 11110011
 
-3. 2’s Complement
-   • 1’s complement + 1
-   Example:
-   12 = 00001100
-   1’s comp = 11110011
-   2’s comp = 11110100
-
-• Modern CPUs use 2’s complement.
 
 ....................................................................................
 F. FIXED POINT REPRESENTATION
 ....................................................................................
-Used to represent integers and fractions with fixed positions.
-
-Format:
-Sign Bit | Integer Bits | Fraction Bits
-
-Example:
-+9.625 → 1001.101
-–1.10  → sign bit = 1
-
-Suitable for simple embedded systems.
+         Used to represent integers and fractions with fixed positions.
+         
+         Format:
+         Sign Bit | Integer Bits | Fraction Bits
+         
+         Example:
+         +9.625 → 1001.101
+         –1.10  → sign bit = 1
+         
+         Suitable for simple embedded systems.
+               Examples of embedded systems include consumer electronics like smartphones
+               and digital watches, home appliances such as washing machines and microwave
+               ovens, and complex systems in automotive and medical fields. 
+               
+               These are computer systems with a dedicated function, found in everything
+               from simple calculators to advanced industrial robots and traffic lights. 
+               
 
 ....................................................................................
 G. FLOATING POINT REPRESENTATION
 ....................................................................................
-Used to represent very large and very small numbers.
-
-General format:
-Number = Mantissa × 2^Exponent
-
-Example:
-1354.537 = 0.1354537 × 2^7
-
-IEEE 754 Single Precision (32-bit):
-Sign = 1 bit
-Exponent = 8 bits
-Mantissa = 23 bits
+         Used to represent very large and very small numbers.
+         
+         General format:
+         Number = Mantissa × 2^Exponent
+         
+               Example:
+               1354.537 = 0.1354537 × 2^7
+               
+         IEEE 754 Single Precision (32-bit):
+               Sign = 1 bit
+               Exponent = 8 bits
+               Mantissa = 23 bits
 
 ....................................................................................
 H. ARITHMETIC USING COMPLEMENTS
 ....................................................................................
-Subtraction can be done using complements.
+         Subtraction can be done using complements.
+                        A+B = B+A
+                        A-B != B-A
+         
+         Example: 10 – 15 using 2’s complement.
+         
+                  10 = 00001010
+                  15 = 00001111
+                  2’s comp of 15 = 11110001
+                  Add:
+                  00001010
+                  +11110001
+                  -----------
+                  11111011  (negative)
+                  2’s comp to interpret → 00000101 = 5
+                  Final result = –5
 
-Example: 10 – 15 using 2’s complement.
-
-10 = 00001010
-15 = 00001111
-2’s comp of 15 = 11110001
-Add:
-00001010
-+11110001
------------
-11111011  (negative)
-2’s comp to interpret → 00000101 = 5
-Final result = –5
 
 ....................................................................................
 I. OVERFLOW AND DETECTION
 ....................................................................................
-Overflow = result exceeds available bit size.
+            Overflow = result exceeds available bit size.
+            
+            Example of Overflow:
+                   1001 (9)
+                  +1001 (9)
+                  ---------
+                  10010 → Overflow (5 bits)
 
-Example of Overflow:
- 1001 (9)
-+1001 (9)
----------
-10010 → Overflow (5 bits)
 
-Overflow Rule (2’s complement):
-• Same-sign addition gives opposite-sign result → OVERFLOW.
+            Overflow Rule (2’s complement):
+                     • Same-sign addition gives opposite-sign result → OVERFLOW.
+                     
+                     Example (No Overflow):
+                      0110 (6)
+                     +1001 (–7)
+                     ---------
+                      1111 = –1 (valid)
 
-Example (No Overflow):
-0110 (6)
-+1001 (–7)
----------
-1111 = –1 (valid)
 
 ....................................................................................
 1.2 OTHER BINARY CODES
@@ -179,73 +229,73 @@ Example (No Overflow):
 
 A. GRAY CODE (Reflected Binary Code)
 ....................................................................................
-• Adjacent values differ by only one bit.
-• Reduces mechanical/encoder errors.
-
-Binary → Gray Conversion:
-1. Copy MSB.
-2. XOR MSB with next bit.
-3. Continue for all bits.
-
-Example:
-Binary: 1011
-Gray:
-1
-1⊕0 = 1
-0⊕1 = 1
-1⊕1 = 0
-Result: 1110
+            • Adjacent values differ by only one bit.
+            • Reduces mechanical/encoder errors.
+            
+                     Binary → Gray Conversion:
+                        1. Copy MSB.
+                        2. XOR MSB with next bit.
+                        3. Continue for all bits.
+            
+            Example:
+            Binary: 1011
+            Gray:
+            1
+            1⊕0 = 1
+            0⊕1 = 1
+            1⊕1 = 0
+                  Result: 1110
 
 ....................................................................................
 B. SELF-COMPLEMENTING CODES
 ....................................................................................
-If 9’s complement of digit = bitwise complement of code, it is self-complementing.
-
-Examples:
-• Excess-3
-• 2421 Code
+         If 9’s complement of digit = bitwise complement of code, it is self-complementing.
+         
+         Examples:
+         • Excess-3
+         • 2421 Code
 
 ....................................................................................
 C. WEIGHTED CODES (8421 and 2421)
 ....................................................................................
 
-1. 8421 Code (Natural BCD)
-   Weights: 8, 4, 2, 1
-   Example:
-   5 = 0101
-   9 = 1001
-
-2. 2421 Code
-   Weights: 2, 4, 2, 1 (self-complementing)
-   Example table:
-   Digit | 8421 | 2421
-   ------|------|------
-     5   | 0101 | 1011
-     6   | 0110 | 1100
-     7   | 0111 | 1101
-     8   | 1000 | 1110
-     9   | 1001 | 1111
+         1. 8421 Code (Natural BCD)
+            Weights: 8, 4, 2, 1
+            Example:
+                  5 = 0101
+                  9 = 1001
+               
+         2. 2421 Code
+            Weights: 2, 4, 2, 1 (self-complementing)
+            Example table:
+                  Digit | 8421 | 2421
+                  ------|------|------
+                    5   | 0101 | 1011
+                    6   | 0110 | 1100
+                    7   | 0111 | 1101
+                    8   | 1000 | 1110
+                    9   | 1001 | 1111
 
 ....................................................................................
 D. EXCESS-3 (XS-3) CODE
 ....................................................................................
-• Add decimal 3 (0011) to each BCD digit.
-
-Example:
-Digit = 7 → BCD 0111
-Add 0011 → 1010 (XS-3 code)
-
-• Used in decimal arithmetic due to self-complementing property.
+         • Add decimal 3 (0011) to each BCD digit.
+         
+         Example:
+                  Digit = 7 → BCD 0111
+                  Add 0011 → 1010 (XS-3 code)
+         
+         • Used in decimal arithmetic due to self-complementing property.
 
 ....................................................................................
 E. EBCDIC CODE
 ....................................................................................
-Extended Binary Coded Decimal Interchange Code.
-• 8-bit code → 256 characters.
-• Used in IBM mainframes.
-
-Example:
-'A' = 11000001
+      Extended Binary Coded Decimal Interchange Code.
+      • 8-bit code → 256 characters.
+      • Used in IBM mainframes.
+      
+      Example:
+      'A' = 11000001
 
 ....................................................................................
 1.3 ERROR DETECTION CODES
@@ -253,45 +303,242 @@ Example:
 
 A. PARITY BIT
 ....................................................................................
-• Simple error detection mechanism.
-• Adds one extra bit to the data.
-
-Two types:
-1. Even Parity → Total 1s = Even
-2. Odd Parity  → Total 1s = Odd
-
-Example (Even Parity):
-Data: 101101
-No. of 1s = 4 (even)
-Parity Bit = 0
-Code = 1011010
-
-Example (Odd Parity):
-Data: 101101
-No. of 1s = 4 (even)
-Parity Bit = 1
-Code = 1011011
+         • Simple error detection mechanism.
+         • Adds one extra bit to the data.
+         
+         Two types:
+         1. Even Parity → Total 1s = Even
+         2. Odd Parity  → Total 1s = Odd
+         
+         Example (Even Parity):
+               Data: 101101
+               No. of 1s = 4 (even)
+               Parity Bit = 0
+               Code = 1011010
+         
+         Example (Odd Parity):
+               Data: 101101
+               No. of 1s = 4 (even)
+               Parity Bit = 1
+               Code = 1011011
 
 ....................................................................................
 B. PARITY GENERATOR AND CHECKER
 ....................................................................................
-• Parity Generator creates parity bit (uses XOR).
-• Parity Checker verifies received data.
-
-Error Detection:
-If received parity ≠ expected parity → ERROR.
-
-Truth Table Example:
-Data | Odd Parity | Even Parity
-000  |     1      |     0
-001  |     0      |     1
-010  |     0      |     1
-011  |     1      |     0
-100  |     0      |     1
-101  |     1      |     0
-110  |     1      |     0
-111  |     0      |     1
+            • Parity Generator creates parity bit (uses XOR).
+            • Parity Checker verifies received data.
+            
+                     Error Detection:
+                     If received parity ≠ expected parity → ERROR.
+                     
+                     Truth Table Example:
+                     Data | Odd Parity | Even Parity
+                     000  |     1      |     0
+                     001  |     0      |     1
+                     010  |     0      |     1
+                     011  |     1      |     0
+                     100  |     0      |     1
+                     101  |     1      |     0
+                     110  |     1      |     0
+                     111  |     0      |     1
 
 ....................................................................................
-END OF UNIT 1 (DATA REPRESENTATION)
+
+....................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+....................................................................................
+HOW UNIT 1 ENHANCES THE COMPUTER SYSTEM
+....................................................................................
+
+1. **Enhances CPU Arithmetic and Logic**
+            • Using 2’s complement makes subtraction = addition.
+            • Simplifies ALU hardware.
+            • Faster and more efficient arithmetic processing.
+         
+            Example:
+                  Subtraction 10 - 15 is done using complement arithmetic  
+                  instead of designing a separate subtractor.
+
+....................................................................................
+
+2. **Improves Number Representation & Range Handling**
+            • Negative numbers, small fractions, and large values  
+              can be represented correctly using:
+              - Fixed-point
+              - Floating-point
+              - Complements
+            • Prevents overflow and sign errors.
+         
+            Example:
+                  Floating-point allows representation of very large  
+                  scientific numbers like 3.2 × 10^18.
+
+....................................................................................
+
+3. **Enables Accurate Data Storage in Memory**
+            • Bytes, words, characters, integers, and floating numbers  
+              all depend on binary representation.
+            • ASCII/EBCDIC allow uniform character storage.
+            • BCD used in financial calculations where decimal accuracy is needed.
+         
+            Example:
+            The decimal value 12 stored as BCD → 0001 0010.
+
+....................................................................................
+
+4. **Supports Reliable Communication Through Error Detection**
+               • Parity bit detects transmission errors.
+               • Ensures data integrity between CPU ↔ Memory ↔ I/O.
+            
+               Example:
+               Odd parity for data 10101 → parity = 0 to maintain odd count.
+
+....................................................................................
+
+5. **Simplifies Hardware Circuit Design**
+                                                                           • Gray code reduces switching errors in encoders.
+                                                                           • Weighted codes simplify numeric hardware operations.
+                                                                        
+                                                                           Example:
+                                                                           Gray code counters change only 1 bit at a time  
+                                                                           → reduces mechanical errors in rotating shafts.
+
+....................................................................................
+
+6. **Enables Scientific and Engineering Computations**
+               • Floating-point format supports:
+                 - Wide range of numbers
+                 - Higher precision
+                 - Scientific accuracy
+            
+               Example:
+               0.00000034 or 3.2 × 10^10 can be represented easily.
+
+....................................................................................
+
+7. **Vital for Instruction Encoding and Control Signals**
+               • Machine instructions are binary patterns.
+               • Understanding binary helps in decoding:
+                 - Opcodes
+                 - Addressing modes
+                 - Micro-operations
+            
+               Example:
+               Instruction 10110010 may mean “Move data from R1 to R2”.
+
 ....................................................................................
