@@ -1,0 +1,223 @@
+
+
+
+Q1) If the arrival rate is λ = 5 customers/hour and service rate is μ = 10 customers/hour,
+    find the traffic intensity ρ.
+Solution:
+ρ = λ / μ = 5 / 10 = 0.5
+------------------------------------------------------------
+
+Q2) A system has λ = 2 customers/hour and μ = 8 customers/hour.
+    Find Ls (average number of customers in system).
+Solution:
+Ls = λ / (μ − λ) = 2 / (8 − 2) = 2 / 6 = 0.33 customers
+------------------------------------------------------------
+
+Q3) A queue has λ = 4 customers/hour and μ = 12 customers/hour.
+    Find Lq (average number in queue).
+Solution:
+Lq = λ² / [ μ (μ − λ) ]
+Lq = 4² / [ 12 × (12 − 4) ] = 16 / (12 × 8) = 16 / 96 = 0.1667 customers
+------------------------------------------------------------
+
+Q4) Arrival rate λ = 3, service rate μ = 5.
+    Find ρ.
+Solution:
+ρ = 3 / 5 = 0.6
+------------------------------------------------------------
+
+Q5) Arrival rate λ = 6, service rate μ = 9.
+    Find Ls.
+Solution:
+Ls = λ / (μ − λ) = 6 / (9 − 6) = 6 / 3 = 2 customers
+------------------------------------------------------------
+
+Q6) Arrival rate λ = 7, service rate μ = 10.
+    Find Lq.
+Solution:
+Lq = λ² / [ μ (μ − λ) ]
+Lq = 49 / [ 10 × (10 − 7) ] = 49 / 30 = 1.63 customers
+------------------------------------------------------------
+
+Q7) Arrival rate λ = 1, service rate μ = 4.
+    Find Ls.
+Solution:
+Ls = 1 / (4 − 1) = 1 / 3 = 0.33 customers
+------------------------------------------------------------
+
+Q8) A server has μ = 15 customers/hour, arrival rate = 5 customers/hour.
+    Find ρ.
+Solution:
+ρ = 5 / 15 = 0.3333
+------------------------------------------------------------
+
+Q9) λ = 8 customers/hour, μ = 20 customers/hour.
+    Find Lq.
+Solution:
+Lq = λ² / [ μ (μ − λ) ]
+Lq = 64 / [ 20 × (20 − 8) ] = 64 / 240 = 0.2667 customers
+------------------------------------------------------------
+
+Q10) λ = 9, μ = 12.
+     Find (a) ρ, (b) Ls.
+Solution:
+(a) ρ = 9 / 12 = 0.75
+(b) Ls = 9 / (12 − 9) = 9 / 3 = 3 customers
+
+
+
+
+
+
+**********************************************************************
+**********************************************************************
+**********************************************************************
+
+
+Q1) In a small service center, customers arrive at an average rate λ = 4 per hour.
+    The service rate is μ = 10 per hour. Assume an M/M/1 queue.
+    Find:
+    (a) Traffic intensity ρ
+    (b) Average number of customers in the system Ls
+    (c) Average number of customers in the queue Lq
+
+Solution 1:
+- Formula: ρ = λ / μ
+- ρ = 4 / 10 = 0.4
+
+- Formula (M/M/1): Ls = λ / (μ − λ)
+- Ls = 4 / (10 − 4) = 4 / 6 = 0.6667 ≈ 0.67 customers
+
+- Formula (M/M/1): Lq = λ² / [ μ (μ − λ) ]
+- Lq = 4² / [ 10 × (10 − 4) ] = 16 / (10 × 6) = 16 / 60 = 0.2667 ≈ 0.27 customers
+- Answer: ρ = 0.4, Ls ≈ 0.67, Lq ≈ 0.27
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+
+
+
+
+
+
+Q2) A barber shop has arrivals at rate λ = 3 customers/hour.
+    The service rate is μ = 5 customers/hour. Assume M/M/1.
+    Find:
+    (a) ρ
+    (b) Average time a customer spends in the system Ws
+    (c) Average waiting time in the queue Wq
+
+Solution 2:
+- ρ = λ / μ = 3 / 5 = 0.6
+
+- Formula (M/M/1): Ws = 1 / (μ − λ)
+- Ws = 1 / (5 − 3) = 1 / 2 = 0.5 hours = 30 minutes
+
+- Formula (M/M/1): Wq = λ / [ μ (μ − λ) ]
+- Wq = 3 / [ 5 × (5 − 3) ] = 3 / (5 × 2) = 3 / 10 = 0.3 hours = 18 minutes
+
+- Answer: ρ = 0.6, Ws = 0.5 hr (30 min), Wq = 0.3 hr (18 min)
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+
+
+
+
+
+
+
+
+Q3) A photocopy center receives λ = 6 jobs/hour.
+    The machine serves at μ = 8 jobs/hour (M/M/1).
+    Find:
+    (a) ρ
+    (b) Ls (average number in the system)
+    (c) Lq (average queue length)
+    (d) Ws (average time in system)
+    (e) Wq (average waiting time in queue)
+
+Solution 3:
+- ρ = λ / μ = 6 / 8 = 0.75
+
+- Ls = λ / (μ − λ) = 6 / (8 − 6) = 6 / 2 = 3 customers
+
+- Lq = λ² / [ μ (μ − λ) ]
+- Lq = 6² / [ 8 × (8 − 6) ] = 36 / (8 × 2) = 36 / 16 = 2.25 customers
+
+- Ws = 1 / (μ − λ) = 1 / (8 − 6) = 1 / 2 = 0.5 hours = 30 minutes
+
+- Wq = λ / [ μ (μ − λ) ]
+- Wq = 6 / [ 8 × (8 − 6) ] = 6 / (8 × 2) = 6 / 16 = 0.375 hours = 22.5 minutes
+
+- Answer:
+  ρ = 0.75, Ls = 3, Lq = 2.25, Ws = 0.5 hr, Wq = 0.375 hr
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+
+
+
+
+
+
+
+
+Q4) A clinic receives λ = 10 patients/hour.
+    The doctor can treat patients at μ = 12 patients/hour (M/M/1).
+    Find:
+    (a) ρ
+    (b) Ls
+    (c) Probability that no patients are in the system P0
+
+Solution 4:
+- ρ = λ / μ = 10 / 12 = 0.8333 ≈ 0.83
+
+- Ls = λ / (μ − λ) = 10 / (12 − 10) = 10 / 2 = 5 patients
+
+- In M/M/1: P0 = 1 − ρ
+- P0 = 1 − 0.8333 = 0.1667 ≈ 0.17
+
+- Answer: ρ ≈ 0.83, Ls = 5, P0 ≈ 0.17
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+
+
+
+
+
+
+
+
+Q5) A self-service kiosk in a mall serves customers with the following rates:
+    Arrival rate λ = 18 customers/hour.
+    Service rate μ = 25 customers/hour (M/M/1).
+    Find:
+    (a) ρ
+    (b) Ls
+    (c) Lq
+    (d) Ws
+    (e) Wq
+
+Solution 5:
+- ρ = λ / μ = 18 / 25 = 0.72
+
+- Ls = λ / (μ − λ) = 18 / (25 − 18) = 18 / 7 ≈ 2.5714 customers
+
+- Lq = λ² / [ μ (μ − λ) ]
+- Lq = 18² / [ 25 × (25 − 18) ] = 324 / [ 25 × 7 ] = 324 / 175 ≈ 1.8514 customers
+
+- Ws = 1 / (μ − λ) = 1 / (25 − 18) = 1 / 7 ≈ 0.1429 hours
+  (≈ 0.1429 × 60 ≈ 8.57 minutes)
+
+- Wq = λ / [ μ (μ − λ) ]
+- Wq = 18 / [ 25 × 7 ] = 18 / 175 ≈ 0.1029 hours
+  (≈ 0.1029 × 60 ≈ 6.17 minutes)
+
+- Answer:
+  ρ = 0.72
+  Ls ≈ 2.57 customers
+  Lq ≈ 1.85 customers
+  Ws ≈ 0.143 hr (≈ 8.6 min)
+  Wq ≈ 0.103 hr (≈ 6.2 min)
