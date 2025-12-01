@@ -47,8 +47,12 @@ Course Contents:
 ====================================================================
 Unit 1. Introduction and Classical Ciphers          7 Hrs.
 ====================================================================
-1.4. Security: Computer Security, Information Security, Network Security, CIA Triad, Cryptography, Cryptosystem, Cryptanalysis, Security Threats and Attacks, Security Services, Security Mechanisms
+1.4. Security: Computer Security, Information Security, Network Security, 
+CIA Triad, Cryptography, Cryptosystem, Cryptanalysis, Security Threats and Attacks, 
+Security Services, Security Mechanisms
+
 1.5. Classical Cryptosystems: Substitution Techniques: Ceasar, Monoalphabetic, Playfair, Hill, Polyalphabetic ciphers, One-time pad Transposition Techniques: Rail Fence Cipher
+
 1.6. Modern Ciphers: Block vs. Stream Ciphers, Symmetric vs. Asymmetric Ciphers
 
 
