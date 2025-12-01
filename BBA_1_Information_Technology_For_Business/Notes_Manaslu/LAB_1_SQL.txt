@@ -9,6 +9,7 @@ Video Link :                   https://drive.google.com/drive/folders/1xUVIYs_ze
 ------------------------DOCKER------------------------------
 step 1: Login with credentials in ... https://killercoda.com/
 step 2: Choose any scnerio. Ubuntu or CKA or Playground(login)
+
     https://killercoda.com/killer-shell-cka/scenario/playground
 
 step 3: docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
@@ -536,6 +537,471 @@ mysql>  SELECT FirstName, LastName, EnrollmentYear, Gender FROM Students WHERE E
 8 rows in set (0.00 sec)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************************************************************************************
+************************************************************************************
+                        BBA 2025 ( online ) SQL DBMS 
+************************************************************************************
+************************************************************************************
+
+
+*********************
+Insert database and insert into it
+*********************
+
+
+create database bba2025;
+
+
+use bba2025;
+
+
+
+
+
+
+
+
+*********************
+Make table 
+*********************
+
+
+
+CREATE TABLE people (
+    person_id        INT PRIMARY KEY,
+    role             VARCHAR(20) NOT NULL,   -- 'student','teacher','account','library'
+    full_name        VARCHAR(100) NOT NULL,
+    gender           CHAR(1),               -- 'M' or 'F'
+    department       VARCHAR(50),           -- Management, IT, Health Sciences
+    program          VARCHAR(50),           -- BBA, BBA IT, BCA, Medical Lab, MBBS
+    semester_or_year TINYINT,               -- 1–8 for students, NULL for staff
+    email            VARCHAR(100),
+    phone            VARCHAR(15),
+    join_year        INT                    -- admission year (students) / hire year (staff)
+);
+
+
+
+
+
+*********************
+Insert data
+*********************
+
+
+
+
+INSERT INTO people
+(person_id, role, full_name, gender, department, program, semester_or_year, email, phone, join_year)
+VALUES
+(1, 'student', 'Ram Thapa',        'M', 'Management', 'BBA',    1, 'ram.thapa@college.edu.np',     '9851487501', 2024),
+(2, 'student', 'Sita KC',          'F', 'Management', 'BBA',    2, 'sita.kc@college.edu.np',       '9851487502', 2023),
+(3, 'student', 'Hari Gurung',      'M', 'IT',         'BBA IT', 1, 'hari.gurung@college.edu.np',   '9851487503', 2024),
+(4, 'student', 'Gita Sharma',      'F', 'IT',         'BBA IT', 3, 'gita.sharma@college.edu.np',   '9851487504', 2022),
+(5, 'student', 'Krishna Adhikari', 'M', 'IT',         'BCA',    2, 'krishna.adhikari@college.edu.np','9851487505',2023),
+(6, 'student', 'Mina Shrestha',    'F', 'IT',         'BCA',    4, 'mina.shrestha@college.edu.np', '9851487506', 2022),
+(7, 'student', 'Purna Karki',      'M', 'Management', 'BBA',    5, 'purna.karki@college.edu.np',   '9851487507', 2021),
+(8, 'student', 'Rita Lama',        'F', 'Management', 'BBA',    6, 'rita.lama@college.edu.np',     '9851487508', 2021),
+(9, 'student', 'Sanjay Rai',       'M', 'IT',         'BBA IT', 2, 'sanjay.rai@college.edu.np',    '9851487509', 2023),
+(10,'student', 'Laxmi Magar',      'F', 'IT',         'BCA',    1, 'laxmi.magar@college.edu.np',   '9851487510', 2024),
+(11,'student', 'Dipak Pun',        'M', 'Management', 'BBA',    3, 'dipak.pun@college.edu.np',     '9851487511', 2023),
+(12,'student', 'Sabina Khadka',    'F', 'Management', 'BBA',    4, 'sabina.khadka@college.edu.np', '9851487512', 2022),
+(13,'student', 'Manish KC',        'M', 'IT',         'BBA IT', 5, 'manish.kc@college.edu.np',     '9851487513', 2021),
+(14,'student', 'Prabha Basnet',    'F', 'IT',         'BBA IT', 6, 'prabha.basnet@college.edu.np', '9851487514', 2021),
+(15,'student', 'Rajan Tamang',     'M', 'IT',         'BCA',    3, 'rajan.tamang@college.edu.np',  '9851487515', 2023),
+(16,'student', 'Sunita Maharjan',  'F', 'IT',         'BCA',    5, 'sunita.maharjan@college.edu.np','9851487516',2021),
+(17,'student', 'Kamal Thapa',      'M', 'Management', 'BBA',    7, 'kamal.thapa@college.edu.np',   '9851487517', 2020),
+(18,'student', 'Anita Oli',        'F', 'Management', 'BBA',    8, 'anita.oli@college.edu.np',     '9851487518', 2020),
+(19,'student', 'Bibek Shahi',      'M', 'IT',         'BBA IT', 4, 'bibek.shahi@college.edu.np',   '9851487519', 2022),
+(20,'student', 'Nisha Bhatta',     'F', 'IT',         'BCA',    6, 'nisha.bhatta@college.edu.np',  '9851487520', 2021),
+(21,'student', 'Sagar Kharel',     'M', 'Management', 'BBA',    2, 'sagar.kharel@college.edu.np',  '9851487521', 2023),
+(22,'student', 'Bimala Thapa',     'F', 'Management', 'BBA',    1, 'bimala.thapa@college.edu.np',  '9851487522', 2024),
+(23,'student', 'Roshan KC',        'M', 'IT',         'BCA',    2, 'roshan.kc@college.edu.np',     '9851487523', 2023),
+(24,'student', 'Sujata Gurung',    'F', 'IT',         'BBA IT', 3, 'sujata.gurung@college.edu.np', '9851487524', 2022),
+(25,'student', 'Niraj Raut',       'M', 'IT',         'BCA',    4, 'niraj.raut@college.edu.np',    '9851487525', 2022),
+(26,'student', 'Kritika Shrestha', 'F', 'Management', 'BBA',    5, 'kritika.shrestha@college.edu.np','9851487526',2021),
+(27,'student', 'Sudeep Lama',      'M', 'Management', 'BBA',    6, 'sudeep.lama@college.edu.np',   '9851487527', 2021),
+(28,'student', 'Pramila Giri',     'F', 'IT',         'BBA IT', 7, 'pramila.giri@college.edu.np',  '9851487528', 2020),
+(29,'student', 'Ashok Magar',      'M', 'IT',         'BCA',    8, 'ashok.magar@college.edu.np',   '9851487529', 2020),
+(30,'student', 'Lalita BK',        'F', 'Management', 'BBA',    3, 'lalita.bk@college.edu.np',     '9851487530', 2023);
+
+
+
+
+
+
+
+INSERT INTO people
+(person_id, role, full_name, gender, department, program, semester_or_year, email, phone, join_year)
+VALUES
+(31,'student', 'Ramesh Thapa',     'M', 'Health Sciences', 'Medical Lab', 1, 'ramesh.thapa@college.edu.np',   '9851487531', 2024),
+(32,'student', 'Saraswati KC',     'F', 'Health Sciences', 'Medical Lab', 2, 'saraswati.kc@college.edu.np',   '9851487532', 2023),
+(33,'student', 'Deepak Gurung',    'M', 'Health Sciences', 'Medical Lab', 3, 'deepak.gurung@college.edu.np',  '9851487533', 2022),
+(34,'student', 'Renu Sharma',      'F', 'Health Sciences', 'Medical Lab', 4, 'renu.sharma@college.edu.np',    '9851487534', 2022),
+(35,'student', 'Bhuwan Adhikari',  'M', 'Health Sciences', 'Medical Lab', 5, 'bhuwan.adhikari@college.edu.np','9851487535', 2021),
+(36,'student', 'Pooja Shrestha',   'F', 'Health Sciences', 'Medical Lab', 6, 'pooja.shrestha@college.edu.np', '9851487536', 2021),
+(37,'student', 'Santosh Rai',      'M', 'Health Sciences', 'Medical Lab', 7, 'santosh.rai@college.edu.np',    '9851487537', 2020),
+(38,'student', 'Binita Lama',      'F', 'Health Sciences', 'Medical Lab', 8, 'binita.lama@college.edu.np',    '9851487538', 2020),
+(39,'student', 'Milan Karki',      'M', 'Health Sciences', 'MBBS',       1, 'milan.karki@college.edu.np',     '9851487539', 2024),
+(40,'student', 'Sarmila Magar',    'F', 'Health Sciences', 'MBBS',       2, 'sarmila.magar@college.edu.np',   '9851487540', 2023),
+(41,'student', 'Arjun Pun',        'M', 'Health Sciences', 'MBBS',       3, 'arjun.pun@college.edu.np',       '9851487541', 2022),
+(42,'student', 'Rashmi Khadka',    'F', 'Health Sciences', 'MBBS',       4, 'rashmi.khadka@college.edu.np',   '9851487542', 2022),
+(43,'student', 'Bishal Tamang',    'M', 'Health Sciences', 'MBBS',       5, 'bishal.tamang@college.edu.np',   '9851487543', 2021),
+(44,'student', 'Nirmala Oli',      'F', 'Health Sciences', 'MBBS',       6, 'nirmala.oli@college.edu.np',     '9851487544', 2021),
+(45,'student', 'Prakash Shahi',    'M', 'Health Sciences', 'MBBS',       7, 'prakash.shahi@college.edu.np',   '9851487545', 2020),
+(46,'student', 'Kamala Bhatta',    'F', 'Health Sciences', 'MBBS',       8, 'kamala.bhatta@college.edu.np',   '9851487546', 2020),
+(47,'student', 'Dipesh Karki',     'M', 'Health Sciences', 'Medical Lab', 2,'dipesh.karki@college.edu.np',    '9851487547', 2023),
+(48,'student', 'Sulochana KC',     'F', 'Health Sciences', 'MBBS',       1, 'sulochana.kc@college.edu.np',    '9851487548', 2024),
+(49,'student', 'Rabin Gurung',     'M', 'Health Sciences', 'Medical Lab', 3,'rabin.gurung@college.edu.np',    '9851487549', 2022),
+(50,'student', 'Jyoti Sharma',     'F', 'Health Sciences', 'MBBS',       4, 'jyoti.sharma@college.edu.np',    '9851487550', 2022);
+
+
+
+
+
+INSERT INTO people
+(person_id, role, full_name, gender, department, program, semester_or_year, email, phone, join_year)
+VALUES
+-- Teachers (15)
+(51,'teacher', 'Dr. Shankar Dhakal',   'M', 'Management',      'BBA',        NULL, 'shankar.dhakal@college.edu.np', '9851487551', 2012),
+(52,'teacher', 'Prof. Meera Joshi',    'F', 'Management',      'BBA',        NULL, 'meera.joshi@college.edu.np',    '9851487552', 2010),
+(53,'teacher', 'Er. Raju Kharel',      'M', 'IT',              'BCA',        NULL, 'raju.kharel@college.edu.np',    '9851487553', 2015),
+(54,'teacher', 'Dr. Sunita Shrestha',  'F', 'IT',              'BBA IT',     NULL, 'sunita.shrestha.fac@college.edu.np','9851487554',2016),
+(55,'teacher', 'Dr. Rajan Karki',      'M', 'Health Sciences', 'MBBS',       NULL, 'rajan.karki@college.edu.np',    '9851487555', 2011),
+(56,'teacher', 'Dr. Sushma Lama',      'F', 'Health Sciences', 'Medical Lab',NULL, 'sushma.lama@college.edu.np',    '9851487556', 2017),
+(57,'teacher', 'Prof. Nabin Adhikari', 'M', 'IT',              'BCA',        NULL, 'nabin.adhikari@college.edu.np', '9851487557', 2013),
+(58,'teacher', 'Prof. Laxmi KC',      'F', 'Management',       'BBA',        NULL, 'laxmi.kc@college.edu.np',       '9851487558', 2014),
+(59,'teacher', 'Dr. Mahesh Gurung',    'M', 'Health Sciences', 'MBBS',       NULL, 'mahesh.gurung@college.edu.np',  '9851487559', 2018),
+(60,'teacher', 'Dr. Rekha Sharma',     'F', 'Health Sciences', 'Medical Lab',NULL, 'rekha.sharma@college.edu.np',   '9851487560', 2019),
+(61,'teacher', 'Er. Kiran Rai',        'M', 'IT',              'BBA IT',     NULL, 'kiran.rai@college.edu.np',      '9851487561', 2016),
+(62,'teacher', 'Prof. Sarita Magar',   'F', 'Management',      'BBA',        NULL, 'sarita.magar@college.edu.np',   '9851487562', 2013),
+(63,'teacher', 'Dr. Prakash Thapa',    'M', 'Health Sciences', 'MBBS',       NULL, 'prakash.thapa.fac@college.edu.np','9851487563',2010),
+(64,'teacher', 'Prof. Anju Bhatta',    'F', 'IT',              'BCA',        NULL, 'anju.bhatta@college.edu.np',    '9851487564', 2012),
+(65,'teacher', 'Dr. Bishnu Shahi',     'M', 'Health Sciences', 'Medical Lab',NULL, 'bishnu.shahi@college.edu.np',   '9851487565', 2015),
+
+-- Accounts staff (8)
+(66,'account', 'Ramesh Kandel',       'M', 'Administration',  'Accounts',    NULL, 'ramesh.kandel@college.edu.np',  '9851487566', 2014),
+(67,'account', 'Sarita Poudel',       'F', 'Administration',  'Accounts',    NULL, 'sarita.poudel@college.edu.np',  '9851487567', 2016),
+(68,'account', 'Mukesh Thapa',        'M', 'Administration',  'Accounts',    NULL, 'mukesh.thapa@college.edu.np',   '9851487568', 2018),
+(69,'account', 'Bina KC',             'F', 'Administration',  'Accounts',    NULL, 'bina.kc@college.edu.np',        '9851487569', 2019),
+(70,'account', 'Sanjay Shrestha',     'M', 'Administration',  'Accounts',    NULL, 'sanjay.shrestha@college.edu.np','9851487570', 2013),
+(71,'account', 'Anju Oli',            'F', 'Administration',  'Accounts',    NULL, 'anju.oli@college.edu.np',       '9851487571', 2011),
+(72,'account', 'Dipendra Rai',        'M', 'Administration',  'Accounts',    NULL, 'dipendra.rai@college.edu.np',   '9851487572', 2020),
+(73,'account', 'Sushila Gurung',      'F', 'Administration',  'Accounts',    NULL, 'sushila.gurung@college.edu.np', '9851487573', 2021),
+
+-- Library staff (7)
+(74,'library', 'Raju Maharjan',       'M', 'Library',         'Library',     NULL, 'raju.maharjan@college.edu.np',  '9851487574', 2012),
+(75,'library', 'Sita Limbu',          'F', 'Library',         'Library',     NULL, 'sita.limbu@college.edu.np',     '9851487575', 2014),
+(76,'library', 'Naresh KC',           'M', 'Library',         'Library',     NULL, 'naresh.kc@college.edu.np',      '9851487576', 2016),
+(77,'library', 'Manju Shahi',         'F', 'Library',         'Library',     NULL, 'manju.shahi@college.edu.np',    '9851487577', 2017),
+(78,'library', 'Rabin Karki',         'M', 'Library',         'Library',     NULL, 'rabin.karki.lib@college.edu.np','9851487578', 2018),
+(79,'library', 'Pramila Rai',         'F', 'Library',         'Library',     NULL, 'pramila.rai@college.edu.np',    '9851487579', 2019),
+(80,'library', 'Shyam Thapa',         'M', 'Library',         'Library',     NULL, 'shyam.thapa@college.edu.np',    '9851487580', 2020);
+
+
+
+
+
+*********************
+Practice queries
+*********************
+
+
+-- 1. Show all people
+SELECT * FROM people;
+
+
+
+
+-- 2. List only students
+SELECT * FROM people WHERE role = 'student';
+
+
+
+
+-- 3. List only teachers from IT department
+
+SELECT * FROM people
+WHERE role = 'teacher' AND department = 'IT';
+
+
+
+
+-- 4. Show students of BBA program, with name and semester only
+
+SELECT full_name, semester_or_year
+FROM people WHERE role = 'student' AND program = 'BBA';
+
+
+
+
+-- 5. Count how many people are in each role (student/teacher/account/library)
+SELECT role, COUNT(*) AS total
+FROM people
+GROUP BY role;
+
+
+
+
+-- 6. List all programs without duplicates
+SELECT DISTINCT program
+FROM people;
+
+
+
+
+-- 7. Show all MBBS students in year/semester 5 or above
+SELECT *
+FROM people
+WHERE role = 'student'
+  AND program = 'MBBS'
+  AND semester_or_year >= 5;
+
+-- 8. Show all Medical Lab students who joined between 2021 and 2023
+SELECT *
+FROM people
+WHERE role = 'student'
+  AND program = 'Medical Lab'
+  AND join_year BETWEEN 2021 AND 2023;
+
+
+
+
+-- 9. Show all staff (non-students)
+SELECT *
+FROM people
+WHERE role IN ('teacher','account','library');
+
+
+
+
+-- 10. Show all library staff, ordered by join_year (oldest first)
+SELECT *
+FROM people
+WHERE role = 'library'
+ORDER BY join_year ASC;
+
+
+
+
+-- 11. Find all people whose name starts with 'S'
+SELECT *
+FROM people
+WHERE full_name LIKE 'S%';
+
+
+
+
+-- 12. Find all people whose email is in the 'college.edu.np' domain
+SELECT *
+FROM people
+WHERE email LIKE '%@college.edu.np';
+
+
+
+
+-- 13. Show all records where phone starts with '98514875'
+SELECT *
+FROM people
+WHERE phone LIKE '98514875%';
+
+
+
+
+-- 14. Show Management department students only
+SELECT *
+FROM people
+WHERE role = 'student'
+  AND department = 'Management';
+
+
+
+
+-- 15. Show IT students (BBA IT or BCA) using IN
+SELECT *
+FROM people
+WHERE role = 'student'
+  AND program IN ('BBA IT','BCA');
+
+
+
+
+-- 16. Show students NOT in health sciences (exclude Medical Lab and MBBS)
+SELECT *
+FROM people
+WHERE role = 'student'
+  AND program NOT IN ('Medical Lab','MBBS');
+
+
+
+
+-- 17. Count students in each program
+SELECT program, COUNT(*) AS total_students
+FROM people
+WHERE role = 'student'
+GROUP BY program;
+
+
+
+
+-- 18. Average semester/year of BCA students
+SELECT AVG(semester_or_year) AS avg_sem_bca
+FROM people
+WHERE role = 'student'
+  AND program = 'BCA';
+
+
+
+
+-- 19. Find all teachers who joined before 2015
+SELECT *
+FROM people
+WHERE role = 'teacher'
+  AND join_year < 2015;
+
+
+
+
+-- 20. List all account staff hired in or after 2018
+SELECT *
+FROM people
+WHERE role = 'account'
+  AND join_year >= 2018;
+
+
+
+
+-- 21. REGEX: students whose email username (before @) starts with a, b or c
+-- MySQL / MariaDB syntax
+SELECT * FROM people
+WHERE role = 'student'
+  AND email REGEXP '^[abc]';
+
+
+
+
+-- 22. REGEX: phones that end with digit 5, 6, 7 or 8
+SELECT *
+FROM people
+WHERE phone REGEXP '[5678]$';
+
+
+
+
+-- 23. REGEX: all library staff whose email contains 'lib' somewhere
+SELECT *
+FROM people
+WHERE role = 'library'
+  AND email REGEXP 'lib';
+
+
+
+
+-- 24. Show top 5 newest students by join_year
+SELECT *
+FROM people
+WHERE role = 'student'
+ORDER BY join_year DESC, person_id DESC
+LIMIT 5;
+
+
+
+
+-- 25. Show full_name and a label like "Ram Thapa (student - BBA)"
+SELECT CONCAT(full_name, ' (', role, ' - ', program, ')') AS person_label
+FROM people
+LIMIT 10;
+
+
+
+
+-- 26. Show all Health Sciences people (students + teachers)
+SELECT *
+FROM people
+WHERE department = 'Health Sciences';
+
+
+
+
+-- 27. Total number of people in each department
+SELECT department, COUNT(*) AS total_people
+FROM people
+GROUP BY department;
+
+
+
+
+-- 28. Show all BBA students whose semester/year is NULL or 0 (data check)
+SELECT *
+FROM people
+WHERE role = 'student'
+  AND program = 'BBA'
+  AND (semester_or_year IS NULL OR semester_or_year = 0);
+
+
+
+
+-- 29. Example UPDATE: change phone of one student (lab demo only)
+UPDATE people
+SET phone = '9851487999'
+WHERE person_id = 1;
+
+
+
+
+-- 30. Example DELETE: remove one test account staff (lab demo only)
+DELETE FROM people
+WHERE person_id = 72;
+
+
+
+****************************************
 
 
 
