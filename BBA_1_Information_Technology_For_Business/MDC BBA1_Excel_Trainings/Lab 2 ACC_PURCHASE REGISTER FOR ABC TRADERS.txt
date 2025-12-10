@@ -1,0 +1,162 @@
+....................................................................................
+LAB 2 – ACCOUNTING PRACTICAL
+CASE SCENARIO: PURCHASE REGISTER FOR ABC TRADERS
+
+ABC Traders buys goods from multiple suppliers. 
+As an accounting intern, you must maintain a Purchase Register for tracking:
+
+• Item Name
+• Quantity
+• Rate (Rs.)
+• Amount
+• Discount %
+• Discount Amount
+• Net Amount
+
+You will create formulas, summarize totals, apply discounts, and visualize data.
+
+....................................................................................
+STEP 1: CREATE A NEW WORKBOOK
+• Open Microsoft Excel
+• Save the file as: Accounting_Lab2.xlsx
+• Start entering data from cell A1
+
+....................................................................................
+STEP 2: ENTER HEADER ROW (CELL A1 ONWARD)
+
+A1: S.No
+B1: Item Name
+C1: Quantity
+D1: Rate
+E1: Amount
+F1: Discount %
+G1: Discount Amount
+H1: Net Amount
+
+....................................................................................
+STEP 3: ENTER SAMPLE 20 RECORDS (TYPE AS SHOWN)
+
+A2: 1   B2: Pen Box                 C2: 10   D2: 120
+A3: 2   B3: A4 Paper Pack           C3: 6    D3: 450
+A4: 3   B4: Marker Set              C4: 12   D4: 85
+A5: 4   B5: Stapler                 C5: 5    D5: 220
+A6: 5   B6: Calculator              C6: 3    D6: 750
+A7: 6   B7: Notebook Bundle         C7: 20   D7: 55
+A8: 7   B8: Whiteboard              C8: 2    D8: 1500
+A9: 8   B9: Glue Sticks             C9: 25   D9: 25
+A10: 9  B10: Highlighter Pack       C10: 8   D10: 95
+A11: 10 B11: Envelopes (100 pcs)    C11: 1   D11: 180
+A12: 11 B12: File Folders           C12: 30  D12: 18
+A13: 12 B13: Stamp Pad              C13: 4   D13: 150
+A14: 13 B14: Printer Ink Cartridge  C14: 2   D14: 1100
+A15: 14 B15: Toner Cartridge        C15: 1   D15: 3500
+A16: 15 B16: Sticky Notes Pack      C16: 15  D16: 35
+A17: 16 B17: USB Flash Drive        C17: 3   D17: 950
+A18: 17 B18: External Hard Disk     C18: 1   D18: 5500
+A19: 18 B19: Power Extension Board  C19: 2   D19: 650
+A20: 19 B20: Office Chair Cushion   C20: 5   D20: 300
+A21: 20 B21: Desk Organizer         C21: 4   D21: 250
+
+....................................................................................
+STEP 4: CALCULATE AMOUNT
+In cell E2 type:
+= C2 * D2
+
+Drag down to E21.
+
+....................................................................................
+STEP 5: ENTER DISCOUNT %
+Enter discount values in column F manually:
+(Example)
+F2: 5%
+F3: 10%
+F4: 0%
+F5: 5%
+F6: 8%
+F7: 0%
+F8: 10%
+F9: 0%
+F10: 5%
+F11: 0%
+F12: 2%
+F13: 0%
+F14: 5%
+F15: 8%
+F16: 0%
+F17: 5%
+F18: 10%
+F19: 0%
+F20: 5%
+F21: 5%
+
+....................................................................................
+STEP 6: CALCULATE DISCOUNT AMOUNT
+In cell G2:
+= E2 * F2
+
+Drag down to G21.
+
+....................................................................................
+STEP 7: CALCULATE NET AMOUNT
+In cell H2:
+= E2 - G2
+
+Drag down to H21.
+
+....................................................................................
+STEP 8: SUMMARY CALCULATIONS
+
+Total Purchase Amount:
+=SUM(H2:H21)
+
+Highest Item Amount:
+=MAX(E2:E21)
+
+Average Rate:
+=AVERAGE(D2:D21)
+
+Count Items Purchased:
+=COUNTA(B2:B21)
+
+Find highest-cost item name:
+=INDEX(B2:B21, MATCH(MAX(E2:E21), E2:E21, 0))
+
+....................................................................................
+STEP 9: CREATE VISUALIZATIONS
+
+BAR CHART – Item vs Net Amount
+1. Select B1:B21 and H1:H21
+2. Insert → Column Chart
+3. Add title: "Net Amount by Item"
+4. Add data labels
+
+PIE CHART – Discount % Distribution
+1. Select F2:F21
+2. Insert → Pie Chart
+3. Title: "Discount Distribution"
+4. Highlight major slices (Format Data Series)
+
+LINE CHART – Quantity Trend
+1. Select C2:C21
+2. Insert → Line Chart
+3. Title: "Quantity Trend by Item Number"
+
+....................................................................................
+STEP 10: FORMATTING REQUIREMENTS
+• Bold header row
+• Apply borders to entire table
+• Format Rate and Amount as currency (Rs.)
+• Center-align S.No, Quantity, Rate, Amount
+• Color header row light gray
+
+....................................................................................
+STEP 11: FINAL OUTPUT (STUDENTS MUST SHOW)
+• Purchase Register Table with 20 Records
+• Amount, Discount, Net Amount correctly calculated
+• Summary Calculations
+• Bar Chart, Pie Chart, Line Chart
+• Proper formatting & alignment
+
+....................................................................................
+END OF LAB 2 – ACCOUNTING PRACTICAL
+....................................................................................
