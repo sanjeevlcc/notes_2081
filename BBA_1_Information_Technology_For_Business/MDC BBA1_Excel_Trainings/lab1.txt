@@ -1,0 +1,118 @@
+
+
+
+....................................................................................
+CASE SCENARIO: STUDENT MARKSHEET PREPARATION
+Bright Future College is conducting an internal exam for BBA 1st Semester.
+You are assigned as the data-entry and analysis intern.
+Your task is to prepare a Marksheet of 15 students with the following columns:
+
+S.No | Student Name | Maths | Accounts | Economics | Finance | Total | Result | Division
+
+Passing Marks Rule:
+• Pass if all subjects >= 40
+• Fail if any subject < 40
+
+Division Rule (only for passing students):
+• Distinction = Total >= 300
+• First Division = 240–299
+• Second Division = 200–239
+• Fail = Below criteria
+
+You must:
+1. Enter data from cell A1 onward.
+2. Format sheet (bold header, borders, currency/number).
+3. Calculate TOTAL using formula =SUM(marks).
+4. Determine PASS/FAIL using IF.
+5. Determine DIVISION using nested IF.
+6. Create a summary of results.
+
+....................................................................................
+DATA ENTRY (15 RECORDS)
+(Enter starting from cell A1)
+
+A1: S.No     B1: Name     C1: Maths     D1: Accounts     E1: Economics     F1: Finance     G1: Total     H1: Result     I1: Division
+
+A2: 1   B2: Ramesh Thapa          C2: 78   D2: 65   E2: 72   F2: 80
+A3: 2   B3: Sarita Kunwar         C3: 55   D3: 48   E3: 60   F3: 52
+A4: 3   B4: Manoj Shrestha        C4: 35   D4: 42   E4: 38   F4: 41
+A5: 4   B5: Anisha Rana           C5: 88   D5: 92   E5: 85   F5: 90
+A6: 5   B6: Prakash Giri          C6: 67   D6: 58   E6: 62   F6: 70
+A7: 6   B7: Nisha KC              C7: 45   D7: 40   E7: 39   F7: 50
+A8: 7   B8: Dipesh Gurung         C8: 90   D8: 78   E8: 82   F8: 89
+A9: 8   B9: Manita Basnet         C9: 72   D9: 60   E9: 55   F9: 68
+A10: 9  B10: Krish Adhikari       C10: 38  D10: 36  E10: 40  F10: 44
+A11: 10 B11: Sunil Chaudhary      C11: 65  D11: 70  E11: 68  F11: 75
+A12: 11 B12: Laxmi Oli            C12: 92  D12: 88  E12: 90  F12: 95
+A13: 12 B13: Alisha Shrestha      C13: 52  D13: 45  E13: 40  F13: 55
+A14: 13 B14: Sajina Rana          C14: 81  D14: 74  E14: 76  F14: 79
+A15: 14 B15: Milan Joshi          C15: 60  D15: 55  E15: 52  F15: 58
+A16: 15 B16: Ujjwal BK            C16: 33  D16: 28  E16: 40  F16: 35
+
+....................................................................................
+FORMULAS TO APPLY
+
+G2 (TOTAL):
+=SUM(C2:F2)
+
+H2 (RESULT: PASS/FAIL):
+=IF(AND(C2>=40, D2>=40, E2>=40, F2>=40), "PASS", "FAIL")
+
+I2 (DIVISION):
+=IF(H2="FAIL","FAIL",
+IF(G2>=300,"DISTINCTION",
+IF(G2>=240,"FIRST",
+IF(G2>=200,"SECOND","FAIL"))))
+
+
+
+
+Copy formulas down to row 16.
+
+....................................................................................
+PRACTICAL QUESTIONS FOR STUDENTS
+
+Q1. What is the total score of the highest-scoring student?
+Solution:
+=MAX(G2:G16)
+
+Q2. How many students passed?
+Solution:
+=COUNTIF(H2:H16,"PASS")
+
+Q3. How many students failed?
+Solution:
+=COUNTIF(H2:H16,"FAIL")
+
+Q4. What is the average score in Maths?
+Solution:
+=AVERAGE(C2:C16)
+
+Q5. Count how many students scored more than 70 in Finance.
+Solution:
+=COUNTIF(F2:F16,">70")
+
+Q6. Identify the student with the highest total score.
+Solution:
+=INDEX(B2:B16, MATCH(MAX(G2:G16), G2:G16, 0))
+
+Q7. What is the average total score of passed students only?
+Solution:
+=AVERAGEIF(H2:H16,"PASS",G2:G16)
+
+....................................................................................
+NOTES (IMPORTANT FOR STUDENTS)
+
+• Excel Workbook = Entire file (.xlsx)
+• Worksheet = Individual sheet inside workbook.
+• Cell Reference = Address like A1, B3, C10.
+• Use Merge & Center for main title.
+• Apply borders for neat marksheet.
+• Always format numbers to two decimals if needed.
+• Use Autofill to copy formulas down quickly.
+• Use conditional formatting to highlight failed students.
+• Save workbook with name: "BBA_Marksheet_Practical.xlsx"
+
+....................................................................................
+END OF CASE SCENARIO
+....................................................................................
