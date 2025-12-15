@@ -1,0 +1,185 @@
+
+
+................................................................................
+POKHARA UNIVERSITY
+Programme : BCA
+Course : Simulation and Modeling
+Assignment Type : Theory + Numerical (Practice Set)
+................................................................................
+
+
+
+
+INSTRUCTIONS
+................................................................................
+• Attempt ALL questions.
+• This is an individual assignment.
+• Answers must be handwritten and scanned as a single PDF.
+• Numerical steps must be clearly shown.
+• Use diagrams wherever necessary.
+• Submission mode : Email and handwritten in copy (inside  submission date )
+• Submission email : sanjeev.thapa@lcc.edu.np
+
+• Assignment issue date : 19 December 2025
+• Assignment submission date : 26 December 2025
+
+• Mail subject format: BCA7_Your Name.pdf
+................................................................................
+
+
+
+
+
+
+SECTION A : THEORY QUESTIONS      (Short + Long Answer)
+................................................................................
+
+Explain the concept of system modeling. Why is modeling necessary in simulation studies?
+................................................................................
+
+Define simulation. Differentiate between simulation and analytical modeling.
+................................................................................
+
+Explain the phases of a simulation study with a neat flow explanation.
+................................................................................
+
+Define endogenous and exogenous variables with suitable examples.
+................................................................................
+
+What is a Monte Carlo method? Explain its basic principle.
+................................................................................
+
+Explain discrete-event simulation with a real-life example.
+................................................................................
+
+Differentiate between continuous and discrete simulation.
+................................................................................
+
+What is a feedback system? Explain positive and negative feedback.
+................................................................................
+
+Explain the importance of random numbers in simulation.
+................................................................................
+
+List and explain the properties of good random number generators.
+................................................................................
+
+Explain the mid-square random number generation method.
+................................................................................
+
+What is initial bias in simulation? Why should it be eliminated?
+................................................................................
+
+Explain any four techniques for eliminating initial bias.
+................................................................................
+
+Define GPSS. Explain the basic GPSS block structure.
+................................................................................
+
+Explain the GPSS execution cycle.
+................................................................................
+
+What is SIMSCRIPT? Explain its organization.
+................................................................................
+
+Define queueing system. Explain its basic components.
+................................................................................
+
+Explain different queue disciplines with examples.
+................................................................................
+
+What is utilization? How is it measured in simulation output?
+................................................................................
+
+Explain occupancy and its significance in system performance analysis.
+................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+SECTION B : NUMERICAL / PROBLEM SOLVING
+................................................................................
+
+Using Monte Carlo simulation, estimate the value of
+∫₁³ (4x + 1) dx using 10 random numbers of your choice.
+................................................................................
+
+Estimate the value of π using Monte Carlo simulation by generating random points in a unit square.
+................................................................................
+
+A random number generator produces the following sequence:
+0.14, 0.72, 0.35, 0.91, 0.28, 0.66, 0.54, 0.83, 0.47, 0.19
+Test whether the numbers are random using runs test.
+................................................................................
+
+
+................................................................................
+
+Interarrival times are distributed as follows:
+1 min (0.00–0.29), 2 min (0.30–0.59), 3 min (0.60–0.84), 4 min (0.85–0.99)
+Using random numbers 0.12, 0.48, 0.77, 0.91, 0.34 determine interarrival times.
+................................................................................
+
+Service times are given as:
+2 min (0.00–0.39), 3 min (0.40–0.74), 4 min (0.75–0.99)
+Using random numbers 0.21, 0.66, 0.82, 0.43, 0.95 determine service times.
+................................................................................
+
+Workers arrive at a counter every 6 minutes. Service time is 8 minutes. 
+Simulate the first 5 customers and find waiting time.
+................................................................................
+
+In a simulation run of 100 minutes, a server is busy for 68 minutes. Compute utilization.
+................................................................................
+
+A single server system serves 12 customers in 60 minutes. 
+Total waiting time in queue is 18 minutes. Find average waiting time.
+................................................................................
+
+Workers arrive every 5±2 minutes. Service time is 7±3 minutes. Draw a GPSS block diagram.
+................................................................................
+
+Two clerks serve incoming jobs in parallel. Each clerk takes 10 minutes per job. 
+Arrivals occur every 6 minutes. Simulate first 6 jobs.
+................................................................................
+
+In a telephone system with two lines, calls arriving when both lines are busy are lost. 
+Simulate 10 call arrivals and find number of lost calls.
+................................................................................
+
+Explain how lost calls are handled in telephone system simulation.
+................................................................................
+
+Given the differential equation
+5 d²x/dt² + 4 dx/dt + 6x = 20F(t)
+Convert it into CSMP-III format.
+................................................................................
+
+Draw a cobweb model for the following equations:
+Q = 18 − 3P
+S = 2 + 0.6P₋₁
+................................................................................
+
+Explain the concept of autocorrelation in random numbers.
+................................................................................
+
+Using lag-2 autocorrelation, test a given sequence of random numbers for independence.
+................................................................................
+
+Write GPSS code to simulate a single-server queue with exponential arrival and service times.
+................................................................................
+
+Explain simulation output analysis and confidence interval estimation.
+................................................................................
+
+Explain why replication of simulation runs is necessary.
+................................................................................
