@@ -9,9 +9,36 @@ Program: BBA / BBA (Finance) / BBA (TT)
 Nature: Theory & Practice
 ................................................................................
 
+
+
+
+INSTRUCTIONS
+................................................................................
+• Attempt ALL questions.
+• This is an individual assignment.
+• Answers must be handwritten and scanned as a single PDF.
+• Numerical steps must be clearly shown.
+• Use diagrams wherever necessary.
+• Submission mode : Email and handwritten in copy (inside  submission date )
+• Submission email : sanjeev.thapa@lcc.edu.np
+
+• Assignment issue date : 16 December 2025
+• Assignment submission date : 26 December 2025
+
+• Mail subject format: BCA1_Your Name.pdf
+................................................................................
+
+
+
+
+
+
 QUESTION SET – THEORY & LONG/SHORT QUESTIONS
 (Based strictly on ICT 110 Syllabus)
 ................................................................................
+
+
+
 
 INSTRUCTIONS
 
@@ -21,6 +48,15 @@ INSTRUCTIONS
 • Wherever necessary, draw neat and labeled figures/diagrams.
 • Write answers in simple business-oriented language.
 ................................................................................
+
+
+
+
+
+
+
+
+
 
 UNIT I: Introduction to Information Technology in Business
 
@@ -46,6 +82,15 @@ Describe key IT trends transforming businesses such as cloud computing, AI, and 
 
 Explain the future of IT in business with reference to automation and data-driven decision making.
 ................................................................................
+
+
+
+
+
+
+
+
+
 
 UNIT II: Computer Hardware
 
@@ -87,6 +132,14 @@ What are haptic feedback gloves and biosensors? Explain their importance in mode
 Explain data scanning devices and their use in retail and logistics businesses.
 ................................................................................
 
+
+
+
+
+
+
+
+
 UNIT IV: Data Communication and Computer Networks
 
 ................................................................................
@@ -126,8 +179,4 @@ Explain the concept of relational databases (tables, records, fields) with an ex
 ................................................................................
 
 Define SQL (Structured Query Language). Explain its role in data storage and retrieval for business.
-................................................................................
-
-END OF QUESTION SET
-
 ................................................................................
