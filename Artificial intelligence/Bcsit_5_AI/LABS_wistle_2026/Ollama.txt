@@ -59,9 +59,9 @@ Think of Ollama like:
         Model	                  Use
         --------              ------------
         LLaMA 3	              General chat, learning
-        Mistral              	Fast, light
+        Mistral               Fast, light
         Gemma                 Google model
-        Code LLaMA	          Programming
+        Code LLaMA	      Programming
 
 
 
@@ -98,13 +98,13 @@ Think of Ollama like:
 
 📌 Ollama vs ChatGPT
 ------------------------------
-          Feature	            Ollama	        	    	    ChatGPT
+          Feature	      Ollama	        	    ChatGPT
           ----------        -----------                  -----------
-          Runs offline		    ✅	    	    		    	    ❌
-          Internet needed		  ❌	    	      	    	    ✅
-          Privacy		    	    High		    	 	    	      Depends
-          Setup		    	    	Needs install		    	      Easy
-          Power	    	      	Medium		    	    	      Very high
+          Runs offline		   ✅	    	    	    ❌
+          Internet needed	   ❌	    	      	    ✅
+          Privacy		   High		    	    Depends
+          Setup		    	   Needs install            Easy
+          Power	    	      	   Medium		    Very high
 
 
 
