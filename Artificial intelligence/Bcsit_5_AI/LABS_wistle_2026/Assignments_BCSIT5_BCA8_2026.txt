@@ -1,0 +1,483 @@
+
+                            ******************************
+                            ******************************
+                            ******************************
+                                          Unit 1
+                            ******************************
+                            ******************************
+                            ******************************
+
+Q1. (History of AI) The history of Artificial Intelligence is marked by significant milestones.
+    (a) Who is considered the "Father of Artificial Intelligence," and at which
+          event in 1956 was the term officially coined? 
+    (b) Briefly explain the concept of an "AI Winter." What were the main 
+          causes of the First AI Winter (1974–1980)? 
+
+Q2. (Turing Test - Theory) Alan Turing proposed the "Imitation Game" to replace the abstract 
+    question "Can machines think?".
+        (a) Draw a block diagram showing the arrangement of the three 
+            participants (Interrogator, Human Respondent, Machine) in 
+            the Turing Test. 
+        (b) What is the specific "rule" or condition required for
+            a machine to pass this test? 
+
+Q3. (Turing Test - Numerical/Case Study) Refer to the table 
+    of "Modern AI Milestones" and "Turing Test Examples" in your text:
+        (a) The chatbot Eugene Goostman (2014) claimed to
+            have fooled a certain percentage of judges to "pass" a
+            version of the Turing Test. What was this percentage? 
+        
+        (b) In a hypothetical Turing Test scenario, if an
+            interrogator asks 10 questions to both a human and
+            a machine, and the machine provides answers that are
+            indistinguishable from the human in 9 out of 10 instances,
+            has the machine demonstrated "Acting Humanly"? Justify 
+            your answer based on the definition of the Turing
+            Test approach. 
+
+
+Q4. (Scope of AI) Artificial Intelligence covers various domains. Match
+    the following AI applications to their correct scope (Computer Vision,
+    NLP, or Robotics): 
+        (a) Generating a summary of a news article (e.g., ChatGPT).
+        (b) A drone identifying diseased crops from aerial photos.
+        (c) An industrial arm assembling car parts.
+
+Q5. (AI Perspectives) AI can be defined through four different
+    perspectives. Distinguish between "Thinking Humanly" and
+    "Thinking Rationally".
+
+      Which of these two approaches relies on "Laws of Thought" and
+      logic, and which one relies on modeling the biological processes 
+      of the human brain? 
+
+
+Q6. (Intelligent Agents & PEAS) Consider a Self-Driving Car as an intelligent agent.
+        (a) Define the term "Rational Agent". 
+        (b) Using the PEAS model, list one example for 
+            each of the following components for the self-driving car: 
+                      Performance Measure
+                      Environment
+                      Actuators
+                      Sensors
+
+Q7. (Game Playing - Theory) In the context of AI Game Playing:
+        (a) Define the role of the Utility Function. How does it 
+            differ from a Transition Model? 
+        
+        (b) Classify the game of Chess and the game of Ludo into
+            their correct categories (Deterministic vs. Stochastic). 
+
+Q8. (Game Playing - Algorithms) Search algorithms are crucial for game strategy.
+
+    (a) Which famous AI system used massive parallel processing to defeat
+          Garry Kasparov in 1997? 
+    (b) Briefly explain the purpose of Alpha-Beta Pruning. How does
+          it help the Minimax algorithm in decision making?
+    
+    
+    
+                            ******************************
+                            ******************************
+                            ******************************
+                                          Unit 2
+                            ******************************
+                            ******************************
+                            ******************************
+
+Q1. Consider the Route Planning map provided in the text (Page 44) where
+an agent needs to travel from an initial state to a goal state.
+
+      What is the path cost if the agent travels from Butwal to 
+      Bhairahawa and then to Bethari, given the distances are 27 km 
+      and 24 km respectively?.
+                
+      Why would an A Search* algorithm potentially choose a 
+      different path compared to a simple "Greedy" search in 
+      this network? Calculate the total cost g(n) for the
+      path Butwal -> Kalavani -> Bethari (using distances 24 km + 20 km) 
+      to support your reasoning..
+
+
+
+
+Q2. You are analyzing an 8-Puzzle Problem as described in
+the case study (Page 43). The Initial State has tiles arranged
+as [1, 4, 2; 7, 5, 3; 8, 6, Empty] and the Goal State is [1, 2, 3; 4, 5, 6; 7, 8, Empty].
+
+      What is the value of the heuristic function h(n) for 
+      the Initial State if we define h(n) as the "number 
+      of misplaced tiles"? (Do not count the empty space). 
+      
+      Why is using a heuristic like "misplaced tiles"
+      or "Manhattan distance" necessary for solving complex 
+      puzzles efficiently compared to blind search?.
+
+
+Q3. In a Game Playing scenario (e.g., Tic-Tac-Toe or Chess), consider a 
+simple game tree where the Utility Function assigns values
+of +1 (Win), -1 (Loss), and 0 (Draw) to the terminal states.
+
+        What would be the value propagated up to the root node if
+        the current player is a "Maximizer" and their available moves
+        lead to three states with backed-up values of -1, 0, and +1 respectively?.        
+        
+        Why does the Minimax algorithm assume the opponent plays
+        optimally (choosing the minimum value) when calculating this utility?.
+
+
+
+Q4. Refer to the SmartFarm AI case study (Page 2). The system 
+detects "Early Blight" with 95% confidence based on visual patterns.
+
+        What is the logical implication derived by the system if the
+        rule is: IF leaf has dark circular spots AND yellow edges THEN
+        disease = Early Blight? If the system analyzes 1000 images and 
+        correctly identifies 950 of them, calculate the error rate..
+        
+        Why might the system fail (give a wrong numerical prediction) if
+        shown a leaf type, such as a banana leaf, that was not included in
+        its training data of thousands of images?.
+
+
+Q5. A Self-Driving Car agent calculates a "Performance Measure" based
+on safety and speed. Suppose the formula is Score=(100×Safety)−(2×Time).
+
+        What is the final score if the car completes a trip with a 
+        Safety rating of 0.9 (on a scale of 0-1) and takes 30 minutes?
+        
+        Why must the agent prioritize the "Safety" variable heavily 
+        in this equation to be considered acting Rationally? (Refer to
+        the rational agent stopping at a red light)..
+
+
+
+Q6. In the context of search algorithms for the route problem (Page 42), assume
+a straight-line distance (heuristic h) from Butwal to Belbas is 10 km.
+
+        What is the value of the evaluation function f(n)=g(n)+h(n) for 
+        the node Butwal, assuming we are just starting (g=0)?
+        
+        
+        Why does Best-First Search rely heavily on this h(n) value
+        compared to Uniform Cost Search which relies only on g(n)?.
+
+
+
+Q7. Consider the Turing Test history. The chatbot Eugene Goostman (2014)
+claimed to have fooled 33% of the judges.
+
+        What is the specific numerical threshold (ratio or percentage) often
+        cited in the original 1950 proposal or modern interpretations for a
+        machine to "pass" the test (e.g., is 33% usually considered a full pass)?.
+        
+        Why is this percentage significantly lower than 100%, yet still
+        considered a milestone in Artificial Intelligence history?.
+
+
+
+
+Q8. A Medical Expert System (like MYCIN) uses certainty factors. If Symptom A 
+implies Disease X with certainty 0.7, and Symptom B implies Disease X with certainty 0.5.
+      
+      What is the combined certainty if the system simply sums the
+      evidences (assuming a simplified additive model capped at 1.0)?
+      
+      
+      Why did early systems like MYCIN use these numerical "Certainty Factors" or
+      probabilities instead of strict Boolean (True/False) logic?.
+
+
+Q9. What are the four main AI Perspectives defined by Russell and
+Norvig (Acting Humanly, Thinking Humanly, Acting Rationally, Thinking Rationally)?
+
+        Why is the "Acting Rationally" perspective
+        (Rational Agent approach) generally preferred in modern engineering 
+        and science over the "Thinking Humanly" approach? .        
+        
+        Q10. What is the PEAS model (Performance, Environment, Actuators,
+        Sensors) as applied to an intelligent agent?
+
+        Why is it critical to fully define the Task Environment (as observable, 
+        deterministic, etc.) before designing the agent's program? Use the
+        Self-Driving Car example to explain. 
+        
+
+
+
+
+
+
+
+
+
+
+
+                            ******************************
+                            ******************************
+                            ******************************
+                                          Unit 4
+                            ******************************
+                            ******************************
+                            ******************************
+
+
+
+Q1. K-Nearest Neighbors (KNN): The "Fruit Classification" Problem
+
+Scenario: 
+    You are building a simple robotic sorter for a grocery store. 
+    The robot classifies fruit into two categories: Apples (Class A)
+    and Oranges (Class B) based on two features: Weight (grams)
+    and Texture Score (1-10 scale).
+
+    You have the following training data:
+            P1: (150g, 4) → Apple
+            P2: (170g, 6) → Apple
+            P3: (140g, 3) → Apple
+            P4: (130g, 9) → Orange
+            P5: (160g, 8) → Orange
+
+ Numerical Question: 
+      A new unknown fruit arrives with features Pnew =(160g,5).
+        1. Calculate the Euclidean Distance between Pnew and
+            all 5 training points.
+        
+        2. Classify the new fruit using K=3. Show which 
+            neighbors are selected and the final majority vote.
+    
+    
+ Theoretical Logic:
+          Why is scaling important? If you used the raw numbers above, 
+          the "Weight" (ranging 130-170) dominates the distance 
+          calculation compared to "Texture" (ranging 3-9). How
+          would this bias the classifier, and how do you fix it?
+          
+          Effect of K: What would happen if you chose K=1 versus K=5 
+          in this specific scenario? Which one is more prone to noise?
+
+
+
+
+
+Q2. Linear Regression: Predicting House Prices
+Scenario: 
+    A real estate agency wants a basic ML model to predict 
+    house prices based on the number of bedrooms. They have 
+    a tiny dataset for testing the logic of Simple Linear 
+    Regression (y=mx+c).
+
+Data:
+    x (Bedrooms): 1, 2, 3
+    y (Price in $100k): 2, 4, 5
+
+      Numerical Question:
+      
+            Calculate the Slope (m) and Intercept (c) using
+            the Least Squares Method formulas
+                 (Hint: First calculate ∑x,∑y,∑xy,∑x^2).
+            
+            Using your equation, predict the price of a 
+            house with 4 bedrooms.
+      
+      
+      
+      Theoretical Logic:
+          The Loss Function: Explain the concept of Mean Squared 
+          Error (MSE). Why do we square the difference between the 
+          predicted value and the actual value ( (y pred −yactual)^2
+          instead of just taking the absolute difference?
+
+
+
+
+
+Q3. Decision Trees: The "Play Tennis" Entropy Calculation
+
+Scenario: 
+      You are analyzing weather data to determine if a tennis match
+      should be held. You are at the very root of the Decision Tree
+      and need to decide which attribute to split on.
+
+    Current Dataset (Root Node):
+          Total Days: 10
+          Play Tennis = Yes: 6 days
+          Play Tennis = No: 4 days
+    
+    You are considering splitting on the feature "Humidity":
+        High Humidity: 5 days (1 Yes, 4 No)
+        Normal Humidity: 5 days (5 Yes, 0 No)
+
+  Numerical Question:
+        Calculate the Entropy of the Root Node.
+        
+        Calculate the Information Gain if we split by "Humidity". 
+        (Hint: Calculate weighted entropy of the children nodes and
+        subtract from root entropy).
+  
+  Theoretical Logic:
+        Pruning: If we built a tree that perfectly classified every
+        single day in historical data (0 error), why might that be a
+        bad model for future predictions? Explain Overfitting in the
+        context of Decision Trees.
+
+
+
+
+
+Q4. K-Means Clustering: Customer Segmentation
+Scenario: 
+    A bank wants to group customers into 2 clusters (K=2) based 
+    on "Loan Amount" and "Credit Score". We start with the 
+    following 4 customers:
+
+          A: (2, 10)
+          B: (2, 5)
+          C: (8, 4)
+          D: (5, 8)
+
+
+Numerical Question: Assume we randomly initialize two Centroids:
+        Centroid 1 (C1): (2, 10) [Same as Point A]
+        Centroid 2 (C2): (5, 8) [Same as Point D]
+
+        Perform Iteration 1:
+              Cluster Assignment: Calculate the distance of 
+              Points B and C from both C1 and C2. Assign them
+              to the nearest centroid.
+              
+              Update Centroids: Calculate the new coordinates
+              of C1 and C2 based on the points assigned to them.
+
+
+
+      Theoretical Logic:
+            Convergence: How does the algorithm know when to stop?
+            
+            Elbow Method: Since K-means requires you to pick K 
+            beforehand, how would you use the "Elbow Method" graph
+            to determine the optimal number of clusters?
+      
+
+
+
+
+Q5. Genetic Algorithms: Optimizing a Binary String
+Scenario: 
+      We want to maximize a fitness function f(x)=x^2, where x is 
+      an integer represented by a 4-bit binary 
+      string (e.g., 0101=5,5^2 =25).
+
+          Initial Population:
+              S1: 0110 (6)
+              S2: 1000 (8)
+              S3: 0011 (3)
+              S4: 1100 (12)
+
+
+    
+    Numerical Question:
+    
+          Selection: Calculate the fitness (x^2) for all four
+          strings. Which two parents have the highest 
+          probability of being selected?
+          
+          Crossover: Perform a Single-Point Crossover on the
+          two best parents at Crossover Point = 2 (between 
+          the 2nd and 3rd bit). Write the two new Offspring strings.
+          
+          Mutation: Take the first offspring from step 2 and
+          flip the last bit (Mutation). What is the new 
+          integer value?
+    
+    
+    
+    Theoretical Logic:
+    
+              Role of Mutation: If we only used Selection and Crossover, 
+              the algorithm might get stuck in a "Local Maximum." How 
+              does Mutation prevent this?
+
+
+
+
+
+
+
+Q6. Case Study:
+Neural Networks (The "MediScan" Diagnosis)
+
+
+"MediScan AI" is a new medical startup attempting to revolutionize 
+the early detection of Diabetes using Artificial Neural Networks (ANN).
+Traditionally, doctors look at Glucose levels and Insulin levels 
+manually. MediScan aims to automate this.
+
+
+They have designed a simple Perceptron (a single-layer neural network) 
+to act as a binary classifier (1 = Diabetic, 0 = Healthy). The network
+takes two normalized inputs:
+        x1 : Glucose Level (scaled 0-1)
+        x2 : Insulin Level (scaled 0-1)
+
+
+The network has two associated weights (w1,w2) and a 
+bias (b). The output determines the diagnosis based
+on an Activation Function.
+
+
+During the testing phase, a specific patient,
+"Patient X," has the following readings:
+        Glucose (x1) = 0.8
+        Insulin (x2) = 0.5
+
+The current weights of the model after 100 epochs of training are:
+          w1 =4.0
+          w2 =−2.0
+          Bias b=−1.0
+
+The startup is currently debating which Activation Function 
+to use: the Step Function or the Sigmoid Function. The Step
+function outputs 1 if the input is positive, 0 otherwise. 
+The Sigmoid function provides a probability between 0 and 1. 
+Management is concerned that the model is strictly linear 
+and might fail to capture complex relationships, leading 
+to a discussion about "Deep Learning" and "Hidden Layers."
+
+
+
+
+Questions based on the Case:
+----------------------------------
+    A. Numerical Calculation (The Forward Pass):
+    
+          1. Calculate the Weighted Sum (z) for Patient X using the formula:
+          z=(x1 . w1)  +  (x2 . w2) + b
+          
+          2. Diagnosis:
+              If the network uses a Step Function (Output = 1 if z≥0, else 0), 
+              is Patient X diagnosed as Diabetic?
+          
+              If the network uses the Sigmoid Function (σ(z)= (1 / (1+e^−z) , what
+              is the probability that Patient X is diabetic?
+              (Use e^−1.2 ≈0.3 and e^1.2≈3.3).
+    
+    
+    B. Theoretical Analysis:
+    
+          1.The Learning Process: Explain how the Backpropagation 
+            algorithm would update the weights (w1 ,w2) if the actual
+            label for Patient X was "1" (Diabetic) but the model 
+            predicted a low probability. Mention the role of 
+            the "Learning Rate."
+      
+          2. Limitations: The management is worried the model 
+              is "linear". Why can a single Perceptron NOT solve a
+              problem like XOR (Exclusive OR)? How does adding a Hidden
+              Layer solve this issue?
+
+
+
+
+
+
