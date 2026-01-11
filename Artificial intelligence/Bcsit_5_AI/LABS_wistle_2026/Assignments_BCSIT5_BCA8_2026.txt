@@ -1,4 +1,38 @@
 
+................................................................................
+POKHARA UNIVERSITY
+
+Course Title: Artificial Intelligence
+Level: Bachelor
+Program: BCA 7 / BCSIT 5
+Nature: Theory & Practice__________________ASSIGNMENTS
+................................................................................
+
+
+
+
+INSTRUCTIONS
+................................................................................
+• Attempt ALL questions.
+• This is an individual assignment.
+
+• Answers must be handwritten and scanned as a single PDF.
+• Numerical steps must be clearly shown.
+• Use diagrams wherever necessary.
+
+• Submission mode : Email and handwritten in copy (inside  submission date )
+
+• Submission email : sanjeev.thapa@lcc.edu.np
+
+• Assignment issue date : 12 Jan 2026
+• Assignment submission date : 22 Jan 2026
+
+• Mail subject format: BCA7_Your Name.pdf      
+                                OR
+                       BCSIT5_Your Name.pdf
+................................................................................
+
+
                             ******************************
                             ******************************
                             ******************************
