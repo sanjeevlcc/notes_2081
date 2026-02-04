@@ -1,6 +1,11 @@
+
+
+
 ............................................................................
 Digital Marketing Practicum
 ............................................................................
+
+
 
 Pokhara University
 ............................................................................
@@ -19,6 +24,14 @@ Total Hours .......... 16
 Level ................ Bachelor
 Program .............. BBA / BBA (Finance) / BBA (TT)
 
+
+
+
+
+
+
+
+
 ............................................................................
 List of the Practicals
 ............................................................................
@@ -29,6 +42,13 @@ practical aspects of the course remain intact and relevant.
 
 The suggested course contents are as follows:
 
+
+
+
+
+
+
+
 ............................................................................
 Module 1 : Introduction to Digital Marketing (1 Hour)
 ............................................................................
@@ -37,6 +57,12 @@ Module 1 : Introduction to Digital Marketing (1 Hour)
   Email Marketing, Content Marketing, etc.
 • Establishing a personal or small business brand online
 
+
+
+
+
+
+
 ............................................................................
 Module 2 : Website Development and Optimization (3 Hours)
 ............................................................................
@@ -44,12 +70,26 @@ Module 2 : Website Development and Optimization (3 Hours)
 • User Experience (UX) and User Interface (UI)
 • Introduction to SEO ............ On-page and Off-page
 
+
+
+
+
+
+
+
 ............................................................................
 Module 3 : Content Creation and Management (3 Hours)
 ............................................................................
 • Creating engaging content ............ Blogs, Videos, Infographics
 • Overview of Content Management Systems (CMS)
 • Content calendar and scheduling
+
+
+
+
+
+
+
 
 ............................................................................
 Module 4 : Social Media Marketing (2 Hours)
@@ -65,6 +105,13 @@ Module 5 : Search Engine Marketing (2 Hours)
 • Keyword research and ad creation
 • Measuring and optimizing ad performance
 
+
+
+
+
+
+
+
 ............................................................................
 Module 6 : Email Marketing (1 Hour)
 ............................................................................
@@ -79,22 +126,43 @@ Module 7 : Analytics and Reporting (2 Hours)
 • Tracking and interpreting key metrics
 • Creating actionable reports
 
+
+
+
+
+
+
+
 ............................................................................
 Module 8 : Practical Project and Presentation (2 Hours)
 ............................................................................
 • Completion of a practical digital marketing project
 • Project presentation, feedback, and discussion
 
+
+
+
+
+
+
+
 ............................................................................
 Note
 ............................................................................
 Figures in parentheses indicate approximate teaching hours for each module.
+
+
+
 
 ............................................................................
 Methods of Instruction
 ............................................................................
 Interactive sessions, workshops, simulation exercises, role plays, real case
 analysis, self-assessments, feedback, and coaching.
+
+
+
+
 
 ............................................................................
 Evaluation System
@@ -105,6 +173,10 @@ Evaluation System
 • No semester-end examination
 • Final grades awarded by faculty
 
+
+
+
+
 ............................................................................
 Students’ Responsibilities
 ............................................................................
@@ -113,9 +185,20 @@ Students’ Responsibilities
 • Timely completion of all assigned work
 • No re-consideration for incomplete evaluation components
 
+
+
+
 ............................................................................
 Suggested Books and References
 ............................................................................
 Instructors are free to select appropriate tools and references to achieve
 the objectives of the Digital Marketing Practicum at Bachelor Level.
 ............................................................................
+
+
+
+
+
+
+
+
