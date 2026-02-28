@@ -1,38 +1,138 @@
-............................................................................
-NOTICE : DIGITAL MARKETING PRACTICUM – GROUP PROJECT
-............................................................................
 
-All students are informed that a practical GROUP PROJECT will be conducted
-under the Digital Marketing Practicum.
+*****************************************************************************************************
+*****************************************************************************************************
+*****************************************************************************************************
 
-Group Formation
-............................................................
-• 4 students per group (compulsory)
+    ............................................................................
+    NOTICE : DIGITAL MARKETING GROUP PRESENTATION 
+    ............................................................................
+    
+    Hello everyone!!
+    
+    After the completion of the election (21 Falgun 2082),  
+    there will be group presentation, so prepare as per the schedule below:
 
-Project Tasks (Short)
-............................................................
-• Select a small business idea / brand topic
-• Branding ............ Business name, slogan, logo, color theme
-• Website Creation ............ Home, About, Products/Services, Contact
-• Website Running ............ Host / run the website and ensure it works properly
-• Contact Setup ............ Add email link, phone number, contact form, location/map
-• Content Creation ............ Posts/blogs/posters/videos (minimum content required)
-• Social Media ............ Create/manage page(s) and publish posts
-• Basic SEO ............ Keywords, title, meta description, headings, image alt text
-• Google Analytics ............ Link website with Google Analytics and track visitors
-• Report ............ Short analytics/report + screenshots as evidence
 
-Submission Requirements
-............................................................
-• Website link
-• Logo/branding files
-• Content samples
-• Social media link(s)
-• Google Analytics screenshot/report
 
-Note
-............................................................
-• Equal contribution from all group members is compulsory.
-• Timely completion and submission of all assigned work is mandatory.
+    Presentation Schedule
+    ............................................................
+        • Date ............ 25 Falgun 2082
+        • Mode ............ Online OR Physical (as informed by the tutor)
+        • Possible Physical Presentation Date ............ 25 Falgun 2082 (if required)
 
-............................................................................
+
+
+
+    Group Formation
+    ............................................................
+        • All students are requested to form groups of 4 members each.
+        • Each group must prepare for the Digital Marketing presentation.
+
+
+
+
+
+    Submission of Group Details
+    ............................................................
+        • Deadline ............ 16 Falgun 2082  by 6:00 PM
+        • Submit ............ Group member names and roll numbers 
+
+
+
+
+    Important Note
+    ............................................................
+        • If group details are not submitted within the deadline, the Digital Marketing
+          tutor will assign groups accordingly or randomly.
+        • Students are advised to complete group formation on time to avoid inconvenience.
+
+
+
+
+
+    Thank you.
+    
+*****************************************************************************************************
+*****************************************************************************************************
+*****************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*****************************************************************************************************
+*****************************************************************************************************
+*****************************************************************************************************
+
+
+          
+          ............................................................................
+          NOTICE : DIGITAL MARKETING PRACTICUM – Project Tasks
+          ............................................................................
+          
+                All students are informed that a practical GROUP PROJECT will be conducted
+                under the Digital Marketing Practicum.
+          
+          
+          
+          
+          
+          
+          Group Formation
+          ............................................................
+                • 4 students per group (compulsory)
+          
+          
+          
+          
+          Project Tasks 
+          ............................................................
+                  • Select a small business idea / brand topic
+                  • Branding .................... Business name, slogan, logo, color theme
+                  • Website Creation ............ Home, About, Products/Services, Contact ( via github or wordpress)
+                  • Website Running ............. Host / run the website and ensure it works properly
+                  • Contact Setup ............... Add email link, phone number, contact form, location/map
+                  • Content Creation ............ Posts/blogs/posters/videos (minimum content required)
+                  • Social Media ................ Create/manage page(s) and publish posts
+                  • Basic SEO ................... Keywords, title, meta description, headings, image alt text
+                  • Google Analytics ............ Link website with Google Analytics and track visitors
+                  • Report ...................... Short analytics/report + screenshots as evidence
+          
+          
+          
+          
+          
+          Submission Requirements as demo and pdf(mail: sanjeev.thapa@lcc.edu.np)
+          ............................................................
+                • Website link
+                • Logo/branding files    (use canva)
+                • Content samples
+                • Social media link(s)    (use facebook or instagram)
+                • Google Analytics screenshot/report    (use google analytics)
+          
+          
+          
+          
+          Note
+          ............................................................
+                • Equal contribution from all group members is compulsory.
+                • Timely completion and submission of all assigned work is mandatory.
+
+
+
+*****************************************************************************************************
+*****************************************************************************************************
+*****************************************************************************************************
+
