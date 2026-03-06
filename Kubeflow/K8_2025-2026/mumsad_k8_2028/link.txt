@@ -11,8 +11,40 @@ https://github.com/cncf/trailmap/blob/master/CNCF_TrailMap_latest.pdf
 
 
 ***********************************************************************************************
+What is FinOps?
+FinOps is an operational framework and cultural practice which maximizes the business value of cloud and technology, enables timely data-driven decision making, and creates financial accountability through collaboration between engineering, finance, and business teams.
 
 
+https://www.finops.org/introduction/what-is-finops/
+
+***********************************************************************************************
+
+
+
+
+
+
+
+***********************************************************************************************
+About
+𝑫𝒆𝒗𝑶𝒑𝒔 𝑹𝒆𝒂𝒍 𝑾𝒐𝒓𝒍𝒅 𝑷𝒓𝒐𝒋𝒆𝒄𝒕𝒔 𝒇𝒐𝒓 𝑨𝒔𝒑𝒊𝒓𝒊𝒏𝒈 𝑫𝒆𝒗𝑶𝒑𝒔 𝑬𝒏𝒈𝒊𝒏𝒆𝒆𝒓𝒔 [𝑩𝒆𝒈𝒊𝒏𝒏𝒆𝒓 𝒕𝒐 𝑨𝒅𝒗𝒂𝒏𝒄𝒆𝒅]
+
+
+
+https://github.com/DevCloudNinjas/DevOps-Projects
+***********************************************************************************************
+
+
+
+
+
+
+
+***********************************************************************************************
+DevOps and Docker Talk: Cloud Native Interviews and Tooling
+
+
+https://podcast.bretfisher.com/people
 ***********************************************************************************************
 
 
@@ -33,6 +65,18 @@ https://github.com/cncf/trailmap/blob/master/CNCF_TrailMap_latest.pdf
 
 
 ***********************************************************************************************
+Free Learning Resources for
+Your Faculty, Students, and Staff
+The Linux Foundation is the world’s leading home for collaboration on
+open source software, hardware, standards, and data.
+The almost 1,000 projects that call the Linux Foundation home are critical to the world’s infrastructure
+including: Linux, Kubernetes, Jupyter, PyTorch, RISC-V, Zephyr and more. The Foundation focuses
+on leveraging best practices and addressing the needs of contributors, users, and solution providers
+to create sustainable models for open collaboration. 
+
+
+
+https://training.linuxfoundation.org/wp-content/uploads/2025/04/LF-Ed-Resources.Universities.Mar25.pdf
 
 
 ***********************************************************************************************
@@ -44,8 +88,29 @@ https://github.com/cncf/trailmap/blob/master/CNCF_TrailMap_latest.pdf
 
 
 ***********************************************************************************************
+The Shubhra Kar Linux Foundation Training (LiFT) Scholarship Program aims to increase diversity in open source technology by providing access to training courses and certification exams for deserving individuals at no cost to the recipient. Since 2010, The Linux Foundation has awarded over 3,750 scholarships for millions of dollars worth of specialized, technical training to those who may not have the ability to afford this opportunity otherwise. The program was renamed in memory of long time Linux Foundation CTO Shubhra Kar, who we tragically lost in early 2022.
+
+You can read profiles of some of our 2025 recipients here.
+
+The 2026 LiFT Scholarship Applications will open in April.
 
 
+
+https://training.linuxfoundation.org/about/scholarships/
+***********************************************************************************************
+
+
+
+
+
+
+
+***********************************************************************************************
+About
+𝑫𝒆𝒗𝑶𝒑𝒔 𝑹𝒆𝒂𝒍 𝑾𝒐𝒓𝒍𝒅 𝑷𝒓𝒐𝒋𝒆𝒄𝒕𝒔 𝒇𝒐𝒓 𝑨𝒔𝒑𝒊𝒓𝒊𝒏𝒈 𝑫𝒆𝒗𝑶𝒑𝒔 𝑬𝒏𝒈𝒊𝒏𝒆𝒆𝒓𝒔 [𝑩𝒆𝒈𝒊𝒏𝒏𝒆𝒓 𝒕𝒐 𝑨𝒅𝒗𝒂𝒏𝒄𝒆𝒅]
+
+
+https://github.com/DevCloudNinjas/DevOps-Projects
 ***********************************************************************************************
 
 
@@ -56,40 +121,7 @@ https://github.com/cncf/trailmap/blob/master/CNCF_TrailMap_latest.pdf
 
 ***********************************************************************************************
 
-
-***********************************************************************************************
-
-
-
-
-
-
-
-***********************************************************************************************
-
-
-***********************************************************************************************
-
-
-
-
-
-
-
-***********************************************************************************************
-
-
-***********************************************************************************************
-
-
-
-
-
-
-
-***********************************************************************************************
-
-
+https://github.com/K8sAcademy
 ***********************************************************************************************
 
 
