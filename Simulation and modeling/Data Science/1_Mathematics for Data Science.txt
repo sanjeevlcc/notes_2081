@@ -1,0 +1,199 @@
+
+
+............................................................
+Code No.: MDS 504
+............................................................
+Course Title: Mathematics for Data Science
+Full Mark: 75
+Nature: Theory (Compulsory)
+Credit: 3
+
+............................................................
+COURSE DESCRIPTION
+............................................................
+The course will cover basic topics in linear algebra to understand high-dimensional vector spaces,
+matrices and graphs as popular mathematical structures with which to model data
+(e.g., term-document corpora, high-dimensional regression problems, ranking/classification of web data,
+adjacency properties of social network data, etc.)
+
+Geometric approaches include:
+- Eigendecompositions
+- Least-squares
+- Principal component analysis
+
+The course requires solving problems using programming R.
+
+............................................................
+LEARNING OBJECTIVES
+............................................................
+After successful completion of this course the student will be able to:
+
+- Understand basic linear algebra techniques useful in data science
+- Explain why different methods work and don’t work
+- Understand tools used to diagnose problems and develop new methods
+- Understand how probability and optimization are used with matrices and graphs
+- Understand connections between probability and linear algebra ideas
+- Gain intuition behind methods used in data science
+- Use R programming to solve problems
+
+............................................................
+COURSE CONTENTS
+............................................................
+
+............................................................
+UNIT 1: Introduction, Motivation, and Overview [9 Hrs.]
+............................................................
+- Linear algebra and machine learning
+- Data representation: tables vs matrices vs graphs
+- Probability / randomness / noise in data
+- Role of matrices and graphs in data science
+- Quantification of inference
+
+............................................................
+UNIT 2: Introduction to Matrices and Vectors [15 Hrs.]
+............................................................
+- Vectors and basic properties of R^n
+- Norms and balls
+- Vector addition and scalar multiplication
+- Vector spaces and subspaces
+- Matrices and operations (including multiplication)
+- Linear functions and transformations
+- Matrices as transformations
+- Dot product, angles, perpendicularity
+- Linear combinations, span, independence
+- Bases and orthonormal bases
+- Projections
+- Applications in probability and data science
+
+............................................................
+UNIT 3: Spectral Theorems [14 Hrs.]
+............................................................
+- Eigenvalues and eigenvectors
+- Quadratic forms and matrices
+- Symmetric bilinear functions
+- Connections with conic sections
+- Definiteness and quadratic forms
+- Eigenvalue Decomposition (EVD)
+- Singular Value Decomposition (SVD)
+- Properties of SVD
+- Orthogonal subspaces
+- Applications in data science
+
+............................................................
+UNIT 4: System of Linear Equations [10 Hrs.]
+............................................................
+- Solving linear equations
+- Geometry of linear equations
+- Gaussian elimination
+- Row operations
+- Networks and incidence matrices
+- Four fundamental subspaces
+- Basis transformations
+- Orthogonal bases
+- Gram-Schmidt Orthogonalization
+- Numerical issues
+- Applications in data science
+
+............................................................
+REFERENCES
+............................................................
+1. Nick Fieller (2015)
+   Basics of Matrix Algebra for Statistics with R
+   Chapman and Hall/CRC
+
+2. Shayle R. Searle & André I. Khuri (2017)
+   Matrix Algebra Useful for Statistics
+   John Wiley & Sons
+
+3. Michael W. Mahoney (2018)
+   Linear Algebra for Data
+   University of California Berkeley
+
+4. Deisenroth, M. P., Faisal, A. A., Ong, C. S. (2019)
+   Mathematics for Machine Learning
+   Cambridge University Press
+
+5. Jason Brownlee (2018)
+   Basics of Linear Algebra for Machine Learning
+   https://www.mobt3ath.com/uplode/book/book-33342.pdf
+
+............................................................
+END
+............................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
