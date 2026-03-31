@@ -87,6 +87,13 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 ........1.8.1.Correlation.coefficients
 ........1.8.2.Autocorrelation
 
+
+
+
+
+
+
+
 ............................................................
 Unit.2.Data.Munging.[8.Hrs.]
 ....2.1.Data.quality
@@ -125,6 +132,13 @@ Unit.2.Data.Munging.[8.Hrs.]
 ........2.9.2.Narrow.(long).format
 ........2.9.3.Conversion.between.formats
 
+
+
+
+
+
+
+
 ............................................................
 Unit.3.Data.Analysis.Technique.[10.Hrs.]
 ....3.1.Feature.engineering
@@ -151,6 +165,13 @@ Unit.3.Data.Analysis.Technique.[10.Hrs.]
 
 ....3.5.Time.series.analysis
 
+
+
+
+
+
+
+
 ............................................................
 Unit.4.Machine.Learning.[8.Hrs.]
 ....4.1.Introduction.to.machine.learning
@@ -167,6 +188,13 @@ Unit.4.Machine.Learning.[8.Hrs.]
 ....4.6.Deep.learning
 ........4.6.1.Introduction
 ........4.6.2.Backpropagation
+
+
+
+
+
+
+
 
 ............................................................
 Unit.5.Big.Data.[8.Hrs.]
@@ -186,6 +214,13 @@ Unit.5.Big.Data.[8.Hrs.]
 
 ....5.5.Real-time.analytics
 ........5.5.1.Apache.Kafka
+
+
+
+
+
+
+
 
 ............................................................
 Unit.6.Ethical.Issues.[4.Hrs.]
@@ -208,6 +243,13 @@ Unit.6.Ethical.Issues.[4.Hrs.]
 ........6.3.5.Precision.parity
 
 ....6.4.Privacy.and.ethics
+
+
+
+
+
+
+
 
 ............................................................
 References
