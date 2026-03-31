@@ -1,1 +1,1277 @@
-Unit.2.Data.Munging
+
+
+Unit.2.Data.Munging.[8.Hrs.]
+
+....2.1.Data.quality
+....2.2.Common.data.issues
+........2.2.1.Duplicates
+........2.2.2.Missing.data
+........2.2.3.Nonstandard.data
+........2.2.4.Unit.mismatch
+
+....2.3.Data.cleaning.and.standardization
+
+....2.4.Data.enrichment
+........2.4.1.Correction
+........2.4.2.Extrapolation
+........2.4.3.Augmentation
+
+....2.5.Data.validation
+........2.5.1.Type.check
+........2.5.2.Range.and.constraint.check
+........2.5.3.Consistency.check
+
+....2.6.Data.format.conversion
+........2.6.1.JSON
+........2.6.2.XML
+........2.6.3.Tabular
+........2.6.4.Relational
+
+....2.7.Format.conversion.methods
+
+....2.8.Tabular.data
+........2.8.1.Row.based
+........2.8.2.Column.based.(Parquet.ORC.CSV)
+
+....2.9.Table.structure
+........2.9.1.Wide.format
+........2.9.2.Narrow.(long).format
+........2.9.3.Conversion.between.formats
+
+
+
+
+
+
+
+
+
+=======================================================
+Unit.2.Data.Munging.[8.Hrs.]
+=======================================================
+
+....2.1.Data.quality
+....2.2.Common.data.issues
+........2.2.1.Duplicates
+........2.2.2.Missing.data
+........2.2.3.Nonstandard.data
+........2.2.4.Unit.mismatch
+
+
+
+
+
+
+
+Unit 2 Data Munging [8 Hrs.]
+=======================================================
+    Data munging means the process of cleaning, organizing, correcting,
+    and preparing raw data so that it can be used for analysis.
+
+    Simple meaning:
+        Raw data from real life is usually messy.
+        Data munging makes it usable.
+
+    Other similar terms
+        Data cleaning
+        Data wrangling
+        Data preprocessing
+
+    Why data munging is important
+        Real-world data often contains errors
+        Wrong data leads to wrong analysis
+        Clean data improves model accuracy
+        Good decisions depend on good quality data
+
+    Example
+
+        Raw student data:
+            Ram       45
+            Sita      78
+            Hari      -
+            Gita      90
+            Ram       45
+
+        Problems:
+            Hari has missing mark
+            Ram is repeated
+
+        After munging:
+            Remove duplicate Ram entry
+            Decide how to handle Hari's missing value
+
+        Now the data becomes more reliable.
+
+
+
+
+
+
+    2.1 Data Quality
+=======================================================
+        Data quality means how good, accurate, complete, consistent,
+        and useful the data is for a specific purpose.
+
+        Simple meaning:
+            High quality data is trustworthy and ready for use.
+            Low quality data is inaccurate, incomplete, or confusing.
+
+
+
+
+        Main characteristics of data quality
+
+            Accuracy
+                Data correctly represents the real-world value
+
+                Example:
+                    Student age recorded as 20
+                    when actual age is 20
+
+            Completeness
+                Important values are not missing
+
+                Example:
+                    Name, age, marks, and roll number are all present
+
+            Consistency
+                The same data follows the same format and meaning everywhere
+
+                Example:
+                    Kathmandu should not appear as
+                    Kathmandu, KTM, and kathmandu in the same dataset
+                    unless standardized
+
+            Validity
+                Data follows rules and allowed ranges
+
+                Example:
+                    Marks should be between 0 and 100
+                    Age should not be negative
+
+            Timeliness
+                Data is up to date
+
+                Example:
+                    Current stock report should reflect today's stock,
+                    not last year's stock
+
+            Uniqueness
+                Same record should not appear more than once unless required
+
+                Example:
+                    One student should not be entered twice by mistake
+
+
+
+
+
+
+        Why data quality matters in Data Science
+
+            If data quality is poor:
+                Analysis may be wrong
+                Graphs may mislead
+                Models may fail
+                Decisions may be harmful
+
+
+
+
+
+
+        Example of poor quality data
+
+            Product    Price
+            Rice       80
+            Oil        200
+            Sugar      -50
+
+            Problem:
+                Sugar price cannot be negative
+                So validity is poor
+
+
+
+
+        Example of good quality data
+
+            Product    Price
+            Rice       80
+            Oil        200
+            Sugar      120
+
+            Now prices are meaningful and usable
+
+
+
+
+
+
+
+
+
+        Data quality in different situations
+
+            Education
+                Correct student marks and attendance needed
+
+            Healthcare
+                Correct patient history is critical
+
+            Banking
+                Accurate transaction records are essential
+
+            Business
+                Correct sales and inventory data are needed
+
+
+
+
+
+
+
+
+        How to improve data quality
+
+            Check for missing values
+            Remove duplicates
+            Standardize formats
+            Validate ranges
+            Fix unit problems
+            Use reliable data entry rules
+            Regularly review and update data
+
+
+
+
+
+
+        Simple maths example
+
+            Marks:
+                45, 50, 60, 70, 500
+
+            Problem:
+                500 is likely data entry error
+
+            Mean before cleaning:
+                (45 + 50 + 60 + 70 + 500) / 5
+                = 725 / 5
+                = 145
+
+            This is clearly misleading.
+
+            If corrected to 50:
+                45, 50, 60, 70, 50
+
+            Mean after correction:
+                (45 + 50 + 60 + 70 + 50) / 5
+                = 275 / 5
+                = 55
+
+            Lesson:
+                Good data quality changes the result significantly.
+
+
+
+
+
+
+
+    2.2 Common Data Issues
+=======================================================
+        Common data issues are problems that appear frequently in raw datasets.
+
+        These issues make analysis difficult and unreliable.
+
+        In this unit, common issues are:
+            Duplicates
+            Missing data
+            Nonstandard data
+            Unit mismatch
+
+
+
+
+
+
+
+
+        Example of one messy dataset
+
+            Name        City         Weight      Marks
+            Ram         KTM          55 kg       78
+            Sita        Kathmandu    121 lb      82
+            Hari        Pokhara      -           65
+            Ram         KTM          55 kg       78
+
+        
+                Problems:
+                    Ram appears twice
+                    Hari has missing weight
+                    City format is inconsistent
+                    Weight uses mixed units
+        
+                This is a typical real-world messy dataset.
+
+
+
+
+
+
+    2.2.1 Duplicates
+=======================================================
+        Duplicates mean the same record appears more than once in a dataset.
+
+        Simple meaning:
+            One entry is repeated unnecessarily.
+
+        Example:
+            Roll    Name    Marks
+            1       Ram     80
+            2       Sita    75
+            1       Ram     80
+
+          Here the first and third rows are duplicates.
+
+
+
+
+        Why duplicates are a problem
+
+            They increase data size unnecessarily
+            They can distort counts and averages
+            They may give false impression of frequency
+            They reduce trust in data
+
+
+
+
+
+        Example with counting students
+
+            Data:
+                Ram
+                Sita
+                Hari
+                Ram
+
+            Count without cleaning:
+                4 students
+
+            Actual unique students:
+                3 students
+
+            So duplicate causes wrong result.
+
+
+
+
+
+
+        Example with average salary
+
+            Salaries:
+                20000, 25000, 30000, 20000
+
+            If last 20000 is a duplicate,
+            then the average is affected.
+
+
+
+
+
+
+
+
+
+        Types of duplicates
+
+            Exact duplicates
+                Entire row is repeated exactly
+
+            Partial duplicates
+                Some fields are same but not all
+
+                Example:
+                    Ram    Kathmandu    9800000000
+                    Ram    Kathmandu    9800000000
+
+                exact duplicate
+
+                But:
+                    Ram    KTM          9800000000
+                    Ram    Kathmandu    9800000000
+
+                may be duplicate person with nonstandard city name
+
+
+
+
+
+
+
+
+
+        Causes of duplicates
+
+            Repeated data entry
+            Merging files without proper checking
+            System import errors
+            Typing records multiple times
+
+
+
+
+
+
+
+
+        How to detect duplicates
+
+            Check full repeated rows
+            Check repeated IDs
+            Check repeated name and phone combinations
+            Use software tools to find repeated records
+
+
+
+
+
+
+
+
+        How to handle duplicates
+
+            Remove exact duplicates
+            Review suspicious partial duplicates
+            Keep only one correct record
+            Use unique IDs where possible
+
+
+
+
+
+
+
+
+        Example in customer data
+
+            Customer ID    Name     City
+            101            Asha     Lalitpur
+            102            Bina     Bhaktapur
+            101            Asha     Lalitpur
+
+            Customer ID 101 is repeated.
+            One row should likely be removed.
+
+
+
+
+
+
+        Important note
+            Not all repeated values are duplicates.
+
+            Example:
+                Product
+                Rice
+                Rice
+                Sugar
+
+            If each row means a separate sale,
+            then repeated Rice may be valid.
+            So duplicates must be judged in context.
+
+
+
+
+
+
+
+
+    2.2.2 Missing Data
+=======================================================
+        Missing data means some values are not available or not recorded.
+
+        Simple meaning:
+            Some part of the dataset is empty or unknown.
+
+        Example:
+            Name      Age      Marks
+            Ram       20       75
+            Sita      -        82
+            Hari      22       -
+
+        Here:
+            Sita's age is missing
+            Hari's marks are missing
+
+
+
+
+
+        Common ways missing data appears
+
+            Blank cell
+            NA
+            Null
+            Dash -
+            Unknown
+            Not available
+
+
+
+
+
+        Why missing data is a problem
+
+            Reduces completeness
+            Makes analysis harder
+            Can bias results
+            Some algorithms cannot work with missing values
+            Can reduce dataset size if rows are removed
+
+
+
+
+
+        Causes of missing data
+
+            Data entry skipped
+            Survey not answered
+            Sensor failure
+            Data lost during collection
+            Information not available
+
+
+
+
+
+        Example with student marks
+
+            Marks:
+                45, 60, -, 80, 70
+
+            If we ignore the missing value carelessly,
+            average calculation may become misleading.
+
+
+
+
+
+
+
+
+        Ways to handle missing data
+
+            Remove the row
+                Useful if only few rows are missing
+                Risk: loss of data
+
+            Remove the column
+                Useful if too many values are missing
+                Risk: loss of important feature
+
+            Fill with mean
+                For numerical data
+
+            Fill with median
+                Better when outliers exist
+
+            Fill with mode
+                For categorical data
+
+            Fill with a fixed label
+                Example:
+                    Unknown
+
+            Predict missing value
+                Use model-based imputation
+
+
+
+
+
+        Example using mean
+
+            Data:
+                10, 20, -, 40
+
+            Mean of known values:
+                (10 + 20 + 40) / 3
+                = 70 / 3
+                = 23.33
+
+            Missing value may be filled with 23.33
+
+
+
+
+
+
+
+        Example using mode
+
+            City:
+                Kathmandu
+                Pokhara
+                Kathmandu
+                -
+
+            Mode:
+                Kathmandu
+
+            Missing city may be filled with Kathmandu
+            only if this makes practical sense
+
+
+
+
+
+
+
+
+        Important caution
+
+            Filling missing values blindly may introduce error.
+            We should first ask:
+                Why is the value missing?
+                Is the row important?
+                Is imputation reasonable?
+
+        Example from medical data
+
+            Patient    BP
+            A          120
+            B          -
+            C          130
+
+            Missing BP may be serious.
+            We should not guess carelessly.
+
+        So handling missing data depends on context.
+
+
+
+
+
+
+    2.2.3 Nonstandard Data
+=======================================================
+        Nonstandard data means data is recorded in inconsistent formats,
+        spellings, styles, or structures.
+
+        Simple meaning:
+            Same type of information is written in different ways.
+
+        Example:
+            City
+            Kathmandu
+            kathmandu
+            KTM
+            KATHMANDU
+
+        All refer to the same city,
+        but the format is inconsistent.
+
+
+
+
+
+        Why nonstandard data is a problem
+
+            Same category may be treated as different values
+            Grouping becomes wrong
+            Counting becomes wrong
+            Filtering becomes difficult
+            Visualization becomes misleading
+
+
+
+
+
+
+        Example with city counts
+
+            City values:
+                Kathmandu
+                KTM
+                kathmandu
+                Pokhara
+
+
+
+
+
+            If untreated, system may count:
+                Kathmandu     1
+                KTM           1
+                kathmandu     1
+                Pokhara       1
+
+            But actual intended count may be:
+                Kathmandu     3
+                Pokhara       1
+
+
+
+
+
+
+
+
+        Types of nonstandard data
+
+            Different spellings
+                color, colour
+
+            Different cases
+                Apple, apple, APPLE
+
+            Different abbreviations
+                Mr., Mister
+
+            Different date formats
+                01/02/2024
+                2024-02-01
+                Feb 1, 2024
+
+            Different coding styles
+                Male, M, male
+
+
+
+
+
+        Example with gender data
+
+            Gender
+            Male
+            M
+            male
+            FEMALE
+            F
+
+            These must be standardized before analysis.
+
+
+
+
+
+
+
+
+        How to handle nonstandard data
+
+            Convert to common case
+                lowercase or uppercase
+
+            Standardize spelling
+                choose one correct form
+
+            Standardize categories
+                Example:
+                    M and Male both become Male
+
+            Standardize date format
+                Example:
+                    YYYY-MM-DD
+
+            Use lookup rules or dictionaries
+
+
+
+
+
+
+        Example after standardization
+
+            Before:
+                KTM
+                kathmandu
+                Kathmandu
+
+            After:
+                Kathmandu
+                Kathmandu
+                Kathmandu
+
+
+
+
+
+
+
+        Example with words
+
+            Product review words:
+                Good
+                good
+                GOOD
+
+            If not standardized,
+            frequency count becomes split.
+
+            After lowercase conversion:
+                good
+                good
+                good
+
+            Now the word count is correct.
+
+
+
+
+
+
+
+
+
+
+
+
+
+    2.2.4 Unit Mismatch
+=======================================================
+        Unit mismatch means the same type of measurement is stored
+        using different units in one dataset.
+
+        Simple meaning:
+            Values look similar,
+            but they are measured differently.
+
+        Example:
+            Weight
+            50 kg
+            120 lb
+            60 kg
+
+        Problem:
+            50 and 120 cannot be compared directly
+            because one is in kilograms and the other is in pounds.
+
+
+
+
+
+
+
+        Why unit mismatch is a problem
+
+            Causes wrong calculations
+            Makes averages meaningless
+            Distorts graphs
+            Misleads models and analysis
+
+
+        Example with weight
+
+            Weights:
+                50 kg
+                120 lb
+
+            If treated directly as:
+                50 and 120
+
+            Average becomes:
+                (50 + 120) / 2 = 85
+
+            But 85 is meaningless because units differ.
+
+
+
+
+        Correct method
+
+            Convert all values to same unit first.
+
+            Since:
+                1 kg is approximately 2.2 lb
+
+            120 lb in kg:
+                120 / 2.2
+                approximately 54.5 kg
+
+            Now weights become:
+                50 kg
+                54.5 kg
+
+            Average:
+                (50 + 54.5) / 2
+                = 104.5 / 2
+                = 52.25 kg
+
+            This is meaningful.
+
+
+
+
+
+
+
+
+
+
+
+
+        Common examples of unit mismatch
+
+            Height
+                cm and inches
+
+            Weight
+                kg and lb
+
+            Distance
+                km and miles
+
+            Temperature
+                Celsius and Fahrenheit
+
+            Money
+                rupees and dollars
+
+            Time
+                hours and minutes
+
+
+
+
+
+
+
+
+
+        Example with temperature
+
+            Temperature values:
+                25 C
+                77 F
+
+            If treated as 25 and 77 directly,
+            analysis will be wrong.
+
+            Convert 77 F to Celsius:
+                (77 - 32) x 5/9
+                = 25 C
+
+            Now both values are same.
+
+
+
+
+
+
+
+
+
+        Causes of unit mismatch
+
+            Data collected from different countries
+            Merging datasets from different sources
+            Manual entry without standard rules
+            Sensor devices using different measurement systems
+
+
+
+
+
+
+
+
+
+
+        How to handle unit mismatch
+
+            Identify units clearly
+            Choose one standard unit
+            Convert all values into that unit
+            Document the conversion rule
+
+
+
+
+
+
+
+
+
+
+        Example in business
+
+            Sales data:
+                100 USD
+                8000 NPR
+
+            These cannot be directly added.
+            First convert to common currency.
+
+        Important note
+            Unit mismatch is dangerous because values may look normal,
+            but the result becomes wrong silently.
+
+            That is why data should always be checked carefully before analysis.
+
+
+
+
+
+
+
+
+
+    Combined Example of All Issues
+
+        Raw dataset
+
+            Name      City         Weight      Marks
+            Ram       KTM          55 kg       78
+            Sita      Kathmandu    121 lb      82
+            Hari      Pokhara      -           65
+            Ram       KTM          55 kg       78
+
+        Problems found
+
+            Duplicate
+                Ram appears twice
+
+            Missing data
+                Hari has missing weight
+
+            Nonstandard data
+                KTM and Kathmandu may need standard form
+
+            Unit mismatch
+                Weight uses kg and lb
+
+        Cleaned idea
+
+            Name      City         Weight(kg)    Marks
+            Ram       Kathmandu    55            78
+            Sita      Kathmandu    54.5          82
+            Hari      Pokhara      Unknown       65
+
+        Now data is more consistent and usable.
+
+
+
+
+
+
+
+
+
+
+
+--------------------------
+    Quick Revision
+--------------------------
+        Data munging
+            Cleaning and preparing raw data
+
+        Data quality
+            Accuracy, completeness, consistency, validity, timeliness, uniqueness
+
+        Common data issues
+            Duplicates
+            Missing data
+            Nonstandard data
+            Unit mismatch
+
+        Duplicates
+            Repeated records
+
+        Missing data
+            Empty or unknown values
+
+        Nonstandard data
+            Inconsistent format or spelling
+
+        Unit mismatch
+            Same type of value measured in different units
+
+        Main lesson
+            Good analysis needs good quality data.
+            Clean data first, analyze later.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+....2.3.Data.cleaning.and.standardization
+=======================================================
+
+
+
+
+
+
+
+....2.4.Data.enrichment
+........2.4.1.Correction
+........2.4.2.Extrapolation
+........2.4.3.Augmentation
+=======================================================
+
+
+
+
+
+
+
+....2.5.Data.validation
+........2.5.1.Type.check
+........2.5.2.Range.and.constraint.check
+........2.5.3.Consistency.check
+=======================================================
+
+
+
+
+
+
+
+....2.6.Data.format.conversion
+........2.6.1.JSON
+........2.6.2.XML
+........2.6.3.Tabular
+........2.6.4.Relational
+=======================================================
+
+
+
+
+
+
+
+....2.7.Format.conversion.methods
+=======================================================
+
+
+
+
+
+
+
+....2.8.Tabular.data
+........2.8.1.Row.based
+........2.8.2.Column.based.(Parquet.ORC.CSV)
+=======================================================
+
+
+
+
+
+
+
+....2.9.Table.structure
+........2.9.1.Wide.format
+........2.9.2.Narrow.(long).format
+........2.9.3.Conversion.between.formats
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
+
+
+=======================================================
+
+
+
+
+
+
