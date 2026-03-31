@@ -2961,7 +2961,10 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
         Instead of looking at all data values one by one,
         statistics measures give us a short summary.
 
+
+
     Example:
+   -------------------------
         Marks of 5 students:
             40, 50, 60, 70, 80
 
@@ -2970,19 +2973,36 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             How spread out is the data?
             Are the values close together or far apart?
 
+
+
+
     Main groups of statistics measures
+   -----------------------------------------
         Centrality measures
             Tell us where the center of data lies
+
+                -------------------------------------
+                                ^
 
         Variability measures
             Tell us how spread out the data is
 
+
+
+
     Why these measures matter in Data Science
+    ----------------------------------------------------
         They help summarize raw data
         They help compare two datasets
         They help detect unusual patterns
         They help prepare data before modeling
         They support decision making
+
+
+
+
+
+
 
 
     1.7.1 Centrality Measures
@@ -2991,21 +3011,38 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
         They tell us the typical or central value of a dataset.
 
+
+
+
+
+
         The three most common centrality measures are:
+    ----------------------------------------------------
             Mean
             Median
             Mode
 
-        A. Mean
 
+
+        A. Mean
+        -------------
             Mean is the arithmetic average.
 
             Formula:
                 Mean = Sum of all values / Number of values
 
+
+
             Example:
                 Data:
                     10, 20, 30, 40, 50
+
+
+
+
+        -----------------------------------------------
+        0   5   10   15  20      30       40          50
+
 
                 Sum:
                     10 + 20 + 30 + 40 + 50 = 150
@@ -3018,11 +3055,23 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             So the mean is 30.
 
+
+
+                                  v
+        -----------------------------------------------
+        0   5   10   15  20      30       40          50
+
+
+
             Meaning:
                 If all values were balanced equally,
                 the center would be 30.
 
+
+
+
             Example with student marks:
+            -----------------------------------
                 45, 55, 60, 70, 80
 
                 Sum:
@@ -3033,32 +3082,44 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             So average mark is 62.
 
+
+
+
             Strength of mean
+            -----------------------------------
                 Easy to calculate
                 Uses all data values
                 Very common in analysis
 
+
+
+
             Limitation of mean
+            -----------------------------------
                 Affected by outliers
 
-            Example:
-                Data:
-                    10, 12, 14, 16, 100
+                    Example:
+                        Data:
+                            10, 12, 14, 16, 100
+        
+                        Sum:
+                            152
+        
+                        Mean:
+                            152 / 5 = 30.4
+        
+                        Problem:
+                            Most values are near 10 to 16,
+                            but mean became 30.4 because of 100
+        
+                        So mean can be misleading when there are extreme values.
 
-                Sum:
-                    152
 
-                Mean:
-                    152 / 5 = 30.4
 
-                Problem:
-                    Most values are near 10 to 16,
-                    but mean became 30.4 because of 100
 
-                So mean can be misleading when there are extreme values.
 
         B. Median
-
+         -----------------------------------
             Median is the middle value when data is arranged in order.
 
             Steps:
@@ -3077,15 +3138,19 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             If there is even number of values,
             median is the average of the two middle values.
 
-            Example:
-                Data:
-                    10, 20, 30, 40
+                            Example:
+                                Data:
+                                    10, 20, 30, 40
+                
+                                Middle values:
+                                    20 and 30
+                
+                                Median:
+                                    (20 + 30) / 2 = 25
 
-                Middle values:
-                    20 and 30
 
-                Median:
-                    (20 + 30) / 2 = 25
+
+
 
             Example with outlier:
                 Data:
@@ -3097,21 +3162,39 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Median:
                     14
 
+
+
             Notice:
+        ----------------
                 Mean was 30.4
                 Median is 14
 
             Here median represents the center better than mean.
 
+
+
+
             Strength of median
+        -----------------------------
                 Not strongly affected by outliers
                 Useful for skewed data
 
+
+
             Limitation of median
+        -----------------------------
                 Does not use all values directly like mean
 
-        C. Mode
 
+
+
+
+
+
+
+
+        C. Mode
+        ----------------
             Mode is the most frequently occurring value.
 
             Example:
@@ -3121,14 +3204,23 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Mode:
                     3
 
+
+
+
             Example with words:
+                ----------------
                 Words:
                     apple, banana, apple, mango, apple
 
                 Mode:
                     apple
 
+
+
+
+
             A dataset may have:
+            -----------------------
                 One mode
                     Unimodal
 
@@ -3140,6 +3232,13 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
                 No repeated value
                     No mode
+
+
+
+
+
+
+
 
             Example of bimodal data:
                 2, 2, 4, 4, 5, 6
@@ -3155,8 +3254,17 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 May not exist clearly
                 May not represent full data well
 
-        Comparison of mean, median, and mode
 
+
+
+
+
+
+
+
+
+        Comparison of mean, median, and mode
+        ----------------------------------------
             Mean
                 Best when data is fairly balanced
                 Uses all values
@@ -3170,8 +3278,12 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Best for most common value
                 Useful for categorical data
 
-        Example comparison
 
+
+
+
+        Example comparison
+        -------------------------
             Data:
                 5, 6, 7, 8, 50
 
@@ -3186,12 +3298,20 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Mode:
                 No mode
 
+
+
+
             Interpretation:
+        ---------------------------
                 Mean is pulled upward by 50
                 Median gives more realistic center
 
-        Example with category data
 
+
+
+
+        Example with category data
+        ----------------------------------------
             Favorite subject of students:
                 Math
                 Science
@@ -3206,8 +3326,15 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Here mean and median cannot be used meaningfully,
             but mode can be used.
 
-        When to use which
 
+
+
+
+
+
+
+        When to use which
+        --------------------
             Use mean
                 When data is numerical and not highly skewed
 
@@ -3228,6 +3355,7 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
 
 
+
     1.7.2 Variability Measures
 ******************************************
         Variability measures show how spread out the data values are.
@@ -3235,7 +3363,19 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
         Simple meaning:
             They tell us whether values are close together or far apart.
 
+
+                                          v
+                -----------------------------------------------
+                0   5   10   15  20      30       40          50
+Diff:         -30  -25 -20  -15  -10      0      +10         +20
+
+
+
+
+
+
         Example:
+        -------------------
             Dataset A:
                 48, 49, 50, 51, 52
 
@@ -3245,17 +3385,26 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Both have mean = 50,
             but dataset B is much more spread out.
 
+
         So mean alone is not enough.
         We also need variability measures.
 
+
+
+
+
         Common variability measures
+        -----------------------------
             Range
             Interquartile Range
             Variance
             Standard Deviation
 
-        A. Range
+                        https://www.scribbr.com/statistics/variability/
 
+
+        A. Range
+        -------------------
             Range = Maximum value - Minimum value
 
             Example:
@@ -3271,21 +3420,38 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Range:
                     50 - 10 = 40
 
-            Interpretation:
-                The data spreads across 40 units
 
-            Strength of range
-                Very easy to calculate
 
-            Limitation of range
-                Depends only on two values
-                Affected by outliers
+                            Interpretation:
+                                The data spreads across 40 units
+                
+                            Strength of range
+                                Very easy to calculate
+                
+                            Limitation of range
+                                Depends only on two values
+                                Affected by outliers
+
+
+
+
+
 
         B. Interquartile Range
-
+        ----------------------------
             Interquartile Range is often called IQR.
 
             It measures the spread of the middle 50 percent of data.
+
+
+                                          v
+                -----------------------------------------------
+                0   5   10   15  20      30       40          50
+Diff:         -30  -25 -20  -15  -10      0      +10         +20
+
+
+
+
 
             Formula:
                 IQR = Q3 - Q1
@@ -3315,15 +3481,23 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 IQR:
                     65 - 25 = 40
 
-            Meaning:
-                The middle half of values is spread across 40 units
 
-            Strength of IQR
-                Not strongly affected by outliers
-                Good for skewed data
+
+
+
+                    Meaning:
+                        The middle half of values is spread across 40 units
+        
+                    Strength of IQR
+                        Not strongly affected by outliers
+                        Good for skewed data
+
+
+
+
 
         C. Variance
-
+        -------------------
             Variance measures how far data values are from the mean on average.
 
             Simple idea:
@@ -3334,27 +3508,42 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             Variance is discussed more deeply in section 1.7.3
 
-        D. Standard Deviation
 
+
+
+
+        D. Standard Deviation
+        -------------------
             Standard deviation is the square root of variance.
 
             It shows spread in the same unit as the original data.
 
+
+
             Example:
+        -------------------
                 If marks are measured in points,
                 standard deviation is also in points
 
             This makes it easier to interpret than variance.
 
+
+
+
             General meaning:
+        -------------------
                 Small standard deviation
                     values are close to mean
 
                 Large standard deviation
                     values are far from mean
 
-        Example of spread
 
+
+
+
+        Example of spread
+        -------------------
             Dataset A:
                 49, 50, 51
 
@@ -3367,11 +3556,21 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Dataset A has low variability
                 Dataset B has high variability
 
+
+
+
+
         Why variability matters in Data Science
+        ----------------------------------------
             Helps compare consistency
             Helps detect outliers
             Helps judge reliability of averages
             Helps understand risk and uncertainty
+
+
+
+
+
 
         Example:
             Two students both have average mark 60
@@ -3383,9 +3582,9 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 20, 60, 100
 
             Same mean,
-            but student B is much more inconsistent
-
-            Variability shows this difference.
+                    but student B is much more inconsistent
+        
+                    Variability shows this difference.
 
 
 
@@ -3408,8 +3607,22 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             It shows whether the data values stay near the average
             or move far away from it.
 
-        Steps to calculate variance
 
+
+
+
+                                          v
+                -----------------------------------------------
+                0   5   10   15  20      30       40          50
+Diff:         -30  -25 -20  -15  -10      0      +10         +20
+
+
+
+
+
+
+        Steps to calculate variance
+        ------------------------------------
             Step 1
                 Find the mean
 
@@ -3422,8 +3635,11 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Step 4
                 Find the average of the squared differences
 
-        Example
 
+
+
+        Example
+        ------------------------------------
             Data:
                 2, 4, 6
 
@@ -3449,8 +3665,14 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             So variance is 2.67
 
-        Another example
 
+
+
+
+
+
+        Another example
+        ------------------------------------
             Data:
                 10, 10, 10, 10
 
@@ -3466,12 +3688,19 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Variance:
                 0
 
-            Interpretation:
-                No spread at all
-                All values are exactly the same
+
+
+                    Interpretation:
+                        No spread at all
+                        All values are exactly the same
+
+
+
+
+
 
         Example with larger spread
-
+        ------------------------------------
             Data:
                 0, 10, 20
 
@@ -3489,11 +3718,18 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 = 200 / 3
                 = 66.67 approximately
 
+
+
             Interpretation:
                 This dataset has much more spread than 2, 4, 6
 
-        Meaning of low variance
 
+
+
+
+
+        Meaning of low variance
+        ------------------------------------
             Low variance means:
                 Values are close to the mean
                 Data is more consistent
@@ -3506,8 +3742,13 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             These values are close together,
             so variance is low.
 
-        Meaning of high variance
 
+
+
+
+
+        Meaning of high variance
+        ------------------------------------
             High variance means:
                 Values are spread out
                 Data is less consistent
@@ -3520,31 +3761,45 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             These vary a lot,
             so variance is high.
 
-        Practical interpretation in Data Science
 
+
+
+
+        Practical interpretation in Data Science
+        ----------------------------------------------
             Student marks
+            ---------------
                 Low variance
                     Most students performed similarly
 
                 High variance
                     There is a big difference between weak and strong students
 
+
+
             Product sales
+            ---------------
                 Low variance
                     Sales are stable
 
                 High variance
                     Sales change a lot from day to day
 
+
+
             Stock prices
+            ---------------
                 Low variance
                     Less volatile
 
                 High variance
                     More risky
 
-        Important note about variance
 
+
+
+        Important note about variance
+        ---------------------------------
             Variance uses squared differences.
             So the unit becomes squared.
 
@@ -3557,8 +3812,14 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             That is why standard deviation is often preferred in practice.
 
-        Relation between variance and standard deviation
 
+
+
+
+
+
+        Relation between variance and standard deviation
+        ----------------------------------------------------
             Standard deviation = square root of variance
 
             Example:
@@ -3568,8 +3829,11 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Standard deviation is easier to explain because it is
             in the original unit of the data.
 
-        Why square the differences
 
+
+
+        Why square the differences
+        -----------------------------------
             If we do not square the differences,
             positive and negative differences cancel each other.
 
@@ -3589,8 +3853,12 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             This would wrongly suggest no spread.
             Squaring solves this problem.
 
-        Example with words meaning
 
+
+
+
+        Example with words meaning
+        -------------------------------
             Suppose two classes have the same average mark = 60
 
             Class A:
@@ -3599,45 +3867,55 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Class B:
                 20, 40, 60, 80, 100
 
-            Both have the same center,
-            but class B is much more spread out.
+                    Both have the same center,
+                    but class B is much more spread out.
+        
+                    So:
+                        Class A has low variance
+                        Class B has high variance
+        
+                    Interpretation:
+                        Class A performance is more consistent
+                        Class B performance is more uneven
 
-            So:
-                Class A has low variance
-                Class B has high variance
 
-            Interpretation:
-                Class A performance is more consistent
-                Class B performance is more uneven
+
+
 
         Variance in model evaluation
-
+        ------------------------------
             In Data Science,
             variance is also used in another sense in machine learning.
 
-            Sometimes we say:
-                A model has high variance
+                    Sometimes we say:
+                        A model has high variance
+        
+                    This means:
+                        The model changes too much with training data
+                        It may overfit
+        
+                    Simple idea:
+                        High variance model learns training data too closely
+                        and performs poorly on new data
+        
+                    This is slightly different from simple data spread,
+                    but the idea of instability is similar.
 
-            This means:
-                The model changes too much with training data
-                It may overfit
 
-            Simple idea:
-                High variance model learns training data too closely
-                and performs poorly on new data
 
-            This is slightly different from simple data spread,
-            but the idea of instability is similar.
 
         When interpreting variance, ask:
+        ---------------------------------------
             Is the variance small or large?
             Compared to what?
             What is the unit of the original data?
             Does high spread make practical sense?
             Are there outliers causing the variance?
 
-        Summary idea
 
+
+        Summary idea
+        ---------------------------------------
             Variance helps us understand consistency and spread.
             It is useful,
             but should often be interpreted along with:
@@ -3648,8 +3926,15 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Graphs
 
 
-    Simple Combined Example
 
+
+
+
+
+
+---------------------------------------
+    Simple Combined Example
+---------------------------------------
         Data:
             5, 7, 7, 9, 12
 
@@ -3671,6 +3956,7 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Center is around 7 to 8
             Data is moderately spread
             7 is the most common value
+
 
         If values were:
             5, 7, 7, 9, 50
@@ -3696,8 +3982,13 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Spread increased a lot
 
 
-    Quick Revision
 
+
+
+
+---------------------------------------
+    Quick Revision
+---------------------------------------
         Centrality measures
             Show the center of data
 
@@ -3758,6 +4049,7 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
 
 
+
 ....1.8.Correlation.analysis
 ........1.8.1.Correlation.coefficients
 ........1.8.2.Autocorrelation
@@ -3769,74 +4061,114 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
     Correlation analysis is used to study the relationship between two variables.
 
     Simple meaning:
+    ----------------------------------------------
         It tells us whether two variables move together,
         move in opposite directions,
         or have no clear relationship.
 
+
+
     Example:
+    ----------------------------------------------
         If students who study more hours usually get higher marks,
         then study hours and marks are positively related.
 
+
+
     Why correlation is important in Data Science
+    ----------------------------------------------
         Helps find relationships in data
         Helps select useful variables
         Helps understand patterns before modeling
         Helps identify redundancy between features
         Helps support prediction and decision making
 
+
+
+
     Common examples
+    ----------------------------------------------
         Study hours and exam marks
         Advertisement spending and sales
         Temperature and ice cream sales
         Rainfall and crop production
         Age and blood pressure
 
+
+
     Important idea
+    ----------------------------------------------
         Correlation does not always mean cause.
         Two variables may move together without one directly causing the other.
 
+
+
     Example:
+    ----------------------------------------------
         Ice cream sales and drowning cases may both increase in summer.
         This does not mean ice cream causes drowning.
         The hidden factor is hot weather.
 
-    General types of correlation
 
+
+
+
+
+
+
+
+    General types of correlation
+    ----------------------------------------------
         Positive correlation
+        ------------------------------
             Both variables move in the same direction
 
             Example:
                 More study hours, more marks
                 More advertisement, more sales
 
+
+
         Negative correlation
+        ------------------------------
             One variable increases while the other decreases
 
             Example:
                 More absences, lower marks
                 Higher price, lower demand
 
+
+
         Zero or weak correlation
+        ------------------------------
             No strong linear relationship is seen
 
             Example:
                 Shoe size and intelligence usually have no meaningful relationship
 
+
+
+
+
+
+
     Visual idea of correlation
+    --------------------------
+                Positive correlation
+                    X increases
+                    Y also increases
+        
+                Negative correlation
+                    X increases
+                    Y decreases
+        
+                No correlation
+                    Values appear scattered without a clear pattern
 
-        Positive correlation
-            X increases
-            Y also increases
 
-        Negative correlation
-            X increases
-            Y decreases
-
-        No correlation
-            Values appear scattered without a clear pattern
 
     Example with simple data
-
+    --------------------------
         Study Hours     Marks
         1               40
         2               50
@@ -3850,8 +4182,11 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
         This suggests positive correlation.
 
-    Another example
 
+
+
+    Another example
+    --------------------------
         Price           Demand
         10              100
         20               80
@@ -3866,19 +4201,25 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
         This suggests negative correlation.
 
 
+
+
+
+
+
     1.8.1 Correlation Coefficients
 ******************************************
         A correlation coefficient is a numerical value that measures
         the strength and direction of relationship between two variables.
+        
+                Most common symbol:  r
+                --------------------------
+        
+                Range of correlation coefficient: -1 to +1
+                --------------------------
 
-        Most common symbol:
-            r
-
-        Range of correlation coefficient
-            -1 to +1
 
         Meaning of values
-
+        --------------------------
             r = +1
                 Perfect positive correlation
 
@@ -3894,8 +4235,12 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             r between 0 and -1
                 Negative correlation of varying strength
 
-        General interpretation
 
+
+
+
+        General interpretation
+        --------------------------
             +0.90 to +1.00
                 Very strong positive correlation
 
@@ -3923,21 +4268,43 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             -0.90 to -1.00
                 Very strong negative correlation
 
+
+
+
+
         Important note
+        --------------------------
             These interpretations are general.
             In real applications, meaning depends on context.
 
-        Pearson correlation coefficient
 
+
+
+
+
+
+
+
+
+        ----------------------------------
+        Pearson correlation coefficient
+        ----------------------------------
             Pearson correlation is the most common correlation coefficient.
             It measures linear relationship between two numerical variables.
 
-            It is useful when:
-                Data is numerical
-                Relationship is approximately linear
+
+                    It is useful when:
+                    ------------------------
+                        Data is numerical
+                        Relationship is approximately linear
+
+
+
+
+
 
         Example of positive Pearson correlation
-
+        ------------------------------------------
             Hours Studied     Marks
             2                 45
             4                 55
@@ -3947,8 +4314,10 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Since both increase together,
             correlation will be positive and strong.
 
-        Example of negative Pearson correlation
 
+
+        Example of negative Pearson correlation
+        ------------------------------------------
             Hours of TV       Marks
             1                 80
             2                 70
@@ -3958,8 +4327,10 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Since TV hours increase while marks decrease,
             correlation will be negative.
 
-        Example of no clear correlation
 
+
+        Example of no clear correlation
+        ------------------------------------------
             Shoe Size         Marks
             5                 70
             6                 65
@@ -3970,24 +4341,34 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             There is no clear pattern,
             so correlation may be near zero.
 
-        Simple meaning of strength
 
+
+
+
+
+        Simple meaning of strength
+        ------------------------------------------
             Strong correlation
                 Points are close to a straight line
 
             Weak correlation
                 Points are more scattered
 
-        Sign of correlation
 
+
+        Sign of correlation
+        ------------------------------------------
             Positive sign
                 Variables move in same direction
 
             Negative sign
                 Variables move in opposite direction
 
-        Example with words
 
+
+
+        Example with words
+        ------------------------------------------
             Variable 1
                 Number of positive words in a review
 
@@ -3997,47 +4378,71 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             If more positive words usually mean higher rating,
             then there may be positive correlation.
 
-        Why correlation coefficients are useful in Data Science
 
+
+
+
+
+
+
+
+        Why correlation coefficients are useful in Data Science
+        ------------------------------------------
             Feature selection
+            --------------------
                 Helps choose variables related to target variable
 
             Detecting multicollinearity
+            ----------------------------
                 If two input variables are highly correlated,
                 one may be unnecessary
 
             Exploratory Data Analysis
+            ---------------------------
                 Helps understand relationships before modeling
 
             Prediction
+            --------------------
                 Strongly related variables may be useful predictors
 
-        Important caution
 
+
+
+
+
+
+        Important caution
+        --------------------
             Correlation only measures association,
             not cause and effect.
 
-        Another caution
+                Another caution
+        
+                    Pearson correlation mainly captures linear relationship.
+        
+                    Example:
+                        If a relationship is curved,
+                        Pearson correlation may be low
+                        even though variables are related.
 
-            Pearson correlation mainly captures linear relationship.
 
-            Example:
-                If a relationship is curved,
-                Pearson correlation may be low
-                even though variables are related.
 
-        Example of this problem
+                        Example of this problem
+                
+                            Suppose:
+                                As temperature increases from low to medium,
+                                productivity increases,
+                                but after very high temperature,
+                                productivity decreases.
+                
+                            This is a curved relationship.
+                            Pearson correlation may not describe it well.
+                
 
-            Suppose:
-                As temperature increases from low to medium,
-                productivity increases,
-                but after very high temperature,
-                productivity decreases.
 
-            This is a curved relationship.
-            Pearson correlation may not describe it well.
-
+        --------------------
         Rank correlation
+       --------------------
 
             Sometimes we use correlation based on ranks,
             such as Spearman correlation.
@@ -4055,6 +4460,8 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Spearman
                 Measures rank-based relationship
 
+
+
         Quick example of interpretation
 
             If r = 0.85
@@ -4069,8 +4476,11 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             If r = 0
                 No linear relationship
 
-        Example in student data
 
+
+
+        Example in student data
+       --------------------------
             Attendance     Marks
             50             40
             60             50
@@ -4084,8 +4494,10 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Interpretation:
                 Students with higher attendance tend to score more
 
-        Example in business
 
+
+        Example in business
+       --------------------
             Ad Spending     Sales
             1000            12000
             2000            17000
@@ -4097,21 +4509,30 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Interpretation:
                 Higher advertising is associated with higher sales
 
-        Limits of correlation coefficient
 
+
+        Limits of correlation coefficient
+       -------------------------------------
             Sensitive to outliers
             Does not prove causation
             May miss nonlinear relationship
             Value can be affected by small sample size
 
-        Outlier example
 
-            Data:
-                X = 1, 2, 3, 4, 100
-                Y = 2, 4, 6, 8, 1
 
-            The outlier can strongly disturb correlation.
-            So data should be checked before interpreting r.
+
+                        Outlier example
+                
+                            Data:
+                                X = 1, 2, 3, 4, 100
+                                Y = 2, 4, 6, 8, 1
+                
+                            The outlier can strongly disturb correlation.
+                            So data should be checked before interpreting r.
+
+
+
+
 
 
     1.8.2 Autocorrelation
@@ -4120,30 +4541,43 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
         over different time intervals.
 
         Simple meaning:
+       --------------------
             It measures whether current values are related
             to past values of the same variable.
 
         This is especially important in time series data.
 
+
+
         Examples of time series data
+       -----------------------------
             Daily temperature
             Monthly sales
             Stock prices
             Yearly rainfall
             Hourly electricity use
 
+
+
         Example:
             If today's temperature is strongly related to yesterday's temperature,
             then temperature data has autocorrelation.
 
+
+
         Why autocorrelation matters
+       --------------------------------
             Helps understand time dependence
             Helps detect repeating patterns
             Helps in forecasting
             Helps check model assumptions in time series analysis
 
-        Basic idea of lag
 
+
+
+
+        Basic idea of lag
+       ---------------------
             Lag means previous time step.
 
             Lag 1
@@ -4164,8 +4598,11 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                     Day 3 with Day 2
                     Day 4 with Day 3
 
-        Positive autocorrelation
 
+
+
+        Positive autocorrelation
+       ---------------------------
             When high values tend to follow high values,
             and low values tend to follow low values
 
@@ -4176,8 +4613,10 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Nearby values are similar,
             so positive autocorrelation is likely.
 
-        Negative autocorrelation
 
+
+        Negative autocorrelation
+       ---------------------------
             When high values tend to be followed by low values,
             and low values by high values
 
@@ -4186,8 +4625,11 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             This alternating pattern suggests negative autocorrelation.
 
-        Zero autocorrelation
 
+
+
+        Zero autocorrelation
+       ---------------------------
             No clear time-based relationship between nearby values
 
         Example of autocorrelation in sales
@@ -4202,13 +4644,19 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             These values are close from one month to the next.
             So there may be positive autocorrelation.
 
-        Example in stock data
 
+
+
+        Example in stock data
+       ---------------------------
             If today's stock price movement depends strongly on yesterday's,
             then stock data may show autocorrelation.
 
-        Example in education
 
+
+
+        Example in education
+       ---------------------------
             Weekly attendance:
                 Week 1    80
                 Week 2    82
@@ -4218,38 +4666,64 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Attendance in one week may be related to previous week attendance.
             This is time-based self-relationship.
 
-        How autocorrelation is used
 
+
+
+
+
+
+
+        How autocorrelation is used
+       -------------------------------
             Forecasting
+            --------------
                 Future values may be predicted using past values
 
             Pattern detection
+            -------------------
                 Helps identify seasonality and trends
 
             Model checking
+            ---------------
                 Residual autocorrelation may show model weakness
 
             Time series analysis
+            ----------------------
                 Important in AR, MA, ARIMA models
 
-        Simple intuitive example
 
+
+
+
+
+
+
+        Simple intuitive example
+        ----------------------------
             Suppose a student's daily study hours are:
                 2, 2.5, 3, 3.5, 4
 
             Each day is similar to previous day.
             So study hours show positive autocorrelation.
 
-        Another example
 
+
+
+
+        Another example
+        ----------------------------
             Machine temperature every hour:
                 70, 72, 71, 73, 74
 
             Nearby readings are related,
             so autocorrelation exists.
 
-        Autocorrelation in residuals
 
+
+
+
+        Autocorrelation in residuals
+        ----------------------------
             In model building,
             residuals should often not show strong autocorrelation.
 
@@ -4265,13 +4739,20 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             This means the model may need improvement.
 
-        Difference between correlation and autocorrelation
 
+
+
+
+
+        ---------------------------------------------------
+        Difference between correlation and autocorrelation
+        ---------------------------------------------------
             Correlation
                 Relationship between two different variables
 
                 Example:
                     Study hours and marks
+
 
             Autocorrelation
                 Relationship between one variable and its past values
@@ -4279,7 +4760,15 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Example:
                     Today's sales and yesterday's sales
 
+
+
+
+
+
+
+        ---------------------------------------------------
         Important in Data Science
+        ---------------------------------------------------
             Correlation is useful in general data analysis
             Autocorrelation is especially useful in time-based data
 
@@ -4295,6 +4784,9 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Values rise smoothly,
             so nearby values are strongly related.
 
+
+
+
         Negative autocorrelation example with numbers
 
             Time          Value
@@ -4306,8 +4798,14 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
 
             This alternating pattern suggests negative autocorrelation.
 
-        Why autocorrelation can be a problem
 
+
+
+
+
+        ---------------------------------------------------
+        Why autocorrelation can be a problem
+        ---------------------------------------------------
             Some statistical methods assume observations are independent.
             If data has autocorrelation,
             that assumption is violated.
@@ -4317,31 +4815,43 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
                 Regression results
                 Forecast accuracy
 
-        Real-life meaning
 
+
+
+
+        ---------------------------------------------------
+        Real-life meaning
+        ---------------------------------------------------
             High autocorrelation
                 The past strongly influences the present
 
             Low autocorrelation
                 The present is less related to the past
 
-        Tools for checking autocorrelation
 
+
+
+
+
+        ---------------------------------------------------
+        Tools for checking autocorrelation
+        ---------------------------------------------------
             Autocorrelation plot
             Lag plot
             ACF function
             Durbin-Watson statistic in some regression settings
 
-        Simple interpretation of autocorrelation
 
-            If lag 1 autocorrelation is high positive
-                Consecutive observations are similar
-
-            If lag 1 autocorrelation is near zero
-                Consecutive observations are not strongly related
-
-            If lag 1 autocorrelation is negative
-                Consecutive observations tend to move in opposite directions
+                Simple interpretation of autocorrelation
+        
+                    If lag 1 autocorrelation is high positive
+                        Consecutive observations are similar
+        
+                    If lag 1 autocorrelation is near zero
+                        Consecutive observations are not strongly related
+        
+                    If lag 1 autocorrelation is negative
+                        Consecutive observations tend to move in opposite directions
 
 
     Simple Combined Example
@@ -4372,8 +4882,17 @@ Unit.1.Introduction.to.Data.Science.[10.Hrs.]
             Autocorrelation compares one variable across time
 
 
-    Quick Revision
 
+
+
+
+
+
+
+
+---------------------------------------------------
+    Quick Revision
+---------------------------------------------------
         Correlation analysis
             Studies relationship between variables
 
