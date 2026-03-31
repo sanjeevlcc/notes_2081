@@ -134,9 +134,113 @@ END
 
 
 
+******************************************************************
+******************************************************************
+                        TREE-STRUCTURE
+******************************************************************
+******************************************************************
 
 
+MDS.504.Mathematics.for.Data.Science
+............................................................
 
+Course.Info
+............................................................
+Code.No.:.MDS.504
+Full.Mark:.75
+Nature:.Theory.(Compulsory)
+Credit:.3
+
+............................................................
+Course.Flow
+............................................................
+Unit.1.Introduction.and.Overview
+....1.1.Linear.algebra.in.machine.learning
+....1.2.Data.representation
+........1.2.1.Tables
+........1.2.2.Matrices
+........1.2.3.Graphs
+....1.3.Probability.and.noise.in.data
+....1.4.Role.of.matrices.and.graphs.in.data.science
+....1.5.Inference.and.quantification
+
+............................................................
+Unit.2.Matrices.and.Vectors
+....2.1.Vectors
+........2.1.1.Properties.of.R^n
+........2.1.2.Norms.and.balls
+........2.1.3.Vector.operations
+............2.1.3.1.Addition
+............2.1.3.2.Scalar.multiplication
+....2.2.Vector.spaces
+........2.2.1.Subspaces
+....2.3.Matrices
+........2.3.1.Matrix.operations
+........2.3.2.Matrix.multiplication
+....2.4.Linear.functions
+........2.4.1.Transformations
+........2.4.2.Matrices.as.transformations
+....2.5.Geometry
+........2.5.1.Dot.product
+........2.5.2.Angles
+........2.5.3.Perpendicularity
+....2.6.Linear.combinations
+........2.6.1.Span
+........2.6.2.Independence
+....2.7.Bases
+........2.7.1.Orthonormal.bases
+........2.7.2.Projections
+....2.8.Applications.in.data.science
+
+............................................................
+Unit.3.Spectral.Theory
+....3.1.Eigenvalues.and.eigenvectors
+....3.2.Quadratic.forms
+....3.3.Symmetric.bilinear.functions
+....3.4.Conic.sections.connection
+....3.5.Definiteness
+........3.5.1.Positive
+........3.5.2.Negative
+....3.6.Decomposition
+........3.6.1.EVD
+........3.6.2.SVD
+....3.7.Properties.of.SVD
+....3.8.Orthogonal.subspaces
+....3.9.Applications.in.data.science
+
+............................................................
+Unit.4.System.of.Linear.Equations
+....4.1.Solving.linear.systems
+....4.2.Geometry.of.equations
+....4.3.Gaussian.elimination
+....4.4.Row.operations
+....4.5.Networks.and.incidence.matrices
+....4.6.Four.fundamental.subspaces
+....4.7.Basis.transformations
+....4.8.Orthogonal.bases
+....4.9.Gram.Schmidt.process
+....4.10.Numerical.issues
+....4.11.Applications.in.data.science
+
+............................................................
+Learning.Objectives.Flow
+............................................................
+1.Understand.linear.algebra.basics
+2.Analyze.methods.(why.work.or.fail)
+3.Use.diagnostic.tools
+4.Apply.probability.with.matrices.and.graphs
+5.Connect.linear.algebra.and.probability
+6.Build.intuition.for.real.problems
+7.Apply.R.programming
+
+............................................................
+END
+............................................................
+
+
+******************************************************************
+******************************************************************
+******************************************************************
 
 
 
