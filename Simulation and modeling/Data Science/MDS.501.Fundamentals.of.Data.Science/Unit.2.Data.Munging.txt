@@ -1117,8 +1117,626 @@ Unit 2 Data Munging [8 Hrs.]
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 ....2.3.Data.cleaning.and.standardization
 =======================================================
+
+2.3 Data Cleaning and Standardization
+
+    Data cleaning and standardization are important parts of data munging.
+    They help convert messy raw data into a consistent and usable form.
+
+    Simple meaning:
+        Data cleaning means fixing errors in data.
+        Data standardization means making data follow one common format.
+
+    Why this is important
+        Real-world data is often incomplete, inconsistent, or incorrect
+        Different records may use different styles
+        Analysis becomes unreliable if data is not cleaned
+        Machine learning models perform better on clean and standardized data
+
+    Main idea
+        Before analysis, we must make sure the data is:
+            Correct
+            Complete enough
+            Consistent
+            Properly formatted
+
+
+
+
+
+
+
+
+
+    Difference between cleaning and standardization
+    -------------------------------------------------------
+        Data cleaning
+            Fixes problems in the data
+
+            Example:
+                Remove duplicate rows
+                Correct wrong ages
+                Handle missing marks
+
+        Data standardization
+            Makes the data follow one common rule or style
+
+            Example:
+                Convert all city names to one format
+                Convert all dates to YYYY-MM-DD
+                Convert all weights to kilograms
+
+
+
+
+
+
+    Example of messy raw data
+    ------------------------------
+        Name        City         Weight      Date
+        Ram         KTM          55 kg       01/02/24
+        Sita        Kathmandu    121 lb      2024-02-01
+        Hari        pokhara      -           Feb 1, 2024
+        Ram         KTM          55 kg       01/02/24
+
+
+    Problems
+        Duplicate row
+        Missing weight
+        City names are inconsistent
+        Weight units are mixed
+        Date format is inconsistent
+
+    After cleaning and standardization
+
+        Name        City         Weight_kg     Date
+        Ram         Kathmandu    55            2024-02-01
+        Sita        Kathmandu    54.5          2024-02-01
+        Hari        Pokhara      Unknown       2024-02-01
+
+    Now the dataset is easier to understand and analyze.
+
+
+
+
+
+
+
+
+    Main Tasks in Data Cleaning
+    ------------------------------
+        1. Remove duplicates
+            Repeated records should be checked and removed when unnecessary
+
+        2. Handle missing values
+            Decide whether to remove, replace, or keep them as unknown
+
+        3. Correct invalid values
+            Example:
+                Age = -5
+                Marks = 500 out of 100
+
+        4. Fix spelling and typing errors
+            Example:
+                Kathmadu should become Kathmandu
+
+        5. Check data types
+            Example:
+                Age should be numeric
+                Date should be date format
+
+        6. Remove unwanted spaces and symbols
+            Example:
+                " Ram " should become "Ram"
+
+        7. Correct inconsistent labels
+            Example:
+                Male, male, M should become one standard value
+
+        8. Check for impossible values
+            Example:
+                Height = 0 cm
+                Salary = negative amount
+
+
+
+
+
+
+
+
+
+
+    Main Tasks in Data Standardization
+    ------------------------------
+        1. Standardize text format
+            Make text use one style
+
+            Example:
+                kathmandu
+                Kathmandu
+                KATHMANDU
+
+            Standardized form:
+                Kathmandu
+
+        2. Standardize units
+            Convert all values into one common unit
+
+            Example:
+                55 kg
+                121 lb
+
+            Convert both into kilograms
+
+        3. Standardize date format
+            Use one date style throughout the dataset
+
+            Example:
+                01/02/24
+                2024-02-01
+                Feb 1, 2024
+
+            Standardized form:
+                2024-02-01
+
+        4. Standardize category labels
+            Example:
+                M, Male, male
+                F, Female, female
+
+            Standardized form:
+                Male
+                Female
+
+        5. Standardize number format
+            Example:
+                1,000
+                1000
+                1000.00
+
+            Make format consistent as needed
+
+        6. Standardize column names
+            Example:
+                Student Name
+                student_name
+                STUDENTNAME
+
+            Standardized form:
+                student_name
+
+        7. Standardize missing value representation
+            Example:
+                -, NA, Null, blank
+
+            Choose one form such as:
+                NA
+                or Unknown
+
+
+
+
+
+
+
+
+
+    Step-by-Step Example
+    ------------------------------
+        Raw data
+
+            Roll    Name        Gender     City         Weight      Marks
+            1       Ram         M          KTM          55 kg       78
+            2       Sita        Female     Kathmandu    121 lb      82
+            3       Hari        male       pokhara      -           65
+            1       Ram         M          KTM          55 kg       78
+
+
+
+        Step 1: Remove duplicates
+
+            Duplicate row for Roll 1 is removed
+
+        Step 2: Handle missing values
+
+            Hari's weight is missing
+            We may keep it as Unknown
+            or fill it later if suitable
+
+        Step 3: Standardize gender
+
+            M becomes Male
+            male becomes Male
+            Female stays Female
+
+        Step 4: Standardize city
+
+            KTM becomes Kathmandu
+            pokhara becomes Pokhara
+
+        Step 5: Standardize weight
+
+            121 lb is converted to kg
+            121 / 2.2 = 55 approximately
+
+        Final cleaned data
+
+            Roll    Name    Gender    City         Weight_kg    Marks
+            1       Ram     Male      Kathmandu    55           78
+            2       Sita    Female    Kathmandu    55           82
+            3       Hari    Male      Pokhara      Unknown      65
+
+
+
+
+
+
+
+
+
+    Common Cleaning Problems and Fixes
+    ------------------------------
+        Problem: Extra spaces
+
+            Before:
+                " Ram "
+                " Sita"
+
+            After:
+                Ram
+                Sita
+
+
+
+
+        Problem: Mixed letter case
+
+            Before:
+                kathmandu
+                KTM
+                KATHMANDU
+
+            After:
+                Kathmandu
+
+
+
+
+
+        Problem: Wrong data type
+
+            Before:
+                Age = "twenty"
+
+            After:
+                Age = 20
+                if correct value is known
+
+
+
+
+
+        Problem: Invalid numeric values
+
+            Before:
+                Marks = 105
+
+            After:
+                Correct if entry mistake
+                or mark as invalid for review
+
+
+
+
+        Problem: Different yes/no labels
+
+            Before:
+                Yes, Y, yes, 1
+                No, N, no, 0
+
+            After:
+                Yes
+                No
+
+
+
+
+
+
+
+
+    Why Cleaning Must Be Done Carefully
+    ---------------------------------------
+        Cleaning is helpful,
+        but careless cleaning can damage data.
+
+        Example:
+            If missing values are deleted without thinking,
+            important records may be lost.
+
+        Example:
+            If all unusual values are removed,
+            real but rare cases may disappear.
+
+        So before cleaning, ask:
+            Is this really an error?
+            Is this value unusual but valid?
+            Will removing it affect analysis?
+
+
+
+
+
+    Example of unusual but valid data
+    ------------------------------
+        Age of students:
+            18, 19, 20, 45
+
+        At first, 45 may seem strange.
+        But maybe that student is valid.
+        So not every unusual value should be removed automatically.
+
+
+    Data Cleaning in Maths Example
+
+        Marks:
+            45, 50, 60, 70, 700
+
+        Problem:
+            700 is likely data entry error
+
+        Mean before cleaning:
+            (45 + 50 + 60 + 70 + 700) / 5
+            = 925 / 5
+            = 185
+
+        This is unrealistic.
+
+        If corrected to 70:
+            45, 50, 60, 70, 70
+
+        Mean after cleaning:
+            (45 + 50 + 60 + 70 + 70) / 5
+            = 295 / 5
+            = 59
+
+        Lesson:
+            Cleaning improves correctness of analysis.
+
+
+
+
+
+
+
+    Data Standardization in Words Example
+    ------------------------------
+        Review words:
+            Good
+            good
+            GOOD
+            gOOD
+
+        If counted directly, these may look different.
+
+        After standardization to lowercase:
+            good
+            good
+            good
+            good
+
+        Word frequency becomes correct.
+
+        Another example
+
+            Product names:
+                Laptop
+                laptop
+                LAPTOP
+
+            Standardization helps treat them as one category.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Benefits of Data Cleaning and Standardization
+    -------------------------------------------------
+        Improves accuracy
+        Reduces confusion
+        Makes grouping easier
+        Makes filtering easier
+        Improves visualization
+        Improves model performance
+        Saves time in later analysis
+
+    Risks if not done
+
+        Wrong averages
+        Wrong counts
+        Wrong charts
+        Poor machine learning results
+        Misleading decisions
+
+
+
+
+
+
+
+
+
+
+
+    Tools Used for Cleaning and Standardization
+    --------------------------------------------
+        Excel
+            Sorting
+            Filtering
+            Find and replace
+            Remove duplicates
+
+        Python
+            Pandas for cleaning and formatting
+
+        R
+            dplyr and tidyr packages
+
+        SQL
+            Query-based cleaning and transformation
+
+        Data visualization tools
+            Can help spot strange values
+
+
+
+
+
+
+
+
+
+
+
+
+    Mini Practical Example
+    ------------------------------
+        Suppose we have sales data
+
+            Product      Price       Date
+            Rice         80         1/2/24
+            rice         80         2024-02-01
+            Sugar        -50        01-Feb-2024
+            Oil          200        2024/02/01
+
+        Cleaning steps
+
+            Standardize product names
+                Rice
+                Rice
+                Sugar
+                Oil
+
+            Fix invalid price
+                Sugar price = -50 must be reviewed
+
+            Standardize date
+                2024-02-01 for all rows
+
+        Cleaned version
+
+            Product      Price      Date
+            Rice         80         2024-02-01
+            Rice         80         2024-02-01
+            Sugar        Invalid    2024-02-01
+            Oil          200        2024-02-01
+
+        Then duplicates can be checked,
+        and invalid values can be corrected.
+
+
+
+
+
+
+
+
+
+
+
+
+    Best Practices
+    ------------------------------
+        Keep original raw data safe
+        Make a cleaned copy instead of overwriting raw data immediately
+        Document every cleaning step
+        Use one standard format consistently
+        Review suspicious values before deleting
+        Check again after cleaning
+
+
+
+
+
+
+
+    Final understanding
+    ------------------------------
+        Data cleaning removes errors and messy parts.
+        Data standardization makes all records follow one common style.
+
+        Both are necessary before good analysis.
+
+        Main lesson:
+            Raw data is rarely ready.
+            Clean and standardize first,
+            then analyze.
+
+
+
+
+
+
+
+
+
+
+    Quick Revision
+    ------------------------------
+        Data cleaning
+            Fixes errors, missing values, duplicates, invalid entries
+
+        Data standardization
+            Makes format, labels, units, and structure consistent
+
+        Examples of standardization
+            KTM becomes Kathmandu
+            121 lb becomes 55 kg
+            Feb 1, 2024 becomes 2024-02-01
+            male and M become Male
+
+        Main benefit
+            Clean and consistent data leads to correct and meaningful analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
