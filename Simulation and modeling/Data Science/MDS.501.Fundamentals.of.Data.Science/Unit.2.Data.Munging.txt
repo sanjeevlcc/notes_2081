@@ -1744,11 +1744,807 @@ Unit 2 Data Munging [8 Hrs.]
 
 
 
+
+
+
+
+
+
+
+
+
+
 ....2.4.Data.enrichment
 ........2.4.1.Correction
 ........2.4.2.Extrapolation
 ........2.4.3.Augmentation
+
+
+
+2.4 Data Enrichment
 =======================================================
+    Data enrichment means improving existing data by making it more useful,
+    more informative, and more complete for analysis.
+
+    Simple meaning:
+        We already have data,
+        but we want to increase its value by correcting it,
+        extending it, or adding more related information.
+
+    Why data enrichment is important
+        Raw data may not be enough for good analysis
+        Some fields may be incomplete or too simple
+        Better data often leads to better insights and better models
+        Enrichment helps connect data to real-world meaning
+
+    Example
+
+        Original student data:
+            Name       Marks
+            Ram        78
+            Sita       82
+
+        Enriched student data:
+            Name       Marks     Grade     Pass_Fail
+            Ram        78        B         Pass
+            Sita       82        A         Pass
+
+        Here, the original data is not removed.
+        It is improved by adding meaningful information.
+
+
+
+
+
+    Another example
+
+        Original sales data:
+            Product      Quantity
+            Rice         20
+            Oil          15
+
+        Enriched sales data:
+            Product      Quantity     Unit_Price     Total_Sales
+            Rice         20           80             1600
+            Oil          15           200            3000
+
+        By enrichment, we created more useful information.
+
+
+
+
+
+
+    Common goals of data enrichment
+        Improve data quality
+        Add missing context
+        Create new useful fields
+        Increase value for analysis
+        Support better prediction and decision making
+
+
+
+
+    Data enrichment in this unit includes:
+        Correction
+        Extrapolation
+        Augmentation
+
+
+
+
+
+
+
+
+
+    2.4.1 Correction
+=======================================================
+        Correction means fixing data that is wrong, inconsistent, or invalid.
+
+        Simple meaning:
+            If some value is incorrect,
+            we correct it so that it matches reality as closely as possible.
+
+        Why correction is needed
+            Data entry mistakes are common
+            Typing mistakes happen
+            Wrong units may be used
+            Invalid values can distort results
+
+        Example of correction
+
+            Raw data:
+                Name      Marks
+                Ram       780
+                Sita      82
+
+            Problem:
+                Ram's mark is likely incorrect
+
+            Corrected data:
+                Name      Marks
+                Ram       78
+                Sita      82
+
+
+
+
+
+        Another example
+
+            City values:
+                Kathmadu
+                Pokhara
+                Ktm
+
+            Corrected values:
+                Kathmandu
+                Pokhara
+                Kathmandu
+
+
+
+
+
+
+
+        Types of corrections
+
+            Typing correction
+                Example:
+                    Pokhara written as Pkahara
+
+            Value correction
+                Example:
+                    Age = -4 becomes invalid and needs fixing
+
+            Category correction
+                Example:
+                    M, male, Male become one correct label
+
+            Unit correction
+                Example:
+                    120 lb converted properly if needed
+
+
+
+
+
+
+
+
+        Maths example of correction
+
+            Data:
+                10, 12, 14, 160, 18
+
+            Problem:
+                160 may be a data entry error for 16
+
+            Mean before correction:
+                (10 + 12 + 14 + 160 + 18) / 5
+                = 214 / 5
+                = 42.8
+
+            Mean after correction:
+                (10 + 12 + 14 + 16 + 18) / 5
+                = 70 / 5
+                = 14
+
+            Lesson:
+                One wrong value can change analysis badly.
+
+
+
+
+
+
+
+
+
+        Correction in text example
+
+            Reviews:
+                excelent
+                excellent
+                Exellent
+
+            After correction:
+                excellent
+                excellent
+                excellent
+
+            This improves word counting and text analysis.
+
+        Important caution
+            Correction should be done carefully.
+            We should not guess without reason.
+
+        Example
+            If a value is unusual,
+            it may still be correct.
+
+            Age:
+                18, 19, 20, 45
+
+            45 may look unusual in student data,
+            but it might still be valid.
+
+
+
+
+        So correction should be based on:
+            Domain knowledge
+            Validation rules
+            Supporting records
+            Reasonable evidence
+
+
+
+
+
+
+
+
+
+
+
+
+
+    2.4.2 Extrapolation
+=======================================================
+        Extrapolation means estimating values beyond the available observed data
+        by using known patterns or trends.
+
+        Simple meaning:
+            If we know how data behaves in one range,
+            we try to extend that pattern further.
+
+        Example
+
+            Suppose yearly sales are:
+                2021    1000
+                2022    1200
+                2023    1400
+
+            Pattern:
+                Sales increase by 200 each year
+
+            Extrapolated value for 2024:
+                1600
+
+        Here we used the past pattern to estimate a future value.
+
+
+
+
+
+
+
+        Why extrapolation is useful
+            Useful for forecasting
+            Helps estimate future trends
+            Helpful when no direct data is available
+            Supports planning and prediction
+
+        Example in mathematics
+
+            Data:
+                x = 1, y = 2
+                x = 2, y = 4
+                x = 3, y = 6
+
+            Pattern:
+                y = 2x
+
+            Extrapolated value for x = 5:
+                y = 10
+
+
+
+
+
+        Another example in population
+
+            Population data:
+                Year      Population
+                2020      50000
+                2021      52000
+                2022      54000
+
+            Increase is 2000 per year
+
+            Extrapolated population for 2023:
+                56000
+
+
+
+
+
+
+
+        Extrapolation in education
+
+            Student marks in tests:
+                Test 1    40
+                Test 2    50
+                Test 3    60
+
+            If the pattern continues,
+            predicted next mark may be around 70
+
+
+
+
+
+        Extrapolation in business
+
+            Monthly sales:
+                Jan    100
+                Feb    110
+                Mar    120
+
+            We may extrapolate April sales as 130
+            if the trend continues.
+
+
+
+
+
+
+        Important caution
+            Extrapolation can be risky.
+
+            Why?
+                Future may not follow the same pattern
+                External conditions may change
+                Trend may stop suddenly
+
+        Example of risk
+
+            Ice cream sales:
+                March    100
+                April    150
+                May      200
+
+            Extrapolating June as 250 may seem logical,
+            but if rainy season starts,
+            actual sales may fall.
+
+
+        So extrapolation should be used carefully.
+
+        Good use of extrapolation
+            Short-term estimates
+            Stable patterns
+            Controlled conditions
+
+        Bad use of extrapolation
+            Very far beyond known data
+            Situations with sudden change
+            Data with weak or irregular pattern
+
+
+
+
+
+
+
+
+
+
+
+        Difference between interpolation and extrapolation
+
+            Interpolation
+                Estimate between known values
+
+            Extrapolation
+                Estimate beyond known values
+
+        Example
+
+            Known data:
+                x = 1 gives y = 10
+                x = 3 gives y = 30
+
+            Estimate y at x = 2
+                interpolation
+
+            Estimate y at x = 5
+                extrapolation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    2.4.3 Augmentation
+=======================================================
+        Augmentation means adding new relevant information
+        to the existing dataset from other sources or by creating useful new fields.
+
+        Simple meaning:
+            We enrich data by adding extra details.
+
+        Example
+
+            Original customer data:
+                Customer_ID     City
+                101             Kathmandu
+                102             Pokhara
+
+            Augmented data:
+                Customer_ID     City         Province     Population
+                101             Kathmandu    Bagmati      Large
+                102             Pokhara      Gandaki      Medium
+
+
+        Here, new information has been added.
+
+
+
+
+
+
+
+        Why augmentation is useful
+            Gives more context
+            Helps deeper analysis
+            Improves prediction models
+            Makes data more informative
+            Supports feature engineering
+
+
+
+
+
+
+
+        Types of augmentation
+
+            External augmentation
+                Add data from outside source
+
+                Example:
+                    Add weather data to sales data
+                    Add district data to population data
+
+            Internal augmentation
+                Create new fields from existing data
+
+                Example:
+                    From date, create month and year
+                    From price and quantity, create total sales
+
+
+
+
+        Example of internal augmentation
+
+            Original data:
+                Product      Quantity     Unit_Price
+                Rice         20           80
+
+            Augmented field:
+                Total_Sales = Quantity x Unit_Price
+                            = 20 x 80
+                            = 1600
+
+            Augmented data:
+                Product      Quantity     Unit_Price     Total_Sales
+                Rice         20           80             1600
+
+
+
+
+
+
+
+
+        Example of external augmentation
+
+            Original data:
+                Date         Sales
+                2024-01-01   1000
+                2024-01-02   900
+
+            Add external weather data:
+                Date         Sales     Weather
+                2024-01-01   1000      Sunny
+                2024-01-02   900       Rainy
+
+            Now analysis can study relation between weather and sales.
+
+
+
+
+
+
+
+
+
+        Text data augmentation example
+
+            Reviews:
+                good
+                bad
+                excellent
+
+            We may augment by adding:
+                sentiment score
+                review length
+                positive or negative label
+
+            Example:
+                Review       Length     Sentiment
+                good         4          Positive
+                bad          3          Negative
+                excellent    9          Positive
+
+
+
+
+
+
+
+        Education example
+
+            Original student data:
+                Name       Marks
+                Ram        78
+                Sita       82
+
+            Augmented by adding:
+                Grade
+                Pass_Fail
+                Rank
+
+            New data:
+                Name       Marks     Grade     Pass_Fail
+                Ram        78        B         Pass
+                Sita       82        A         Pass
+
+
+
+
+
+
+
+        Augmentation in image data
+
+            In machine learning,
+            augmentation can also mean creating extra versions of data.
+
+            Example:
+                Rotate image
+                Flip image
+                Crop image
+
+            This helps train better models.
+
+        Example:
+            One cat image can become:
+                Original image
+                Rotated image
+                Mirrored image
+                Brightened image
+
+            This increases training data.
+
+
+
+
+
+
+
+
+
+
+        Augmentation in NLP
+
+            One sentence:
+                This service is very good
+
+            Possible augmented version:
+                This service is excellent
+
+            But in text tasks,
+            augmentation must be done carefully to keep meaning correct.
+
+
+
+
+
+
+
+
+
+        Benefits of augmentation
+            More informative dataset
+            Better context
+            Better predictive power
+            Better feature construction
+            Improved model performance
+
+
+
+
+
+
+
+
+
+        Risks of augmentation
+            Added data may be wrong
+            External source may be unreliable
+            New features may be unnecessary
+            Too much augmentation may introduce noise
+
+
+
+
+
+
+
+
+
+
+
+
+        Example of bad augmentation
+
+            If wrong weather data is matched with sales date,
+            analysis may show false relationship.
+
+        So augmentation should be:
+            Relevant
+            Accurate
+            Consistent
+            Useful for the problem
+
+
+
+
+
+
+
+
+
+
+    Combined Example of Data Enrichment
+
+        Original data:
+            Name       City         Weight      Marks
+            Ram        KTM          55 kg       78
+            Sita       Kathmandu    121 lb      82
+            Hari       Pokhara      -           65
+
+        Step 1 Correction
+            KTM becomes Kathmandu
+            121 lb converted properly if needed
+
+        Step 2 Extrapolation
+            If Hari's growth trend in marks is known from past tests,
+            future expected mark may be estimated
+
+        Step 3 Augmentation
+            Add Grade and Pass_Fail columns
+
+        Enriched data:
+            Name       City         Weight_kg    Marks    Grade    Pass_Fail
+            Ram        Kathmandu    55           78       B        Pass
+            Sita       Kathmandu    54.5         82       A        Pass
+            Hari       Pokhara      Unknown      65       C        Pass
+
+        Now the data is not only cleaned,
+        but also more informative and useful.
+
+
+
+
+
+
+
+
+
+
+    Key Difference among the three
+
+        Correction
+            Fixes wrong data
+
+        Extrapolation
+            Extends pattern to estimate beyond known values
+
+        Augmentation
+            Adds new useful information
+
+        Simple summary
+
+            If a value is wrong
+                use correction
+
+            If a future or outside value is estimated from trend
+                use extrapolation
+
+            If extra helpful fields are added
+                use augmentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Quick Revision
+
+        Data enrichment
+            Improving data to make it more useful
+
+        Correction
+            Fixing errors and invalid values
+
+        Extrapolation
+            Estimating beyond known data using trend
+
+        Augmentation
+            Adding new useful information or features
+
+        Main lesson
+            Clean data is important,
+            but enriched data is even more valuable for analysis
+            when enrichment is done carefully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1760,7 +2556,754 @@ Unit 2 Data Munging [8 Hrs.]
 ........2.5.1.Type.check
 ........2.5.2.Range.and.constraint.check
 ........2.5.3.Consistency.check
+
+
+
+
+
+2.5 Data Validation
 =======================================================
+    Data validation means checking whether data is correct,
+    reasonable, and suitable for use before analysis.
+
+    Simple meaning:
+        Validation is the process of testing data
+        to see whether it follows expected rules.
+
+    Why data validation is important
+        Wrong data can produce wrong analysis
+        Invalid values can damage models
+        Validation improves trust in data
+        It helps detect errors early
+
+
+
+
+
+
+    Example
+
+        Name       Age      Marks
+        Ram        20       78
+        Sita       -5       82
+        Hari       21       150
+
+        Problems:
+            Sita's age cannot be negative
+            Hari's marks may not be valid if full marks is 100
+
+        Data validation helps detect such problems.
+
+
+
+
+
+
+
+
+
+
+
+    Difference between data cleaning and data validation
+
+        Data cleaning
+            Fixes or removes bad data
+
+        Data validation
+            Checks whether data follows rules
+
+        Simple relation
+            Validation finds the problem
+            Cleaning fixes the problem
+
+
+
+
+
+
+
+
+
+
+
+    Common types of validation in this unit
+        Type check
+        Range and constraint check
+        Consistency check
+
+
+
+
+
+
+
+
+
+
+
+
+    2.5.1 Type Check
+=======================================================
+        Type check means verifying that a value has the correct data type.
+
+        Simple meaning:
+            A number should be stored as a number
+            A date should be stored as a date
+            Text should be stored as text
+
+        Why type check matters
+            Wrong data type can stop calculations
+            Wrong type may cause software errors
+            Analysis becomes difficult if types are mixed
+
+
+
+
+
+
+        Common data types
+
+            Integer
+                Whole numbers
+                Example:
+                    10
+                    25
+                    100
+
+            Float or decimal
+                Numbers with decimal point
+                Example:
+                    10.5
+                    72.25
+
+            String or text
+                Words or characters
+                Example:
+                    Ram
+                    Kathmandu
+
+            Date
+                Calendar date
+                Example:
+                    2024-02-01
+
+            Boolean
+                True or False
+                Yes or No
+                1 or 0 in some systems
+
+
+
+
+
+
+        Example of correct types
+
+            Age
+                Should be numeric
+
+            Name
+                Should be text
+
+            Date of birth
+                Should be date
+
+            Pass_Fail
+                May be Boolean or category
+
+
+
+
+
+
+        Example of type error
+
+            Name       Age
+            Ram        20
+            Sita       twenty
+            Hari       22
+
+        Problem:
+            Age should be numeric,
+            but "twenty" is text
+
+        This creates a type mismatch.
+
+
+
+
+
+
+        Another example
+
+            Date
+            2024-01-01
+            Jan 2, 2024
+            hello
+
+        Problem:
+            hello is not a valid date
+
+        Type check in marks data
+
+            Marks:
+                78
+                82
+                absent
+                65
+
+            If marks column is expected to be numeric,
+            the value "absent" is a type issue
+            unless there is a separate rule allowing it.
+
+
+
+
+
+
+        How type check is done
+
+            Check whether values match expected format
+            Use software rules for each column
+            Define expected type before analysis
+
+        Example with student data
+
+            Roll    Name    Marks
+            1       Ram     78
+            2       Sita    82
+            3       Hari    seventy
+
+        Marks should be numeric.
+        "seventy" fails the type check.
+
+
+
+
+
+
+        Why this matters in Data Science
+
+            If marks are stored as text,
+            average cannot be calculated properly.
+
+        Example
+
+            Marks:
+                70
+                80
+                90
+
+            Valid numeric type
+            Mean can be found
+
+            But:
+                70
+                80
+                ninety
+
+            Mean calculation fails or becomes incorrect
+
+        Type check in business data
+
+            Product_ID
+                Should be integer
+
+            Price
+                Should be numeric
+
+            Date
+                Should be date
+
+            Product_Name
+                Should be text
+
+        Important note
+            Sometimes mixed type values may reflect real meaning
+
+            Example:
+                Attendance:
+                    Present
+                    Absent
+                    Leave
+
+            Here text is expected.
+            So type check depends on the purpose of that field.
+
+
+    2.5.2 Range and Constraint Check
+=======================================================
+        Range check means verifying that values fall within an allowed interval.
+
+        Constraint check means verifying that values follow specific rules or conditions.
+
+        Simple meaning:
+            Even if a value has the correct type,
+            it may still be invalid if it is outside the allowed range
+            or breaks a rule.
+
+        Example:
+            Marks = 150
+
+            Type:
+                numeric
+            But if full marks is 100,
+            it fails range check
+
+        Example:
+            Age = -3
+
+            Type:
+                numeric
+            But age cannot be negative,
+            so it fails constraint check
+
+        Range check
+
+            Used when values must lie between minimum and maximum limits.
+
+            Examples:
+                Marks should be between 0 and 100
+                Age should be between 0 and 120
+                Percentage should be between 0 and 100
+                Rating may be between 1 and 5
+
+        Example of range check
+
+            Marks:
+                45
+                78
+                102
+                65
+
+            Here 102 is out of valid range
+            if maximum allowed mark is 100
+
+        Example in temperature
+
+            Human body temperature in Celsius:
+                36.5
+                37.0
+                98.0
+
+            98.0 may be suspicious if expected unit is Celsius.
+            It could be a unit problem or data entry error.
+
+        Constraint check
+
+            Constraints are rules that data must satisfy.
+
+            Common examples of constraints
+
+                Marks must be less than or equal to 100
+                Age must be non-negative
+                Roll number must be unique
+                Date of joining cannot be later than date of resignation
+                Quantity cannot be negative
+                Email should follow email format
+
+        Example of constraint check with student data
+
+            Roll    Name    Age    Marks
+            1       Ram     20     78
+            2       Sita    -2     82
+            3       Hari    21     105
+
+            Problems:
+                Sita's age violates non-negative rule
+                Hari's marks violate maximum marks rule
+
+        Example with salary
+
+            Employee    Salary
+            A           25000
+            B           -5000
+
+            Negative salary usually violates business rule
+
+        Example with date
+
+            Admission_Date      Graduation_Date
+            2023-01-01          2022-12-01
+
+            Problem:
+                Graduation date cannot be earlier than admission date
+
+        Example with Boolean condition
+
+            Age = 15
+            Driving_License = Yes
+
+            Depending on law,
+            this may violate constraint if minimum age is 18
+
+        Why range and constraint checks matter
+
+            Detect impossible values
+            Detect suspicious values
+            Prevent wrong calculations
+            Keep data logically valid
+
+        Maths example
+
+            Suppose valid probability values must lie between 0 and 1
+
+            Values:
+                0.2
+                0.7
+                1.1
+                -0.3
+
+            Problems:
+                1.1 is greater than 1
+                -0.3 is below 0
+
+            So both fail range check
+
+        Another example in machine learning labels
+
+            If target variable should be only:
+                Pass
+                Fail
+
+            But data contains:
+                pass
+                failed
+                unknown
+
+            Then standardization and constraint checks are needed.
+
+        Important note
+            A value can pass type check
+            but fail range or constraint check.
+
+            Example:
+                Age = 999
+
+            It is numeric,
+            so type check passes
+
+            But it is unrealistic,
+            so range or constraint check fails.
+
+
+    2.5.3 Consistency Check
+=======================================================
+        Consistency check means verifying that related data values agree with each other
+        and do not contradict one another.
+
+        Simple meaning:
+            Data should tell one consistent story.
+
+        Example:
+            Age = 10
+            Qualification = Master's Degree
+
+            These values may be inconsistent together.
+
+        Another example:
+            Date_of_Birth = 2015
+            Age = 35
+
+            These do not match,
+            so the record is inconsistent.
+
+        Why consistency check matters
+            It catches contradictions
+            It improves reliability of records
+            It is especially useful when many fields are related
+
+        Types of consistency checks
+
+            Internal consistency
+                Check agreement within one record
+
+            Cross-record consistency
+                Check agreement across multiple records
+
+            Format consistency
+                Check whether same categories are represented uniformly
+
+        Example of internal consistency
+
+            Name       Gender    Pregnancy_Status
+            Ram        Male      Pregnant
+
+            Problem:
+                These fields contradict each other
+
+        Another example
+
+            Student_Type      Scholarship
+            Full Fee          Yes
+            Scholarship       No
+
+            Depending on system rules,
+            this may need checking
+
+        Example of cross-field consistency
+
+            Date_of_Birth     Age
+            2005-01-01        50
+
+            This is inconsistent because age should be around 19 or 20
+            depending on current date.
+
+        Example with marks and pass/fail
+
+            Marks    Pass_Fail
+            78       Fail
+            25       Pass
+
+            If pass mark is 40,
+            then these labels are inconsistent.
+
+        Example with business data
+
+            Quantity    Total_Price    Unit_Price
+            2           200           50
+
+            Check:
+                Quantity x Unit_Price
+                = 2 x 50
+                = 100
+
+            But Total_Price is recorded as 200
+
+            So the values are inconsistent.
+
+        Example with attendance data
+
+            Total_Classes    Classes_Attended
+            40               45
+
+            Problem:
+                Attended classes cannot exceed total classes
+
+        Example with category consistency
+
+            City
+            Kathmandu
+            KTM
+            kathmandu
+
+            These may refer to same city,
+            but are inconsistent in representation.
+
+            Consistency check will identify need for standardization.
+
+        Example with unit consistency
+
+            Height
+            170 cm
+            5.7 ft
+            160 cm
+
+            If one column is intended to store only cm,
+            then mixed units create inconsistency.
+
+        Example from survey data
+
+            Marital_Status    Number_of_Children
+            Single            3
+
+            This may be possible in real life,
+            so we must be careful.
+            Not every unusual combination is wrong.
+
+            Consistency rules should be based on context,
+            not assumptions only.
+
+        How consistency check is done
+
+            Compare related fields
+            Apply logical rules
+            Cross-check calculated values
+            Check relationship between date, age, category, and status fields
+
+        Why consistency check is powerful
+
+            Some errors are not caught by type or range checks
+
+            Example:
+                Marks = 70
+                Pass_Fail = Fail
+
+            Type is valid
+            Range is valid
+            But logic is inconsistent
+
+        So consistency check gives deeper validation.
+
+        Important note
+            Consistency does not always mean correctness,
+            but inconsistency strongly suggests a problem.
+
+
+    Combined Example of All Three Checks
+
+        Dataset
+
+            Name       Age       Marks      Pass_Fail     Date_of_Birth
+            Ram        20        78         Pass          2004-01-01
+            Sita       twenty    82         Pass          2003-05-10
+            Hari       21        105        Pass          2015-06-01
+            Gita       19        35         Pass          2005-07-07
+
+        Type check results
+            Sita's age = "twenty"
+                wrong type
+
+        Range and constraint check results
+            Hari's marks = 105
+                outside valid range if full marks is 100
+
+        Consistency check results
+            Hari's age = 21 but date of birth = 2015
+                inconsistent
+
+            Gita's marks = 35 but Pass_Fail = Pass
+                inconsistent if pass mark is 40
+
+        This example shows:
+            One dataset may have different kinds of validation problems.
+
+
+    Validation Workflow Idea
+
+        Step 1
+            Check type
+                Are values stored in correct form?
+
+        Step 2
+            Check range and constraints
+                Are values within allowed limits?
+
+        Step 3
+            Check consistency
+                Do related values logically agree?
+
+        Step 4
+            Flag errors
+            Review and clean data
+
+        Step 5
+            Revalidate after correction
+
+    Why validation should come before analysis
+
+        If invalid data enters analysis:
+            Mean may be wrong
+            Graphs may mislead
+            Models may learn bad patterns
+            Business decisions may fail
+
+        So the sequence is usually:
+            Collect data
+            Validate data
+            Clean data
+            Standardize data
+            Analyze data
+
+
+    Simple Maths Example
+
+        Marks:
+            40, 50, 60, 70, 700
+
+        Type check
+            All numeric
+            So type check passes
+
+        Range check
+            700 fails if max allowed mark is 100
+
+        After correction to 70:
+            40, 50, 60, 70, 70
+
+        Now analysis is more meaningful.
+
+    Simple Words Example
+
+        Gender:
+            Male
+            male
+            M
+            Female
+
+        Type check
+            All are text
+            So type check passes
+
+        Range and constraint check
+            If allowed labels are only Male and Female,
+            then male and M may fail standard category constraint
+
+        Consistency check
+            Standardization needed so categories match
+
+
+    Quick Revision
+
+        Data validation
+            Checking whether data follows expected rules
+
+        Type check
+            Checks whether value has correct data type
+
+            Example:
+                Age should be numeric
+
+        Range and constraint check
+            Checks whether value lies within allowed limit
+            and follows rules
+
+            Example:
+                Marks must be between 0 and 100
+
+        Consistency check
+            Checks whether related values agree logically
+
+            Example:
+                Marks = 35 and Pass_Fail = Pass may be inconsistent
+
+        Main lesson
+            Good validation helps catch problems early
+            and improves the reliability of data analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1773,7 +3316,684 @@ Unit 2 Data Munging [8 Hrs.]
 ........2.6.2.XML
 ........2.6.3.Tabular
 ........2.6.4.Relational
+
+
 =======================================================
+
+
+2.6 Data Format Conversion
+
+    Data format conversion means changing data from one format
+    into another format so that it can be stored, processed,
+    shared, or analyzed more easily.
+
+    Simple meaning:
+        The same information can be written in different structures.
+        Conversion changes the structure, not the meaning.
+
+    Why data format conversion is needed
+        Different software uses different formats
+        Data may come from multiple sources
+        Some formats are good for storage
+        Some are good for exchange
+        Some are better for analysis
+        Machine learning tools may require a specific format
+
+    Example
+
+        Same student data can appear in different forms.
+
+        Tabular form
+            Name      Marks
+            Ram       78
+            Sita      82
+
+        JSON form
+            [
+              {"Name":"Ram","Marks":78},
+              {"Name":"Sita","Marks":82}
+            ]
+
+        XML form
+            <students>
+                <student>
+                    <name>Ram</name>
+                    <marks>78</marks>
+                </student>
+                <student>
+                    <name>Sita</name>
+                    <marks>82</marks>
+                </student>
+            </students>
+
+        Relational form
+            Table: Students
+                Student_ID    Name    Marks
+                1             Ram     78
+                2             Sita    82
+
+    All these formats represent similar information,
+    but in different structures.
+
+    Common reasons for conversion
+
+        Data collected in JSON may need to be converted into table form for analysis
+        XML data from websites may need conversion into database format
+        Spreadsheet data may need conversion into relational tables
+        Database records may be exported into JSON for web APIs
+
+    Important idea
+        Conversion should preserve the meaning of data.
+        Only the structure should change,
+        not the actual information.
+
+    Challenges in format conversion
+        Missing fields
+        Nested structure
+        Repeated elements
+        Mixed data types
+        Loss of hierarchy
+        Loss of metadata
+        Different naming rules
+
+    Example of challenge
+
+        JSON data may contain nested structure:
+            {
+                "name": "Ram",
+                "address": {
+                    "city": "Kathmandu",
+                    "ward": 5
+                }
+            }
+
+        If converted to a simple table,
+        the nested address must be flattened.
+
+        Tabular result may become:
+            Name      City         Ward
+            Ram       Kathmandu    5
+
+
+    2.6.1 JSON
+
+        Full form:
+            JavaScript Object Notation
+
+        JSON is a lightweight format used to store and exchange data.
+
+        Simple meaning:
+            JSON stores data in key-value form.
+
+        Example
+
+            {
+                "name": "Ram",
+                "age": 20,
+                "marks": 78
+            }
+
+        Here:
+            name, age, marks are keys
+            Ram, 20, 78 are values
+
+        JSON can also store arrays.
+
+        Example
+
+            {
+                "students": [
+                    {"name": "Ram", "marks": 78},
+                    {"name": "Sita", "marks": 82}
+                ]
+            }
+
+        Why JSON is popular
+            Easy for humans to read
+            Easy for machines to process
+            Common in web applications and APIs
+            Flexible structure
+            Supports nested data
+
+        Main features of JSON
+            Key-value pairs
+            Supports arrays
+            Supports nested objects
+            Lightweight text format
+
+        Common data types in JSON
+            String
+                "Ram"
+
+            Number
+                78
+
+            Boolean
+                true, false
+
+            Array
+                [1, 2, 3]
+
+            Object
+                {"city":"Kathmandu"}
+
+            Null
+                null
+
+        Example from product data
+
+            {
+                "product": "Rice",
+                "price": 80,
+                "stock": 20
+            }
+
+        Example with nested data
+
+            {
+                "name": "Sita",
+                "marks": {
+                    "math": 80,
+                    "science": 85
+                }
+            }
+
+        This nested structure is useful,
+        but may need flattening for tabular analysis.
+
+        JSON in Data Science
+            Used to receive API data
+            Used in web scraping
+            Used for storing semi-structured data
+            Used in configuration files
+
+        Strengths of JSON
+            Flexible
+            Easy to exchange
+            Compact
+            Good for nested data
+
+        Limitations of JSON
+            Not always best for direct spreadsheet analysis
+            Deep nesting can be hard to convert
+            Repeated nested structure may complicate modeling
+
+        Example of conversion from JSON to tabular
+
+            JSON
+                [
+                    {"name":"Ram","marks":78},
+                    {"name":"Sita","marks":82}
+                ]
+
+            Tabular
+                Name      Marks
+                Ram       78
+                Sita      82
+
+
+    2.6.2 XML
+
+        Full form:
+            eXtensible Markup Language
+
+        XML is a markup-based format used to store and transport data.
+
+        Simple meaning:
+            XML stores data using opening and closing tags.
+
+        Example
+
+            <student>
+                <name>Ram</name>
+                <age>20</age>
+                <marks>78</marks>
+            </student>
+
+        XML is similar to HTML in appearance,
+        but it is used for data rather than page display.
+
+        Why XML is used
+            Good for structured and hierarchical data
+            Can describe relationships clearly
+            Used in old enterprise systems, web services, documents, and data exchange
+
+        Main features of XML
+            Tag-based structure
+            Supports nested hierarchy
+            Self-descriptive
+            Can include attributes
+
+        Example with attribute
+
+            <student id="1">
+                <name>Ram</name>
+                <marks>78</marks>
+            </student>
+
+        Example with multiple records
+
+            <students>
+                <student>
+                    <name>Ram</name>
+                    <marks>78</marks>
+                </student>
+                <student>
+                    <name>Sita</name>
+                    <marks>82</marks>
+                </student>
+            </students>
+
+        XML in Data Science
+            May appear in data exchange systems
+            May appear in web data
+            Used in document data and configuration files
+            Often converted into tabular or relational form for analysis
+
+        Strengths of XML
+            Good for hierarchical data
+            Clear structure
+            Self-descriptive tags
+            Can validate structure using schema
+
+        Limitations of XML
+            More verbose than JSON
+            Larger file size
+            Can be harder to read for beginners
+            Conversion to flat tables may be difficult
+
+        Example of XML to tabular conversion
+
+            XML
+                <students>
+                    <student>
+                        <name>Ram</name>
+                        <marks>78</marks>
+                    </student>
+                    <student>
+                        <name>Sita</name>
+                        <marks>82</marks>
+                    </student>
+                </students>
+
+            Tabular
+                Name      Marks
+                Ram       78
+                Sita      82
+
+        JSON vs XML
+
+            JSON
+                More compact
+                Easier for APIs
+                Popular in modern systems
+
+            XML
+                More descriptive with tags
+                Often used in older enterprise and document systems
+
+
+    2.6.3 Tabular
+
+        Tabular format means data arranged in rows and columns.
+
+        Simple meaning:
+            It looks like a table.
+
+        This is one of the most common formats used in analysis.
+
+        Example
+
+            Name      Age      Marks
+            Ram       20       78
+            Sita      21       82
+            Hari      22       65
+
+        In tabular data
+            Each row usually represents one record
+            Each column usually represents one variable or field
+
+        Examples of tabular formats
+            CSV
+                Comma Separated Values
+
+            Excel sheet
+                .xls or .xlsx
+
+            TSV
+                Tab Separated Values
+
+        Why tabular format is important
+            Easy to read
+            Easy to analyze
+            Works well with spreadsheets
+            Works well with statistical tools
+            Used in machine learning datasets
+
+        Example in student dataset
+
+            Roll    Name    Attendance    Marks
+            1       Ram     90            78
+            2       Sita    95            82
+            3       Hari    80            65
+
+        Tabular data is especially useful for:
+            Descriptive statistics
+            Graphs and charts
+            Regression
+            Classification
+            Clustering
+            Reporting
+
+        Strengths of tabular format
+            Simple and familiar
+            Easy to sort and filter
+            Good for flat structured data
+            Widely supported
+
+        Limitations of tabular format
+            Not ideal for nested data
+            Hard to represent one-to-many relationships directly
+            Can become repetitive when complex hierarchy exists
+
+        Example of limitation
+
+            If one student has many phone numbers,
+            tabular format may need repeated rows or extra columns.
+
+        Example
+
+            Name      Phone1       Phone2
+            Ram       9800...      9811...
+
+            or
+
+            Name      Phone
+            Ram       9800...
+            Ram       9811...
+
+        So some structures fit relational or JSON better.
+
+        Conversion into tabular form
+
+            From JSON
+                Flatten keys and values into columns
+
+            From XML
+                Extract tags into columns
+
+            From relational database
+                Export query result as table
+
+        Very common use in Data Science
+            Load CSV into Python Pandas
+            Load Excel into R
+            Perform cleaning, analysis, visualization
+
+
+    2.6.4 Relational
+
+        Relational format means data stored in related tables.
+
+        This is the foundation of relational databases.
+
+        Simple meaning:
+            Instead of keeping all information in one big table,
+            data is separated into multiple connected tables.
+
+        Why relational format is used
+            Reduces repetition
+            Maintains organization
+            Supports large systems
+            Improves data integrity
+            Makes data easier to manage
+
+        Main idea of relational model
+            Data is stored in tables
+            Tables are connected through keys
+
+        Common terms
+
+            Table
+                Collection of rows and columns
+
+            Row
+                One record
+
+            Column
+                One field
+
+            Primary key
+                Unique identifier for a row
+
+            Foreign key
+                A field that links one table to another
+
+        Example
+
+            Table: Students
+                Student_ID    Name
+                1             Ram
+                2             Sita
+
+            Table: Marks
+                Student_ID    Subject     Marks
+                1             Math        78
+                1             Science     80
+                2             Math        82
+
+        Here:
+            Student_ID links the two tables
+
+        This is relational structure.
+
+        Why this is useful
+            Student name is stored once
+            Marks can be stored many times for many subjects
+            Less duplication occurs
+
+        Example of one-to-many relationship
+
+            One student
+                can have many subject marks
+
+            One customer
+                can have many orders
+
+            One product
+                can appear in many sales records
+
+        Relational format in Data Science
+            Data is often stored in SQL databases
+            Analysts query needed data
+            Then export results into tabular form for analysis
+
+        Strengths of relational format
+            Good for structured data
+            Good for large systems
+            Reduces redundancy
+            Supports data integrity rules
+            Easy to query using SQL
+
+        Limitations of relational format
+            Less flexible for highly nested or unstructured data
+            Not ideal for some big semi-structured data use cases
+            Requires schema design
+
+        Example with business data
+
+            Table: Customers
+                Customer_ID    Name
+                101            Asha
+                102            Bina
+
+            Table: Orders
+                Order_ID       Customer_ID     Amount
+                1              101             2000
+                2              101             1500
+                3              102             3000
+
+        This relational design avoids repeating customer information in every row.
+
+        Conversion from relational to tabular
+
+            If we want analysis,
+            we may join tables and produce one flat table.
+
+            Result:
+                Customer_Name    Order_ID    Amount
+                Asha             1           2000
+                Asha             2           1500
+                Bina             3           3000
+
+        This joined result can then be used for analysis.
+
+
+    Comparing JSON, XML, Tabular, and Relational
+
+        JSON
+            Best for semi-structured and nested data
+            Common in APIs and web data
+
+        XML
+            Best for hierarchical tagged data
+            Common in structured document exchange
+
+        Tabular
+            Best for direct analysis in rows and columns
+            Common in spreadsheets and machine learning
+
+        Relational
+            Best for organized multi-table structured data
+            Common in databases and enterprise systems
+
+        Simple comparison
+
+            If data comes from web API
+                often JSON
+
+            If data comes from old structured service or document
+                often XML
+
+            If data is ready for spreadsheet-like analysis
+                tabular
+
+            If data is stored in a database with related tables
+                relational
+
+
+    Example of Same Data in All Four Formats
+
+        Information:
+            Student Ram scored 78 in Math
+
+        JSON
+            {
+                "name": "Ram",
+                "subject": "Math",
+                "marks": 78
+            }
+
+        XML
+            <student>
+                <name>Ram</name>
+                <subject>Math</subject>
+                <marks>78</marks>
+            </student>
+
+        Tabular
+            Name      Subject     Marks
+            Ram       Math        78
+
+        Relational
+
+            Table: Students
+                Student_ID    Name
+                1             Ram
+
+            Table: Scores
+                Student_ID    Subject     Marks
+                1             Math        78
+
+        All forms represent similar meaning,
+        but with different structures.
+
+
+    Why conversion matters in practice
+
+        Example 1
+            API gives data in JSON
+            Analyst converts it to table for visualization
+
+        Example 2
+            XML report is converted into SQL table for storage
+
+        Example 3
+            Relational database query is exported as CSV for machine learning
+
+        Example 4
+            Spreadsheet is converted into JSON to send through web application
+
+
+    Important caution during conversion
+
+        Check whether any field is lost
+        Check whether nested data is flattened correctly
+        Check data types after conversion
+        Check date and number formats
+        Check missing values
+        Check repeated values after transformation
+
+        Example
+            If one customer has multiple orders,
+            flattening wrongly may duplicate customer details
+            in a confusing way.
+
+        So conversion must be done carefully.
+
+
+    Quick Revision
+
+        Data format conversion
+            Changing data from one structure to another
+
+        JSON
+            Key-value based
+            good for APIs and nested data
+
+        XML
+            Tag-based
+            good for hierarchical structured data
+
+        Tabular
+            Row and column based
+            good for analysis and spreadsheets
+
+        Relational
+            Multiple related tables
+            good for databases and structured storage
+
+        Main lesson
+            Different formats serve different purposes.
+            Data scientists often convert data into the format
+            that best fits storage, sharing, or analysis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1785,6 +4005,763 @@ Unit 2 Data Munging [8 Hrs.]
 =======================================================
 
 
+2.7 Format Conversion Methods
+
+    Format conversion methods are the ways or techniques used
+    to change data from one format into another format.
+
+    Simple meaning:
+        Data may come in one structure,
+        but we may need it in another structure for analysis,
+        storage, sharing, or reporting.
+
+    Example:
+        Data comes from an API in JSON format
+        but we need it in table form for Excel or Pandas analysis.
+
+        So we convert:
+            JSON  ->  Tabular
+
+    Another example:
+        Data is stored in relational database tables
+        but needs to be sent to a web application.
+
+        So we convert:
+            Relational  ->  JSON
+
+    Why format conversion methods are important
+        Different tools accept different input formats
+        Data from one system may not work directly in another
+        Conversion helps integration between systems
+        Analysis becomes easier after proper conversion
+        Storage and reporting needs may be different
+
+    Main idea
+        The content should remain meaningful,
+        but the structure may change.
+
+    General steps in format conversion
+
+        Step 1
+            Understand the source format
+
+            Example:
+                Is the data JSON, XML, CSV, Excel, or SQL table?
+
+        Step 2
+            Understand the target format
+
+            Example:
+                Do we need CSV for analysis?
+                JSON for API?
+                Relational format for database?
+
+        Step 3
+            Map the fields
+
+            Example:
+                JSON key "name" becomes table column "Name"
+                XML tag <marks> becomes column "Marks"
+
+        Step 4
+            Transform the structure
+
+            Example:
+                Nested objects may need flattening
+                Multiple tables may need joining
+
+        Step 5
+            Validate after conversion
+
+            Check:
+                Missing values
+                Wrong data types
+                Lost records
+                Duplicates
+                Broken relationships
+
+    Common format conversion methods
+
+        Manual conversion
+        Rule-based conversion
+        Parsing and extraction
+        Flattening
+        Normalization
+        Aggregation and summarization
+        Joining and merging
+        Export and import methods
+        Script-based conversion
+        Tool-based conversion
+
+
+    1. Manual Conversion
+
+        Manual conversion means changing data by hand.
+
+        Example:
+            Copy data from one file and rewrite it into a table
+
+        Used when:
+            Dataset is very small
+            Structure is simple
+            Quick one-time conversion is needed
+
+        Example:
+            JSON:
+                {"name":"Ram","marks":78}
+
+            Manual tabular form:
+                Name      Marks
+                Ram       78
+
+        Advantages
+            Simple for very small data
+            Easy to understand
+
+        Limitations
+            Slow
+            Error-prone
+            Not suitable for large data
+
+        So manual conversion is rarely used for large projects.
+
+
+    2. Rule-Based Conversion
+
+        Rule-based conversion means converting data according to fixed rules.
+
+        Simple meaning:
+            We define a rule for how each field will change.
+
+        Example:
+            Rule 1:
+                Convert all dates to YYYY-MM-DD
+
+            Rule 2:
+                Convert city names to title case
+
+            Rule 3:
+                Convert all weights to kilograms
+
+        Example:
+            Raw data:
+                KTM, 121 lb, 01/02/24
+
+            After rule-based conversion:
+                Kathmandu, 54.5 kg, 2024-02-01
+
+        Why useful
+            Ensures consistency
+            Good for repeated tasks
+            Easy to automate
+
+        Common use
+            Data cleaning pipelines
+            Standardization before analysis
+
+
+    3. Parsing and Extraction
+
+        Parsing means reading structured data
+        and extracting the needed elements from it.
+
+        Simple meaning:
+            Break the structure apart and capture useful fields.
+
+        Example in JSON
+
+            JSON data:
+                {
+                    "name": "Ram",
+                    "marks": 78,
+                    "city": "Kathmandu"
+                }
+
+            Extracted fields:
+                Name = Ram
+                Marks = 78
+                City = Kathmandu
+
+        Example in XML
+
+            XML:
+                <student>
+                    <name>Ram</name>
+                    <marks>78</marks>
+                </student>
+
+            Extracted fields:
+                Name = Ram
+                Marks = 78
+
+        Why parsing is needed
+            JSON and XML are structured formats
+            We must read their components correctly before converting them
+
+        Common use
+            Web data
+            API data
+            Configuration files
+            Document data
+
+
+    4. Flattening
+
+        Flattening means converting nested or hierarchical data
+        into a flat row-column form.
+
+        Simple meaning:
+            If data is inside levels or groups,
+            flattening brings it into one level.
+
+        Example
+
+            JSON:
+                {
+                    "name": "Ram",
+                    "address": {
+                        "city": "Kathmandu",
+                        "ward": 5
+                    }
+                }
+
+            Flattened form:
+                Name      City         Ward
+                Ram       Kathmandu    5
+
+        Why flattening is important
+            Most analysis tools work better with flat tables
+            Machine learning datasets are usually tabular
+
+        Example with repeated nested data
+
+            JSON:
+                {
+                    "name": "Sita",
+                    "subjects": ["Math", "Science"]
+                }
+
+            Flattened possible forms:
+
+            Option 1:
+                Name      Subject1    Subject2
+                Sita      Math        Science
+
+            Option 2:
+                Name      Subject
+                Sita      Math
+                Sita      Science
+
+        Different flattening choices depend on purpose.
+
+        Important caution
+            Flattening may duplicate some information
+            or lose hierarchy if not done carefully.
+
+
+    5. Normalization
+
+        In format conversion, normalization means reorganizing data
+        into a more structured and consistent form,
+        often for database storage.
+
+        Simple meaning:
+            Break repeated information into separate linked tables.
+
+        Example
+
+            Raw tabular data:
+                Student_ID    Name    Subject     Marks
+                1             Ram     Math        78
+                1             Ram     Science     80
+
+            Normalized form:
+
+            Table Students
+                Student_ID    Name
+                1             Ram
+
+            Table Scores
+                Student_ID    Subject     Marks
+                1             Math        78
+                1             Science     80
+
+        Why useful
+            Reduces duplication
+            Improves consistency
+            Better for relational databases
+
+        Common use
+            Moving from spreadsheet-style data
+            into relational database form
+
+
+    6. Aggregation and Summarization
+
+        Aggregation means combining detailed data into summarized form.
+
+        Simple meaning:
+            Convert many detailed records into fewer summary records.
+
+        Example
+
+            Daily sales:
+                Jan 1    100
+                Jan 2    120
+                Jan 3    80
+
+            Aggregated weekly or monthly sales:
+                January total = 300
+
+        Why used in format conversion
+            Target system may need summary data
+            Dashboard may need monthly totals instead of daily records
+
+        Another example
+
+            Student marks by subject:
+                Ram    Math       78
+                Ram    Science    82
+
+            Aggregated average:
+                Ram    Average    80
+
+        Caution
+            Aggregation reduces detail
+            Original row-level data may be lost
+
+
+    7. Joining and Merging
+
+        Joining means combining data from multiple sources
+        into one target structure.
+
+        Simple meaning:
+            Bring related data together.
+
+        Example
+
+            Table Students
+                Student_ID    Name
+                1             Ram
+                2             Sita
+
+            Table Marks
+                Student_ID    Marks
+                1             78
+                2             82
+
+            Joined result:
+                Student_ID    Name    Marks
+                1             Ram     78
+                2             Sita    82
+
+        Why joining is important
+            Relational databases store data in separate tables
+            But analysis often needs one combined table
+
+        Common use
+            SQL joins
+            Merging CSV files
+            Linking API data with master records
+
+
+    8. Export and Import Methods
+
+        Export means saving data out of one system.
+        Import means bringing data into another system.
+
+        Simple meaning:
+            One tool writes data in a format,
+            another tool reads it.
+
+        Example
+            Export Excel file as CSV
+            Import CSV into Python Pandas
+
+        Another example
+            Export SQL query result as JSON
+            Import JSON into web application
+
+        Common conversions using export and import
+            Excel to CSV
+            CSV to database
+            Database to JSON
+            JSON to spreadsheet
+
+        Why useful
+            Easy and common in practice
+            Supported by many software tools
+
+
+    9. Script-Based Conversion
+
+        Script-based conversion means writing code
+        to automate the conversion process.
+
+        Simple meaning:
+            Use programming to read one format
+            and write another format.
+
+        Common languages
+            Python
+            R
+            JavaScript
+            SQL
+            Shell scripts
+
+        Example in idea form
+
+            Read JSON file
+            Extract keys
+            Build DataFrame
+            Save as CSV
+
+        Why script-based conversion is useful
+            Good for large data
+            Reusable
+            Faster than manual work
+            Less repetitive effort
+            Easier to automate in pipelines
+
+        Example use cases
+            Convert thousands of XML records into CSV
+            Convert web API JSON into SQL table
+            Convert logs into tabular analysis format
+
+        Limitation
+            Requires programming skill
+
+
+    10. Tool-Based Conversion
+
+        Tool-based conversion means using software features
+        instead of writing all steps manually.
+
+        Examples of tools
+            Excel
+            Power Query
+            Tableau Prep
+            Pandas
+            SQL database tools
+            ETL tools
+
+        Example
+            Open CSV in Excel
+            Save as XLSX
+
+        Another example
+            Use Power Query to import JSON
+            transform it,
+            and load it into table form
+
+        Why useful
+            Faster for many common tasks
+            Good for business users
+            Often includes visual interface
+
+        Limitation
+            Very complex structures may still need programming
+
+
+    Examples of Common Conversion Paths
+
+        JSON to Tabular
+
+            Source:
+                API gives student records in JSON
+
+            Method:
+                Parse JSON
+                Extract keys
+                Flatten nested values if needed
+                Convert into rows and columns
+
+            Result:
+                Easy analysis in Excel or Pandas
+
+        XML to Tabular
+
+            Source:
+                XML report file
+
+            Method:
+                Parse XML tags
+                Extract elements
+                Map tags to columns
+                Build table
+
+            Result:
+                Structured rows for statistics
+
+        Tabular to Relational
+
+            Source:
+                Excel sheet with repeated data
+
+            Method:
+                Split columns into separate tables
+                Create primary key and foreign key links
+                Normalize repeated fields
+
+            Result:
+                Database-ready structure
+
+        Relational to Tabular
+
+            Source:
+                SQL database with many linked tables
+
+            Method:
+                Join tables
+                Select required fields
+                Export query result
+
+            Result:
+                Flat table for modeling and charts
+
+        Relational to JSON
+
+            Source:
+                Database records
+
+            Method:
+                Query rows
+                Convert row values to key-value format
+                Group related data if needed
+
+            Result:
+                JSON for APIs or web applications
+
+
+    Example with Student Data
+
+        Original JSON
+            [
+                {"id":1,"name":"Ram","marks":78},
+                {"id":2,"name":"Sita","marks":82}
+            ]
+
+        Method
+            Parse JSON
+            Extract id, name, marks
+            Arrange as rows
+
+        Converted tabular form
+            ID      Name      Marks
+            1       Ram       78
+            2       Sita      82
+
+        Now this table can be used for:
+            Mean calculation
+            Graphs
+            Filtering
+            Reporting
+
+    Example with Nested JSON
+
+        JSON
+            {
+                "name":"Ram",
+                "scores":{
+                    "math":78,
+                    "science":80
+                }
+            }
+
+        Method
+            Parse outer object
+            Flatten nested scores object
+
+        Converted tabular form
+            Name      Math      Science
+            Ram       78        80
+
+
+    Example with XML
+
+        XML
+            <students>
+                <student>
+                    <name>Ram</name>
+                    <marks>78</marks>
+                </student>
+            </students>
+
+        Method
+            Parse XML tags
+            Extract student, name, marks
+            Convert into row
+
+        Result
+            Name      Marks
+            Ram       78
+
+
+    Example with Tabular to Relational
+
+        Original table
+            Student_ID    Name    Subject     Marks
+            1             Ram     Math        78
+            1             Ram     Science     80
+            2             Sita    Math        82
+
+        Method
+            Separate repeated student details
+            Create student table and marks table
+
+        Result
+
+            Students table
+                Student_ID    Name
+                1             Ram
+                2             Sita
+
+            Scores table
+                Student_ID    Subject     Marks
+                1             Math        78
+                1             Science     80
+                2             Math        82
+
+
+    Choosing a Conversion Method
+
+        The method depends on:
+            Source format
+            Target format
+            Size of data
+            Complexity of structure
+            Need for automation
+            Available tools
+
+        If data is small and simple
+            manual or spreadsheet method may work
+
+        If data is nested
+            parsing and flattening are needed
+
+        If data is repeated and database-ready structure is needed
+            normalization is useful
+
+        If project is large and repeated often
+            script-based method is better
+
+
+    Common Problems During Conversion
+
+        Lost values
+            Some fields may disappear
+
+        Wrong type conversion
+            Numbers may become text
+
+        Date format errors
+            01/02/2024 may be misunderstood
+
+        Duplicates
+            Flattening may create repeated rows
+
+        Broken relationships
+            Linking keys may be lost
+
+        Incomplete mapping
+            Source field may not match target field properly
+
+    How to reduce problems
+
+        Define source and target schema clearly
+        Check field mapping carefully
+        Test on small sample first
+        Validate after conversion
+        Keep original raw data safe
+        Document the conversion rules
+
+
+    Final Understanding
+
+        Format conversion methods are the practical ways
+        used to transform data from one structure to another.
+
+        Key idea:
+            Good conversion preserves meaning
+            while changing structure for better use.
+
+        Important methods include:
+            Manual conversion
+            Rule-based conversion
+            Parsing and extraction
+            Flattening
+            Normalization
+            Aggregation
+            Joining and merging
+            Export and import
+            Script-based conversion
+            Tool-based conversion
+
+        In Data Science,
+        conversion is common because data often comes from many sources
+        and must be prepared in the right format before analysis.
+
+
+    Quick Revision
+
+        Format conversion methods
+            Techniques for changing data from one format to another
+
+        Common methods
+            Manual
+            Rule-based
+            Parsing
+            Flattening
+            Normalization
+            Aggregation
+            Joining
+            Export and import
+            Script-based
+            Tool-based
+
+        Main lesson
+            Choose the method based on the source format,
+            target format,
+            and complexity of the data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1794,6 +4771,522 @@ Unit 2 Data Munging [8 Hrs.]
 ........2.8.1.Row.based
 ........2.8.2.Column.based.(Parquet.ORC.CSV)
 =======================================================
+
+
+
+2.8 Tabular Data
+
+    Tabular data means data arranged in the form of rows and columns.
+
+    Simple meaning:
+        It looks like a table.
+
+    This is one of the most common forms of data used in Data Science,
+    statistics, spreadsheets, and databases.
+
+    Example
+
+        Name      Age      Marks      City
+        Ram       20       78         Kathmandu
+        Sita      21       82         Pokhara
+        Hari      22       65         Butwal
+
+    In this table
+
+        Each row represents one record
+            One student
+
+        Each column represents one variable or feature
+            Name
+            Age
+            Marks
+            City
+
+    Why tabular data is important
+        Easy to read
+        Easy to store
+        Easy to analyze
+        Works well with Excel, SQL, Python Pandas, and R
+        Common in machine learning datasets
+
+    Examples of tabular data
+        Student marks table
+        Sales records
+        Employee details
+        Hospital patient records
+        Product inventory lists
+
+    Main structure of tabular data
+
+        Rows
+            Horizontal entries
+            Usually represent observations, records, or cases
+
+        Columns
+            Vertical fields
+            Usually represent variables, attributes, or features
+
+    Example
+
+        Product      Price      Quantity
+        Rice         80         20
+        Oil          200        15
+        Sugar        120        10
+
+        Here
+            Row 1 means Rice record
+            Column Price means cost field
+            Column Quantity means stock count
+
+    Important features of tabular data
+        Structured
+        Organized
+        Easy to filter and sort
+        Easy to summarize
+        Easy to convert into charts and models
+
+    Common file formats for tabular data
+        CSV
+        Excel
+        TSV
+        Parquet
+        ORC
+
+    Why tabular data is widely used in Data Science
+        Many algorithms expect row-column form
+        Easy to compute averages, sums, and correlations
+        Easy to visualize
+        Easy to clean and standardize
+
+
+    2.8.1 Row Based
+
+        Row-based format means data is stored record by record.
+
+        Simple meaning:
+            One full row is stored together as one unit.
+
+        Example
+
+            Name      Age      Marks
+            Ram       20       78
+            Sita      21       82
+            Hari      22       65
+
+        In row-based storage,
+            the full record of Ram is stored together
+            then the full record of Sita
+            then the full record of Hari
+
+        Conceptually it looks like this
+
+            Row 1
+                Ram, 20, 78
+
+            Row 2
+                Sita, 21, 82
+
+            Row 3
+                Hari, 22, 65
+
+        Why it is called row-based
+            Because the system stores one whole row at a time.
+
+        Where row-based format is useful
+            When we often read complete records
+            Transaction systems
+            Operational databases
+            Small and simple data exchange
+            Writing and updating one row at a time
+
+        Example in real life
+            Bank transaction system
+
+            Each transaction record may contain:
+                Account number
+                Date
+                Amount
+                Branch
+                Transaction type
+
+            Usually one full transaction row is needed at once,
+            so row-based structure is natural.
+
+        Another example
+            Student admission form
+
+            One full student record includes:
+                Name
+                Age
+                Address
+                Faculty
+                Contact
+
+            If we access one student at a time,
+            row-based storage works well.
+
+        Advantages of row-based format
+            Good for reading full records
+            Good for inserting new rows
+            Good for updating individual records
+            Simple for transactional systems
+
+        Limitations of row-based format
+            Less efficient when reading only a few columns from very large data
+            Can be slower for analytical queries on selected columns
+            Not ideal for large-scale summary operations across few columns
+
+        Example of limitation
+
+            Suppose we have a huge dataset with columns:
+                ID, Name, Age, City, Salary, Marks, Phone, Email
+
+            If we only want the Marks column for one million rows,
+            row-based format still touches the whole row structure,
+            which may be less efficient.
+
+        Common example of row-based file
+            CSV is commonly treated as row-oriented in practical use.
+
+        Row-based thinking in CSV
+
+            CSV
+                Comma Separated Values
+
+            Example
+
+                Name,Age,Marks
+                Ram,20,78
+                Sita,21,82
+                Hari,22,65
+
+            Each line after header is one row record.
+
+        When row-based is best
+            When complete record access is frequent
+            When writes and updates are frequent
+            When data is small to medium and simple
+
+
+    2.8.2 Column Based (Parquet, ORC, CSV)
+
+        Column-based format means data is stored column by column
+        instead of row by row.
+
+        Simple meaning:
+            All values of one column are stored together.
+
+        Example table
+
+            Name      Age      Marks
+            Ram       20       78
+            Sita      21       82
+            Hari      22       65
+
+        In column-based storage,
+            all Name values may be grouped together
+            all Age values may be grouped together
+            all Marks values may be grouped together
+
+        Conceptually it looks like this
+
+            Name column
+                Ram, Sita, Hari
+
+            Age column
+                20, 21, 22
+
+            Marks column
+                78, 82, 65
+
+        Why column-based format is useful
+            Analytical queries often need only a few columns
+            Reading selected columns becomes faster
+            Similar values compress well
+            Very useful for large datasets and big data systems
+
+        Example
+            Suppose a company has 100 million customer records with 30 columns,
+            but the analyst only needs:
+                Age
+                Salary
+
+            In column-based storage,
+            only those two columns can be read efficiently.
+
+        Advantages of column-based format
+            Faster for analytical queries
+            Efficient for reading selected columns
+            Better compression
+            Good for aggregation like sum, mean, count
+            Useful in data warehousing and big data systems
+
+        Limitations of column-based format
+            Not always best for row-by-row updates
+            Writing single records can be less convenient
+            Transactional use may be weaker than row-based systems
+
+        Example of use
+            Monthly sales analysis may only need:
+                Date
+                Product
+                Sales_Amount
+
+            There is no need to load customer address, phone, or remarks.
+            Column-based storage makes this efficient.
+
+
+        CSV
+
+            Full form:
+                Comma Separated Values
+
+            CSV stores tabular data as plain text,
+            where values are separated by commas.
+
+            Example
+
+                Name,Age,Marks
+                Ram,20,78
+                Sita,21,82
+                Hari,22,65
+
+            Practical nature of CSV
+                Very simple
+                Easy to share
+                Human-readable
+                Supported by almost all tools
+
+            Why CSV is popular
+                Easy to create
+                Easy to import into Excel, Python, R, SQL
+                Good for small to medium datasets
+                Common for data exchange
+
+            Strengths of CSV
+                Simple text format
+                Widely supported
+                Easy for beginners
+
+            Limitations of CSV
+                No built-in data type information
+                No compression by default
+                Large files may become slow
+                Not ideal for nested data
+                Repeated reading of selected columns is less optimized than modern columnar formats
+
+            Important note
+                CSV is tabular and line-based.
+                In practical use, it behaves more like row-oriented storage,
+                even though analysts may read columns from it after loading into software.
+
+
+        Parquet
+
+            Parquet is a columnar storage format commonly used in big data systems.
+
+            Simple meaning:
+                It is designed to store tabular data efficiently by columns.
+
+            Why Parquet is important
+                Good compression
+                Fast analytical performance
+                Supports data types well
+                Works well with Spark, Hadoop, Pandas, and data lakes
+
+            Example use
+                A company stores millions of sales rows in Parquet format
+                because analysts often query only selected columns.
+
+            Strengths of Parquet
+                Column-based
+                Highly efficient for analytics
+                Better compression than plain text CSV
+                Good for large datasets
+                Supports schema and data types
+
+            Limitations of Parquet
+                Not human-readable like CSV
+                Harder to open directly in normal text editor
+                Less suitable for quick manual editing
+
+            When to use Parquet
+                Big data analytics
+                Data lake storage
+                Large-scale machine learning pipelines
+                Repeated column selection queries
+
+
+        ORC
+
+            Full form:
+                Optimized Row Columnar
+
+            ORC is another efficient storage format used in big data systems,
+            especially in Hadoop and Hive environments.
+
+            Simple meaning:
+                It is also a columnar format,
+                designed for fast query performance and compression.
+
+            Why ORC is used
+                Efficient storage
+                Fast reading for analytics
+                Good compression
+                Suitable for large structured datasets
+
+            Strengths of ORC
+                Good compression
+                Fast query performance
+                Supports indexing and metadata
+                Useful in Hive ecosystem
+
+            Limitations of ORC
+                Less human-readable
+                Mostly used in specialized big data systems
+                Less common for beginners than CSV
+
+            When to use ORC
+                Big data warehousing
+                Hadoop ecosystem
+                Large-scale structured analytics
+
+
+    Comparing Row-Based and Column-Based Formats
+
+        Row-based
+            Stores full records together
+            Good for transactional systems
+            Good when we read full rows
+            Better for inserts and updates
+
+        Column-based
+            Stores values column by column
+            Good for analytics
+            Good when we read only selected columns
+            Better compression
+            Faster for aggregations
+
+        Example comparison
+
+            Table:
+                Name      Age      Salary      City
+                Ram       20       30000       Kathmandu
+                Sita      21       35000       Pokhara
+                Hari      22       40000       Butwal
+
+            If we want full record of Sita
+                row-based is convenient
+
+            If we want average Salary of all people
+                column-based is more efficient
+
+        Simple summary
+
+            Use row-based when:
+                full record access is common
+                transactions are frequent
+                row updates are frequent
+
+            Use column-based when:
+                analytics is common
+                only a few columns are needed
+                data is large
+
+
+    Example with Data Science Workflow
+
+        Raw sales data:
+            Date        Product      Quantity      Unit_Price      City
+            2024-01-01  Rice         20            80              Kathmandu
+            2024-01-01  Oil          15            200             Pokhara
+
+        If a cashier system writes one sale at a time
+            row-based style is natural
+
+        If analysts want only:
+            Product
+            Quantity
+            Unit_Price
+
+            from millions of rows,
+            Parquet or ORC is more efficient
+
+        If data must be emailed or quickly imported into Excel
+            CSV is convenient
+
+
+    Compression Idea in Column-Based Data
+
+        Suppose one column has repeated city names
+
+            Kathmandu
+            Kathmandu
+            Kathmandu
+            Pokhara
+            Pokhara
+
+        In column-based storage,
+            similar nearby values in same column compress well.
+
+        This is one reason Parquet and ORC are efficient.
+
+
+    Important Practical Note about CSV, Parquet, and ORC
+
+        CSV
+            Best for simplicity and exchange
+
+        Parquet
+            Best for fast analytics and compression
+
+        ORC
+            Best for big data systems like Hive and Hadoop
+
+        If dataset is small
+            CSV is usually enough
+
+        If dataset is huge
+            Parquet or ORC is often better
+
+
+    Quick Revision
+
+        Tabular data
+            Data arranged in rows and columns
+
+        Row-based
+            Stores one full record at a time
+            Good for transactions and full-row access
+
+        Column-based
+            Stores one full column at a time
+            Good for analytics and selected-column access
+
+        CSV
+            Simple text tabular format
+            easy to share and read
+
+        Parquet
+            Columnar format
+            efficient for big data analytics
+
+        ORC
+            Optimized columnar format
+            useful in Hadoop and Hive systems
+
+        Main lesson
+            The choice of format depends on the work:
+                row-based for operational record access
+                column-based for analytical processing
+
+
+
+
+
+
+
+
 
 
 
