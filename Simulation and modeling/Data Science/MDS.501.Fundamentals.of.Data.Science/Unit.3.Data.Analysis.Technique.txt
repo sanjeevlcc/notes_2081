@@ -451,6 +451,11 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 Then Study_Hours and Attendance are more useful,
                 while Shoe_Size may be removed.
 
+
+
+
+
+
             Example using variance
 
                 If one feature has almost same value for every row,
@@ -472,12 +477,26 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 They do not check interaction between features well
                 A feature may look weak alone but useful in combination
 
+
+
+
             Example
                 A feature may have low correlation by itself,
                 but together with another feature it may become important.
 
             So filters are fast,
             but sometimes too simple.
+
+
+
+
+
+
+
+
+
+
+
 
 
         3.1.2.2 Wrappers
@@ -499,6 +518,11 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 Try another subset
                 Keep the best subset
 
+
+
+
+
+
             Example
 
                 Features:
@@ -515,22 +539,36 @@ Unit 3 Data Analysis Technique [10 Hrs.]
 
                 Select the combination giving best performance.
 
+
+
+
+
             Common wrapper methods
                 Forward selection
                 Backward elimination
                 Stepwise selection
 
-            Forward selection
-                Start with no features
-                Add one feature at a time
-                Keep adding the best one
 
-            Backward elimination
-                Start with all features
-                Remove the weakest one step by step
 
-            Stepwise selection
-                Combination of forward and backward ideas
+
+                        Forward selection
+                            Start with no features
+                            Add one feature at a time
+                            Keep adding the best one
+            
+            
+                        Backward elimination
+                            Start with all features
+                            Remove the weakest one step by step
+            
+            
+                        Stepwise selection
+                            Combination of forward and backward ideas
+
+
+
+
+
 
             Strengths of wrappers
                 Often more accurate than simple filters
@@ -541,6 +579,12 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 Slower
                 Computationally expensive
                 Harder for very large datasets
+
+
+
+
+
+
 
             Example in marks prediction
 
@@ -557,9 +601,23 @@ Unit 3 Data Analysis Technique [10 Hrs.]
 
                 Favorite_Food may not improve performance.
 
+
+
             Summary
                 Wrappers are powerful,
                 but more costly than filters.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         3.1.2.3 Decision Trees
@@ -599,6 +657,10 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 Gini impurity reduction
                 Entropy reduction
 
+
+
+
+
             Example
 
                 Dataset:
@@ -610,19 +672,36 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 Tree may select Attendance first
                 because it separates Pass and Fail strongly.
 
+
+
+
+
             Strengths of decision trees for feature selection
                 Easy to understand
                 Captures nonlinear patterns
                 Automatically ranks importance
+
+
+
 
             Limitations
                 One tree may be unstable
                 Small data changes can affect the tree
                 Importance may vary with data
 
+
+
+
+
             Practical meaning
                 If a feature is repeatedly used in strong splits,
                 it is likely important.
+
+
+
+
+
+
 
 
         3.1.2.4 Random Forests
@@ -644,6 +723,11 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 They observe how much each feature helps reduce uncertainty
                 across many trees.
 
+
+
+
+
+
             Example
 
                 Features for student result prediction:
@@ -660,6 +744,14 @@ Unit 3 Data Analysis Technique [10 Hrs.]
 
                 So Favorite_Color may be removed.
 
+
+
+
+
+
+
+
+
             Another example in business
 
                 Features for sales prediction:
@@ -671,6 +763,11 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 Random forest may show:
                     Advertising and Price are most important,
                     Product_Code is less useful as direct predictor.
+
+
+
+
+
 
             Strengths of random forests
                 More stable than single decision tree
@@ -687,6 +784,12 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                 They are often accurate
                 They can handle many variables
                 They can model interactions and nonlinear effects
+
+
+
+
+
+
 
         Simple comparison of feature selection methods
 
@@ -708,6 +811,14 @@ Unit 3 Data Analysis Technique [10 Hrs.]
             Random forests
                 More stable than single tree
                 Strong for feature importance ranking
+
+
+
+
+
+
+
+
 
         Example using one student dataset
 
@@ -737,6 +848,13 @@ Unit 3 Data Analysis Technique [10 Hrs.]
                     Attendance as most important
                     Favorite_Color as least important
 
+
+
+
+
+
+
+
         Important caution
 
             Feature selection should not be based only on one method.
@@ -745,6 +863,12 @@ Unit 3 Data Analysis Technique [10 Hrs.]
             Example:
                 A medical variable may seem weak statistically,
                 but doctors may know it is important.
+
+
+
+
+
+
 
         Final understanding
 
@@ -836,15 +960,717 @@ Unit 3 Data Analysis Technique [10 Hrs.]
 ........3.2.4.k-means
 ***************************************************
 
+3.2 Common Techniques
+======================================
+    In Data Science, common techniques are standard methods
+    used to analyze data, find patterns, make predictions,
+    and group similar records.
+
+    Simple meaning:
+        These techniques help answer questions such as:
+            How are two variables related?
+            Can we predict a value?
+            Can we predict a category?
+            Can we group similar data points together?
+
+    In this section, four important techniques are discussed:
+        Linear regression
+        Logistic regression
+        k-NN
+        k-means
+
+    These methods are widely used because they are:
+        Easy to understand
+        Useful in many real problems
+        Strong foundation for advanced Data Science
+
+    Basic idea of the four techniques
+
+        Linear regression
+            Predicts a numeric value
+
+        Logistic regression
+            Predicts a category, often yes or no
+
+        k-NN
+            Predicts by looking at nearby similar data points
+
+        k-means
+            Groups data into clusters based on similarity
 
 
+    3.2.1 Linear Regression
+======================================
+        Linear regression is a technique used to model
+        the relationship between variables
+        and to predict a continuous numeric value.
+
+        Simple meaning:
+            It tries to fit a straight line through data
+            so that we can estimate one variable from another.
+
+        Example questions answered by linear regression
+            How does study time affect marks?
+            How does advertisement spending affect sales?
+            How does house size affect house price?
+            How does temperature affect electricity use?
+
+        Main idea
+            If one variable changes,
+            another variable may change in a roughly linear way.
+
+        Example
+
+            Study Hours     Marks
+            1               40
+            2               50
+            3               60
+            4               70
+            5               80
+
+            Here,
+                as study hours increase,
+                marks also increase.
+
+            A straight-line pattern appears,
+            so linear regression is suitable.
+
+        General equation of linear regression
+
+            y = a + bx
+
+        Where
+            y = predicted output
+            x = input variable
+            a = intercept
+            b = slope
+
+        Meaning of slope
+            It tells how much y changes when x increases by 1 unit.
+
+        Example equation
+
+            Marks = 30 + 10 x Study_Hours
+
+        Interpretation
+            If Study_Hours = 0
+                predicted Marks = 30
+
+            If Study_Hours = 2
+                predicted Marks = 30 + 10 x 2
+                                = 50
+
+            If Study_Hours = 5
+                predicted Marks = 30 + 10 x 5
+                                = 80
+
+        So the line helps make predictions.
+
+        Real-life example in sales
+
+            Advertisement      Sales
+            1000               5000
+            2000               7000
+            3000               9000
+
+            A regression line may estimate future sales
+            from advertising amount.
+
+        Why called linear
+            Because the relationship is modeled as a straight line.
+
+        Output of linear regression
+            A numeric value
+
+        Examples
+            Marks = 72.5
+            Sales = 15400
+            House price = 8200000
+
+        Steps in simple linear regression
+            1. Take input variable x
+            2. Take output variable y
+            3. Fit best line
+            4. Use the line for prediction
+
+        Example in mathematics
+
+            Suppose the equation is:
+                y = 5 + 2x
+
+            If x = 4
+                y = 5 + 2 x 4
+                  = 13
+
+            So predicted value is 13.
+
+        Multiple linear regression
+
+            Sometimes more than one input variable is used.
+
+            Example:
+                Marks depend on:
+                    Study_Hours
+                    Attendance
+                    Homework
+
+            Equation idea:
+                Marks = a + b1 x Study_Hours + b2 x Attendance + b3 x Homework
+
+        Strengths of linear regression
+            Easy to understand
+            Easy to interpret
+            Useful baseline model
+            Good for continuous prediction
+
+        Limitations of linear regression
+            Assumes linear relationship
+            Sensitive to outliers
+            Not suitable when output is category
+            May perform poorly for complex patterns
+
+        Example of outlier problem
+
+            Data:
+                Study Hours     Marks
+                1               40
+                2               50
+                3               60
+                4               70
+                5               10
+
+            The last value is unusual
+            and may distort the regression line.
+
+        When to use linear regression
+            Predicting numeric outcomes
+            Relationship is approximately linear
+            Interpretation is important
 
 
+    3.2.2 Logistic Regression
+======================================
+        Logistic regression is a technique used for classification,
+        especially when the output belongs to categories.
+
+        Simple meaning:
+            It predicts the probability of a class,
+            usually for yes/no or pass/fail type problems.
+
+        Example questions answered by logistic regression
+            Will a student pass or fail?
+            Is an email spam or not spam?
+            Will a customer buy or not buy?
+            Is a tumor benign or malignant?
+
+        Why it is called regression
+            The method uses a regression-style formula internally,
+            but the result is used for classification.
+
+        Difference from linear regression
+
+            Linear regression
+                Predicts numeric value
+
+                Example:
+                    Marks = 78
+
+            Logistic regression
+                Predicts class or probability
+
+                Example:
+                    Probability of pass = 0.85
+                    Final class = Pass
+
+        Example
+
+            Study Hours     Pass_Fail
+            1               Fail
+            2               Fail
+            3               Pass
+            4               Pass
+            5               Pass
+
+            Logistic regression tries to model
+            the probability of passing based on study hours.
+
+        Output of logistic regression
+
+            A probability between 0 and 1
+
+            Example:
+                Probability of pass = 0.80
+
+            Then a rule is used:
+                If probability >= 0.5
+                    classify as Pass
+                Otherwise
+                    classify as Fail
+
+        Example
+
+            If Study_Hours = 1
+                probability of pass may be 0.20
+                class = Fail
+
+            If Study_Hours = 5
+                probability of pass may be 0.90
+                class = Pass
+
+        Why linear regression is not used for pass/fail directly
+            Linear regression can give values below 0 or above 1
+            which are not valid probabilities.
+
+            Logistic regression solves this
+            by using a special curve called sigmoid.
+
+        Sigmoid idea
+
+            The sigmoid function converts values into range 0 to 1.
+
+            So probability remains valid.
+
+        Example in words
+
+            Input:
+                Number of positive words in a review
+
+            Output:
+                Positive or Negative review
+
+            Logistic regression can classify the review
+            based on the input features.
+
+        Example in banking
+
+            Features:
+                Income
+                Credit score
+                Loan history
+
+            Output:
+                Loan Approved or Rejected
+
+        Example in healthcare
+
+            Features:
+                Age
+                Blood pressure
+                Sugar level
+
+            Output:
+                Disease risk: Yes or No
+
+        Strengths of logistic regression
+            Simple and interpretable
+            Good for binary classification
+            Gives probabilities
+            Fast and widely used
+
+        Limitations of logistic regression
+            Assumes simple decision boundary
+            May not work well for very complex patterns
+            Sensitive to irrelevant features and outliers
+
+        When to use logistic regression
+            Output is categorical
+            Especially binary classification
+            Probability interpretation is useful
 
 
+    3.2.3 k-NN
+======================================
+        Full form:
+            k-Nearest Neighbors
+
+        k-NN is a technique used for classification
+        and sometimes regression
+        by looking at the nearest data points.
+
+        Simple meaning:
+            A new data point is classified
+            based on the most similar nearby points.
+
+        Main idea
+            Similar things tend to belong to the same class.
+
+        Example
+
+            Suppose we want to predict whether a student will pass or fail
+            based on:
+                Study_Hours
+                Attendance
+
+            We look at students with similar study hours and attendance.
+            If most nearby students passed,
+            we predict Pass.
+
+        Meaning of k
+            k is the number of nearest neighbors considered.
+
+        Example:
+            If k = 3
+                look at the 3 nearest points
+
+            If 2 out of 3 are Pass
+                predict Pass
+
+        Simple example
+
+            Existing data:
+                Student A    Study 2 hrs    Fail
+                Student B    Study 3 hrs    Fail
+                Student C    Study 5 hrs    Pass
+                Student D    Study 6 hrs    Pass
+
+            New student:
+                Study 4 hrs
+
+            If k = 3,
+            nearest neighbors may be:
+                3 hrs Fail
+                5 hrs Pass
+                6 hrs Pass
+
+            Majority = Pass
+
+            So prediction = Pass
+
+        How k-NN works
+            1. Choose value of k
+            2. Measure distance from new point to all old points
+            3. Select nearest k points
+            4. Use majority vote for classification
+               or average for regression
+
+        Distance measure
+
+            Common distance:
+                Euclidean distance
+
+            Example between two points
+                Point 1 = (2, 3)
+                Point 2 = (5, 7)
+
+                Distance
+                    = square root of ((5-2)^2 + (7-3)^2)
+                    = square root of (9 + 16)
+                    = square root of 25
+                    = 5
+
+        k-NN for classification
+            Output is category
+
+            Example:
+                Pass or Fail
+                Spam or Not Spam
+
+        k-NN for regression
+            Output is numeric
+
+            Example:
+                Predict marks by averaging marks
+                of nearby students
+
+        Example of k-NN regression
+
+            Nearby marks:
+                60, 65, 70
+
+            Predicted mark:
+                (60 + 65 + 70) / 3
+                = 195 / 3
+                = 65
+
+        Choice of k matters
+
+            Small k
+                More sensitive to noise
+                Can overfit
+
+            Large k
+                More stable
+                But may oversimplify
+
+        Example
+            If k = 1
+                use only nearest one point
+
+            If that point is noisy or wrong,
+            prediction may be poor.
+
+        Strengths of k-NN
+            Easy to understand
+            No complicated training phase
+            Works for classification and regression
+            Useful when similar records matter
+
+        Limitations of k-NN
+            Slow for very large datasets
+            Sensitive to scale of variables
+            Sensitive to irrelevant features
+            Need to choose k carefully
+
+        Important note about scaling
+
+            Suppose one feature is Age
+            and another is Salary.
+
+            Age values:
+                20 to 30
+
+            Salary values:
+                20000 to 80000
+
+            Salary dominates distance calculation
+            unless data is scaled properly.
+
+        So normalization or standardization is often needed before k-NN.
+
+        When to use k-NN
+            Data is not extremely large
+            Similarity-based prediction makes sense
+            Simple baseline classification is needed
 
 
+    3.2.4 k-means
+======================================
+        k-means is a clustering technique.
 
+        Simple meaning:
+            It groups data into k clusters
+            based on similarity.
+
+        Important difference
+            k-means is usually unsupervised learning.
+
+            This means:
+                there is no target label like Pass or Fail.
+                The algorithm finds natural groups on its own.
+
+        Example questions answered by k-means
+            Can customers be grouped by buying pattern?
+            Can students be grouped by performance style?
+            Can cities be grouped by population and income?
+            Can products be grouped by sales behavior?
+
+        Meaning of k
+            k is the number of clusters we want.
+
+        Example:
+            If k = 3
+                data will be divided into 3 groups
+
+        Main idea of k-means
+            1. Choose number of clusters k
+            2. Place k centers, called centroids
+            3. Assign each point to nearest centroid
+            4. Recompute centroids
+            5. Repeat until groups become stable
+
+        Simple example
+
+            Suppose student data has:
+                Study_Hours    Marks
+                2              40
+                3              45
+                8              85
+                9              88
+
+            If k = 2,
+            one cluster may form around low performers
+            and one around high performers.
+
+        Example in business
+
+            Customer data:
+                Income      Spending
+
+            k-means may create groups like:
+                Low income, low spending
+                Medium income, medium spending
+                High income, high spending
+
+        Example in education
+
+            Students can be grouped as:
+                Weak performers
+                Average performers
+                Strong performers
+
+            based on marks and attendance.
+
+        Why k-means is useful
+            Helps find hidden structure in data
+            Useful for segmentation
+            Helps summarize large datasets
+            Useful before further analysis
+
+        Visual idea
+
+            Points close together form one cluster.
+            Points far apart belong to different clusters.
+
+        Example with product sales
+
+            Product    Sales    Profit
+            A          100      10
+            B          110      12
+            C          500      80
+            D          520      85
+
+            k-means with k = 2 may create:
+                Cluster 1:
+                    A, B
+
+                Cluster 2:
+                    C, D
+
+        Meaning of centroid
+            A centroid is the center of a cluster.
+
+            It is usually the average point of cluster members.
+
+        Example
+
+            Points in one cluster:
+                (2, 4), (4, 6), (6, 8)
+
+            Centroid:
+                x average = (2 + 4 + 6) / 3 = 4
+                y average = (4 + 6 + 8) / 3 = 6
+
+            So centroid = (4, 6)
+
+        Strengths of k-means
+            Simple and fast
+            Good for clustering large data
+            Easy to understand
+            Useful in customer segmentation and grouping
+
+        Limitations of k-means
+            Need to choose k in advance
+            Sensitive to initial starting points
+            Sensitive to outliers
+            Works best for roughly round-shaped clusters
+            Requires numeric features
+
+        Important note
+
+            k-means does not know the meaning of the groups.
+            It only groups by distance and similarity.
+
+            So after clustering,
+            humans must interpret what each cluster means.
+
+        Example
+            If k-means gives 3 groups of students,
+            we may later interpret them as:
+                High achievers
+                Average students
+                At-risk students
+
+        Choosing k
+
+            If k is too small
+                very different points may be forced into same cluster
+
+            If k is too large
+                natural groups may be split unnecessarily
+
+            Common methods for choosing k
+                Elbow method
+                Domain knowledge
+                Trial and comparison
+
+        When to use k-means
+            When labels are not available
+            When grouping is needed
+            When data is numeric
+            When similarity-based segmentation is useful
+
+
+    Comparison of the Four Techniques
+
+        Linear regression
+            Predicts numeric value
+            Supervised learning
+
+        Logistic regression
+            Predicts class or probability
+            Supervised learning
+
+        k-NN
+            Predicts using nearest neighbors
+            Usually supervised for classification or regression
+
+        k-means
+            Groups similar data into clusters
+            Unsupervised learning
+
+    Example comparison using student data
+
+        If we want to predict exact marks
+            use linear regression
+
+        If we want to predict Pass or Fail
+            use logistic regression
+
+        If we want to classify a student
+        based on similar past students
+            use k-NN
+
+        If we want to group students into performance categories
+        without labels
+            use k-means
+
+
+    Simple Combined Example
+
+        Dataset:
+            Study_Hours    Attendance    Marks    Pass_Fail
+            2              60            40       Fail
+            3              65            50       Fail
+            5              80            70       Pass
+            6              85            80       Pass
+
+        Linear regression
+            Predict Marks from Study_Hours and Attendance
+
+        Logistic regression
+            Predict Pass_Fail from Study_Hours and Attendance
+
+        k-NN
+            Classify new student by comparing with similar students
+
+        k-means
+            Group students into clusters based on Study_Hours and Marks
+
+
+    Quick Revision
+
+        Linear regression
+            Predicts continuous numeric value
+            Example:
+                marks, sales, price
+
+        Logistic regression
+            Predicts category or probability
+            Example:
+                pass/fail, yes/no
+
+        k-NN
+            Predicts using nearby similar data points
+            Works for classification and regression
+
+        k-means
+            Groups similar records into clusters
+            Used when labels are not given
+
+        Main lesson
+            Different techniques solve different problems.
+            Choose the method based on the type of output
+            and the goal of analysis.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
