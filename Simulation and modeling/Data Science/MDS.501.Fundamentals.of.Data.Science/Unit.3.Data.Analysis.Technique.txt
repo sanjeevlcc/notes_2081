@@ -1,0 +1,995 @@
+
+
+
+Unit.3.Data.Analysis.Technique.[10.Hrs.]
+....3.1.Feature.engineering
+........3.1.1.Feature.generation
+........3.1.2.Feature.selection
+............3.1.2.1.Filters
+............3.1.2.2.Wrappers
+............3.1.2.3.Decision.trees
+............3.1.2.4.Random.forests
+
+....3.2.Common.techniques
+........3.2.1.Linear.regression
+........3.2.2.Logistic.regression
+........3.2.3.k-NN
+........3.2.4.k-means
+
+....3.3.Predictive.data.analysis
+........3.3.1.Introduction
+........3.3.2.Applications
+
+....3.4.Regression.models
+........3.4.1.Linear.regression
+........3.4.2.Logistic.regression
+
+....3.5.Time.series.analysis
+
+
+
+
+
+
+
+
+
+***************************************************
+3.Data.Analysis.Technique.[10.Hrs.]
+....3.1.Feature.engineering
+........3.1.1.Feature.generation
+........3.1.2.Feature.selection
+............3.1.2.1.Filters
+............3.1.2.2.Wrappers
+............3.1.2.3.Decision.trees
+............3.1.2.4.Random.forests
+
+***************************************************
+
+
+Unit 3 Data Analysis Technique [10 Hrs.]
+=====================================================
+    3.1 Feature Engineering
+=====================================================
+        Feature engineering means the process of creating,
+        improving, selecting, and transforming variables
+        so that data becomes more useful for analysis and modeling.
+
+        Simple meaning:
+            Features are the input variables used in data analysis or machine learning.
+            Feature engineering helps make those inputs better.
+
+        Example:
+            Original data:
+                Date of birth
+                Salary
+                City
+                Marks
+
+            After feature engineering:
+                Age from date of birth
+                Salary group from salary
+                Region from city
+                Pass_Fail from marks
+
+
+
+
+
+        Here, new meaningful features were created from raw values.
+
+        Why feature engineering is important
+            Raw data is often not directly useful
+            Good features improve model accuracy
+            Better features help reveal hidden patterns
+            Feature engineering often matters more than the model itself
+
+
+
+        Main goals of feature engineering
+            Create useful new variables
+            Remove unimportant variables
+            Make variables more informative
+            Reduce noise in data
+            Improve performance of analysis and prediction
+
+
+
+
+
+        Example in student dataset
+
+            Original data:
+                Name      Math   Science   English
+                Ram       70     80        75
+                Sita      85     88        90
+
+            Engineered features:
+                Total = Math + Science + English
+                Average = Total / 3
+                Pass_Fail = Pass if Average >= 40
+
+            New data:
+                Name      Total   Average   Pass_Fail
+                Ram       225     75        Pass
+                Sita      263     87.67     Pass
+
+
+
+
+        Feature engineering includes
+            Feature generation
+            Feature transformation
+            Feature extraction
+            Feature selection
+
+
+
+
+        In this unit, the main focus is:
+            Feature generation
+            Feature selection
+
+
+
+        Why feature engineering matters in Data Science
+            Helps simplify complex data
+            Improves predictive power
+            Makes analysis more meaningful
+            Reduces unnecessary variables
+
+
+
+        Example in business
+
+            Original sales data:
+                Product      Quantity      Unit_Price
+
+            New feature:
+                Total_Sales = Quantity x Unit_Price
+
+            This new feature may be more useful than using quantity alone.
+
+
+
+
+
+
+
+
+    3.1.1 Feature Generation
+=====================================================
+        Feature generation means creating new variables
+        from existing data in order to make the data more informative.
+
+        Simple meaning:
+            We build new useful columns from the old columns.
+
+        Why feature generation is needed
+            Raw variables may not capture the full pattern
+            New features can improve model understanding
+            Derived values may be more meaningful
+
+
+
+
+
+        Common ways of feature generation
+
+            Mathematical combinations
+                Sum
+                Difference
+                Ratio
+                Product
+
+            Date-based features
+                Year
+                Month
+                Day
+                Weekday
+                Age
+
+            Group-based features
+                Category totals
+                Frequency counts
+
+            Text-based features
+                Word count
+                Review length
+                Sentiment score
+
+            Domain-based features
+                BMI from height and weight
+                Profit from cost and revenue
+                Attendance percentage from total classes and attended classes
+
+
+
+
+
+
+        Example 1: Marks data
+
+            Original data:
+                Name      Math   Science   English
+                Ram       70     80        75
+
+            Generated features:
+                Total = 70 + 80 + 75 = 225
+                Average = 225 / 3 = 75
+
+            New useful features:
+                Total
+                Average
+
+
+
+
+
+
+
+        Example 2: Date of birth
+
+            Original data:
+                Name      Date_of_Birth
+                Ram       2004-01-10
+
+            Generated feature:
+                Age = current year - birth year
+
+            If current year = 2026
+                Age = 2026 - 2004 = 22
+
+
+
+
+
+
+        Example 3: Sales data
+
+            Original data:
+                Product      Quantity      Unit_Price
+                Rice         20            80
+
+            Generated feature:
+                Total_Sales = 20 x 80 = 1600
+
+
+
+
+
+
+        Example 4: Attendance data
+
+            Original data:
+                Student      Classes_Attended      Total_Classes
+                Ram          36                    40
+
+            Generated feature:
+                Attendance_Percentage
+                = (36 / 40) x 100
+                = 90 percent
+
+
+
+
+
+
+
+        Example 5: Text data
+
+            Original review:
+                "This product is very good"
+
+            Generated features:
+                Number of words = 5
+                Number of positive words = 2
+                Review length = short
+
+
+
+
+
+
+        Example 6: Height and weight
+
+            Original data:
+                Weight = 60 kg
+                Height = 1.7 m
+
+            Generated feature:
+                BMI = Weight / (Height x Height)
+                    = 60 / (1.7 x 1.7)
+                    = 60 / 2.89
+                    = 20.76 approximately
+
+
+
+
+
+
+
+        Why generated features help
+            They often capture real meaning better
+            They may reveal patterns hidden in raw data
+            They may make model simpler and stronger
+
+
+
+
+        Important caution
+            Not every generated feature is useful
+            Too many unnecessary features can create noise
+            Feature generation should be meaningful
+
+
+
+
+        Good feature generation should be
+            Relevant
+            Understandable
+            Useful
+            Based on logic or domain knowledge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    3.1.2 Feature Selection
+=====================================================
+        Feature selection means choosing the most useful features
+        and removing less useful ones.
+
+        Simple meaning:
+            We keep important variables
+            and drop unnecessary or weak variables.
+
+        Why feature selection is important
+            Too many features can confuse the model
+            Some features may be irrelevant
+            Some features may repeat the same information
+            Removing weak features can improve speed and accuracy
+
+
+
+
+        Example
+
+            Suppose student dataset contains:
+                Name
+                Roll
+                Age
+                Attendance
+                Study_Hours
+                Marks
+                Favorite_Color
+
+            If goal is to predict marks,
+            features like Attendance and Study_Hours may be useful,
+            but Favorite_Color may not be useful.
+
+        So feature selection helps choose the right inputs.
+
+        Benefits of feature selection
+            Reduces noise
+            Improves model performance
+            Reduces overfitting
+            Makes results easier to interpret
+            Saves computational time
+
+
+
+
+
+        Common approaches to feature selection
+            Filters
+            Wrappers
+            Embedded methods
+
+        In this unit, focus is on:
+            Filters
+            Wrappers
+            Decision trees
+            Random forests
+
+
+
+
+
+
+
+
+
+
+
+
+        3.1.2.1 Filters
+=====================================================
+            Filter methods select features by looking at the data itself,
+            without training a full model first.
+
+            Simple meaning:
+                Features are scored using statistical measures,
+                then useful ones are selected.
+
+            Why called filter
+                Because they filter out weak variables before modeling.
+
+            Common filter ideas
+                Correlation with target
+                Variance threshold
+                Chi-square score
+                Information gain
+                Mutual information
+
+
+
+
+            Example using correlation
+
+                Suppose we want to predict marks.
+
+                Features:
+                    Study_Hours
+                    Attendance
+                    Shoe_Size
+
+                If correlation with marks is:
+                    Study_Hours     0.80
+                    Attendance      0.72
+                    Shoe_Size       0.05
+
+                Then Study_Hours and Attendance are more useful,
+                while Shoe_Size may be removed.
+
+            Example using variance
+
+                If one feature has almost same value for every row,
+                it gives little information.
+
+                Example:
+                    Feature = 1, 1, 1, 1, 1
+
+                Variance is zero,
+                so it is not useful for distinguishing records.
+
+            Strengths of filters
+                Fast
+                Simple
+                Easy to apply
+                Good for large datasets
+
+            Limitations of filters
+                They do not check interaction between features well
+                A feature may look weak alone but useful in combination
+
+            Example
+                A feature may have low correlation by itself,
+                but together with another feature it may become important.
+
+            So filters are fast,
+            but sometimes too simple.
+
+
+        3.1.2.2 Wrappers
+=====================================================
+            Wrapper methods select features by actually training a model
+            and testing how well different feature combinations perform.
+
+            Simple meaning:
+                Instead of judging features only by statistics,
+                wrappers check their real usefulness in a model.
+
+            Why called wrapper
+                Because the feature selection process wraps around a model.
+
+            How wrapper methods work
+                Choose a subset of features
+                Train a model
+                Evaluate performance
+                Try another subset
+                Keep the best subset
+
+            Example
+
+                Features:
+                    Study_Hours
+                    Attendance
+                    Sleep_Hours
+
+                Try model with:
+                    Study_Hours only
+                    Attendance only
+                    Study_Hours + Attendance
+                    Study_Hours + Sleep_Hours
+                    All three
+
+                Select the combination giving best performance.
+
+            Common wrapper methods
+                Forward selection
+                Backward elimination
+                Stepwise selection
+
+            Forward selection
+                Start with no features
+                Add one feature at a time
+                Keep adding the best one
+
+            Backward elimination
+                Start with all features
+                Remove the weakest one step by step
+
+            Stepwise selection
+                Combination of forward and backward ideas
+
+            Strengths of wrappers
+                Often more accurate than simple filters
+                Evaluates real model performance
+                Can capture feature interaction better
+
+            Limitations of wrappers
+                Slower
+                Computationally expensive
+                Harder for very large datasets
+
+            Example in marks prediction
+
+                Possible features:
+                    Attendance
+                    Study_Hours
+                    Homework
+                    Favorite_Food
+
+                Wrapper method may test combinations
+                and find that:
+                    Attendance + Study_Hours + Homework
+                gives best prediction.
+
+                Favorite_Food may not improve performance.
+
+            Summary
+                Wrappers are powerful,
+                but more costly than filters.
+
+
+        3.1.2.3 Decision Trees
+=====================================================
+            Decision trees can be used for feature selection
+            because they naturally choose important variables
+            while splitting the data.
+
+            Simple meaning:
+                A decision tree picks features that best separate the data.
+
+            Example idea
+
+                Predict Pass or Fail using:
+                    Attendance
+                    Study_Hours
+                    Age
+
+                A decision tree may first split using Attendance
+                because it gives the clearest separation.
+
+                Then it may split using Study_Hours.
+
+                Age may never be used if it is not helpful.
+
+            This suggests:
+                Attendance and Study_Hours are important features
+                Age may be less useful
+
+            Why decision trees help in feature selection
+                Important features appear near the top of the tree
+                Less useful features may not appear at all
+                Tree algorithms measure feature importance
+
+            Common criteria used by decision trees
+                Information gain
+                Gini impurity reduction
+                Entropy reduction
+
+            Example
+
+                Dataset:
+                    Attendance    Study_Hours    Pass_Fail
+                    High          High           Pass
+                    Low           Low            Fail
+                    High          Medium         Pass
+
+                Tree may select Attendance first
+                because it separates Pass and Fail strongly.
+
+            Strengths of decision trees for feature selection
+                Easy to understand
+                Captures nonlinear patterns
+                Automatically ranks importance
+
+            Limitations
+                One tree may be unstable
+                Small data changes can affect the tree
+                Importance may vary with data
+
+            Practical meaning
+                If a feature is repeatedly used in strong splits,
+                it is likely important.
+
+
+        3.1.2.4 Random Forests
+=====================================================
+            Random forests are a collection of many decision trees.
+
+            They can also be used for feature selection
+            by measuring how important each feature is across many trees.
+
+            Simple meaning:
+                Random forest gives a more stable estimate
+                of feature importance than a single decision tree.
+
+            Why random forests are useful
+                One tree may be unstable
+                Many trees together give more reliable importance scores
+
+            How random forests estimate importance
+                They observe how much each feature helps reduce uncertainty
+                across many trees.
+
+            Example
+
+                Features for student result prediction:
+                    Attendance
+                    Study_Hours
+                    Homework
+                    Favorite_Color
+
+                Random forest importance may be:
+                    Attendance       Very high
+                    Study_Hours      High
+                    Homework         Medium
+                    Favorite_Color   Very low
+
+                So Favorite_Color may be removed.
+
+            Another example in business
+
+                Features for sales prediction:
+                    Price
+                    Advertising
+                    Festival
+                    Product_Code
+
+                Random forest may show:
+                    Advertising and Price are most important,
+                    Product_Code is less useful as direct predictor.
+
+            Strengths of random forests
+                More stable than single decision tree
+                Handles complex relationships
+                Good for ranking feature importance
+                Works well in many practical problems
+
+            Limitations
+                More complex than one tree
+                Slower than simple filters
+                Importance interpretation is less visually simple
+
+            Why random forests are popular for feature selection
+                They are often accurate
+                They can handle many variables
+                They can model interactions and nonlinear effects
+
+        Simple comparison of feature selection methods
+
+            Filters
+                Fast
+                Simple
+                Use statistical scores
+                Good for initial selection
+
+            Wrappers
+                More accurate
+                Test real model performance
+                Slower
+
+            Decision trees
+                Easy to interpret
+                Naturally choose useful split variables
+
+            Random forests
+                More stable than single tree
+                Strong for feature importance ranking
+
+        Example using one student dataset
+
+            Features:
+                Attendance
+                Study_Hours
+                Homework
+                Age
+                Favorite_Color
+
+            Goal:
+                Predict final marks
+
+            Filter method
+                May remove Favorite_Color due to low correlation
+
+            Wrapper method
+                May test combinations and keep:
+                    Attendance + Study_Hours + Homework
+
+            Decision tree
+                May split first on Attendance,
+                then Study_Hours
+
+            Random forest
+                May rank:
+                    Attendance as most important
+                    Favorite_Color as least important
+
+        Important caution
+
+            Feature selection should not be based only on one method.
+            Domain knowledge is also important.
+
+            Example:
+                A medical variable may seem weak statistically,
+                but doctors may know it is important.
+
+        Final understanding
+
+            Feature engineering improves input variables.
+            Feature generation creates new useful features.
+            Feature selection keeps the best features.
+
+            Good features help data analysis become:
+                More meaningful
+                More accurate
+                More efficient
+
+
+
+
+
+
+
+
+
+
+
+
+        Quick Revision
+=====================================================
+            Feature engineering
+                Improving features for analysis and modeling
+
+            Feature generation
+                Creating new useful variables from existing data
+
+            Feature selection
+                Choosing the most important variables
+
+            Filters
+                Fast statistical selection before modeling
+
+            Wrappers
+                Model-based feature subset selection
+
+            Decision trees
+                Use split quality to identify important features
+
+            Random forests
+                Use many trees to provide stable feature importance
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************
+....3.2.Common.techniques
+........3.2.1.Linear.regression
+........3.2.2.Logistic.regression
+........3.2.3.k-NN
+........3.2.4.k-means
+***************************************************
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************
+....3.3.Predictive.data.analysis
+........3.3.1.Introduction
+........3.3.2.Applications
+***************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************
+....3.4.Regression.models
+........3.4.1.Linear.regression
+........3.4.2.Logistic.regression
+***************************************************
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************
+....3.5.Time.series.analysis
+***************************************************
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************
+
+***************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************
+
+***************************************************
+
+
+
+
+
+
+
+
+
+
