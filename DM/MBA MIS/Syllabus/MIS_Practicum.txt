@@ -1,0 +1,202 @@
+Management Information System Practicum
+Pokhara University
+Faculty of Management Studies
+
+Course code: MIS 522
+Full marks: 100
+Course title: Management Information System Practicum
+Pass marks: 60
+Nature of the course: Practical
+Credit hours: 1.0
+Year: 1
+Trimester: III
+Total hours: 12
+Level: Master
+Program: MBA
+
+
+
+
+
+1. Course Description
+
+The course emphasizes the practical application of MIS concepts through hands-on projects,
+covering the complete lifecycle of MIS projects, from planning and design to implementation
+and evaluation. Students will engage in real-world scenarios, developing essential skills in
+project management, system design, data analysis, and more. The practicum culminates in the
+presentation and evaluation of a final project, integrating theoretical knowledge with practical
+experience. The course structure covers:
+
+Practical application of Management Information Systems (MIS) concepts
+Focus on hands-on projects covering the MIS project lifecycle
+Development of project management, system design, and data analysis skills
+Real-world scenarios and experiential learning
+Culmination in a final project presentation and evaluation
+
+
+
+
+
+
+2. General Objectives
+
+The primary objective of this course is to equip MBA students with practical skills and
+knowledge in the field of Management Information Systems. By engaging in hands-on projects
+and real-world applications, students will:
+
+To familiarize students with the role and importance of MIS in organizations
+To enhance understanding of project planning, management, and execution within an MIS context
+To develop skills in gathering and analyzing system requirements
+To make students proficient in system design, development, and data management techniques
+To equip students to effectively communicate technical information through presentations and reports
+To prepare students for practical challenges in the implementation and testing of information systems
+
+
+
+
+
+
+3. Contents in Detail
+
+Management Information Systems Practicum typically focuses on providing practical
+experience in the field of MIS. It combines theoretical knowledge with real-world
+application, allowing students to work on projects, case studies, and potentially real business
+scenarios. The trimester system regulations of Pokhara University for master's level
+programs under the Faculty of Management Studies (FMS) grant autonomy to faculty
+members in developing course details and preparing teaching plans. Faculty members are
+empowered to adapt and modify course content to align with market needs and contextual
+demands, provided that the core objectives and major components of the course remain
+intact. The suggested course contents are as follows:
+
+
+
+
+
+
+Unit I: Data Collection, Cleaning, and Preparation (3 Hours)
+
+Objective:
+Understand how to collect, clean, and prepare data for analysis.
+
+1.1 Provide a dataset (e.g., sales data, customer data)
+1.2 Students will use a tool like Excel or Power BI to clean the dataset
+by removing duplicates, handling missing values, and normalizing
+the data for analysis
+1.3 Perform basic descriptive statistics (mean, median, mode) and
+summary statistics (e.g., pivot tables in Excel or Power BI)
+1.4 Deliverable: Students submit a cleaned dataset along with a summary
+report showing key trends or patterns identified during cleaning
+
+
+
+
+
+
+Unit II: Data Visualization with Power BI or any other available tool (3 Hours)
+
+Objective:
+Create interactive dashboards to visualize business performance.
+
+2.1 Students will import the cleaned dataset into Power BI
+2.2 Use Power BI’s visualization tools (e.g., bar charts, line charts, pie
+charts, maps) to create a dynamic, interactive dashboard
+2.3 Incorporate slicers and filters for different business perspectives
+(e.g., sales by region, product category performance)
+2.4 Emphasize storytelling with data and provide actionable business
+insights
+2.5 Deliverable: An interactive Power BI dashboard and a report
+summarizing the key insights derived from the visualizations
+
+
+
+
+
+
+Unit III: Business Intelligence Tools for Decision-Making (3 Hours)
+
+Objective:
+Use BI tools to analyze data for business decision-making.
+
+3.1 Introduce a business scenario (e.g., analyzing customer churn,
+optimizing sales strategies)
+3.2 Students will use BI tools such as Tableau or Power BI to build a
+report that incorporates KPIs, forecasting, and what-if analysis
+3.3 Use DAX (Data Analysis Expressions) in Power BI or similar
+formulas in Tableau to create measures and calculated fields that
+reflect business performance metrics
+3.4 Deliverable: A business report that includes forecasting trends,
+decision-making recommendations, and an explanation of how the
+BI tool helped in deriving these insights
+
+
+
+
+
+
+Unit IV: Big Data Analytics and Business Applications (3 Hours)
+
+4.1 Provide students with a sample big data set (e.g., large-scale retail
+data, customer purchase behavior)
+4.2 Introduce big data analytics concepts like Hadoop, Apache Spark, or
+cloud-based analytics platforms (AWS, Google Cloud)
+4.3 Use Power BI or Excel with external data sources to analyze trends
+such as customer segmentation, market basket analysis, or sales
+optimization
+4.4 Deliverable: A project report showing the application of big data
+analytics tools and techniques, along with insights and business
+recommendations
+
+Note:
+The figures in the parentheses indicate the approximate teaching hours for the respective units.
+
+
+
+
+
+
+4. Methods of Instruction
+
+Practical and project
+
+
+
+
+
+
+5. Evaluation System and Students’ Responsibilities
+
+5.1 Evaluation System
+
+Both internal and external evaluations will be based on attendance, assignment, class
+participation, self-reflection, project work, and presentation of the project report learning and
+practicals. The faculty will provide final grades of the students. Thus, there will be no trimester
+end examination and all evaluations will be conducted continuously throughout the trimester.
+
+The evaluation process will consider the clarity and detail of the project plan, the thoroughness
+of the requirements document, and the quality of the system prototype and testing. The final
+presentation will be assessed for its communication effectiveness and organization. Participation
+and engagement throughout the project will also be taken into account.
+
+5.2 Students’ Responsibilities
+
+Students are advised to attend all the classes/sessions and complete all the assignments within
+the specified time period. If a student does not attend the sessions, it is his/her sole responsibility
+to cover the topic(s) taught during the period. If a student fails to attend a formal exam, quiz,
+test, etc. and there is not any provision for a re-exam.
+
+6. Suggested Text Books and References
+
+The following materials are suggested as reference:
+
+Text Book
+
+Sharda, R., Delen, D., & Turban, E. (5th ed.)
+Business Intelligence, Analytics, and Data Science: A Managerial Perspective
+Pearson
+
+References
+
+Turban, E., et al. (2020)
+Information Technology for Management: Digital Strategies for
+Insight, Action, and Sustainable Performance (11th ed.)
+Wiley
