@@ -1,0 +1,277 @@
+
+
+Management Information System
+Pokhara University
+Faculty of Management Studies
+
+Course code: MIS 521
+Full marks: 100
+Course title: Management Information System
+Pass marks: 60
+Nature of the course: Theory & Practice
+Credit hours: 2.0
+Year: 1
+Trimester: III
+Total hours: 24
+Level: Master
+Program: MBA / MBA (Finance) / MBA (Global Business)
+
+
+
+
+
+1. Course Description
+
+This course provides an overview of Management Information Systems (MIS) and their role in
+the strategic planning, control, and operational activities of organizations. It covers the
+foundational concepts, technologies, and management strategies needed to effectively use
+information systems to achieve business objectives.
+
+
+
+
+
+
+2. General Objectives
+
+The general objectives of this course are:
+
+- Understand the role and importance of MIS in modern organizations.
+- Explore various types of information systems and their applications in business.
+- Learn about the development, implementation, and management of information systems.
+- Analyze the impact of emerging technologies on business strategies.
+- Develop skills to effectively manage information resources and support decision-making processes.
+
+
+
+
+
+
+3. Contents in Detail
+
+The trimester system regulations of Pokhara University for master's level programs under the
+Faculty of Management Studies (FMS) grant autonomy to faculty members in developing
+course details and preparing teaching plans. Faculty members are empowered to adapt and
+modify course content to align with market needs and contextual demands, provided that the
+core objectives and major components of the course remain intact. The suggested course
+contents are as follows:
+
+
+
+
+
+
+Unit I: Introduction to MIS (4 Hours)
+
+1.1 Definition and significance of MIS and Evolution
+1.2 Types of information systems: TPS, MIS, DSS, ESS
+1.3 Information systems in the global business environment
+1.4 Business Applications, development, and management
+
+Objectives:
+- Understand the definition, types, and significance of Information Systems.
+- Describe the components of IS and how they interact.
+- Analyze the role of IS in supporting business operations and decision-making.
+- Analyze how IS can provide a competitive advantage.
+- Understand the relationship between business strategies and IS strategy.
+
+
+
+
+
+
+Unit II: Information Technology Infrastructure and Emerging Technologies (5 Hours)
+
+2.1 Hardware and software components
+2.2 Database management systems
+2.3 Networking and telecommunications
+2.4 Introduction to New and Emerging Technologies
+    (Cloud, Sensor Networks, SNS, Block Chain, IoT, etc.)
+
+Objectives:
+- Explore frameworks like Porter’s Five Forces and Value Chain Analysis in the context of IS.
+
+
+
+
+
+
+Unit III: Information Systems and Business Strategy (4 Hours)
+
+3.1 Role of IS in business strategy
+3.2 Strategic alignment of IS and business goals
+3.3 Competitive advantage through IS
+3.4 Porter’s Five Forces and Value Chain Analysis
+3.5 Case studies on IS strategy
+
+Objectives:
+- Understand the concept of e-commerce and its role in modern business.
+- Analyze different e-commerce models and technologies.
+- Develop practical skills for implementing basic e-commerce solutions.
+
+
+
+
+
+
+Unit IV: E-Business and E-Commerce (3 Hours)
+
+4.1 E-business models and strategies
+4.2 E-commerce platforms and technologies
+4.3 Impact of e-commerce on traditional business models
+4.4 Future technologies in E-Business and E-Commerce systems
+
+Objectives:
+- Analyze how databases can be used for competitive advantage.
+- Understand the relationship between business strategy, IS strategy, and business intelligence.
+
+
+
+
+
+
+Unit V: Data Management and Business Intelligence (4 Hours)
+
+5.1 Importance of data in decision-making
+5.2 Data warehousing and data mining
+5.3 Business intelligence tools and techniques
+5.4 Big data analytics and its business applications
+
+Objectives:
+- Understand the importance of cyber security in protecting information systems.
+- Learn about common threats, vulnerabilities, and attack vectors.
+- Develop practical skills in implementing security measures and best practices to protect IS.
+
+
+
+
+
+
+Unit VI: Cyber Security and Ethical and Legal Issues in MIS (4 Hours)
+
+6.1 Fundamentals of cyber security
+6.2 Types of cyber threats and attacks
+6.3 Security and ethical issues in e-commerce
+6.4 Privacy and data protection
+6.5 Ethical issues in information technology
+6.6 Legal frameworks and compliance
+6.7 Security audit processes and methodologies
+6.8 Case studies on ethical dilemmas and legal issues in MIS
+
+Note:
+The figures in the parentheses indicate the approximate teaching hours for the respective units.
+
+
+
+
+
+
+4. Methods of Instruction
+
+Lectures:
+- Lectures will cover core theoretical concepts and provide foundational knowledge
+  on Information Systems.
+- They will be interactive, using multimedia presentations, real-world examples,
+  and case studies to illustrate key points.
+- Lectures will encourage questions and discussions to deepen understanding.
+
+Case Studies and Real-World Examples:
+- Case studies will be used to demonstrate how businesses and organizations use
+  Information Systems to solve problems and achieve strategic goals.
+- Students will analyze these cases, identify challenges, and propose solutions,
+  bridging the gap between theory and practice.
+
+Hands-on Labs and Practical Sessions:
+- Practical lab sessions will allow students to apply theoretical knowledge using
+  various tools and technologies.
+- For instance, students will set up virtual machines, implement basic
+  cybersecurity measures, and develop a simple e-commerce website.
+- These labs will provide hands-on experience with software like VMware,
+  VirtualBox, MySQL, and web development tools, facilitating experiential learning.
+
+Group Projects and Collaborative Learning:
+- Group projects will encourage collaboration and teamwork, simulating real-world
+  scenarios where students design, implement, or evaluate Information Systems.
+- These projects will foster communication skills and the ability to work effectively
+  in a team, which are crucial in the IT industry.
+
+Guest Lectures and Industry Insights:
+- Guest lectures from industry professionals and experts will provide students with
+  insights into current industry practices, emerging technologies, and career
+  opportunities in Information Systems.
+- These sessions will connect academic learning with industry realities.
+
+
+
+
+
+
+5. Evaluation System and Students’ Responsibilities
+
+5.1 Evaluation System
+
+At the beginning of each trimester, the faculty should provide detailed course outline
+and evaluation scheme to the students. The performance of a student in a course is
+evaluated on the basis of continuous evaluation and trimester-end examination. Sixty
+percent weight is given to the continuous evaluation and forty percent weight to the
+trimester-end examination.
+
+5.1.1 Internal Evaluation
+
+The internal evaluation is based on continuous evaluation process. The internal
+evaluation components and their respective weights may vary according to the
+nature and objectives of the course. An evaluation plan should be prepared by the
+faculty and should share with the students in the beginning of the course.
+
+The internal evaluation components may consist of any combination of written test,
+quizzes and oral test, workshop, assignments, term paper, project work, case study
+analysis and discussion, open book test, class participation and any other test
+deemed to be suitable by the faculty.
+
+5.1.2 End-term Examination / Evaluation
+
+There will be end-term examination at the end of the term. The end-term
+examination may be based on problem solving questions, analytical questions,
+case studies or any other formats as per the nature of a course. It carries 40
+percent weight of total evaluation.
+
+5.1.3 Students’ Responsibilities
+
+Each student must secure at least 60 percent marks in the internal evaluation with 80
+percent attendance in the class to appear in the Trimester End Examination. Failing to
+obtain such score will be given NOT QUALIFIED (NQ) and the student will not be
+eligible to appear in the End-Term examinations. Students are advised to attend all the
+classes and complete all the assignments within the specified time period. If a student
+does not attend the class(es), it is his/her sole responsibility to cover the topic(s) taught
+during the period. If a student fails to attend a formal exam, quiz, test, etc., there is not
+any provision for a re-exam.
+
+
+
+
+
+
+6. Suggested Text Books and References
+
+Text Book
+
+Behl, R., O'Brien, J. A., & Marakas, G. M.
+Management Information Systems.
+McGraw Hill Education (India) Private Limited.
+
+References
+
+Laudon, K.C., & Laudon, J.P.
+Management Information Systems.
+
+Erl, Thomas, Puttini R. & Mahmood, Z.
+Cloud Computing: Concepts, Technology & Architecture.
+
+Singer, P.W. & Friedman, A.
+Cybersecurity and Cyberwar: What Everyone Needs to Know.
+
+Laudon, K. C. and Traver, C. G.
+E-commerce 2024: Business, Technology, Society.
+
+Quinn, M. J.
+Ethics for the Information Age.
