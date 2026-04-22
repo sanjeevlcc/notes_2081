@@ -1,0 +1,307 @@
+
+
+Pokhara University
+Faculty of Management Studies
+
+Course Code: CMP 277
+Full marks: 100
+Course title: Data Communication and Networks
+Pass marks: 45
+Nature of the course: Theory + Practical
+Credit Hrs: 3
+Year: Second
+Total periods: 48 hours
+Level: Bachelor
+Program: BCSIT
+Semester: IV
+
+1. Course Description
+Data Communication and Networks is an introductory course designed to provide students
+with a comprehensive understanding of the fundamental concepts, principles, and
+technologies underlying data communication and computer networks. The course covers
+various topics, including digital communication system, network architecture, network
+reference models, standards and protocols, transmission media, transmission impairment,
+networking devices, network protocols, flow control and error control, congestion control
+mechanism and network security. Through a combination of theoretical knowledge and
+practical exercises, students will gain the necessary skills to design, implement, and manage
+computer networks effectively.
+
+It includes the following information about the course:
+- Understand the basic concepts and terminology related to data communication and networking.
+- Learn about the Nyquist Theorem and Shannon Channel Capacity Theorem.
+- Explore the OSI (Open Systems Interconnection) and TCP/IP (Transmission Control Protocol/Internet Protocol) reference models and their layers.
+- Analyze different network topologies, such as bus, star, ring, mesh, and hybrid, and understand their advantages and limitations.
+- Learn about various networking devices, including routers, switches, hubs, and access points, and their roles in network communication.
+- Examine different types of transmission media, such as twisted pair, coaxial cable, fiber-optic cable, and wireless, and understand their characteristics and applications.
+- Explore networking protocols, including Ethernet, IP, TCP, UDP, HTTP, DNS, and SMTP, and understand their functions and mechanisms.
+- Learn about network addressing and subnetting, including IPv4 and IPv6 addressing schemes.
+- Understand the principles of error detection and correction, including parity check, checksum, and cyclic redundancy check (CRC).
+- Understand the different types of interior and exterior routing protocols.
+- Get the hands-on experience on connecting ethernet and RJ45 connectors and transfer the data.
+- Study various network security concepts and mechanisms, including encryption, authentication, firewalls, intrusion detection/prevention systems (IDS/IPS), and virtual private networks (VPNs).
+- Gain practical experience in configuring and managing computer networks using network simulation tools (Cisco Packet Tracer and Wireshark) and real-world networking equipment.
+- Gain practical experience on configuring different routing protocols on Cisco devices.
+
+2. General Objectives
+After the completion of this course student will be:
+- Understand the basics of data communication, networking, internet and their importance.
+- Understand the capacity of noisy and noiseless communication channel.
+- Analyze the services and features of various protocol layers in data networks.
+- Differentiate wired and wireless computer networks.
+- Analyze TCP/IP and their protocols.
+- Recognize the different internet devices and their functions.
+- Identify the basic security threats of the network.
+- Design and configure peer-to-peer networks to share resources.
+- Analyze requirements and design network architecture for a given scenario.
+- Design and configure IP addressing schemes for a given scenario.
+- Design and configure a client-server network and required network services for a given scenario.
+- Evaluate and critique a design for a systems and network solution.
+
+3. Method of Instructions
+General Instructional Technique: Lecture, Discussion, Readings, Question Answer
+Specific Instructional Technique: Practical works, Project Based Learning, Self-Directed Learning, Industry Insights and Case Study
+
+
+
+
+
+
+
+
+
+
+
+
+4. Course Contents
+
+Unit I: Introduction to Data Communication [5 Hrs.]
+1.1 Introduction to data communication
+1.2 Data Transmission Modes (simplex, half-duplex, and full-duplex)
+1.3 Fundamental Characteristics of Data Communication
+1.4 Components of Data Communication System
+1.5 Block Diagram of Digital Communication System
+1.6 Introduction to Analog to Digital System
+1.7 Advantages of digital transmission over Analog
+1.8 Sampling Theorem / Nyquist Sampling Theorem
+1.9 Numerical
+1.10 Shannon Channel Capacity Theorem
+1.11 Bit Rate Vs Baud Rate
+1.12 Numerical
+1.13 Line Coding (Unipolar, Polar and Bi-Polar)
+
+Unit II: Introduction to Computer Networks [5 Hrs.]
+2.1 Definitions, Uses, Benefits
+2.2 Network Topologies and its types (Bus, Star, Ring, Mesh, Hybrid)
+2.3 Types of Computer Networks (PAN, LAN, MAN, WAN, CAN)
+2.4 Networking Types (Client/Server, P2P)
+2.5 Overview of Protocols and Standards
+2.6 OSI Reference Model
+2.7 TCP/IP Models and its Comparison with OSI
+2.8 Networking Hardware: NIC, Hub, Repeater, Switch, Bridge, Router
+2.9 Basic Networking Commands
+
+Unit III: Physical Layer and its Design Issues [7 Hrs.]
+3.1 Introduction, Design Issues and Duties of Physical Layer
+3.2 Transmission Media:
+   Guided (Twisted Pair, Coaxial Cable, Optical Fiber)
+   Unguided (Radio Wave, Microwave, Infrared, Satellite)
+3.3 Ethernet Cable Standards
+3.4 Ethernet, Fast-Ethernet and Giga-Ethernet
+3.5 IEEE 802.11 (Wi-Fi) and IEEE 802.15.1 (Bluetooth) Standards
+3.6 Signals
+3.7 Transmission Impairment: Attenuation, Distortion and Noise
+3.8 Multiplexing: TDM, FDM and WDM
+3.9 Switching: Circuit Switching, Message Switching, Packet Switching, Virtual Circuit Switching
+3.10 Network Performance: Bandwidth, Throughput, Latency, Bandwidth-Delay Product, Jitter
+
+Unit IV: Data Link Layer [8 Hrs.]
+4.1 Functions of Data Link Layer (DLL)
+4.2 Overview of Logical Link Control (LLC) and Media Access Control (MAC)
+4.3 Framing and its Types
+4.4 Flow Control Mechanism: Simple Stop and Wait ARQ, Sliding Window, Go-Back-N ARQ, Selective Repeat ARQ
+4.5 Error Detection and Correction Techniques: Parity Check, Checksum, Cyclic Redundancy Check (CRC) and Hamming Code
+4.6 Numerical
+4.7 Channel Allocation Techniques (Multiple Access Techniques): Random Access, ALOHA, Pure ALOHA, Slotted ALOHA
+4.8 Carrier Sense Multiple Access (CSMA): CSMA/CD and CSMA/CA
+4.9 VLAN
+
+Unit V: Network Layer [10 Hrs.]
+5.1 Network Layer and its Functions
+5.2 IPv4 Address and its Headers, IPv4 Classes
+5.3 Private IP vs Public IP
+5.4 Subnetting, Subnet Mask, FLSM, VLSM
+5.5 Case Study
+5.6 Issues with IPv4
+5.7 Overview of IPv6 and its Header Format
+5.8 Transition from IPv4 to IPv6
+5.9 Routing: Adaptive and Non-Adaptive Routing, Distance Vector and Link State Routing
+5.10 Famous Routing Protocols: RIP, OSPF, EIGRP, BGP
+5.11 Ping (Lab Related), ICMP and NATing
+
+Unit VI: Transport Layer [5 Hrs.]
+6.1 Introduction, Functions and Services
+6.2 Transport Layer Protocols: TCP, UDP, SCTP, RTP and Their Comparisons, TCP/UDP Segment Structure
+6.3 Connection Oriented vs Connectionless Services
+6.4 Port Addressing Overview
+6.5 Introduction to Ports and Sockets, Socket Programming
+6.6 Congestion Control: Open Loop and Closed Loop Congestion Control
+6.7 Traffic Shaping Algorithms: Leaky Bucket and Token Bucket
+6.8 Queuing Techniques for Scheduling
+
+Unit VII: Application Layers [4 Hrs.]
+7.1 Introduction and Functions
+7.2 Web and HTTP/HTTPS
+7.3 DNS and its Working Principle, DNS Query
+7.4 Email Protocols: SMTP, IMAP, POP3
+7.5 File Transfer Protocols: FTP, SFTP
+7.6 DHCP and its Working Principle
+
+Unit VIII: Network Management and Network Security [4 Hrs.]
+8.1 Introduction to Network Management
+8.2 SNMP Protocol
+8.3 Data Security, its types, key risks in data security
+8.4 Network Security: Introduction, Types of Network Attacks, Countermeasures to prevent network attacks
+8.5 Cryptography: Symmetric Key and Asymmetric Key Cryptography
+8.6 VPN, Firewalls and Proxy
+
+
+
+
+
+
+
+5. Laboratory Work
+
+i. Build and Test a Network Cable (Ethernet Cable and RJ45 Crimping)
+
+ii. OS (Ubuntu/Windows) Installation, Practice Basic Networking Commands
+(ipconfig, ipconfig/all, ping, arp, netstat, nbtstat, nslookup)
+
+iii. File sharing between PCs connected across static IP addresses
+
+iv. Introduction to Cisco Packet Tracer, Connection of Simple Network and Ping all the devices
+
+v. VLAN Creation and VLAN Trunking using Cisco Packet Tracer / Cisco devices
+
+vi. Basic Router Configuration, Static Routing Implementation
+
+vii. Subnetting Implementation using Cisco Packet Tracer / Cisco devices
+
+viii. Implementation of Cyclic Redundancy Check using any programming language
+
+ix. DHCP Implementation using Cisco Packet Tracer / Cisco devices
+
+x. Implementation of Dynamic / Interior / Exterior Routing Protocols
+(RIP, OSPF, EIGRP and BGP) using Cisco Packet Tracer / GNS3 / Cisco devices
+
+xi. Firewall Implementation, Router Access Control List (ACL) using Cisco Packet Tracer
+
+xii. Packet Capture and Header Analysis by Wireshark
+
+xiii. DNS, Web, FTP, DHCP Server Configuration using Cisco Packet Tracer / Cisco devices
+
+xiv. Case Study: Visit Nearby Enterprise Network or ISP or Nepal Telecom
+BTS / BSC / MSC / Data Centers and Prepare report
+
+xv. Lab Exam, Report and VIVA
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Evaluation System and Student’s Responsibility
+
+In addition to the formal exam(s), the internal evaluation of a student may consist of
+quizzes, assignments, lab reports, projects, class participation, etc.
+The tabular presentation of the internal evaluation is as follows.
+
+Internal Evaluation
+Theory: 30
+Semester End: 50
+
+Attendance & Class Participation: 10% = 3
+Assignments: 20% = 6
+Presentations / Quizzes: 10% = 3
+Internal Assessment: 60% = 18
+
+Practical: 20
+Attendance & Class Participation: 10% = 2
+Lab Report / Project Report: 20% = 4
+Practical Exam / Project Work: 40% = 8
+Viva: 30% = 6
+
+Total Internal: 50
+Full Marks: 50 + 50 = 100
+
+
+Student’s Requirements
+
+Each student must secure at least 45% marks separately in both internal assessment and
+practical evaluation with a minimum of 80% attendance in the class in order to appear in the
+Semester End Examination. Failing to get such score will be given NOT QUALIFIED (NQ)
+to appear the Semester-End Examinations. Students are advised to attend all the classes,
+formal exam, test, etc. and complete all the assignments within the specified time period.
+Students are required to complete all the requirements defined for the completion of the course.
+
+
+
+
+
+
+
+
+
+7. List of Tutorials
+
+Unit I – Nyquist Sampling Theorem, Nyquist Rate, Shannon Channel Capacity,
+Bit Rate vs Baud Rate and Line Coding
+
+Unit IV – Error Correction and Detection Techniques: Checksum,
+Cyclic Redundancy Check (CRC), Hamming Code
+
+Unit V – IPv4 Subnetting
+
+
+
+
+
+
+
+
+
+8. Prescribed Books and References
+
+Prescribed Text Books
+
+1. Data Communications and Networking, 4th Edition, Behrouz A. Forouzan,
+McGraw-Hill
+
+2. Computer Networking: A Top Down Approach Featuring The Internet, 2nd Edition,
+Kurose James F., Ross W. Keith, Pearson Education Asia
+
+3. Peterson and Davie, "Computer Networks, A Systems Approach", 5th Edition,
+Morgan Kaufman, ISBN: 978-0123850591
+
+
+Reference Books
+
+Steven Holzner, "HTML Black Book", Dreamtech Press
+
+Web Technologies, Black Book, Dreamtech Press
+
+Web Applications: Concepts and Real World Design, Knuckles, Wiley-India
+
+Internet and World Wide Web How to Program, P.J. Deitel & H.M. Deitel, Pearson
+
+Computer Networks, A Top Down Approach, 6th Edition, Kurose / Ross
+
+
+
