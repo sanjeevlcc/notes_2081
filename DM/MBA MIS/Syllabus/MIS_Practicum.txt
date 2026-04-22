@@ -72,9 +72,9 @@ intact. The suggested course contents are as follows:
 
 
 
-
+==================================================================
 Unit I: Data Collection, Cleaning, and Preparation (3 Hours)
-
+==================================================================
 Objective:
 Understand how to collect, clean, and prepare data for analysis.
 
@@ -91,9 +91,9 @@ report showing key trends or patterns identified during cleaning
 
 
 
-
+==================================================================
 Unit II: Data Visualization with Power BI or any other available tool (3 Hours)
-
+==================================================================
 Objective:
 Create interactive dashboards to visualize business performance.
 
@@ -111,9 +111,9 @@ summarizing the key insights derived from the visualizations
 
 
 
-
+==================================================================
 Unit III: Business Intelligence Tools for Decision-Making (3 Hours)
-
+==================================================================
 Objective:
 Use BI tools to analyze data for business decision-making.
 
@@ -132,9 +132,9 @@ BI tool helped in deriving these insights
 
 
 
-
+==================================================================
 Unit IV: Big Data Analytics and Business Applications (3 Hours)
-
+==================================================================
 4.1 Provide students with a sample big data set (e.g., large-scale retail
 data, customer purchase behavior)
 4.2 Introduce big data analytics concepts like Hadoop, Apache Spark, or
@@ -183,6 +183,13 @@ Students are advised to attend all the classes/sessions and complete all the ass
 the specified time period. If a student does not attend the sessions, it is his/her sole responsibility
 to cover the topic(s) taught during the period. If a student fails to attend a formal exam, quiz,
 test, etc. and there is not any provision for a re-exam.
+
+
+
+
+
+
+
 
 6. Suggested Text Books and References
 
