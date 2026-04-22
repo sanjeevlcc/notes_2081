@@ -60,9 +60,9 @@ contents are as follows:
 
 
 
-
+==================================================================
 Unit I: Introduction to MIS (4 Hours)
-
+==================================================================
 1.1 Definition and significance of MIS and Evolution
 1.2 Types of information systems: TPS, MIS, DSS, ESS
 1.3 Information systems in the global business environment
@@ -79,9 +79,9 @@ Objectives:
 
 
 
-
+==================================================================
 Unit II: Information Technology Infrastructure and Emerging Technologies (5 Hours)
-
+==================================================================
 2.1 Hardware and software components
 2.2 Database management systems
 2.3 Networking and telecommunications
@@ -95,9 +95,9 @@ Objectives:
 
 
 
-
+==================================================================
 Unit III: Information Systems and Business Strategy (4 Hours)
-
+==================================================================
 3.1 Role of IS in business strategy
 3.2 Strategic alignment of IS and business goals
 3.3 Competitive advantage through IS
@@ -113,9 +113,9 @@ Objectives:
 
 
 
-
+==================================================================
 Unit IV: E-Business and E-Commerce (3 Hours)
-
+==================================================================
 4.1 E-business models and strategies
 4.2 E-commerce platforms and technologies
 4.3 Impact of e-commerce on traditional business models
@@ -129,9 +129,9 @@ Objectives:
 
 
 
-
+==================================================================
 Unit V: Data Management and Business Intelligence (4 Hours)
-
+==================================================================
 5.1 Importance of data in decision-making
 5.2 Data warehousing and data mining
 5.3 Business intelligence tools and techniques
