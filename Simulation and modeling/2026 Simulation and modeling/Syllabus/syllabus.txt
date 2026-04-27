@@ -1,0 +1,687 @@
+============================================================
+POKHARA UNIVERSITY
+FACULTY OF SCIENCE AND TECHNOLOGY
+COURSE SYLLABUS OVERVIEW
+============================================================
+
+Course Code        : MTH 250
+Course Title       : Simulation and Modeling
+Full Marks         : 100
+Pass Marks         : 45
+Nature of Course   : Theory / Practical
+Total Lectures     : 48 Hours
+Level              : Bachelor
+Year / Semester    : III Year / VI Semester
+Program            : Bachelor of Computer Application (BCA)
+
+
+
+
+
+
+============================================================
+1. COURSE INTRODUCTION
+============================================================
+
+. Simulation and Modeling is a subject that helps students understand,
+  design, analyze, and evaluate real-world systems using models.
+
+. A model is a simplified representation of a real system.
+
+. Simulation is the process of running or experimenting with that model
+  to observe system behavior over time.
+
+. This course teaches students how to solve real-world problems safely,
+  efficiently, and economically.
+
+. It is useful when testing the actual system is:
+  . Expensive
+  . Risky
+  . Time-consuming
+  . Difficult
+  . Impractical
+
+. The course focuses on:
+  . Understanding real-life problems
+  . Developing system models
+  . Studying discrete systems
+  . Studying continuous systems
+  . Understanding random numbers
+  . Applying Monte Carlo simulation
+  . Simulating queuing systems
+  . Modeling software development processes
+  . Verifying and validating simulation models
+  . Analyzing simulation output
+
+. After completing this course, students will be able to create
+  representative system models and study their performance over time
+  and space.
+
+
+
+
+
+
+============================================================
+2. COURSE DESCRIPTION
+============================================================
+
+. This course is designed to solve real-world problems in a safe and
+  efficient way.
+
+. It supports the exploration of valuable solutions by providing clear
+  insight into complex systems.
+
+. The course deals with understanding problems from real life and
+  developing solution models using discrete and continuous system
+  properties.
+
+. It also studies the nature and use of random numbers in simulation.
+
+. The course introduces simulation of software development processes.
+
+. It explains verification and validation of models to ensure that a
+  model is correct, useful, and reliable.
+
+. It also introduces emerging concepts such as:
+  . Multi-agent based modeling
+  . Software process simulation modeling
+  . System dynamics simulation
+
+. Simulation and Modeling helps in analyzing, designing, and evaluating
+  complex systems by replicating real or proposed systems using computer
+  software.
+
+. It is especially useful when making changes in the actual system is
+  difficult, costly, risky, or impractical.
+
+
+
+
+
+
+============================================================
+3. GENERAL OBJECTIVES
+============================================================
+
+. To acquaint students with the idea that system solutions can be tested
+  more safely and cheaply using models than in the real world.
+
+. To develop students' skills to test whether a product or system works
+  before actually building it.
+
+. To help students identify hidden or implicit issues in a system.
+
+. To develop students' ability to detect and respond to system behavior.
+
+. To help students successfully develop system models.
+
+. To evaluate the process of decision making in crisis situations.
+
+. To provide students with opportunities to absorb knowledge and practice
+  skills in a realistic but simulated environment.
+
+. To enable students to analyze and evaluate system performance through
+  simulation.
+
+
+
+
+
+
+============================================================
+4. METHODS OF INSTRUCTION
+============================================================
+
+. Lecture
+
+. Practical work
+
+. Case study
+
+. Assignment
+
+. Discussion
+
+. Laboratory activities
+
+. Project work
+
+. Presentation
+
+. Quiz
+
+
+
+
+
+
+============================================================
+5. COURSE CONTENTS IN DETAIL
+============================================================
+
+
+
+
+============================================================
+UNIT I: INTRODUCTION
+Lecture Hours: 6
+============================================================
+
+Specific Objectives:
+
+. To familiarize students with the basic concepts of system, model,
+  and simulation.
+
+. To explain types of systems based on input and output.
+
+. To apply the steps of the model development life cycle.
+
+Contents:
+
+. 1.1 System, model, and simulation
+
+. 1.2 Discrete and continuous systems
+
+. 1.3 Model of a system
+
+. 1.4 Types of models
+
+. 1.5 Computer simulation
+
+. 1.6 Model development life cycle
+
+. 1.7 Advantages and disadvantages of simulation
+
+. 1.8 Areas of application of simulation
+
+. 1.9 Steps in simulation and modeling:
+     . Problem formulation
+     . Model construction
+     . Data collection
+     . Model programming
+     . Validation
+     . Design of experiment
+     . Simulation run and analysis
+     . Documentation
+     . Implementation
+
+
+
+
+============================================================
+UNIT II: SYSTEM SIMULATIONS
+Lecture Hours: 7
+============================================================
+
+Specific Objectives:
+
+. To learn different techniques of simulation.
+
+. To understand the role of the Monte Carlo method in various
+  applications.
+
+. To compare simulation methods with analytical methods.
+
+Contents:
+
+. 2.1 Techniques of simulation
+
+. 2.2 Monte Carlo method
+
+. 2.3 Comparison of simulation and analytical methods
+
+. 2.4 Experimental nature of simulation
+
+. 2.5 Types of system simulation
+
+. 2.6 Computational techniques for continuous models
+
+. 2.7 Cobweb models
+
+
+
+
+
+============================================================
+UNIT III: CONTINUOUS SYSTEM SIMULATION
+Lecture Hours: 7
+============================================================
+
+Specific Objectives:
+
+. To conceptualize the role and working procedure of continuous system
+  simulation.
+
+. To apply continuous simulation concepts for real-life problem solving.
+
+Contents:
+
+. 3.1 Continuous system models
+
+. 3.2 Differential and partial differential equations
+
+. 3.3 Analog computer
+
+. 3.4 Analog methods
+
+. 3.5 Hybrid simulation
+
+. 3.6 Digital-analog simulators
+
+. 3.7 Example: A serial chase problem
+
+. 3.8 Feedback systems
+
+
+
+
+
+============================================================
+UNIT IV: RANDOM NUMBER
+Lecture Hours: 6
+============================================================
+
+Specific Objectives:
+
+. To understand the role of random numbers in simulation.
+
+. To familiarize students with approaches and applications of random
+  numbers.
+
+. To test randomness of generated numbers.
+
+Contents:
+
+. 4.1 Random number properties and tables
+
+. 4.2 Pseudo-random numbers
+
+. 4.3 Random number generation methods:
+     . Mid-square method
+     . Residue method
+
+. 4.4 Testing numbers for randomness:
+     . Uniformity test
+     . Chi-square test
+
+. 4.5 Testing for autocorrelation:
+     . Uniformity test
+     . Chi-square test
+
+
+
+
+
+============================================================
+UNIT V: QUEUING SYSTEM AND PERFORMANCE
+Lecture Hours: 7
+============================================================
+
+Specific Objectives:
+
+. To visualize queuing models in service-based computation.
+
+. To explain actual models, associated attributes, and applications of
+  queuing systems.
+
+. To understand the role of Markov chains in software services.
+
+Contents:
+
+. 5.1 Elements of queuing system
+
+. 5.2 Characteristics of queuing systems
+
+. 5.3 Model of queuing system
+
+. 5.4 Queuing notation
+
+. 5.5 Measurement of system performance
+
+. 5.6 Network of queues
+
+. 5.7 Application of queuing system
+
+. 5.8 Markov chains with examples
+
+
+
+
+
+============================================================
+UNIT VI: SOFTWARE PROCESS SIMULATION MODELING
+Lecture Hours: 9
+============================================================
+
+Specific Objectives:
+
+. To visualize models for software development processes.
+
+. To test and explain the efficiency of software development processes.
+
+. To understand the role of agent-based simulation in decision making.
+
+. To explain system dynamics characteristics.
+
+Contents:
+
+. 6.1 Software development as a process:
+     . Waterfall model
+     . Incremental model
+
+. 6.2 Modeling the software development process:
+     . Effort Performance Model, EPM
+     . Human Knowledge Model, HKM
+     . Artefact Quality Model, AQM
+     . Integrating the models
+     . Developer interaction model
+
+. 6.3 Multi-agent based simulation model:
+     . Agents and their environment
+     . Environment
+     . Characters
+     . Autonomy
+     . Intelligence
+     . Implementation
+     . Agents
+     . Decision making
+
+. 6.4 System dynamics simulator:
+     . Model prerequisites
+     . System dynamic model
+     . Feedback
+     . Levels
+     . Flows
+     . Auxiliary variables
+     . Difficulties
+
+
+
+
+
+============================================================
+UNIT VII: DESIGN AND OUTPUT ANALYSIS
+Lecture Hours: 6
+============================================================
+
+Specific Objectives:
+
+. To understand the role of validation and verification in simulation
+  and modeling.
+
+. To explain different testing methods and interpretation of output.
+
+. To analyze computed output using simple statistical reporting tools.
+
+Contents:
+
+. 7.1 Calibration and validation of models:
+     . Face validation
+     . Validation for assumptions
+     . Output data validation
+     . Verification and validation of simulator models
+
+. 7.2 Input validation using Turing test
+
+. 7.3 Design of simulation experiment with elimination of initial bias
+
+. 7.4 Regression analysis
+
+. 7.5 Analysis of variance, ANOVA
+
+
+
+
+
+
+============================================================
+6. LIST OF PRACTICALS
+============================================================
+
+. Practical activities should cover the essential concepts of the
+  course.
+
+. Students must actively participate in laboratory work.
+
+. Students must submit practical reports to the instructor for final
+  evaluation.
+
+. Practical activities may be performed using:
+  . Graphics programs
+  . Open-source mapping tools
+  . High-level programming languages
+  . Simulation tools
+  . Statistical tools
+
+------------------------------------------------------------
+Practical 1: Generation of Random Numbers Using Computer
+------------------------------------------------------------
+
+. Generate random numbers using computer programs.
+
+. Use algorithms or built-in functions related to randomness.
+
+. Understand pseudo-random and pseudo-independent numbers.
+
+. Interpret generated output with real applications.
+
+------------------------------------------------------------
+Practical 2: Hypothesis Testing Using One-Sample Kolmogorov-Smirnov Test
+------------------------------------------------------------
+
+. Simulate and test the correctness of a hypothesis.
+
+. Check whether data in vector x comes from a standard normal
+  distribution.
+
+. Compare the result against an alternative hypothesis.
+
+. Interpret the statistical output.
+
+------------------------------------------------------------
+Practical 3: Monte Carlo Simulation
+------------------------------------------------------------
+
+. Perform Monte Carlo simulation for a complex system.
+
+. Vary parameters within statistical constraints.
+
+. Apply simulation to systems such as:
+  . Financial models
+  . Physical models
+  . Mathematical models
+  . Risk models
+
+. Run simulation repeatedly in loops.
+
+. Analyze the results to determine system characteristics.
+
+------------------------------------------------------------
+Practical 4: Conceptual Map of Traffic Model
+------------------------------------------------------------
+
+. Create a complete conceptual map of a traffic model.
+
+. Include factors that increase or decrease traffic speed.
+
+. Consider real-life traffic situations.
+
+. Important factors may include:
+  . Number of vehicles
+  . Road width
+  . Traffic light timing
+  . Pedestrian movement
+  . Vehicle speed
+  . Road condition
+  . Accidents
+  . Weather condition
+
+------------------------------------------------------------
+Practical 5: Simulation of Single Server Queuing System
+------------------------------------------------------------
+
+. Simulate a single server queuing system.
+
+. Study customer arrival and service process.
+
+. Calculate performance measures such as:
+  . Average waiting time
+  . Average service time
+  . Queue length
+  . Server utilization
+  . Idle time
+  . Total time spent in system
+
+. Apply the model to real examples such as:
+  . Bank counter
+  . Hospital registration desk
+  . Ticket counter
+  . Coffee shop order counter
+
+------------------------------------------------------------
+Practical 6: Simulation of Software Development Process
+------------------------------------------------------------
+
+. Simulate software development models and processes.
+
+. Include the dynamics of software development.
+
+. Explain:
+  . Why simulation is needed in software engineering
+  . What software process simulation is
+  . How simulation is applied in software engineering
+
+. Review and update the current state of Software Process Simulation
+  Modeling, SPSM.
+
+. Prepare a complete overview of SPSM.
+
+
+
+
+
+
+============================================================
+7. EVALUATION SYSTEM
+============================================================
+
+. Student academic performance is assessed through internal and external
+  evaluation methods.
+
+. Internal evaluation is carried out by faculty members.
+
+. Internal evaluation monitors day-to-day student progress.
+
+. External evaluation is conducted by the university.
+
+. External evaluation includes semester-end examination.
+
+------------------------------------------------------------
+Marks Distribution
+------------------------------------------------------------
+
+Total Full Marks       : 100
+
+Internal Evaluation    : 50 Marks
+
+External Evaluation    : 50 Marks
+
+------------------------------------------------------------
+Internal Evaluation
+------------------------------------------------------------
+
+Theory Component       : 30 Marks
+
+. Attendance and Class Participation : 10%
+. Assignments                       : 20%
+. Presentations / Quizzes           : 10%
+. Internal Assessment               : 60%
+
+Practical Component    : 20 Marks
+
+. Attendance and Class Participation : 10%
+. Lab Report / Project Report        : 20%
+. Practical Exam / Project Work      : 40%
+. Viva                               : 30%
+
+Total Internal Marks   : 50
+
+Semester-End Exam      : 50
+
+Full Marks             : 50 + 50 = 100
+
+Pass Marks             : 45
+
+
+
+
+
+
+============================================================
+8. STUDENT RESPONSIBILITIES
+============================================================
+
+. Each student must secure at least 45% marks separately in internal
+  assessment and practical evaluation.
+
+. Each student must maintain at least 80% attendance in class.
+
+. Students who fail to meet these requirements will be marked as
+  NOT QUALIFIED, NQ.
+
+. NQ students will not be allowed to appear in the semester-end
+  examination.
+
+. Students are advised to attend all classes regularly.
+
+. Students must attend:
+  . Formal examinations
+  . Class tests
+  . Practical sessions
+  . Presentations
+  . Quizzes
+  . Discussions
+
+. Students must complete all assignments within the specified time.
+
+. Students must complete all requirements defined for the successful
+  completion of the course.
+
+============================================================
+9. PRESCRIBED TEXT BOOKS AND REFERENCES
+============================================================
+
+------------------------------------------------------------
+Text Book
+------------------------------------------------------------
+
+. Gordon Geoffrey
+  System Simulation
+  Second Edition
+  PHI Learning
+
+------------------------------------------------------------
+Reference Books
+------------------------------------------------------------
+
+. Hira D. S.
+  System Simulation
+  Second Edition, 2009
+  S. Chand & Company Ltd.
+  ISBN: 81-219-259-0
+
+. Law Averill M.
+  Simulation Modeling and Analysis
+  Fifth Edition
+  Averill M. Law & Associates, Inc.
+  Tucson, Arizona, USA
+
+. Singh V. P.
+  System Modeling and Simulation
+  New Age International Pvt. Ltd. Publishers
+
+. Jerry Banks, John S. Carson II, Barry L. Nelson,
+  David M. Nicol, P. Shahabudeen
+  Discrete-Event System Simulation
+
