@@ -1,0 +1,2195 @@
+  
+
+
+
+============================================================
+UNIT II: SYSTEM SIMULATIONS
+Lecture Hours: 7
+============================================================
+
+Specific Objectives:
+
+. To learn different techniques of simulation.
+
+. To understand the role of the Monte Carlo method in various
+  applications.
+
+. To compare simulation methods with analytical methods.
+
+. To understand simulation as an experimental method.
+
+. To identify different types of system simulation.
+
+. To understand basic computational techniques used for continuous
+  models.
+
+. To understand cobweb models and their application in dynamic systems.
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+UNIT II OVERVIEW
+============================================================
+
+. System simulation is the process of creating a model of a real system
+  and experimenting with that model to understand how the system behaves.
+
+. A system may be simple or complex.
+
+. A system may be physical, mathematical, social, economic, biological,
+  industrial, or computer-based.
+
+. In simulation, we do not directly experiment with the real system.
+
+. Instead, we create a model of the system and test different conditions.
+
+. Simulation is useful when the real system is:
+  . Expensive to test
+  . Dangerous to test
+  . Difficult to control
+  . Too slow to observe
+  . Too complex for direct mathematical solution
+
+. System simulation helps to answer questions like:
+  . What will happen if demand increases?
+  . What will happen if one more server is added?
+  . What will happen if production speed is changed?
+  . What will happen if arrival rate increases?
+  . What will happen if cost or price changes?
+  . What is the best decision under uncertainty?
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+2.1 TECHNIQUES OF SIMULATION
+============================================================
+
+------------------------------------------------------------
+Meaning
+------------------------------------------------------------
+
+. Techniques of simulation are the methods used to imitate the behavior
+  of a real system.
+
+. Different systems require different simulation techniques.
+
+. The choice of simulation technique depends on:
+  . Nature of the system
+  . Type of data
+  . Time behavior
+  . Randomness
+  . Complexity
+  . Objective of the study
+
+
+
+
+
+
+
+------------------------------------------------------------
+Major Techniques of Simulation
+------------------------------------------------------------
+
+. 1. Manual Simulation
+
+. 2. Computer Simulation
+
+. 3. Analog Simulation
+
+. 4. Digital Simulation
+
+. 5. Hybrid Simulation
+
+. 6. Monte Carlo Simulation
+
+. 7. Discrete Event Simulation
+
+. 8. Continuous Simulation
+
+. 9. Deterministic Simulation
+
+. 10. Stochastic Simulation
+
+============================================================
+1. MANUAL SIMULATION
+============================================================
+
+. Manual simulation is performed by hand using tables, charts, random
+  numbers, and calculations.
+
+. It does not require computer software.
+
+. It is suitable for small and simple problems.
+
+. It helps students understand the basic logic of simulation.
+
+      Example:
+      
+              . Suppose a small tea shop wants to study customer waiting time.
+              
+              . We can manually prepare a table with:
+                . Customer number
+                . Arrival time
+                . Service time
+                . Service start time
+                . Service end time
+                . Waiting time
+      
+            . By calculating these values manually, we can simulate the queue.
+      
+      Advantages:
+      
+              . Easy to understand
+              
+              . Good for learning basic concepts
+              
+              . No software required
+      
+      Disadvantages:
+      
+              . Time-consuming
+              
+              . Not suitable for large systems
+              
+              . Error may occur in manual calculation
+
+============================================================
+2. COMPUTER SIMULATION
+============================================================
+
+. Computer simulation uses computer programs to imitate the behavior of
+  a system.
+
+. It is useful for large and complex systems.
+
+. Programming languages or software tools are used.
+
+          Common tools:
+          
+                          . Python
+                          
+                          . MATLAB
+                          
+                          . Excel
+                          
+                          . R
+                          
+                          . Simulink
+                          
+                          . Arena
+                          
+                          . AnyLogic
+                          
+                          . GPSS
+                          
+                          . C / C++
+          
+          Example:
+          
+                  . A hospital wants to simulate patient flow.
+                  
+                  . Computer simulation can calculate:
+                    . Patient arrival time
+                    . Waiting time
+                    . Doctor utilization
+                    . Queue length
+                    . Service completion time
+          
+          Advantages:
+          
+                    . Fast
+                    
+                    . Accurate
+                    
+                    . Can handle complex systems
+                    
+                    . Can run thousands of experiments
+                    
+                    . Can produce graphs and reports
+          
+          Disadvantages:
+          
+                    . Requires technical skill
+                    
+                    . Needs valid data
+                    
+                    . Wrong model gives wrong result
+
+============================================================
+3. ANALOG SIMULATION
+============================================================
+
+. Analog simulation uses physical or electrical systems to represent
+  another system.
+
+. It is based on similarity between two systems.
+
+. In the past, analog computers were used to solve differential
+  equations and continuous systems.
+
+          Example:
+          
+                    . An electrical circuit can be used to represent a mechanical vibration
+                      system.
+                    
+                    . Water flow in pipes can be used to represent traffic flow.
+                    
+          Advantages:
+          
+                    . Useful for continuous systems
+                    
+                    . Gives real-time behavior
+                    
+          Disadvantages:
+          
+                    . Less flexible than digital simulation
+                    
+                    . Physical setup may be required
+                    
+                    . Accuracy may be limited
+
+============================================================
+4. DIGITAL SIMULATION
+============================================================
+
+. Digital simulation uses digital computers to simulate a system.
+
+. It represents system variables using numerical values.
+
+. Most modern simulations are digital simulations.
+
+            Example:
+            
+                        . Simulating bank customers using Python program.
+                        
+                        . Simulating population growth using Excel.
+                        
+                        . Simulating network traffic using Cisco Packet Tracer.
+            
+            Advantages:
+            
+                      . Highly flexible
+                      
+                      . Easy to modify
+                      
+                      . Accurate
+                      
+                      . Suitable for both discrete and continuous systems
+            
+            Disadvantages:
+            
+                      . Requires programming or software knowledge
+                      
+                      . Depends on quality of input data
+
+============================================================
+5. HYBRID SIMULATION
+============================================================
+
+. Hybrid simulation combines analog and digital simulation.
+
+. It uses both physical/analog components and digital computer
+  calculation.
+
+            Example:
+            
+                    . Flight simulator uses:
+                      . Physical cockpit controls
+                      . Digital computer graphics
+                      . Mathematical flight models
+                      . Real-time response system
+            
+            Advantages:
+            
+                      . Suitable for complex systems
+                      
+                      . Can combine real-time physical response with digital accuracy
+                      
+            Disadvantages:
+            
+                      . Expensive
+                      
+                      . Complex to design
+
+============================================================
+6. MONTE CARLO SIMULATION
+============================================================
+
+. Monte Carlo simulation uses random numbers to solve problems involving
+  uncertainty.
+
+. It is useful when exact results are difficult to find mathematically.
+
+        Example:
+        
+                . Estimating business profit when demand, cost, and price are uncertain.
+        
+        Detailed explanation is given in section 2.2.
+
+============================================================
+7. DISCRETE EVENT SIMULATION
+============================================================
+
+. Discrete event simulation studies systems that change at specific
+  points in time due to events.
+
+. The state of the system changes only when an event occurs.
+
+            Examples of events:
+            
+                      . Customer arrives
+                      
+                      . Customer service starts
+                      
+                      . Customer service ends
+                      
+                      . Machine fails
+                      
+                      . Machine is repaired
+                      
+                      . Packet arrives in network
+            
+            Example:
+                    
+                    . Bank queue simulation.
+                    
+                    . The system changes when:
+                      . A customer arrives
+                      . A counter becomes free
+                      . A customer leaves
+            
+            Applications:
+            
+                      . Banking
+                      
+                      . Hospital queue
+                      
+                      . Ticket counter
+                      
+                      . Call center
+                      
+                      . Computer network
+                      
+                      . Airport system
+
+============================================================
+8. CONTINUOUS SIMULATION
+============================================================
+
+. Continuous simulation studies systems that change continuously over
+  time.
+
+. The system state changes at every moment.
+
+          Examples:
+          
+                    . Temperature change
+                    
+                    . Water level in a tank
+                    
+                    . Speed of a moving vehicle
+                    
+                    . Population growth
+                    
+                    . Disease spread
+          
+          Example:
+          
+                  . Water tank system:
+                  
+                    . Water enters continuously
+                    . Water leaves continuously
+                    . Water level changes continuously
+                  
+          Applications:
+          
+                  . Engineering systems
+                  
+                  . Biological systems
+                  
+                  . Weather systems
+                  
+                  . Chemical processes
+                  
+                  . Control systems
+
+============================================================
+9. DETERMINISTIC SIMULATION
+============================================================
+
+. Deterministic simulation has no randomness.
+
+. Same input always gives same output.
+
+          Example:
+          
+                  . If a machine produces exactly 10 units per hour, then:
+                  
+                    Production in 8 hours = 10 x 8 = 80 units
+                  
+                  . Every time we use the same input, the output will be 80 units.
+          
+          Use:
+          
+                  . Suitable when system behavior is certain and fixed.
+
+============================================================
+10. STOCHASTIC SIMULATION
+============================================================
+
+. Stochastic simulation includes randomness.
+
+. Same input may give different output in different runs.
+
+      Example:
+      
+              . Customer arrival at a bank is uncertain.
+              
+              . Sometimes 5 customers arrive in 10 minutes.
+              
+              . Sometimes 12 customers arrive in 10 minutes.
+              
+              . Therefore, random numbers are used.
+
+        Use:
+        
+                . Suitable for uncertain systems such as:
+                  . Market demand
+                  . Weather
+                  . Traffic
+                  . Queues
+                  . Stock price
+                  . Patient arrival
+
+
+
+
+============================================================
+SIMPLE EXAMPLE OF SIMULATION TECHNIQUE
+============================================================
+
+Problem:
+
+. A small coffee shop wants to know whether one staff member is enough
+  during morning time.
+
+        Given:        
+                . Customers arrive randomly.
+                . One staff takes 3 minutes to serve one customer.
+                . Shop observes customer flow for 1 hour.
+        
+        Simulation variables:
+        
+                . Arrival time
+                . Service time
+                . Waiting time
+                . Queue length
+                . Idle time
+        
+        Simulation question:
+        
+                . If customer arrival increases, should the shop add one more staff?
+        
+        Possible result:
+        
+                . If average waiting time becomes high, one more staff is needed.
+        
+        Conclusion:
+        
+                . Simulation helps the coffee shop make decisions without disturbing the
+                  real business.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+2.2 MONTE CARLO METHOD
+============================================================
+
+------------------------------------------------------------
+Meaning
+------------------------------------------------------------
+
+. Monte Carlo method is a simulation technique that uses random numbers
+  and probability to solve problems.
+
+            . It is used when the problem has uncertainty.
+            
+            . It performs repeated experiments using random values.
+            
+            . The final result is obtained by analyzing many repeated outcomes.
+
+------------------------------------------------------------
+Simple Definition
+------------------------------------------------------------
+
+. Monte Carlo simulation is a method of solving uncertain problems by
+  repeatedly using random numbers and observing the possible results.
+
+--
+
+----------------------------------------------------------
+Why It Is Called Monte Carlo
+------------------------------------------------------------
+
+. The name Monte Carlo comes from the famous casino area called Monte
+  Carlo.
+
+. Casino games depend on randomness and probability.
+
+. Similarly, Monte Carlo simulation also uses randomness and probability.
+
+
+
+
+------------------------------------------------------------
+Main Idea
+------------------------------------------------------------
+
+. Instead of using only one fixed value, Monte Carlo simulation uses many
+  possible random values.
+
+. It repeats the process many times.
+
+. Then it calculates average result, minimum result, maximum result, and
+  risk.
+
+
+
+
+------------------------------------------------------------
+Basic Steps of Monte Carlo Simulation
+------------------------------------------------------------
+
+        . Step 1: Define the problem.
+        
+        . Step 2: Identify uncertain variables.
+        
+        . Step 3: Assign probability distribution or possible range.
+        
+        . Step 4: Generate random numbers.
+        
+        . Step 5: Calculate output for each random case.
+        
+        . Step 6: Repeat simulation many times.
+        
+        . Step 7: Analyze the result.
+        
+        . Step 8: Make decision.
+
+
+
+
+------------------------------------------------------------
+Monte Carlo Simulation Flow
+------------------------------------------------------------
+        
+        . Define problem
+              |
+              v
+        . Identify uncertain variables
+              |
+              v
+        . Generate random numbers
+              |
+              v
+        . Calculate output
+              |
+              v
+        . Repeat many times
+              |
+              v
+        . Analyze average, risk, best case, worst case
+              |
+              v
+        . Make decision
+
+
+
+============================================================
+MONTE CARLO EXAMPLE 1: SIMPLE PROFIT SIMULATION
+============================================================
+
+Problem:
+
+. A small coffee business wants to estimate daily profit.
+
+            Given:
+            
+                    . Selling price per cup = Rs. 120
+                    
+                    . Cost per cup = Rs. 70
+                    
+                    . Profit per cup = Rs. 120 - Rs. 70 = Rs. 50
+                    
+                    . Number of cups sold per day is uncertain.
+            
+            Possible demand:
+            
+                  . Low demand    = 50 cups
+                  . Medium demand = 80 cups
+                  . High demand   = 120 cups
+            
+            Probability:
+                  
+                  . Low demand probability    = 0.30
+                  . Medium demand probability = 0.50
+                  . High demand probability   = 0.20
+            
+            Expected cups:
+            
+                  . Expected cups =
+                    (50 x 0.30) + (80 x 0.50) + (120 x 0.20)
+                  
+                            . Expected cups =  15 + 40 + 24
+                            
+                            . Expected cups = 79 cups
+            
+            Expected daily profit:
+            
+                  . Expected profit = 79 x Rs. 50
+                  
+                  . Expected profit = Rs. 3,950
+            
+            Conclusion:
+            
+                    . The coffee business may expect around Rs. 3,950 profit per day.
+
+
+
+
+
+============================================================
+MONTE CARLO EXAMPLE 2: RANDOM NUMBER TABLE FOR DEMAND
+============================================================
+
+            Demand distribution:
+            
+                  . 50 cups   probability 0.30
+                  . 80 cups   probability 0.50
+                  . 120 cups  probability 0.20
+            
+            Cumulative probability:
+            
+                    . 50 cups:
+                      0.30
+                    
+                    . 80 cups:
+                      0.30 + 0.50 = 0.80
+                    
+                    . 120 cups:
+                      0.80 + 0.20 = 1.00
+            
+            Random number interval:
+            
+                    . 00 - 29  = 50 cups
+                    
+                    . 30 - 79  = 80 cups
+                    
+                    . 80 - 99  = 120 cups
+            
+            Suppose random numbers for 5 days are:
+            
+                    . Day 1 = 24
+                    . Day 2 = 61
+                    . Day 3 = 87
+                    . Day 4 = 35
+                    . Day 5 = 12
+            
+            Simulation table:
+            
+                    . Day 1:
+                      Random number = 24
+                      Demand = 50 cups
+                      Profit = 50 x 50 = Rs. 2,500
+                    
+                    . Day 2:
+                      Random number = 61
+                      Demand = 80 cups
+                      Profit = 80 x 50 = Rs. 4,000
+                    
+                    . Day 3:
+                      Random number = 87
+                      Demand = 120 cups
+                      Profit = 120 x 50 = Rs. 6,000
+                    
+                    . Day 4:
+                      Random number = 35
+                      Demand = 80 cups
+                      Profit = 80 x 50 = Rs. 4,000
+                    
+                    . Day 5:
+                      Random number = 12
+                      Demand = 50 cups
+                      Profit = 50 x 50 = Rs. 2,500
+            
+            Total profit:
+            
+                    . Rs. 2,500 + Rs. 4,000 + Rs. 6,000 + Rs. 4,000 + Rs. 2,500
+                    
+                    . Total profit = Rs. 19,000
+            
+            Average daily profit:
+            
+                    . Rs. 19,000 / 5 = Rs. 3,800
+            
+            Conclusion:
+            
+                    . Based on 5-day simulation, average daily profit is Rs. 3,800.
+
+
+
+
+
+============================================================
+APPLICATIONS OF MONTE CARLO METHOD
+============================================================
+
+              . Business profit analysis
+              
+              . Risk analysis
+              
+              . Investment decision
+              
+              . Inventory planning
+              
+              . Weather forecasting
+              
+              . Project cost estimation
+              
+              . Traffic flow analysis
+              
+              . Queue simulation
+              
+              . Scientific research
+              
+              . Engineering design
+              
+              . Software reliability analysis
+              
+              . Financial modeling
+              
+              . Insurance risk calculation
+
+
+
+
+
+
+============================================================
+ADVANTAGES OF MONTE CARLO METHOD
+============================================================
+
+            . It can handle uncertainty.
+            
+            . It is simple to understand.
+            
+            . It can be applied to complex problems.
+            
+            . It provides many possible outcomes.
+            
+            . It helps in risk analysis.
+            
+            . It supports decision making.
+            
+            . It can estimate best-case, worst-case, and average-case scenarios.
+
+============================================================
+DISADVANTAGES OF MONTE CARLO METHOD
+============================================================
+
+              . It may require many simulation runs.
+              
+              . Result depends on quality of random numbers.
+              
+              . It may take more computing time.
+              
+              . It gives approximate result, not exact result.
+              
+              . Wrong probability distribution gives wrong result.
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+2.3 COMPARISON OF SIMULATION AND ANALYTICAL METHODS
+============================================================
+
+------------------------------------------------------------
+Analytical Method
+------------------------------------------------------------
+
+          . Analytical method solves a problem using mathematical formulas.
+          
+          . It gives exact or closed-form solutions when the system is simple.
+          
+          . It is based on equations, assumptions, and direct calculation.
+          
+          Example:
+          
+                      . A machine produces 10 units per hour.
+                      
+                      . Production in 8 hours:
+                      
+                        10 x 8 = 80 units
+                      
+                      . This is an analytical solution.
+
+
+
+------------------------------------------------------------
+Simulation Method
+------------------------------------------------------------
+
+. Simulation method solves a problem by imitating the real system.
+
+. It uses models, random numbers, experiments, and repeated trials.
+
+. It gives approximate results based on experiments.
+
+            Example:
+            
+            . In a hospital, patient arrival is random.
+            
+            . Service time is also random.
+            
+            . Waiting time changes every day.
+            
+            . Simulation is used to study average waiting time.
+
+============================================================
+COMPARISON TABLE
+============================================================
+
+            . Basis:
+                        Analytical Method:
+                        Uses mathematical formulas.
+                      
+                        Simulation Method:
+                        Uses imitation and experimentation.
+            
+            ------------------------------------------------------------
+            
+            . Result:
+                        Analytical Method:
+                        Usually gives exact result.
+                      
+                        Simulation Method:
+                        Usually gives approximate result.
+            
+            ------------------------------------------------------------
+            
+            . Suitability:
+                        Analytical Method:
+                        Suitable for simple and well-defined systems.
+                      
+                        Simulation Method:
+                        Suitable for complex and uncertain systems.
+            
+            ------------------------------------------------------------
+            
+            . Randomness:
+                        Analytical Method:
+                        Difficult to handle randomness.
+                      
+                        Simulation Method:
+                        Can easily handle randomness.
+            
+            ------------------------------------------------------------
+            
+            . Cost:
+                      Analytical Method:
+                      Usually cheaper for simple problems.
+                    
+                      Simulation Method:
+                      May require computer and software.
+            
+            ------------------------------------------------------------
+            
+            . Time:
+                      Analytical Method:
+                      Faster for simple problems.
+                    
+                      Simulation Method:
+                      May take time for model building and experiments.
+            
+            ------------------------------------------------------------
+            
+            . Flexibility:
+                      Analytical Method:
+                      Less flexible for complex changes.
+                    
+                      Simulation Method:
+                      Highly flexible.
+            
+            ------------------------------------------------------------
+            
+            . Example:
+                      Analytical Method:
+                      Calculating fixed production rate.
+                    
+                      Simulation Method:
+                      Simulating bank queue or traffic system.
+
+
+
+
+============================================================
+SIMPLE EXAMPLE: ANALYTICAL VS SIMULATION
+============================================================
+
+Problem:
+
+. A ticket counter serves customers.
+
+                Analytical approach:
+                
+                        . If service time is fixed at 5 minutes per customer:
+                        
+                          Customers served in 1 hour = 60 / 5 = 12 customers
+                        
+                        . This is simple and exact.
+                
+                Simulation approach:
+                
+                        . But in real life:
+                          . Some customers take 2 minutes
+                          . Some customers take 5 minutes
+                          . Some customers take 10 minutes
+                          . Customers arrive randomly
+                
+                . Therefore, simulation is better for finding:
+                          . Average waiting time
+                          . Maximum queue length
+                          . Staff utilization
+                          . Customer delay
+                
+                Conclusion:
+                        
+                        . Analytical method is good for simple fixed problems.
+                        
+                        . Simulation is better for complex, random, and real-life problems.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+2.4 EXPERIMENTAL NATURE OF SIMULATION
+============================================================
+
+------------------------------------------------------------
+Meaning
+------------------------------------------------------------
+
+. Simulation is experimental in nature because it allows us to perform
+  experiments on a model instead of the real system.
+
+. We can change input values and observe output results.
+
+. It is like a laboratory experiment performed on a computer model.
+
+------------------------------------------------------------
+Why Simulation Is Experimental
+------------------------------------------------------------
+
+          . We can test different conditions.
+          
+          . We can ask "what-if" questions.
+          
+          . We can repeat experiments many times.
+          
+          . We can compare alternatives.
+          
+          . We can study system behavior without disturbing the real system.
+          
+          . We can analyze risk before implementation.
+
+------------------------------------------------------------
+Examples of What-if Questions
+------------------------------------------------------------
+
+          . What if customer arrival increases by 20%?
+          
+          . What if one more server is added?
+          
+          . What if machine speed is reduced?
+          
+          . What if raw material cost increases?
+          
+          . What if traffic signal timing changes?
+          
+          . What if software development team size is increased?
+          
+          . What if hospital patient arrival doubles?
+
+============================================================
+EXAMPLE: EXPERIMENTAL SIMULATION IN BANK
+============================================================
+
+Problem:
+
+. A bank has long customer waiting time.
+
+Current system:
+
+          . 1 counter
+          . Average service time = 5 minutes
+          . Average customer arrival = 15 customers per hour
+
+      Experiment 1:
+      
+            . Use 1 counter.
+      
+                        Result:
+                        
+                                . Long queue
+                                . High waiting time
+
+      Experiment 2:
+      
+          . Use 2 counters.
+      
+                        Result:
+                        
+                                . Waiting time decreases
+                                . Counter utilization remains acceptable
+
+      Experiment 3:
+      
+            . Use 3 counters.
+      
+                        Result:
+                        
+                                . Waiting time decreases more
+                                . But some counters may remain idle
+
+ 
+
+  Decision:
+  
+            . 2 counters may be the best balance between service quality and cost.
+  
+  Conclusion:
+  
+          . Simulation helps test alternatives before changing the real bank
+            system.
+
+
+
+
+
+
+============================================================
+CHARACTERISTICS OF EXPERIMENTAL SIMULATION
+============================================================
+
+            . Model-based
+            
+            . Repeated trials
+            
+            . Controlled input changes
+            
+            . Output observation
+            
+            . What-if analysis
+            
+            . Risk-free experimentation
+            
+            . Decision support
+            
+            . Approximate result
+            
+            . Data-dependent
+            
+            . Useful for complex systems
+
+============================================================
+ADVANTAGES OF EXPERIMENTAL SIMULATION
+============================================================
+
+          . Allows safe experimentation.
+          
+          . Saves cost.
+          
+          . Saves time.
+          
+          . Helps compare alternatives.
+          
+          . Helps understand system behavior.
+          
+          . Helps in decision making.
+          
+          . Can study future situations.
+          
+          . Can test rare or dangerous events.
+
+============================================================
+LIMITATIONS OF EXPERIMENTAL SIMULATION
+============================================================
+
+          . Result depends on model accuracy.
+          
+          . Wrong assumptions produce wrong output.
+          
+          . Requires valid data.
+          
+          . May require technical expertise.
+          
+          . Can be time-consuming for complex systems.
+          
+          . Simulation gives approximate results, not always exact answers.
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+2.5 TYPES OF SYSTEM SIMULATION
+============================================================
+
+. System simulation can be classified in different ways.
+
+      . Classification depends on:
+                . Time behavior
+                . Randomness
+                . System state change
+                . Computer usage
+                . Model nature
+
+============================================================
+A. STATIC SIMULATION
+============================================================
+
+. Static simulation represents a system at a particular point in time.
+
+. Time does not play an important role.
+
+. It is also called Monte Carlo simulation in some cases.
+
+        Example:
+        
+                . Estimating the value of pi using random points.
+                
+                . Estimating business profit for one period using random input.
+                
+                . Simulating exam result distribution of one semester.
+        
+        Application:
+        
+                  . Risk analysis
+                  
+                  . Probability estimation
+                  
+                  . One-time decision analysis
+
+============================================================
+B. DYNAMIC SIMULATION
+============================================================
+
+. Dynamic simulation represents a system that changes over time.
+
+. Time is an important variable.
+
+          Example:
+          
+                  . Traffic flow during a day.
+                  
+                  . Hospital patient queue from morning to evening.
+                  
+                  . Water level in a tank over time.
+                  
+                  . Population growth over years.
+          
+          Application:
+          
+                  . Queuing system
+                  
+                  . Traffic system
+                  
+                  . Production system
+                  
+                  . Weather system
+
+============================================================
+C. DISCRETE SIMULATION
+============================================================
+
+. Discrete simulation represents systems where changes occur at separate
+  points in time.
+
+. The system state changes only when an event occurs.
+
+        Example:
+        
+                . Customer arrival at a bank.
+                
+                . Packet arrival in a network.
+                
+                . Machine breakdown in a factory.
+        
+        Application:
+        
+                . Bank queue
+                
+                . Call center
+                
+                . Hospital registration
+                
+                . Computer network
+                
+                . Railway ticket counter
+
+============================================================
+D. CONTINUOUS SIMULATION
+============================================================
+
+. Continuous simulation represents systems where variables change
+  continuously over time.
+
+          Example:
+          
+                      . Temperature control system.
+                      
+                      . Water tank level.
+                      
+                      . Speed of a vehicle.
+                      
+                      . Chemical reaction process.
+          
+          Application:
+          
+                      . Engineering
+                      
+                      . Physics
+                      
+                      . Biology
+                      
+                      . Control systems
+
+============================================================
+E. DETERMINISTIC SIMULATION
+============================================================
+
+. Deterministic simulation does not involve random variables.
+
+. Same input always produces same output.
+        
+        Example:
+                
+                . Fixed production rate in a machine.
+                
+                . Fixed interest calculation.
+                
+                . Fixed mathematical model.
+                
+        Application:
+        
+                  . Simple production calculation
+                  
+                  . Mechanical system with fixed parameters
+                  
+                  . Certain business process
+
+============================================================
+F. STOCHASTIC SIMULATION
+============================================================
+
+. Stochastic simulation involves random variables.
+
+. Same input may produce different results in different runs.
+
+          Example:
+          
+                    . Customer arrival in a bank.
+                    
+                    . Traffic flow in Kathmandu.
+                    
+                    . Sales demand of coffee shop.
+                    
+                    . Patient arrival in hospital.
+          
+          Application:
+          
+                    . Risk analysis
+                    
+                    . Queue simulation
+                    
+                    . Market demand forecasting
+                    
+                    . Weather prediction
+
+============================================================
+G. DIGITAL SIMULATION
+============================================================
+
+. Digital simulation uses a digital computer.
+
+. Variables are represented by numbers.
+
+        Example:
+        
+                . Simulation using Python or Excel.
+                
+                . Network simulation using Packet Tracer.
+        
+        Application:
+        
+                . Business models
+                
+                . Engineering models
+                
+                . Computer systems
+
+============================================================
+H. ANALOG SIMULATION
+============================================================
+
+. Analog simulation uses physical systems to represent another system.
+
+        Example:
+        
+                . Electrical circuit representing mechanical motion.
+        
+        Application:
+        
+                  . Continuous system modeling
+                  
+                  . Control system
+                  
+                  . Engineering experiment
+
+============================================================
+I. HYBRID SIMULATION
+============================================================
+
+. Hybrid simulation combines analog and digital simulation.
+
+      Example:
+              
+              . Flight simulator
+              
+              . Medical surgery simulator
+              
+              . Driving simulator
+      
+      Application:
+      
+                . Training
+                
+                . Engineering
+                
+                . Defense
+                
+                . Aviation
+
+============================================================
+SUMMARY TABLE OF SYSTEM SIMULATION TYPES
+============================================================
+
+        . Static Simulation:
+          Time is not important.
+          Example: Monte Carlo risk analysis.
+        
+        . Dynamic Simulation:
+          Time is important.
+          Example: Traffic flow over time.
+        
+        . Discrete Simulation:
+          Change occurs at specific events.
+          Example: Bank queue.
+        
+        . Continuous Simulation:
+          Change occurs continuously.
+          Example: Water level.
+        
+        . Deterministic Simulation:
+          No randomness.
+          Example: Fixed production rate.
+        
+        . Stochastic Simulation:
+          Includes randomness.
+          Example: Customer arrivals.
+        
+        . Digital Simulation:
+          Uses digital computer.
+          Example: Python simulation.
+        
+        . Analog Simulation:
+          Uses physical analogy.
+          Example: Electrical circuit model.
+        
+        . Hybrid Simulation:
+          Combines analog and digital.
+          Example: Flight simulator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+2.6 COMPUTATIONAL TECHNIQUES FOR CONTINUOUS MODELS
+============================================================
+
+------------------------------------------------------------
+Meaning
+------------------------------------------------------------
+
+. Continuous models describe systems whose state changes continuously
+  with time.
+
+. These models are often represented using differential equations.
+
+. Computational techniques are used to solve these equations using
+  numerical methods.
+
+------------------------------------------------------------
+Continuous Model Examples
+------------------------------------------------------------
+
+          . Population growth
+          
+          . Water level in a tank
+          
+          . Temperature change
+          
+          . Vehicle speed
+          
+          . Disease spread
+          
+          . Chemical reaction
+          
+          . Economic growth
+          
+          . Feedback control system
+
+------------------------------------------------------------
+Why Computational Techniques Are Needed
+------------------------------------------------------------
+
+        . Many continuous models cannot be solved easily using exact
+          mathematical methods.
+        
+        . Real systems may have complex equations.
+        
+        . Computer-based numerical methods help approximate the solution.
+        
+        . These techniques divide time into small intervals and calculate values
+          step by step.
+
+============================================================
+BASIC IDEA OF NUMERICAL COMPUTATION
+============================================================
+
+. Suppose the value of a system variable changes with time.
+          
+          . Let the variable be y.
+          
+          . Let time be t.
+
+. The rate of change is represented by dy/dt.
+
+. A continuous model may be written as:   dy/dt = f(t, y)
+
+. The computer calculates y at small time steps.
+
+
+   
+      Example:
+      
+      . Time step = 1 second
+      
+      . The computer calculates:
+        . Value at 0 second
+        . Value at 1 second
+        . Value at 2 seconds
+        . Value at 3 seconds
+
+. In this way, continuous change is approximated.
+
+
+
+============================================================
+COMMON COMPUTATIONAL TECHNIQUES
+============================================================
+
+. 1. Euler's Method
+
+. 2. Modified Euler Method
+
+. 3. Runge-Kutta Method
+
+. 4. Numerical Integration
+
+. 5. Difference Equation Method
+
+============================================================
+1. EULER'S METHOD
+============================================================
+
+. Euler's method is a simple numerical method for solving differential
+  equations.
+
+. It estimates the next value using the current value and rate of
+  change.
+
+Formula:
+
+. y_new = y_old + h x f(t, y)
+
+Where:
+
+. y_old = current value
+
+. y_new = next value
+
+. h = step size
+
+. f(t, y) = rate of change
+
+------------------------------------------------------------
+Simple Example: Water Tank
+------------------------------------------------------------
+
+Problem:
+
+. A tank contains 100 liters of water.
+
+. Water is leaking at rate of 5 liters per hour.
+
+. Find water level after 3 hours using step size 1 hour.
+
+Given:
+
+. Initial water = 100 liters
+
+. Rate of change = -5 liters/hour
+
+. Step size h = 1 hour
+
+Calculation:
+
+. After 1 hour:
+  y = 100 + 1 x (-5)
+  y = 95 liters
+
+. After 2 hours:
+  y = 95 + 1 x (-5)
+  y = 90 liters
+
+. After 3 hours:
+  y = 90 + 1 x (-5)
+  y = 85 liters
+
+Conclusion:
+
+. Water left after 3 hours = 85 liters
+
+============================================================
+2. MODIFIED EULER METHOD
+============================================================
+
+. Modified Euler method improves Euler's method by using average slope.
+
+. It gives better accuracy than simple Euler method.
+
+Basic idea:
+
+. First estimate the next value.
+
+. Then correct the value using average rate of change.
+
+Use:
+
+. When more accuracy is required than simple Euler method.
+
+Example application:
+
+. Temperature cooling calculation.
+
+. Population growth approximation.
+
+. Speed and distance calculation.
+
+============================================================
+3. RUNGE-KUTTA METHOD
+============================================================
+
+. Runge-Kutta method is a popular numerical method for solving
+  differential equations.
+
+. It gives more accurate results than Euler's method.
+
+. The fourth-order Runge-Kutta method is commonly used.
+
+Use:
+
+. Engineering simulation
+
+. Physics problems
+
+. Control systems
+
+. Scientific computing
+
+. Continuous system simulation
+
+Advantages:
+
+. More accurate
+
+. Stable
+
+. Suitable for complex continuous models
+
+Disadvantages:
+
+. More calculation than Euler method
+
+============================================================
+4. NUMERICAL INTEGRATION
+============================================================
+
+. Numerical integration is used to approximate the area under a curve.
+
+. It is useful when exact integration is difficult.
+
+Common methods:
+
+. Trapezoidal rule
+
+. Simpson's rule
+
+Application:
+
+. Finding total distance from speed-time graph.
+
+. Finding total production from production rate.
+
+. Finding total flow from flow rate.
+
+------------------------------------------------------------
+Simple Example
+------------------------------------------------------------
+
+. If water enters a tank at 10 liters per hour for 5 hours:
+
+  Total water = 10 x 5 = 50 liters
+
+. If flow rate changes continuously, numerical integration is used.
+
+============================================================
+5. DIFFERENCE EQUATION METHOD
+============================================================
+
+. Difference equation method converts continuous change into stepwise
+  calculations.
+
+. It is useful in computer simulation.
+
+Example:
+
+. Population at next time:
+
+  P_next = P_current + growth - death
+
+. This is repeated for each time step.
+
+Application:
+
+. Population model
+
+. Inventory model
+
+. Economic model
+
+. Disease spread model
+
+============================================================
+CONTINUOUS MODEL EXAMPLE: POPULATION GROWTH
+============================================================
+
+Problem:
+
+. A town has 10,000 people.
+
+. Population grows at 2% per year.
+
+. Estimate population for next 3 years.
+
+Model:
+
+. P_next = P_current + growth
+
+. Growth = 2% of current population
+
+Year 0:
+
+. Population = 10,000
+
+Year 1:
+
+. Growth = 10,000 x 0.02 = 200
+
+. Population = 10,000 + 200 = 10,200
+
+Year 2:
+
+. Growth = 10,200 x 0.02 = 204
+
+. Population = 10,200 + 204 = 10,404
+
+Year 3:
+
+. Growth = 10,404 x 0.02 = 208.08
+
+. Population = 10,404 + 208.08 = 10,612.08
+
+Conclusion:
+
+. Estimated population after 3 years = approximately 10,612
+
+============================================================
+CONTINUOUS MODEL EXAMPLE: TEMPERATURE COOLING
+============================================================
+
+Problem:
+
+. A cup of tea has temperature 90 degree Celsius.
+
+. Room temperature is 30 degree Celsius.
+
+. Tea cools gradually over time.
+
+Model idea:
+
+. Cooling rate depends on the difference between tea temperature and
+  room temperature.
+
+. Higher difference means faster cooling.
+
+Simulation variables:
+
+. Initial tea temperature
+
+. Room temperature
+
+. Cooling rate
+
+. Time step
+
+. Final temperature
+
+Application:
+
+. Heat transfer
+
+. Food industry
+
+. Machine cooling
+
+. Coffee roasting temperature study
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+2.7 COBWEB MODELS
+============================================================
+
+------------------------------------------------------------
+Meaning
+------------------------------------------------------------
+
+. Cobweb model is a dynamic economic model that explains how price and
+  quantity change over time.
+
+. It is commonly used in markets where production decisions are based on
+  previous price.
+
+. It is called cobweb model because the graph of price and quantity
+  movement may look like a cobweb.
+
+------------------------------------------------------------
+Basic Idea
+------------------------------------------------------------
+
+. Producers decide current production based on previous market price.
+
+. But actual market price depends on current supply and demand.
+
+. This causes price and quantity to move up and down over time.
+
+------------------------------------------------------------
+Real-Life Example
+------------------------------------------------------------
+
+. Farmers decide how much crop to produce this year based on last year's
+  price.
+
+. If last year's price was high, many farmers produce more this year.
+
+. More production creates more supply.
+
+. More supply may reduce price this year.
+
+. If price becomes low this year, farmers produce less next year.
+
+. Less production may increase price next year.
+
+. This cycle continues.
+
+
+
+
+
+============================================================
+COBWEB MODEL IN SIMPLE STEPS
+============================================================
+
+          . Step 1:
+            Last year's price is high.
+          
+          . Step 2:
+            Producers increase production this year.
+          
+          . Step 3:
+            Supply becomes high.
+          
+          . Step 4:
+            Market price decreases.
+          
+          . Step 5:
+            Producers reduce production next year.
+          
+          . Step 6:
+            Supply becomes low.
+          
+          . Step 7:
+            Market price increases again.
+          
+          . Step 8:
+            The cycle repeats.
+
+
+
+
+
+============================================================
+COBWEB MODEL EXAMPLE: TOMATO MARKET
+============================================================
+
+Scenario:
+
+      . In Nepal, suppose tomato price was high last year.
+      
+      . Farmers see high profit.
+      
+      . This year, many farmers grow tomatoes.
+      
+      . Market supply becomes high.
+      
+      . Due to excess supply, tomato price falls.
+      
+      . Next year, farmers reduce tomato farming.
+      
+      . Supply becomes low.
+      
+      . Tomato price rises again.
+
+Conclusion:
+        
+        . The price and quantity move in a cycle.
+        
+        . Cobweb model helps explain this type of market fluctuation.
+
+============================================================
+COBWEB MODEL EXAMPLE: COFFEE FARMING
+============================================================
+
+Scenario:
+
+        . Suppose parchment coffee price is high this year.
+        
+        . Farmers become interested in coffee farming.
+        
+        . They plant more coffee or collect more coffee.
+        
+        . After some time, supply increases.
+        
+        . If demand does not increase equally, price may fall.
+        
+        . When price falls, some farmers may reduce coffee production.
+        
+        . Later, supply decreases and price may rise again.
+
+Conclusion:
+
+        . Coffee price and supply may fluctuate over time.
+        
+        . Cobweb model helps understand delayed response between price and
+          production.
+
+
+
+============================================================
+MATHEMATICAL IDEA OF COBWEB MODEL
+============================================================
+
+. Demand function:
+
+  Qd = a - bP
+
+. Supply function:
+
+  Qs = c + dP_previous
+
+Where:
+
+. Qd = quantity demanded
+
+. Qs = quantity supplied
+
+. P = current price
+
+. P_previous = previous period price
+
+. a, b, c, d = constants
+
+Basic logic:
+
+. Current supply depends on previous price.
+
+. Current price is determined by current demand and supply.
+
+============================================================
+SIMPLE NUMERICAL EXAMPLE OF COBWEB MODEL
+============================================================
+
+Demand function:
+
+. Qd = 100 - 2P
+
+Supply function:
+
+. Qs = 20 + 2P_previous
+
+              Suppose previous price:
+              
+              . P_previous = 20
+              
+              Step 1: Calculate current supply
+              
+              . Qs = 20 + 2 x 20
+              
+              . Qs = 20 + 40
+              
+              . Qs = 60 units
+              
+              Step 2: Market equilibrium condition
+              
+              . Qd = Qs
+              
+              . 100 - 2P = 60
+              
+              . 2P = 40
+              
+              . P = 20
+              
+              Current price:
+              
+              . P = 20
+
+Conclusion:
+
+. If previous price is 20, current supply is 60 and current price is
+  also 20.
+
+
+
+
+------------------------------------------------------------
+Another Case
+------------------------------------------------------------
+
+Suppose previous price:
+
+. P_previous = 30
+
+              Step 1: Calculate current supply
+              
+              . Qs = 20 + 2 x 30
+              
+              . Qs = 80 units
+              
+              Step 2: Calculate current price
+              
+              . Qd = Qs
+              
+              . 100 - 2P = 80
+              
+              . 2P = 20
+              
+              . P = 10
+
+Conclusion:
+
+. If previous price is high, producers supply more.
+
+. More supply causes current price to fall.
+
+
+
+============================================================
+TYPES OF COBWEB BEHAVIOR
+============================================================
+
+. 1. Convergent Cobweb
+
+. 2. Divergent Cobweb
+
+. 3. Continuous / Stable Cobweb
+
+------------------------------------------------------------
+1. Convergent Cobweb
+------------------------------------------------------------
+
+          . Price and quantity fluctuations become smaller over time.
+          
+          . The system gradually moves toward equilibrium.
+          
+          Example:
+          
+          . Tomato price fluctuates but slowly becomes stable.
+
+------------------------------------------------------------
+2. Divergent Cobweb
+------------------------------------------------------------
+
+        . Price and quantity fluctuations become larger over time.
+        
+        . The system moves away from equilibrium.
+        
+        Example:
+        
+        . Price rises very high one year and crashes very low next year.
+
+------------------------------------------------------------
+3. Continuous / Stable Cobweb
+------------------------------------------------------------
+
+        . Price and quantity continue to fluctuate in a regular cycle.
+        
+        . The system neither settles nor explodes.
+        
+        Example:
+        
+        . Seasonal agricultural prices moving in repeated cycles.
+
+============================================================
+IMPORTANCE OF COBWEB MODEL
+============================================================
+
+            . It explains price fluctuation in markets.
+            
+            . It helps understand delayed production response.
+            
+            . It is useful in agricultural economics.
+            
+            . It helps in forecasting supply and demand.
+            
+            . It helps in policy planning.
+            
+            . It supports decision making in production and pricing.
+            
+            . It shows how unstable markets can arise from delayed decisions.
+
+============================================================
+LIMITATIONS OF COBWEB MODEL
+============================================================
+          
+          . It assumes producers depend only on previous price.
+          
+          . It may not include all real market factors.
+          
+          . It may ignore government policies.
+          
+          . It may ignore storage and import/export.
+          
+          . It may ignore weather and production risk.
+          
+          . It may not fit all markets.
+          
+          . It gives simplified explanation of real-world price movement.
