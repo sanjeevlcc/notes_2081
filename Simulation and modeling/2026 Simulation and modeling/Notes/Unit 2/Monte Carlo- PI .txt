@@ -1,0 +1,287 @@
+
+
+
+https://github.com/sanjeevlcc/notes_2081/blob/main/Simulation%20and%20modeling/Mone%20carlo/MC%20for%20pi.pdf
+
+
+
+============================================================
+QUESTION
+============================================================
+
+Estimate the value of pi (π) using the Monte Carlo method.
+
+Assume:
+
+. Radius of circle, r = 4
+. N = Total random numbers (points) generated in the rectangle
+. n = Total random numbers (points) lying inside the circular boundary
+
+Required:
+
+. Draw the rectangle and quarter-circle boundary
+. Generate 25 random points
+. Prepare a table with columns:
+  . SN
+  . X
+  . Y
+  . X^2 + Y^2 - r^2
+  . Remark (IN / OUT)
+. Find the estimated value of π
+. Find the absolute error
+. Find the percentage error
+
+============================================================
+STEP 1: BASIC IDEA OF MONTE CARLO METHOD
+============================================================
+
+. We take a rectangle of size 4 x 4 in the first quadrant.
+
+. Inside that rectangle, we draw a quarter circle of radius 4.
+
+. Then we generate random points (X, Y) inside the rectangle.
+
+. For each point, we test whether it is inside or outside the boundary:
+
+  . If X^2 + Y^2 - r^2 <= 0   --> IN
+  . If X^2 + Y^2 - r^2 > 0    --> OUT
+
+. Here:
+
+  . N = total number of random points in the rectangle
+  . n = total number of random points inside the circular boundary
+
+============================================================
+STEP 2: FIGURE OF RECTANGLE AND QUARTER CIRCLE
+============================================================
+
+Rectangle:
+
+. 0 <= x <= 4
+. 0 <= y <= 4
+
+Boundary of quarter circle:
+
+. x^2 + y^2 = 16
+
+Inside condition:
+
+. x^2 + y^2 < 16
+
+Outside condition:
+
+. x^2 + y^2 > 16
+
+Simple figure:
+
+                  y
+                  ^
+          (0,4)   *-------------------* (4,4)
+                  | )                 |
+                  |   )               |
+                  |     )             |
+                  |       )           |
+                  |         )         |
+                  |           )       |
+          (0,0)   *-------------------* (4,0) ----> x
+
+. The curved boundary from (0,4) to (4,0) is the quarter-circle.
+
+============================================================
+STEP 3: AREA RELATION
+============================================================
+
+Area of rectangle:
+
+. A_rect = 4 x 4 = 16
+
+Area of full circle:
+
+. A_circle = πr^2 = π(4)^2 = 16π
+
+Area of quarter circle:
+
+. A_quarter = (1/4) x 16π = 4π
+
+Now, by Monte Carlo principle:
+
+. n / N = Area of quarter circle / Area of rectangle
+
+So,
+
+. n / N = 4π / 16
+
+. n / N = π / 4
+
+Therefore,
+
+. π = 4n / N
+
+============================================================
+STEP 4: GENERATE 25 RANDOM POINTS
+============================================================
+
+Assume the following 25 random points inside the rectangle:
+
+Radius:
+
+. r = 4
+. r^2 = 16
+
+Decision rule:
+
+. If X^2 + Y^2 - 16 <= 0   --> IN
+. If X^2 + Y^2 - 16 > 0    --> OUT
+
+============================================================
+STEP 5: ITERATION TABLE
+============================================================
+
+. SN    X      Y      X^2 + Y^2 - 16        Remark
+
+. 1     0.20   0.50   -15.7100              IN
+. 2     1.10   1.20   -13.3500              IN
+. 3     2.00   1.50   -9.7500               IN
+. 4     3.20   1.00   -4.7600               IN
+. 5     1.80   2.40   -7.0000               IN
+. 6     0.75   3.00   -6.4375               IN
+. 7     2.50   2.00   -5.7500               IN
+. 8     3.60   1.40   -1.0800               IN
+. 9     1.30   3.20   -4.0700               IN
+. 10    2.80   2.50   -1.9100               IN
+. 11    3.10   2.60    0.3700               OUT
+. 12    0.40   3.70   -2.1500               IN
+. 13    2.20   3.00   -2.1600               IN
+. 14    3.80   0.90   -0.7500               IN
+. 15    1.60   1.70   -10.5500              IN
+. 16    2.90   2.90    0.8200               OUT
+. 17    0.95   2.80   -7.2575               IN
+. 18    3.30   1.90   -1.5000               IN
+. 19    1.40   3.60   -1.0800               IN
+. 20    2.70   3.10    0.9000               OUT
+. 21    0.60   1.80   -12.4000              IN
+. 22    3.90   2.20    4.0500               OUT
+. 23    2.40   1.10   -9.0300               IN
+. 24    1.90   2.90   -3.9800               IN
+. 25    3.50   2.50    2.5000               OUT
+
+============================================================
+STEP 6: COUNT N AND n
+============================================================
+
+Total number of random points in rectangle:
+
+. N = 25
+
+Total number of points inside the boundary:
+
+. n = 20
+
+Because 20 points are marked IN.
+
+============================================================
+STEP 7: ESTIMATE THE VALUE OF PI
+============================================================
+
+Formula:
+
+. π = 4n / N
+
+Substitute the values:
+
+. π = 4 x 20 / 25
+
+. π = 80 / 25
+
+. π = 3.20
+
+Therefore,
+
+. Estimated value of π = 3.20
+
+============================================================
+STEP 8: CALCULATE ABSOLUTE ERROR
+============================================================
+
+Take analytical value of pi:
+
+. Actual π = 3.14
+
+Absolute error formula:
+
+. Error = | Actual value - Estimated value |
+
+So,
+
+. Error = | 3.14 - 3.20 |
+
+. Error = | -0.06 |
+
+. Error = 0.06
+
+Therefore,
+
+. Absolute error = 0.06
+
+============================================================
+STEP 9: CALCULATE PERCENTAGE ERROR
+============================================================
+
+Formula:
+
+. % Error = (Error / Actual value) x 100
+
+Substitute values:
+
+. % Error = (0.06 / 3.14) x 100
+
+. % Error = 1.91%   approximately
+
+Therefore,
+
+. Percentage error = 1.91%
+
+============================================================
+STEP 10: FINAL RESULT
+============================================================
+
+. Radius of quarter circle, r = 4
+
+. Total random points in rectangle, N = 25
+
+. Total random points inside boundary, n = 20
+
+. Estimated value of π:
+
+  π = 3.20
+
+. Absolute error:
+
+  0.06
+
+. Percentage error:
+
+  1.91%
+
+============================================================
+FINAL CONCLUSION
+============================================================
+
+. Monte Carlo method estimates π by comparing the number of random
+  points inside the quarter circle with the total number of points
+  inside the rectangle.
+
+. Here:
+
+  . N = total random points in rectangle = 25
+  . n = total random points inside boundary = 20
+
+. Hence,
+
+  . π = 4n / N = 3.20
+
+. Since only 25 points are used, the estimated value is approximate.
+
+. If we increase the number of random points, the estimated value of π
+  becomes closer to the actual value 3.14.
+
