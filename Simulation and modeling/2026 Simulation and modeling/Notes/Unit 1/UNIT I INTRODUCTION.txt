@@ -334,6 +334,9 @@ Why Simulation is Needed
 
 . To support decision making.
 
+
+
+
 ------------------------------------------------------------
 Examples of Simulation
 ------------------------------------------------------------
@@ -351,6 +354,12 @@ Examples of Simulation
 . Simulating weather conditions.
 
 . Simulating software development process.
+
+
+
+
+
+
 
 ------------------------------------------------------------
 Relationship Between System, Model, and Simulation
@@ -375,6 +384,19 @@ Example
 . Simulation:
   Running the queue model to find average waiting time.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ============================================================
 1.2 DISCRETE AND CONTINUOUS SYSTEMS
 ============================================================
@@ -388,163 +410,132 @@ Example
 ------------------------------------------------------------
 1. DISCRETE SYSTEM
 ------------------------------------------------------------
+        
+        . A discrete system changes its state at separate points in time.
+        
+        . The system state changes only when an event occurs.
+        
+        . Between two events, the system remains unchanged.
+        
+        ------------------------------------------------------------
+        Definition
+        ------------------------------------------------------------
+        
+        . A discrete system is a system in which the state variables change only
+          at countable points in time.
+        
+        ------------------------------------------------------------
+        Examples of Discrete Systems
+        ------------------------------------------------------------
+        
+        . Bank queue system.
+        
+        . Ticket counter system.
+        
+        . Hospital registration system.
+        
+        . Inventory stock system.
+        
+        . Computer network packet arrival system.
+        
+        . Call center system.
+        
+        ------------------------------------------------------------
+        Example: Bank Queue
+        ------------------------------------------------------------
+        
+        . Events:
+          . Customer arrives.
+          . Customer starts service.
+          . Customer completes service.
+          . Customer leaves the system.
+        
+        . State variables:
+          . Number of customers in queue.
+          . Server status: busy or idle.
+          . Waiting time.
+        
+        . The system changes only when an event happens.
+        
+        ------------------------------------------------------------
+        Discrete System Timeline
+        ------------------------------------------------------------
+        
+        Time:     0      2      5      9      12
+                  |------|------|------|------|
+        Event:    Start  Arrival Service Arrival Service End
+        
+        . System state changes at time 2, 5, 9, and 12.
 
-. A discrete system changes its state at separate points in time.
 
-. The system state changes only when an event occurs.
 
-. Between two events, the system remains unchanged.
 
-------------------------------------------------------------
-Definition
-------------------------------------------------------------
 
-. A discrete system is a system in which the state variables change only
-  at countable points in time.
 
-------------------------------------------------------------
-Examples of Discrete Systems
-------------------------------------------------------------
 
-. Bank queue system.
-
-. Ticket counter system.
-
-. Hospital registration system.
-
-. Inventory stock system.
-
-. Computer network packet arrival system.
-
-. Call center system.
-
-------------------------------------------------------------
-Example: Bank Queue
-------------------------------------------------------------
-
-. Events:
-  . Customer arrives.
-  . Customer starts service.
-  . Customer completes service.
-  . Customer leaves the system.
-
-. State variables:
-  . Number of customers in queue.
-  . Server status: busy or idle.
-  . Waiting time.
-
-. The system changes only when an event happens.
-
-------------------------------------------------------------
-Discrete System Timeline
-------------------------------------------------------------
-
-Time:     0      2      5      9      12
-          |------|------|------|------|
-Event:    Start  Arrival Service Arrival Service End
-
-. System state changes at time 2, 5, 9, and 12.
 
 ------------------------------------------------------------
 2. CONTINUOUS SYSTEM
 ------------------------------------------------------------
 
-. A continuous system changes its state continuously over time.
+        . A continuous system changes its state continuously over time.
+        
+        . The system variables change at every moment.
+        
+        ------------------------------------------------------------
+        Definition
+        ------------------------------------------------------------
+        
+        . A continuous system is a system in which the state variables change
+          continuously with respect to time.
+        
+        ------------------------------------------------------------
+        Examples of Continuous Systems
+        ------------------------------------------------------------
+        
+        . Water level in a tank.
+        
+        . Temperature of a room.
+        
+        . Speed of a moving vehicle.
+        
+        . Population growth.
+        
+        . Disease spread.
+        
+        . Chemical reaction.
+        
+        . Coffee roasting temperature change.
+        
+        ------------------------------------------------------------
+        Example: Water Tank
+        ------------------------------------------------------------
+        
+        . Water enters the tank continuously.
+        
+        . Water leaves the tank continuously.
+        
+        . The water level changes continuously over time.
+        
+        . State variable:
+          . Water level.
+        
+        ------------------------------------------------------------
+        Continuous System Timeline
+        ------------------------------------------------------------
+        
+        Time:   0 ---- 1 ---- 2 ---- 3 ---- 4 ---- 5
+        
+        Value:  Changes smoothly at every moment
+        
+        
+        
 
-. The system variables change at every moment.
 
-------------------------------------------------------------
-Definition
-------------------------------------------------------------
 
-. A continuous system is a system in which the state variables change
-  continuously with respect to time.
 
-------------------------------------------------------------
-Examples of Continuous Systems
-------------------------------------------------------------
 
-. Water level in a tank.
 
-. Temperature of a room.
-
-. Speed of a moving vehicle.
-
-. Population growth.
-
-. Disease spread.
-
-. Chemical reaction.
-
-. Coffee roasting temperature change.
-
-------------------------------------------------------------
-Example: Water Tank
-------------------------------------------------------------
-
-. Water enters the tank continuously.
-
-. Water leaves the tank continuously.
-
-. The water level changes continuously over time.
-
-. State variable:
-  . Water level.
-
-------------------------------------------------------------
-Continuous System Timeline
-------------------------------------------------------------
-
-Time:   0 ---- 1 ---- 2 ---- 3 ---- 4 ---- 5
-
-Value:  Changes smoothly at every moment
-
-------------------------------------------------------------
-Comparison Between Discrete and Continuous Systems
-------------------------------------------------------------
-
-. Basis:
-  Discrete System:
-  Changes at specific points in time.
-
-  Continuous System:
-  Changes continuously over time.
-
-------------------------------------------------------------
-
-. State change:
-  Discrete System:
-  Event-based.
-
-  Continuous System:
-  Time-based.
-
-------------------------------------------------------------
-
-. Examples:
-  Discrete System:
-  Bank queue, ticket counter, inventory.
-
-  Continuous System:
-  Water level, temperature, speed.
-
-------------------------------------------------------------
-
-. Mathematical form:
-  Discrete System:
-  Difference equations, event tables.
-
-  Continuous System:
-  Differential equations.
-
-------------------------------------------------------------
-
-. Simulation type:
-  Discrete System:
-  Discrete event simulation.
-
-  Continuous System:
-  Continuous simulation.
 
 ============================================================
 1.3 MODEL OF A SYSTEM
@@ -660,6 +651,26 @@ Steps to Build a System Model
 . Step 8:
   Test and validate the model.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ============================================================
 1.4 TYPES OF MODELS
 ============================================================
@@ -671,255 +682,228 @@ Steps to Build a System Model
 A. PHYSICAL MODEL
 ============================================================
 
-. A physical model is a smaller or larger physical representation of a
-  real system.
-
-. It can be touched and seen.
-
-Examples:
-
-. Globe as a model of the earth.
-
-. Toy car as a model of a real car.
-
-. Building model before construction.
-
-. Bridge model for engineering test.
-
-Advantages:
-
-. Easy to understand.
-
-. Good for demonstration.
-
-Limitations:
-
-. May be expensive.
-
-. Cannot represent all details.
+      . A physical model is a smaller or larger physical representation of a
+        real system.
+      
+      . It can be touched and seen.
+      
+      Examples:
+      
+              . Globe as a model of the earth.
+              
+              . Toy car as a model of a real car.
+              
+              . Building model before construction.
+              
+              . Bridge model for engineering test.
+      
+      Advantages:
+      
+              . Easy to understand.
+              
+              . Good for demonstration.
+      
+      Limitations:
+      
+            . May be expensive.
+            
+            . Cannot represent all details.
 
 ============================================================
 B. MATHEMATICAL MODEL
 ============================================================
 
-. A mathematical model represents a system using equations and formulas.
-
-Examples:
-
-. Profit = Revenue - Cost
-
-. Distance = Speed x Time
-
-. Area of circle = πr²
-
-. Population growth model.
-
-Advantages:
-
-. Precise.
-
-. Useful for calculation.
-
-. Can be solved analytically or numerically.
-
-Limitations:
-
-. Requires mathematical knowledge.
-
-. May oversimplify real systems.
+      . A mathematical model represents a system using equations and formulas.
+      
+      Examples:
+      
+              . Profit = Revenue - Cost
+              
+              . Distance = Speed x Time
+              
+              . Area of circle = πr²
+              
+              . Population growth model.
+      
+      Advantages:
+      
+              . Precise.
+              
+              . Useful for calculation.
+              
+              . Can be solved analytically or numerically.
+      
+      Limitations:
+      
+            . Requires mathematical knowledge.
+            
+            . May oversimplify real systems.
 
 ============================================================
 C. LOGICAL MODEL
 ============================================================
 
-. A logical model represents the logical flow or structure of a system.
-
-Examples:
-
-. Flowchart.
-
-. Algorithm.
-
-. Decision table.
-
-. Entity relationship diagram.
-
-. Data flow diagram.
-
-Advantages:
-
-. Shows process clearly.
-
-. Useful in software and system design.
-
-Limitations:
-
-. Does not always show numerical behavior.
+      . A logical model represents the logical flow or structure of a system.
+      
+      Examples:
+      
+            . Flowchart.
+            
+            . Algorithm.
+            
+            . Decision table.
+            
+            . Entity relationship diagram.
+            
+            . Data flow diagram.
+      
+      Advantages:
+      
+            . Shows process clearly.
+            
+            . Useful in software and system design.
+      
+      Limitations:
+      
+            . Does not always show numerical behavior.
 
 ============================================================
 D. GRAPHICAL MODEL
 ============================================================
 
-. A graphical model represents a system using diagrams, graphs, or
-  charts.
-
-Examples:
-
-. Network diagram.
-
-. Flow diagram.
-
-. Bar chart.
-
-. Line graph.
-
-. UML diagram.
-
-Advantages:
-
-. Easy to visualize.
-
-. Good for presentation.
-
-Limitations:
-
-. May not provide exact calculations.
+        . A graphical model represents a system using diagrams, graphs, or
+          charts.
+        
+        Examples:
+        
+                . Network diagram.
+                
+                . Flow diagram.
+                
+                . Bar chart.
+                
+                . Line graph.
+                
+                . UML diagram.
+        
+        Advantages:
+        
+                . Easy to visualize.
+                
+                . Good for presentation.
+        
+        Limitations:
+        
+                . May not provide exact calculations.
 
 ============================================================
 E. STATIC MODEL
 ============================================================
 
-. A static model represents a system at a particular point in time.
-
-. Time is not an important factor.
-
-Examples:
-
-. Balance sheet of a company.
-
-. Map of a city.
-
-. Structural diagram of a building.
-
-. One-time profit calculation.
+        . A static model represents a system at a particular point in time.
+        
+        . Time is not an important factor.
+        
+        Examples:
+        
+                  . Balance sheet of a company.
+                  
+                  . Map of a city.
+                  
+                  . Structural diagram of a building.
+                  
+                  . One-time profit calculation.
 
 ============================================================
 F. DYNAMIC MODEL
 ============================================================
 
-. A dynamic model represents a system that changes over time.
-
-. Time is an important factor.
-
-Examples:
-
-. Traffic flow during a day.
-
-. Population growth over years.
-
-. Queue length over time.
-
-. Temperature change during heating or cooling.
+        . A dynamic model represents a system that changes over time.
+        
+        . Time is an important factor.
+        
+        Examples:
+        
+                . Traffic flow during a day.
+                
+                . Population growth over years.
+                
+                . Queue length over time.
+                
+                . Temperature change during heating or cooling.
 
 ============================================================
 G. DETERMINISTIC MODEL
 ============================================================
 
-. A deterministic model does not include randomness.
-
-. Same input always gives the same output.
-
-Example:
-
-. If a machine produces 10 items per hour, then in 8 hours:
-
-  . Total production = 10 x 8 = 80 items
-
-. The result is always fixed.
+          . A deterministic model does not include randomness.
+          
+          . Same input always gives the same output.
+          
+          Example:
+          
+                  . If a machine produces 10 items per hour, then in 8 hours:
+                  
+                    . Total production = 10 x 8 = 80 items
+                  
+                  . The result is always fixed.
 
 ============================================================
 H. STOCHASTIC MODEL
 ============================================================
 
-. A stochastic model includes randomness or uncertainty.
-
-. Same input may produce different outputs in different runs.
-
-Example:
-
-. Customer arrival in a bank.
-
-. Daily sales in a coffee shop.
-
-. Weather prediction.
-
-. Stock price movement.
+      . A stochastic model includes randomness or uncertainty.
+      
+      . Same input may produce different outputs in different runs.
+      
+      Example:
+      
+            . Customer arrival in a bank.
+            
+            . Daily sales in a coffee shop.
+            
+            . Weather prediction.
+            
+            . Stock price movement.
 
 ============================================================
 I. DISCRETE MODEL
 ============================================================
 
-. A discrete model represents a system where state changes happen at
-  separate points in time.
-
-Example:
-
-. Queue model of a bank.
-
-. Inventory model.
-
-. Ticket booking model.
+      . A discrete model represents a system where state changes happen at
+        separate points in time.
+      
+      Example:
+      
+            . Queue model of a bank.
+            
+            . Inventory model.
+            
+            . Ticket booking model.
 
 ============================================================
 J. CONTINUOUS MODEL
 ============================================================
 
-. A continuous model represents a system where state variables change
-  continuously over time.
+      . A continuous model represents a system where state variables change
+        continuously over time.
+      
+      Example:
+      
+            . Water level model.
+            
+            . Temperature model.
+            
+            . Speed model.
+            
+            . Chemical reaction model.
 
-Example:
 
-. Water level model.
 
-. Temperature model.
 
-. Speed model.
 
-. Chemical reaction model.
 
-============================================================
-Summary of Types of Models
-============================================================
 
-. Physical Model:
-  Real physical representation.
-
-. Mathematical Model:
-  Equations and formulas.
-
-. Logical Model:
-  Process logic and decision flow.
-
-. Graphical Model:
-  Diagram or graph representation.
-
-. Static Model:
-  Time-independent model.
-
-. Dynamic Model:
-  Time-dependent model.
-
-. Deterministic Model:
-  No randomness.
-
-. Stochastic Model:
-  Includes randomness.
-
-. Discrete Model:
-  Event-based model.
-
-. Continuous Model:
-  Continuous time-based model.
 
 ============================================================
 1.5 COMPUTER SIMULATION
@@ -933,98 +917,94 @@ Summary of Types of Models
 . It helps to study systems that are difficult to analyze manually or
   mathematically.
 
-------------------------------------------------------------
-Definition
-------------------------------------------------------------
 
-. Computer simulation is the process of designing a model of a real
-  system and using a computer program to run experiments on that model.
+
 
 ------------------------------------------------------------
 Why Computer Simulation is Used
 ------------------------------------------------------------
 
-. Computers can process large amounts of data quickly.
-
-. Computers can repeat experiments many times.
-
-. Computers reduce manual calculation errors.
-
-. Complex systems can be simulated easily.
-
-. Results can be shown using tables, charts, and graphs.
+      . Computers can process large amounts of data quickly.
+      
+      . Computers can repeat experiments many times.
+      
+      . Computers reduce manual calculation errors.
+      
+      . Complex systems can be simulated easily.
+      
+      . Results can be shown using tables, charts, and graphs.
 
 ------------------------------------------------------------
 Examples of Computer Simulation
 ------------------------------------------------------------
 
-. Simulating network traffic.
-
-. Simulating bank queue.
-
-. Simulating weather conditions.
-
-. Simulating hospital patient flow.
-
-. Simulating stock market risk.
-
-. Simulating coffee business profit.
-
-. Simulating software development process.
+      . Simulating network traffic.
+      
+      . Simulating bank queue.
+      
+      . Simulating weather conditions.
+      
+      . Simulating hospital patient flow.
+      
+      . Simulating stock market risk.
+      
+      . Simulating coffee business profit.
+      
+      . Simulating software development process.
 
 ------------------------------------------------------------
 Common Tools for Computer Simulation
 ------------------------------------------------------------
 
-. Python
-
-. C / C++
-
-. Java
-
-. MATLAB
-
-. R
-
-. Excel
-
-. Simulink
-
-. Arena
-
-. AnyLogic
-
-. GPSS
-
-. Cisco Packet Tracer
+        . Python
+        
+        . C / C++
+        
+        . Java
+        
+        . MATLAB
+        
+        . R
+        
+        . Excel
+        
+        . Simulink
+        
+        . Arena
+        
+        . AnyLogic
+        
+        . GPSS
+        
+        . Cisco Packet Tracer
 
 ------------------------------------------------------------
 Basic Computer Simulation Process
 ------------------------------------------------------------
 
-. Step 1:
-  Define the problem.
-
-. Step 2:
-  Build the model.
-
-. Step 3:
-  Collect input data.
-
-. Step 4:
-  Write the computer program.
-
-. Step 5:
-  Run the simulation.
-
-. Step 6:
-  Analyze output.
-
-. Step 7:
-  Validate the result.
-
-. Step 8:
-  Make decision.
+        . Step 1:
+          Define the problem.
+        
+        . Step 2:
+          Build the model.
+        
+        . Step 3:
+          Collect input data.
+        
+        . Step 4:
+          Write the computer program.
+        
+        . Step 5:
+          Run the simulation.
+        
+        . Step 6:
+          Analyze output.
+        
+        . Step 7:
+          Validate the result.
+        
+        . Step 8:
+          Make decision.
 
 ------------------------------------------------------------
 Simple Example: Computer Simulation of Queue
@@ -1034,27 +1014,42 @@ Problem:
 
 . A bank wants to know average customer waiting time.
 
-Input data:
+          Input data:
+          
+                . Customer arrival time.
+                
+                . Service time.
+                
+                . Number of counters.
+          
+          Simulation output:
+          
+                . Average waiting time.
+                
+                . Maximum queue length.
+                
+                . Counter idle time.
+                
+                . Counter utilization.
+          
+          Decision:
+          
+                . If waiting time is high, add another counter.
 
-. Customer arrival time.
 
-. Service time.
 
-. Number of counters.
 
-Simulation output:
 
-. Average waiting time.
 
-. Maximum queue length.
 
-. Counter idle time.
 
-. Counter utilization.
 
-Decision:
 
-. If waiting time is high, add another counter.
+
+
+
+
+
 
 ============================================================
 1.6 MODEL DEVELOPMENT LIFE CYCLE
@@ -1065,37 +1060,40 @@ Decision:
 
 . It ensures that the model is correct, reliable, and useful.
 
+
+
+
 ------------------------------------------------------------
 Stages of Model Development Life Cycle
 ------------------------------------------------------------
 
-. 1. Problem identification
-
-. 2. Objective definition
-
-. 3. System study
-
-. 4. Conceptual model development
-
-. 5. Data collection
-
-. 6. Model formulation
-
-. 7. Model programming
-
-. 8. Verification
-
-. 9. Validation
-
-. 10. Experimentation
-
-. 11. Output analysis
-
-. 12. Documentation
-
-. 13. Implementation
-
-. 14. Maintenance and improvement
+          . 1. Problem identification
+          
+          . 2. Objective definition
+          
+          . 3. System study
+          
+          . 4. Conceptual model development
+          
+          . 5. Data collection
+          
+          . 6. Model formulation
+          
+          . 7. Model programming
+          
+          . 8. Verification
+          
+          . 9. Validation
+          
+          . 10. Experimentation
+          
+          . 11. Output analysis
+          
+          . 12. Documentation
+          
+          . 13. Implementation
+          
+          . 14. Maintenance and improvement
 
 ============================================================
 1. PROBLEM IDENTIFICATION
@@ -1105,9 +1103,9 @@ Stages of Model Development Life Cycle
 
 . Understand what needs to be solved.
 
-Example:
-
-. Patients are waiting too long at a hospital registration counter.
+      Example:
+      
+      . Patients are waiting too long at a hospital registration counter.
 
 ============================================================
 2. OBJECTIVE DEFINITION
@@ -1117,9 +1115,9 @@ Example:
 
 . Decide what output is expected.
 
-Example:
-
-. Objective is to reduce patient waiting time.
+        Example:
+        
+        . Objective is to reduce patient waiting time.
 
 ============================================================
 3. SYSTEM STUDY
@@ -1129,9 +1127,9 @@ Example:
 
 . Identify system components, input, output, process, and constraints.
 
-Example:
-
-. Study arrival rate, service time, number of staff, and working hours.
+        Example:
+        
+        . Study arrival rate, service time, number of staff, and working hours.
 
 ============================================================
 4. CONCEPTUAL MODEL DEVELOPMENT
@@ -1141,9 +1139,9 @@ Example:
 
 . It may include diagrams, flowcharts, and assumptions.
 
-Example:
-
-. Patient arrives -> waits in queue -> gets service -> leaves.
+        Example:
+        
+        . Patient arrives -> waits in queue -> gets service -> leaves.
 
 ============================================================
 5. DATA COLLECTION
@@ -1151,15 +1149,15 @@ Example:
 
 . Collect real data from the system.
 
-Example:
-
-. Patient arrival time.
-
-. Service time.
-
-. Number of patients per hour.
-
-. Staff working time.
+      Example:
+      
+            . Patient arrival time.
+            
+            . Service time.
+            
+            . Number of patients per hour.
+            
+            . Staff working time.
 
 ============================================================
 6. MODEL FORMULATION
@@ -1167,11 +1165,11 @@ Example:
 
 . Convert conceptual model into mathematical or logical form.
 
-Example:
-
-. Waiting time = Service start time - Arrival time.
-
-. Time in system = Departure time - Arrival time.
+      Example:
+      
+            . Waiting time = Service start time - Arrival time.
+            
+            . Time in system = Departure time - Arrival time.
 
 ============================================================
 7. MODEL PROGRAMMING
@@ -1179,9 +1177,9 @@ Example:
 
 . Implement the model using computer software or programming language.
 
-Example:
-
-. Use Excel, Python, C, Java, MATLAB, or simulation software.
+      Example:
+      
+              . Use Excel, Python, C, Java, MATLAB, or simulation software.
 
 ============================================================
 8. VERIFICATION
@@ -1193,9 +1191,9 @@ Example:
 
   . Are we building the model right?
 
-Example:
-
-. Check whether the program logic and formulas are correct.
+      Example:
+      
+            . Check whether the program logic and formulas are correct.
 
 ============================================================
 9. VALIDATION
@@ -1208,9 +1206,9 @@ Example:
 
   . Are we building the right model?
 
-Example:
-
-. Compare simulation result with actual hospital waiting time.
+      Example:
+      
+              . Compare simulation result with actual hospital waiting time.
 
 ============================================================
 10. EXPERIMENTATION
@@ -1218,16 +1216,16 @@ Example:
 
 . Run the model under different conditions.
 
-Example:
-
-. Experiment 1:
-  One staff.
-
-. Experiment 2:
-  Two staff.
-
-. Experiment 3:
-  Three staff.
+        Example:
+        
+            . Experiment 1:
+              One staff.
+            
+            . Experiment 2:
+              Two staff.
+            
+            . Experiment 3:
+              Three staff.
 
 ============================================================
 11. OUTPUT ANALYSIS
@@ -1235,17 +1233,17 @@ Example:
 
 . Analyze the results obtained from simulation.
 
-Example:
-
-. Average waiting time.
-
-. Queue length.
-
-. Server utilization.
-
-. Cost.
-
-. Profit.
+      Example:
+      
+            . Average waiting time.
+            
+            . Queue length.
+            
+            . Server utilization.
+            
+            . Cost.
+            
+            . Profit.
 
 ============================================================
 12. DOCUMENTATION
@@ -1253,23 +1251,23 @@ Example:
 
 . Prepare complete documentation of the model.
 
-Documentation includes:
-
-. Problem statement.
-
-. Assumptions.
-
-. Data used.
-
-. Model logic.
-
-. Program description.
-
-. Results.
-
-. Limitations.
-
-. Recommendations.
+      Documentation includes:
+      
+                . Problem statement.
+                
+                . Assumptions.
+                
+                . Data used.
+                
+                . Model logic.
+                
+                . Program description.
+                
+                . Results.
+                
+                . Limitations.
+                
+                . Recommendations.
 
 ============================================================
 13. IMPLEMENTATION
@@ -1277,10 +1275,10 @@ Documentation includes:
 
 . Apply the best solution to the real system.
 
-Example:
-
-. If simulation shows two staff are enough, hospital management may add
-  one more staff.
+      Example:
+      
+      . If simulation shows two staff are enough, hospital management may add
+        one more staff.
 
 ============================================================
 14. MAINTENANCE AND IMPROVEMENT
@@ -1290,9 +1288,17 @@ Example:
 
 . New data and changing conditions should be added.
 
-Example:
+        Example:
+        
+        . If patient arrival increases in future, the model should be updated.
 
-. If patient arrival increases in future, the model should be updated.
+
+
+
+
+
+
+
 
 ============================================================
 1.7 ADVANTAGES AND DISADVANTAGES OF SIMULATION
@@ -1382,6 +1388,18 @@ ADVANTAGES OF SIMULATION
 
   . Model parameters can be changed easily.
 
+
+
+
+
+
+
+
+
+
+
+
+
 ============================================================
 DISADVANTAGES OF SIMULATION
 ============================================================
@@ -1435,6 +1453,25 @@ DISADVANTAGES OF SIMULATION
 . 8. Misinterpretation of results
 
   . Wrong interpretation can lead to wrong decision.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ============================================================
 1.8 AREAS OF APPLICATION OF SIMULATION
@@ -1641,6 +1678,29 @@ Example:
 . If a coffee roaster can roast 2 kg per hour and works 8 hours daily,
   simulation can estimate monthly production capacity.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ============================================================
 1.9 STEPS IN SIMULATION AND MODELING
 ============================================================
@@ -1669,27 +1729,27 @@ STEP 1: PROBLEM FORMULATION
 
 Questions to ask:
 
-. What is the problem?
-
-. Why is simulation needed?
-
-. What system is being studied?
-
-. What are the objectives?
-
-. What outputs are required?
+          . What is the problem?
+          
+          . Why is simulation needed?
+          
+          . What system is being studied?
+          
+          . What are the objectives?
+          
+          . What outputs are required?
 
 Example:
 
-. A bank wants to reduce customer waiting time.
+        . A bank wants to reduce customer waiting time.
 
 Problem statement:
 
-. Customers are waiting too long at the bank counter.
+        . Customers are waiting too long at the bank counter.
 
 Objective:
 
-. Find the required number of counters to reduce waiting time.
+        . Find the required number of counters to reduce waiting time.
 
 ============================================================
 STEP 2: MODEL CONSTRUCTION
@@ -1701,28 +1761,28 @@ STEP 2: MODEL CONSTRUCTION
 
 Activities:
 
-. Identify system components.
-
-. Define system boundary.
-
-. Identify variables.
-
-. Define assumptions.
-
-. Establish relationships among variables.
+        . Identify system components.
+        
+        . Define system boundary.
+        
+        . Identify variables.
+        
+        . Define assumptions.
+        
+        . Establish relationships among variables.
 
 Example:
 
-. Bank queue model:
-
-  . Customer arrival.
-  . Queue.
-  . Service counter.
-  . Customer departure.
+      . Bank queue model:
+      
+        . Customer arrival.
+        . Queue.
+        . Service counter.
+        . Customer departure.
 
 Simple model:
 
-. Customer arrives -> waits -> gets service -> leaves.
+      . Customer arrives -> waits -> gets service -> leaves.
 
 ============================================================
 STEP 3: DATA COLLECTION
@@ -1732,36 +1792,36 @@ STEP 3: DATA COLLECTION
 
 Types of data:
 
-. Arrival time.
-
-. Service time.
-
-. Processing time.
-
-. Failure rate.
-
-. Cost.
-
-. Demand.
-
-. Production rate.
-
-. Probability values.
+          . Arrival time.
+          
+          . Service time.
+          
+          . Processing time.
+          
+          . Failure rate.
+          
+          . Cost.
+          
+          . Demand.
+          
+          . Production rate.
+          
+          . Probability values.
 
 Example:
 
-. For bank queue simulation:
-
-  . Number of customers per hour.
-  . Average service time.
-  . Number of counters.
-  . Working hours.
+      . For bank queue simulation:
+      
+        . Number of customers per hour.
+        . Average service time.
+        . Number of counters.
+        . Working hours.
 
 Importance:
 
-. Accurate data produces reliable simulation results.
-
-. Wrong data gives wrong result.
+      . Accurate data produces reliable simulation results.
+      
+      . Wrong data gives wrong result.
 
 ============================================================
 STEP 4: MODEL PROGRAMMING
@@ -1773,29 +1833,29 @@ STEP 4: MODEL PROGRAMMING
 
 Common tools:
 
-. Python
-
-. C
-
-. C++
-
-. Java
-
-. MATLAB
-
-. Excel
-
-. R
-
-. Arena
-
-. AnyLogic
+      . Python
+      
+      . C
+      
+      . C++
+      
+      . Java
+      
+      . MATLAB
+      
+      . Excel
+      
+      . R
+      
+      . Arena
+      
+      . AnyLogic
 
 Example:
 
-. Write a Python program to calculate customer waiting time.
-
-. Use Excel to simulate daily coffee sales and profit.
+      . Write a Python program to calculate customer waiting time.
+      
+      . Use Excel to simulate daily coffee sales and profit.
 
 ============================================================
 STEP 5: VALIDATION
@@ -1808,22 +1868,22 @@ STEP 5: VALIDATION
 
 Question:
 
-. Are we building the right model?
+      . Are we building the right model?
 
 Validation methods:
 
-. Compare model output with real system output.
-
-. Ask experts to check the model.
-
-. Test assumptions.
-
-. Use historical data.
+      . Compare model output with real system output.
+      
+      . Ask experts to check the model.
+      
+      . Test assumptions.
+      
+      . Use historical data.
 
 Example:
 
-. If actual average waiting time in bank is 12 minutes and simulation
-  also gives around 12 minutes, the model may be valid.
+      . If actual average waiting time in bank is 12 minutes and simulation
+        also gives around 12 minutes, the model may be valid.
 
 ============================================================
 STEP 6: DESIGN OF EXPERIMENT
@@ -1837,29 +1897,29 @@ STEP 6: DESIGN OF EXPERIMENT
 
 Questions:
 
-. How many simulation runs will be performed?
-
-. What variables will be changed?
-
-. What scenarios will be tested?
-
-. What performance measures will be recorded?
+        . How many simulation runs will be performed?
+        
+        . What variables will be changed?
+        
+        . What scenarios will be tested?
+        
+        . What performance measures will be recorded?
 
 Example:
 
-. Bank queue experiment:
-
-  . Scenario 1: One counter.
-  . Scenario 2: Two counters.
-  . Scenario 3: Three counters.
+        . Bank queue experiment:
+        
+          . Scenario 1: One counter.
+          . Scenario 2: Two counters.
+          . Scenario 3: Three counters.
 
 Performance measures:
 
-. Average waiting time.
-
-. Maximum queue length.
-
-. Counter utilization.
+          . Average waiting time.
+          
+          . Maximum queue length.
+          
+          . Counter utilization.
 
 ============================================================
 STEP 7: SIMULATION RUN AND ANALYSIS
@@ -1871,32 +1931,32 @@ STEP 7: SIMULATION RUN AND ANALYSIS
 
 Outputs may include:
 
-. Average waiting time.
-
-. Total profit.
-
-. Production quantity.
-
-. Queue length.
-
-. Resource utilization.
-
-. System cost.
-
-. Error percentage.
+        . Average waiting time.
+        
+        . Total profit.
+        
+        . Production quantity.
+        
+        . Queue length.
+        
+        . Resource utilization.
+        
+        . System cost.
+        
+        . Error percentage.
 
 Example:
 
-. Result from bank simulation:
-
-  . One counter: average waiting time = 20 minutes.
-  . Two counters: average waiting time = 8 minutes.
-  . Three counters: average waiting time = 3 minutes.
+        . Result from bank simulation:
+        
+          . One counter: average waiting time = 20 minutes.
+          . Two counters: average waiting time = 8 minutes.
+          . Three counters: average waiting time = 3 minutes.
 
 Analysis:
 
-. Two counters may be better because waiting time is acceptable and cost
-  is lower than three counters.
+        . Two counters may be better because waiting time is acceptable and cost
+          is lower than three counters.
 
 ============================================================
 STEP 8: DOCUMENTATION
@@ -1907,35 +1967,35 @@ STEP 8: DOCUMENTATION
 
 Documentation includes:
 
-. Problem description.
-
-. Objectives.
-
-. Assumptions.
-
-. Input data.
-
-. Model structure.
-
-. Program logic.
-
-. Experiment design.
-
-. Results.
-
-. Graphs and tables.
-
-. Limitations.
-
-. Recommendations.
+            . Problem description.
+            
+            . Objectives.
+            
+            . Assumptions.
+            
+            . Input data.
+            
+            . Model structure.
+            
+            . Program logic.
+            
+            . Experiment design.
+            
+            . Results.
+            
+            . Graphs and tables.
+            
+            . Limitations.
+            
+            . Recommendations.
 
 Importance:
 
-. Helps others understand the model.
-
-. Helps future improvement.
-
-. Helps in report writing and presentation.
+        . Helps others understand the model.
+        
+        . Helps future improvement.
+        
+        . Helps in report writing and presentation.
 
 ============================================================
 STEP 9: IMPLEMENTATION
@@ -1947,364 +2007,9 @@ STEP 9: IMPLEMENTATION
 
 Example:
 
-. If simulation shows that two counters reduce waiting time effectively,
-  the bank may add one extra counter.
+          . If simulation shows that two counters reduce waiting time effectively,
+            the bank may add one extra counter.
+          
+          . If coffee roasting simulation shows machine capacity is low, the
+            company may increase working hours or buy another roaster.
 
-. If coffee roasting simulation shows machine capacity is low, the
-  company may increase working hours or buy another roaster.
-
-============================================================
-FULL EXAMPLE: BANK QUEUE SIMULATION
-============================================================
-
-Problem:
-
-. Customers wait too long in a bank.
-
-Objective:
-
-. Find whether one more counter is needed.
-
-Model variables:
-
-. Customer arrival time.
-
-. Service time.
-
-. Number of counters.
-
-. Waiting time.
-
-. Queue length.
-
-Data:
-
-. Average customer arrival = 20 customers per hour.
-
-. Average service time = 4 minutes.
-
-Experiments:
-
-. Scenario 1:
-  One counter.
-
-. Scenario 2:
-  Two counters.
-
-. Scenario 3:
-  Three counters.
-
-Possible results:
-
-. One counter:
-  Average waiting time = 25 minutes.
-
-. Two counters:
-  Average waiting time = 8 minutes.
-
-. Three counters:
-  Average waiting time = 3 minutes.
-
-Decision:
-
-. Two counters may be best because waiting time becomes acceptable and
-  cost is reasonable.
-
-============================================================
-FULL EXAMPLE: COFFEE ROASTING SIMULATION
-============================================================
-
-Problem:
-
-. A coffee business wants to estimate production capacity.
-
-Given:
-
-. Roaster capacity = 2 kg per hour.
-
-. Working hours per day = 8 hours.
-
-. Working days per month = 25 days.
-
-Model:
-
-. Daily production = Capacity per hour x Working hours.
-
-. Monthly production = Daily production x Working days.
-
-Calculation:
-
-. Daily production = 2 x 8 = 16 kg.
-
-. Monthly production = 16 x 25 = 400 kg.
-
-Simulation question:
-
-. What if monthly demand is 500 kg?
-
-Analysis:
-
-. Current monthly capacity = 400 kg.
-
-. Demand = 500 kg.
-
-. Shortage = 500 - 400 = 100 kg.
-
-Decision:
-
-. Increase working hours, improve efficiency, or buy another roaster.
-
-============================================================
-IMPORTANT EXAM DEFINITIONS
-============================================================
-
-------------------------------------------------------------
-System
-------------------------------------------------------------
-
-. A system is a group of interrelated components that work together to
-  achieve a common goal.
-
-------------------------------------------------------------
-Model
-------------------------------------------------------------
-
-. A model is a simplified representation of a real system used for
-  analysis and decision making.
-
-------------------------------------------------------------
-Simulation
-------------------------------------------------------------
-
-. Simulation is the imitation of the operation of a real system over
-  time using a model.
-
-------------------------------------------------------------
-Computer Simulation
-------------------------------------------------------------
-
-. Computer simulation is the use of a computer program to imitate and
-  analyze the behavior of a real system.
-
-------------------------------------------------------------
-Discrete System
-------------------------------------------------------------
-
-. A discrete system is a system in which state changes occur at
-  specific points in time.
-
-------------------------------------------------------------
-Continuous System
-------------------------------------------------------------
-
-. A continuous system is a system in which state variables change
-  continuously over time.
-
-------------------------------------------------------------
-Verification
-------------------------------------------------------------
-
-. Verification checks whether the model has been built correctly.
-
-------------------------------------------------------------
-Validation
-------------------------------------------------------------
-
-. Validation checks whether the model represents the real system
-  correctly.
-
-============================================================
-IMPORTANT SHORT QUESTIONS AND ANSWERS
-============================================================
-
-Q1. What is a system?
-
-. A system is a collection of interrelated components that work together
-  to achieve a common objective.
-
-------------------------------------------------------------
-
-Q2. What is a model?
-
-. A model is a simplified representation of a real system.
-
-------------------------------------------------------------
-
-Q3. What is simulation?
-
-. Simulation is the imitation of the operation of a real system over
-  time using a model.
-
-------------------------------------------------------------
-
-Q4. Why is simulation used?
-
-. Simulation is used to study complex systems, reduce risk, save cost,
-  test alternatives, and support decision making.
-
-------------------------------------------------------------
-
-Q5. What is a discrete system?
-
-. A discrete system is a system whose state changes at specific points
-  in time due to events.
-
-------------------------------------------------------------
-
-Q6. What is a continuous system?
-
-. A continuous system is a system whose state variables change
-  continuously over time.
-
-------------------------------------------------------------
-
-Q7. Give two examples of discrete systems.
-
-. Bank queue system.
-
-. Ticket counter system.
-
-------------------------------------------------------------
-
-Q8. Give two examples of continuous systems.
-
-. Water level in a tank.
-
-. Temperature change in a room.
-
-------------------------------------------------------------
-
-Q9. What is computer simulation?
-
-. Computer simulation is the use of computer software to imitate the
-  behavior of a real system.
-
-------------------------------------------------------------
-
-Q10. What is validation?
-
-. Validation is the process of checking whether the model correctly
-  represents the real system.
-
-============================================================
-IMPORTANT LONG QUESTION GUIDE
-============================================================
-
-Question 1:
-. Define system, model, and simulation. Explain with examples.
-
-Answer structure:
-
-. Define system.
-. Explain components of system.
-. Give examples.
-. Define model.
-. Explain need of model.
-. Give examples.
-. Define simulation.
-. Explain why simulation is used.
-. Give real-life example.
-
-------------------------------------------------------------
-
-Question 2:
-. Explain discrete and continuous systems with examples.
-
-Answer structure:
-
-. Define discrete system.
-. Give examples.
-. Explain event-based change.
-. Define continuous system.
-. Give examples.
-. Explain continuous change.
-. Compare both in table form.
-
-------------------------------------------------------------
-
-Question 3:
-. Explain different types of models.
-
-Answer structure:
-
-. Define model.
-. Explain physical model.
-. Explain mathematical model.
-. Explain logical model.
-. Explain graphical model.
-. Explain static and dynamic models.
-. Explain deterministic and stochastic models.
-. Explain discrete and continuous models.
-. Give examples.
-
-------------------------------------------------------------
-
-Question 4:
-. Explain model development life cycle.
-
-Answer structure:
-
-. Define model development life cycle.
-. Explain each stage:
-  . Problem identification
-  . Objective definition
-  . System study
-  . Conceptual model
-  . Data collection
-  . Model formulation
-  . Programming
-  . Verification
-  . Validation
-  . Experimentation
-  . Output analysis
-  . Documentation
-  . Implementation
-  . Maintenance
-
-------------------------------------------------------------
-
-Question 5:
-. Explain steps in simulation and modeling.
-
-Answer structure:
-
-. Problem formulation.
-. Model construction.
-. Data collection.
-. Model programming.
-. Validation.
-. Design of experiment.
-. Simulation run and analysis.
-. Documentation.
-. Implementation.
-
-============================================================
-QUICK REVISION
-============================================================
-
-. A system is a collection of related components.
-
-. A model is a simplified representation of a system.
-
-. Simulation is the process of experimenting with a model.
-
-. Discrete systems change at specific event points.
-
-. Continuous systems change continuously over time.
-
-. Computer simulation uses computer programs for simulation.
-
-. Models may be physical, mathematical, logical, graphical, static,
-  dynamic, deterministic, stochastic, discrete, or continuous.
-
-. Model development life cycle gives a systematic process for model
-  building.
-
-. Simulation helps in safe, cheap, and fast experimentation.
-
-. Simulation is widely used in business, hospital, traffic, banking,
-  software engineering, networking, manufacturing, and education.
-
-============================================================
-END OF UNIT I NOTES
-============================================================
