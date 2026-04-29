@@ -1,0 +1,773 @@
+#!/bin/bash
+
+# ============================================================
+# CLOUD COMPUTING TRAINER DEMO - SINGLE FILE
+# SaaS / PaaS / IaaS Concept Using Ubuntu Terminal
+# Platform: KillerCoda Ubuntu Terminal / Ubuntu Linux
+# Message: Hello World! Welcome to Cloud!
+# ============================================================
+
+# ============================================================
+# HOW TO USE
+# ============================================================
+# 1. Open KillerCoda Ubuntu Terminal
+# 2. Create file:
+#       nano cloud-demo.sh
+#
+# 3. Paste this full code
+#
+# 4. Save:
+#       CTRL + X, then Y, then Enter
+#
+# 5. Give permission:
+#       chmod +x cloud-demo.sh
+#
+# 6. Run:
+#       ./cloud-demo.sh
+# ============================================================
+
+
+# ============================================================
+# BASIC SYSTEM CHECK
+# ============================================================
+
+echo "============================================================"
+echo " CLOUD COMPUTING TRAINER DEMO STARTED"
+echo "============================================================"
+
+echo ""
+echo "Checking current user..."
+whoami
+
+echo ""
+echo "Checking current directory..."
+pwd
+
+echo ""
+echo "Checking Linux system information..."
+uname -a
+
+echo ""
+echo "Checking Ubuntu version..."
+lsb_release -a 2>/dev/null || cat /etc/os-release
+
+echo ""
+echo "Updating package list..."
+sudo apt update
+
+
+# ============================================================
+# CREATE WORKING FOLDER
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " CREATING WORKING FOLDER"
+echo "============================================================"
+
+mkdir -p ~/cloud-demo
+cd ~/cloud-demo
+
+echo "Current working directory:"
+pwd
+
+
+# ============================================================
+# DEMO 1: SIMPLE TEXT FILE DEMO
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 1: SIMPLE TEXT FILE DEMO"
+echo " Concept: Basic cloud message stored as a file"
+echo "============================================================"
+
+echo "Hello World! Welcome to Cloud!" > cloud-message.txt
+
+echo ""
+echo "Reading file content:"
+cat cloud-message.txt
+
+echo ""
+echo "Listing files:"
+ls -l
+
+
+# ============================================================
+# DEMO 2: C PROGRAM DEMO
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 2: C PROGRAM DEMO"
+echo " Concept: Compile and run C program in Ubuntu"
+echo "============================================================"
+
+sudo apt install gcc -y
+
+cat > hello.c << 'EOF'
+#include <stdio.h>
+
+int main() {
+    printf("Hello World! Welcome to Cloud!\n");
+    return 0;
+}
+EOF
+
+echo ""
+echo "C Program Code:"
+cat hello.c
+
+echo ""
+echo "Compiling C program..."
+gcc hello.c -o hello_c
+
+echo ""
+echo "Running C program..."
+./hello_c
+
+
+# ============================================================
+# DEMO 3: C++ PROGRAM DEMO
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 3: C++ PROGRAM DEMO"
+echo " Concept: Compile and run C++ program in Ubuntu"
+echo "============================================================"
+
+sudo apt install g++ -y
+
+cat > hello.cpp << 'EOF'
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello World! Welcome to Cloud!" << endl;
+    return 0;
+}
+EOF
+
+echo ""
+echo "C++ Program Code:"
+cat hello.cpp
+
+echo ""
+echo "Compiling C++ program..."
+g++ hello.cpp -o hello_cpp
+
+echo ""
+echo "Running C++ program..."
+./hello_cpp
+
+
+# ============================================================
+# DEMO 4: JAVA PROGRAM USING JAVAC
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 4: JAVA PROGRAM USING JAVAC"
+echo " Concept: Compile and run Java program"
+echo "============================================================"
+
+sudo apt install default-jdk -y
+
+echo ""
+echo "Checking Java version..."
+java -version
+
+echo ""
+echo "Checking Java compiler version..."
+javac -version
+
+cat > HelloCloud.java << 'EOF'
+public class HelloCloud {
+    public static void main(String[] args) {
+        System.out.println("Hello World! Welcome to Cloud!");
+    }
+}
+EOF
+
+echo ""
+echo "Java Program Code:"
+cat HelloCloud.java
+
+echo ""
+echo "Compiling Java program..."
+javac HelloCloud.java
+
+echo ""
+echo "Running Java program..."
+java HelloCloud
+
+
+# ============================================================
+# DEMO 5: HTML STATIC WEBSITE USING APACHE
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 5: HTML STATIC WEBSITE USING APACHE"
+echo " Concept: Simple static cloud-hosted web page"
+echo "============================================================"
+
+sudo apt install apache2 -y
+
+sudo systemctl start apache2
+sudo systemctl enable apache2
+
+sudo tee /var/www/html/index.html > /dev/null << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud HTML Demo</title>
+</head>
+<body>
+    <h1>Hello World! Welcome to Cloud!</h1>
+    <p>This is a static HTML page running on Ubuntu Apache Server.</p>
+    <p>Cloud Concept: IaaS style manual web hosting demo.</p>
+</body>
+</html>
+EOF
+
+echo ""
+echo "Testing Apache HTML page:"
+curl localhost
+
+echo ""
+echo "Open exposed port 80 in KillerCoda to view this page in browser."
+
+
+# ============================================================
+# DEMO 6: PHP WEB APPLICATION
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 6: PHP WEB APPLICATION"
+echo " Concept: Dynamic web application using PHP"
+echo "============================================================"
+
+sudo apt install php libapache2-mod-php -y
+
+cat > /tmp/index.php << 'EOF'
+<?php
+echo "<h1>Hello World! Welcome to Cloud!</h1>";
+echo "<p>This is a PHP dynamic web application.</p>";
+echo "<p>Running on Ubuntu Apache Server.</p>";
+echo "<p>Server Time: " . date("Y-m-d H:i:s") . "</p>";
+?>
+EOF
+
+sudo cp /tmp/index.php /var/www/html/index.php
+
+sudo systemctl restart apache2
+
+echo ""
+echo "Testing PHP page:"
+curl localhost/index.php
+
+echo ""
+echo "Open exposed port 80 and visit /index.php in browser."
+
+
+# ============================================================
+# DEMO 7: JAVA JSP APPLICATION USING TOMCAT
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 7: JAVA JSP APPLICATION USING TOMCAT"
+echo " Concept: Java web application running on Tomcat server"
+echo "============================================================"
+
+sudo apt install tomcat10 -y
+
+sudo systemctl start tomcat10
+sudo systemctl enable tomcat10
+
+sudo mkdir -p /var/lib/tomcat10/webapps/hellocloud
+
+sudo tee /var/lib/tomcat10/webapps/hellocloud/index.jsp > /dev/null << 'EOF'
+<html>
+<head>
+    <title>Hello Cloud JSP</title>
+</head>
+<body>
+    <h1>Hello World! Welcome to Cloud!</h1>
+    <p>This Java JSP page is running on Apache Tomcat.</p>
+    <p>Server Time: <%= new java.util.Date() %></p>
+</body>
+</html>
+EOF
+
+sudo systemctl restart tomcat10
+
+echo ""
+echo "Testing JSP application:"
+curl localhost:8080/hellocloud/
+
+echo ""
+echo "Open exposed port 8080 and visit /hellocloud/ in browser."
+
+
+# ============================================================
+# DEMO 8: JAVA WAR APPLICATION USING MAVEN AND TOMCAT
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 8: JAVA WAR APPLICATION USING MAVEN AND TOMCAT"
+echo " Concept: Package Java web app and deploy WAR file"
+echo "============================================================"
+
+sudo apt install maven -y
+
+cd ~/cloud-demo
+
+if [ ! -d "hellocloudweb" ]; then
+    mvn archetype:generate \
+    -DgroupId=com.demo \
+    -DartifactId=hellocloudweb \
+    -DarchetypeArtifactId=maven-archetype-webapp \
+    -DinteractiveMode=false
+fi
+
+cd hellocloudweb
+
+cat > src/main/webapp/index.jsp << 'EOF'
+<html>
+<head>
+    <title>Java WAR Cloud Demo</title>
+</head>
+<body>
+    <h1>Hello World! Welcome to Cloud!</h1>
+    <p>This Java WAR application is deployed on Apache Tomcat.</p>
+</body>
+</html>
+EOF
+
+echo ""
+echo "Building WAR file..."
+mvn package
+
+echo ""
+echo "Deploying WAR file to Tomcat..."
+sudo cp target/hellocloudweb.war /var/lib/tomcat10/webapps/
+
+sudo systemctl restart tomcat10
+
+echo ""
+echo "Testing WAR application:"
+sleep 5
+curl localhost:8080/hellocloudweb/
+
+echo ""
+echo "Open exposed port 8080 and visit /hellocloudweb/ in browser."
+
+
+# ============================================================
+# DEMO 9: PYTHON FLASK WEB APPLICATION
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 9: PYTHON FLASK WEB APPLICATION"
+echo " Concept: Simple Python PaaS-style web app"
+echo "============================================================"
+
+cd ~/cloud-demo
+
+sudo apt install python3 python3-pip -y
+
+pip3 install flask --break-system-packages 2>/dev/null || pip3 install flask
+
+cat > app.py << 'EOF'
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return """
+    <h1>Hello World! Welcome to Cloud!</h1>
+    <p>This Python Flask app is running in a cloud-like environment.</p>
+    <p>Cloud Concept: PaaS style application deployment.</p>
+    """
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+EOF
+
+echo ""
+echo "Starting Flask app in background on port 5000..."
+nohup python3 app.py > flask.log 2>&1 &
+
+sleep 3
+
+echo ""
+echo "Testing Flask app:"
+curl localhost:5000
+
+echo ""
+echo "Open exposed port 5000 in KillerCoda to view Flask app."
+
+
+# ============================================================
+# DEMO 10: NODE.JS WEB APPLICATION
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 10: NODE.JS WEB APPLICATION"
+echo " Concept: Simple Node.js cloud web app"
+echo "============================================================"
+
+cd ~/cloud-demo
+
+sudo apt install nodejs npm -y
+
+cat > server.js << 'EOF'
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {"Content-Type": "text/html"});
+    res.end(`
+        <h1>Hello World! Welcome to Cloud!</h1>
+        <p>This Node.js app is running in a cloud-like Ubuntu environment.</p>
+        <p>Cloud Concept: PaaS style web application.</p>
+    `);
+});
+
+server.listen(3000, "0.0.0.0", () => {
+    console.log("Server running on port 3000");
+});
+EOF
+
+echo ""
+echo "Starting Node.js app in background on port 3000..."
+nohup node server.js > node.log 2>&1 &
+
+sleep 3
+
+echo ""
+echo "Testing Node.js app:"
+curl localhost:3000
+
+echo ""
+echo "Open exposed port 3000 in KillerCoda to view Node.js app."
+
+
+# ============================================================
+# DEMO 11: DOCKER CONTAINER DEMO
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 11: DOCKER CONTAINER DEMO"
+echo " Concept: Containerized cloud application"
+echo "============================================================"
+
+cd ~/cloud-demo
+
+sudo apt install docker.io -y
+
+sudo systemctl start docker
+sudo systemctl enable docker
+
+mkdir -p docker-cloud-demo
+cd docker-cloud-demo
+
+cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Cloud Demo</title>
+</head>
+<body>
+    <h1>Hello World! Welcome to Cloud!</h1>
+    <p>This page is running inside a Docker container.</p>
+</body>
+</html>
+EOF
+
+cat > Dockerfile << 'EOF'
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+EOF
+
+echo ""
+echo "Building Docker image..."
+sudo docker build -t hello-cloud-docker .
+
+echo ""
+echo "Running Docker container on port 8081..."
+sudo docker rm -f hello-cloud-container 2>/dev/null || true
+sudo docker run -d -p 8081:80 --name hello-cloud-container hello-cloud-docker
+
+echo ""
+echo "Checking running Docker containers:"
+sudo docker ps
+
+echo ""
+echo "Testing Docker app:"
+curl localhost:8081
+
+echo ""
+echo "Open exposed port 8081 in KillerCoda to view Docker app."
+
+
+# ============================================================
+# DEMO 12: SIMPLE CLOUD COST CALCULATION USING BASH
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 12: SIMPLE CLOUD COST CALCULATION USING BASH"
+echo " Concept: Measured service / pay-as-you-go model"
+echo "============================================================"
+
+cd ~/cloud-demo
+
+cat > cloud-cost.sh << 'EOF'
+#!/bin/bash
+
+echo "======================================"
+echo " Simple Cloud Cost Calculator"
+echo "======================================"
+
+HOURS=10
+PRICE_PER_HOUR=5
+
+TOTAL_COST=$((HOURS * PRICE_PER_HOUR))
+
+echo "Server running hours: $HOURS"
+echo "Price per hour: NPR $PRICE_PER_HOUR"
+echo "Total cloud cost: NPR $TOTAL_COST"
+
+echo "======================================"
+echo "Cloud Concept: Measured Service"
+echo "======================================"
+EOF
+
+chmod +x cloud-cost.sh
+
+./cloud-cost.sh
+
+
+# ============================================================
+# DEMO 13: SIMPLE CLOUD STORAGE SIMULATION
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 13: SIMPLE CLOUD STORAGE SIMULATION"
+echo " Concept: Upload, store, read, and delete files"
+echo "============================================================"
+
+cd ~/cloud-demo
+
+mkdir -p cloud-storage
+
+echo "Hello World! Welcome to Cloud!" > local-file.txt
+
+echo ""
+echo "Uploading file to simulated cloud storage..."
+cp local-file.txt cloud-storage/
+
+echo ""
+echo "Files in cloud storage:"
+ls -l cloud-storage/
+
+echo ""
+echo "Reading file from cloud storage:"
+cat cloud-storage/local-file.txt
+
+echo ""
+echo "Downloading file from cloud storage..."
+cp cloud-storage/local-file.txt downloaded-file.txt
+
+echo ""
+echo "Reading downloaded file:"
+cat downloaded-file.txt
+
+echo ""
+echo "Deleting file from cloud storage..."
+rm cloud-storage/local-file.txt
+
+echo ""
+echo "Cloud storage after deletion:"
+ls -l cloud-storage/
+
+
+# ============================================================
+# DEMO 14: BASIC ENCRYPTION DEMO
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 14: BASIC ENCRYPTION DEMO"
+echo " Concept: Cloud security and data protection"
+echo "============================================================"
+
+cd ~/cloud-demo
+
+sudo apt install openssl -y
+
+echo "Hello World! Welcome to Cloud!" > secret.txt
+
+echo ""
+echo "Encrypting file..."
+openssl enc -aes-256-cbc -salt -pbkdf2 -in secret.txt -out secret.enc -k mypassword
+
+echo ""
+echo "Encrypted file created:"
+ls -l secret.enc
+
+echo ""
+echo "Decrypting file..."
+openssl enc -aes-256-cbc -d -pbkdf2 -in secret.enc -out decrypted.txt -k mypassword
+
+echo ""
+echo "Reading decrypted file:"
+cat decrypted.txt
+
+
+# ============================================================
+# DEMO 15: SIMPLE MONITORING COMMANDS
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 15: SIMPLE MONITORING COMMANDS"
+echo " Concept: Cloud monitoring of CPU, memory, disk, and process"
+echo "============================================================"
+
+echo ""
+echo "Memory usage:"
+free -h
+
+echo ""
+echo "Disk usage:"
+df -h
+
+echo ""
+echo "System uptime:"
+uptime
+
+echo ""
+echo "Network IP information:"
+ip addr | head -40
+
+echo ""
+echo "Listening ports:"
+sudo ss -tulnp | head -30
+
+echo ""
+echo "Running processes:"
+ps aux | head
+
+
+# ============================================================
+# DEMO 16: SAAS / PAAS / IAAS COMPARISON
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " DEMO 16: SAAS / PAAS / IAAS COMPARISON"
+echo " Concept: Cloud service model explanation"
+echo "============================================================"
+
+cat > cloud-models.txt << 'EOF'
+============================================================
+Cloud Service Models
+============================================================
+
+1. SaaS - Software as a Service
+   - User only uses ready-made software.
+   - No need to manage server, OS, database, or code.
+   - Examples: Gmail, Google Drive, Canva, Zoom.
+
+2. PaaS - Platform as a Service
+   - Developer uploads code.
+   - Platform manages server, runtime, and environment.
+   - Examples: Heroku, Google App Engine, Azure App Service.
+
+3. IaaS - Infrastructure as a Service
+   - User gets virtual server, storage, and network.
+   - User manages OS, runtime, and application.
+   - Examples: AWS EC2, Azure VM, Google Compute Engine.
+
+============================================================
+Trainer Message:
+Hello World! Welcome to Cloud!
+============================================================
+EOF
+
+cat cloud-models.txt
+
+
+# ============================================================
+# FINAL TRAINER SUMMARY
+# ============================================================
+
+echo ""
+echo "============================================================"
+echo " FINAL TRAINER SUMMARY"
+echo "============================================================"
+
+cat << 'EOF'
+
+Today we demonstrated cloud computing concepts using Ubuntu terminal.
+
+We used the same message:
+
+    Hello World! Welcome to Cloud!
+
+We tested it using:
+
+1. Text file
+2. C program
+3. C++ program
+4. Java program using javac
+5. HTML website using Apache
+6. PHP web application
+7. Java JSP using Tomcat
+8. Java WAR using Maven and Tomcat
+9. Python Flask web app
+10. Node.js web app
+11. Docker container
+12. Cloud cost calculation
+13. Cloud storage simulation
+14. Data encryption
+15. Monitoring commands
+
+Cloud Model Understanding:
+
+SaaS:
+User directly uses software.
+
+PaaS:
+Developer uploads code and platform runs it.
+
+IaaS:
+User manages virtual machine, OS, server, and application.
+
+Important Ports:
+
+Apache HTML/PHP:     80
+Tomcat JSP/WAR:      8080
+Python Flask:        5000
+Node.js:             3000
+Docker Nginx App:    8081
+
+In KillerCoda, open these exposed ports to view the web applications.
+
+EOF
+
+echo "============================================================"
+echo " CLOUD COMPUTING TRAINER DEMO COMPLETED"
+echo "============================================================"
