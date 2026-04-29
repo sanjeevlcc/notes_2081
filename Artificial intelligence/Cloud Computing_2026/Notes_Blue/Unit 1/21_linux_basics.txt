@@ -1,0 +1,76 @@
+# ============================================================
+# Open Ubuntu Terminal in KillerCoda
+# ============================================================
+
+# 1. Open KillerCoda website
+#    - Go to: https://killercoda.com
+#    - Select Ubuntu / Linux playground
+#    - Wait until terminal is ready
+
+
+# 2. Check current user
+whoami
+
+
+# 3. Check current directory
+pwd
+
+
+# 4. List files and folders
+ls
+
+
+# 5. Show detailed files and folders
+ls -l
+
+
+# 6. Check Ubuntu/Linux system information
+uname -a
+
+
+# 7. Check Ubuntu version
+lsb_release -a
+
+
+# 8. Clear terminal screen
+clear
+
+
+# 9. Update package list
+sudo apt update
+
+
+# 10. Create working folder for cloud demo
+mkdir cloud-demo
+
+
+# 11. Go inside working folder
+cd cloud-demo
+
+
+# 12. Check current location again
+pwd
+
+
+# 13. Create a simple test file
+touch test.txt
+
+
+# 14. Write text inside file
+echo "Hello World! Welcome to Cloud!" > test.txt
+
+
+# 15. Read file content
+cat test.txt
+
+
+# 16. Show files again
+ls -l
+
+
+# 17. Remove test file if needed
+rm test.txt
+
+
+# 18. Final check
+ls
