@@ -1,0 +1,877 @@
+
+
+
+==================================================================
+UNIT I LAB: DATA COLLECTION, CLEANING, AND PREPARATION USING PYTHON
+GOOGLE COLAB PRACTICAL
+==================================================================
+
+Objective:
+----------
+. Create a dummy sales/customer dataset.
+. Identify errors in the dataset.
+. Clean the dataset using Python in Google Colab.
+. Remove duplicates.
+. Handle missing values.
+. Normalize text data.
+. Perform descriptive statistics.
+. Create summary reports.
+. Create basic visualizations.
+
+
+==================================================================
+PART A: OPEN GOOGLE COLAB
+==================================================================
+
+Step 1:
+-------
+. Open browser.
+. Go to Google Colab.
+. Click New Notebook.
+. Rename notebook as:
+
+Data_Cleaning_Sales_Analysis_Lab.ipynb
+
+
+Step 2:
+-------
+. Run Python code cell by cell.
+. Use Shift + Enter to run each cell.
+
+
+==================================================================
+PART B: IMPORT REQUIRED LIBRARIES
+==================================================================
+
+Code Cell 1:
+------------
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+==================================================================
+PART C: CREATE RAW DATASET WITH ERRORS
+==================================================================
+
+Code Cell 2:
+------------
+
+data = {
+    "Order ID": [
+        1001,1002,1003,1004,1005,1005,1006,1007,1008,1009,
+        1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,
+        1020,1021,1022,1023,1024,1025,1026,1027,1028,1029,
+        1030,1031,1031,1032
+    ],
+
+    "Date": [
+        "2026-01-01","2026-01-02","2026-01-02","2026-01-03",
+        "2026-01-03","2026-01-03","2026-01-04","2026-01-04",
+        "2026-01-05","2026-01-06","2026-01-06","2026-01-07",
+        "2026-01-08","2026-01-08","2026-01-09","2026-01-09",
+        "2026-01-10","2026-01-10","2026-01-11","2026-01-11",
+        "2026-01-12","2026-01-12","2026-01-13","2026-01-13",
+        "2026-01-14","2026-01-14","2026-01-15","2026-01-15",
+        "2026-01-16","2026-01-16","2026-01-17","2026-01-17",
+        "2026-01-17","2026-01-18"
+    ],
+
+    "Customer Name": [
+        "Ram Sharma","Sita Thapa","Hari KC","Gita Rai","Ram Sharma",
+        "Ram Sharma","Nabin Gurung","Mina Lama","Rajan Yadav",
+        "Anita BK","Hari KC","Sita Thapa","Bikash Rana",
+        "Pooja Adhikari","Deepak Bhandari","Sunita Khadka",
+        "Amit Shah","Laxmi Gurung","Kiran Malla","Rita Tamang",
+        "Manoj Nepali","Asmita Rai","Suraj Karki","Nisha Yadav",
+        "Prakash Thapa","Maya Lama","Suman KC","Gopal Basnet",
+        "Karuna Shrestha","Bimal Oli","Rekha Poudel","Arjun Bohara",
+        "Arjun Bohara","Sabina Ale"
+    ],
+
+    "Product": [
+        "Laptop","Mouse","Chair","Keyboard","Laptop","Laptop",
+        "Table","Mobile","Printer","Chair","Mouse","Laptop",
+        "Coffee Mug","Water Bottle","Headphone","Sofa","Pen Drive",
+        "Notebook","Desk Lamp","Bookshelf","Router","Mobile","Chair",
+        "Keyboard","Table","Printer","Mouse","Laptop","Coffee Mug",
+        "Sofa","Notebook","Headphone","Headphone","Water Bottle"
+    ],
+
+    "Category": [
+        "Electronics","Electronics","Furniture","Electronics",
+        "Electronics","Electronics","Furniture","Electronics",
+        "Electronics","Furniture","Electronics","Electronics",
+        "Kitchen","Kitchen","Electronics","Furniture","Electronics",
+        "Stationery","Electronics","Furniture","Electronics",
+        "electronics","Furniture","Electronics","Furniture",
+        "Electronics","Electronics","Electronics","Kitchen",
+        "Furniture","Stationery","Electronics","Electronics","Kitchen"
+    ],
+
+    "Quantity": [
+        1,2,1,1,1,1,np.nan,1,1,3,
+        2,1,5,4,2,1,3,10,2,1,
+        1,1,-2,2,1,1,1,1,np.nan,1,
+        8,1,1,3
+    ],
+
+    "Unit Price": [
+        75000,800,4500,1500,75000,75000,6000,30000,18000,4500,
+        800,76000,350,500,np.nan,25000,1200,80,2200,8500,
+        3500,31000,4500,1500,6200,18000,800,74000,350,26000,
+        80,2500,2500,500
+    ],
+
+    "City": [
+        "Butwal","Kathmandu","Pokhara","butwal","Butwal","Butwal",
+        "Chitwan",np.nan,"Biratnagar","Pokhara","POKHARA",
+        "Kathmandu","Lalitpur","Kathmandu","Butwal","Chitwan",
+        "Birgunj","Pokhara","Lalitpur","Kathmandu","Butwal",
+        "Dharan","Pokhara","Janakpur","Chitwan","Biratnagar",
+        "Kathmandu","Butwal","Lalitpur","Chitwan","Pokhara",
+        "Butwal","Butwal","Kathmandu"
+    ],
+
+    "Payment Method": [
+        "Cash","Online","Cash","online","Cash","Cash","Cash",
+        "Online","Cash","Online","Cash","Online","Cash","Online",
+        "Cash","Online","Cash","Cash","Online","Cash","Online",
+        "Online","Cash","ONLINE","Cash","Cash","Cash","Online",
+        "Cash","Card","Cash","online","online","Online"
+    ]
+}
+
+df = pd.DataFrame(data)
+
+print("Raw Dataset:")
+df
+
+
+==================================================================
+PART D: CHECK DATASET INFORMATION
+==================================================================
+
+Code Cell 3:
+------------
+
+print("Dataset Shape:")
+print(df.shape)
+
+print("\nDataset Information:")
+df.info()
+
+print("\nFirst 5 Rows:")
+df.head()
+
+
+Expected Output:
+----------------
+. Dataset has 34 rows.
+. Dataset has missing values.
+. Dataset has duplicate records.
+. Dataset has inconsistent text values.
+
+
+==================================================================
+PART E: IDENTIFY MISSING VALUES
+==================================================================
+
+Code Cell 4:
+------------
+
+print("Missing Values in Each Column:")
+print(df.isnull().sum())
+
+
+Expected Result:
+----------------
+. Quantity has missing values.
+. Unit Price has missing value.
+. City has missing value.
+
+
+==================================================================
+PART F: IDENTIFY DUPLICATE RECORDS
+==================================================================
+
+Code Cell 5:
+------------
+
+print("Total Duplicate Rows:")
+print(df.duplicated().sum())
+
+print("\nDuplicate Records:")
+df[df.duplicated()]
+
+
+Expected Result:
+----------------
+. Duplicate Order ID 1005
+. Duplicate Order ID 1031
+
+
+==================================================================
+PART G: COPY RAW DATA BEFORE CLEANING
+==================================================================
+
+Code Cell 6:
+------------
+
+cleaned_df = df.copy()
+
+print("Copied raw data into cleaned_df for cleaning.")
+cleaned_df.head()
+
+
+Purpose:
+--------
+. df keeps original raw data.
+. cleaned_df is used for cleaning.
+
+
+==================================================================
+PART H: REMOVE DUPLICATE RECORDS
+==================================================================
+
+Code Cell 7:
+------------
+
+cleaned_df = cleaned_df.drop_duplicates()
+
+print("After removing duplicates:")
+print(cleaned_df.shape)
+
+
+Expected Result:
+----------------
+. Rows reduce from 34 to 32.
+
+
+==================================================================
+PART I: HANDLE MISSING QUANTITY
+==================================================================
+
+Cleaning Rule:
+--------------
+. Replace missing Quantity with 1.
+
+Code Cell 8:
+------------
+
+cleaned_df["Quantity"] = cleaned_df["Quantity"].fillna(1)
+
+print("Missing Quantity fixed.")
+print(cleaned_df["Quantity"].isnull().sum())
+
+
+==================================================================
+PART J: HANDLE MISSING CITY
+==================================================================
+
+Cleaning Rule:
+--------------
+. Replace missing City with Unknown.
+
+Code Cell 9:
+------------
+
+cleaned_df["City"] = cleaned_df["City"].fillna("Unknown")
+
+print("Missing City fixed.")
+print(cleaned_df["City"].isnull().sum())
+
+
+==================================================================
+PART K: HANDLE MISSING UNIT PRICE
+==================================================================
+
+Cleaning Rule:
+--------------
+. Missing Unit Price is for Headphone.
+. Replace missing Headphone price with 2500.
+
+Code Cell 10:
+-------------
+
+cleaned_df["Unit Price"] = cleaned_df["Unit Price"].fillna(2500)
+
+print("Missing Unit Price fixed.")
+print(cleaned_df["Unit Price"].isnull().sum())
+
+
+==================================================================
+PART L: CORRECT NEGATIVE QUANTITY
+==================================================================
+
+Problem:
+--------
+. Quantity cannot be negative.
+. Order ID 1022 has Quantity -2.
+
+Cleaning Rule:
+--------------
+. Convert negative quantity into positive quantity.
+
+Code Cell 11:
+-------------
+
+cleaned_df["Quantity"] = cleaned_df["Quantity"].abs()
+
+print("Negative Quantity corrected.")
+cleaned_df[cleaned_df["Order ID"] == 1022]
+
+
+Alternative Method:
+-------------------
+cleaned_df.loc[cleaned_df["Quantity"] < 0, "Quantity"] = cleaned_df["Quantity"].abs()
+
+
+==================================================================
+PART M: NORMALIZE TEXT DATA
+==================================================================
+
+Problem:
+--------
+. butwal, POKHARA, online, ONLINE, electronics are inconsistent.
+
+Cleaning Rule:
+--------------
+. Remove extra spaces.
+. Convert text into proper case.
+
+Code Cell 12:
+-------------
+
+cleaned_df["City"] = cleaned_df["City"].str.strip().str.title()
+cleaned_df["Category"] = cleaned_df["Category"].str.strip().str.title()
+cleaned_df["Payment Method"] = cleaned_df["Payment Method"].str.strip().str.title()
+cleaned_df["Product"] = cleaned_df["Product"].str.strip().str.title()
+cleaned_df["Customer Name"] = cleaned_df["Customer Name"].str.strip().str.title()
+
+print("Text normalization completed.")
+cleaned_df.head()
+
+
+==================================================================
+PART N: CONVERT DATE COLUMN INTO DATE FORMAT
+==================================================================
+
+Code Cell 13:
+-------------
+
+cleaned_df["Date"] = pd.to_datetime(cleaned_df["Date"])
+
+print("Date column converted successfully.")
+cleaned_df.info()
+
+
+==================================================================
+PART O: ADD TOTAL SALES COLUMN
+==================================================================
+
+Formula:
+--------
+. Total Sales = Quantity x Unit Price
+
+Code Cell 14:
+-------------
+
+cleaned_df["Total Sales"] = cleaned_df["Quantity"] * cleaned_df["Unit Price"]
+
+print("Total Sales column added.")
+cleaned_df.head()
+
+
+==================================================================
+PART P: FINAL CHECK AFTER CLEANING
+==================================================================
+
+Code Cell 15:
+-------------
+
+print("Final Cleaned Dataset Shape:")
+print(cleaned_df.shape)
+
+print("\nMissing Values After Cleaning:")
+print(cleaned_df.isnull().sum())
+
+print("\nDuplicate Rows After Cleaning:")
+print(cleaned_df.duplicated().sum())
+
+print("\nCleaned Dataset:")
+cleaned_df
+
+
+Expected Result:
+----------------
+. 32 rows.
+. No duplicate records.
+. No missing values.
+. No negative quantity.
+. Text values normalized.
+. Total Sales column added.
+
+
+==================================================================
+PART Q: BASIC DESCRIPTIVE STATISTICS
+==================================================================
+
+Code Cell 16:
+-------------
+
+print("Basic Descriptive Statistics for Total Sales:")
+
+total_sales = cleaned_df["Total Sales"].sum()
+mean_sales = cleaned_df["Total Sales"].mean()
+median_sales = cleaned_df["Total Sales"].median()
+mode_sales = cleaned_df["Total Sales"].mode()
+minimum_sales = cleaned_df["Total Sales"].min()
+maximum_sales = cleaned_df["Total Sales"].max()
+order_count = cleaned_df["Total Sales"].count()
+
+print("Total Orders  :", order_count)
+print("Total Sales   :", total_sales)
+print("Mean Sales    :", mean_sales)
+print("Median Sales  :", median_sales)
+print("Mode Sales    :", list(mode_sales))
+print("Minimum Sales :", minimum_sales)
+print("Maximum Sales :", maximum_sales)
+
+
+Expected Output:
+----------------
+Total Orders  : 32
+Total Sales   : 530240.0
+Mean Sales    : 16570.0
+Median Sales  : 4750.0
+Minimum Sales : 640.0
+Maximum Sales : 76000.0
+
+
+==================================================================
+PART R: COMPLETE SUMMARY STATISTICS
+==================================================================
+
+Code Cell 17:
+-------------
+
+cleaned_df[["Quantity", "Unit Price", "Total Sales"]].describe()
+
+
+Purpose:
+--------
+. Shows count, mean, standard deviation, minimum, maximum, and quartiles.
+
+
+==================================================================
+PART S: CATEGORY-WISE SUMMARY
+==================================================================
+
+Code Cell 18:
+-------------
+
+category_summary = cleaned_df.groupby("Category")["Total Sales"].sum().reset_index()
+
+category_summary = category_summary.sort_values(by="Total Sales", ascending=False)
+
+print("Category-wise Sales Summary:")
+category_summary
+
+
+Expected Output:
+----------------
+Category    | Total Sales
+Electronics | 424500
+Furniture   | 98700
+Kitchen     | 5600
+Stationery  | 1440
+
+
+Finding:
+--------
+. Electronics generated the highest revenue.
+
+
+==================================================================
+PART T: CITY-WISE SUMMARY
+==================================================================
+
+Code Cell 19:
+-------------
+
+city_summary = cleaned_df.groupby("City")["Total Sales"].sum().reset_index()
+
+city_summary = city_summary.sort_values(by="Total Sales", ascending=False)
+
+print("City-wise Sales Summary:")
+city_summary
+
+
+Finding:
+--------
+. Butwal has the highest sales.
+
+
+==================================================================
+PART U: PAYMENT METHOD-WISE SUMMARY
+==================================================================
+
+Code Cell 20:
+-------------
+
+payment_summary = cleaned_df.groupby("Payment Method")["Total Sales"].sum().reset_index()
+
+payment_summary = payment_summary.sort_values(by="Total Sales", ascending=False)
+
+print("Payment Method-wise Sales Summary:")
+payment_summary
+
+
+Finding:
+--------
+. Online payment generated the highest sales amount.
+
+
+==================================================================
+PART V: PRODUCT-WISE SUMMARY
+==================================================================
+
+Code Cell 21:
+-------------
+
+product_summary = cleaned_df.groupby("Product")["Total Sales"].sum().reset_index()
+
+product_summary = product_summary.sort_values(by="Total Sales", ascending=False)
+
+print("Product-wise Sales Summary:")
+product_summary
+
+
+Finding:
+--------
+. Laptop and Mobile products contribute strongly to total revenue.
+
+
+==================================================================
+PART W: PIVOT TABLE USING PYTHON
+==================================================================
+
+Pivot Table 1: Category-wise Sales
+----------------------------------
+
+Code Cell 22:
+-------------
+
+category_pivot = pd.pivot_table(
+    cleaned_df,
+    values="Total Sales",
+    index="Category",
+    aggfunc="sum"
+)
+
+category_pivot
+
+
+Pivot Table 2: City-wise Sales
+------------------------------
+
+Code Cell 23:
+-------------
+
+city_pivot = pd.pivot_table(
+    cleaned_df,
+    values="Total Sales",
+    index="City",
+    aggfunc="sum"
+)
+
+city_pivot.sort_values(by="Total Sales", ascending=False)
+
+
+Pivot Table 3: Payment Method-wise Sales
+----------------------------------------
+
+Code Cell 24:
+-------------
+
+payment_pivot = pd.pivot_table(
+    cleaned_df,
+    values="Total Sales",
+    index="Payment Method",
+    aggfunc="sum"
+)
+
+payment_pivot.sort_values(by="Total Sales", ascending=False)
+
+
+==================================================================
+PART X: VISUALIZATION 1 - CATEGORY-WISE SALES BAR CHART
+==================================================================
+
+Code Cell 25:
+-------------
+
+plt.figure(figsize=(8,5))
+plt.bar(category_summary["Category"], category_summary["Total Sales"])
+plt.title("Category-wise Sales Analysis")
+plt.xlabel("Category")
+plt.ylabel("Total Sales")
+plt.xticks(rotation=45)
+plt.show()
+
+
+Interpretation:
+---------------
+. Electronics category has the highest sales.
+. Stationery category has the lowest sales.
+
+
+==================================================================
+PART Y: VISUALIZATION 2 - CITY-WISE SALES BAR CHART
+==================================================================
+
+Code Cell 26:
+-------------
+
+plt.figure(figsize=(10,5))
+plt.bar(city_summary["City"], city_summary["Total Sales"])
+plt.title("City-wise Sales Performance")
+plt.xlabel("City")
+plt.ylabel("Total Sales")
+plt.xticks(rotation=45)
+plt.show()
+
+
+Interpretation:
+---------------
+. Butwal is the top-performing city.
+. Janakpur and Birgunj have lower sales.
+
+
+==================================================================
+PART Z: VISUALIZATION 3 - PAYMENT METHOD PIE CHART
+==================================================================
+
+Code Cell 27:
+-------------
+
+plt.figure(figsize=(6,6))
+plt.pie(
+    payment_summary["Total Sales"],
+    labels=payment_summary["Payment Method"],
+    autopct="%1.1f%%"
+)
+plt.title("Payment Method Sales Share")
+plt.show()
+
+
+Interpretation:
+---------------
+. Online payment has the highest contribution.
+. Card payment has the lowest contribution.
+
+
+==================================================================
+PART AA: VISUALIZATION 4 - PRODUCT-WISE SALES BAR CHART
+==================================================================
+
+Code Cell 28:
+-------------
+
+plt.figure(figsize=(10,5))
+plt.bar(product_summary["Product"], product_summary["Total Sales"])
+plt.title("Product-wise Sales Analysis")
+plt.xlabel("Product")
+plt.ylabel("Total Sales")
+plt.xticks(rotation=45)
+plt.show()
+
+
+Interpretation:
+---------------
+. Laptop is the highest revenue-generating product.
+. Notebook and Coffee Mug generate lower revenue.
+
+
+==================================================================
+PART AB: VISUALIZATION 5 - DAILY SALES LINE CHART
+==================================================================
+
+Code Cell 29:
+-------------
+
+daily_sales = cleaned_df.groupby("Date")["Total Sales"].sum().reset_index()
+
+plt.figure(figsize=(10,5))
+plt.plot(daily_sales["Date"], daily_sales["Total Sales"], marker="o")
+plt.title("Daily Sales Trend")
+plt.xlabel("Date")
+plt.ylabel("Total Sales")
+plt.xticks(rotation=45)
+plt.show()
+
+
+Interpretation:
+---------------
+. This chart shows sales trend by date.
+. High sales days usually contain laptop or mobile sales.
+
+
+==================================================================
+PART AC: EXPORT CLEANED DATASET TO CSV
+==================================================================
+
+Code Cell 30:
+-------------
+
+cleaned_df.to_csv("cleaned_sales_data.csv", index=False)
+
+print("Cleaned dataset exported successfully as cleaned_sales_data.csv")
+
+
+Download File:
+--------------
+
+Code Cell 31:
+-------------
+
+from google.colab import files
+files.download("cleaned_sales_data.csv")
+
+
+==================================================================
+PART AD: EXPORT SUMMARY REPORT TO CSV
+==================================================================
+
+Code Cell 32:
+-------------
+
+summary_report = pd.DataFrame({
+    "Metric": [
+        "Total Orders After Cleaning",
+        "Total Sales",
+        "Mean Sales",
+        "Median Sales",
+        "Minimum Sales",
+        "Maximum Sales"
+    ],
+    "Value": [
+        order_count,
+        total_sales,
+        mean_sales,
+        median_sales,
+        minimum_sales,
+        maximum_sales
+    ]
+})
+
+summary_report.to_csv("summary_report.csv", index=False)
+
+summary_report
+
+
+Download Summary Report:
+------------------------
+
+Code Cell 33:
+-------------
+
+files.download("summary_report.csv")
+
+
+==================================================================
+PART AE: FINAL STUDENT DELIVERABLE
+==================================================================
+
+Students Must Submit:
+---------------------
+. Google Colab notebook file.
+. Cleaned CSV dataset.
+. Summary report CSV file.
+. Screenshots of visualizations.
+. Short written analysis.
+
+
+Required Files:
+---------------
+. Data_Cleaning_Sales_Analysis_Lab.ipynb
+. cleaned_sales_data.csv
+. summary_report.csv
+
+
+==================================================================
+PART AF: SAMPLE WRITTEN SUMMARY REPORT
+==================================================================
+
+Title:
+------
+Sales Data Cleaning and Analysis Report Using Python
+
+1. Introduction:
+----------------
+This report presents data cleaning and analysis of a sales and customer
+dataset using Python in Google Colab. The original dataset had 34 rows
+and contained duplicate records, missing values, inconsistent text
+formatting, and invalid quantity values.
+
+2. Data Cleaning Performed:
+---------------------------
+. Duplicate records were removed.
+. Missing quantity values were replaced with 1.
+. Missing city value was replaced with Unknown.
+. Missing unit price for Headphone was replaced with 2500.
+. Negative quantity was corrected using absolute value.
+. Text data was normalized using strip and title functions.
+. Date column was converted into datetime format.
+. Total Sales column was created.
+
+3. Descriptive Statistics:
+--------------------------
+Total Orders After Cleaning : 32
+Total Sales                 : 530240
+Mean Sales                  : 16570
+Median Sales                : 4750
+Minimum Sales               : 640
+Maximum Sales               : 76000
+
+4. Key Findings:
+----------------
+. Electronics generated the highest sales.
+. Butwal was the top-performing city.
+. Online payment generated the highest revenue.
+. Laptop and Mobile products contributed strongly to total revenue.
+. Data quality issues included duplicate rows, missing values,
+  inconsistent text case, and negative quantity.
+
+5. Conclusion:
+--------------
+The dataset was successfully cleaned and analyzed using Python.
+After cleaning, the data became suitable for analysis and visualization.
+The analysis showed that Electronics was the strongest category,
+Butwal was the best-performing city, and Online payment was the
+dominant payment method.
+
+
+==================================================================
+PART AG: MARKS DISTRIBUTION
+==================================================================
+
+Raw Dataset Creation        : 10 Marks
+Duplicate Identification    : 10 Marks
+Missing Value Handling      : 15 Marks
+Text Normalization          : 10 Marks
+Negative Value Correction   : 10 Marks
+Total Sales Calculation     : 10 Marks
+Descriptive Statistics      : 15 Marks
+Pivot Table / Grouping      : 10 Marks
+Visualizations              : 10 Marks
+Summary Report              : 10 Marks
+
+Total                       : 100 Marks
+
+
+==================================================================
+END OF GOOGLE COLAB PYTHON LAB
+==================================================================
