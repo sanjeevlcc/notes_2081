@@ -1,0 +1,660 @@
+==================================================================
+UNIT I LAB: DATA COLLECTION, CLEANING, AND PREPARATION
+==================================================================
+
+Objective:
+---------
+Understand how to collect, clean, and prepare sales/customer data
+for analysis using Microsoft Excel.
+
+Tools Required:
+---------------
+. Microsoft Excel
+. Sample sales dataset
+. Pivot Table feature
+. Basic Excel formulas
+
+
+==================================================================
+PART A: RAW DATASET WITH ERRORS
+==================================================================
+
+Instructions:
+-------------
+. Open Microsoft Excel.
+. Copy the following dataset.
+. Paste it into Excel.
+. Save the sheet name as Raw_Data.
+
+------------------------------------------------------------------
+RAW DATASET: SALES AND CUSTOMER DATA
+------------------------------------------------------------------
+
+Order ID | Date       | Customer Name     | Product      | Category    | Quantity | Unit Price | City       | Payment Method
+1001     | 2026-01-01 | Ram Sharma        | Laptop       | Electronics | 1        | 75000      | Butwal     | Cash
+1002     | 2026-01-02 | Sita Thapa        | Mouse        | Electronics | 2        | 800        | Kathmandu  | Online
+1003     | 2026-01-02 | Hari KC           | Chair        | Furniture   | 1        | 4500       | Pokhara    | Cash
+1004     | 2026-01-03 | Gita Rai          | Keyboard     | Electronics | 1        | 1500       | butwal     | online
+1005     | 2026-01-03 | Ram Sharma        | Laptop       | Electronics | 1        | 75000      | Butwal     | Cash
+1005     | 2026-01-03 | Ram Sharma        | Laptop       | Electronics | 1        | 75000      | Butwal     | Cash
+1006     | 2026-01-04 | Nabin Gurung      | Table        | Furniture   |          | 6000       | Chitwan    | Cash
+1007     | 2026-01-04 | Mina Lama         | Mobile       | Electronics | 1        | 30000      |            | Online
+1008     | 2026-01-05 | Rajan Yadav       | Printer      | Electronics | 1        | 18000      | Biratnagar | Cash
+1009     | 2026-01-06 | Anita BK          | Chair        | Furniture   | 3        | 4500       | Pokhara    | Online
+1010     | 2026-01-06 | Hari KC           | Mouse        | Electronics | 2        | 800        | POKHARA    | Cash
+1011     | 2026-01-07 | Sita Thapa        | Laptop       | Electronics | 1        | 76000      | Kathmandu  | Online
+1012     | 2026-01-08 | Bikash Rana       | Coffee Mug   | Kitchen     | 5        | 350        | Lalitpur   | Cash
+1013     | 2026-01-08 | Pooja Adhikari    | Water Bottle | Kitchen     | 4        | 500        | Kathmandu  | Online
+1014     | 2026-01-09 | Deepak Bhandari   | Headphone    | Electronics | 2        |            | Butwal     | Cash
+1015     | 2026-01-09 | Sunita Khadka     | Sofa         | Furniture   | 1        | 25000      | Chitwan    | Online
+1016     | 2026-01-10 | Amit Shah         | Pen Drive    | Electronics | 3        | 1200       | Birgunj    | Cash
+1017     | 2026-01-10 | Laxmi Gurung      | Notebook     | Stationery  | 10       | 80         | Pokhara    | Cash
+1018     | 2026-01-11 | Kiran Malla       | Desk Lamp    | Electronics | 2        | 2200       | Lalitpur   | Online
+1019     | 2026-01-11 | Rita Tamang       | Bookshelf    | Furniture   | 1        | 8500       | Kathmandu  | Cash
+1020     | 2026-01-12 | Manoj Nepali      | Router       | Electronics | 1        | 3500       | Butwal     | Online
+1021     | 2026-01-12 | Asmita Rai        | Mobile       | electronics | 1        | 31000      | Dharan     | Online
+1022     | 2026-01-13 | Suraj Karki       | Chair        | Furniture   | -2       | 4500       | Pokhara    | Cash
+1023     | 2026-01-13 | Nisha Yadav       | Keyboard     | Electronics | 2        | 1500       | Janakpur   | ONLINE
+1024     | 2026-01-14 | Prakash Thapa     | Table        | Furniture   | 1        | 6200       | Chitwan    | Cash
+1025     | 2026-01-14 | Maya Lama         | Printer      | Electronics | 1        | 18000      | Biratnagar | Cash
+1026     | 2026-01-15 | Suman KC          | Mouse        | Electronics | 1        | 800        | Kathmandu  | Cash
+1027     | 2026-01-15 | Gopal Basnet      | Laptop       | Electronics | 1        | 74000      | Butwal     | Online
+1028     | 2026-01-16 | Karuna Shrestha   | Coffee Mug   | Kitchen     |          | 350        | Lalitpur   | Cash
+1029     | 2026-01-16 | Bimal Oli         | Sofa         | Furniture   | 1        | 26000      | Chitwan    | Card
+1030     | 2026-01-17 | Rekha Poudel      | Notebook     | Stationery  | 8        | 80         | Pokhara    | Cash
+1031     | 2026-01-17 | Arjun Bohara      | Headphone    | Electronics | 1        | 2500       | Butwal     | online
+1031     | 2026-01-17 | Arjun Bohara      | Headphone    | Electronics | 1        | 2500       | Butwal     | online
+1032     | 2026-01-18 | Sabina Ale        | Water Bottle | Kitchen     | 3        | 500        | Kathmandu  | Online
+
+
+==================================================================
+PART B: ERRORS AVAILABLE IN DATASET
+==================================================================
+
+Errors to Identify:
+-------------------
+. Duplicate records:
+  . Order ID 1005 repeated
+  . Order ID 1031 repeated
+
+. Missing values:
+  . Quantity missing in Order ID 1006
+  . Quantity missing in Order ID 1028
+  . City missing in Order ID 1007
+  . Unit Price missing in Order ID 1014
+
+. Inconsistent text format:
+  . butwal should be Butwal
+  . POKHARA should be Pokhara
+  . electronics should be Electronics
+  . online and ONLINE should be Online
+
+. Invalid value:
+  . Quantity -2 in Order ID 1022 should be corrected
+
+
+==================================================================
+PART C: EXCEL CLEANING STEPS
+==================================================================
+
+Step 1: Convert Data into Excel Table
+-------------------------------------
+. Select the full dataset.
+. Press Ctrl + T.
+. Tick "My table has headers".
+. Click OK.
+. Rename the sheet as Raw_Data.
+
+Purpose:
+--------
+. Excel Table makes filtering, sorting, and cleaning easier.
+
+
+Step 2: Copy Raw Data to New Sheet
+----------------------------------
+. Right-click Raw_Data sheet.
+. Select Move or Copy.
+. Tick Create a copy.
+. Rename new sheet as Cleaned_Data.
+
+Purpose:
+--------
+. Raw_Data keeps original data.
+. Cleaned_Data is used for cleaning process.
+
+
+Step 3: Remove Duplicate Records
+--------------------------------
+. Go to Cleaned_Data sheet.
+. Select the full table.
+. Go to Data tab.
+. Click Remove Duplicates.
+. Select all columns.
+. Click OK.
+
+Expected Result:
+----------------
+. Duplicate Order ID 1005 removed.
+. Duplicate Order ID 1031 removed.
+. Total rows reduce from 34 to 32.
+
+
+Step 4: Handle Missing Quantity
+-------------------------------
+Missing Quantity:
+-----------------
+. Order ID 1006
+. Order ID 1028
+
+Cleaning Rule:
+--------------
+. Replace blank Quantity with 1.
+
+Excel Steps:
+------------
+. Click filter arrow in Quantity column.
+. Select Blanks.
+. Type 1.
+. Press Ctrl + Enter.
+. Remove filter.
+
+
+Step 5: Handle Missing City
+---------------------------
+Missing City:
+-------------
+. Order ID 1007
+
+Cleaning Rule:
+--------------
+. Replace blank City with Unknown.
+
+Excel Steps:
+------------
+. Click filter arrow in City column.
+. Select Blanks.
+. Type Unknown.
+. Press Ctrl + Enter.
+. Remove filter.
+
+
+Step 6: Handle Missing Unit Price
+---------------------------------
+Missing Unit Price:
+-------------------
+. Order ID 1014
+. Product: Headphone
+
+Cleaning Rule:
+--------------
+. Replace missing Headphone price with 2500.
+
+Reason:
+-------
+. Another Headphone record has Unit Price 2500.
+
+Excel Steps:
+------------
+. Find Order ID 1014.
+. Go to Unit Price column.
+. Enter 2500.
+
+
+Step 7: Correct Negative Quantity
+---------------------------------
+Wrong Value:
+------------
+. Order ID 1022 has Quantity -2.
+
+Cleaning Rule:
+--------------
+. Change -2 to 2.
+
+Excel Steps:
+------------
+. Find Order ID 1022.
+. Go to Quantity column.
+. Replace -2 with 2.
+
+
+Step 8: Normalize City Names
+----------------------------
+Wrong Formats:
+--------------
+. butwal
+. POKHARA
+
+Correct Formats:
+----------------
+. Butwal
+. Pokhara
+
+Excel Formula:
+--------------
+=PROPER(TRIM(H2))
+
+Steps:
+------
+. Create a helper column beside City.
+. Type formula =PROPER(TRIM(H2)).
+. Drag formula down.
+. Copy helper column.
+. Paste Special as Values over original City column.
+. Delete helper column.
+
+
+Step 9: Normalize Category Names
+--------------------------------
+Wrong Format:
+-------------
+. electronics
+
+Correct Format:
+---------------
+. Electronics
+
+Excel Formula:
+--------------
+=PROPER(TRIM(E2))
+
+Steps:
+------
+. Create helper column beside Category.
+. Type formula =PROPER(TRIM(E2)).
+. Drag formula down.
+. Copy helper column.
+. Paste Special as Values over original Category column.
+. Delete helper column.
+
+
+Step 10: Normalize Payment Method
+---------------------------------
+Wrong Formats:
+--------------
+. online
+. ONLINE
+
+Correct Format:
+---------------
+. Online
+
+Excel Formula:
+--------------
+=PROPER(TRIM(I2))
+
+Steps:
+------
+. Create helper column beside Payment Method.
+. Type formula =PROPER(TRIM(I2)).
+. Drag formula down.
+. Copy helper column.
+. Paste Special as Values over original Payment Method column.
+. Delete helper column.
+
+
+Step 11: Add Total Sales Column
+-------------------------------
+. Add a new column after Payment Method.
+. Name the column Total Sales.
+
+Formula:
+--------
+=F2*G2
+
+Meaning:
+--------
+. Quantity x Unit Price = Total Sales
+
+Example:
+--------
+. Quantity = 2
+. Unit Price = 800
+. Total Sales = 1600
+
+
+==================================================================
+PART D: BASIC DESCRIPTIVE STATISTICS IN EXCEL
+==================================================================
+
+Create New Sheet:
+-----------------
+. Add new sheet.
+. Rename it as Statistics.
+
+Use Total Sales Column:
+-----------------------
+. Assume Total Sales is in column J.
+. Assume cleaned data is from J2 to J33.
+
+
+1. Total Sales
+--------------
+Formula:
+--------
+=SUM(J2:J33)
+
+Expected Result:
+----------------
+530240
+
+
+2. Mean Sales
+-------------
+Formula:
+--------
+=AVERAGE(J2:J33)
+
+Expected Result:
+----------------
+16570
+
+
+3. Median Sales
+---------------
+Formula:
+--------
+=MEDIAN(J2:J33)
+
+Expected Result:
+----------------
+4750
+
+
+4. Mode Sales
+-------------
+Formula:
+--------
+=MODE.SNGL(J2:J33)
+
+Possible Result:
+----------------
+800
+
+Note:
+-----
+. Dataset may contain more than one repeated value.
+. For multiple mode values use:
+
+Formula:
+--------
+=MODE.MULT(J2:J33)
+
+
+5. Minimum Sales
+----------------
+Formula:
+--------
+=MIN(J2:J33)
+
+Expected Result:
+----------------
+640
+
+
+6. Maximum Sales
+----------------
+Formula:
+--------
+=MAX(J2:J33)
+
+Expected Result:
+----------------
+76000
+
+
+7. Count Total Orders
+---------------------
+Formula:
+--------
+=COUNT(J2:J33)
+
+Expected Result:
+----------------
+32
+
+
+==================================================================
+PART E: SUMMARY STATISTICS USING PIVOT TABLE
+==================================================================
+
+Create New Sheet:
+-----------------
+. Add new sheet.
+. Rename it as Pivot_Report.
+
+
+Pivot Table 1: Category-wise Sales
+----------------------------------
+Steps:
+------
+. Select cleaned dataset.
+. Go to Insert tab.
+. Click PivotTable.
+. Choose New Worksheet.
+. Click OK.
+. Drag Category to Rows.
+. Drag Total Sales to Values.
+. Make sure value field is Sum of Total Sales.
+
+Expected Output:
+----------------
+Category    | Total Sales
+Electronics | 424500
+Furniture   | 98700
+Kitchen     | 5600
+Stationery  | 1440
+
+Finding:
+--------
+. Electronics category generated the highest revenue.
+
+
+Pivot Table 2: City-wise Sales
+------------------------------
+Steps:
+------
+. Insert another PivotTable.
+. Drag City to Rows.
+. Drag Total Sales to Values.
+. Sort Total Sales from Largest to Smallest.
+
+Expected Output:
+----------------
+City       | Total Sales
+Butwal     | 236500
+Kathmandu  | 90400
+Chitwan    | 63200
+Biratnagar | 36000
+Dharan     | 31000
+Pokhara    | 30040
+Unknown    | 30000
+Lalitpur   | 6500
+Birgunj    | 3600
+Janakpur   | 3000
+
+Finding:
+--------
+. Butwal has the highest sales.
+
+
+Pivot Table 3: Payment Method-wise Sales
+----------------------------------------
+Steps:
+------
+. Insert another PivotTable.
+. Drag Payment Method to Rows.
+. Drag Total Sales to Values.
+
+Expected Output:
+----------------
+Payment Method | Total Sales
+Online         | 269500
+Cash           | 234740
+Card           | 26000
+
+Finding:
+--------
+. Online payment generated the highest sales amount.
+
+
+Pivot Table 4: Product-wise Sales
+---------------------------------
+Steps:
+------
+. Insert another PivotTable.
+. Drag Product to Rows.
+. Drag Total Sales to Values.
+. Sort Total Sales from Largest to Smallest.
+
+Finding:
+--------
+. Laptop and Mobile products contribute strongly to revenue.
+
+
+==================================================================
+PART F: CHART CREATION IN EXCEL
+==================================================================
+
+Chart 1: Category-wise Sales Chart
+----------------------------------
+Steps:
+------
+. Click Category-wise Pivot Table.
+. Go to Insert tab.
+. Select Column Chart.
+. Add chart title: Category-wise Sales Analysis.
+
+
+Chart 2: City-wise Sales Chart
+------------------------------
+Steps:
+------
+. Click City-wise Pivot Table.
+. Go to Insert tab.
+. Select Bar Chart.
+. Add chart title: City-wise Sales Performance.
+
+
+Chart 3: Payment Method Chart
+-----------------------------
+Steps:
+------
+. Click Payment Method Pivot Table.
+. Go to Insert tab.
+. Select Pie Chart.
+. Add chart title: Payment Method Sales Share.
+
+
+==================================================================
+PART G: FINAL CLEANED DATASET REQUIREMENTS
+==================================================================
+
+Cleaned Dataset Must Have:
+--------------------------
+. 32 valid rows after removing duplicates.
+. No blank quantity.
+. No blank city.
+. No blank unit price.
+. No negative quantity.
+. Standardized text format.
+. Total Sales column added.
+
+Workbook Sheets:
+----------------
+. Raw_Data
+. Cleaned_Data
+. Statistics
+. Pivot_Report
+. Summary_Report
+
+
+==================================================================
+PART H: STUDENT DELIVERABLE
+==================================================================
+
+Students Must Submit:
+---------------------
+. Cleaned Excel file.
+. Summary report.
+
+Excel File Should Include:
+--------------------------
+. Raw dataset with 34 rows.
+. Cleaned dataset with 32 rows.
+. Descriptive statistics.
+. Pivot tables.
+. Charts.
+. Short summary report.
+
+
+==================================================================
+PART I: SAMPLE SUMMARY REPORT
+==================================================================
+
+Title:
+------
+Data Cleaning and Sales Analysis Report
+
+1. Introduction:
+----------------
+This report presents the cleaning and analysis of sales and customer
+data. The original dataset contained 34 rows with duplicate records,
+missing values, inconsistent text formatting, and invalid quantity
+values.
+
+2. Data Cleaning Performed:
+---------------------------
+. Removed duplicate records for Order ID 1005 and 1031.
+. Filled missing quantity values with 1.
+. Filled missing city value with Unknown.
+. Filled missing Headphone unit price with 2500.
+. Corrected negative quantity from -2 to 2.
+. Normalized city, category, and payment method values.
+. Added Total Sales column using Quantity x Unit Price.
+
+3. Descriptive Statistics:
+--------------------------
+Total Orders After Cleaning : 32
+Total Sales                 : 530240
+Mean Sales                  : 16570
+Median Sales                : 4750
+Highest Sales               : 76000
+Lowest Sales                : 640
+
+4. Key Findings:
+----------------
+. Electronics was the highest revenue-generating category.
+. Butwal recorded the highest city-wise sales.
+. Online payment had the highest sales amount.
+. Laptop and Mobile products contributed strongly to total revenue.
+. Data quality problems included duplicate rows, missing values,
+  inconsistent text case, and negative quantity.
+
+5. Conclusion:
+--------------
+The dataset was cleaned successfully using Excel. After cleaning,
+the data became suitable for analysis. The analysis showed that
+Electronics was the strongest category, Butwal was the top-performing
+city, and Online payment generated the highest sales.
+
+
+==================================================================
+PART J: MARKS DISTRIBUTION
+==================================================================
+
+Raw Data Entry              : 10 Marks
+Duplicate Removal           : 10 Marks
+Missing Value Handling      : 15 Marks
+Text Normalization          : 10 Marks
+Negative Value Correction   : 10 Marks
+Total Sales Calculation     : 10 Marks
+Descriptive Statistics      : 15 Marks
+Pivot Tables and Charts     : 15 Marks
+Summary Report              : 15 Marks
+
+Total                       : 100 Marks
+
+
+==================================================================
+END OF LAB
+==================================================================
