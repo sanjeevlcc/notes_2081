@@ -1,0 +1,1013 @@
+==================================================================
+GOOGLE COLAB LAB: EDA AND ANALYTICS
+TOPIC: SOCIAL MEDIA USAGE, SCREEN TIME, SLEEP, ACADEMIC PERFORMANCE
+==================================================================
+
+Objective:
+----------
+. Import dataset in Google Colab using two methods.
+. Option 1: Import from CSV file.
+. Option 2: Import using raw Python dictionary.
+. Perform basic data cleaning.
+. Perform Exploratory Data Analysis, called EDA.
+. Generate descriptive statistics.
+. Analyze platform usage, sleep, screen time, stress, anxiety,
+  addiction level, academic performance, and depression label.
+. Create visualizations.
+
+
+==================================================================
+DATASET COLUMNS
+==================================================================
+
+Columns:
+--------
+. age
+. gender
+. daily_social_media_hours
+. platform_usage
+. sleep_hours
+. screen_time_before_sleep
+. academic_performance
+. physical_activity
+. social_interaction_level
+. stress_level
+. anxiety_level
+. addiction_level
+. depression_label
+
+
+Column Meaning:
+---------------
+. age                         : Age of student/user
+. gender                      : Male/Female
+. daily_social_media_hours    : Daily time spent on social media
+. platform_usage              : Instagram, TikTok, or Both
+. sleep_hours                 : Daily sleep duration
+. screen_time_before_sleep    : Screen time before sleeping
+. academic_performance        : Academic score/GPA-like value
+. physical_activity           : Daily physical activity hours
+. social_interaction_level    : Low, Medium, High
+. stress_level                : Stress score from 1 to 10
+. anxiety_level               : Anxiety score from 1 to 10
+. addiction_level             : Addiction score from 1 to 10
+. depression_label            : 0 or 1 class label
+
+
+==================================================================
+PART A: OPEN GOOGLE COLAB
+==================================================================
+
+Step 1:
+-------
+. Open Google Colab.
+. Create New Notebook.
+. Rename notebook as:
+
+Social_Media_EDA_Analytics.ipynb
+
+
+Step 2:
+-------
+. Run each code cell using Shift + Enter.
+
+
+==================================================================
+PART B: IMPORT REQUIRED LIBRARIES
+==================================================================
+
+Code Cell 1:
+------------
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+==================================================================
+PART C: OPTION 1 - IMPORT DATA FROM CSV FILE
+==================================================================
+
+Use this option if you have Excel/CSV file.
+
+Step 1:
+-------
+. Open your Excel file.
+. Click File.
+. Click Save As.
+. Select CSV format.
+. Save file as:
+
+social_media_data.csv
+
+
+Step 2:
+-------
+. Upload CSV file into Google Colab.
+
+Code Cell 2:
+------------
+
+from google.colab import files
+
+uploaded = files.upload()
+
+
+Step 3:
+-------
+. Read uploaded CSV file.
+
+Code Cell 3:
+------------
+
+df = pd.read_csv("social_media_data.csv")
+
+print("Dataset imported successfully from CSV.")
+df.head()
+
+
+Alternative:
+------------
+If your file name is different, use:
+
+df = pd.read_csv("your_file_name.csv")
+
+
+==================================================================
+PART D: OPTION 2 - IMPORT RAW DATA USING PYTHON DICTIONARY
+==================================================================
+
+Use this option if you do not want to upload CSV.
+
+Note:
+-----
+. This is a small sample from the full dataset.
+. For full analysis, CSV import is better.
+
+Code Cell 4:
+------------
+
+data = {
+    "age": [14, 19, 17, 15, 15, 19, 18, 16, 19, 15],
+    "gender": [
+        "male", "female", "female", "male", "female",
+        "female", "female", "male", "female", "male"
+    ],
+    "daily_social_media_hours": [7.9, 1.9, 1.3, 7.4, 4.7, 7.4, 2.5, 4.0, 3.3, 1.9],
+    "platform_usage": [
+        "Instagram", "TikTok", "Instagram", "TikTok", "Both",
+        "Both", "Instagram", "Both", "TikTok", "TikTok"
+    ],
+    "sleep_hours": [7.4, 8.0, 7.6, 6.9, 4.9, 4.4, 6.4, 4.2, 5.0, 4.9],
+    "screen_time_before_sleep": [2.9, 2.9, 0.5, 1.6, 3.0, 2.4, 2.4, 0.5, 2.1, 1.5],
+    "academic_performance": [3.01, 3.22, 3.92, 3.48, 2.37, 2.63, 2.63, 2.40, 2.04, 3.77],
+    "physical_activity": [1.5, 0.8, 0.0, 0.8, 1.4, 0.6, 0.7, 1.3, 0.9, 1.1],
+    "social_interaction_level": [
+        "low", "high", "high", "medium", "medium",
+        "high", "low", "low", "high", "high"
+    ],
+    "stress_level": [2, 8, 2, 1, 3, 3, 2, 6, 1, 1],
+    "anxiety_level": [2, 1, 4, 7, 5, 5, 2, 10, 10, 1],
+    "addiction_level": [1, 10, 2, 9, 2, 7, 5, 5, 9, 4],
+    "depression_label": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+df = pd.DataFrame(data)
+
+print("Dataset imported successfully using raw dictionary.")
+df.head()
+
+
+==================================================================
+PART E: BASIC DATA INFORMATION
+==================================================================
+
+Code Cell 5:
+------------
+
+print("Dataset Shape:")
+print(df.shape)
+
+print("\nColumn Names:")
+print(df.columns)
+
+print("\nDataset Information:")
+df.info()
+
+print("\nFirst 5 Rows:")
+df.head()
+
+
+Expected Analysis:
+------------------
+. Shows total rows and columns.
+. Shows data types.
+. Shows if any column has missing values.
+
+
+==================================================================
+PART F: CHECK MISSING VALUES
+==================================================================
+
+Code Cell 6:
+------------
+
+print("Missing Values:")
+print(df.isnull().sum())
+
+
+Interpretation:
+---------------
+. If result is 0, no missing values.
+. If any column has missing values, cleaning is required.
+
+
+==================================================================
+PART G: CHECK DUPLICATE ROWS
+==================================================================
+
+Code Cell 7:
+------------
+
+print("Total Duplicate Rows:")
+print(df.duplicated().sum())
+
+duplicate_rows = df[df.duplicated()]
+duplicate_rows
+
+
+Cleaning Duplicate Rows:
+------------------------
+
+Code Cell 8:
+------------
+
+df = df.drop_duplicates()
+
+print("Duplicates removed.")
+print("New Shape:", df.shape)
+
+
+==================================================================
+PART H: NORMALIZE TEXT COLUMNS
+==================================================================
+
+Problem:
+--------
+Text values may have inconsistent case such as:
+. male, Male, FEMALE
+. low, Low, HIGH
+. instagram, Instagram
+
+Cleaning Rule:
+--------------
+. Gender should be proper lowercase.
+. Platform usage should be title case.
+. Social interaction level should be lowercase.
+
+Code Cell 9:
+------------
+
+df["gender"] = df["gender"].astype(str).str.strip().str.lower()
+df["platform_usage"] = df["platform_usage"].astype(str).str.strip().str.title()
+df["social_interaction_level"] = df["social_interaction_level"].astype(str).str.strip().str.lower()
+
+print("Text columns normalized.")
+
+print(df["gender"].unique())
+print(df["platform_usage"].unique())
+print(df["social_interaction_level"].unique())
+
+
+==================================================================
+PART I: CHECK NUMERIC COLUMN SUMMARY
+==================================================================
+
+Code Cell 10:
+-------------
+
+numeric_columns = [
+    "age",
+    "daily_social_media_hours",
+    "sleep_hours",
+    "screen_time_before_sleep",
+    "academic_performance",
+    "physical_activity",
+    "stress_level",
+    "anxiety_level",
+    "addiction_level",
+    "depression_label"
+]
+
+df[numeric_columns].describe()
+
+
+Purpose:
+--------
+. Shows count.
+. Shows mean.
+. Shows standard deviation.
+. Shows minimum and maximum values.
+. Shows quartiles.
+
+
+==================================================================
+PART J: BASIC DESCRIPTIVE STATISTICS
+==================================================================
+
+Code Cell 11:
+-------------
+
+print("Average Daily Social Media Hours:")
+print(df["daily_social_media_hours"].mean())
+
+print("\nMedian Daily Social Media Hours:")
+print(df["daily_social_media_hours"].median())
+
+print("\nMode Platform Usage:")
+print(df["platform_usage"].mode())
+
+print("\nAverage Sleep Hours:")
+print(df["sleep_hours"].mean())
+
+print("\nAverage Academic Performance:")
+print(df["academic_performance"].mean())
+
+print("\nAverage Stress Level:")
+print(df["stress_level"].mean())
+
+print("\nAverage Anxiety Level:")
+print(df["anxiety_level"].mean())
+
+print("\nAverage Addiction Level:")
+print(df["addiction_level"].mean())
+
+
+==================================================================
+PART K: CATEGORY-WISE ANALYSIS
+==================================================================
+
+1. Platform Usage Count:
+------------------------
+
+Code Cell 12:
+-------------
+
+platform_count = df["platform_usage"].value_counts()
+
+print("Platform Usage Count:")
+print(platform_count)
+
+
+2. Gender Count:
+----------------
+
+Code Cell 13:
+-------------
+
+gender_count = df["gender"].value_counts()
+
+print("Gender Count:")
+print(gender_count)
+
+
+3. Social Interaction Level Count:
+----------------------------------
+
+Code Cell 14:
+-------------
+
+interaction_count = df["social_interaction_level"].value_counts()
+
+print("Social Interaction Level Count:")
+print(interaction_count)
+
+
+==================================================================
+PART L: GROUP-WISE ANALYTICS
+==================================================================
+
+1. Average Screen Time by Platform:
+-----------------------------------
+
+Code Cell 15:
+-------------
+
+platform_screen_time = df.groupby("platform_usage")["daily_social_media_hours"].mean()
+
+print("Average Daily Social Media Hours by Platform:")
+print(platform_screen_time)
+
+
+2. Average Sleep by Platform:
+-----------------------------
+
+Code Cell 16:
+-------------
+
+platform_sleep = df.groupby("platform_usage")["sleep_hours"].mean()
+
+print("Average Sleep Hours by Platform:")
+print(platform_sleep)
+
+
+3. Average Academic Performance by Platform:
+--------------------------------------------
+
+Code Cell 17:
+-------------
+
+platform_academic = df.groupby("platform_usage")["academic_performance"].mean()
+
+print("Average Academic Performance by Platform:")
+print(platform_academic)
+
+
+4. Average Stress by Social Interaction Level:
+----------------------------------------------
+
+Code Cell 18:
+-------------
+
+stress_by_interaction = df.groupby("social_interaction_level")["stress_level"].mean()
+
+print("Average Stress Level by Social Interaction Level:")
+print(stress_by_interaction)
+
+
+5. Average Addiction Level by Platform:
+---------------------------------------
+
+Code Cell 19:
+-------------
+
+addiction_by_platform = df.groupby("platform_usage")["addiction_level"].mean()
+
+print("Average Addiction Level by Platform:")
+print(addiction_by_platform)
+
+
+==================================================================
+PART M: CREATE NEW ANALYTIC COLUMNS
+==================================================================
+
+New Column 1:
+-------------
+Screen Time Category
+
+Rule:
+-----
+. Less than 3 hours       = Low Usage
+. 3 to 6 hours            = Medium Usage
+. More than 6 hours       = High Usage
+
+Code Cell 20:
+-------------
+
+def screen_time_category(hours):
+    if hours < 3:
+        return "Low Usage"
+    elif hours <= 6:
+        return "Medium Usage"
+    else:
+        return "High Usage"
+
+df["screen_time_category"] = df["daily_social_media_hours"].apply(screen_time_category)
+
+df[["daily_social_media_hours", "screen_time_category"]].head()
+
+
+New Column 2:
+-------------
+Sleep Category
+
+Rule:
+-----
+. Less than 6 hours = Low Sleep
+. 6 to 8 hours      = Normal Sleep
+. More than 8 hours = High Sleep
+
+Code Cell 21:
+-------------
+
+def sleep_category(hours):
+    if hours < 6:
+        return "Low Sleep"
+    elif hours <= 8:
+        return "Normal Sleep"
+    else:
+        return "High Sleep"
+
+df["sleep_category"] = df["sleep_hours"].apply(sleep_category)
+
+df[["sleep_hours", "sleep_category"]].head()
+
+
+New Column 3:
+-------------
+High Risk Usage Flag
+
+Assumption:
+-----------
+This is only for classroom analytics, not medical diagnosis.
+
+Rule:
+-----
+. High social media usage AND low sleep = 1
+. Otherwise = 0
+
+Code Cell 22:
+-------------
+
+df["high_usage_low_sleep_flag"] = np.where(
+    (df["daily_social_media_hours"] > 6) & (df["sleep_hours"] < 6),
+    1,
+    0
+)
+
+df[[
+    "daily_social_media_hours",
+    "sleep_hours",
+    "high_usage_low_sleep_flag"
+]].head()
+
+
+==================================================================
+PART N: CORRELATION ANALYSIS
+==================================================================
+
+Purpose:
+--------
+Correlation shows relationship between numeric variables.
+
+Code Cell 23:
+-------------
+
+correlation_matrix = df[numeric_columns].corr()
+
+print("Correlation Matrix:")
+correlation_matrix
+
+
+Important Relationships to Observe:
+-----------------------------------
+. daily_social_media_hours vs sleep_hours
+. daily_social_media_hours vs academic_performance
+. screen_time_before_sleep vs sleep_hours
+. addiction_level vs daily_social_media_hours
+. stress_level vs sleep_hours
+. anxiety_level vs stress_level
+
+
+==================================================================
+PART O: PIVOT TABLES USING PYTHON
+==================================================================
+
+Pivot Table 1:
+--------------
+Average daily social media hours by platform.
+
+Code Cell 24:
+-------------
+
+pivot_platform_usage = pd.pivot_table(
+    df,
+    values="daily_social_media_hours",
+    index="platform_usage",
+    aggfunc="mean"
+)
+
+pivot_platform_usage
+
+
+Pivot Table 2:
+--------------
+Average academic performance by screen time category.
+
+Code Cell 25:
+-------------
+
+pivot_academic_screen = pd.pivot_table(
+    df,
+    values="academic_performance",
+    index="screen_time_category",
+    aggfunc="mean"
+)
+
+pivot_academic_screen
+
+
+Pivot Table 3:
+--------------
+Average sleep hours by platform and gender.
+
+Code Cell 26:
+-------------
+
+pivot_sleep_platform_gender = pd.pivot_table(
+    df,
+    values="sleep_hours",
+    index="platform_usage",
+    columns="gender",
+    aggfunc="mean"
+)
+
+pivot_sleep_platform_gender
+
+
+Pivot Table 4:
+--------------
+Average stress level by social interaction level.
+
+Code Cell 27:
+-------------
+
+pivot_stress_interaction = pd.pivot_table(
+    df,
+    values="stress_level",
+    index="social_interaction_level",
+    aggfunc="mean"
+)
+
+pivot_stress_interaction
+
+
+==================================================================
+PART P: VISUALIZATION 1 - PLATFORM USAGE COUNT
+==================================================================
+
+Code Cell 28:
+-------------
+
+platform_count = df["platform_usage"].value_counts()
+
+plt.figure(figsize=(7,5))
+plt.bar(platform_count.index, platform_count.values)
+plt.title("Platform Usage Count")
+plt.xlabel("Platform")
+plt.ylabel("Number of Users")
+plt.show()
+
+
+Interpretation:
+---------------
+. Shows which platform is used by more users.
+. Example: Instagram, TikTok, or Both.
+
+
+==================================================================
+PART Q: VISUALIZATION 2 - AVERAGE SOCIAL MEDIA HOURS BY PLATFORM
+==================================================================
+
+Code Cell 29:
+-------------
+
+platform_screen_time = df.groupby("platform_usage")["daily_social_media_hours"].mean()
+
+plt.figure(figsize=(7,5))
+plt.bar(platform_screen_time.index, platform_screen_time.values)
+plt.title("Average Daily Social Media Hours by Platform")
+plt.xlabel("Platform")
+plt.ylabel("Average Daily Social Media Hours")
+plt.show()
+
+
+Interpretation:
+---------------
+. Shows which platform group has higher daily social media usage.
+
+
+==================================================================
+PART R: VISUALIZATION 3 - SLEEP HOURS DISTRIBUTION
+==================================================================
+
+Code Cell 30:
+-------------
+
+plt.figure(figsize=(8,5))
+plt.hist(df["sleep_hours"], bins=10)
+plt.title("Distribution of Sleep Hours")
+plt.xlabel("Sleep Hours")
+plt.ylabel("Frequency")
+plt.show()
+
+
+Interpretation:
+---------------
+. Shows whether most users sleep low, normal, or high hours.
+
+
+==================================================================
+PART S: VISUALIZATION 4 - SOCIAL MEDIA HOURS VS ACADEMIC PERFORMANCE
+==================================================================
+
+Code Cell 31:
+-------------
+
+plt.figure(figsize=(8,5))
+plt.scatter(df["daily_social_media_hours"], df["academic_performance"])
+plt.title("Daily Social Media Hours vs Academic Performance")
+plt.xlabel("Daily Social Media Hours")
+plt.ylabel("Academic Performance")
+plt.show()
+
+
+Interpretation:
+---------------
+. Shows whether higher social media usage is related to lower or higher
+  academic performance.
+. This shows relationship only, not cause.
+
+
+==================================================================
+PART T: VISUALIZATION 5 - SCREEN TIME BEFORE SLEEP VS SLEEP HOURS
+==================================================================
+
+Code Cell 32:
+-------------
+
+plt.figure(figsize=(8,5))
+plt.scatter(df["screen_time_before_sleep"], df["sleep_hours"])
+plt.title("Screen Time Before Sleep vs Sleep Hours")
+plt.xlabel("Screen Time Before Sleep")
+plt.ylabel("Sleep Hours")
+plt.show()
+
+
+Interpretation:
+---------------
+. Shows whether more screen time before sleep is related to sleep duration.
+. This is correlation-style analysis, not proof of cause.
+
+
+==================================================================
+PART U: VISUALIZATION 6 - AVERAGE STRESS LEVEL BY SOCIAL INTERACTION
+==================================================================
+
+Code Cell 33:
+-------------
+
+stress_by_interaction = df.groupby("social_interaction_level")["stress_level"].mean()
+
+plt.figure(figsize=(7,5))
+plt.bar(stress_by_interaction.index, stress_by_interaction.values)
+plt.title("Average Stress Level by Social Interaction Level")
+plt.xlabel("Social Interaction Level")
+plt.ylabel("Average Stress Level")
+plt.show()
+
+
+Interpretation:
+---------------
+. Shows average stress for low, medium, and high social interaction groups.
+
+
+==================================================================
+PART V: VISUALIZATION 7 - CORRELATION HEATMAP
+==================================================================
+
+Code Cell 34:
+-------------
+
+plt.figure(figsize=(10,8))
+plt.imshow(correlation_matrix)
+plt.colorbar()
+plt.xticks(range(len(correlation_matrix.columns)), correlation_matrix.columns, rotation=90)
+plt.yticks(range(len(correlation_matrix.columns)), correlation_matrix.columns)
+plt.title("Correlation Heatmap")
+plt.show()
+
+
+Interpretation:
+---------------
+. Darker or stronger color means stronger relationship.
+. Positive correlation means both variables increase together.
+. Negative correlation means one increases while the other decreases.
+
+
+==================================================================
+PART W: DEPRESSION LABEL CLASS COUNT
+==================================================================
+
+Note:
+-----
+This is classroom data analytics only.
+Do not use this result for diagnosis.
+
+Code Cell 35:
+-------------
+
+label_count = df["depression_label"].value_counts()
+
+print("Depression Label Count:")
+print(label_count)
+
+plt.figure(figsize=(6,5))
+plt.bar(label_count.index.astype(str), label_count.values)
+plt.title("Depression Label Distribution")
+plt.xlabel("Depression Label")
+plt.ylabel("Number of Records")
+plt.show()
+
+
+Interpretation:
+---------------
+. Label 0 means one class.
+. Label 1 means another class.
+. This can be used for classification practice.
+
+
+==================================================================
+PART X: SIMPLE CLASSIFICATION-READY FEATURE SELECTION
+==================================================================
+
+Purpose:
+--------
+Prepare data for future machine learning practice.
+
+Features:
+---------
+. age
+. daily_social_media_hours
+. sleep_hours
+. screen_time_before_sleep
+. academic_performance
+. physical_activity
+. stress_level
+. anxiety_level
+. addiction_level
+
+Target:
+-------
+. depression_label
+
+Code Cell 36:
+-------------
+
+X = df[
+    [
+        "age",
+        "daily_social_media_hours",
+        "sleep_hours",
+        "screen_time_before_sleep",
+        "academic_performance",
+        "physical_activity",
+        "stress_level",
+        "anxiety_level",
+        "addiction_level"
+    ]
+]
+
+y = df["depression_label"]
+
+print("Independent Variables X:")
+print(X.head())
+
+print("\nDependent Variable y:")
+print(y.head())
+
+
+==================================================================
+PART Y: EXPORT CLEANED DATASET
+==================================================================
+
+Code Cell 37:
+-------------
+
+df.to_csv("cleaned_social_media_data.csv", index=False)
+
+print("Cleaned dataset exported successfully.")
+
+
+Download File:
+--------------
+
+Code Cell 38:
+-------------
+
+from google.colab import files
+
+files.download("cleaned_social_media_data.csv")
+
+
+==================================================================
+PART Z: CREATE SUMMARY REPORT USING PYTHON
+==================================================================
+
+Code Cell 39:
+-------------
+
+summary_report = {
+    "Total Records": len(df),
+    "Average Age": df["age"].mean(),
+    "Average Daily Social Media Hours": df["daily_social_media_hours"].mean(),
+    "Average Sleep Hours": df["sleep_hours"].mean(),
+    "Average Screen Time Before Sleep": df["screen_time_before_sleep"].mean(),
+    "Average Academic Performance": df["academic_performance"].mean(),
+    "Average Physical Activity": df["physical_activity"].mean(),
+    "Average Stress Level": df["stress_level"].mean(),
+    "Average Anxiety Level": df["anxiety_level"].mean(),
+    "Average Addiction Level": df["addiction_level"].mean()
+}
+
+summary_df = pd.DataFrame(summary_report.items(), columns=["Metric", "Value"])
+
+summary_df
+
+
+Export Summary Report:
+----------------------
+
+Code Cell 40:
+-------------
+
+summary_df.to_csv("summary_report.csv", index=False)
+
+files.download("summary_report.csv")
+
+
+==================================================================
+PART AA: SAMPLE FINAL ANALYTICS REPORT
+==================================================================
+
+Title:
+------
+Social Media Usage EDA and Analytics Report
+
+1. Introduction:
+----------------
+This report analyzes social media usage data of young users. The dataset
+contains information about age, gender, platform usage, daily social
+media hours, sleep hours, screen time before sleep, academic performance,
+physical activity, stress level, anxiety level, addiction level, and
+depression label.
+
+2. Data Cleaning Performed:
+---------------------------
+. Imported data from CSV or raw Python dictionary.
+. Checked dataset shape and column names.
+. Checked missing values.
+. Removed duplicate records if available.
+. Normalized text columns such as gender, platform usage, and social
+  interaction level.
+. Created new columns:
+  . screen_time_category
+  . sleep_category
+  . high_usage_low_sleep_flag
+
+3. EDA Performed:
+-----------------
+. Descriptive statistics using describe().
+. Platform usage count.
+. Gender count.
+. Social interaction level count.
+. Group-wise average screen time.
+. Group-wise average sleep hours.
+. Group-wise academic performance analysis.
+. Correlation analysis.
+. Pivot table analysis.
+
+4. Key Findings:
+----------------
+. Platform usage shows whether Instagram, TikTok, or Both are more common.
+. Average daily social media hours helps identify user engagement level.
+. Sleep hours distribution shows whether users are getting low, normal,
+  or high sleep.
+. Scatter plot between social media hours and academic performance helps
+  observe possible relationship.
+. Screen time before sleep and sleep hours can be compared to understand
+  sleep-related patterns.
+. Stress, anxiety, and addiction level can be compared with usage patterns.
+. Depression label can be used later for classification practice.
+
+5. Conclusion:
+--------------
+The dataset was cleaned and analyzed using Python in Google Colab.
+The EDA helped identify usage patterns, platform preferences, screen time
+behavior, sleep trends, academic performance patterns, and possible
+relationships among stress, anxiety, addiction level, and social media
+usage.
+
+
+==================================================================
+PART AB: STUDENT DELIVERABLE
+==================================================================
+
+Students Must Submit:
+---------------------
+. Google Colab notebook.
+. Cleaned CSV dataset.
+. Summary report CSV.
+. Screenshots of visualizations.
+. Short written analysis.
+
+Required Files:
+---------------
+. Social_Media_EDA_Analytics.ipynb
+. cleaned_social_media_data.csv
+. summary_report.csv
+
+
+==================================================================
+END OF GOOGLE COLAB EDA LAB
+==================================================================
