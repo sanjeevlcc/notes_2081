@@ -7,6 +7,10 @@
 # Message: Hello World! Welcome to Cloud!
 # ============================================================
 
+
+
+
+
 # ============================================================
 # HOW TO USE
 # ============================================================
@@ -25,6 +29,15 @@
 # 6. Run:
 #       ./cloud-demo.sh
 # ============================================================
+
+
+
+
+
+
+
+
+
 
 
 # ============================================================
@@ -56,6 +69,10 @@ echo "Updating package list..."
 sudo apt update
 
 
+
+
+
+
 # ============================================================
 # CREATE WORKING FOLDER
 # ============================================================
@@ -72,15 +89,22 @@ echo "Current working directory:"
 pwd
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 1: SIMPLE TEXT FILE DEMO
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 1: SIMPLE TEXT FILE DEMO"
-echo " Concept: Basic cloud message stored as a file"
-echo "============================================================"
+
 
 echo "Hello World! Welcome to Cloud!" > cloud-message.txt
 
@@ -93,15 +117,22 @@ echo "Listing files:"
 ls -l
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 2: C PROGRAM DEMO
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 2: C PROGRAM DEMO"
-echo " Concept: Compile and run C program in Ubuntu"
-echo "============================================================"
+
 
 sudo apt install gcc -y
 
@@ -127,15 +158,21 @@ echo "Running C program..."
 ./hello_c
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 3: C++ PROGRAM DEMO
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 3: C++ PROGRAM DEMO"
-echo " Concept: Compile and run C++ program in Ubuntu"
-echo "============================================================"
 
 sudo apt install g++ -y
 
@@ -162,15 +199,22 @@ echo "Running C++ program..."
 ./hello_cpp
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 4: JAVA PROGRAM USING JAVAC
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 4: JAVA PROGRAM USING JAVAC"
-echo " Concept: Compile and run Java program"
-echo "============================================================"
+
 
 sudo apt install default-jdk -y
 
@@ -203,15 +247,22 @@ echo "Running Java program..."
 java HelloCloud
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 5: HTML STATIC WEBSITE USING APACHE
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 5: HTML STATIC WEBSITE USING APACHE"
-echo " Concept: Simple static cloud-hosted web page"
-echo "============================================================"
+
 
 sudo apt install apache2 -y
 
@@ -240,15 +291,32 @@ echo ""
 echo "Open exposed port 80 in KillerCoda to view this page in browser."
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 6: PHP WEB APPLICATION
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 6: PHP WEB APPLICATION"
-echo " Concept: Dynamic web application using PHP"
-echo "============================================================"
 
 sudo apt install php libapache2-mod-php -y
 
@@ -273,15 +341,21 @@ echo ""
 echo "Open exposed port 80 and visit /index.php in browser."
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 7: JAVA JSP APPLICATION USING TOMCAT
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 7: JAVA JSP APPLICATION USING TOMCAT"
-echo " Concept: Java web application running on Tomcat server"
-echo "============================================================"
 
 sudo apt install tomcat10 -y
 
@@ -313,15 +387,21 @@ echo ""
 echo "Open exposed port 8080 and visit /hellocloud/ in browser."
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 8: JAVA WAR APPLICATION USING MAVEN AND TOMCAT
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 8: JAVA WAR APPLICATION USING MAVEN AND TOMCAT"
-echo " Concept: Package Java web app and deploy WAR file"
-echo "============================================================"
 
 sudo apt install maven -y
 
@@ -368,15 +448,21 @@ echo ""
 echo "Open exposed port 8080 and visit /hellocloudweb/ in browser."
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 9: PYTHON FLASK WEB APPLICATION
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 9: PYTHON FLASK WEB APPLICATION"
-echo " Concept: Simple Python PaaS-style web app"
-echo "============================================================"
 
 cd ~/cloud-demo
 
@@ -415,15 +501,31 @@ echo ""
 echo "Open exposed port 5000 in KillerCoda to view Flask app."
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 10: NODE.JS WEB APPLICATION
 # ============================================================
-
-echo ""
-echo "============================================================"
-echo " DEMO 10: NODE.JS WEB APPLICATION"
-echo " Concept: Simple Node.js cloud web app"
-echo "============================================================"
 
 cd ~/cloud-demo
 
@@ -460,15 +562,21 @@ echo ""
 echo "Open exposed port 3000 in KillerCoda to view Node.js app."
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 11: DOCKER CONTAINER DEMO
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 11: DOCKER CONTAINER DEMO"
-echo " Concept: Containerized cloud application"
-echo "============================================================"
 
 cd ~/cloud-demo
 
@@ -493,11 +601,14 @@ cat > index.html << 'EOF'
 </html>
 EOF
 
+
 cat > Dockerfile << 'EOF'
 FROM nginx:latest
 COPY index.html /usr/share/nginx/html/index.html
 EXPOSE 80
 EOF
+
+
 
 echo ""
 echo "Building Docker image..."
@@ -520,15 +631,21 @@ echo ""
 echo "Open exposed port 8081 in KillerCoda to view Docker app."
 
 
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 12: SIMPLE CLOUD COST CALCULATION USING BASH
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 12: SIMPLE CLOUD COST CALCULATION USING BASH"
-echo " Concept: Measured service / pay-as-you-go model"
-echo "============================================================"
 
 cd ~/cloud-demo
 
@@ -553,20 +670,30 @@ echo "Cloud Concept: Measured Service"
 echo "======================================"
 EOF
 
+
+
+
+
 chmod +x cloud-cost.sh
 
 ./cloud-cost.sh
+
+
+
+
+
+
+
+
+
+
+
 
 
 # ============================================================
 # DEMO 13: SIMPLE CLOUD STORAGE SIMULATION
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 13: SIMPLE CLOUD STORAGE SIMULATION"
-echo " Concept: Upload, store, read, and delete files"
-echo "============================================================"
 
 cd ~/cloud-demo
 
@@ -603,15 +730,32 @@ echo "Cloud storage after deletion:"
 ls -l cloud-storage/
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 14: BASIC ENCRYPTION DEMO
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 14: BASIC ENCRYPTION DEMO"
-echo " Concept: Cloud security and data protection"
-echo "============================================================"
 
 cd ~/cloud-demo
 
@@ -636,15 +780,32 @@ echo "Reading decrypted file:"
 cat decrypted.txt
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ============================================================
 # DEMO 15: SIMPLE MONITORING COMMANDS
 # ============================================================
 
-echo ""
-echo "============================================================"
-echo " DEMO 15: SIMPLE MONITORING COMMANDS"
-echo " Concept: Cloud monitoring of CPU, memory, disk, and process"
-echo "============================================================"
 
 echo ""
 echo "Memory usage:"
@@ -669,6 +830,28 @@ sudo ss -tulnp | head -30
 echo ""
 echo "Running processes:"
 ps aux | head
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # ============================================================
@@ -701,73 +884,16 @@ Cloud Service Models
    - User manages OS, runtime, and application.
    - Examples: AWS EC2, Azure VM, Google Compute Engine.
 
-============================================================
-Trainer Message:
-Hello World! Welcome to Cloud!
-============================================================
-EOF
-
-cat cloud-models.txt
 
 
-# ============================================================
-# FINAL TRAINER SUMMARY
-# ============================================================
 
-echo ""
-echo "============================================================"
-echo " FINAL TRAINER SUMMARY"
-echo "============================================================"
-
-cat << 'EOF'
-
-Today we demonstrated cloud computing concepts using Ubuntu terminal.
-
-We used the same message:
-
-    Hello World! Welcome to Cloud!
-
-We tested it using:
-
-1. Text file
-2. C program
-3. C++ program
-4. Java program using javac
-5. HTML website using Apache
-6. PHP web application
-7. Java JSP using Tomcat
-8. Java WAR using Maven and Tomcat
-9. Python Flask web app
-10. Node.js web app
-11. Docker container
-12. Cloud cost calculation
-13. Cloud storage simulation
-14. Data encryption
-15. Monitoring commands
-
-Cloud Model Understanding:
-
-SaaS:
-User directly uses software.
-
-PaaS:
-Developer uploads code and platform runs it.
-
-IaaS:
-User manages virtual machine, OS, server, and application.
 
 Important Ports:
+---------------------------
+        Apache HTML/PHP:     80
+        Tomcat JSP/WAR:      8080
+        Python Flask:        5000
+        Node.js:             3000
+        Docker Nginx App:    8081
 
-Apache HTML/PHP:     80
-Tomcat JSP/WAR:      8080
-Python Flask:        5000
-Node.js:             3000
-Docker Nginx App:    8081
 
-In KillerCoda, open these exposed ports to view the web applications.
-
-EOF
-
-echo "============================================================"
-echo " CLOUD COMPUTING TRAINER DEMO COMPLETED"
-echo "============================================================"
