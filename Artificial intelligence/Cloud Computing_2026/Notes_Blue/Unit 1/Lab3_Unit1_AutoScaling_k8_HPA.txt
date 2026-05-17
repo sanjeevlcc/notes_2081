@@ -1,0 +1,1048 @@
+# ============================================================
+# 1.7 DYNAMIC INFRASTRUCTURE IN KUBERNETES
+# Topic: HPA Auto Scaling Scenario
+# ============================================================
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Meaning of Dynamic Infrastructure
+# ------------------------------------------------------------
+
+# Dynamic infrastructure means cloud resources can automatically
+# change according to workload or demand.
+
+# In traditional infrastructure:
+# . Servers are fixed
+# . Resources are manually added
+# . Scaling takes more time
+# . Cost may be high because resources remain unused
+
+# In cloud and Kubernetes infrastructure:
+# . Resources can be added automatically
+# . Resources can be removed automatically
+# . Application can handle high traffic smoothly
+# . Cost and resource usage can be optimized
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Dynamic Infrastructure Flow
+# ------------------------------------------------------------
+
+# . User requests increase
+#        ↓
+# . Monitoring detects high load
+#        ↓
+# . Auto scaling adds more application instances
+#        ↓
+# . Load balancer distributes traffic
+#        ↓
+# . Application runs smoothly
+#        ↓
+# . Traffic decreases
+#        ↓
+# . Extra resources are removed
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Dynamic Infrastructure in Kubernetes
+# ------------------------------------------------------------
+
+# In Kubernetes, dynamic infrastructure is achieved using:
+# . Deployment
+# . Pods
+# . Service
+# . Metrics Server
+# . Horizontal Pod Autoscaler, also called HPA
+
+# HPA means Horizontal Pod Autoscaler.
+# It automatically increases or decreases the number of Pods
+# based on CPU, memory, or custom metrics.
+
+# In this example, we use CPU-based auto scaling.
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Kubernetes Dynamic Infrastructure Flow
+# ------------------------------------------------------------
+
+# . User requests increase
+#        ↓
+# . CPU usage increases
+#        ↓
+# . Metrics Server collects CPU data
+#        ↓
+# . HPA checks CPU usage
+#        ↓
+# . If CPU crosses 40%, HPA increases Pods
+#        ↓
+# . Kubernetes Service distributes traffic
+#        ↓
+# . Application runs smoothly
+#        ↓
+# . Traffic decreases
+#        ↓
+# . CPU usage decreases
+#        ↓
+# . HPA removes extra Pods
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Scenario: Auto Scaling Web Application
+# ------------------------------------------------------------
+
+# Application Name: demo-web
+
+# Initial Pods:
+# . 2 Pods
+
+# Minimum Pods:
+# . 2 Pods
+
+# Maximum Pods:
+# . 8 Pods
+
+# CPU Target:
+# . 40%
+
+# Scaling Condition:
+# . If average CPU usage crosses 40%, Kubernetes increases Pods.
+
+# Scaling Example:
+# . 2 Pods  →  4 Pods
+# . 4 Pods  →  6 Pods
+# . 6 Pods  →  8 Pods
+
+# Scale Down Example:
+# . 8 Pods  →  6 Pods
+# . 6 Pods  →  4 Pods
+# . 4 Pods  →  2 Pods
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Real Life Example
+# ------------------------------------------------------------
+
+# Example:
+# . Online exam result website
+# . Normal day: few users visit
+# . Result published day: thousands of users visit at same time
+# . CPU usage increases
+# . HPA detects high CPU
+# . HPA creates more Pods
+# . Service distributes traffic to all Pods
+# . Website runs smoothly
+# . After traffic decreases, extra Pods are removed
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Important Requirement for HPA
+# ------------------------------------------------------------
+
+# For CPU-based HPA, each container should have CPU request.
+
+# Example:
+# . cpu request = 100m
+
+# Here:
+# . 100m means 100 millicores
+# . 1000m means 1 CPU core
+
+# Without CPU request:
+# . HPA cannot properly calculate CPU utilization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ============================================================
+# PRACTICAL DEMO STEPS
+# ============================================================
+
+
+
+# ------------------------------------------------------------
+# Step 1: Check Kubernetes Cluster
+# ------------------------------------------------------------
+
+kubectl get nodes
+
+kubectl get pods -A
+
+
+# Expected output:
+
+# . Node status should be Ready
+# . Kubernetes system Pods should be Running
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 2: Install Metrics Server
+# ------------------------------------------------------------
+
+# HPA needs CPU and memory data.
+# Metrics Server collects CPU and memory usage from Kubernetes nodes and Pods.
+
+# Step 1: Install Metrics Server
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+
+# Step 2: Create patch file using cat
+
+cat <<'EOF' > metrics-server-patch.yaml
+spec:
+  template:
+    spec:
+      containers:
+      - name: metrics-server
+        args:
+        - --cert-dir=/tmp
+        - --secure-port=10250
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-use-node-status-port
+        - --metric-resolution=15s
+        - --kubelet-insecure-tls
+EOF
+
+
+# Step 3: Apply patch file to Metrics Server deployment
+
+kubectl patch deployment metrics-server \
+  -n kube-system \
+  --patch-file metrics-server-patch.yaml
+
+
+
+
+# Step 4: Restart Metrics Server
+
+kubectl rollout restart deployment metrics-server -n kube-system
+
+
+# Step 5: Watch until READY becomes 1/1
+
+kubectl get deployment metrics-server -n kube-system -w
+
+
+# When READY becomes 1/1, press CTRL + C
+
+
+# Step 6: Check Metrics Server Pod
+
+kubectl get pods -n kube-system | grep metrics-server
+
+
+# Expected:
+# metrics-server-xxxxx     1/1     Running
+
+
+# Step 7: Test Metrics API
+
+kubectl top nodes
+
+kubectl top pods
+
+
+
+
+
+
+
+
+
+
+
+
+# ============================================================
+# EXPECTED SUCCESS OUTPUT
+# ============================================================
+
+# kubectl top nodes
+# NAME           CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+# controlplane   180m         2%     1200Mi          30%
+
+# kubectl top pods
+# NAME                         CPU(cores)   MEMORY(bytes)
+# demo-web-xxxxx               1m           10Mi
+# demo-web-yyyyy               1m           10Mi
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 3: Create Deployment YAML File
+# ------------------------------------------------------------
+
+# Create file:
+
+nano demo-web-deployment.yaml
+
+
+# Paste this YAML content:
+
+cat <<EOF > demo-web-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-web
+  template:
+    metadata:
+      labels:
+        app: demo-web
+    spec:
+      containers:
+      - name: demo-web
+        image: registry.k8s.io/hpa-example
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "300m"
+EOF
+
+
+# Explanation:
+
+# . name: demo-web
+#   This is the name of Deployment.
+
+# . replicas: 2
+#   Application starts with 2 Pods.
+
+# . image: registry.k8s.io/hpa-example
+#   This is a sample image used for HPA demo.
+
+# . containerPort: 80
+#   Application runs on port 80.
+
+# . requests cpu: 100m
+#   Each Pod requests 100 millicores CPU.
+
+# . limits cpu: 300m
+#   Each Pod can use maximum 300 millicores CPU.
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 4: Apply Deployment
+# ------------------------------------------------------------
+
+kubectl apply -f demo-web-deployment.yaml
+
+
+# Check Deployment:
+
+kubectl get deployment
+
+
+# Check Pods:
+
+kubectl get pods
+
+
+# Expected:
+
+# . 2 Pods should be Running
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 5: Expose Deployment as Service
+# ------------------------------------------------------------
+
+kubectl expose deployment demo-web --type=ClusterIP --port=80
+
+
+# Check Service:
+
+kubectl get svc
+
+
+# Expected:
+
+# . Service name: demo-web
+# . Type: ClusterIP
+# . Port: 80
+
+
+# Service Role:
+
+# . Service receives traffic
+# . Service distributes traffic to available Pods
+# . Service works like internal load balancer
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 6: Create HPA Using Command
+# ------------------------------------------------------------
+
+kubectl autoscale deployment demo-web --cpu-percent=40 --min=2 --max=8
+
+
+# Explanation:
+
+# . deployment demo-web
+#   HPA will scale demo-web Deployment.
+
+# . cpu-percent=40
+#   Target average CPU utilization is 40%.
+
+# . min=2
+#   Minimum Pods will be 2.
+
+# . max=8
+#   Maximum Pods will be 8.
+
+
+# Check HPA:
+
+kubectl get hpa
+
+
+# Expected output:
+
+# NAME       REFERENCE             TARGETS    MINPODS   MAXPODS   REPLICAS
+# demo-web   Deployment/demo-web    0%/40%     2         8         2
+
+
+# Meaning:
+
+# . 0%/40%
+#   Current CPU is 0%, target CPU is 40%.
+
+# . REPLICAS 2
+#   Currently 2 Pods are running.
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Alternative Step 6: Create HPA Using YAML
+# ------------------------------------------------------------
+
+# If you want to create HPA using YAML instead of command:
+
+cat <<EOF > demo-web-hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: demo-web-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: demo-web
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 40
+EOF
+
+
+# Apply HPA YAML:
+
+kubectl apply -f demo-web-hpa.yaml
+
+
+# Note:
+# . Use either command method or YAML method.
+# . Do not create duplicate HPA for the same Deployment in real practice.
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 7: Generate CPU Load
+# ------------------------------------------------------------
+
+# Create a temporary load generator Pod:
+
+kubectl run -i --tty load-generator --rm --image=busybox:1.36 --restart=Never -- /bin/sh
+
+
+# Inside the load-generator shell, run this command:
+
+while true; do wget -q -O- http://demo-web.default.svc.cluster.local; done
+
+
+# Explanation:
+
+# . This command continuously sends requests to demo-web Service.
+# . More requests increase CPU usage.
+# . When CPU crosses 40%, HPA starts scaling Pods.
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 8: Watch HPA Auto Scaling
+# ------------------------------------------------------------
+
+# Open another terminal and run:
+
+kubectl get hpa -w
+
+
+# Also watch Pods:
+
+kubectl get pods -w
+
+
+# Expected Scaling Behavior:
+
+# . Start:
+#   CPU low, Pods = 2
+
+# . Load increases:
+#   CPU crosses 40%, Pods increase
+
+# . Heavy load:
+#   Pods may increase up to 8
+
+# Example:
+
+# TIME        CPU USAGE        PODS
+# Start       5%               2
+# Load high   45%              4
+# More load   65%              6
+# Heavy load  85%              8
+
+
+# Example HPA Output:
+
+# NAME       TARGETS    MINPODS   MAXPODS   REPLICAS
+# demo-web   25%/40%    2         8         2
+# demo-web   48%/40%    2         8         4
+# demo-web   66%/40%    2         8         6
+# demo-web   83%/40%    2         8         8
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 9: Stop Load Generator
+# ------------------------------------------------------------
+
+# Press CTRL + C inside load-generator terminal.
+
+# After stopping load:
+# . Requests decrease
+# . CPU usage decreases
+# . HPA waits for stable low CPU
+# . HPA removes extra Pods
+
+
+# Watch HPA again:
+
+kubectl get hpa -w
+
+
+# Example Scale Down:
+
+# TIME             CPU USAGE        PODS
+# Load stopped     20%              8
+# After cooling    10%              6
+# Low traffic      5%               4
+# Normal traffic   2%               2
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# Step 10: Check Final Pods
+# ------------------------------------------------------------
+
+kubectl get pods
+
+kubectl get hpa
+
+kubectl get deployment
+
+
+# Final expected state:
+
+# . Deployment: demo-web
+# . Minimum Pods: 2
+# . Maximum Pods: 8
+# . HPA target CPU: 40%
+
+
+
+
+
+
+
+
+
+# ============================================================
+# CLASSROOM EXPLANATION
+# ============================================================
+
+# Suppose a Nepal online result portal is running in Kubernetes.
+
+# Normal Day:
+# . Only few students visit the website.
+# . 2 Pods are enough.
+# . CPU usage is low.
+
+# Result Published Day:
+# . Thousands of students open the website.
+# . CPU usage increases above 40%.
+# . HPA detects high CPU.
+# . Kubernetes increases Pods from 2 to 4.
+# . If traffic is still high, Pods increase from 4 to 6.
+# . If traffic is very high, Pods increase from 6 to 8.
+
+# Load Balancing:
+# . Kubernetes Service distributes traffic to all Pods.
+# . Users get smooth response.
+# . Website does not crash easily.
+
+# After Traffic Decreases:
+# . CPU usage becomes low.
+# . HPA removes extra Pods.
+# . Application returns back to 2 Pods.
+# . Resources are saved.
+
+
+
+
+
+
+
+
+
+# ============================================================
+# DYNAMIC INFRASTRUCTURE MAPPING WITH KUBERNETES
+# ============================================================
+
+# . User traffic increases
+#   Kubernetes example: More HTTP requests
+
+# . Monitoring detects load
+#   Kubernetes component: Metrics Server
+
+# . Decision to scale
+#   Kubernetes component: HPA Controller
+
+# . Add more servers/application instances
+#   Kubernetes action: Add more Pods
+
+# . Distribute traffic
+#   Kubernetes component: Service
+
+# . Application remains stable
+#   Kubernetes result: More Pods handle requests
+
+# . Traffic decreases
+#   Kubernetes example: CPU usage decreases
+
+# . Remove extra resources
+#   Kubernetes action: HPA scales down Pods
+
+
+
+
+
+
+
+
+
+# ============================================================
+# SIMPLE DIAGRAM
+# ============================================================
+
+# Students / Users
+#        ↓
+# Kubernetes Service
+#        ↓
+# +-----------------------------+
+# | demo-web Pods               |
+# |                             |
+# | Pod 1        Pod 2          |
+# +-----------------------------+
+#        ↓
+# CPU crosses 40%
+#        ↓
+# Metrics Server reports CPU usage
+#        ↓
+# HPA makes scaling decision
+#        ↓
+# +-----------------------------+
+# | demo-web Pods               |
+# |                             |
+# | Pod 1  Pod 2  Pod 3  Pod 4  |
+# | Pod 5  Pod 6  Pod 7  Pod 8  |
+# +-----------------------------+
+
+
+
+
+
+
+
+
+
+# ============================================================
+# COMPLETE COMMAND SUMMARY
+# ============================================================
+
+# Check nodes:
+
+kubectl get nodes
+
+
+# Check all Pods:
+
+kubectl get pods -A
+
+
+# Install Metrics Server:
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+
+# Check Metrics Server:
+
+kubectl get deployment metrics-server -n kube-system
+
+
+# Check resource usage:
+
+kubectl top nodes
+
+kubectl top pods
+
+
+# Create Deployment file:
+
+cat <<EOF > demo-web-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-web
+  template:
+    metadata:
+      labels:
+        app: demo-web
+    spec:
+      containers:
+      - name: demo-web
+        image: registry.k8s.io/hpa-example
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "300m"
+EOF
+
+
+# Apply Deployment:
+
+kubectl apply -f demo-web-deployment.yaml
+
+
+# Check Deployment and Pods:
+
+kubectl get deployment
+
+kubectl get pods
+
+
+# Expose Service:
+
+kubectl expose deployment demo-web --type=ClusterIP --port=80
+
+
+# Check Service:
+
+kubectl get svc
+
+
+# Create HPA:
+
+kubectl autoscale deployment demo-web --cpu-percent=40 --min=2 --max=8
+
+
+# Check HPA:
+
+kubectl get hpa
+
+
+# Watch HPA:
+
+kubectl get hpa -w
+
+
+# Watch Pods:
+
+kubectl get pods -w
+
+
+# Generate load:
+
+kubectl run -i --tty load-generator --rm --image=busybox:1.36 --restart=Never -- /bin/sh
+
+
+# Inside load-generator shell:
+
+while true; do wget -q -O- http://demo-web.default.svc.cluster.local; done
+
+
+# Stop load generator:
+
+# Press CTRL + C
+
+
+# Check scale down:
+
+kubectl get hpa -w
+
+
+
+
+
+
+
+
+
+# ============================================================
+# CLEANUP COMMANDS
+# ============================================================
+
+# Delete HPA:
+
+kubectl delete hpa demo-web
+
+
+# If HPA was created using YAML name demo-web-hpa:
+
+kubectl delete hpa demo-web-hpa
+
+
+# Delete Service:
+
+kubectl delete svc demo-web
+
+
+# Delete Deployment:
+
+kubectl delete deployment demo-web
+
+
+# Delete YAML files if needed:
+
+rm demo-web-deployment.yaml
+
+rm demo-web-hpa.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ============================================================
+# KEY POINTS
+# ============================================================
+
+# . HPA means Horizontal Pod Autoscaler.
+# . HPA automatically scales Pods.
+# . HPA does not directly scale physical servers.
+# . HPA needs Metrics Server.
+# . CPU-based HPA needs CPU request in Deployment.
+# . Service distributes traffic among Pods.
+# . Minimum Pods protect application availability.
+# . Maximum Pods control resource usage.
+# . HPA improves performance during high traffic.
+# . HPA saves resources when traffic becomes low.
+
+
+# ------------------------------------------------------------
+# HPA vs Cluster Autoscaler vs VPA
+# ------------------------------------------------------------
+
+# HPA:
+# . Full form: Horizontal Pod Autoscaler
+# . Scales number of Pods
+# . Example: 2 Pods to 8 Pods
+
+# Cluster Autoscaler:
+# . Scales number of Nodes
+# . Example: 2 worker nodes to 4 worker nodes
+
+# VPA:
+# . Full form: Vertical Pod Autoscaler
+# . Adjusts CPU and memory size of Pods
+# . Example: 100m CPU request to 300m CPU request
+
+
+
+
+
+
+
+
+
+# ============================================================
+# FINAL EXAM-STYLE ANSWER
+# ============================================================
+
+# Dynamic infrastructure in Kubernetes means the application
+# infrastructure can automatically increase or decrease according
+# to workload.
+
+# Kubernetes uses Horizontal Pod Autoscaler to monitor CPU or
+# memory usage and adjust the number of Pods.
+
+# In this scenario, a web application starts with 2 Pods.
+# If average CPU utilization crosses 40%, HPA increases the
+# number of Pods up to a maximum of 8.
+
+# A Kubernetes Service distributes traffic among the Pods.
+
+# When traffic decreases, CPU usage becomes low and HPA reduces
+# the Pods back to the minimum level.
+
+# This improves performance, saves resources, and prevents
+# application failure during high traffic.
