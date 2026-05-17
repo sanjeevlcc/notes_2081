@@ -1,0 +1,689 @@
+# ============================================================
+# 1.7 DYNAMIC INFRASTRUCTURE WITH MONITORING IN KUBERNETES
+# HPA + Metrics Server + Prometheus + Grafana
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Meaning of Monitoring
+# ------------------------------------------------------------
+
+# Monitoring means continuously observing the health and performance
+# of cloud or Kubernetes infrastructure.
+
+# Cloud systems continuously monitor:
+# . CPU usage
+# . Memory usage
+# . Storage usage
+# . Network traffic
+# . Pod health
+# . Node health
+# . Application performance
+# . Error rate
+# . Response time
+
+
+# ------------------------------------------------------------
+# Simple Example
+# ------------------------------------------------------------
+
+# Example:
+# . Admin receives an alert when server storage reaches 90%.
+# . Admin receives an alert when CPU usage crosses 80%.
+# . Admin receives an alert when a Pod is repeatedly restarting.
+# . Admin receives an alert when an application becomes unavailable.
+
+
+# ------------------------------------------------------------
+# Monitoring in Dynamic Infrastructure
+# ------------------------------------------------------------
+
+# Monitoring is very important in dynamic infrastructure.
+
+# Without monitoring:
+# . Admin does not know when CPU is high
+# . Admin does not know when storage is full
+# . Admin does not know when Pods are failing
+# . Auto scaling decisions become difficult
+
+# With monitoring:
+# . System continuously checks resource usage
+# . HPA can scale Pods using CPU or memory metrics
+# . Admin can see dashboards
+# . Alerts can be sent before system failure
+
+
+# ------------------------------------------------------------
+# Kubernetes Monitoring Flow
+# ------------------------------------------------------------
+
+# . User requests increase
+#        ↓
+# . CPU and memory usage increase
+#        ↓
+# . Metrics Server collects basic resource metrics
+#        ↓
+# . HPA checks CPU usage
+#        ↓
+# . HPA scales Pods from 2 to 4 to 8
+#        ↓
+# . Prometheus collects detailed metrics
+#        ↓
+# . Grafana shows dashboard
+#        ↓
+# . Alertmanager / Grafana sends alert
+#        ↓
+# . Admin takes action if needed
+
+
+# ------------------------------------------------------------
+# Monitoring Tools in Kubernetes
+# ------------------------------------------------------------
+
+# 1. Metrics Server
+# . Used by HPA
+# . Provides CPU and memory metrics
+# . Required for kubectl top
+# . Lightweight monitoring tool
+
+# 2. Prometheus
+# . Collects metrics from Kubernetes cluster
+# . Stores time-series data
+# . Used for detailed monitoring
+# . Can collect node, pod, container, and application metrics
+
+# 3. Grafana
+# . Visualizes Prometheus metrics
+# . Provides dashboards
+# . Shows CPU, memory, network, storage, pod status, etc.
+# . Can also create alerts
+
+# 4. Alertmanager
+# . Handles alerts from Prometheus
+# . Groups alerts
+# . Routes alerts to email, Slack, webhook, PagerDuty, etc.
+
+# 5. Kubernetes Dashboard
+# . Simple web UI for Kubernetes
+# . Easier than command line for beginners
+# . Shows workloads, Pods, Services, Deployments
+
+
+# ------------------------------------------------------------
+# Easy Monitoring Options
+# ------------------------------------------------------------
+
+# Option 1: Very Easy
+# Tool: kubectl top
+# Use case: Basic CPU and memory check
+
+# Option 2: Easy Dashboard
+# Tool: Kubernetes Dashboard
+# Use case: Visual view of Pods, Deployments, Services
+
+# Option 3: Professional Monitoring
+# Tool: Prometheus + Grafana
+# Use case: Real production-style monitoring
+
+# Option 4: Alert Monitoring
+# Tool: Prometheus Alertmanager or Grafana Alerting
+# Use case: Send alerts when CPU, memory, storage, or app health is bad
+
+
+# ============================================================
+# PART A: BASIC MONITORING USING METRICS SERVER
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Step 1: Install Metrics Server
+# ------------------------------------------------------------
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+
+# ------------------------------------------------------------
+# Step 2: Patch Metrics Server for KillerCoda / Lab Environment
+# ------------------------------------------------------------
+
+cat <<'EOF' > metrics-server-patch.yaml
+spec:
+  template:
+    spec:
+      containers:
+      - name: metrics-server
+        args:
+        - --cert-dir=/tmp
+        - --secure-port=10250
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-use-node-status-port
+        - --metric-resolution=15s
+        - --kubelet-insecure-tls
+EOF
+
+
+kubectl patch deployment metrics-server -n kube-system --patch-file metrics-server-patch.yaml
+
+
+kubectl rollout restart deployment metrics-server -n kube-system
+
+
+# ------------------------------------------------------------
+# Step 3: Check Metrics Server
+# ------------------------------------------------------------
+
+kubectl get deployment metrics-server -n kube-system
+
+
+kubectl get pods -n kube-system | grep metrics-server
+
+
+# ------------------------------------------------------------
+# Step 4: Check CPU and Memory
+# ------------------------------------------------------------
+
+kubectl top nodes
+
+
+kubectl top pods
+
+
+# Example output:
+
+# NAME           CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+# controlplane   250m         3%     1500Mi          35%
+
+
+# ------------------------------------------------------------
+# Step 5: Watch Resource Usage During HPA Load Test
+# ------------------------------------------------------------
+
+kubectl top pods
+
+
+kubectl get hpa
+
+
+kubectl get pods
+
+
+# During load:
+# . CPU usage increases
+# . HPA increases Pods
+# . kubectl top pods shows CPU usage of each Pod
+
+
+# ============================================================
+# PART B: INSTALL PROMETHEUS + GRAFANA USING HELM
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Meaning of Helm
+# ------------------------------------------------------------
+
+# Helm is a package manager for Kubernetes.
+# It helps install complex applications easily.
+# Prometheus and Grafana can be installed using Helm chart.
+
+
+# ------------------------------------------------------------
+# Step 1: Check Helm
+# ------------------------------------------------------------
+
+helm version
+
+
+# If Helm is not installed, install it first:
+
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+
+# Check again:
+
+helm version
+
+
+# ------------------------------------------------------------
+# Step 2: Create Monitoring Namespace
+# ------------------------------------------------------------
+
+kubectl create namespace monitoring
+
+
+# Check namespace:
+
+kubectl get ns
+
+
+# ------------------------------------------------------------
+# Step 3: Add Prometheus Helm Repository
+# ------------------------------------------------------------
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+
+helm repo update
+
+
+# ------------------------------------------------------------
+# Step 4: Install kube-prometheus-stack
+# ------------------------------------------------------------
+
+# kube-prometheus-stack includes:
+# . Prometheus
+# . Grafana
+# . Alertmanager
+# . Node exporter
+# . kube-state-metrics
+# . Default dashboards
+# . Default alert rules
+
+helm install monitoring prometheus-community/kube-prometheus-stack \
+  --namespace monitoring
+
+
+# ------------------------------------------------------------
+# Step 5: Check Monitoring Pods
+# ------------------------------------------------------------
+
+kubectl get pods -n monitoring
+
+
+# Expected components:
+
+# . prometheus
+# . grafana
+# . alertmanager
+# . node-exporter
+# . kube-state-metrics
+# . operator
+
+
+# ------------------------------------------------------------
+# Step 6: Check Services
+# ------------------------------------------------------------
+
+kubectl get svc -n monitoring
+
+
+# You should see services like:
+
+# . monitoring-grafana
+# . monitoring-kube-prometheus-prometheus
+# . monitoring-kube-prometheus-alertmanager
+
+
+# ============================================================
+# PART C: ACCESS GRAFANA DASHBOARD
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Step 1: Get Grafana Admin Password
+# ------------------------------------------------------------
+
+kubectl get secret monitoring-grafana -n monitoring \
+  -o jsonpath="{.data.admin-password}" | base64 --decode
+
+
+echo
+
+
+# Default username:
+
+# admin
+
+
+# ------------------------------------------------------------
+# Step 2: Port Forward Grafana
+# ------------------------------------------------------------
+
+kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80
+
+
+# Now open browser:
+
+# http://localhost:3000
+
+
+# Login:
+
+# Username: admin
+# Password: use password from previous command
+
+
+# ------------------------------------------------------------
+# Step 3: View Dashboards
+# ------------------------------------------------------------
+
+# In Grafana:
+# . Go to Dashboards
+# . Browse dashboards
+# . Open Kubernetes dashboards
+# . View node CPU
+# . View node memory
+# . View pod CPU
+# . View pod memory
+# . View workload status
+# . View cluster health
+
+
+# ============================================================
+# PART D: ACCESS PROMETHEUS
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Step 1: Port Forward Prometheus
+# ------------------------------------------------------------
+
+kubectl port-forward -n monitoring svc/monitoring-kube-prometheus-prometheus 9090:9090
+
+
+# Open browser:
+
+# http://localhost:9090
+
+
+# ------------------------------------------------------------
+# Step 2: Example Prometheus Queries
+# ------------------------------------------------------------
+
+# CPU usage query:
+
+# rate(container_cpu_usage_seconds_total[5m])
+
+
+# Memory usage query:
+
+# container_memory_usage_bytes
+
+
+# Pod restart query:
+
+# kube_pod_container_status_restarts_total
+
+
+# Node filesystem available query:
+
+# node_filesystem_avail_bytes
+
+
+# Node filesystem size query:
+
+# node_filesystem_size_bytes
+
+
+# Storage usage percentage formula:
+
+# 100 - ((node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes)
+
+
+# ============================================================
+# PART E: MONITOR HPA SCALING IN GRAFANA
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Scenario
+# ------------------------------------------------------------
+
+# Application name:
+# . demo-web
+
+# HPA:
+# . Minimum Pods = 2
+# . Maximum Pods = 8
+# . CPU target = 40%
+
+# Monitoring:
+# . Metrics Server helps HPA
+# . Prometheus collects detailed metrics
+# . Grafana shows dashboards
+
+
+# ------------------------------------------------------------
+# Watch HPA from CLI
+# ------------------------------------------------------------
+
+kubectl get hpa -w
+
+
+# ------------------------------------------------------------
+# Watch Pods from CLI
+# ------------------------------------------------------------
+
+kubectl get pods -w
+
+
+# ------------------------------------------------------------
+# Watch CPU from CLI
+# ------------------------------------------------------------
+
+kubectl top pods
+
+
+# ------------------------------------------------------------
+# Watch in Grafana
+# ------------------------------------------------------------
+
+# In Grafana dashboard, observe:
+# . CPU usage increases
+# . Pod count increases
+# . Memory usage changes
+# . Node resource usage changes
+# . Application workload becomes stable
+
+
+# ============================================================
+# PART F: EXAMPLE ALERTS
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Alert Example 1: High CPU
+# ------------------------------------------------------------
+
+# Condition:
+# . If CPU usage is above 80% for 5 minutes
+
+# Alert:
+# . High CPU usage detected
+# . Admin should check application load
+
+
+# ------------------------------------------------------------
+# Alert Example 2: High Memory
+# ------------------------------------------------------------
+
+# Condition:
+# . If memory usage is above 85%
+
+# Alert:
+# . High memory usage detected
+# . Application may crash if memory continues increasing
+
+
+# ------------------------------------------------------------
+# Alert Example 3: Storage 90%
+# ------------------------------------------------------------
+
+# Condition:
+# . If storage usage reaches 90%
+
+# Alert:
+# . Server storage is almost full
+# . Admin should clean logs or increase disk size
+
+
+# ------------------------------------------------------------
+# Alert Example 4: Pod Restarting
+# ------------------------------------------------------------
+
+# Condition:
+# . If a Pod restarts many times
+
+# Alert:
+# . Pod is unstable
+# . Admin should check logs
+
+
+# ------------------------------------------------------------
+# Alert Example 5: Node Down
+# ------------------------------------------------------------
+
+# Condition:
+# . If Kubernetes node is NotReady
+
+# Alert:
+# . Worker node may be down
+# . Admin should check node health
+
+
+# ============================================================
+# PART G: SIMPLE PROMETHEUS ALERT RULE EXAMPLE
+# ============================================================
+
+
+# ------------------------------------------------------------
+# Create Example Alert Rule File
+# ------------------------------------------------------------
+
+cat <<'EOF' > simple-alert-rule.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: simple-k8s-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+  - name: simple-kubernetes-alerts
+    rules:
+    - alert: HighNodeCPU
+      expr: 100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU usage detected"
+        description: "Node CPU usage is above 80% for more than 5 minutes."
+
+    - alert: HighNodeStorage
+      expr: 100 - ((node_filesystem_avail_bytes{fstype!="tmpfs"} * 100) / node_filesystem_size_bytes{fstype!="tmpfs"}) > 90
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Storage usage is above 90%"
+        description: "Node filesystem storage usage is above 90%."
+
+    - alert: PodRestartingFrequently
+      expr: increase(kube_pod_container_status_restarts_total[10m]) > 3
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Pod restarting frequently"
+        description: "A Pod has restarted more than 3 times in 10 minutes."
+EOF
+
+
+# ------------------------------------------------------------
+# Apply Alert Rule
+# ------------------------------------------------------------
+
+kubectl apply -f simple-alert-rule.yaml
+
+
+# ------------------------------------------------------------
+# Check PrometheusRule
+# ------------------------------------------------------------
+
+kubectl get prometheusrule -n monitoring
+
+
+# ------------------------------------------------------------
+# View Alerts in Prometheus
+# ------------------------------------------------------------
+
+# Open Prometheus:
+# http://localhost:9090
+
+# Go to:
+# . Alerts
+
+# You can see alert rules there.
+
+
+# ============================================================
+# PART H: SIMPLE CLASSROOM EXPLANATION
+# ============================================================
+
+
+# Example:
+# A college result website is running in Kubernetes.
+
+# Normal Day:
+# . CPU usage is 10%
+# . Only 2 Pods are running
+# . Grafana dashboard shows normal traffic
+
+# Result Published Day:
+# . Many students open the result website
+# . CPU usage crosses 40%
+# . HPA increases Pods from 2 to 4
+# . More traffic comes
+# . HPA increases Pods from 4 to 8
+# . Grafana dashboard shows CPU, memory, and Pod count
+# . Prometheus stores all metrics
+# . If CPU crosses 80%, alert is generated
+# . If storage crosses 90%, admin receives alert
+
+# After Traffic Decreases:
+# . CPU usage decreases
+# . HPA reduces Pods back to 2
+# . Grafana shows reduced workload
+# . Resources are saved
+
+
+# ============================================================
+# FINAL NOTES
+# ============================================================
+
+# Monitoring answers these questions:
+
+# . Is my application running?
+# . How much CPU is being used?
+# . How much memory is being used?
+# . Is storage almost full?
+# . Are Pods restarting?
+# . Is any node down?
+# . Is HPA scaling correctly?
+# . Is user traffic increasing?
+# . Is application performance normal?
+
+
+# ------------------------------------------------------------
+# Final Exam-Style Answer
+# ------------------------------------------------------------
+
+# Monitoring in cloud and Kubernetes means continuously observing
+# CPU, memory, storage, network, Pod health, node health, and
+# application performance.
+
+# In Kubernetes, Metrics Server provides basic CPU and memory
+# metrics for HPA and kubectl top command.
+
+# For advanced monitoring, Prometheus and Grafana are used.
+# Prometheus collects and stores metrics from Kubernetes.
+# Grafana displays those metrics in visual dashboards.
+
+# Alertmanager or Grafana Alerting can send alerts when CPU is high,
+# memory is high, storage reaches 90%, Pod restarts frequently, or
+# a node becomes unavailable.
+
+# Monitoring helps administrators detect problems early, support
+# auto scaling, improve reliability, and prevent system failure.
