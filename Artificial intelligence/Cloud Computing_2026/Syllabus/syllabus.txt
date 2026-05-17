@@ -1,0 +1,447 @@
+# ============================================================
+# CMP 382 : CLOUD COMPUTING
+# Pokhara University
+# Faculty of Science and Technology
+# Bachelor Level | BCSIT | Year III | Semester VI
+# ============================================================
+
+Course Code        : CMP 382
+Course Title       : Cloud Computing
+Nature             : Theory + Practical
+Credit Hours       : 3
+Total Periods      : 48 Hours
+Full Marks         : 100
+Pass Marks         : 45
+
+
+# ============================================================
+# 1. COURSE DESCRIPTION
+# ============================================================
+
+. This course provides the basic concepts of cloud computing.
+
+. It covers cloud architecture, deployment models, and cloud
+  service management.
+
+. The course explains how cloud platforms operate and how
+  computing resources are delivered through the internet.
+
+. Students will learn practical skills to design, deploy, and
+  manage applications in cloud environments.
+
+. The course also covers virtualization, storage systems,
+  networking, security, and cost optimization.
+
+. At the end of the course, students will be able to understand
+  cloud computing fundamentals and apply cloud-based solutions
+  in real-world scenarios.
+
+
+# ============================================================
+# 2. COURSE OBJECTIVES
+# ============================================================
+
+After completing this course, students will be able to:
+
+. Understand the fundamental concepts, evolution, and real-world
+  applications of cloud computing.
+
+. Analyze and apply different cloud service models and deployment
+  models based on system requirements.
+
+. Understand cloud architecture, including scalability,
+  distributed systems, and modern design approaches.
+
+. Work with core technologies such as virtualization and
+  containerization for efficient resource management.
+
+. Design, deploy, and manage basic cloud-based applications
+  and services.
+
+. Understand distributed computing concepts and basic big data
+  processing techniques.
+
+. Identify and address cloud security, privacy, and governance
+  issues.
+
+. Gain practical experience using cloud tools, platforms, and
+  development environments.
+
+
+
+
+
+# ============================================================
+# 3. METHOD OF INSTRUCTION
+# ============================================================
+
+General Instructional Techniques:
+
+. Lecture
+
+. Discussion
+
+. Demonstration
+
+. Interactive question-answer sessions
+
+
+Specific Instructional Techniques:
+
+. Practical implementation using virtualization software
+
+. Use of Docker
+
+. Use of cloud platforms
+
+. Hands-on cloud application deployment
+
+. Basic cloud security and monitoring activities
+
+
+
+
+
+
+
+# ============================================================
+# 4. COURSE CONTENTS
+# ============================================================
+
+
+# ============================================================
+# UNIT 1 : INTRODUCTION TO CLOUD COMPUTING
+# Duration : 5 Hours
+# ============================================================
+
+Specific Objectives:
+
+. Explain the concept, evolution, and key characteristics of
+  cloud computing.
+
+. Describe the benefits, challenges, and real-world applications
+  of cloud computing.
+
+. Identify cloud storage concepts and infrastructure requirements.
+
+. Explain cloud adoption strategies and dynamic infrastructure.
+
+. Analyze real-world case studies of cloud adoption.
+
+
+Contents:
+
+. 1.1  Cloud computing overview and evolution
+
+. 1.2  Characteristics of cloud computing
+
+. 1.3  Benefits and challenges
+
+. 1.4  Applications of cloud computing
+
+. 1.5  Introduction to cloud storage
+
+. 1.6  Cloud service requirements
+
+. 1.7  Dynamic infrastructure
+
+. 1.8  Cloud adoption strategies and case studies
+
+
+# ============================================================
+# UNIT 2 : CLOUD SERVICE AND DEPLOYMENT MODELS
+# Duration : 7 Hours
+# ============================================================
+
+Specific Objectives:
+
+. Differentiate and analyze cloud service models.
+
+. Compare cloud deployment models and evaluate their use cases.
+
+. Explain the shared responsibility model in cloud environments.
+
+. Evaluate appropriate service and deployment models based on
+  given scenarios.
+
+. Explain multi-cloud concepts and vendor lock-in issues.
+
+. Describe serverless computing and event-driven architecture.
+
+
+Contents:
+
+. 2.1  Cloud service models:
+      . IaaS
+      . PaaS
+      . SaaS
+
+. 2.2  Deployment models:
+      . Public cloud
+      . Private cloud
+      . Hybrid cloud
+      . Community cloud
+
+. 2.3  Comparison of service models
+
+. 2.4  Shared responsibility model
+
+. 2.5  Selection criteria
+
+. 2.6  Multi-cloud concepts
+
+. 2.7  Vendor lock-in issues
+
+. 2.8  Serverless computing and event-driven architecture
+
+
+# ============================================================
+# UNIT 3 : CLOUD COMPUTING ARCHITECTURE
+# Duration : 6 Hours
+# ============================================================
+
+Specific Objectives:
+
+. Explain cloud architecture and its core components.
+
+. Compare monolithic and microservices architectures.
+
+. Apply concepts of scalability, elasticity, and fault tolerance.
+
+. Explain high availability and load balancing mechanisms.
+
+. Analyze security, trust, and privacy in cloud architecture.
+
+. Relate architectural concepts to real-world cloud systems.
+
+
+Contents:
+
+. 3.1  Layered cloud architecture
+
+. 3.2  Service-Oriented Architecture, SOA
+
+. 3.3  Microservices vs monolithic architecture
+
+. 3.4  Scalability and elasticity
+
+. 3.5  Fault tolerance and high availability
+
+. 3.6  Load distribution concepts
+
+. 3.7  Security, trust, and privacy considerations
+
+. 3.8  Case studies of cloud architectures
+
+
+# ============================================================
+# UNIT 4 : CLOUD APPLICATIONS AND SERVICE MANAGEMENT
+# Duration : 8 Hours
+# ============================================================
+
+Specific Objectives:
+
+. Explain design principles of cloud-based applications.
+
+. Apply techniques for cloud application deployment and migration.
+
+. Analyze cloud cost models and pricing strategies.
+
+. Explain service level agreements, performance, and availability
+  metrics.
+
+. Analyze portability and interoperability in cloud systems.
+
+. Apply basic DevOps practices in cloud environments.
+
+. Describe monitoring and logging mechanisms in cloud systems.
+
+
+Contents:
+
+. 4.1   Design principles of cloud applications
+
+. 4.2   Web application architecture in cloud
+
+. 4.3   Application migration and software licensing in cloud
+
+. 4.4   Cost models and pricing strategies
+
+. 4.5   Service Level Agreements, SLA
+
+. 4.6   Performance and availability metrics
+
+. 4.7   Portability and interoperability
+
+. 4.8   Introduction to DevOps and CI/CD concepts
+
+. 4.9   Infrastructure as Code, IaC basics
+
+. 4.10  Monitoring and logging in cloud systems
+
+
+# ============================================================
+# UNIT 5 : VIRTUALIZATION AND CONTAINERIZATION TECHNOLOGY
+# Duration : 8 Hours
+# ============================================================
+
+Specific Objectives:
+
+. Explain virtualization concepts and different types of
+  virtualization.
+
+. Describe hypervisors and the lifecycle of virtual machines.
+
+. Compare virtual machines and containers.
+
+. Apply containerization concepts in practical scenarios.
+
+. Explain serverless computing and event-driven functions.
+
+. Explain load balancing and its concepts.
+
+
+Contents:
+
+. 5.1   Introduction to virtualization
+
+. 5.2   Types of virtualization:
+       . Server virtualization
+       . Storage virtualization
+       . Network virtualization
+
+. 5.3   Virtualization architecture and implementation
+
+. 5.4   Hypervisors and types
+
+. 5.5   Virtual machine lifecycle
+
+. 5.6   Introduction to containerization
+
+. 5.7   Virtual Machine vs Container
+
+. 5.8   Introduction to serverless computing
+
+. 5.9   Event-driven functions
+
+. 5.10  Load balancing concepts
+
+. 5.11  Serverless vs containerized workloads
+
+
+# ============================================================
+# UNIT 6 : DISTRIBUTED COMPUTING AND BIG DATA PROCESSING
+# Duration : 7 Hours
+# ============================================================
+
+Specific Objectives:
+
+. Explain concepts of parallel and distributed computing.
+
+. Describe distributed file systems and data consistency
+  mechanisms.
+
+. Apply the MapReduce model for data processing tasks.
+
+. Analyze big data processing techniques and frameworks.
+
+. Identify modern data processing models.
+
+. Relate distributed computing concepts to real-world applications.
+
+
+Contents:
+
+. 6.1   Parallel and distributed computing fundamentals
+
+. 6.2   Distributed file systems
+
+. 6.3   Data replication and consistency
+
+. 6.4   MapReduce model and phases
+
+. 6.5   Applications of MapReduce
+
+. 6.6   Parallel efficiency
+
+. 6.7   Batch processing techniques
+
+. 6.8   Hadoop and MapReduce
+
+. 6.9   Modern data processing models
+
+. 6.10  Case studies in distributed systems
+
+
+# ============================================================
+# UNIT 7 : CLOUD SECURITY AND GOVERNANCE
+# Duration : 7 Hours
+# ============================================================
+
+Specific Objectives:
+
+. Identify cloud security risks and challenges.
+
+. Explain identity and access management mechanisms.
+
+. Apply data security and encryption techniques.
+
+. Analyze multi-tenancy and virtual machine security issues.
+
+. Explain legal, regulatory, and governance frameworks.
+
+. Evaluate cloud security practices in real-world scenarios.
+
+
+Contents:
+
+. 7.1   Cloud security issues and challenges
+
+. 7.2   Identity and Access Management, IAM
+
+. 7.3   Data security and encryption
+
+. 7.4   Application and VM security
+
+. 7.5   Multi-tenancy issues
+
+. 7.6   Security monitoring and auditing
+
+. 7.7   Legal and regulatory aspects
+
+. 7.8   Data privacy and compliance
+
+. 7.9   Governance models
+
+. 7.10  Security case studies
+
+
+# ============================================================
+# 5. PRACTICAL WORKS
+# ============================================================
+
+. 1. Install VirtualBox or VMware and create a virtual machine.
+     Observe resource allocation and VM behavior.
+
+. 2. Perform file upload, download, sharing, and access control
+     in a cloud storage system or simulated environment.
+
+. 3. Deploy a simple web application in a cloud environment.
+
+. 4. Monitor CPU and other metrics of virtual machines.
+
+. 5. Calculate simple cloud costs using sample pricing models.
+
+. 6. Apply basic data encryption to understand cloud security
+     practices.
+
+. 7. Implement basic Infrastructure as Code, IaC scripts to deploy
+     a cloud application.
+
+. 8. Explore a lightweight serverless function, such as AWS Lambda.
+
+. 9. Use Docker to run a simple containerized application and
+     observe container behavior.
+
+. 10. Implement a simple MapReduce program, such as word count,
+      using a programming language to understand distributed
