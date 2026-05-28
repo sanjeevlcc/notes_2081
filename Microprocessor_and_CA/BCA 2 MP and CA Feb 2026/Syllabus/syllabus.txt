@@ -1,0 +1,365 @@
+======================================================================
+MICROPROCESSOR AND COMPUTER ARCHITECTURE
+======================================================================
+
+COURSE CODE     : BCA 251
+NATURE OF COURSE: THEORY + LAB
+CREDIT HRS      : 3
+YEAR/SEMESTER   : III
+WORK LOAD       : THEORY/LAB: 3 Hrs
+
+======================================================================
+COURSE ESSENTIAL
+======================================================================
+
+This course is designed to familiarize students with fundamental
+knowledge about computer architecture, instruction set, components of
+microprocessor, Intel 8085 and assembly programming.
+
+======================================================================
+COURSE OBJECTIVES
+======================================================================
+
+Upon completion of this course, students will be able to:
+
+......................................................................
+. Understand the basic components of a microprocessor
+. Explain the block diagram of Intel 8085
+. Demonstrate assembly language programming using Intel 8085
+. Interpret timing diagrams, instruction cycles and machine cycles
+. Explain the role of control unit and central processing unit (CPU)
+. Differentiate between RISC and CISC architectures
+. Describe the concept of Direct Memory Access (DMA)
+. Explain memory organization and operations
+. Understand the concept of pipelining in processors
+. Describe microprogramming and microinstructions
+. Perform computer arithmetic operations such as multiplication
+  and division
+......................................................................
+
+======================================================================
+COURSE CONTENTS
+======================================================================
+
+
+======================================================================
+UNIT 1: INTRODUCTION TO MICROPROCESSOR
+======================================================================
+Lecture Hours: 3 Hours
+
+1.1 Definition of Microprocessor
+    ..................................................................
+    . Components of microprocessor
+    . Registers
+    . ALU
+    . Control unit
+    . Timing
+    . System bus:
+        . Address bus
+        . Data bus
+        . Control bus
+    . Microprocessor application
+    . Revision of microprocessor
+    ..................................................................
+
+
+======================================================================
+UNIT 2: 8085 MICROPROCESSOR
+======================================================================
+Lecture Hours: 12 Hours
+
+2.1 Functional Block Diagram of Intel 8085
+    ..................................................................
+    . Pin configuration
+    . Description of each block
+    . Registers
+    . Flag register
+    . Instruction decoder
+    . ALU
+    . Timing and control unit
+    . Interrupts
+    . Addressing modes
+    . Instruction set
+    . Machine cycle
+    . Opcode
+    . MOV instruction
+    . Data movement
+    . Arithmetic, logical and branch instructions
+    ..................................................................
+
+2.2 8085 Instruction Set
+    ..................................................................
+    Data Transfer Instructions:
+    . MOV
+    . MVI
+    . STA
+    . LDA
+    . LXI
+    . LDAX
+    . STAX
+    . XCHG
+
+    Arithmetic Instructions:
+    . ADD
+    . ADI
+    . ADC
+    . SUB
+    . SUI
+    . SBB
+    . INR
+    . DCR
+    . INX
+    . DCX
+
+    Logical Instructions:
+    . ANA
+    . ANI
+    . ORA
+    . ORI
+    . XRA
+    . XRI
+    . CMA
+    . CMP
+
+    Branch Instructions:
+    . JMP
+    . JZ
+    . JNZ
+    . JC
+    ..................................................................
+
+2.3 Basic Assembly Language Programming using 8085 Instruction Sets
+    ..................................................................
+    . Addition of two 8-bit numbers
+    . Subtraction of two 8-bit numbers
+    . Multiplication of two 8-bit numbers
+    . Division of two 8-bit numbers
+    . Simple sequence program
+    . Array searching program
+    ..................................................................
+
+
+======================================================================
+UNIT 3: 8086 MICROPROCESSOR
+======================================================================
+Lecture Hours: 4 Hours
+
+3.1 Logical Block Diagram and Components
+    ..................................................................
+    . Interface unit
+    . Execution unit
+    . Flag register
+    . Concept of memory segmentation
+    . Segment registers
+    ..................................................................
+
+
+======================================================================
+UNIT 4: BASIC COMPUTER ARCHITECTURE AND DESIGN
+======================================================================
+Lecture Hours: 6 Hours
+
+4.1 Stored Program Organization
+    ..................................................................
+    . Computer registers
+    . Common bus system
+    . Instruction timing
+    . Control instruction cycle
+    ..................................................................
+
+4.2 Micro-Operations
+    ..................................................................
+    . Arithmetic micro-operations
+    . Logic micro-operations
+    . Shift micro-operations
+    . Increment operation
+    . Decrement operation
+    . Logic micro-operation
+    . AND
+    . OR
+    . XOR
+    . Shift micro-operation
+    . Logical shift
+    . Circular shift
+    ..................................................................
+
+
+======================================================================
+UNIT 5: MICROPROGRAMMED CONTROL UNIT
+======================================================================
+Lecture Hours: 5 Hours
+
+5.1 Hardware Organization
+    ..................................................................
+    . Control memory
+    . Address sequencing
+    . Micro-operation
+    . Microinstruction
+    . Microinstruction format
+    . Microprogram:
+        . Symbolic microprogram
+        . Binary microprogram
+    ..................................................................
+
+
+======================================================================
+UNIT 6: CENTRAL PROCESSING UNIT
+======================================================================
+Lecture Hours: 6 Hours
+
+6.1 General Register Organization
+    ..................................................................
+    . Stack organization
+    ..................................................................
+
+6.2 Instruction Formats
+    ..................................................................
+    . 3-address instruction
+    . 2-address instruction
+    . 1-address instruction
+    . 0-address instruction
+    ..................................................................
+
+6.3 RISC and CISC Architecture
+    ..................................................................
+    . Concept of RISC architecture
+    . Concept of CISC architecture
+    . Difference between RISC and CISC
+    ..................................................................
+
+
+======================================================================
+UNIT 7: COMPUTER ARITHMETIC
+======================================================================
+Lecture Hours: 3 Hours
+
+7.1 Addition and Subtraction
+    ..................................................................
+    . Addition with signed magnitude data
+    . Subtraction with signed magnitude data
+    . 2's complement data
+    . Booth multiplication
+    ..................................................................
+
+
+======================================================================
+UNIT 8: INPUT AND OUTPUT ORGANIZATION AND MEMORY ORGANIZATION
+======================================================================
+Lecture Hours: 5 Hours
+
+8.1 Introduction to Peripheral Devices
+    ..................................................................
+    . I/O interface
+    . I/O bus
+    . I/O interface modules
+    . Isolated I/O
+    . Memory-mapped I/O
+    . Interrupt
+    ..................................................................
+
+8.2 Direct Memory Access, DMA
+    ..................................................................
+    . Introduction to DMA
+    . DMA procedure
+    ..................................................................
+
+8.3 Hierarchy of Memory System
+    ..................................................................
+    . Memory hierarchy concept
+    ..................................................................
+
+8.4 Primary Memory
+    ..................................................................
+    . RAM
+    . ROM
+    . Memory address map
+    . Memory address decoding
+    . Static memory
+    . Structure of magnetic disk
+    . Cache memory
+    ..................................................................
+
+
+======================================================================
+UNIT 9: PIPELINING
+======================================================================
+Lecture Hours: 4 Hours
+
+9.1 Concept of Pipelining and Flynn's Classification
+    ..................................................................
+    . Introduction to pipelining
+    . Flynn's classification
+    ..................................................................
+
+9.2 Arithmetic Pipeline
+    ..................................................................
+    . Pipeline for floating-point addition
+    . Pipeline for floating-point subtraction
+    ..................................................................
+
+9.3 Instruction Pipeline
+    ..................................................................
+    . Four-segment instruction pipeline
+    ..................................................................
+
+9.4 Data Dependency
+    ..................................................................
+    . Handling of branch instruction
+    . Pipeline hazards
+    . Instruction hazards
+    ..................................................................
+
+
+======================================================================
+LABORATORY WORK
+======================================================================
+Lecture Hours: 48 Hours
+
+Students should perform the following laboratory works:
+
+......................................................................
+. Write assembly language programs using both 8085 microprocessor
+  trainer kit and software-based 8085 simulator.
+
+. Demonstrate the use of all types of instructions and various
+  addressing modes available in Intel 8085 instruction set.
+
+. Develop programs that include fundamental arithmetic operations
+  such as addition and subtraction of numbers.
+
+. Develop programs that include multiplication and division.
+
+. Develop programs that include logical operations.
+
+. Develop programs that include loops.
+
+. Develop programs that include manipulation operations.
+
+. Develop programs that include branching techniques.
+
+. Implement algorithms for computer arithmetic using high-level language.
+......................................................................
+
+
+======================================================================
+REQUIRED READINGS
+======================================================================
+
+......................................................................
+1. Gaonkar, R. S. (1993).
+   Microprocessor Architecture, Programming and Application with 8085.
+   Prentice-Hall, India.
+
+2. Hall, D. V. (1986).
+   Microprocessor and Interfacing: Programming and Hardware.
+   McGraw-Hill.
+
+3. Mano, M. M. (1993).
+   Computer System Architecture.
+   Prentice-Hall, Inc.
+......................................................................
+
+
+======================================================================
+END OF COURSE OUTLINE
+======================================================================
