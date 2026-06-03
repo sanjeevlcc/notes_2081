@@ -1,0 +1,1375 @@
+==================================================================
+UNIT IV: BIG DATA ANALYTICS AND BUSINESS APPLICATIONS
+Duration: 3 Hours
+==================================================================
+
+Specific Objectives:
+
+. Understand Big Data concepts and business applications.
+
+. Introduce Big Data tools such as Hadoop, Apache Spark,
+  AWS, and Google Cloud.
+
+. Analyze customer purchase behavior using Excel or Power BI.
+
+. Perform customer segmentation, market basket analysis,
+  and sales optimization.
+
+. Generate business insights and recommendations
+  using data analytics.
+
+
+
+
+
+==================================================================
+4.1 INTRODUCTION TO BIG DATA
+==================================================================
+
+What is Big Data?
+
+. Big Data refers to extremely large datasets that are difficult
+  to store, process, and analyze using traditional systems.
+
+        Examples:
+        
+                . Daraz customer orders
+                
+                . Amazon sales transactions
+                
+                . eSewa and Khalti payment records
+                
+                . Facebook posts and comments
+                
+                . Walmart retail transaction records
+
+
+
+
+          Traditional Data Example:
+          
+                    . 100 customers
+                    
+                    . 500 sales transactions
+          
+          
+          
+          Big Data Example:
+          
+                  . 10 million customers
+                  
+                  . 500 million transactions
+                  
+
+Dataset1: https://www.kaggle.com/datasets/vivek468/superstore-dataset-final?utm_source=chatgpt.com
+
+
+Dataset 2: https://archive.ics.uci.edu/dataset/352/online+retail?utm_source=chatgpt.com
+
+------------------------------------------------------------------
+The 5 V's of Big Data
+------------------------------------------------------------------
+
+1. Volume
+
+   . Large amount of data
+
+   Example:
+
+   . Amazon stores billions of transaction records.
+
+
+2. Velocity
+
+   . Speed at which data is generated
+
+   Example:
+
+   . Facebook receives thousands of posts every second.
+
+
+3. Variety
+
+   . Different types of data
+
+   Examples:
+
+   . Text
+   . Images
+   . Videos
+   . Audio
+   . Transaction Records
+
+
+4. Veracity
+
+   . Quality and reliability of data
+
+   Example:
+
+   . Duplicate customer records
+
+
+5. Value
+
+   . Business benefit obtained from data
+
+   Example:
+
+   . Identifying best-selling products
+
+
+
+
+==================================================================
+4.2 BIG DATA ANALYTICS TOOLS
+==================================================================
+
+A. Hadoop
+
+      Purpose:
+      
+              . Store and manage large datasets across multiple computers.
+      
+      Features:
+              
+              . Distributed Storage
+              
+              . Fault Tolerance
+              
+              . Open Source
+              
+      Example:
+      
+              . Walmart stores petabytes of sales data using Hadoop.
+      
+
+------------------------------------------------------------------
+
+B. Apache Spark
+
+      Purpose:
+      
+              . Process Big Data very quickly.
+      
+      Features:
+      
+              . Faster than Hadoop MapReduce
+              
+              . Supports Machine Learning
+              
+              . Supports Real-Time Analytics
+      
+      Example:
+      
+              . Netflix analyzes millions of movie views using Spark.
+
+
+------------------------------------------------------------------
+
+C. Cloud Analytics Platforms
+
+        Examples:
+                
+                . AWS (Amazon Web Services)
+                
+                . Google Cloud Platform (GCP)
+                
+                . Microsoft Azure
+        
+        Purpose:
+        
+                . Store and analyze data without buying servers.
+        
+        Example:
+        
+                . A company stores sales data in AWS S3
+                  and analyzes it using cloud services.
+
+
+
+
+
+==================================================================
+4.3 CUSTOMER PURCHASE BEHAVIOR ANALYSIS
+==================================================================
+
+Customer Purchase Behavior means studying:
+
+        . What customers buy
+        
+        . How often they buy
+        
+        . How much they spend
+        
+        . Which products are popular
+        
+        . Which products are bought together
+
+
+Sample Retail Dataset
+
+------------------------------------------------------------------
+| CustomerID | Product  | Category    | Region | Sales |
+------------------------------------------------------------------
+| C001       | Laptop   | Technology  | East   | 50000 |
+| C002       | Chair    | Furniture   | West   | 15000 |
+| C003       | Printer  | Technology  | East   | 12000 |
+| C004       | Table    | Furniture   | South  | 20000 |
+| C005       | Mouse    | Technology  | East   | 1000  |
+------------------------------------------------------------------
+
+Questions:
+
+. Which category generates highest sales?
+
+. Which region performs best?
+
+. Which customer segment is most profitable?
+
+
+==================================================================
+CUSTOMER SEGMENTATION
+==================================================================
+
+Meaning:
+
+. Dividing customers into groups based on spending behavior.
+
+Sample Data
+
+------------------------------------------------
+| Customer | Total Purchase |
+------------------------------------------------
+| Ram      | 120000         |
+| Hari     | 70000          |
+| Sita     | 25000          |
+| Gita     | 15000          |
+| Shyam    | 5000           |
+------------------------------------------------
+
+Segmentation Rules
+-----------------------
+          Premium Customers
+          
+                . Purchase > Rs.100,000
+          
+          Regular Customers
+          
+                . Purchase between Rs.20,000 and Rs.100,000
+          
+          Low Value Customers
+          
+                . Purchase < Rs.20,000
+
+
+Results
+
+------------------------------------------------
+| Customer | Segment       |
+------------------------------------------------
+| Ram      | Premium       |
+| Hari     | Regular       |
+| Sita     | Regular       |
+| Gita     | Low Value     |
+| Shyam    | Low Value     |
+------------------------------------------------
+
+
+Business Applications
+
+      . Loyalty Programs
+      
+      . Personalized Marketing
+      
+      . Customer Retention
+      
+      . Premium Membership Offers
+
+
+==================================================================
+MARKET BASKET ANALYSIS
+==================================================================
+
+Meaning:
+
+. Finds products that are frequently purchased together.
+
+Sample Transactions
+
+------------------------------------------------
+| Transaction | Products Purchased        |
+------------------------------------------------
+| T1          | Laptop, Mouse             |
+| T2          | Laptop, Bag               |
+| T3          | Printer, Paper            |
+| T4          | Laptop, Mouse             |
+| T5          | Printer, Paper            |
+------------------------------------------------
+
+
+Observation
+
+      . Laptop and Mouse appear together frequently.
+      
+      . Printer and Paper appear together frequently.
+
+
+Business Recommendation
+
+        . Create Laptop + Mouse Bundle
+        
+        . Create Printer + Paper Package
+        
+        . Place related products near each other
+
+
+==================================================================
+SALES OPTIMIZATION ANALYSIS
+==================================================================
+
+Meaning:
+
+. Using data to improve sales and profitability.
+
+Sample Dataset
+
+------------------------------------------------
+| Product  | Sales | Profit |
+------------------------------------------------
+| Laptop   | 50000 | 10000  |
+| Chair    | 30000 | -2000  |
+| Printer  | 15000 | 4000   |
+| Mouse    | 5000  | 2000   |
+------------------------------------------------
+
+
+Analysis
+
+Laptop
+
+    . High Sales
+    
+    . High Profit
+
+Chair
+
+      . High Sales
+      
+      . Negative Profit
+
+
+Business Recommendation
+
+      . Increase promotion of Laptop.
+      
+      . Investigate losses in Furniture.
+      
+      . Reduce excessive discounts.
+      
+      . Improve supplier negotiations.
+
+
+
+==================================================================
+POWER BI DASHBOARD DESIGN
+==================================================================
+
+KPI Cards
+
+      . Total Sales
+      
+      . Total Profit
+      
+      . Total Orders
+      
+      . Total Customers
+
+
+Visualizations
+
+1. Bar Chart
+
+   . Sales by Category
+
+
+2. Pie Chart
+
+   . Customer Segment Distribution
+
+
+3. Line Chart
+
+   . Monthly Sales Trend
+
+
+4. Map Visualization
+
+   . Sales by Region
+
+
+5. Table
+
+   . Top 10 Products
+
+
+6. Slicers
+
+   . Region
+
+   . Category
+
+   . Year
+
+
+==================================================================
+SAMPLE BUSINESS INSIGHTS
+==================================================================
+
+After Analysis:
+
+. Technology category contributes highest revenue.
+
+. East region generates maximum sales.
+
+. Premium customers contribute most profit.
+
+. Furniture category shows low profitability.
+
+. Laptop and Mouse are frequently purchased together.
+
+. Sales increase during festival seasons.
+
+
+==================================================================
+BUSINESS RECOMMENDATIONS
+==================================================================
+          
+          . Increase inventory of Technology products.
+          
+          . Focus marketing on Premium customers.
+          
+          . Reduce unnecessary discounts.
+          
+          . Create product bundle offers.
+          
+          . Improve low-performing regions.
+          
+          . Plan inventory before festivals.
+          
+          . Use dashboards for monthly decision making.
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+
+
+==================================================================
+GOOGLE COLAB LAB
+UNIT IV: BIG DATA ANALYTICS AND BUSINESS APPLICATIONS
+Dataset: Generated inside notebook
+Rows: 2500
+==================================================================
+
+
+==================================================================
+STEP 1: OPEN GOOGLE COLAB
+==================================================================
+
+. Open Google Colab.
+
+. Create a new notebook.
+
+. Rename notebook:
+
+  MIS522_Unit_IV_Big_Data_Analytics_Lab
+
+
+==================================================================
+STEP 2: IMPORT REQUIRED LIBRARIES
+==================================================================
+
+. Run this code first.
+
+------------------------------------------------------------
+CODE CELL 1
+------------------------------------------------------------
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from itertools import combinations
+from collections import Counter
+
+pd.set_option("display.max_columns", None)
+
+np.random.seed(42)
+
+
+==================================================================
+STEP 3: CREATE 2500 ROW SAMPLE DATASET INSIDE COLAB
+==================================================================
+
+. No CSV file is needed.
+
+. Dataset will be generated directly in Python.
+
+. Scenario:
+  A superstore wants to analyze customer purchase behavior.
+
+------------------------------------------------------------
+CODE CELL 2
+------------------------------------------------------------
+
+n = 2500
+
+regions = ["East", "West", "North", "South", "Central"]
+
+segments = ["Consumer", "Corporate", "Home Office"]
+
+categories = {
+    "Technology": ["Laptop", "Printer", "Mouse", "Keyboard", "Monitor", "Router"],
+    "Furniture": ["Chair", "Table", "Bookshelf", "Office Desk", "Sofa"],
+    "Office Supplies": ["Paper", "Pen", "Notebook", "File", "Stapler", "Marker"]
+}
+
+customer_names = [
+    "Ram", "Sita", "Hari", "Gita", "Shyam", "Nisha",
+    "Bikash", "Anita", "Ramesh", "Sunita", "Kiran", "Puja"
+]
+
+rows = []
+
+for i in range(1, n + 1):
+
+    category = np.random.choice(
+        list(categories.keys()),
+        p=[0.38, 0.27, 0.35]
+    )
+
+    product = np.random.choice(categories[category])
+
+    if category == "Technology":
+        base_price = np.random.randint(1000, 90000)
+        profit_rate = np.random.uniform(0.10, 0.28)
+
+    elif category == "Furniture":
+        base_price = np.random.randint(4000, 50000)
+        profit_rate = np.random.uniform(-0.08, 0.18)
+
+    else:
+        base_price = np.random.randint(100, 8000)
+        profit_rate = np.random.uniform(0.08, 0.30)
+
+    quantity = np.random.randint(1, 6)
+
+    discount = np.random.choice(
+        [0, 0.05, 0.10, 0.15, 0.20, 0.30],
+        p=[0.30, 0.20, 0.20, 0.15, 0.10, 0.05]
+    )
+
+    sales = round(base_price * quantity * (1 - discount), 2)
+
+    profit = round(sales * profit_rate, 2)
+
+    customer_id = f"C{np.random.randint(1, 401):04d}"
+
+    customer_name = np.random.choice(customer_names)
+
+    region = np.random.choice(regions)
+
+    segment = np.random.choice(
+        segments,
+        p=[0.55, 0.30, 0.15]
+    )
+
+    order_date = pd.Timestamp("2025-01-01") + pd.to_timedelta(
+        np.random.randint(0, 365),
+        unit="D"
+    )
+
+    rows.append([
+        f"O{i:05d}",
+        order_date,
+        customer_id,
+        customer_name,
+        segment,
+        region,
+        category,
+        product,
+        quantity,
+        discount,
+        sales,
+        profit
+    ])
+
+df = pd.DataFrame(rows, columns=[
+    "Order_ID",
+    "Order_Date",
+    "Customer_ID",
+    "Customer_Name",
+    "Segment",
+    "Region",
+    "Category",
+    "Product",
+    "Quantity",
+    "Discount",
+    "Sales",
+    "Profit"
+])
+
+df.head()
+
+
+==================================================================
+STEP 4: CHECK DATASET SIZE
+==================================================================
+
+. This verifies that 2500 rows are created.
+
+------------------------------------------------------------
+CODE CELL 3
+------------------------------------------------------------
+
+print("Total Rows:", df.shape[0])
+print("Total Columns:", df.shape[1])
+
+df.info()
+
+
+==================================================================
+STEP 5: VIEW SAMPLE DATA
+==================================================================
+
+. Display first 10 records.
+
+------------------------------------------------------------
+CODE CELL 4
+------------------------------------------------------------
+
+df.head(10)
+
+
+==================================================================
+STEP 6: CHECK MISSING VALUES AND DUPLICATES
+==================================================================
+
+. Data cleaning starts here.
+
+------------------------------------------------------------
+CODE CELL 5
+------------------------------------------------------------
+
+print("Missing Values:")
+print(df.isnull().sum())
+
+print("\nDuplicate Rows:")
+print(df.duplicated().sum())
+
+
+==================================================================
+STEP 7: CLEAN DATA AND CREATE NEW COLUMNS
+==================================================================
+
+. Remove duplicates.
+
+. Convert Order_Date to date format.
+
+. Create Year column.
+
+. Create Month column.
+
+. Create Profit Margin column.
+
+------------------------------------------------------------
+CODE CELL 6
+------------------------------------------------------------
+
+df_clean = df.drop_duplicates().copy()
+
+df_clean["Order_Date"] = pd.to_datetime(df_clean["Order_Date"])
+
+df_clean["Year"] = df_clean["Order_Date"].dt.year
+
+df_clean["Month"] = df_clean["Order_Date"].dt.month_name()
+
+df_clean["Month_Number"] = df_clean["Order_Date"].dt.month
+
+df_clean["Profit_Margin"] = df_clean["Profit"] / df_clean["Sales"]
+
+df_clean["Profit_Margin"] = df_clean["Profit_Margin"].round(3)
+
+df_clean.head()
+
+
+==================================================================
+STEP 8: CALCULATE BASIC BUSINESS KPIs
+==================================================================
+
+. KPI means Key Performance Indicator.
+
+. Important KPIs:
+
+  . Total Sales
+  . Total Profit
+  . Total Orders
+  . Total Customers
+  . Average Sales
+
+------------------------------------------------------------
+CODE CELL 7
+------------------------------------------------------------
+
+total_sales = df_clean["Sales"].sum()
+
+total_profit = df_clean["Profit"].sum()
+
+total_orders = df_clean["Order_ID"].nunique()
+
+total_customers = df_clean["Customer_ID"].nunique()
+
+average_sales = df_clean["Sales"].mean()
+
+print("Total Sales: Rs.", round(total_sales, 2))
+print("Total Profit: Rs.", round(total_profit, 2))
+print("Total Orders:", total_orders)
+print("Total Customers:", total_customers)
+print("Average Sales per Order: Rs.", round(average_sales, 2))
+
+
+==================================================================
+STEP 9: CATEGORY-WISE SALES ANALYSIS
+==================================================================
+
+. Question:
+
+  Which product category generates highest sales?
+
+------------------------------------------------------------
+CODE CELL 8
+------------------------------------------------------------
+
+category_summary = df_clean.groupby("Category").agg(
+    Total_Sales=("Sales", "sum"),
+    Total_Profit=("Profit", "sum"),
+    Total_Quantity=("Quantity", "sum"),
+    Total_Orders=("Order_ID", "count")
+).reset_index()
+
+category_summary["Profit_Margin"] = (
+    category_summary["Total_Profit"] / category_summary["Total_Sales"]
+).round(3)
+
+category_summary = category_summary.sort_values(
+    "Total_Sales",
+    ascending=False
+)
+
+category_summary
+
+
+==================================================================
+STEP 10: CATEGORY-WISE CHART
+==================================================================
+
+. Bar chart shows sales by category.
+
+------------------------------------------------------------
+CODE CELL 9
+------------------------------------------------------------
+
+plt.figure(figsize=(8, 5))
+
+plt.bar(
+    category_summary["Category"],
+    category_summary["Total_Sales"]
+)
+
+plt.title("Sales by Category")
+plt.xlabel("Category")
+plt.ylabel("Total Sales")
+plt.xticks(rotation=20)
+
+plt.show()
+
+
+==================================================================
+STEP 11: REGION-WISE ANALYSIS
+==================================================================
+
+. Question:
+
+  Which region performs best?
+
+------------------------------------------------------------
+CODE CELL 10
+------------------------------------------------------------
+
+region_summary = df_clean.groupby("Region").agg(
+    Total_Sales=("Sales", "sum"),
+    Total_Profit=("Profit", "sum"),
+    Total_Orders=("Order_ID", "count")
+).reset_index()
+
+region_summary["Profit_Margin"] = (
+    region_summary["Total_Profit"] / region_summary["Total_Sales"]
+).round(3)
+
+region_summary = region_summary.sort_values(
+    "Total_Sales",
+    ascending=False
+)
+
+region_summary
+
+
+==================================================================
+STEP 12: REGION-WISE PROFIT CHART
+==================================================================
+
+. Bar chart shows profit by region.
+
+------------------------------------------------------------
+CODE CELL 11
+------------------------------------------------------------
+
+plt.figure(figsize=(8, 5))
+
+plt.bar(
+    region_summary["Region"],
+    region_summary["Total_Profit"]
+)
+
+plt.title("Profit by Region")
+plt.xlabel("Region")
+plt.ylabel("Total Profit")
+
+plt.show()
+
+
+==================================================================
+STEP 13: CUSTOMER SEGMENT ANALYSIS
+==================================================================
+
+. Question:
+
+  Which customer type gives highest revenue?
+
+------------------------------------------------------------
+CODE CELL 12
+------------------------------------------------------------
+
+segment_summary = df_clean.groupby("Segment").agg(
+    Total_Sales=("Sales", "sum"),
+    Total_Profit=("Profit", "sum"),
+    Total_Customers=("Customer_ID", "nunique"),
+    Total_Orders=("Order_ID", "count")
+).reset_index()
+
+segment_summary["Profit_Margin"] = (
+    segment_summary["Total_Profit"] / segment_summary["Total_Sales"]
+).round(3)
+
+segment_summary = segment_summary.sort_values(
+    "Total_Sales",
+    ascending=False
+)
+
+segment_summary
+
+
+==================================================================
+STEP 14: CUSTOMER SEGMENT PIE CHART
+==================================================================
+
+. Pie chart shows sales share by customer segment.
+
+------------------------------------------------------------
+CODE CELL 13
+------------------------------------------------------------
+
+plt.figure(figsize=(7, 7))
+
+plt.pie(
+    segment_summary["Total_Sales"],
+    labels=segment_summary["Segment"],
+    autopct="%1.1f%%"
+)
+
+plt.title("Sales Share by Customer Segment")
+
+plt.show()
+
+
+==================================================================
+STEP 15: CUSTOMER SEGMENTATION
+==================================================================
+
+. Customer segmentation means dividing customers into groups.
+
+. Rules:
+
+  . Premium Customer:
+    Total Purchase > Rs.100,000
+
+  . Regular Customer:
+    Total Purchase between Rs.20,000 and Rs.100,000
+
+  . Low Value Customer:
+    Total Purchase < Rs.20,000
+
+------------------------------------------------------------
+CODE CELL 14
+------------------------------------------------------------
+
+customer_summary = df_clean.groupby("Customer_ID").agg(
+    Total_Purchase=("Sales", "sum"),
+    Total_Profit=("Profit", "sum"),
+    Total_Orders=("Order_ID", "count")
+).reset_index()
+
+def classify_customer(amount):
+
+    if amount > 100000:
+        return "Premium"
+
+    elif amount >= 20000:
+        return "Regular"
+
+    else:
+        return "Low Value"
+
+customer_summary["Customer_Segment"] = customer_summary["Total_Purchase"].apply(
+    classify_customer
+)
+
+customer_summary.head()
+
+
+==================================================================
+STEP 16: COUNT CUSTOMERS BY SEGMENT
+==================================================================
+
+. This shows how many customers are Premium, Regular, and Low Value.
+
+------------------------------------------------------------
+CODE CELL 15
+------------------------------------------------------------
+
+customer_segment_count = customer_summary["Customer_Segment"].value_counts()
+
+customer_segment_count
+
+
+==================================================================
+STEP 17: CUSTOMER SEGMENTATION CHART
+==================================================================
+
+. Bar chart shows number of customers in each segment.
+
+------------------------------------------------------------
+CODE CELL 16
+------------------------------------------------------------
+
+plt.figure(figsize=(8, 5))
+
+customer_segment_count.plot(kind="bar")
+
+plt.title("Customer Segmentation")
+plt.xlabel("Customer Segment")
+plt.ylabel("Number of Customers")
+
+plt.show()
+
+
+==================================================================
+STEP 18: MARKET BASKET ANALYSIS
+==================================================================
+
+. Market Basket Analysis finds products bought together.
+
+. Example:
+
+  . Laptop + Mouse
+
+  . Printer + Paper
+
+  . Chair + Table
+
+------------------------------------------------------------
+CODE CELL 17
+------------------------------------------------------------
+
+basket_df = df_clean.groupby(
+    ["Customer_ID", "Order_Date"]
+)["Product"].apply(list).reset_index()
+
+basket_df = basket_df[
+    basket_df["Product"].apply(len) >= 2
+]
+
+pair_counter = Counter()
+
+for products in basket_df["Product"]:
+
+    unique_products = sorted(set(products))
+
+    for pair in combinations(unique_products, 2):
+        pair_counter[pair] += 1
+
+top_pairs = pd.DataFrame(
+    pair_counter.most_common(10),
+    columns=["Product_Pair", "Frequency"]
+)
+
+top_pairs
+
+
+==================================================================
+STEP 19: SALES OPTIMIZATION ANALYSIS
+==================================================================
+
+. Sales optimization means finding:
+
+  . Profitable products
+
+  . Loss-making products
+
+  . Products needing promotion
+
+------------------------------------------------------------
+CODE CELL 18
+------------------------------------------------------------
+
+product_summary = df_clean.groupby("Product").agg(
+    Total_Sales=("Sales", "sum"),
+    Total_Profit=("Profit", "sum"),
+    Quantity_Sold=("Quantity", "sum"),
+    Total_Orders=("Order_ID", "count"),
+    Average_Discount=("Discount", "mean")
+).reset_index()
+
+product_summary["Profit_Margin"] = (
+    product_summary["Total_Profit"] / product_summary["Total_Sales"]
+).round(3)
+
+product_summary = product_summary.sort_values(
+    "Total_Profit",
+    ascending=False
+)
+
+product_summary.head(10)
+
+
+==================================================================
+STEP 20: FIND LOSS-MAKING PRODUCTS
+==================================================================
+
+. Negative profit means product is causing loss.
+
+------------------------------------------------------------
+CODE CELL 19
+------------------------------------------------------------
+
+loss_products = product_summary[
+    product_summary["Total_Profit"] < 0
+].sort_values("Total_Profit")
+
+loss_products
+
+
+==================================================================
+STEP 21: TOP PROFITABLE PRODUCTS CHART
+==================================================================
+
+. This chart shows top 10 profitable products.
+
+------------------------------------------------------------
+CODE CELL 20
+------------------------------------------------------------
+
+top_10_products = product_summary.head(10)
+
+plt.figure(figsize=(10, 5))
+
+plt.bar(
+    top_10_products["Product"],
+    top_10_products["Total_Profit"]
+)
+
+plt.title("Top 10 Profitable Products")
+plt.xlabel("Product")
+plt.ylabel("Total Profit")
+plt.xticks(rotation=45)
+
+plt.show()
+
+
+==================================================================
+STEP 22: MONTHLY SALES TREND
+==================================================================
+
+. This analysis shows seasonal sales movement.
+
+------------------------------------------------------------
+CODE CELL 21
+------------------------------------------------------------
+
+monthly_sales = df_clean.groupby(
+    ["Month_Number", "Month"]
+).agg(
+    Total_Sales=("Sales", "sum"),
+    Total_Profit=("Profit", "sum")
+).reset_index()
+
+monthly_sales = monthly_sales.sort_values("Month_Number")
+
+monthly_sales
+
+
+==================================================================
+STEP 23: MONTHLY SALES LINE CHART
+==================================================================
+
+. Line chart shows sales trend by month.
+
+------------------------------------------------------------
+CODE CELL 22
+------------------------------------------------------------
+
+plt.figure(figsize=(10, 5))
+
+plt.plot(
+    monthly_sales["Month"],
+    monthly_sales["Total_Sales"],
+    marker="o"
+)
+
+plt.title("Monthly Sales Trend")
+plt.xlabel("Month")
+plt.ylabel("Total Sales")
+plt.xticks(rotation=45)
+
+plt.show()
+
+
+==================================================================
+STEP 24: DISCOUNT AND PROFIT ANALYSIS
+==================================================================
+
+. This checks whether high discount reduces profit.
+
+------------------------------------------------------------
+CODE CELL 23
+------------------------------------------------------------
+
+discount_summary = df_clean.groupby("Discount").agg(
+    Total_Sales=("Sales", "sum"),
+    Total_Profit=("Profit", "sum"),
+    Total_Orders=("Order_ID", "count")
+).reset_index()
+
+discount_summary["Profit_Margin"] = (
+    discount_summary["Total_Profit"] / discount_summary["Total_Sales"]
+).round(3)
+
+discount_summary
+
+
+==================================================================
+STEP 25: DISCOUNT VS PROFIT MARGIN CHART
+==================================================================
+
+. This chart shows relationship between discount and profit margin.
+
+------------------------------------------------------------
+CODE CELL 24
+------------------------------------------------------------
+
+plt.figure(figsize=(8, 5))
+
+plt.plot(
+    discount_summary["Discount"],
+    discount_summary["Profit_Margin"],
+    marker="o"
+)
+
+plt.title("Discount vs Profit Margin")
+plt.xlabel("Discount")
+plt.ylabel("Profit Margin")
+
+plt.show()
+
+
+==================================================================
+STEP 26: AUTO-GENERATE BASIC BUSINESS INSIGHTS
+==================================================================
+
+. This code automatically prints simple findings.
+
+------------------------------------------------------------
+CODE CELL 25
+------------------------------------------------------------
+
+best_category = category_summary.iloc[0]["Category"]
+
+best_region = region_summary.iloc[0]["Region"]
+
+best_segment = segment_summary.iloc[0]["Segment"]
+
+best_product = product_summary.iloc[0]["Product"]
+
+print("BUSINESS INSIGHTS")
+print("-----------------------------")
+print("1. Highest sales category is:", best_category)
+print("2. Best performing region is:", best_region)
+print("3. Highest sales customer segment is:", best_segment)
+print("4. Most profitable product is:", best_product)
+
+if len(loss_products) > 0:
+    print("5. Some products are loss-making and need review.")
+else:
+    print("5. No loss-making products found.")
+
+
+==================================================================
+STEP 27: WRITE BUSINESS RECOMMENDATIONS
+==================================================================
+
+. Based on output, students should write:
+
+  . Which category should be promoted?
+
+  . Which region should receive marketing focus?
+
+  . Which product should be bundled?
+
+  . Which product should reduce discount?
+
+  . Which customer group should get loyalty benefits?
+
+
+Example recommendations:
+
+. Promote Technology products if they have highest sales.
+
+. Reduce discount on loss-making Furniture products.
+
+. Give loyalty offers to Premium customers.
+
+. Create bundle offers using Market Basket Analysis.
+
+. Prepare inventory before high-sales months.
+
+
+==================================================================
+STEP 28: FINAL PROJECT REPORT FORMAT
+==================================================================
+
+Students should submit report using this structure:
+
+. Title Page
+
+. Introduction
+
+. Dataset Description
+
+. Data Cleaning Process
+
+. KPI Analysis
+
+. Category-Wise Analysis
+
+. Region-Wise Analysis
+
+. Customer Segment Analysis
+
+. Customer Segmentation
+
+. Market Basket Analysis
+
+. Sales Optimization
+
+. Monthly Sales Trend
+
+. Discount and Profit Analysis
+
+. Business Insights
+
+. Business Recommendations
+
+. Conclusion
+
+
+==================================================================
+STEP 29: SAMPLE CONCLUSION
+==================================================================
+
+. This lab analyzed 2500 retail transactions.
+
+. The dataset was generated inside Google Colab.
+
+. Data cleaning was performed using Python.
+
+. Sales, profit, customer, region, and product behavior
+  were analyzed.
+
+. Customer segmentation helped identify Premium, Regular,
+  and Low Value customers.
+
+. Market Basket Analysis helped identify products purchased
+  together.
+
+. Sales Optimization helped identify profitable and loss-making
+  products.
+
+. The analysis supports data-driven business decision-making.
+
+
+==================================================================
+END OF LAB
+==================================================================
+
+
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+
