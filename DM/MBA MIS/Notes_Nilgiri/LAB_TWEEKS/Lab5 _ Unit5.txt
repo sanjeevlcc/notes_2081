@@ -1993,3 +1993,1170 @@ END OF LAB
 ************************************************************************************
 ************************************************************************************
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+
+
+==================================================================
+UNIT IV: BIG DATA ANALYTICS AND BUSINESS APPLICATIONS
+MANAGEMENT DOMAIN LAB PROJECT
+SCENARIO: HUMAN RESOURCE (HR) ANALYTICS
+Dataset Size: 7000 Employees
+==================================================================
+
+Business Scenario:
+
+. ABC Group Pvt. Ltd. has 7000 employees.
+
+. The company operates in:
+      . Kathmandu
+      . Pokhara
+      . Butwal
+      . Chitwan
+      . Nepalgunj
+
+. Management wants to understand:
+
+      . Employee performance
+
+      . Employee turnover
+
+      . Salary trends
+
+      . Training effectiveness
+
+      . Department performance
+
+      . Employee satisfaction
+
+      . Attrition prediction
+
+. The company decides to use Big Data Analytics.
+
+
+==================================================================
+ALIGNMENT WITH SYLLABUS
+==================================================================
+
+4.1 Sample Big Data Set
+
+. 7000 Employee Records
+
+. Employee Behavior Data
+
+. Salary Data
+
+. Performance Data
+
+. Attendance Data
+
+. Training Data
+
+
+4.2 Big Data Analytics Concepts
+
+. Hadoop
+
+. Apache Spark
+
+. AWS
+
+. Google Cloud
+
+. Big Data Storage
+
+. Big Data Processing
+
+
+4.3 Analytics Using Python / Power BI
+
+. Employee Segmentation
+
+. Attrition Analysis
+
+. Salary Optimization
+
+. Department Analysis
+
+. Employee Satisfaction Analysis
+
+
+4.4 Deliverable
+
+. Project Report
+
+. Dashboard
+
+. Insights
+
+. Recommendations
+
+
+==================================================================
+DATASET STRUCTURE
+==================================================================
+
+Columns:
+
+. Employee_ID
+
+. Employee_Name
+
+. Age
+
+. Gender
+
+. Department
+
+. Designation
+
+. Experience_Years
+
+. Salary
+
+. Satisfaction_Score
+
+. Training_Hours
+
+. Performance_Score
+
+. Attendance_Percentage
+
+. City
+
+. Promotion_Status
+
+. Attrition
+
+
+==================================================================
+SAMPLE DATA
+==================================================================
+
+------------------------------------------------------------------
+| ID | Dept | Salary | Satisfaction | Performance | Attrition |
+------------------------------------------------------------------
+| E1 | IT   | 70000  | 85           | 90          | No        |
+| E2 | HR   | 45000  | 60           | 65          | Yes       |
+| E3 | FIN  | 60000  | 78           | 80          | No        |
+| E4 | IT   | 90000  | 95           | 92          | No        |
+------------------------------------------------------------------
+
+
+==================================================================
+STEP 1: IMPORT LIBRARIES
+==================================================================
+
+CODE CELL 1
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(42)
+
+
+==================================================================
+STEP 2: GENERATE 7000 EMPLOYEE RECORDS
+==================================================================
+
+CODE CELL 2
+
+n = 7000
+
+departments = [
+    "IT",
+    "HR",
+    "Finance",
+    "Marketing",
+    "Operations",
+    "Sales"
+]
+
+cities = [
+    "Kathmandu",
+    "Pokhara",
+    "Butwal",
+    "Chitwan",
+    "Nepalgunj"
+]
+
+rows = []
+
+for i in range(n):
+
+    salary = np.random.randint(25000, 150000)
+
+    satisfaction = np.random.randint(40, 100)
+
+    performance = np.random.randint(50, 100)
+
+    attendance = np.random.randint(60, 100)
+
+    experience = np.random.randint(1, 20)
+
+    training = np.random.randint(0, 100)
+
+    attrition = np.random.choice(
+        ["Yes", "No"],
+        p=[0.15, 0.85]
+    )
+
+    rows.append([
+        f"E{i+1}",
+        np.random.choice(departments),
+        salary,
+        satisfaction,
+        performance,
+        attendance,
+        experience,
+        training,
+        np.random.choice(cities),
+        attrition
+    ])
+
+df = pd.DataFrame(rows, columns=[
+    "Employee_ID",
+    "Department",
+    "Salary",
+    "Satisfaction",
+    "Performance",
+    "Attendance",
+    "Experience",
+    "Training_Hours",
+    "City",
+    "Attrition"
+])
+
+df.head()
+
+
+==================================================================
+STEP 3: DATA CLEANING
+==================================================================
+
+CODE CELL 3
+
+print(df.isnull().sum())
+
+print(df.duplicated().sum())
+
+df = df.drop_duplicates()
+
+
+==================================================================
+STEP 4: BASIC HR KPIs
+==================================================================
+
+Questions:
+
+. Total Employees?
+
+. Average Salary?
+
+. Average Performance?
+
+. Average Satisfaction?
+
+CODE CELL 4
+
+print("Total Employees:", len(df))
+
+print("Average Salary:",
+      round(df["Salary"].mean(),2))
+
+print("Average Satisfaction:",
+      round(df["Satisfaction"].mean(),2))
+
+print("Average Performance:",
+      round(df["Performance"].mean(),2))
+
+
+==================================================================
+STEP 5: DEPARTMENT PERFORMANCE ANALYSIS
+==================================================================
+
+Question:
+
+. Which department performs best?
+
+CODE CELL 5
+
+dept_summary = df.groupby("Department").agg(
+    Avg_Performance=("Performance","mean"),
+    Avg_Salary=("Salary","mean"),
+    Employee_Count=("Employee_ID","count")
+)
+
+dept_summary
+
+
+==================================================================
+STEP 6: VISUALIZATION
+==================================================================
+
+CODE CELL 6
+
+dept_summary["Avg_Performance"].plot(
+    kind="bar",
+    figsize=(8,5)
+)
+
+plt.title("Department Performance")
+
+plt.show()
+
+
+==================================================================
+STEP 7: EMPLOYEE SEGMENTATION
+==================================================================
+
+Meaning:
+
+. Divide employees into groups.
+
+Rules:
+
+High Performer
+
+. Performance > 85
+
+Average Performer
+
+. Performance 70–85
+
+Low Performer
+
+. Performance < 70
+
+
+CODE CELL 7
+
+def segment(x):
+
+    if x > 85:
+        return "High Performer"
+
+    elif x >= 70:
+        return "Average Performer"
+
+    else:
+        return "Low Performer"
+
+df["Employee_Segment"] = df["Performance"].apply(segment)
+
+df["Employee_Segment"].value_counts()
+
+
+==================================================================
+STEP 8: ATTRITION ANALYSIS
+==================================================================
+
+Meaning:
+
+. Why employees leave organization.
+
+Question:
+
+. Which department has highest attrition?
+
+CODE CELL 8
+
+attrition_summary = pd.crosstab(
+    df["Department"],
+    df["Attrition"]
+)
+
+attrition_summary
+
+
+==================================================================
+STEP 9: TRAINING EFFECTIVENESS
+==================================================================
+
+Question:
+
+. Does training improve performance?
+
+CODE CELL 9
+
+training_analysis = df.groupby(
+    pd.cut(
+        df["Training_Hours"],
+        bins=[0,20,40,60,80,100]
+    )
+).agg(
+    Avg_Performance=("Performance","mean")
+)
+
+training_analysis
+
+
+==================================================================
+STEP 10: SALARY OPTIMIZATION
+==================================================================
+
+Question:
+
+. Which department receives highest salary?
+
+CODE CELL 10
+
+salary_summary = df.groupby("Department").agg(
+    Avg_Salary=("Salary","mean")
+)
+
+salary_summary.sort_values(
+    "Avg_Salary",
+    ascending=False
+)
+
+
+==================================================================
+STEP 11: EMPLOYEE SATISFACTION ANALYSIS
+==================================================================
+
+Question:
+
+. Which department has highest satisfaction?
+
+CODE CELL 11
+
+satisfaction_summary = df.groupby(
+    "Department"
+).agg(
+    Avg_Satisfaction=("Satisfaction","mean")
+)
+
+satisfaction_summary
+
+
+==================================================================
+STEP 12: BIG DATA ANALYTICS CONCEPTS
+==================================================================
+
+If Dataset = 7000 rows
+
+. Python is sufficient.
+
+If Dataset = 7 million rows
+
+. Hadoop stores data.
+
+. Spark processes data.
+
+. AWS EMR runs Hadoop/Spark clusters.
+
+. Google Dataproc runs Spark jobs.
+
+                      Flow:
+                      
+                      Employee Data
+                              ↓
+                      Hadoop Storage
+                              ↓
+                      Spark Processing
+                              ↓
+                      Dashboard
+                              ↓
+                      Management Decision
+                      
+
+==================================================================
+BUSINESS INSIGHTS
+==================================================================
+
+Examples:
+
+. IT Department has highest performance.
+
+. HR Department has highest attrition.
+
+. Employees with more training
+  show better performance.
+
+. Higher satisfaction reduces attrition.
+
+. Salary differences exist between departments.
+
+. Some departments require retention strategy.
+
+
+==================================================================
+BUSINESS RECOMMENDATIONS
+==================================================================
+
+. Increase training programs.
+
+. Improve employee engagement.
+
+. Review salary structure.
+
+. Introduce retention programs.
+
+. Reward high performers.
+
+. Improve satisfaction in low-performing departments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+ADDITIONAL VISUALIZATIONS FOR NOTEBOOK
+(HR ANALYTICS - 7000 EMPLOYEES)
+==================================================================
+
+These visualizations should be added after the basic analysis.
+
+Purpose:
+
+. Make dashboard more professional.
+
+. Help MBA students understand Business Intelligence.
+
+. Support Power BI style reporting.
+
+
+==================================================================
+VISUALIZATION 1
+EMPLOYEE DISTRIBUTION BY DEPARTMENT
+==================================================================
+
+Question:
+
+. Which department has the most employees?
+
+CODE
+============
+
+
+dept_count = df["Department"].value_counts()
+
+plt.figure(figsize=(8,5))
+
+dept_count.plot(
+    kind="bar"
+)
+
+plt.title("Employee Distribution by Department")
+
+plt.xlabel("Department")
+
+plt.ylabel("Number of Employees")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Identify largest workforce.
+
+. Helps HR planning.
+
+. Helps resource allocation.
+
+
+==================================================================
+VISUALIZATION 2
+ATTRITION DISTRIBUTION PIE CHART
+==================================================================
+
+Question:
+
+. What percentage of employees leave?
+
+CODE
+============
+
+
+df["Attrition"].value_counts().plot(
+    kind="pie",
+    autopct="%1.1f%%",
+    figsize=(6,6)
+)
+
+plt.title("Employee Attrition Distribution")
+
+plt.ylabel("")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Shows retention status.
+
+. Quickly identifies turnover rate.
+
+
+==================================================================
+VISUALIZATION 3
+AVERAGE SALARY BY DEPARTMENT
+==================================================================
+
+Question:
+
+. Which department gets highest salary?
+
+CODE
+============
+
+
+salary_summary = df.groupby(
+    "Department"
+)["Salary"].mean()
+
+plt.figure(figsize=(8,5))
+
+salary_summary.plot(
+    kind="bar",
+    color="green"
+)
+
+plt.title("Average Salary by Department")
+
+plt.ylabel("Salary")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Useful for compensation analysis.
+
+. Helps identify salary inequality.
+
+
+==================================================================
+VISUALIZATION 4
+SATISFACTION BY DEPARTMENT
+==================================================================
+
+Question:
+
+. Which department is happiest?
+
+CODE
+============
+
+
+satisfaction_summary = df.groupby(
+    "Department"
+)["Satisfaction"].mean()
+
+plt.figure(figsize=(8,5))
+
+satisfaction_summary.plot(
+    kind="bar",
+    color="orange"
+)
+
+plt.title("Average Employee Satisfaction")
+
+plt.ylabel("Satisfaction Score")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Low satisfaction departments require intervention.
+
+
+==================================================================
+VISUALIZATION 5
+PERFORMANCE DISTRIBUTION HISTOGRAM
+==================================================================
+
+Question:
+
+. How are performance scores distributed?
+
+CODE
+============
+
+
+plt.figure(figsize=(8,5))
+
+plt.hist(
+    df["Performance"],
+    bins=20
+)
+
+plt.title("Employee Performance Distribution")
+
+plt.xlabel("Performance Score")
+
+plt.ylabel("Frequency")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Shows employee performance spread.
+
+. Detects weak and strong performers.
+
+
+==================================================================
+VISUALIZATION 6
+TRAINING VS PERFORMANCE
+==================================================================
+
+Question:
+
+. Does training improve performance?
+
+CODE
+============
+
+
+plt.figure(figsize=(8,5))
+
+plt.scatter(
+    df["Training_Hours"],
+    df["Performance"],
+    alpha=0.5
+)
+
+plt.title("Training Hours vs Performance")
+
+plt.xlabel("Training Hours")
+
+plt.ylabel("Performance Score")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Positive trend means training works.
+
+. Useful for HR investment decisions.
+
+
+==================================================================
+VISUALIZATION 7
+SALARY VS PERFORMANCE
+==================================================================
+
+Question:
+
+. Are high performers paid more?
+
+CODE
+============
+
+
+plt.figure(figsize=(8,5))
+
+plt.scatter(
+    df["Salary"],
+    df["Performance"],
+    alpha=0.5
+)
+
+plt.title("Salary vs Performance")
+
+plt.xlabel("Salary")
+
+plt.ylabel("Performance")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Shows whether salary reflects performance.
+
+
+==================================================================
+VISUALIZATION 8
+CITY-WISE EMPLOYEE DISTRIBUTION
+==================================================================
+
+Question:
+
+. Which city has most employees?
+
+CODE
+============
+
+
+city_count = df["City"].value_counts()
+
+plt.figure(figsize=(8,5))
+
+city_count.plot(
+    kind="bar"
+)
+
+plt.title("Employees by City")
+
+plt.xlabel("City")
+
+plt.ylabel("Employees")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Workforce distribution analysis.
+
+
+==================================================================
+VISUALIZATION 9
+ATTRITION BY DEPARTMENT
+==================================================================
+
+Question:
+
+. Which department loses most employees?
+
+CODE
+============
+
+
+attrition = pd.crosstab(
+    df["Department"],
+    df["Attrition"]
+)
+
+attrition.plot(
+    kind="bar",
+    figsize=(8,5)
+)
+
+plt.title("Attrition by Department")
+
+plt.ylabel("Employees")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Helps identify departments with retention issues.
+
+
+==================================================================
+VISUALIZATION 10
+BOXPLOT OF SALARY
+==================================================================
+
+Question:
+
+. Are there salary outliers?
+
+CODE
+============
+
+
+plt.figure(figsize=(8,5))
+
+plt.boxplot(df["Salary"])
+
+plt.title("Salary Distribution")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Detects unusually high or low salaries.
+
+
+==================================================================
+VISUALIZATION 11
+TOP 10 HIGHEST PAID EMPLOYEES
+==================================================================
+
+CODE
+============
+
+
+top_salary = df.nlargest(
+    10,
+    "Salary"
+)
+
+plt.figure(figsize=(10,5))
+
+plt.bar(
+    top_salary["Employee_ID"],
+    top_salary["Salary"]
+)
+
+plt.title("Top 10 Highest Paid Employees")
+
+plt.xticks(rotation=45)
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Executive compensation analysis.
+
+
+==================================================================
+VISUALIZATION 12
+CORRELATION HEATMAP
+==================================================================
+
+Question:
+
+. Which variables are related?
+
+CODE
+============
+
+
+import seaborn as sns
+
+corr = df[[
+    "Salary",
+    "Performance",
+    "Satisfaction",
+    "Attendance",
+    "Training_Hours",
+    "Experience"
+]].corr()
+
+plt.figure(figsize=(8,6))
+
+sns.heatmap(
+    corr,
+    annot=True,
+    cmap="coolwarm"
+)
+
+plt.title("Correlation Matrix")
+
+plt.show()
+
+
+Interpretation:
+============
+
+
+. Shows relationships between variables.
+
+Example:
+
+. Training ↔ Performance
+
+. Satisfaction ↔ Attrition
+
+. Experience ↔ Salary
+
+
+==================================================================
+VISUALIZATION 13
+KPI DASHBOARD CARDS
+==================================================================
+
+CODE
+============
+
+
+print("================================")
+print("HR ANALYTICS DASHBOARD")
+print("================================")
+
+print("Total Employees:", len(df))
+
+print("Average Salary:",
+      round(df["Salary"].mean(),2))
+
+print("Average Satisfaction:",
+      round(df["Satisfaction"].mean(),2))
+
+print("Average Performance:",
+      round(df["Performance"].mean(),2))
+
+print("Attrition Rate:",
+      round(
+          (df["Attrition"]=="Yes").mean()*100,
+          2
+      ),
+      "%"
+)
+
+print("================================")
+
+
+==================================================================
+VISUALIZATION 14
+PROMOTION STATUS ANALYSIS
+==================================================================
+
+(If Promotion_Status column exists)
+
+CODE
+============
+
+
+promotion_summary = pd.crosstab(
+    df["Department"],
+    df["Promotion_Status"]
+)
+
+promotion_summary.plot(
+    kind="bar",
+    figsize=(8,5)
+)
+
+plt.title("Promotion Status by Department")
+
+plt.show()
+
+
+==================================================================
+VISUALIZATION 15
+EXECUTIVE HR DASHBOARD
+==================================================================
+
+Final Dashboard should contain:
+
+. Total Employees KPI
+
+. Attrition Rate KPI
+
+. Average Salary KPI
+
+. Average Performance KPI
+
+. Employee Distribution Chart
+
+. Salary by Department
+
+. Satisfaction by Department
+
+. Attrition by Department
+
+. Training vs Performance
+
+. Correlation Heatmap
+
+. City-wise Employees
+
+. Top 10 Highest Paid Employees
+
+
+
+
+
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+************************************************************************************
+
+
+
+
+
+
