@@ -687,3 +687,680 @@ kubectl get prometheusrule -n monitoring
 
 # Monitoring helps administrators detect problems early, support
 # auto scaling, improve reliability, and prevent system failure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+================================================================================
+================================================================================
+================================================================================
+================================================================================
+================================================================================
+
+
+====================================================================
+LAB TITLE
+====================================================================
+
+Monitoring 4 Docker Web Servers Using Prometheus and Grafana
+(KillerCoda Lab Scenario)
+
+Duration: 2-3 Hours
+
+====================================================================
+LAB OBJECTIVES
+====================================================================
+
+. Understand monitoring concepts using Prometheus and Grafana
+
+. Deploy multiple web servers using Docker
+
+. Configure Prometheus to collect metrics
+
+. Configure Blackbox Exporter to monitor website availability
+
+. Monitor Docker containers using cAdvisor
+
+. Create Grafana dashboards for visualization
+
+. Simulate server failure and observe monitoring results
+
+====================================================================
+THEORY
+====================================================================
+
+What is Prometheus?
+
+. Prometheus is an open-source monitoring and alerting tool.
+
+. It collects metrics from servers, applications, containers,
+  databases, and network devices.
+
+. Metrics are stored as time-series data.
+
+. Prometheus pulls metrics from targets using HTTP requests.
+
+. Prometheus uses PromQL (Prometheus Query Language) to analyze data.
+
+--------------------------------------------------------------------
+
+What is Grafana?
+
+. Grafana is an open-source visualization platform.
+
+. It connects to Prometheus and many other data sources.
+
+. Grafana creates dashboards, charts, graphs, and reports.
+
+. Grafana helps administrators visualize infrastructure health.
+
+--------------------------------------------------------------------
+
+What is cAdvisor?
+
+. cAdvisor (Container Advisor) monitors Docker containers.
+
+. It provides:
+
+  . CPU Usage
+  . Memory Usage
+  . Network Usage
+  . Disk Usage
+
+. Prometheus collects metrics from cAdvisor.
+
+--------------------------------------------------------------------
+
+What is Blackbox Exporter?
+
+. Blackbox Exporter monitors endpoints from outside.
+
+. It checks:
+
+  . Website Availability
+  . HTTP Status Codes
+  . Response Time
+  . SSL Certificates
+
+. Useful for monitoring web applications.
+
+====================================================================
+LAB ARCHITECTURE
+====================================================================
+
+                    +----------------+
+                    |    Grafana     |
+                    |    Port 3000   |
+                    +--------+-------+
+                             |
+                             |
+                    +--------v-------+
+                    |   Prometheus   |
+                    |   Port 9090    |
+                    +---+--------+---+
+                        |        |
+                        |        |
+          +-------------+        +--------------+
+          |                                   |
+          |                                   |
++---------v------+                  +---------v------+
+|   cAdvisor     |                  | Blackbox Exp.  |
+|   Port 8080    |                  |   Port 9115    |
++---------+------+                  +---------+------+
+          |                                   |
+          |                                   |
+          |                                   |
+   +------+------+------+------+-------------+
+          |      |      |      |
+          |      |      |      |
+      Server1 Server2 Server3 Server4
+
+====================================================================
+STEP 1 : CREATE PROJECT DIRECTORY
+====================================================================
+
+Execute:
+
+mkdir grafana-prometheus-lab
+
+cd grafana-prometheus-lab
+
+mkdir server1
+
+mkdir server2
+
+mkdir server3
+
+mkdir server4
+
+mkdir prometheus
+
+====================================================================
+STEP 2 : CREATE HTML FILES
+====================================================================
+
+Server 1
+
+echo '<h1> running for server1 </h1>' > server1/index.html
+
+--------------------------------------------------
+
+Server 2
+
+echo '<h1> running for server2 </h1>' > server2/index.html
+
+--------------------------------------------------
+
+Server 3
+
+echo '<h1> running for server3 </h1>' > server3/index.html
+
+--------------------------------------------------
+
+Server 4
+
+echo '<h1> running for server4 </h1>' > server4/index.html
+
+====================================================================
+STEP 3 : CREATE PROMETHEUS CONFIGURATION
+====================================================================
+
+File:
+
+prometheus/prometheus.yml
+
+Paste:
+
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets:
+          - prometheus:9090
+
+  - job_name: "cadvisor"
+    static_configs:
+      - targets:
+          - cadvisor:8080
+
+  - job_name: "web_servers_http_status"
+
+    metrics_path: /probe
+
+    params:
+      module:
+        - http_2xx
+
+    static_configs:
+      - targets:
+          - http://server1
+          - http://server2
+          - http://server3
+          - http://server4
+
+    relabel_configs:
+      - source_labels:
+          - __address__
+        target_label: __param_target
+
+      - source_labels:
+          - __param_target
+        target_label: instance
+
+      - target_label: __address__
+        replacement: blackbox:9115
+
+====================================================================
+STEP 4 : CREATE DOCKER COMPOSE FILE
+====================================================================
+
+Create:
+
+docker-compose.yml
+
+Paste full configuration.
+
+The compose file contains:
+
+. Server1 Container
+. Server2 Container
+. Server3 Container
+. Server4 Container
+. Prometheus
+. Grafana
+. cAdvisor
+. Blackbox Exporter
+
+====================================================================
+STEP 5 : START ALL SERVICES
+====================================================================
+
+Execute:
+
+docker compose up -d
+
+Check running containers:
+
+docker ps
+
+Expected Containers:
+
+. server1
+
+. server2
+
+. server3
+
+. server4
+
+. prometheus
+
+. grafana
+
+. cadvisor
+
+. blackbox
+
+====================================================================
+STEP 6 : VERIFY WEB SERVERS
+====================================================================
+
+Open:
+
+http://HOST-IP:8081
+
+Expected:
+
+running for server1
+
+--------------------------------------------------
+
+Open:
+
+http://HOST-IP:8082
+
+Expected:
+
+running for server2
+
+--------------------------------------------------
+
+Open:
+
+http://HOST-IP:8083
+
+Expected:
+
+running for server3
+
+--------------------------------------------------
+
+Open:
+
+http://HOST-IP:8084
+
+Expected:
+
+running for server4
+
+====================================================================
+STEP 7 : ACCESS PROMETHEUS
+====================================================================
+
+Open:
+
+http://HOST-IP:9090
+
+Navigate:
+
+Status
+   ->
+Targets
+
+Verify all targets show:
+
+UP
+
+Expected:
+
+. Prometheus
+
+. cAdvisor
+
+. Blackbox Monitoring
+
+====================================================================
+STEP 8 : TEST PROMETHEUS QUERIES
+====================================================================
+
+Check Web Server Availability
+
+Query:
+
+probe_success
+
+Meaning:
+
+1 = Server UP
+
+0 = Server DOWN
+
+--------------------------------------------------
+
+Check HTTP Status
+
+Query:
+
+probe_http_status_code
+
+Expected:
+
+200
+
+--------------------------------------------------
+
+Check Container Memory
+
+Query:
+
+container_memory_usage_bytes
+
+--------------------------------------------------
+
+Check CPU Usage
+
+Query:
+
+rate(container_cpu_usage_seconds_total[1m])
+
+====================================================================
+STEP 9 : ACCESS GRAFANA
+====================================================================
+
+Open:
+
+http://HOST-IP:3000
+
+Default Login:
+
+Username: admin
+
+Password: admin
+
+Change password if requested.
+
+====================================================================
+STEP 10 : CONFIGURE PROMETHEUS DATASOURCE
+====================================================================
+
+Navigate:
+
+Connections
+
+   ->
+Data Sources
+
+   ->
+Add Data Source
+
+   ->
+Prometheus
+
+URL:
+
+http://prometheus:9090
+
+Click:
+
+Save and Test
+
+Expected:
+
+Datasource Connected Successfully
+
+====================================================================
+STEP 11 : CREATE DASHBOARD
+====================================================================
+
+Navigate:
+
+Dashboards
+
+   ->
+New Dashboard
+
+   ->
+Add Visualization
+
+====================================================================
+PANEL 1
+====================================================================
+
+Title:
+
+Web Server Availability
+
+Query:
+
+probe_success
+
+Purpose:
+
+Monitor Server UP/DOWN Status
+
+Expected:
+
+Server1 = 1
+
+Server2 = 1
+
+Server3 = 1
+
+Server4 = 1
+
+====================================================================
+PANEL 2
+====================================================================
+
+Title:
+
+HTTP Status Code
+
+Query:
+
+probe_http_status_code
+
+Purpose:
+
+Monitor Website Status Codes
+
+Expected:
+
+200
+
+====================================================================
+PANEL 3
+====================================================================
+
+Title:
+
+Container CPU Usage
+
+Query:
+
+rate(container_cpu_usage_seconds_total[1m])
+
+Purpose:
+
+Monitor CPU Consumption
+
+====================================================================
+PANEL 4
+====================================================================
+
+Title:
+
+Container Memory Usage
+
+Query:
+
+container_memory_usage_bytes
+
+Purpose:
+
+Monitor Memory Consumption
+
+====================================================================
+STEP 12 : FAILURE TESTING
+====================================================================
+
+Stop Server3
+
+docker stop server3
+
+Wait 10 Seconds
+
+Run Query:
+
+probe_success
+
+Expected:
+
+server3 = 0
+
+Others = 1
+
+--------------------------------------------------
+
+Restart Server3
+
+docker start server3
+
+Expected:
+
+server3 = 1
+
+====================================================================
+LEARNING OUTCOMES
+====================================================================
+
+After completing this lab students can:
+
+. Deploy monitoring tools using Docker
+
+. Understand Prometheus Architecture
+
+. Configure Prometheus Scraping
+
+. Monitor Web Applications
+
+. Visualize Metrics in Grafana
+
+. Monitor Container CPU Usage
+
+. Monitor Container Memory Usage
+
+. Detect Server Failures
+
+. Create Basic Monitoring Dashboards
+
+. Understand Real-World DevOps Monitoring Concepts
+
+====================================================================
+END OF LAB
+====================================================================
+
+
+
+================================================================================
+================================================================================
+================================================================================
+================================================================================
+================================================================================
+================================================================================
+
+
+
+
+
+
+
