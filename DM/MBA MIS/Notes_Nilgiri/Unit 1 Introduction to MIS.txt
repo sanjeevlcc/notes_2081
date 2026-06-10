@@ -1,0 +1,1335 @@
+
+
+
+==================================================================
+Unit I: Introduction to MIS (4 Hours)
+==================================================================
+1.1 Definition and significance of MIS and Evolution
+1.2 Types of information systems: TPS, MIS, DSS, ESS
+1.3 Information systems in the global business environment
+1.4 Business Applications, development, and management
+
+Objectives:
+- Understand the definition, types, and significance of Information Systems.
+- Describe the components of IS and how they interact.
+- Analyze the role of IS in supporting business operations and decision-making.
+- Analyze how IS can provide a competitive advantage.
+- Understand the relationship between business strategies and IS strategy.
+
+
+
+
+==================================================================
+1.1 DEFINITION OF MANAGEMENT INFORMATION SYSTEM
+==================================================================
+          
+          . MIS stands for Management Information System
+          
+          . MIS is an organized system that collects processes stores and
+            distributes information to managers
+          
+          . It helps managers in planning controlling coordinating and making
+            decisions
+          
+          . MIS converts raw business data into meaningful information
+          
+          . Raw data alone may not be useful for decision making
+          
+          . After processing data becomes useful information
+
+
+..................................................................
+SIMPLE EXAMPLE
+..................................................................
+            
+            . A shop records daily sales transactions
+            
+            . Individual sales records are data
+            
+            . Total daily sales best selling product and remaining stock are
+              information
+            
+            . The manager uses this information to decide
+            
+                          . Which product should be purchased again
+                        
+                          . Which product is not selling
+                        
+                          . How much stock is available
+                        
+                          . Whether sales are increasing or decreasing
+
+
+..................................................................
+DATA TO INFORMATION PROCESS
+..................................................................
+
+
+https://github.com/sanjeevlcc/notes_2081/blob/main/DM/MBA%20MIS/Notes_Nilgiri/LAB_TWEEKS/Lab_3____MIS_U1_and_U2.ipynb
+
+
+
+
+
+                . Data Collection
+                        ↓
+                . Data Processing
+                        ↓
+                . Information Generation
+                        ↓
+                . Managerial Decision
+                        ↓
+                . Business Action
+
+
+        ..................................................................
+        EXAMPLE DATA
+        ..................................................................
+        
+        Product        Quantity Sold        Unit Price        Total Sales
+        ..................................................................
+        Laptop               5                80000              400000
+        
+        Printer              8                25000              200000
+        
+        Mouse               20                 1000               20000
+        
+        Keyboard            12                 2000               24000
+        
+        
+        . Total sales equals NPR 644000
+        
+        . Laptop generated the highest sales value
+        
+        . Mouse had the highest number of units sold
+        
+        . This information helps the manager plan future purchases
+
+
+
+
+
+
+==================================================================
+SIGNIFICANCE OF MIS
+==================================================================
+
+          . MIS provides timely information
+          
+          . MIS improves decision quality
+          
+          . MIS reduces uncertainty
+          
+          . MIS supports planning and control
+          
+          . MIS improves communication between departments
+          
+          . MIS helps managers monitor performance
+          
+          . MIS reduces repeated manual work
+          
+          . MIS improves customer service
+          
+          . MIS supports competitive advantage
+          
+          . MIS helps organizations respond quickly to market changes
+          
+
+
+
+
+..................................................................
+EXAMPLE
+..................................................................
+            
+            . A bank uses MIS to monitor deposits loans and customer transactions
+            
+            . A hospital uses MIS to manage patients medicines doctors and billing
+            
+            . A college uses MIS to manage admission attendance examinations and
+              results
+            
+            . A retail shop uses MIS to manage sales purchases stock and profit
+
+
+
+
+
+
+
+
+==================================================================
+EVOLUTION OF MIS
+==================================================================
+
+. Information systems have developed gradually with changes in business
+  and technology
+
+            
+            ..................................................................
+            STAGE 1  MANUAL RECORD KEEPING
+            ..................................................................
+                      
+                      . Information was recorded in registers and paper files
+                      
+                      . Calculations were performed manually
+                      
+                      . Searching old information was difficult
+                      
+                      . Reports required more time
+            
+            
+            ..................................................................
+            STAGE 2  ELECTRONIC DATA PROCESSING
+            ..................................................................
+            
+                      . Computers were used for routine calculations
+                      
+                      . Main focus was payroll accounting and billing
+                      
+                      . Systems mainly processed transactions
+            
+            
+            ..................................................................
+            STAGE 3  MANAGEMENT INFORMATION SYSTEM
+            ..................................................................
+            
+                      . Systems started producing reports for managers
+                      
+                      . Managers received sales inventory and performance reports
+                      
+                      . Information was used for planning and control
+                      
+            
+            ..................................................................
+            STAGE 4  DECISION SUPPORT SYSTEM
+            ..................................................................
+            
+                    . Systems started supporting complex and semi structured decisions
+                    
+                    . Managers could compare alternatives and perform what if analysis
+                    
+                    
+            ..................................................................
+            STAGE 5  STRATEGIC AND INTELLIGENT SYSTEMS
+            ..................................................................
+                  
+                  . Systems started using business intelligence artificial intelligence
+                    cloud computing big data and analytics
+                  
+                  . Information became a strategic business resource
+
+
+
+
+..................................................................
+EVOLUTION SUMMARY
+..................................................................
+
+                . Paper Records
+                        ↓
+                . Transaction Processing
+                        ↓
+                . Management Reporting
+                        ↓
+                . Decision Support
+                        ↓
+                . Executive Information
+                        ↓
+                . Business Intelligence and AI
+
+
+
+
+
+
+
+
+
+
+==================================================================
+1.2 TYPES OF INFORMATION SYSTEMS
+==================================================================
+
+          
+          ==================================================================
+          A  TRANSACTION PROCESSING SYSTEM
+          ==================================================================
+          
+          . TPS stands for Transaction Processing System
+          
+          . TPS records daily routine business transactions
+          
+          . It works at the operational level
+          
+          . It handles large numbers of repeated transactions
+          
+          . TPS information is detailed and current
+          
+          
+          ..................................................................
+          EXAMPLES OF TPS
+          ..................................................................
+          
+                . Sales billing system
+                
+                . ATM transaction system
+                
+                . Payroll system
+                
+                . Hotel reservation system
+                
+                . Online order processing system
+                
+                . College fee collection system
+                
+                . Inventory transaction system
+                
+          
+          ..................................................................
+          TPS EXAMPLE
+          ..................................................................
+          
+                  . A supermarket customer purchases five products
+                  
+                  . The billing system
+                  
+                    . Reads product codes
+                  
+                    . Calculates total price
+                  
+                    . Updates inventory
+                  
+                    . Prints the bill
+                  
+                    . Stores the transaction
+                  
+                    . All these activities are performed by TPS
+          
+          
+          ==================================================================
+          B  MANAGEMENT INFORMATION SYSTEM
+          ==================================================================
+          
+          . MIS uses transaction data to prepare summarized reports
+          
+          . MIS mainly supports middle level managers
+          
+          . It supports structured and routine decisions
+          
+          . MIS reports may be daily weekly monthly or yearly
+          
+          
+          ..................................................................
+          EXAMPLES OF MIS REPORTS
+          ..................................................................
+          
+                  . Monthly sales report
+                  
+                  . Department wise expense report
+                  
+                  . Inventory status report
+                  
+                  . Employee attendance report
+                  
+                  . Product performance report
+                  
+                  . Student result summary
+          
+          
+          ..................................................................
+          EXAMPLE
+          ..................................................................
+          
+          . TPS records every individual sale
+          
+          . MIS combines those sales and produces a monthly report
+
+
+          
+                  Region        Monthly Sales        Target        Achievement
+                  ..................................................................      
+                  Butwal          1200000            1000000           120 percent
+                  
+                  Pokhara          850000             900000            94 percent
+                  
+                  Kathmandu       1600000            1500000           107 percent
+          
+          
+          . Management can identify that Pokhara did not achieve its target
+          
+          . Managers can investigate product price promotion and sales staff
+            performance
+          
+          
+          ==================================================================
+          C  DECISION SUPPORT SYSTEM
+          ==================================================================
+          
+          . DSS stands for Decision Support System
+          
+          . DSS supports managers in semi structured and non routine decisions
+          
+          . It uses data models analysis and comparison
+          
+          . DSS helps managers evaluate different alternatives
+          
+          . DSS does not replace managers
+          
+          . It improves the decision making process
+          
+          
+          ..................................................................
+          EXAMPLES OF DSS
+          ..................................................................
+          
+                  . Loan approval analysis
+                  
+                  . Investment selection
+                  
+                  . Production planning
+                  
+                  . Sales forecasting
+                  
+                  . Location selection
+                  
+                  . Budget allocation
+                  
+                  . What if analysis
+          
+          
+          ..................................................................
+          WHAT IF EXAMPLE
+          ..................................................................
+          
+          . A business wants to know the effect of a price reduction
+          
+                    Current price                    NPR 1000
+                    
+                    Current monthly sales            500 units
+                    
+                    Expected sales after discount    650 units
+                    
+                    New price                        NPR 900
+          
+          
+          Current revenue
+          
+          . 1000 multiplied by 500 equals NPR 500000
+          
+          
+          Expected revenue after discount
+          
+          . 900 multiplied by 650 equals NPR 585000
+          
+          
+          . DSS shows that the discount may increase total revenue by NPR 85000
+
+
+
+
+
+          
+          ==================================================================
+          D  EXECUTIVE SUPPORT SYSTEM
+          ==================================================================
+          
+          . ESS stands for Executive Support System
+          
+          . ESS supports senior executives and top level management
+          
+          . It provides highly summarized strategic information
+          
+          . It uses dashboards charts trends and external information
+          
+          . It supports long term and unstructured decisions
+          
+          
+          ..................................................................
+          EXAMPLES OF ESS INFORMATION
+          ..................................................................
+                  
+                  . Overall company profit
+                  
+                  . Market share
+                  
+                  . Industry growth
+                  
+                  . Competitor performance
+                  
+                  . Regional business performance
+                  
+                  . Long term sales trend
+                  
+                  . Economic and political conditions
+          
+          
+          ..................................................................
+          EXAMPLE
+          ..................................................................
+                
+                . The chief executive views a dashboard containing
+                
+                  . Total annual revenue
+                
+                  . Profit growth
+                
+                  . Market share
+                
+                  . Customer satisfaction
+                
+                  . Regional performance
+                
+                  . Competitor activity
+                
+                . The executive uses the dashboard to decide whether the company should
+                  enter a new market
+
+
+
+
+
+          ==================================================================
+          COMPARISON OF TPS MIS DSS AND ESS
+          ==================================================================
+          
+          System     Management Level     Main Purpose                Example
+          
+          TPS        Operational          Record transactions         Billing
+          
+          MIS        Middle               Generate reports            Sales report
+          
+          DSS        Middle and Senior    Analyze alternatives        Forecasting
+          
+          ESS        Top                  Strategic decisions         Executive dashboard
+          
+
+
+
+
+..................................................................
+INFORMATION FLOW
+..................................................................
+
+            . TPS collects detailed transaction data
+                    ↓
+            . MIS summarizes the data
+                    ↓
+            . DSS analyzes alternatives
+                    ↓
+            . ESS presents strategic information
+
+
+
+
+
+
+==================================================================
+COMPONENTS OF AN INFORMATION SYSTEM
+==================================================================
+
+. An information system contains several connected components
+
+
+..................................................................
+1  HARDWARE
+..................................................................
+
+              . Physical devices used by the system
+              
+              Examples
+              
+              . Computer
+              
+              . Server
+              
+              . Printer
+              
+              . Scanner
+              
+              . Mobile device
+              
+              . Networking device
+
+
+..................................................................
+2  SOFTWARE
+..................................................................
+
+              . Programs and applications used to process data
+              
+              Examples
+              
+              . Operating system
+              
+              . Accounting software
+              
+              . Database software
+              
+              . Enterprise resource planning software
+
+
+..................................................................
+3  DATA
+..................................................................
+              
+              . Facts collected from business activities
+              
+              Examples
+              
+              . Customer data
+              
+              . Sales data
+              
+              . Employee data
+              
+              . Product data
+              
+              . Financial data
+
+
+..................................................................
+4  PEOPLE
+..................................................................
+                
+                . Individuals who use manage and maintain the system
+                
+                Examples
+                
+                . Employees
+                
+                . Managers
+                
+                . Customers
+                
+                . Database administrators
+                
+                . System developers
+                
+
+..................................................................
+5  PROCEDURES
+..................................................................
+            
+            . Rules and steps for operating the system
+            
+            Examples
+            
+            . Sales entry procedure
+            
+            . Backup procedure
+            
+            . User registration process
+            
+            . Approval process
+
+
+..................................................................
+6  NETWORK
+..................................................................
+
+              . Communication facilities that connect computers and users
+              
+              Examples
+              
+              . Internet
+              
+              . Local area network
+              
+              . WiFi
+              
+              . Cloud network
+
+
+
+
+..................................................................
+INTERACTION OF COMPONENTS
+..................................................................
+        
+        . Hardware runs software
+        
+        . Software processes data
+        
+        . People use information
+        
+        . Procedures guide system operation
+        
+        . Networks connect users and resources
+        
+        . All components must work together for the system to be effective
+
+
+
+
+
+
+
+
+
+
+==================================================================
+1.3 INFORMATION SYSTEMS IN THE GLOBAL BUSINESS ENVIRONMENT
+==================================================================
+
+. Global businesses operate across different countries and markets
+
+. Information systems connect customers employees suppliers and
+  business partners
+
+. IS supports communication coordination and control across locations
+
+. Global systems provide real time access to business information
+
+
+..................................................................
+USES IN GLOBAL BUSINESS
+..................................................................
+
+. Online international sales
+
+. Global supply chain management
+
+. Digital payment
+
+. Remote work
+
+. International customer support
+
+. Global inventory tracking
+
+. Communication between branches
+
+. Multicurrency transactions
+
+. Data sharing across countries
+
+
+..................................................................
+EXAMPLE  GLOBAL ONLINE RETAILER
+..................................................................
+
+. Customer places an online order in Nepal
+
+. Product may be stored in another country
+
+. The information system
+
+  . Receives the order
+
+  . Processes payment
+
+  . Checks warehouse stock
+
+  . Selects delivery service
+
+  . Tracks the shipment
+
+  . Sends updates to the customer
+
+
+..................................................................
+CHALLENGES IN GLOBAL INFORMATION SYSTEMS
+..................................................................
+
+. Different languages
+
+. Different currencies
+
+. Different legal systems
+
+. Data privacy requirements
+
+. Cybersecurity risks
+
+. Cultural differences
+
+. Internet availability
+
+. Time zone differences
+
+
+==================================================================
+1.4 BUSINESS APPLICATIONS DEVELOPMENT AND MANAGEMENT
+==================================================================
+
+
+==================================================================
+BUSINESS APPLICATIONS OF INFORMATION SYSTEMS
+==================================================================
+
+. Information systems are used in almost every business department
+
+
+..................................................................
+SALES AND MARKETING
+..................................................................
+
+. Customer relationship management
+
+. Online advertising
+
+. Sales forecasting
+
+. Customer segmentation
+
+. Digital marketing analysis
+
+
+..................................................................
+FINANCE AND ACCOUNTING
+..................................................................
+
+. Budget preparation
+
+. Financial reporting
+
+. Payroll processing
+
+. Profit and loss analysis
+
+. Tax calculation
+
+
+..................................................................
+HUMAN RESOURCE MANAGEMENT
+..................................................................
+
+. Employee records
+
+. Attendance
+
+. Recruitment
+
+. Performance evaluation
+
+. Training management
+
+
+..................................................................
+PRODUCTION AND OPERATIONS
+..................................................................
+
+. Production scheduling
+
+. Quality control
+
+. Inventory management
+
+. Supply chain management
+
+. Maintenance planning
+
+
+..................................................................
+CUSTOMER SERVICE
+..................................................................
+
+. Complaint management
+
+. Help desk
+
+. Service request tracking
+
+. Customer feedback
+
+. Chatbot support
+
+
+==================================================================
+INFORMATION SYSTEM DEVELOPMENT
+==================================================================
+
+. Information system development means creating or improving a system
+  according to business requirements
+
+
+..................................................................
+BASIC DEVELOPMENT STEPS
+..................................................................
+
+. Identify business problem
+
+. Study user requirements
+
+. Design the system
+
+. Develop or purchase software
+
+. Test the system
+
+. Implement the system
+
+. Train users
+
+. Maintain and improve the system
+
+
+..................................................................
+EXAMPLE  COLLEGE INFORMATION SYSTEM
+..................................................................
+
+Problem
+
+. Student records are maintained manually
+
+Requirements
+
+. Online admission
+
+. Attendance management
+
+. Fee management
+
+. Examination records
+
+. Result publication
+
+Development
+
+. Database is created
+
+. Web application is developed
+
+. Users are trained
+
+. System is implemented
+
+
+==================================================================
+MANAGEMENT OF INFORMATION SYSTEMS
+==================================================================
+
+. Information systems must be properly managed after implementation
+
+. Management includes
+
+  . User management
+
+  . Data security
+
+  . Backup and recovery
+
+  . Software updates
+
+  . Performance monitoring
+
+  . Technical support
+
+  . Policy development
+
+  . Risk management
+
+  . Vendor management
+
+
+..................................................................
+EXAMPLE
+..................................................................
+
+. A bank installs an online banking system
+
+. The bank must continuously manage
+
+  . Customer accounts
+
+  . Login security
+
+  . Transaction records
+
+  . System availability
+
+  . Cybersecurity
+
+  . Data backup
+
+  . Customer support
+
+
+==================================================================
+ROLE OF IS IN BUSINESS OPERATIONS
+==================================================================
+
+. IS automates routine work
+
+. IS reduces processing time
+
+. IS improves accuracy
+
+. IS supports coordination
+
+. IS helps monitor performance
+
+. IS provides timely information
+
+. IS improves customer service
+
+. IS reduces operational costs
+
+
+..................................................................
+EXAMPLE
+..................................................................
+
+Without Information System
+
+. Manual billing
+
+. Manual stock checking
+
+. Delayed reporting
+
+. More calculation errors
+
+
+With Information System
+
+. Automatic billing
+
+. Real time stock update
+
+. Instant reports
+
+. Better accuracy
+
+
+==================================================================
+ROLE OF IS IN DECISION MAKING
+==================================================================
+
+. Operational decisions are supported by TPS
+
+. Managerial decisions are supported by MIS
+
+. Analytical decisions are supported by DSS
+
+. Strategic decisions are supported by ESS
+
+
+..................................................................
+EXAMPLE
+..................................................................
+
+Decision Level       Example Decision                  Supporting System
+
+Operational          Approve daily payment             TPS
+
+Managerial           Increase monthly stock            MIS
+
+Analytical           Select best investment            DSS
+
+Strategic            Enter international market        ESS
+
+
+==================================================================
+INFORMATION SYSTEMS AND COMPETITIVE ADVANTAGE
+==================================================================
+
+. Competitive advantage means performing better than competitors
+
+. Information systems can provide competitive advantage through
+
+
+..................................................................
+LOWER COST
+..................................................................
+
+. Automation reduces operating costs
+
+Example
+
+. Online banking reduces branch service costs
+
+
+..................................................................
+BETTER CUSTOMER SERVICE
+..................................................................
+
+. Fast personalized and reliable service improves customer satisfaction
+
+Example
+
+. E-commerce system recommends products based on customer history
+
+
+..................................................................
+PRODUCT DIFFERENTIATION
+..................................................................
+
+. Technology helps create unique products or services
+
+Example
+
+. A mobile banking application provides instant digital services
+
+
+..................................................................
+FASTER DECISION MAKING
+..................................................................
+
+. Real time information helps management respond quickly
+
+Example
+
+. Retail managers immediately identify low stock products
+
+
+..................................................................
+CUSTOMER AND SUPPLIER RELATIONSHIP
+..................................................................
+
+. CRM improves customer relationships
+
+. Supply chain systems improve supplier coordination
+
+
+==================================================================
+BUSINESS STRATEGY AND IS STRATEGY
+==================================================================
+
+. Business strategy defines what the organization wants to achieve
+
+. IS strategy defines how information systems and technology will
+  support the business strategy
+
+. Both strategies should be aligned
+
+
+..................................................................
+EXAMPLE  BUSINESS STRATEGY
+..................................................................
+
+. A retail company wants to become the best online seller in Nepal
+
+
+..................................................................
+RELATED IS STRATEGY
+..................................................................
+
+. Develop an e-commerce website
+
+. Implement digital payment
+
+. Use customer relationship management
+
+. Add real time inventory tracking
+
+. Use sales analytics
+
+. Provide mobile application
+
+
+..................................................................
+STRATEGIC ALIGNMENT
+..................................................................
+
+Business Goal
+
+. Improve customer satisfaction
+
+
+IS Support
+
+. CRM system
+
+. Online complaint system
+
+. Customer feedback dashboard
+
+
+Business Goal
+
+. Reduce operational cost
+
+
+IS Support
+
+. Automation
+
+. Cloud computing
+
+. Digital documents
+
+
+Business Goal
+
+. Increase sales
+
+
+IS Support
+
+. E-commerce
+
+. Digital marketing
+
+. Business intelligence
+
+
+==================================================================
+INTEGRATED CASE STUDY
+==================================================================
+
+CASE  DIGITAL TRANSFORMATION OF HIMALAYAN RETAIL STORE
+
+. Himalayan Retail Store operates five branches in Nepal
+
+. Each branch currently records sales and inventory separately
+
+. Managers receive sales reports after several days
+
+. Some branches have excess stock while others face shortages
+
+. Customer complaints are recorded manually
+
+. The company wants to launch online shopping and home delivery
+
+. Management also wants a dashboard for sales profit stock and customer
+  satisfaction
+
+
+..................................................................
+PRESENT PROBLEMS
+..................................................................
+
+. Delayed information
+
+. Duplicate data entry
+
+. Inventory shortage
+
+. Excess inventory
+
+. Weak customer service
+
+. No online sales platform
+
+. Difficult branch comparison
+
+. Slow managerial decisions
+
+
+..................................................................
+PROPOSED INFORMATION SYSTEMS
+..................................................................
+
+TPS
+
+. Record daily sales payments returns and stock movements
+
+
+MIS
+
+. Generate branch wise sales stock profit and expense reports
+
+
+DSS
+
+. Forecast demand and recommend stock quantities
+
+
+ESS
+
+. Present total revenue profit market growth and branch performance
+
+
+E Commerce System
+
+. Allow customers to browse order pay and track delivery
+
+
+CRM
+
+. Store customer history complaints preferences and feedback
+
+
+..................................................................
+SAMPLE BRANCH DATA
+..................................................................
+
+Branch        Monthly Sales        Stock Value        Complaints
+
+Butwal          1800000              900000               35
+
+Pokhara         1500000             1200000               18
+
+Kathmandu       2500000             1000000               42
+
+Bhairahawa      1200000              700000               25
+
+Chitwan         1600000             1100000               20
+
+
+..................................................................
+SIMPLE ANALYSIS
+..................................................................
+
+. Kathmandu has the highest monthly sales
+
+. Kathmandu also has the highest number of complaints
+
+. Pokhara has relatively high stock compared with sales
+
+. Bhairahawa has the lowest sales
+
+. Management should study customer complaints in Kathmandu
+
+. Management should review stock allocation in Pokhara
+
+. DSS can forecast branch demand
+
+. ESS can show overall strategic performance
+
+
+==================================================================
+CASE STUDY QUESTIONS
+==================================================================
+
+1  What are the major information problems in Himalayan Retail Store
+
+2  Which activities should be handled by TPS
+
+3  What reports should be produced by MIS
+
+4  How can DSS support stock planning
+
+5  What information should be displayed in the ESS dashboard
+
+6  How can an e-commerce system improve the business
+
+7  How can CRM improve customer service
+
+8  Which information system components are required for the proposed
+   system
+
+9  How can the proposed system create competitive advantage
+
+10 How should the IS strategy support the business expansion strategy
+
+
+==================================================================
+SHORT SUMMARY
+==================================================================
+
+. MIS converts business data into meaningful information
+
+. TPS records routine transactions
+
+. MIS provides summarized managerial reports
+
+. DSS supports analytical decisions
+
+. ESS supports strategic decisions
+
+. Information systems contain hardware software data people procedures
+  and networks
+
+. Information systems support operations management and strategy
+
+. IS strategy should align with business strategy
+
+. Proper use of information systems can reduce cost improve service and
+  create competitive advantage
+
+==================================================================
+END OF UNIT I
+==================================================================
