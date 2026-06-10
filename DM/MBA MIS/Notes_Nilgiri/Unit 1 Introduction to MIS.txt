@@ -685,24 +685,27 @@ INTERACTION OF COMPONENTS
 ..................................................................
 USES IN GLOBAL BUSINESS
 ..................................................................
+                    
+                    . Online international sales
+                    
+                    . Global supply chain management
+                    
+                    . Digital payment
+                    
+                    . Remote work
+                    
+                    . International customer support
+                    
+                    . Global inventory tracking
+                    
+                    . Communication between branches
+                    
+                    . Multicurrency transactions
+                    
+                    . Data sharing across countries
 
-. Online international sales
 
-. Global supply chain management
 
-. Digital payment
-
-. Remote work
-
-. International customer support
-
-. Global inventory tracking
-
-. Communication between branches
-
-. Multicurrency transactions
-
-. Data sharing across countries
 
 
 ..................................................................
@@ -715,38 +718,48 @@ EXAMPLE  GLOBAL ONLINE RETAILER
 
 . The information system
 
-  . Receives the order
+            . Receives the order
+          
+            . Processes payment
+          
+            . Checks warehouse stock
+          
+            . Selects delivery service
+          
+            . Tracks the shipment
+          
+            . Sends updates to the customer
 
-  . Processes payment
 
-  . Checks warehouse stock
-
-  . Selects delivery service
-
-  . Tracks the shipment
-
-  . Sends updates to the customer
 
 
 ..................................................................
 CHALLENGES IN GLOBAL INFORMATION SYSTEMS
 ..................................................................
 
-. Different languages
+          . Different languages
+          
+          . Different currencies
+          
+          . Different legal systems
+          
+          . Data privacy requirements
+          
+          . Cybersecurity risks
+          
+          . Cultural differences
+          
+          . Internet availability
+          
+          . Time zone differences
 
-. Different currencies
 
-. Different legal systems
 
-. Data privacy requirements
 
-. Cybersecurity risks
 
-. Cultural differences
 
-. Internet availability
 
-. Time zone differences
+
 
 
 ==================================================================
@@ -760,140 +773,146 @@ BUSINESS APPLICATIONS OF INFORMATION SYSTEMS
 
 . Information systems are used in almost every business department
 
+                    
+                    ..................................................................
+                    SALES AND MARKETING
+                    ..................................................................
+                    
+                    . Customer relationship management
+                    
+                    . Online advertising
+                    
+                    . Sales forecasting
+                    
+                    . Customer segmentation
+                    
+                    . Digital marketing analysis
+                    
+                    
+                    ..................................................................
+                    FINANCE AND ACCOUNTING
+                    ..................................................................
+                    
+                    . Budget preparation
+                    
+                    . Financial reporting
+                    
+                    . Payroll processing
+                    
+                    . Profit and loss analysis
+                    
+                    . Tax calculation
+                    
+                    
+                    ..................................................................
+                    HUMAN RESOURCE MANAGEMENT
+                    ..................................................................
+                    
+                    . Employee records
+                    
+                    . Attendance
+                    
+                    . Recruitment
+                    
+                    . Performance evaluation
+                    
+                    . Training management
+                    
+                    
+                    ..................................................................
+                    PRODUCTION AND OPERATIONS
+                    ..................................................................
+                    
+                    . Production scheduling
+                    
+                    . Quality control
+                    
+                    . Inventory management
+                    
+                    . Supply chain management
+                    
+                    . Maintenance planning
+                    
+                    
+                    ..................................................................
+                    CUSTOMER SERVICE
+                    ..................................................................
+                    
+                    . Complaint management
+                    
+                    . Help desk
+                    
+                    . Service request tracking
+                    
+                    . Customer feedback
+                    
+                    . Chatbot support
+                    
 
-..................................................................
-SALES AND MARKETING
-..................................................................
-
-. Customer relationship management
-
-. Online advertising
-
-. Sales forecasting
-
-. Customer segmentation
-
-. Digital marketing analysis
-
-
-..................................................................
-FINANCE AND ACCOUNTING
-..................................................................
-
-. Budget preparation
-
-. Financial reporting
-
-. Payroll processing
-
-. Profit and loss analysis
-
-. Tax calculation
-
-
-..................................................................
-HUMAN RESOURCE MANAGEMENT
-..................................................................
-
-. Employee records
-
-. Attendance
-
-. Recruitment
-
-. Performance evaluation
-
-. Training management
-
-
-..................................................................
-PRODUCTION AND OPERATIONS
-..................................................................
-
-. Production scheduling
-
-. Quality control
-
-. Inventory management
-
-. Supply chain management
-
-. Maintenance planning
-
-
-..................................................................
-CUSTOMER SERVICE
-..................................................................
-
-. Complaint management
-
-. Help desk
-
-. Service request tracking
-
-. Customer feedback
-
-. Chatbot support
 
 
 ==================================================================
-INFORMATION SYSTEM DEVELOPMENT
+                    INFORMATION SYSTEM DEVELOPMENT
 ==================================================================
-
-. Information system development means creating or improving a system
-  according to business requirements
-
-
-..................................................................
-BASIC DEVELOPMENT STEPS
-..................................................................
-
-. Identify business problem
-
-. Study user requirements
-
-. Design the system
-
-. Develop or purchase software
-
-. Test the system
-
-. Implement the system
-
-. Train users
-
-. Maintain and improve the system
-
-
-..................................................................
-EXAMPLE  COLLEGE INFORMATION SYSTEM
-..................................................................
-
-Problem
-
-. Student records are maintained manually
-
-Requirements
-
-. Online admission
-
-. Attendance management
-
-. Fee management
-
-. Examination records
-
-. Result publication
-
-Development
-
-. Database is created
-
-. Web application is developed
-
-. Users are trained
-
-. System is implemented
+                    
+                    . Information system development means creating or improving a system
+                      according to business requirements
+                                                  
+                              
+                              ..................................................................
+                              BASIC DEVELOPMENT STEPS
+                              ..................................................................
+                              
+                                        . Identify business problem
+                                        
+                                        . Study user requirements
+                                        
+                                        . Design the system
+                                        
+                                        . Develop or purchase software
+                                        
+                                        . Test the system
+                                        
+                                        . Implement the system
+                                        
+                                        . Train users
+                                        
+                                        . Maintain and improve the system
+                              
+                              
+                              
+                              
+                              
+                              
+                              ..................................................................
+                              EXAMPLE  COLLEGE INFORMATION SYSTEM
+                              ..................................................................
+                              
+                              Problem
+                              
+                              . Student records are maintained manually
+                              
+                                        Requirements
+                                        
+                                                  . Online admission
+                                                  
+                                                  . Attendance management
+                                                  
+                                                  . Fee management
+                                                  
+                                                  . Examination records
+                                                  
+                                                  . Result publication
+                                        
+                                        Development
+                                        
+                                                  . Database is created
+                                                  
+                                                  . Web application is developed
+                                                  
+                                                  . Users are trained
+                                                  
+                                                  . System is implemented
 
 
 ==================================================================
@@ -903,24 +922,24 @@ MANAGEMENT OF INFORMATION SYSTEMS
 . Information systems must be properly managed after implementation
 
 . Management includes
-
-  . User management
-
-  . Data security
-
-  . Backup and recovery
-
-  . Software updates
-
-  . Performance monitoring
-
-  . Technical support
-
-  . Policy development
-
-  . Risk management
-
-  . Vendor management
+          
+            . User management
+          
+            . Data security
+          
+            . Backup and recovery
+          
+            . Software updates
+          
+            . Performance monitoring
+          
+            . Technical support
+          
+            . Policy development
+          
+            . Risk management
+          
+            . Vendor management
 
 
 ..................................................................
@@ -928,43 +947,47 @@ EXAMPLE
 ..................................................................
 
 . A bank installs an online banking system
+          
+          . The bank must continuously manage
+          
+                      . Customer accounts
+                    
+                      . Login security
+                    
+                      . Transaction records
+                    
+                      . System availability
+                    
+                      . Cybersecurity
+                    
+                      . Data backup
+                    
+                      . Customer support
 
-. The bank must continuously manage
 
-  . Customer accounts
 
-  . Login security
-
-  . Transaction records
-
-  . System availability
-
-  . Cybersecurity
-
-  . Data backup
-
-  . Customer support
 
 
 ==================================================================
 ROLE OF IS IN BUSINESS OPERATIONS
 ==================================================================
+          
+          . IS automates routine work
+          
+          . IS reduces processing time
+          
+          . IS improves accuracy
+          
+          . IS supports coordination
+          
+          . IS helps monitor performance
+          
+          . IS provides timely information
+          
+          . IS improves customer service
+          
+          . IS reduces operational costs
 
-. IS automates routine work
-
-. IS reduces processing time
-
-. IS improves accuracy
-
-. IS supports coordination
-
-. IS helps monitor performance
-
-. IS provides timely information
-
-. IS improves customer service
-
-. IS reduces operational costs
 
 
 ..................................................................
@@ -972,53 +995,62 @@ EXAMPLE
 ..................................................................
 
 Without Information System
-
-. Manual billing
-
-. Manual stock checking
-
-. Delayed reporting
-
-. More calculation errors
-
+.................
+          . Manual billing
+          
+          . Manual stock checking
+          
+          . Delayed reporting
+          
+          . More calculation errors
+          
 
 With Information System
+.................
+          . Automatic billing
+          
+          . Real time stock update
+          
+          . Instant reports
+          
+          . Better accuracy
 
-. Automatic billing
 
-. Real time stock update
-
-. Instant reports
-
-. Better accuracy
 
 
 ==================================================================
 ROLE OF IS IN DECISION MAKING
 ==================================================================
 
-. Operational decisions are supported by TPS
+          . Operational decisions are supported by TPS
+          
+          . Managerial decisions are supported by MIS
+          
+          . Analytical decisions are supported by DSS
+          
+          . Strategic decisions are supported by ESS
 
-. Managerial decisions are supported by MIS
 
-. Analytical decisions are supported by DSS
 
-. Strategic decisions are supported by ESS
 
 
 ..................................................................
 EXAMPLE
 ..................................................................
 
-Decision Level       Example Decision                  Supporting System
+          Decision Level       Example Decision                  Supporting System
+          .....................................................................................
+          Operational          Approve daily payment             TPS
+          
+          Managerial           Increase monthly stock            MIS
+          
+          Analytical           Select best investment            DSS
+          
+          Strategic            Enter international market        ESS
+          
 
-Operational          Approve daily payment             TPS
 
-Managerial           Increase monthly stock            MIS
 
-Analytical           Select best investment            DSS
-
-Strategic            Enter international market        ESS
 
 
 ==================================================================
@@ -1083,86 +1115,103 @@ CUSTOMER AND SUPPLIER RELATIONSHIP
 . Supply chain systems improve supplier coordination
 
 
+
+
+
+
+
+
+
+
 ==================================================================
 BUSINESS STRATEGY AND IS STRATEGY
 ==================================================================
+          
+          . Business strategy defines what the organization wants to achieve
+          
+          . IS strategy defines how information systems and technology will
+            support the business strategy
+          
+          . Both strategies should be aligned
+          
+          
+          ..................................................................
+          EXAMPLE  BUSINESS STRATEGY
+          ..................................................................
+          
+          . A retail company wants to become the best online seller in Nepal
 
-. Business strategy defines what the organization wants to achieve
-
-. IS strategy defines how information systems and technology will
-  support the business strategy
-
-. Both strategies should be aligned
-
-
-..................................................................
-EXAMPLE  BUSINESS STRATEGY
-..................................................................
-
-. A retail company wants to become the best online seller in Nepal
 
 
 ..................................................................
 RELATED IS STRATEGY
 ..................................................................
 
-. Develop an e-commerce website
-
-. Implement digital payment
-
-. Use customer relationship management
-
-. Add real time inventory tracking
-
-. Use sales analytics
-
-. Provide mobile application
+          . Develop an e-commerce website
+          
+          . Implement digital payment
+          
+          . Use customer relationship management
+          
+          . Add real time inventory tracking
+          
+          . Use sales analytics
+          
+          . Provide mobile application
 
 
 ..................................................................
 STRATEGIC ALIGNMENT
 ..................................................................
 
-Business Goal
+          Business Goal
+          
+          . Improve customer satisfaction
+          
+          
+          IS Support
+          
+          . CRM system
+          
+          . Online complaint system
+          
+          . Customer feedback dashboard
+          
+          
+          Business Goal
+          
+          . Reduce operational cost
+          
+          
+          IS Support
+          
+          . Automation
+          
+          . Cloud computing
+          
+          . Digital documents
+          
+          
+          Business Goal
+          
+          . Increase sales
+          
+          
+          IS Support
+          
+          . E-commerce
+          
+          . Digital marketing
+          
+          . Business intelligence
+          
 
-. Improve customer satisfaction
 
 
-IS Support
-
-. CRM system
-
-. Online complaint system
-
-. Customer feedback dashboard
 
 
-Business Goal
-
-. Reduce operational cost
 
 
-IS Support
-
-. Automation
-
-. Cloud computing
-
-. Digital documents
-
-
-Business Goal
-
-. Increase sales
-
-
-IS Support
-
-. E-commerce
-
-. Digital marketing
-
-. Business intelligence
 
 
 ==================================================================
@@ -1170,166 +1219,137 @@ INTEGRATED CASE STUDY
 ==================================================================
 
 CASE  DIGITAL TRANSFORMATION OF HIMALAYAN RETAIL STORE
+--------------------------------------------------------------
+          . Himalayan Retail Store operates five branches in Nepal
+          
+          . Each branch currently records sales and inventory separately
+          
+          . Managers receive sales reports after several days
+          
+          . Some branches have excess stock while others face shortages
+          
+          . Customer complaints are recorded manually
+          
+          . The company wants to launch online shopping and home delivery
+          
+          . Management also wants a dashboard for sales profit stock and customer satisfaction
+
+                                        
+                                        ..................................................................
+                                        PRESENT PROBLEMS
+                                        ..................................................................
+                                        
+                                                  . Delayed information
+                                                  
+                                                  . Duplicate data entry
+                                                  
+                                                  . Inventory shortage
+                                                  
+                                                  . Excess inventory
+                                                  
+                                                  . Weak customer service
+                                                  
+                                                  . No online sales platform
+                                                  
+                                                  . Difficult branch comparison
+                                                  
+                                                  . Slow managerial decisions
+                                        
+                                        
+                                        ..................................................................
+                                        PROPOSED INFORMATION SYSTEMS
+                                        ..................................................................
+                                        
+                                        TPS
+                                        
+                                        . Record daily sales payments returns and stock movements
+                                        
+                                        
+                                        MIS
+                                        
+                                        . Generate branch wise sales stock profit and expense reports
+                                        
+                                        
+                                        DSS
+                                        
+                                        . Forecast demand and recommend stock quantities
+                                        
+                                        
+                                        ESS
+                                        
+                                        . Present total revenue profit market growth and branch performance
+                                        
+                                        
+                                        E Commerce System
+                                        
+                                        . Allow customers to browse order pay and track delivery
+                                        
+                                        
+                                        CRM
+                                        
+                                        . Store customer history complaints preferences and feedback
+                                        
+                                        
+                                        ..................................................................
+                                        SAMPLE BRANCH DATA
+                                        ..................................................................
+                                        
+                                                  Branch        Monthly Sales        Stock Value        Complaints
+                                                  
+                                                  Butwal          1800000              900000               35
+                                                  
+                                                  Pokhara         1500000             1200000               18
+                                                  
+                                                  Kathmandu       2500000             1000000               42
+                                                  
+                                                  Bhairahawa      1200000              700000               25
+                                                  
+                                                  Chitwan         1600000             1100000               20
+                                                  
+                                        
+                                        ..................................................................
+                                        SIMPLE ANALYSIS
+                                        ..................................................................
+                                        
+                                                  . Kathmandu has the highest monthly sales
+                                                  
+                                                  . Kathmandu also has the highest number of complaints
+                                                  
+                                                  . Pokhara has relatively high stock compared with sales
+                                                  
+                                                  . Bhairahawa has the lowest sales
+                                                  
+                                                  . Management should study customer complaints in Kathmandu
+                                                  
+                                                  . Management should review stock allocation in Pokhara
+                                                  
+                                                  . DSS can forecast branch demand
+                                                  
+                                                  . ESS can show overall strategic performance
+                                                  
+                                                  
+                                        ==================================================================
+                                        CASE STUDY QUESTIONS
+                                        ==================================================================
+                                        
+                                                  1  What are the major information problems in Himalayan Retail Store
+                                                  
+                                                  2  Which activities should be handled by TPS
+                                                  
+                                                  3  What reports should be produced by MIS
+                                                  
+                                                  4  How can DSS support stock planning
+                                                  
+                                                  5  What information should be displayed in the ESS dashboard
+                                                  
+                                                  6  How can an e-commerce system improve the business
+                                                  
+                                                  7  How can CRM improve customer service
+                                                  
+                                                  8  Which information system components are required for the proposed
+                                                     system
+                                                  
+                                                  9  How can the proposed system create competitive advantage
+                                                  
+                                                  10 How should the IS strategy support the business expansion strategy
 
-. Himalayan Retail Store operates five branches in Nepal
-
-. Each branch currently records sales and inventory separately
-
-. Managers receive sales reports after several days
-
-. Some branches have excess stock while others face shortages
-
-. Customer complaints are recorded manually
-
-. The company wants to launch online shopping and home delivery
-
-. Management also wants a dashboard for sales profit stock and customer
-  satisfaction
-
-
-..................................................................
-PRESENT PROBLEMS
-..................................................................
-
-. Delayed information
-
-. Duplicate data entry
-
-. Inventory shortage
-
-. Excess inventory
-
-. Weak customer service
-
-. No online sales platform
-
-. Difficult branch comparison
-
-. Slow managerial decisions
-
-
-..................................................................
-PROPOSED INFORMATION SYSTEMS
-..................................................................
-
-TPS
-
-. Record daily sales payments returns and stock movements
-
-
-MIS
-
-. Generate branch wise sales stock profit and expense reports
-
-
-DSS
-
-. Forecast demand and recommend stock quantities
-
-
-ESS
-
-. Present total revenue profit market growth and branch performance
-
-
-E Commerce System
-
-. Allow customers to browse order pay and track delivery
-
-
-CRM
-
-. Store customer history complaints preferences and feedback
-
-
-..................................................................
-SAMPLE BRANCH DATA
-..................................................................
-
-Branch        Monthly Sales        Stock Value        Complaints
-
-Butwal          1800000              900000               35
-
-Pokhara         1500000             1200000               18
-
-Kathmandu       2500000             1000000               42
-
-Bhairahawa      1200000              700000               25
-
-Chitwan         1600000             1100000               20
-
-
-..................................................................
-SIMPLE ANALYSIS
-..................................................................
-
-. Kathmandu has the highest monthly sales
-
-. Kathmandu also has the highest number of complaints
-
-. Pokhara has relatively high stock compared with sales
-
-. Bhairahawa has the lowest sales
-
-. Management should study customer complaints in Kathmandu
-
-. Management should review stock allocation in Pokhara
-
-. DSS can forecast branch demand
-
-. ESS can show overall strategic performance
-
-
-==================================================================
-CASE STUDY QUESTIONS
-==================================================================
-
-1  What are the major information problems in Himalayan Retail Store
-
-2  Which activities should be handled by TPS
-
-3  What reports should be produced by MIS
-
-4  How can DSS support stock planning
-
-5  What information should be displayed in the ESS dashboard
-
-6  How can an e-commerce system improve the business
-
-7  How can CRM improve customer service
-
-8  Which information system components are required for the proposed
-   system
-
-9  How can the proposed system create competitive advantage
-
-10 How should the IS strategy support the business expansion strategy
-
-
-==================================================================
-SHORT SUMMARY
-==================================================================
-
-. MIS converts business data into meaningful information
-
-. TPS records routine transactions
-
-. MIS provides summarized managerial reports
-
-. DSS supports analytical decisions
-
-. ESS supports strategic decisions
-
-. Information systems contain hardware software data people procedures
-  and networks
-
-. Information systems support operations management and strategy
-
-. IS strategy should align with business strategy
-
-. Proper use of information systems can reduce cost improve service and
-  create competitive advantage
-
-==================================================================
-END OF UNIT I
-==================================================================
