@@ -146,8 +146,9 @@ Objectives:
 
 
 
-
+==================================================================
 Unit VI: Cyber Security and Ethical and Legal Issues in MIS (4 Hours)
+==================================================================
 
 6.1 Fundamentals of cyber security
 6.2 Types of cyber threats and attacks
