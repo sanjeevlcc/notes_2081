@@ -1,0 +1,1436 @@
+==================================================================
+UNIT VI  CYBER SECURITY AND ETHICAL AND LEGAL ISSUES IN MIS
+KILLERCODA LINUX LABS ALIGNED WITH SUBUNITS
+==================================================================
+
+
+==================================================================
+LAB OVERVIEW
+==================================================================
+
+. Total suggested labs  8
+
+. Platform  KillerCoda Linux           https://killercoda.com/course-cka/scenario/playground
+
+. Level  Basic to moderate
+
+. Focus  Defensive security audit and MIS protection
+
+. Suitable for MBA MIS students
+
+. No hacking activity
+
+. No password cracking
+
+. No attack simulation against real systems
+
+. All labs are for learning protection audit privacy and compliance
+
+
+
+
+
+
+==================================================================
+6.1 FUNDAMENTALS OF CYBER SECURITY
+==================================================================
+
+
+------------------------------------------------------------------
+LAB 1  BASIC CIA TRIAD DEMONSTRATION USING LINUX FILES
+------------------------------------------------------------------
+
+        Objective
+        
+        . Understand confidentiality integrity and availability using a simple
+          MIS file
+        
+        Concept Covered
+        
+        . Confidentiality
+        
+        . Integrity
+        
+        . Availability
+        
+        . MIS data protection
+        
+
+              ..................................................................
+              SCENARIO
+              ..................................................................
+              
+              . A college MIS stores student records in a Linux server
+              
+              . The file contains sensitive student data
+              
+              . The system administrator must protect the file from unauthorized
+                access modification and deletion
+              
+              
+              ..................................................................
+              STEP 1  CREATE A SAMPLE MIS FILE
+              ..................................................................
+              
+              echo "Student ID  Name  Fee Status  Result" > student_mis.txt
+              
+              echo "101  Ram  Paid  Pass" >> student_mis.txt
+              
+              echo "102  Sita  Due  Pass" >> student_mis.txt
+              
+              
+              ..................................................................
+              STEP 2  VIEW THE FILE
+              ..................................................................
+              
+              root@controlplane:~$ cat student_mis.txt
+              Student ID  Name  Fee Status  Result
+              101  Ram  Paid  Pass
+              102  Sita  Due  Pass
+              
+              
+              Learning
+              
+              . The file contains MIS data
+              
+              . This data must be protected
+              
+              
+              ..................................................................
+              STEP 3  CHECK FILE PERMISSION
+              ..................................................................
+              
+              ls -l student_mis.txt
+              
+              
+              Possible Output
+              
+              -rw-r--r--
+              
+              
+              root@controlplane:~$ ls -l student_mis.txt
+              -rw-r--r-- 1 root root 79 Jun 11 22:53 student_mis.txt
+              
+              
+              
+              Meaning
+              
+                      . Owner can read and write
+                      
+                      . Group can read
+                      
+                      . Others can read
+                      
+                      . This is risky for confidential MIS data
+              
+              
+              ..................................................................
+              STEP 4  APPLY CONFIDENTIALITY CONTROL
+              ..................................................................
+              
+              chmod 600 student_mis.txt
+              
+              
+              
+              root@controlplane:~$ chmod 600 student_mis.txt
+              root@controlplane:~$ ls -l student_mis.txt
+              -rw------- 1 root root 79 Jun 11 22:53 student_mis.txt
+              
+              
+              
+              
+              ..................................................................
+              STEP 5  CHECK PERMISSION AGAIN
+              ..................................................................
+              
+              ls -l student_mis.txt
+              
+              
+              Expected Output
+              
+              -rw-------
+              
+              
+              Meaning
+              
+              . Only file owner can read and write
+              
+              . Other users cannot access the file
+              
+              
+              ..................................................................
+              STEP 6  CREATE BACKUP FOR AVAILABILITY
+              ..................................................................
+              
+              mkdir backup
+              
+              ls -l st  
+              cp student_mis.txt backup/student_mis_backup.txt
+              
+              
+              ..................................................................
+              STEP 7  VERIFY BACKUP
+              ..................................................................
+              
+              ls backup
+              
+              cat backup/student_mis_backup.txt
+              
+              
+              
+              root@controlplane:~$ mkdir backup
+              root@controlplane:~$ cp student_mis.txt backup/student_mis_backup.txt
+              root@controlplane:~$ 
+              root@controlplane:~$ ls -l backup/student_mis_backup.txt 
+              -rw------- 1 root root 79 Jun 11 22:55 backup/student_mis_backup.txt
+              root@controlplane:~$ cat backup/student_mis_backup.txt 
+              Student ID  Name  Fee Status  Result
+              101  Ram  Paid  Pass
+              102  Sita  Due  Pass
+              root@controlplane:~$ 
+              
+              
+              ..................................................................
+              LAB QUESTIONS
+              ..................................................................
+              
+                      1  Which command was used to check file permission
+                      
+                      2  How does chmod 600 support confidentiality
+                      
+                      3  Why is backup related to availability
+                      
+                      4  Which CIA principle is affected if marks are changed without approval
+                      
+                      5  Which CIA principle is affected if the MIS server is unavailable
+              
+              
+              
+              
+              
+              
+              
+
+
+
+
+
+
+
+
+
+
+==================================================================
+6.2 TYPES OF CYBER THREATS AND ATTACKS
+==================================================================
+
+
+          https://killercoda.com/course-cka/scenario/playground
+          
+          
+          
+          LAB 2  IDENTIFYING SECURITY RISKS FROM LOG AND FILE EVIDENCE
+          
+                Objective
+                
+                    . Understand common cyber threats from system evidence
+                
+                Concept Covered
+                
+                      . Unauthorized access
+                      
+                      . Failed login attempt
+                      
+                      . Insider threat
+                      
+                      . Data breach risk
+                      
+                      . Log review
+          
+          
+          ..................................................................
+          SCENARIO
+          ..................................................................
+          
+          . A business suspects unusual activity in its MIS server
+          
+          . The administrator wants to review login history and user accounts
+          
+          
+          ..................................................................
+          STEP 1  CHECK CURRENT USER
+          ..................................................................
+          
+          whoami
+          
+          root@controlplane:~$ whoami
+          root
+          
+          
+          
+          Learning
+          
+          . Shows which user is currently logged in
+          
+          
+          ..................................................................
+          STEP 2  CHECK CURRENT LOGGED IN USERS
+          ..................................................................
+          
+          who
+          
+          
+          Learning
+          
+          . Shows users currently logged into the server
+          
+          
+          ..................................................................
+          STEP 3  CHECK RECENT LOGIN HISTORY
+          ..................................................................
+          
+          last | head
+          
+          
+          
+          
+          
+          root@controlplane:~$ last | head
+          reboot   system boot  6.8.0-117-generi Thu Jun 11 20:26   still running
+          reboot   system boot  6.8.0-117-generi Sat May 16 20:54   still running
+          reboot   system boot  6.8.0-117-generi Sat May 16 20:24   still running
+          reboot   system boot  6.8.0-51-generic Sat May 16 19:56   still running
+          kc-inter pts/0        10.244.0.131     Mon Feb 10 22:06 - down   (00:00)
+          kc-inter pts/0        10.244.0.131     Mon Feb 10 22:05 - 22:05  (00:00)
+          reboot   system boot  6.8.0-51-generic Mon Feb 10 22:04 - 22:06  (00:01)
+          
+          wtmp begins Mon Feb 10 22:04:48 2025
+          
+          
+          
+          Learning
+          
+          . Shows recent login records
+          
+          . Helps detect unusual login activity
+          
+          
+          ..................................................................
+          STEP 4  CHECK SYSTEM USER ACCOUNTS
+          ..................................................................
+          
+          cat /etc/passwd
+          
+          
+                  
+                  root@controlplane:~$ cat /etc/passwd
+                  root:x:0:0:root:/root:/bin/bash
+                  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+                  nova:x:119:126::/var/lib/nova:/bin/bash
+                  kirti:x:1001:1001::/home/kirti:/bin/sh
+                  kushi:x:1002:1002::/home/kushi:/bin/sh
+                  root@controlplane:~$ 
+          
+          Learning
+          
+          . Shows available user accounts
+          
+          . Unknown or old accounts may create insider or unauthorized access risk
+          
+          
+          ..................................................................
+          STEP 5  CREATE SIMPLE THREAT REVIEW FILE
+          ..................................................................
+          
+          echo "SECURITY THREAT REVIEW" > threat_review.txt
+          
+          echo "Current User" >> threat_review.txt
+          
+          whoami >> threat_review.txt
+          
+          echo "Logged In Users" >> threat_review.txt
+          
+          who >> threat_review.txt
+          
+          echo "Recent Login History" >> threat_review.txt
+          
+          last | head >> threat_review.txt
+          
+          
+          ..................................................................
+          STEP 6  VIEW THREAT REVIEW
+          ..................................................................
+          
+          cat threat_review.txt
+          
+          
+          
+          
+          
+                    root@controlplane:~$ cat threat_review.txt 
+                    SECURITY THREAT REVIEW
+                    Current User
+                    root
+                    Logged In Users
+                    Recent Login History
+                    reboot   system boot  6.8.0-117-generi Thu Jun 11 20:26   still running
+                    reboot   system boot  6.8.0-117-generi Sat May 16 20:54   still running
+                    reboot   system boot  6.8.0-117-generi Sat May 16 20:24   still running
+                    reboot   system boot  6.8.0-51-generic Sat May 16 19:56   still running
+                    kc-inter pts/0        10.244.0.131     Mon Feb 10 22:06 - down   (00:00)
+                    kc-inter pts/0        10.244.0.131     Mon Feb 10 22:05 - 22:05  (00:00)
+                    reboot   system boot  6.8.0-51-generic Mon Feb 10 22:04 - 22:06  (00:01)
+                    
+                    wtmp begins Mon Feb 10 22:04:48 2025
+                    
+          
+          
+          
+          ..................................................................
+          LAB QUESTIONS
+          ..................................................................
+          
+          1  Which command shows current logged in users
+          
+          2  Which command shows recent login history
+          
+          3  Why should old user accounts be reviewed
+          
+          4  How can login history help detect unauthorized access
+          
+          5  Which threat is related to misuse by internal staff
+          
+          
+          
+
+
+
+
+==================================================================
+6.3 SECURITY AND ETHICAL ISSUES IN E COMMERCE
+==================================================================
+
+            LAB 3  PROTECTING E COMMERCE CUSTOMER ORDER DATA
+            
+                  Objective
+                  
+                        . Protect customer order data stored by an e commerce system
+                  
+                  
+                  
+                  
+                  Concept Covered
+                  
+                        . Customer data protection
+                        
+                        . E commerce privacy
+                        
+                        . Unauthorized access
+                        
+                        . Ethical use of customer data
+                        
+            
+            ..................................................................
+            SCENARIO
+            ..................................................................
+            
+            . An online store stores customer order details
+            
+            . The file contains name phone address and order amount
+            
+            . The company must protect this file from unauthorized access
+            
+            
+            
+            
+            ..................................................................
+            STEP 1  CREATE E COMMERCE DATA FOLDER
+            ..................................................................
+            
+            mkdir ecommerce_data
+            
+            
+            ..................................................................
+            STEP 2  CREATE CUSTOMER ORDER FILE
+            ..................................................................
+            
+            echo "Name  Phone  Address  OrderAmount" > ecommerce_data/orders.txt
+            
+            echo "Ram  9800000000  Butwal  4500" >> ecommerce_data/orders.txt
+            
+            echo "Sita  9811111111  Pokhara  7200" >> ecommerce_data/orders.txt
+            
+            
+            ..................................................................
+            STEP 3  VIEW ORDER DATA
+            ..................................................................
+            
+            cat ecommerce_data/orders.txt
+            
+            
+            
+            
+                  root@controlplane:~$ cat ecommerce_data/orders.txt
+                  Name  Phone  Address  OrderAmount
+                  Ram  9800000000  Butwal  4500
+                  Sita  9811111111  Pokhara  7200
+            
+            
+            
+            ..................................................................
+            STEP 4  CHECK FILE PERMISSION
+            ..................................................................
+            
+            ls -l ecommerce_data/orders.txt
+            
+                root@controlplane:~$ ls -l ecommerce_data/orders.txt
+                -rw-r--r-- 1 root root 96 Jun 11 23:22 ecommerce_data/orders.txt
+                root@controlplane:~$ 
+                
+            
+            ..................................................................
+            STEP 5  SECURE ORDER FILE
+            ..................................................................
+            
+            chmod 600 ecommerce_data/orders.txt
+            
+            
+            
+            
+                  root@controlplane:~$ chmod 600 ecommerce_data/orders.txt
+                  root@controlplane:~$ ls -l ecommerce_data/orders.txt
+                  -rw------- 1 root root 96 Jun 11 23:22 ecommerce_data/orders.txt
+                  root@controlplane:~$ 
+            
+            
+            
+            
+            ..................................................................
+            STEP 6  SECURE E COMMERCE DATA FOLDER
+            ..................................................................
+            
+            chmod 700 ecommerce_data
+            
+            
+            
+            
+                    root@controlplane:~$ chmod 700 ecommerce_data
+                    root@controlplane:~$ ls -l ecommerce_data/           
+                    total 4
+                    -rw------- 1 root root 96 Jun 11 23:22 orders.txt
+            
+            
+            
+            ..................................................................
+            STEP 7  VERIFY SECURITY
+            ..................................................................
+            
+            ls -ld ecommerce_data
+            
+            ls -l ecommerce_data/orders.txt
+            
+            
+            
+            
+            
+                      root@controlplane:~$ ls -ld ecommerce_data
+                      drwx------ 2 root root 4096 Jun 11 23:22 ecommerce_data
+            
+            
+            
+            
+            ..................................................................
+            STEP 8  CREATE SIMPLE ETHICS NOTE
+            ..................................................................
+            
+            echo "Customer data must not be shared without consent" > ecommerce_ethics.txt
+            
+            cat ecommerce_ethics.txt
+            
+            
+            ..................................................................
+            LAB QUESTIONS
+            ..................................................................
+            
+                    1  Why is customer phone number sensitive data
+                    
+                    2  Which command protected the order file
+                    
+                    3  Which command protected the e commerce folder
+                    
+                    4  What ethical issue occurs if customer data is sold without consent
+                    
+                    5  Why does e commerce require customer trust
+                    
+
+
+
+
+
+
+
+
+==================================================================
+6.4 PRIVACY AND DATA PROTECTION
+==================================================================
+
+        LAB 4  DATA MINIMIZATION BACKUP AND PRIVACY CONTROL
+        
+        Objective
+        
+        . Understand privacy data minimization and backup
+        
+        Concept Covered
+        
+        . Personal data
+        
+        . Data minimization
+        
+        . Backup
+        
+        . Data protection
+        
+        
+        ..................................................................
+        SCENARIO
+        ..................................................................
+        
+        . A college collects student data
+        
+        . Some data is necessary for academic records
+        
+        . Some unnecessary personal data should not be stored
+        
+        . Important records should be backed up
+        
+        
+        ..................................................................
+        STEP 1  CREATE STUDENT PRIVACY FILE
+        ..................................................................
+        
+        echo "Name  Phone  Email  CitizenshipNo  BloodGroup  Hobby" > student_privacy.txt
+        
+        echo "Ram  9800000000  ram@email.com  123456  O+  Football" >> student_privacy.txt
+        
+        
+        ..................................................................
+        STEP 2  VIEW DATA
+        ..................................................................
+        
+        cat student_privacy.txt
+        
+        
+        ..................................................................
+        DISCUSSION
+        ..................................................................
+        
+        . Name phone and email may be needed for college communication
+        
+        . Citizenship number may be sensitive
+        
+        . Hobby may not be necessary for MIS purpose
+        
+        . Collecting unnecessary data increases privacy risk
+        
+        
+        ..................................................................
+        STEP 3  CREATE MINIMUM REQUIRED DATA FILE
+        ..................................................................
+        
+        echo "Name  Phone  Email" > student_minimum_data.txt
+        
+        echo "Ram  9800000000  ram@email.com" >> student_minimum_data.txt
+        
+        
+        ..................................................................
+        STEP 4  PROTECT MINIMUM DATA FILE
+        ..................................................................
+        
+        chmod 600 student_minimum_data.txt
+        
+        
+        ..................................................................
+        STEP 5  CREATE BACKUP
+        ..................................................................
+        
+        mkdir privacy_backup
+        
+        cp student_minimum_data.txt privacy_backup/student_minimum_data_backup.txt
+        
+        
+        ..................................................................
+        STEP 6  VERIFY BACKUP
+        ..................................................................
+        
+        ls privacy_backup
+        
+        cat privacy_backup/student_minimum_data_backup.txt
+        
+        
+        ..................................................................
+        LAB QUESTIONS
+        ..................................................................
+        
+                1  What is data minimization
+                
+                2  Which data fields are sensitive in this lab
+                
+                3  Why should unnecessary data not be collected
+                
+                4  How does backup support data protection
+                
+                5  Why should personal data have restricted access
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+6.5 ETHICAL ISSUES IN INFORMATION TECHNOLOGY
+==================================================================
+
+        
+        
+        https://killercoda.com/course-cka/scenario/playground
+        
+        
+        
+        
+        LAB 5  AUDIT TRAIL FOR ETHICAL ACCOUNTABILITY
+        
+        Objective
+        
+        . Understand audit trail and accountability in MIS
+        
+        Concept Covered
+        
+        . Unauthorized data access
+        
+        . Data manipulation
+        
+        . Audit log
+        
+        . Ethical responsibility
+        
+        
+        ..................................................................
+        SCENARIO
+        ..................................................................
+        
+        . A company wants to track changes made to sales data
+        
+        . If someone changes the data management should know when and why
+        
+        
+        ..................................................................
+        STEP 1  CREATE SALES DATA FILE
+        ..................................................................
+        
+        echo "Date  SalesAmount" > sales_data.txt
+        
+        echo "2026-06-01  50000" >> sales_data.txt
+        
+        echo "2026-06-02  65000" >> sales_data.txt
+        
+        
+        ..................................................................
+        STEP 2  CREATE AUDIT LOG FILE
+        ..................................................................
+        
+        echo "AUDIT LOG FOR SALES DATA" > sales_audit_log.txt
+        
+        
+        ..................................................................
+        STEP 3  RECORD ORIGINAL FILE HASH
+        ..................................................................
+        
+        sha256sum sales_data.txt >> sales_audit_log.txt
+        
+        
+        Learning
+        
+        . Hash value helps identify whether a file has changed
+        
+        
+        ..................................................................
+        STEP 4  MODIFY SALES DATA
+        ..................................................................
+        
+        echo "2026-06-03  90000" >> sales_data.txt
+        
+        
+        ..................................................................
+        STEP 5  RECORD NEW HASH
+        ..................................................................
+        
+        sha256sum sales_data.txt >> sales_audit_log.txt
+        
+        
+        ..................................................................
+        STEP 6  VIEW AUDIT LOG
+        ..................................................................
+        
+        cat sales_audit_log.txt
+        
+        
+        ..................................................................
+        INTERPRETATION
+        ..................................................................
+                
+                . If hash value changes the file content has changed
+                
+                . This helps detect data modification
+                
+                . Audit trail supports ethical accountability
+        
+        
+        ..................................................................
+        LAB QUESTIONS
+        ..................................................................
+        
+                1  What is an audit trail
+                
+                2  Why is data manipulation unethical
+                
+                3  What command was used to generate file hash
+                
+                4  How does hash help detect file change
+                
+                5  Why should MIS maintain change records
+
+
+
+
+
+
+
+
+
+==================================================================
+6.6 LEGAL FRAMEWORKS AND COMPLIANCE
+==================================================================
+          
+          LAB 6  COMPLIANCE CHECKLIST AND POLICY FILE CREATION
+          
+          Objective
+          
+          . Prepare basic MIS compliance evidence
+          
+          
+          
+          
+          Concept Covered
+          
+          . Legal compliance
+          
+          . Organizational policy
+          
+          . Privacy policy
+          
+          . Backup policy
+          
+          . Access control policy
+          
+          
+          ..................................................................
+          SCENARIO
+          ..................................................................
+          
+          . A business wants to prepare basic compliance documents
+          
+          . The organization needs written security policies
+          
+          
+          ..................................................................
+          STEP 1  CREATE POLICY FOLDER
+          ..................................................................
+          
+          mkdir compliance_policies
+          
+          
+          ..................................................................
+          STEP 2  CREATE PASSWORD POLICY
+          ..................................................................
+          
+          echo "PASSWORD POLICY" > compliance_policies/password_policy.txt
+          
+          echo "Use strong password with minimum 8 characters" >> compliance_policies/password_policy.txt
+          
+          echo "Do not share password with others" >> compliance_policies/password_policy.txt
+          
+          echo "Change password regularly" >> compliance_policies/password_policy.txt
+          
+          
+          ..................................................................
+          STEP 3  CREATE PRIVACY POLICY
+          ..................................................................
+          
+          echo "PRIVACY POLICY" > compliance_policies/privacy_policy.txt
+          
+          echo "Collect only necessary personal data" >> compliance_policies/privacy_policy.txt
+          
+          echo "Use data only for declared purpose" >> compliance_policies/privacy_policy.txt
+          
+          echo "Do not share personal data without consent" >> compliance_policies/privacy_policy.txt
+          
+          
+          ..................................................................
+          STEP 4  CREATE BACKUP POLICY
+          ..................................................................
+          
+          echo "BACKUP POLICY" > compliance_policies/backup_policy.txt
+          
+          echo "Take regular backup of important MIS data" >> compliance_policies/backup_policy.txt
+          
+          echo "Store backup securely" >> compliance_policies/backup_policy.txt
+          
+          echo "Test recovery process periodically" >> compliance_policies/backup_policy.txt
+          
+          
+          ..................................................................
+          STEP 5  LIST POLICY FILES
+          ..................................................................
+          
+          ls compliance_policies
+          
+          
+          ..................................................................
+          STEP 6  VIEW POLICIES
+          ..................................................................
+          
+          cat compliance_policies/password_policy.txt
+          
+          cat compliance_policies/privacy_policy.txt
+          
+          cat compliance_policies/backup_policy.txt
+          
+          
+          ..................................................................
+          STEP 7  PROTECT POLICY FOLDER
+          ..................................................................
+          
+          chmod 700 compliance_policies
+          
+          
+          ..................................................................
+          LAB QUESTIONS
+          ..................................................................
+          
+                    1  Why are policies important for compliance
+                    
+                    2  What should be included in a password policy
+                    
+                    3  Why is privacy policy important in MIS
+                    
+                    4  Why should backup policy include recovery testing
+                    
+                    5  How does documentation support audit
+          
+
+
+
+
+
+
+
+
+
+
+==================================================================
+6.7 SECURITY AUDIT PROCESSES AND METHODOLOGIES
+==================================================================
+
+        LAB 7  BASIC MIS SECURITY AUDIT REPORT IN LINUX
+        
+        Objective
+        
+        . Generate a basic security audit report using Linux commands
+        
+        Concept Covered
+        
+        . Audit planning
+        
+        . Evidence collection
+        
+        . User access review
+        
+        . File permission review
+        
+        . Login review
+        
+        . Audit reporting
+        
+        
+        ..................................................................
+        SCENARIO
+        ..................................................................
+        
+        . ABC College wants a basic audit of its MIS server
+        
+        . The auditor needs to collect evidence about users login history and
+          file permissions
+        
+        
+        ..................................................................
+        STEP 1  CREATE AUDIT WORKING FOLDER
+        ..................................................................
+        
+        mkdir security_audit
+        
+        cd security_audit
+        
+        
+        ..................................................................
+        STEP 2  CREATE SAMPLE MIS FILES
+        ..................................................................
+        
+        echo "Fee Record Data" > fee_record.txt
+        
+        echo "Attendance Record Data" > attendance_record.txt
+        
+        echo "Result Record Data" > result_record.txt
+        
+        
+        ..................................................................
+        STEP 3  SET DIFFERENT PERMISSIONS
+        ..................................................................
+        
+        chmod 644 fee_record.txt
+        
+        chmod 600 attendance_record.txt
+        
+        chmod 600 result_record.txt
+        
+        
+        ..................................................................
+        STEP 4  CREATE AUDIT REPORT
+        ..................................................................
+        
+        echo "ABC COLLEGE MIS SECURITY AUDIT REPORT" > audit_report.txt
+        
+        echo "Audit Date" >> audit_report.txt
+        
+        date >> audit_report.txt
+        
+        
+        ..................................................................
+        STEP 5  ADD CURRENT USER INFORMATION
+        ..................................................................
+        
+        echo "CURRENT USER" >> audit_report.txt
+        
+        whoami >> audit_report.txt
+        
+        
+        ..................................................................
+        STEP 6  ADD SYSTEM USERS
+        ..................................................................
+        
+        echo "SYSTEM USERS" >> audit_report.txt
+        
+        cat /etc/passwd >> audit_report.txt
+        
+        
+        ..................................................................
+        STEP 7  ADD LOGIN HISTORY
+        ..................................................................
+        
+        echo "RECENT LOGIN HISTORY" >> audit_report.txt
+        
+        last | head >> audit_report.txt
+        
+        
+        ..................................................................
+        STEP 8  ADD FILE PERMISSION EVIDENCE
+        ..................................................................
+        
+        echo "MIS FILE PERMISSIONS" >> audit_report.txt
+        
+        ls -l >> audit_report.txt
+        
+        
+        ..................................................................
+        STEP 9  VIEW FINAL AUDIT REPORT
+        ..................................................................
+        
+        cat audit_report.txt
+        
+        
+        ..................................................................
+        STEP 10  RETURN TO HOME FOLDER
+        ..................................................................
+        
+        cd ..
+        
+        
+        ..................................................................
+        LAB QUESTIONS
+        ..................................................................
+        
+              1  What is security audit
+              
+              2  Which evidence was collected in this lab
+              
+              3  Which command shows file permission
+              
+              4  Which command shows recent login history
+              
+              5  Why is audit report important for management decision making
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+==================================================================
+6.8 CASE STUDIES ON ETHICAL DILEMMAS AND LEGAL ISSUES IN MIS
+==================================================================
+
+LAB 8  CASE BASED PRACTICAL  COLLEGE MIS RESULT FILE SECURITY
+
+Objective
+
+. Apply cyber security privacy ethics legal compliance and audit
+  concepts in one practical case
+
+Concept Covered
+
+. Confidentiality
+
+. Integrity
+
+. Availability
+
+. Ethical access
+
+. Legal risk
+
+. Security audit
+
+. Corrective action
+
+          
+          ..................................................................
+          CASE SCENARIO
+          ..................................................................
+          
+          . A college uses a Linux based MIS server
+          
+          . The server stores student attendance fee and result records
+          
+          . Recently result files were readable by all users
+          
+          . Old staff accounts still exist
+          
+          . Backup is not regular
+          
+          . Login logs are not reviewed
+          
+          . Management asks the IT officer to perform basic security improvement
+          
+          
+          ..................................................................
+          STEP 1  CREATE CASE FOLDER
+          ..................................................................
+          
+          mkdir college_case
+          
+          cd college_case
+          
+          
+          ..................................................................
+          STEP 2  CREATE MIS FILES
+          ..................................................................
+          
+          echo "Student Result Data Confidential" > result.txt
+          
+          echo "Student Fee Data Confidential" > fee.txt
+          
+          echo "Student Attendance Data Confidential" > attendance.txt
+          
+          
+          ..................................................................
+          STEP 3  CHECK CURRENT PERMISSION
+          ..................................................................
+          
+          ls -l
+          
+          
+          ..................................................................
+          STEP 4  SECURE CONFIDENTIAL FILES
+          ..................................................................
+          
+          chmod 600 result.txt
+          
+          chmod 600 fee.txt
+          
+          chmod 600 attendance.txt
+          
+          
+          ..................................................................
+          STEP 5  SECURE CASE FOLDER
+          ..................................................................
+          
+          cd ..
+          
+          chmod 700 college_case
+          
+          
+          ..................................................................
+          STEP 6  CREATE BACKUP
+          ..................................................................
+          
+          mkdir college_backup
+          
+          cp college_case/result.txt college_backup/result_backup.txt
+          
+          cp college_case/fee.txt college_backup/fee_backup.txt
+          
+          cp college_case/attendance.txt college_backup/attendance_backup.txt
+          
+          
+          ..................................................................
+          STEP 7  CREATE CASE AUDIT REPORT
+          ..................................................................
+          
+          echo "COLLEGE MIS CASE AUDIT REPORT" > college_case_audit.txt
+          
+          echo "Audit Date" >> college_case_audit.txt
+          
+          date >> college_case_audit.txt
+          
+          echo "Current User" >> college_case_audit.txt
+          
+          whoami >> college_case_audit.txt
+          
+          echo "Folder Permission" >> college_case_audit.txt
+          
+          ls -ld college_case >> college_case_audit.txt
+          
+          echo "File Permission" >> college_case_audit.txt
+          
+          ls -l college_case >> college_case_audit.txt
+          
+          echo "Backup Files" >> college_case_audit.txt
+          
+          ls -l college_backup >> college_case_audit.txt
+          
+          echo "Recent Login History" >> college_case_audit.txt
+          
+          last | head >> college_case_audit.txt
+          
+          
+          ..................................................................
+          STEP 8  VIEW CASE AUDIT REPORT
+          ..................................................................
+          
+          cat college_case_audit.txt
+          
+          
+          ..................................................................
+          CASE ANALYSIS
+          ..................................................................
+          
+          . chmod 600 protects confidential files
+          
+          . chmod 700 protects the MIS folder
+          
+          . Backup supports availability
+          
+          . Login history supports audit review
+          
+          . Audit report supports accountability
+          
+          . Unauthorized result access is an ethical and legal issue
+          
+          
+          ..................................................................
+          CASE QUESTIONS
+          ..................................................................
+          
+          1  Which CIA principles are applied in this lab
+          
+          2  How does chmod 600 protect result files
+          
+          3  Why is student result data sensitive
+          
+          4  Why should backup be created
+          
+          5  What ethical issue occurs if staff view result data without permission
+          
+          6  What legal issue may arise if student records are leaked
+          
+          7  Which Linux commands were used for audit evidence
+          
+          8  Suggest three improvements for college MIS security
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+NUMERICAL MINI LAB  RISK SCORE CALCULATION
+==================================================================
+
+Objective
+
+. Calculate simple security risk score from incident data
+
+Concept Covered
+
+. Risk analysis
+
+. Security priority
+
+. Management decision making
+
+              
+              ..................................................................
+              DATA
+              ..................................................................
+              
+              Department      Users      Incidents      Sensitivity Score
+              
+              Finance          15           5                  5
+              
+              HR               10           3                  4
+              
+              Sales            25           4                  3
+              
+              IT                8           6                  5
+              
+              Admin            12           1                  2
+              
+              
+              ..................................................................
+              FORMULA
+              ..................................................................
+              
+              . Incident Rate = Incidents / Users
+              
+              . Risk Score = Incident Rate x Sensitivity Score
+              
+              
+              ..................................................................
+              CALCULATION
+              ..................................................................
+              
+              Finance
+              
+              . Incident Rate = 5 / 15 = 0.33
+              
+              . Risk Score = 0.33 x 5 = 1.65
+              
+              
+              HR
+              
+              . Incident Rate = 3 / 10 = 0.30
+              
+              . Risk Score = 0.30 x 4 = 1.20
+              
+              
+              Sales
+              
+              . Incident Rate = 4 / 25 = 0.16
+              
+              . Risk Score = 0.16 x 3 = 0.48
+              
+              
+              IT
+              
+              . Incident Rate = 6 / 8 = 0.75
+              
+              . Risk Score = 0.75 x 5 = 3.75
+              
+              
+              Admin
+              
+              . Incident Rate = 1 / 12 = 0.08
+              
+              . Risk Score = 0.08 x 2 = 0.16
+              
+              
+              ..................................................................
+              INTERPRETATION
+              ..................................................................
+              
+              . IT has highest risk score
+              
+              . Finance is second high risk area
+              
+              . Security audit should focus first on IT and Finance
+              
+              . Training should be given to high risk departments first
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+FINAL LAB ALIGNMENT TABLE
+==================================================================
+
+Subunit        Lab Title                                      Main Skill
+
+6.1            CIA Triad Demonstration                       File permission backup
+
+6.2            Threat Identification                         Login and user review
+
+6.3            E Commerce Data Protection                    Customer data security
+
+6.4            Privacy and Data Protection                   Data minimization backup
+
+6.5            Ethical Accountability                        Hash and audit trail
+
+6.6            Compliance Policy Creation                    Policy documentation
+
+6.7            Security Audit Report                         Audit evidence collection
+
+6.8            College MIS Case Practical                    Integrated case solution
+
+
+==================================================================
+END OF ALIGNED LABS
+==================================================================
