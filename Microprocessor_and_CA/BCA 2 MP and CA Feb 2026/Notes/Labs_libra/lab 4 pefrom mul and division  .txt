@@ -1,0 +1,385 @@
+=========================================================
+8085 MICROPROCESSOR
+8-BIT MULTIPLICATION AND DIVISION USING REPEATED METHOD
+=========================================================
+
+
+=========================================================
+PART A
+8-BIT MULTIPLICATION USING REPEATED ADDITION
+=========================================================
+
+Given Program
+
+MVI A,00H
+MVI B,05H
+MVI C,04H
+
+LOOP: ADD B
+      DCR C
+      JNZ LOOP
+
+MOV D,A
+HLT
+
+
+---------------------------------------------------------
+COMMENTED ALP
+---------------------------------------------------------
+
+MVI A,00H        ; Clear accumulator
+                 ; A will store the multiplication result
+
+MVI B,05H        ; Load multiplicand 05H into register B
+
+MVI C,04H        ; Load multiplier 04H into register C
+                 ; C is used as counter
+
+LOOP: ADD B      ; Add B to A
+                 ; A = A + B
+
+DCR C            ; Decrease counter C by 1
+
+JNZ LOOP         ; If C is not zero, repeat addition
+
+MOV D,A          ; Store final multiplication result in D
+
+HLT              ; Stop program execution
+
+
+---------------------------------------------------------
+DRY RUN / TRACE
+---------------------------------------------------------
+
+Initial Values
+
+A = 00H
+B = 05H
+C = 04H
+
+---------------------------------------------------------
+
+1st Loop
+
+A = 00H + 05H = 05H
+C = 04H - 01H = 03H
+
+---------------------------------------------------------
+
+2nd Loop
+
+A = 05H + 05H = 0AH
+C = 03H - 01H = 02H
+
+---------------------------------------------------------
+
+3rd Loop
+
+A = 0AH + 05H = 0FH
+C = 02H - 01H = 01H
+
+---------------------------------------------------------
+
+4th Loop
+
+A = 0FH + 05H = 14H
+C = 01H - 01H = 00H
+
+Loop Stops
+
+---------------------------------------------------------
+
+Final Result
+
+      05H x 04H = 14H
+      
+      A = 14H
+      
+      D = 14H
+      
+      Decimal
+      
+      5 x 4 = 20
+
+
+=========================================================
+PART B
+8-BIT DIVISION USING REPEATED SUBTRACTION
+=========================================================
+
+Example
+
+Divide 14H by 05H
+
+Dividend = 14H
+
+Divisor  = 05H
+
+Expected Decimal
+
+20 / 5 = 4
+
+Quotient  = 04H
+
+Remainder = 00H
+
+
+---------------------------------------------------------
+DIVISION ALP
+---------------------------------------------------------
+
+MVI A,14H
+MVI B,05H
+MVI C,00H
+
+LOOP: CMP B
+      JC END
+      SUB B
+      INR C
+      JMP LOOP
+
+END:  MOV D,C
+      MOV E,A
+      HLT
+
+
+---------------------------------------------------------
+COMMENTED DIVISION ALP
+---------------------------------------------------------
+
+MVI A,14H        ; Load dividend 14H into accumulator
+
+MVI B,05H        ; Load divisor 05H into register B
+
+MVI C,00H        ; Clear register C
+                 ; C will store quotient
+
+LOOP: CMP B      ; Compare A with B
+                 ; If A < B, Carry Flag becomes 1
+
+JC END           ; If A < B, division is complete
+                 ; Jump to END
+
+SUB B            ; Subtract divisor from dividend
+                 ; A = A - B
+
+INR C            ; Increase quotient by 1
+
+JMP LOOP         ; Repeat subtraction
+
+END: MOV D,C     ; Store quotient in D
+
+MOV E,A          ; Store remainder in E
+
+HLT              ; Stop program execution
+
+
+---------------------------------------------------------
+DRY RUN / TRACE
+---------------------------------------------------------
+
+Initial Values
+
+A = 14H
+B = 05H
+C = 00H
+
+---------------------------------------------------------
+
+1st Loop
+
+A = 14H
+
+Compare
+
+14H >= 05H
+
+SUB B
+
+A = 14H - 05H = 0FH
+
+C = 01H
+
+---------------------------------------------------------
+
+2nd Loop
+
+A = 0FH
+
+Compare
+
+0FH >= 05H
+
+SUB B
+
+A = 0FH - 05H = 0AH
+
+C = 02H
+
+---------------------------------------------------------
+
+3rd Loop
+
+A = 0AH
+
+Compare
+
+0AH >= 05H
+
+SUB B
+
+A = 0AH - 05H = 05H
+
+C = 03H
+
+---------------------------------------------------------
+
+4th Loop
+
+A = 05H
+
+Compare
+
+05H >= 05H
+
+SUB B
+
+A = 05H - 05H = 00H
+
+C = 04H
+
+---------------------------------------------------------
+
+5th Check
+
+A = 00H
+
+Compare
+
+00H < 05H
+
+Carry Flag = 1
+
+Jump to END
+
+---------------------------------------------------------
+
+Final Result
+
+14H / 05H
+
+Quotient  = 04H
+
+Remainder = 00H
+
+D = 04H
+
+E = 00H
+
+
+=========================================================
+PART C
+DIVISION WITH REMAINDER EXAMPLE
+=========================================================
+
+Example
+
+Divide 17H by 05H
+
+Decimal
+
+23 / 5
+
+Quotient  = 4
+
+Remainder = 3
+
+
+---------------------------------------------------------
+PROGRAM
+---------------------------------------------------------
+
+MVI A,17H
+MVI B,05H
+MVI C,00H
+
+LOOP: CMP B
+      JC END
+      SUB B
+      INR C
+      JMP LOOP
+
+END:  MOV D,C
+      MOV E,A
+      HLT
+
+
+---------------------------------------------------------
+ANSWER
+---------------------------------------------------------
+
+17H / 05H
+
+17H - 05H = 12H
+
+12H - 05H = 0DH
+
+0DH - 05H = 08H
+
+08H - 05H = 03H
+
+03H < 05H
+
+So,
+
+Quotient  = 04H
+
+Remainder = 03H
+
+D = 04H
+
+E = 03H
+
+
+=========================================================
+IMPORTANT LOGIC
+=========================================================
+
+Multiplication Logic
+
+. Multiplication is repeated addition
+
+Example
+
+05H x 04H
+
+Means
+
+05H + 05H + 05H + 05H
+
+Result
+
+14H
+
+
+---------------------------------------------------------
+
+Division Logic
+
+. Division is repeated subtraction
+
+Example
+
+14H / 05H
+
+Means subtract 05H repeatedly from 14H
+until remaining value is less than 05H
+
+Number of subtractions = Quotient
+
+Remaining value        = Remainder
+
+
+=========================================================
+END
+=========================================================
