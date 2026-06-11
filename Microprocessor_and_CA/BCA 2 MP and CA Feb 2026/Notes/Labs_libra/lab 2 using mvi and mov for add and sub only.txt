@@ -1,0 +1,252 @@
+=========================================================
+8085 MICROPROCESSOR
+8-BIT ADDITION AND SUBTRACTION
+USING MVI AND MOV
+QUESTIONS WITH ANSWERS
+=========================================================
+
+
+1. Add 25H and 35H using MVI and MOV
+
+Program
+
+MVI B,25H
+MVI C,35H
+MOV A,B
+ADD C
+HLT
+
+Answer
+
+25H + 35H = 5AH
+
+A = 5AH
+CY = 0
+
+
+
+
+
+
+
+
+Line No.  Memory Address  Machine Codes  Source
+-------------------------------------------------------------
+1                                        
+2         0x0             06 25          MVI B,25H
+3         0x2             0E 35          MVI C,35H
+4         0x4             78             MOV A,B
+5         0x5             81             ADD C
+6         0x6             76             HLT
+---------------------------------------------------------
+
+
+
+
+
+
+
+2. Add 4AH and 3CH using MVI and MOV
+
+Program
+
+MVI B,4AH
+MVI C,3CH
+MOV A,B
+ADD C
+HLT
+
+Answer
+
+4AH + 3CH = 86H
+
+A = 86H
+CY = 0
+
+
+---------------------------------------------------------
+
+
+3. Add 12H, 23H and 34H using MVI and MOV
+
+Program
+
+MVI B,12H
+MVI C,23H
+MVI D,34H
+MOV A,B
+ADD C
+ADD D
+HLT
+
+Answer
+
+12H + 23H + 34H = 69H
+
+A = 69H
+CY = 0
+
+
+---------------------------------------------------------
+
+
+4. Add 8FH and 91H using MVI and MOV
+
+Program
+
+MVI B,8FH
+MVI C,91H
+MOV A,B
+ADD C
+HLT
+
+Answer
+
+8FH + 91H = 120H
+
+A = 20H
+CY = 1
+
+
+---------------------------------------------------------
+
+
+5. Subtract 25H from 70H using MVI and MOV
+
+Program
+
+MVI B,70H
+MVI C,25H
+MOV A,B
+SUB C
+HLT
+
+Answer
+
+70H - 25H = 4BH
+
+A = 4BH
+CY = 0
+
+
+---------------------------------------------------------
+
+
+6. Subtract 48H from 95H using MVI and MOV
+
+Program
+
+MVI B,95H
+MVI C,48H
+MOV A,B
+SUB C
+HLT
+
+Answer
+
+95H - 48H = 4DH
+
+A = 4DH
+CY = 0
+
+
+---------------------------------------------------------
+
+
+7. Subtract 56H from 34H using MVI and MOV
+
+Program
+
+MVI B,34H
+MVI C,56H
+MOV A,B
+SUB C
+HLT
+
+Answer
+
+34H - 56H = DEH
+
+A = DEH
+CY = 1
+
+
+---------------------------------------------------------
+
+
+8. Find 65H + 32H - 14H using MVI and MOV
+
+Program
+
+MVI B,65H
+MVI C,32H
+MVI D,14H
+MOV A,B
+ADD C
+SUB D
+HLT
+
+Answer
+
+65H + 32H = 97H
+
+97H - 14H = 83H
+
+A = 83H
+CY = 0
+
+
+---------------------------------------------------------
+
+
+9. Find 80H - 25H + 15H using MVI and MOV
+
+Program
+
+MVI B,80H
+MVI C,25H
+MVI D,15H
+MOV A,B
+SUB C
+ADD D
+HLT
+
+Answer
+
+80H - 25H = 5BH
+
+5BH + 15H = 70H
+
+A = 70H
+CY = 0
+
+
+---------------------------------------------------------
+
+
+10. Find 45H + 38H + 12H - 20H using MVI and MOV
+
+Program
+
+MVI B,45H
+MVI C,38H
+MVI D,12H
+MVI E,20H
+MOV A,B
+ADD C
+ADD D
+SUB E
+HLT
+
+Answer
+
+45H + 38H = 7DH
+
+7DH + 12H = 8FH
+
+8FH - 20H = 6FH
+
+A = 6FH
+CY = 0
+
+
