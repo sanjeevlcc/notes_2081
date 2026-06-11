@@ -1,0 +1,465 @@
+=========================================================
+8085 MICROPROCESSOR FLAGS
+=========================================================
+
+A Flag is a special 1-bit register that indicates the status
+of an arithmetic or logical operation.
+
+Whenever an operation is performed, 8085 automatically updates
+the flag register.
+
+Flags help the processor make decisions during program execution.
+
+
+=========================================================
+FLAG REGISTER IN 8085
+=========================================================
+
+Bit Position
+
+      ----------------------------------
+      | S | Z | X | AC | X | P | X | CY |
+      ----------------------------------
+      
+      Where
+              
+              S  = Sign Flag
+              
+              Z  = Zero Flag
+              
+              AC = Auxiliary Carry Flag
+              
+              P  = Parity Flag
+              
+              CY = Carry Flag
+              
+              X  = Unused
+
+
+=========================================================
+1. SIGN FLAG (S)
+=========================================================
+
+. Indicates whether result is positive or negative
+
+. Checks MSB (Most Significant Bit)
+
+Rule
+      
+      MSB = 1  → Sign Flag = 1
+      
+      MSB = 0  → Sign Flag = 0
+
+Example
+
+A = F0H
+
+Binary
+
+11110000
+
+MSB = 1
+
+S = 1
+
+
+=========================================================
+2. ZERO FLAG (Z)
+=========================================================
+
+. Set when result becomes zero
+
+Rule
+
+        Result = 00H
+        
+        Z = 1
+        
+Otherwise
+
+      Z = 0
+
+Example
+
+05H - 05H = 00H
+
+Z = 1
+
+
+=========================================================
+3. AUXILIARY CARRY FLAG (AC)
+=========================================================
+
+. Carry generated from bit 3 to bit 4
+
+. Mostly used in BCD arithmetic
+
+Example
+
+0FH + 01H
+
+00001111
+00000001
+---------
+
+00010000
+
+Carry from bit3 to bit4
+
+AC = 1
+
+
+=========================================================
+4. PARITY FLAG (P)
+=========================================================
+
+. Checks number of 1's in result
+
+Rule
+
+Even number of 1's
+
+P = 1
+
+Odd number of 1's
+
+P = 0
+
+Example
+
+A = 0FH
+
+00001111
+
+Number of 1's = 4
+
+Even
+
+P = 1
+
+
+=========================================================
+5. CARRY FLAG (CY)
+=========================================================
+
+. Set when carry or borrow occurs
+
+Addition
+
+Result > FFH
+
+CY = 1
+
+Subtraction
+
+Borrow occurs
+
+CY = 1
+
+
+
+
+
+
+=========================================================
+EXAMPLE 1
+FFH + 01H
+=========================================================
+
+Calculation
+
+FFH = 255
+
+01H = 1
+
+255 + 1 = 256
+
+Hex
+
+FFH + 01H = 100H
+
+Accumulator stores only lower 8 bits
+
+A = 00H
+
+Carry = 1
+
+
+
+
+
+
+
+mvi a,255
+mvi b,01
+add b
+hlt
+
+
+
+
+---------------------------------------------------------
+FLAG STATUS
+---------------------------------------------------------
+
+Result = 00H
+
+S  = 0
+
+Z  = 1
+
+AC = 1
+
+P  = 1
+
+CY = 1
+
+
+---------------------------------------------------------
+EXPLANATION
+---------------------------------------------------------
+
+S = 0
+
+MSB of 00H is 0
+
+Z = 1
+
+Result is zero
+
+AC = 1
+
+Carry from lower nibble
+
+P = 1
+
+00H contains 0 ones
+Even parity
+
+CY = 1
+
+Carry generated
+
+
+=========================================================
+EXAMPLE 2
+04H + A1H
+=========================================================
+
+Calculation
+
+04H + A1H = A5H
+
+Binary
+
+00000100
+10100001
+--------
+
+10100101
+
+Result = A5H
+
+
+---------------------------------------------------------
+FLAG STATUS
+---------------------------------------------------------
+
+Result = A5H
+
+S  = 1
+
+Z  = 0
+
+AC = 0
+
+P  = 1
+
+CY = 0
+
+
+---------------------------------------------------------
+EXPLANATION
+---------------------------------------------------------
+
+S = 1
+
+MSB of A5H = 1
+
+Z = 0
+
+Result not zero
+
+AC = 0
+
+No carry from bit3 to bit4
+
+P = 1
+
+A5H = 10100101
+
+Number of 1's = 4
+
+Even parity
+
+CY = 0
+
+No carry
+
+
+=========================================================
+EXAMPLE 3
+17H - 14H
+=========================================================
+
+Calculation
+
+17H - 14H = 03H
+
+Binary
+
+00010111
+00010100
+---------
+
+00000011
+
+Result = 03H
+
+
+---------------------------------------------------------
+FLAG STATUS
+---------------------------------------------------------
+
+S  = 0
+
+Z  = 0
+
+AC = 0
+
+P  = 1
+
+CY = 0
+
+
+---------------------------------------------------------
+EXPLANATION
+---------------------------------------------------------
+
+S = 0
+
+MSB = 0
+
+Z = 0
+
+Result not zero
+
+AC = 0
+
+No borrow from lower nibble
+
+P = 1
+
+03H = 00000011
+
+Two ones
+
+Even parity
+
+CY = 0
+
+No borrow
+
+
+=========================================================
+EXAMPLE 4
+14H - 17H
+=========================================================
+
+Calculation
+
+14H - 17H = FDH
+
+Using 2's complement representation
+
+Result = FDH
+
+Borrow generated
+
+
+---------------------------------------------------------
+FLAG STATUS
+---------------------------------------------------------
+
+S  = 1
+
+Z  = 0
+
+AC = 1
+
+P  = 0
+
+CY = 1
+
+
+---------------------------------------------------------
+EXPLANATION
+---------------------------------------------------------
+
+S = 1
+
+FDH = 11111101
+
+MSB = 1
+
+Negative result
+
+Z = 0
+
+Result not zero
+
+AC = 1
+
+Borrow from lower nibble
+
+P = 0
+
+FDH contains 7 ones
+
+Odd parity
+
+CY = 1
+
+Borrow generated
+
+
+=========================================================
+SUMMARY TABLE
+=========================================================
+
+Operation      Result   S  Z  AC  P  CY
+
+FFH + 01H      00H      0  1   1  1   1
+
+04H + A1H      A5H      1  0   0  1   0
+
+17H - 14H      03H      0  0   0  1   0
+
+14H - 17H      FDH      1  0   1  0   1
+
+
+=========================================================
+MEMORY TRICK
+=========================================================
+
+S  → Sign of result
+
+Z  → Result becomes Zero
+
+AC → Carry between nibbles
+
+P  → Even parity = 1
+
+CY → Carry/Borrow generated
+
+=========================================================
