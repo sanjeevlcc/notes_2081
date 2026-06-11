@@ -29,62 +29,65 @@ LEARNING OBJECTIVES
 6.1 FUNDAMENTALS OF CYBER SECURITY
 ==================================================================
 
-. Cyber security means protecting computer systems networks data and
-  digital services from unauthorized access misuse damage or disruption
-
-. It protects information systems used by organizations
-
-. Cyber security is important because modern organizations depend on
-  digital data and online systems
-
-. MIS stores important information such as customer data employee data
-  financial data sales data and business records
-
-. If this information is stolen changed or destroyed the organization
-  may suffer financial legal and reputational loss
+          . Cyber security means protecting computer systems networks data and
+            digital services from unauthorized access misuse damage or disruption
+          
+          . It protects information systems used by organizations
+          
+          . Cyber security is important because modern organizations depend on
+            digital data and online systems
+          
+          . MIS stores important information such as customer data employee data
+            financial data sales data and business records
+          
+          . If this information is stolen changed or destroyed the organization
+            may suffer financial legal and reputational loss
 
 
 ..................................................................
 MAIN GOALS OF CYBER SECURITY
 ..................................................................
 
-. Confidentiality
-
-  . Information should be accessed only by authorized users
-
-  . Example
-    Salary records should be viewed only by HR and authorized managers
+https://delinea.com/blog/what-is-the-cia-triad-key-components-and-examples
 
 
-. Integrity
-
-  . Information should be accurate complete and not changed without
-    permission
-
-  . Example
-    Student marks should not be changed by unauthorized users
-
-
-. Availability
-
-  . Information and systems should be available when needed
-
-  . Example
-    Online banking should be available to customers when they need it
+          . Confidentiality
+          
+                    . Information should be accessed only by authorized users
+                  
+                    . Example
+                      Salary records should be viewed only by HR and authorized managers
+          
+          
+          . Integrity
+          
+                    . Information should be accurate complete and not changed without
+                      permission
+                  
+                    . Example
+                      Student marks should not be changed by unauthorized users
+                  
+          
+          . Availability
+          
+                      . Information and systems should be available when needed
+                    
+                      . Example
+                        Online banking should be available to customers when they need it
 
 
 ..................................................................
 CIA TRIAD
 ..................................................................
 
-. Confidentiality
-        +
-. Integrity
-        +
-. Availability
-        =
-. Secure Information System
-
+              . Confidentiality
+                      +
+              . Integrity
+                      +
+              . Availability
+                      =
+              . Secure Information System
+              
 
 ..................................................................
 EXAMPLE
@@ -95,62 +98,65 @@ EXAMPLE
 
 . Cyber security protects the system from
 
-  . Unauthorized login
-
-  . Data modification
-
-  . Result manipulation
-
-  . Data loss
-
-  . System downtime
+                  . Unauthorized login
+                
+                  . Data modification
+                
+                  . Result manipulation
+                
+                  . Data loss
+                
+                  . System downtime
 
 
 ==================================================================
 BASIC SECURITY CONTROLS
 ==================================================================
-
-. Strong password policy
-
-. User authentication
-
-. Role based access control
-
-. Data backup
-
-. Antivirus and anti malware tools
-
-. Firewall
-
-. Data encryption
-
-. Software updates
-
-. Physical security
-
-. Security awareness training
-
-. Audit logs
-
-. Incident response plan
-
+          
+          . Strong password policy
+          
+          . User authentication
+          
+          . Role based access control
+          
+          . Data backup
+          
+          . Antivirus and anti malware tools
+          
+          . Firewall
+          
+          . Data encryption
+          
+          . Software updates
+          
+          . Physical security
+          
+          . Security awareness training
+          
+          . Audit logs
+          
+          . Incident response plan
+          
 
 ..................................................................
 EXAMPLE OF ROLE BASED ACCESS
 ..................................................................
 
-User Role              Access Permission
 
-Student                View own attendance and result
 
-Teacher                Enter attendance and marks
-
-Exam Admin             Manage examination records
-
-Finance Officer        Manage fee records
-
-System Admin           Manage users backup and security
-
+          ..................................................................
+          User Role              Access Permission
+          ..................................................................      
+          Student                View own attendance and result
+          
+          Teacher                Enter attendance and marks
+          
+          Exam Admin             Manage examination records
+          
+          Finance Officer        Manage fee records
+          
+          System Admin           Manage users backup and security
+          
 
 . Role based access reduces unauthorized data access
 
@@ -165,6 +171,16 @@ System Admin           Manage users backup and security
 
 . A cyber attack is an actual attempt to damage steal or misuse data or
   system resources
+
+
+
+
+
+
+
+
+
+
 
 
 ==================================================================
@@ -185,12 +201,12 @@ COMMON CYBER THREATS
 
 Example
 
-. An employee downloads an infected file from email
-
-. Malware enters the office computer
-
-. Important files become corrupted or locked
-
+      . An employee downloads an infected file from email
+      
+      . Malware enters the office computer
+      
+      . Important files become corrupted or locked
+      
 
 ..................................................................
 2  PHISHING
@@ -205,11 +221,11 @@ Example
 
 Example
 
-. A user receives a fake email saying update your account password
-
-. The user clicks the fake link and enters login details
-
-. The attacker misuses the account
+        . A user receives a fake email saying update your account password
+        
+        . The user clicks the fake link and enters login details
+        
+        . The attacker misuses the account
 
 
 ..................................................................
@@ -225,9 +241,9 @@ Example
 
 Example
 
-. A hospital cannot access patient records because files are locked
-
-. This affects service delivery and patient care
+          . A hospital cannot access patient records because files are locked
+          
+          . This affects service delivery and patient care
 
 
 ..................................................................
@@ -242,23 +258,23 @@ Example
 
 Weak password example
 
-. admin123
-
-. password123
-
-. 12345678
+          . admin123
+          
+          . password123
+          
+          . 12345678
 
 
 Better password practice
 
-. Use long password
-
-. Use mixed characters
-
-. Use two factor authentication
-
-. Do not reuse same password everywhere
-
+        . Use long password
+        
+        . Use mixed characters
+        
+        . Use two factor authentication
+        
+        . Do not reuse same password everywhere
+        
 
 ..................................................................
 5  INSIDER THREAT
@@ -273,10 +289,10 @@ Better password practice
 
 Example
 
-. A staff member copies customer records without permission
-
-. A careless employee shares login password with others
-
+          . A staff member copies customer records without permission
+          
+          . A careless employee shares login password with others
+          
 
 ..................................................................
 6  DENIAL OF SERVICE ATTACK
@@ -291,9 +307,9 @@ Example
 
 Example
 
-. An online shopping website becomes unavailable during a sales campaign
-
-. Customers cannot place orders
+          . An online shopping website becomes unavailable during a sales campaign
+          
+          . Customers cannot place orders
 
 
 ..................................................................
@@ -307,9 +323,27 @@ Example
 
 Example
 
-. Customer name phone number email and payment data are leaked
+          . Customer name phone number email and payment data are leaked
+          
+          . The organization loses trust and may face legal consequences
 
-. The organization loses trust and may face legal consequences
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ==================================================================
@@ -328,25 +362,25 @@ Example
 SECURITY ISSUES IN E COMMERCE
 ==================================================================
 
-. Online payment fraud
-
-. Fake websites
-
-. Fake product listings
-
-. Unauthorized account access
-
-. Data theft
-
-. Weak password protection
-
-. Insecure payment gateway
-
-. Delivery fraud
-
-. Misuse of customer data
-
-. Poor refund and return handling
+                . Online payment fraud
+                
+                . Fake websites    (daraz.com / darazz.com/ daaraz.com /daraaz.com)
+                
+                . Fake product listings
+                
+                . Unauthorized account access
+                
+                . Data theft
+                
+                . Weak password protection
+                
+                . Insecure payment gateway
+                
+                . Delivery fraud
+                
+                . Misuse of customer data
+                
+                . Poor refund and return handling
 
 
 ..................................................................
@@ -357,49 +391,64 @@ EXAMPLE
 
 . The e commerce system stores
 
-  . Customer name
-
-  . Phone number
-
-  . Delivery address
-
-  . Order history
-
-  . Payment information
+        . Customer name
+      
+        . Phone number
+      
+        . Delivery address
+      
+        . Order history
+      
+        . Payment information
 
 . If the system is insecure customer data may be exposed
+
+
+
 
 
 ==================================================================
 ETHICAL ISSUES IN E COMMERCE
 ==================================================================
 
-. Displaying misleading product information
-
-. Hiding extra charges
-
-. Selling customer data without permission
-
-. Fake reviews
-
-. Unfair pricing
-
-. Poor return policy
-
-. Manipulative advertisements
-
-. Tracking users without proper consent
+        . Displaying misleading product information
+        
+        . Hiding extra charges
+        
+        . Selling customer data without permission
+        
+        . Fake reviews
+        
+        . Unfair pricing
+        
+        . Poor return policy
+        
+        . Manipulative advertisements
+        
+        . Tracking users without proper consent
 
 
 ..................................................................
 EXAMPLE
 ..................................................................
+      
+      . An e commerce site shows a product with very high rating
+      
+      . Later customers discover that many reviews were fake
+      
+      . This is an ethical issue because customers were misled
 
-. An e commerce site shows a product with very high rating
 
-. Later customers discover that many reviews were fake
 
-. This is an ethical issue because customers were misled
+
+
+
+
+
+
+
+
+
 
 
 ==================================================================
@@ -424,53 +473,53 @@ EXAMPLE
 ==================================================================
 PERSONAL DATA EXAMPLES
 ==================================================================
-
-. Name
-
-. Address
-
-. Phone number
-
-. Email
-
-. Citizenship number
-
-. Bank account details
-
-. Health records
-
-. Academic records
-
-. Location data
-
-. Online activity
-
-. Biometric data
+          
+          . Name
+          
+          . Address
+          
+          . Phone number
+          
+          . Email
+          
+          . Citizenship number
+          
+          . Bank account details
+          
+          . Health records
+          
+          . Academic records
+          
+          . Location data
+          
+          . Online activity
+          
+          . Biometric data
 
 
 ==================================================================
 GOOD DATA PROTECTION PRACTICES
 ==================================================================
 
-. Collect minimum required data
-
-. Inform users why data is collected
-
-. Take user consent
-
-. Store data securely
-
-. Limit access based on role
-
-. Delete unnecessary data
-
-. Use encryption for sensitive data
-
-. Maintain backup
-
-. Monitor access logs
-
-. Follow legal requirements
+          . Collect minimum required data
+          
+          . Inform users why data is collected
+          
+          . Take user consent
+          
+          . Store data securely
+          
+          . Limit access based on role
+          
+          . Delete unnecessary data
+          
+          . Use encryption for sensitive data
+          
+          . Maintain backup
+          
+          . Monitor access logs
+          
+          . Follow legal requirements
 
 
 ..................................................................
@@ -483,6 +532,17 @@ EXAMPLE
 
 . Using student data for unrelated marketing without permission is
   unethical
+
+
+
+
+
+
+
+
+
+
+
 
 
 ==================================================================
@@ -501,29 +561,29 @@ EXAMPLE
 COMMON ETHICAL ISSUES
 ==================================================================
 
-. Privacy violation
-
-. Unauthorized data access
-
-. Software piracy
-
-. Plagiarism
-
-. Digital surveillance
-
-. Data manipulation
-
-. Algorithmic bias
-
-. Misuse of artificial intelligence
-
-. Fake information
-
-. Cyber bullying
-
-. Using office systems for personal misuse
-
-. Copying confidential business data
+        . Privacy violation
+        
+        . Unauthorized data access
+        
+        . Software piracy
+        
+        . Plagiarism
+        
+        . Digital surveillance
+        
+        . Data manipulation
+        
+        . Algorithmic bias
+        
+        . Misuse of artificial intelligence
+        
+        . Fake information
+        
+        . Cyber bullying
+        
+        . Using office systems for personal misuse
+        
+        . Copying confidential business data
 
 
 ..................................................................
@@ -535,6 +595,7 @@ EXAMPLE  DATA MANIPULATION
 . This is unethical because it misleads top management
 
 . Wrong data leads to wrong decisions
+
 
 
 ..................................................................
@@ -558,6 +619,18 @@ EXAMPLE  SOFTWARE PIRACY
 . It may create legal and security risks
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ==================================================================
 6.6 LEGAL FRAMEWORKS AND COMPLIANCE
 ==================================================================
@@ -575,27 +648,27 @@ EXAMPLE  SOFTWARE PIRACY
 AREAS OF LEGAL CONCERN IN MIS
 ==================================================================
 
-. Data privacy
-
-. Cybercrime
-
-. Intellectual property
-
-. Software licensing
-
-. Digital contracts
-
-. Electronic transactions
-
-. Consumer protection
-
-. Financial records
-
-. Audit requirements
-
-. Data retention
-
-. Cross border data transfer
+          . Data privacy
+          
+          . Cybercrime
+          
+          . Intellectual property
+          
+          . Software licensing
+          
+          . Digital contracts
+          
+          . Electronic transactions
+          
+          . Consumer protection
+          
+          . Financial records
+          
+          . Audit requirements
+          
+          . Data retention
+          
+          . Cross border data transfer
 
 
 ==================================================================
@@ -618,14 +691,14 @@ WHY COMPLIANCE IS IMPORTANT
 ..................................................................
 EXAMPLE
 ..................................................................
-
-. An online business stores customer payment records
-
-. It must protect payment data
-
-. It must follow applicable legal and security standards
-
-. If data is leaked the business may face legal action and loss of trust
+        
+        . An online business stores customer payment records
+        
+        . It must protect payment data
+        
+        . It must follow applicable legal and security standards
+        
+        . If data is leaked the business may face legal action and loss of trust
 
 
 ==================================================================
@@ -651,6 +724,18 @@ COMMON ORGANIZATIONAL POLICIES
 . Data retention policy
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ==================================================================
 6.7 SECURITY AUDIT PROCESSES AND METHODOLOGIES
 ==================================================================
@@ -667,108 +752,117 @@ COMMON ORGANIZATIONAL POLICIES
 OBJECTIVES OF SECURITY AUDIT
 ==================================================================
 
-. Identify security weaknesses
-
-. Check access control
-
-. Review user activities
-
-. Verify backup process
-
-. Check policy compliance
-
-. Review system logs
-
-. Evaluate risk
-
-. Recommend improvements
-
-. Improve accountability
-
+                        . Identify security weaknesses
+                        
+                        . Check access control
+                        
+                        . Review user activities
+                        
+                        . Verify backup process
+                        
+                        . Check policy compliance
+                        
+                        . Review system logs
+                        
+                        . Evaluate risk
+                        
+                        . Recommend improvements
+                        
+                        . Improve accountability
+                        
 
 ==================================================================
 SECURITY AUDIT PROCESS
 ==================================================================
-
-. Planning
-
-  . Define audit scope objective and system to be reviewed
-
-
-. Information collection
-
-  . Collect documents policies system details and user access records
-
-
-. Risk assessment
-
-  . Identify possible risks and their impact
-
-
-. Control evaluation
-
-  . Check whether security controls are working properly
-
-
-. Testing and review
-
-  . Review logs permissions backups updates and procedures
-
-
-. Reporting
-
-  . Prepare audit findings risk level and recommendations
-
-
-. Follow up
-
-  . Check whether corrective actions are implemented
+        
+        . Planning
+        
+          . Define audit scope objective and system to be reviewed
+        
+        
+        . Information collection
+        
+          . Collect documents policies system details and user access records
+        
+        
+        . Risk assessment
+        
+          . Identify possible risks and their impact
+        
+        
+        . Control evaluation
+        
+          . Check whether security controls are working properly
+        
+        
+        . Testing and review
+        
+          . Review logs permissions backups updates and procedures
+        
+        
+        . Reporting
+        
+          . Prepare audit findings risk level and recommendations
+        
+        
+        . Follow up
+        
+          . Check whether corrective actions are implemented
 
 
 ..................................................................
 SECURITY AUDIT FLOW
 ..................................................................
-
-. Audit Planning
-        ↓
-. Data Collection
-        ↓
-. Risk Assessment
-        ↓
-. Control Testing
-        ↓
-. Audit Report
-        ↓
-. Corrective Action
-        ↓
-. Follow Up
+                
+                . Audit Planning
+                        ↓
+                . Data Collection
+                        ↓
+                . Risk Assessment
+                        ↓
+                . Control Testing
+                        ↓
+                . Audit Report
+                        ↓
+                . Corrective Action
+                        ↓
+                . Follow Up
 
 
 ==================================================================
 EXAMPLE SECURITY AUDIT CHECKLIST
 ==================================================================
+        ------------------------------------------------------------
+        Area                         Audit Question
+        ------------------------------------------------------------
+        User Access                  Are inactive users removed
+        
+        Password Policy              Are strong passwords required
+        
+        Backup                       Are backups taken regularly
+        
+        Data Privacy                 Is personal data protected
+        
+        Software Updates             Are systems updated
+        
+        Antivirus                    Is protection active
+        
+        Logs                         Are system activities monitored
+        
+        Physical Security            Is server room protected
+        
+        Incident Response            Is there a response plan
+        
+        Compliance                   Are legal requirements followed
 
-Area                         Audit Question
 
-User Access                  Are inactive users removed
 
-Password Policy              Are strong passwords required
 
-Backup                       Are backups taken regularly
 
-Data Privacy                 Is personal data protected
 
-Software Updates             Are systems updated
 
-Antivirus                    Is protection active
 
-Logs                         Are system activities monitored
 
-Physical Security            Is server room protected
-
-Incident Response            Is there a response plan
-
-Compliance                   Are legal requirements followed
 
 
 ==================================================================
@@ -790,50 +884,53 @@ CASE STUDY 1  CUSTOMER DATA MISUSE IN ONLINE STORE
 
 . The company has no clear privacy policy
 
+            
+            ..................................................................
+            ETHICAL ISSUES
+            ..................................................................
+            
+            . Customer data may be used without consent
+            
+            . Customer privacy may be violated
+            
+            . Trust may be damaged
+            
+            . Data may be misused by third party
+            
+            
+            ..................................................................
+            LEGAL ISSUES
+            ..................................................................
+            
+            . Violation of privacy requirements
+            
+            . Lack of consent
+            
+            . Weak data protection practice
+            
+            . Possible legal complaint from customers
+            
+            
+            ..................................................................
+            RECOMMENDED SOLUTIONS
+            ..................................................................
+            
+            . Create clear privacy policy
+            
+            . Take customer consent
+            
+            . Share only necessary data if legally allowed
+            
+            . Use data anonymization where possible
+            
+            . Limit third party access
+            
+            . Maintain data sharing agreement
+            
+            . Train employees about data ethics
+            
 
-..................................................................
-ETHICAL ISSUES
-..................................................................
 
-. Customer data may be used without consent
-
-. Customer privacy may be violated
-
-. Trust may be damaged
-
-. Data may be misused by third party
-
-
-..................................................................
-LEGAL ISSUES
-..................................................................
-
-. Violation of privacy requirements
-
-. Lack of consent
-
-. Weak data protection practice
-
-. Possible legal complaint from customers
-
-
-..................................................................
-RECOMMENDED SOLUTIONS
-..................................................................
-
-. Create clear privacy policy
-
-. Take customer consent
-
-. Share only necessary data if legally allowed
-
-. Use data anonymization where possible
-
-. Limit third party access
-
-. Maintain data sharing agreement
-
-. Train employees about data ethics
 
 
 ==================================================================
@@ -849,51 +946,51 @@ CASE STUDY 2  COLLEGE MIS RESULT MANIPULATION
 
 . The staff member has the technical ability to change records
 
-
-..................................................................
-ETHICAL ISSUES
-..................................................................
-
-. Misuse of authority
-
-. Academic dishonesty
-
-. Unfair advantage
-
-. Loss of trust in institution
-
-. Damage to academic integrity
-
-
-..................................................................
-SECURITY ISSUES
-..................................................................
-
-. Weak access control
-
-. Lack of approval process
-
-. Poor audit trail
-
-. No monitoring of data changes
-
-
-..................................................................
-RECOMMENDED SOLUTIONS
-..................................................................
-
-. Apply role based access control
-
-. Require approval for mark changes
-
-. Maintain audit logs
-
-. Notify responsible authority for changes
-
-. Conduct periodic system audit
-
-. Separate data entry and approval roles
-
+            
+            ..................................................................
+            ETHICAL ISSUES
+            ..................................................................
+            
+            . Misuse of authority
+            
+            . Academic dishonesty
+            
+            . Unfair advantage
+            
+            . Loss of trust in institution
+            
+            . Damage to academic integrity
+            
+            
+            ..................................................................
+            SECURITY ISSUES
+            ..................................................................
+            
+            . Weak access control
+            
+            . Lack of approval process
+            
+            . Poor audit trail
+            
+            . No monitoring of data changes
+            
+            
+            ..................................................................
+            RECOMMENDED SOLUTIONS
+            ..................................................................
+            
+            . Apply role based access control
+            
+            . Require approval for mark changes
+            
+            . Maintain audit logs
+            
+            . Notify responsible authority for changes
+            
+            . Conduct periodic system audit
+            
+            . Separate data entry and approval roles
+            
 
 ==================================================================
 CASE STUDY 3  HOSPITAL DATA BREACH
@@ -907,50 +1004,50 @@ CASE STUDY 3  HOSPITAL DATA BREACH
 
 . Some patient details are shared outside the hospital
 
-
-..................................................................
-ETHICAL ISSUES
-..................................................................
-
-. Patient privacy violation
-
-. Misuse of sensitive health data
-
-. Loss of professional responsibility
-
-. Harm to patient trust
-
-
-..................................................................
-SECURITY ISSUES
-..................................................................
-
-. Too much access permission
-
-. Weak monitoring
-
-. No strict privacy training
-
-. Poor data access policy
-
-
-..................................................................
-RECOMMENDED SOLUTIONS
-..................................................................
-
-. Limit access based on job role
-
-. Monitor patient record access
-
-. Train staff on privacy and confidentiality
-
-. Use strong authentication
-
-. Maintain access logs
-
-. Apply disciplinary policy for misuse
-
-
+          
+          ..................................................................
+          ETHICAL ISSUES
+          ..................................................................
+          
+          . Patient privacy violation
+          
+          . Misuse of sensitive health data
+          
+          . Loss of professional responsibility
+          
+          . Harm to patient trust
+          
+          
+          ..................................................................
+          SECURITY ISSUES
+          ..................................................................
+          
+          . Too much access permission
+          
+          . Weak monitoring
+          
+          . No strict privacy training
+          
+          . Poor data access policy
+          
+          
+          ..................................................................
+          RECOMMENDED SOLUTIONS
+          ..................................................................
+          
+          . Limit access based on job role
+          
+          . Monitor patient record access
+          
+          . Train staff on privacy and confidentiality
+          
+          . Use strong authentication
+          
+          . Maintain access logs
+          
+          . Apply disciplinary policy for misuse
+          
+          
 ==================================================================
 SIMPLE DATA EXAMPLE FOR SECURITY RISK ANALYSIS
 ==================================================================
@@ -981,6 +1078,19 @@ ANALYSIS
 . Admin has low incident count but still needs access control
 
 . Security training should focus first on IT and Finance
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ==================================================================
@@ -1018,6 +1128,21 @@ SHORT CASE QUESTIONS
 15 Analyze the ethical issue in sharing customer data without consent
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ==================================================================
 INTEGRATED CASE STUDY
 ==================================================================
@@ -1042,79 +1167,93 @@ CASE  DIGITAL BANKING SECURITY AND ETHICS
   ethical use of customer data
 
 
-..................................................................
-PROBLEMS IDENTIFIED
-..................................................................
+              ..................................................................
+              PROBLEMS IDENTIFIED
+              ..................................................................
+              
+              . Phishing risk
+              
+              . Customer awareness gap
+              
+              . Unauthorized access by employees
+              
+              . Weak monitoring of access logs
+              
+              . Privacy risk
+              
+              . Possible data misuse
+              
+              . Reputational risk
+              
+              . Need for security audit
+              
+              
+              ..................................................................
+              RECOMMENDED MIS SECURITY CONTROLS
+              ..................................................................
+              
+              . Two factor authentication
+              
+              . Customer awareness campaign
+              
+              . Role based access control
+              
+              . Regular security audit
+              
+              . Strong password policy
+              
+              . Login alert notification
+              
+              . Transaction monitoring
+              
+              . Employee ethics training
+              
+              . Data privacy policy
+              
+              . Incident response plan
+              
+              . Regular backup
+              
+              . Access log review
+              
+              
+              ..................................................................
+              CASE STUDY QUESTIONS
+              ..................................................................
+              
+              1  What cyber threats are present in this case
+              
+              2  Which part of CIA triad is affected by phishing
+              
+              3  What ethical issue is created by unauthorized employee access
+              
+              4  What privacy risks exist in this case
+              
+              5  What security controls should the bank implement
+              
+              6  Why is customer awareness important in cyber security
+              
+              7  How can a security audit help the bank
+              
+              8  What legal and compliance issues may arise
+              
+              9  How can role based access control help protect customer records
+              
+              10 What should be included in the bank incident response plan
 
-. Phishing risk
-
-. Customer awareness gap
-
-. Unauthorized access by employees
-
-. Weak monitoring of access logs
-
-. Privacy risk
-
-. Possible data misuse
-
-. Reputational risk
-
-. Need for security audit
 
 
-..................................................................
-RECOMMENDED MIS SECURITY CONTROLS
-..................................................................
-
-. Two factor authentication
-
-. Customer awareness campaign
-
-. Role based access control
-
-. Regular security audit
-
-. Strong password policy
-
-. Login alert notification
-
-. Transaction monitoring
-
-. Employee ethics training
-
-. Data privacy policy
-
-. Incident response plan
-
-. Regular backup
-
-. Access log review
 
 
-..................................................................
-CASE STUDY QUESTIONS
-..................................................................
 
-1  What cyber threats are present in this case
 
-2  Which part of CIA triad is affected by phishing
 
-3  What ethical issue is created by unauthorized employee access
 
-4  What privacy risks exist in this case
 
-5  What security controls should the bank implement
 
-6  Why is customer awareness important in cyber security
 
-7  How can a security audit help the bank
 
-8  What legal and compliance issues may arise
 
-9  How can role based access control help protect customer records
-
-10 What should be included in the bank incident response plan
 
 
 ==================================================================
@@ -1145,6 +1284,3 @@ SHORT SUMMARY
 . MIS security is both a technical responsibility and management
   responsibility
 
-==================================================================
-END OF UNIT VI
-==================================================================
