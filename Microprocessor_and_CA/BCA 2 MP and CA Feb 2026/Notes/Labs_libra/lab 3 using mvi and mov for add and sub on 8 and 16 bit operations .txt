@@ -1,0 +1,451 @@
+=========================================================
+8085 MICROPROCESSOR
+8-BIT AND 16-BIT ADDITION / SUBTRACTION
+QUESTIONS WITH ANSWERS
+=========================================================
+
+
+=========================================================
+WHY DO WE GO FROM 8-BIT TO 16-BIT
+=========================================================
+        
+        . 8085 is an 8-bit microprocessor
+        
+        . It can process 8-bit data directly
+        
+        . 8-bit data range is
+        
+          00H to FFH
+        
+          Decimal 0 to 255
+        
+        . If result is greater than FFH, Carry Flag becomes 1
+
+
+
+Example
+
+          F0H + 25H = 115H
+        
+          But Accumulator can store only 15H
+        
+          Carry Flag = 1
+
+
+. To handle larger numbers, we use 16-bit operation
+
+. 16-bit data range is
+
+        0000H to FFFFH
+
+        Decimal 0 to 65535
+
+. 16-bit operation is useful for
+
+          . Large numbers
+          . Memory addresses
+          . Counters
+          . Loops
+          . Data size calculation
+          . Address calculation
+
+
+=========================================================
+PART A
+8-BIT ADDITION AND SUBTRACTION
+=========================================================
+
+
+1. Add 25H and 35H
+
+Program
+
+MVI A,25H
+MVI B,35H
+ADD B
+HLT
+
+Answer
+
+25H + 35H = 5AH
+
+A = 5AH
+CY = 0
+
+
+---------------------------------------------------------
+
+
+2. Add AAH and 77H
+
+Program
+
+MVI A,AAH
+MVI B,77H
+ADD B
+HLT
+
+Answer
+
+AAH + 77H = 121H
+
+A = 21H
+CY = 1
+
+
+---------------------------------------------------------
+
+
+3. Add 45H, 22H and 11H
+
+Program
+
+MVI A,45H
+MVI B,22H
+ADD B
+MVI C,11H
+ADD C
+HLT
+
+Answer
+
+45H + 22H + 11H = 78H
+
+A = 78H
+CY = 0
+
+
+---------------------------------------------------------
+
+
+4. Subtract 25H from 70H
+
+Program
+
+MVI A,70H
+MVI B,25H
+SUB B
+HLT
+
+Answer
+
+70H - 25H = 4BH
+
+A = 4BH
+CY = 0
+
+
+---------------------------------------------------------
+
+
+5. Subtract 56H from 34H
+
+Program
+
+MVI A,34H
+MVI B,56H
+SUB B
+HLT
+
+Answer
+
+34H - 56H = DEH
+
+A = DEH
+CY = 1
+
+Note
+
+CY = 1 means borrow is generated
+
+
+=========================================================
+PART B
+16-BIT ADDITION
+=========================================================
+
+
+6. Add 1234H and 1111H
+
+Logic
+
+HL pair stores first 16-bit number
+
+DE pair stores second 16-bit number
+
+DAD D adds DE with HL
+
+Program
+
+LXI H,1234H
+LXI D,1111H
+DAD D
+HLT
+
+Answer
+
+1234H + 1111H = 2345H
+
+HL = 2345H
+CY = 0
+
+
+---------------------------------------------------------
+
+
+7. Add 2500H and 1300H
+
+Program
+
+LXI H,2500H
+LXI D,1300H
+DAD D
+HLT
+
+Answer
+
+2500H + 1300H = 3800H
+
+HL = 3800H
+CY = 0
+
+
+---------------------------------------------------------
+
+
+8. Add F000H and 2000H
+
+Program
+
+LXI H,F000H
+LXI D,2000H
+DAD D
+HLT
+
+Answer
+
+F000H + 2000H = 11000H
+
+HL = 1000H
+CY = 1
+
+Note
+
+16-bit register can store only 1000H
+
+Carry Flag = 1
+
+
+=========================================================
+PART C
+16-BIT SUBTRACTION
+=========================================================
+
+Note
+
+8085 has no direct 16-bit subtraction instruction
+
+So 16-bit subtraction is done using
+
+. Low byte subtraction
+. High byte subtraction
+. Borrow handling
+
+
+---------------------------------------------------------
+
+
+9. Subtract 1234H from 5678H
+
+Calculation
+
+5678H - 1234H = 4444H
+
+Program Logic
+
+First Number  = 5678H
+Second Number = 1234H
+
+Low Byte
+
+78H - 34H = 44H
+
+High Byte
+
+56H - 12H = 44H
+
+Answer
+
+Result = 4444H
+
+
+---------------------------------------------------------
+
+
+10. Subtract 2500H from 1234H
+
+Calculation
+
+1234H - 2500H = ED34H
+
+Because second number is larger, borrow occurs
+
+Answer
+
+Result = ED34H
+
+CY = 1
+
+Note
+
+In 16-bit subtraction, CY = 1 means final borrow
+
+
+=========================================================
+QUESTION AND ANSWER SET
+=========================================================
+
+
+Q1. Why is 8085 called an 8-bit microprocessor?
+
+Answer
+
+. 8085 is called an 8-bit microprocessor because its accumulator,
+  ALU, and data bus can process 8-bit data at a time
+
+
+---------------------------------------------------------
+
+
+Q2. What is the maximum value that can be stored in 8-bit register?
+
+Answer
+
+. Maximum 8-bit value is FFH
+
+. Decimal value is 255
+
+
+---------------------------------------------------------
+
+
+Q3. What happens when 8-bit addition result is greater than FFH?
+
+Answer
+
+. Accumulator stores only lower 8 bits
+
+. Carry Flag becomes 1
+
+Example
+
+AAH + 77H = 121H
+
+A = 21H
+
+CY = 1
+
+
+---------------------------------------------------------
+
+
+Q4. Why do we need 16-bit arithmetic?
+
+Answer
+
+. 16-bit arithmetic is needed to handle larger numbers
+
+. It is also used in memory address calculation
+
+. It is useful for counters, loops, and data block operations
+
+
+---------------------------------------------------------
+
+
+Q5. Which register pair is commonly used for 16-bit addition?
+
+Answer
+
+. HL register pair is commonly used
+
+. DE or BC can be added to HL using DAD instruction
+
+
+---------------------------------------------------------
+
+
+Q6. Which instruction is used for 16-bit addition in 8085?
+
+Answer
+
+. DAD instruction is used for 16-bit addition
+
+Example
+
+DAD D
+
+Meaning
+
+HL = HL + DE
+
+
+---------------------------------------------------------
+
+
+Q7. Does 8085 have direct 16-bit subtraction instruction?
+
+Answer
+
+. No
+
+. 8085 does not have direct 16-bit subtraction instruction
+
+. It is performed using 8-bit subtraction with borrow handling
+
+
+---------------------------------------------------------
+
+
+Q8. What is the range of 16-bit data?
+
+Answer
+
+. 16-bit data range is
+
+  0000H to FFFFH
+
+. Decimal range is
+
+  0 to 65535
+
+
+---------------------------------------------------------
+
+
+Q9. What is the result of 1234H + 1111H?
+
+Answer
+
+1234H + 1111H = 2345H
+
+HL = 2345H
+
+
+---------------------------------------------------------
+
+
+Q10. What is the result of F000H + 2000H?
+
+Answer
+
+F000H + 2000H = 11000H
+
+HL = 1000H
+
+CY = 1
+
+
+=========================================================
+END
+=========================================================
