@@ -1,0 +1,1348 @@
+
+
+
+******************************************************************************
+******************************************************************************
+******************************************************************************
+
+```text
+==================================================================
+TELECOM CUSTOMER CHURN ANALYTICS USING DATA ANALYTICS AND ML
+Dataset Size  4000 Records
+Domain        Telecom Company
+Goal          Predict whether customer will leave or stay
+==================================================================
+```
+
+```markdown
+# ================================================================
+# STEP 1  PROJECT INTRODUCTION
+# ================================================================
+
+. Telecom companies use data analytics to reduce customer churn
+
+. Customer churn means customer leaves the company service
+
+. In telecom business churn may happen due to
+
+  . High monthly charge
+
+  . Poor network quality
+
+  . Frequent complaints
+
+  . Low satisfaction
+
+  . Better competitor offer
+
+  . Short contract period
+
+  . Long payment delay
+
+. The goal of this notebook is to analyze telecom customer data
+
+. We will create 4000 dummy customer records
+
+. We will perform EDA
+
+. We will train machine learning models
+
+. We will predict whether customer will stay or leave
+
+. Output variable will be churn
+
+. churn = 0 means customer will stay
+
+. churn = 1 means customer will leave
+```
+
+```markdown
+# ================================================================
+# STEP 2  UNDERSTANDING VARIABLES
+# ================================================================
+
+. In machine learning variables are divided into two main types
+
+. Independent variables
+
+  . These are input variables
+
+  . These variables help predict the target
+
+  . Example
+
+    . monthly_charge
+
+    . tenure_months
+
+    . complaints
+
+    . satisfaction_score
+
+    . payment_delay_days
+
+    . network_downtime_hours
+
+    . competitor_offer
+
+
+. Dependent variable or target variable
+
+  . This is the output variable
+
+  . This is what we want to predict
+
+  . In this project target variable is churn
+
+  . churn = 1 means customer leaves
+
+  . churn = 0 means customer stays
+
+
+. Example
+
+  . If monthly charge is high
+
+  . If complaints are high
+
+  . If satisfaction score is low
+
+  . Then churn chance may increase
+```
+
+```python
+# ================================================================
+# STEP 3  IMPORT REQUIRED LIBRARIES
+# ================================================================
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score, roc_curve
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+import warnings
+warnings.filterwarnings("ignore")
+
+print("Libraries imported successfully")
+```
+
+```markdown
+# ================================================================
+# STEP 4  CREATE 4000 TELECOM CUSTOMER DATASET
+# ================================================================
+
+. We are creating dummy dataset for classroom and research practice
+
+. Dataset contains 4000 telecom customers
+
+. Each row represents one customer
+
+. Features are selected based on realistic telecom churn reasons
+
+. Target variable is churn
+```
+
+```python
+# ================================================================
+# STEP 4  GENERATE DUMMY TELECOM DATA
+# ================================================================
+
+np.random.seed(42)
+
+n = 4000
+
+customer_id = [f"CUST_{i:04d}" for i in range(1, n + 1)]
+
+tenure_months = np.random.randint(1, 73, n)
+
+monthly_charge = np.random.normal(2200, 800, n)
+monthly_charge = np.clip(monthly_charge, 500, 6000)
+
+internet_usage_gb = np.random.normal(55, 25, n)
+internet_usage_gb = np.clip(internet_usage_gb, 1, 180)
+
+support_calls = np.random.poisson(2, n)
+support_calls = np.clip(support_calls, 0, 12)
+
+technical_complaints = np.random.poisson(1.8, n)
+technical_complaints = np.clip(technical_complaints, 0, 10)
+
+network_downtime_hours = np.random.normal(4, 3, n)
+network_downtime_hours = np.clip(network_downtime_hours, 0, 20)
+
+satisfaction_score = np.random.normal(6.5, 2, n)
+satisfaction_score = np.clip(satisfaction_score, 1, 10)
+
+payment_delay_days = np.random.poisson(4, n)
+payment_delay_days = np.clip(payment_delay_days, 0, 30)
+
+contract_type = np.random.choice(
+    ["Month-to-Month", "One-Year", "Two-Year"],
+    size=n,
+    p=[0.50, 0.30, 0.20]
+)
+
+competitor_offer = np.random.choice([0, 1], size=n, p=[0.70, 0.30])
+
+auto_payment = np.random.choice([0, 1], size=n, p=[0.45, 0.55])
+
+multiple_services = np.random.choice([0, 1], size=n, p=[0.40, 0.60])
+
+# Convert contract into risk score
+contract_risk = np.where(contract_type == "Month-to-Month", 1.0,
+                 np.where(contract_type == "One-Year", 0.4, 0.1))
+
+# Create churn probability using logistic style formula
+churn_score = (
+    -3.2
+    + 0.00035 * monthly_charge
+    - 0.030 * tenure_months
+    + 0.22 * support_calls
+    + 0.30 * technical_complaints
+    + 0.16 * network_downtime_hours
+    - 0.35 * satisfaction_score
+    + 0.06 * payment_delay_days
+    + 1.05 * competitor_offer
+    + 1.10 * contract_risk
+    - 0.55 * auto_payment
+    - 0.40 * multiple_services
+)
+
+churn_probability = 1 / (1 + np.exp(-churn_score))
+
+churn = np.random.binomial(1, churn_probability)
+
+df = pd.DataFrame({
+    "customer_id": customer_id,
+    "tenure_months": tenure_months,
+    "monthly_charge": monthly_charge.round(2),
+    "internet_usage_gb": internet_usage_gb.round(2),
+    "support_calls": support_calls,
+    "technical_complaints": technical_complaints,
+    "network_downtime_hours": network_downtime_hours.round(2),
+    "satisfaction_score": satisfaction_score.round(2),
+    "payment_delay_days": payment_delay_days,
+    "contract_type": contract_type,
+    "competitor_offer": competitor_offer,
+    "auto_payment": auto_payment,
+    "multiple_services": multiple_services,
+    "churn": churn
+})
+
+df.head()
+```
+
+```markdown
+# ================================================================
+# STEP 5  BASIC DATA UNDERSTANDING
+# ================================================================
+
+. In this step we check shape columns data types and missing values
+
+. This is the first step of EDA
+
+. EDA means Exploratory Data Analysis
+
+. EDA helps us understand dataset before model training
+```
+
+```python
+# Dataset shape
+print("Dataset shape:", df.shape)
+
+# First five records
+display(df.head())
+
+# Data types
+print("\nData Types")
+print(df.dtypes)
+
+# Missing values
+print("\nMissing Values")
+print(df.isnull().sum())
+
+# Basic statistics
+display(df.describe())
+```
+
+```markdown
+# ================================================================
+# STEP 6  TARGET VARIABLE ANALYSIS
+# ================================================================
+
+. Target variable is churn
+
+. churn = 0 means customer stays
+
+. churn = 1 means customer leaves
+
+. We check how many customers stayed and how many left
+
+. This helps understand class distribution
+```
+
+```python
+# Churn count
+churn_count = df["churn"].value_counts()
+print(churn_count)
+
+# Churn percentage
+churn_percent = df["churn"].value_counts(normalize=True) * 100
+print("\nChurn Percentage")
+print(churn_percent)
+
+# Visualization
+plt.figure(figsize=(6,4))
+plt.bar(["Stay", "Leave"], churn_count.values)
+plt.title("Customer Churn Distribution")
+plt.xlabel("Customer Status")
+plt.ylabel("Number of Customers")
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. The bar chart shows number of customers who stay and leave
+
+. If churn class is very high the company is losing many customers
+
+. If churn class is very low the company has better retention
+
+. Class distribution also affects model evaluation
+
+. In churn problem recall and F1 score are important because we want to correctly identify customers who may leave
+```
+
+```markdown
+# ================================================================
+# STEP 7  EDA  MONTHLY CHARGE AND CHURN
+# ================================================================
+
+. Monthly charge is an independent variable
+
+. Customers with high monthly charges may leave if they find cheaper competitor offers
+
+. We compare monthly charge between stay and churn customers
+```
+
+```python
+plt.figure(figsize=(7,4))
+plt.boxplot(
+    [df[df["churn"] == 0]["monthly_charge"], df[df["churn"] == 1]["monthly_charge"]],
+    labels=["Stay", "Leave"]
+)
+plt.title("Monthly Charge Comparison by Churn")
+plt.xlabel("Customer Status")
+plt.ylabel("Monthly Charge")
+plt.show()
+
+print(df.groupby("churn")["monthly_charge"].mean())
+```
+
+```markdown
+# Interpretation
+
+. If average monthly charge is higher for churn customers then price may be one reason for churn
+
+. Telecom company can create personalized discount plans for high charge and high risk customers
+```
+
+```markdown
+# ================================================================
+# STEP 8  EDA  SATISFACTION SCORE AND CHURN
+# ================================================================
+
+. Satisfaction score is very important in churn analytics
+
+. Low satisfaction usually increases churn risk
+
+. We compare satisfaction score for stay and leave customers
+```
+
+```python
+plt.figure(figsize=(7,4))
+plt.boxplot(
+    [df[df["churn"] == 0]["satisfaction_score"], df[df["churn"] == 1]["satisfaction_score"]],
+    labels=["Stay", "Leave"]
+)
+plt.title("Satisfaction Score Comparison by Churn")
+plt.xlabel("Customer Status")
+plt.ylabel("Satisfaction Score")
+plt.show()
+
+print(df.groupby("churn")["satisfaction_score"].mean())
+```
+
+```markdown
+# Interpretation
+
+. If churn customers have lower satisfaction score then service quality improvement is needed
+
+. Customers with low satisfaction should receive priority support
+
+. Satisfaction score can be a strong predictor of churn
+```
+
+```markdown
+# ================================================================
+# STEP 9  EDA  COMPLAINTS AND SUPPORT CALLS
+# ================================================================
+
+. Frequent complaints indicate service problem
+
+. Many support calls may mean customer is unhappy
+
+. We analyze technical complaints and support calls with churn
+```
+
+```python
+complaint_summary = df.groupby("churn")[["technical_complaints", "support_calls"]].mean()
+display(complaint_summary)
+
+complaint_summary.plot(kind="bar", figsize=(8,4))
+plt.title("Average Complaints and Support Calls by Churn")
+plt.xlabel("Churn")
+plt.ylabel("Average Count")
+plt.xticks([0,1], ["Stay", "Leave"], rotation=0)
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. If churn customers have more technical complaints then network or service issue is important
+
+. If churn customers make more support calls then complaint resolution may be weak
+
+. Management can reduce churn by improving technical support and complaint response time
+```
+
+```markdown
+# ================================================================
+# STEP 10  EDA  CONTRACT TYPE AND CHURN
+# ================================================================
+
+. Contract type can affect churn
+
+. Month to month customers can leave easily
+
+. Two year contract customers may be more stable
+
+. We analyze churn rate by contract type
+```
+
+```python
+contract_churn = df.groupby("contract_type")["churn"].mean().sort_values(ascending=False) * 100
+display(contract_churn)
+
+plt.figure(figsize=(7,4))
+plt.bar(contract_churn.index, contract_churn.values)
+plt.title("Churn Rate by Contract Type")
+plt.xlabel("Contract Type")
+plt.ylabel("Churn Rate Percentage")
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. If Month-to-Month contract has highest churn rate then short term customers are risky
+
+. Company can encourage long term contracts using loyalty benefits
+
+. Contract type is useful for customer retention strategy
+```
+
+```markdown
+# ================================================================
+# STEP 11  EDA  COMPETITOR OFFER AND CHURN
+# ================================================================
+
+. Competitor offer is a strong business factor
+
+. Customers may leave when another company gives better package
+
+. We compare churn rate for customers with and without competitor offer
+```
+
+```pythonc
+```
+
+```markdown
+# Interpretation
+
+. If churn rate is higher for customers receiving competitor offers then market competition is a strong reason
+
+. Company should identify such customers early and provide retention offers
+```
+
+```markdown
+# ================================================================
+# STEP 12  CORRELATION ANALYSIS
+# ================================================================
+
+. Correlation shows relationship between numerical variables
+
+. Positive correlation with churn means variable may increase churn
+
+. Negative correlation with churn means variable may reduce churn
+
+. For categorical contract type we will convert it later before modeling
+```
+
+```python
+numeric_df = df.drop(columns=["customer_id", "contract_type"])
+
+corr = numeric_df.corr()
+
+plt.figure(figsize=(11,8))
+plt.imshow(corr, aspect="auto")
+plt.colorbar()
+plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
+plt.yticks(range(len(corr.columns)), corr.columns)
+plt.title("Correlation Heatmap")
+plt.show()
+
+display(corr["churn"].sort_values(ascending=False))
+```
+
+```markdown
+# Interpretation
+
+. Variables with positive correlation to churn may increase customer leaving risk
+
+. Variables with negative correlation to churn may reduce customer leaving risk
+
+. Expected positive churn factors
+
+  . technical_complaints
+
+  . support_calls
+
+  . network_downtime_hours
+
+  . payment_delay_days
+
+  . competitor_offer
+
+  . monthly_charge
+
+
+. Expected negative churn factors
+
+  . satisfaction_score
+
+  . tenure_months
+
+  . auto_payment
+
+  . multiple_services
+```
+
+```markdown
+# ================================================================
+# STEP 13  PREPARE DATA FOR MACHINE LEARNING
+# ================================================================
+
+. Machine learning models need numerical input
+
+. contract_type is categorical
+
+. We convert contract_type into dummy variables using one hot encoding
+
+. Independent variables are stored in X
+
+. Dependent target variable is stored in y
+```
+
+```python
+# Drop customer_id because it is only identifier
+model_df = df.drop(columns=["customer_id"])
+
+# One hot encode categorical variable
+model_df = pd.get_dummies(model_df, columns=["contract_type"], drop_first=True)
+
+# Independent variables
+X = model_df.drop(columns=["churn"])
+
+# Dependent variable
+y = model_df["churn"]
+
+print("Independent Variables")
+print(X.columns.tolist())
+
+print("\nTarget Variable")
+print("churn")
+
+display(X.head())
+```
+
+```markdown
+# ================================================================
+# STEP 14  TRAIN TEST SPLIT
+# ================================================================
+
+. Dataset is divided into training and testing parts
+
+. Training data is used to train the model
+
+. Testing data is used to check model performance on unseen data
+
+. We use 80 percent training and 20 percent testing
+```
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y
+)
+
+print("Training data:", X_train.shape)
+print("Testing data:", X_test.shape)
+```
+
+```markdown
+# ================================================================
+# STEP 15  MODEL 1  LOGISTIC REGRESSION
+# ================================================================
+
+. Logistic Regression is suitable for binary classification
+
+. Here target has two classes
+
+  . 0 stay
+
+  . 1 leave
+
+. Logistic Regression is easy to interpret
+
+. It gives probability of churn
+
+. It is a good baseline model for churn prediction
+```
+
+```python
+scaler = StandardScaler()
+
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+log_model = LogisticRegression(max_iter=1000)
+log_model.fit(X_train_scaled, y_train)
+
+log_pred = log_model.predict(X_test_scaled)
+log_prob = log_model.predict_proba(X_test_scaled)[:, 1]
+```
+
+```markdown
+# ================================================================
+# STEP 16  MODEL 2  DECISION TREE
+# ================================================================
+
+. Decision Tree is useful for rule based decision making
+
+. It can show conditions like
+
+  . if satisfaction is low and complaints are high then churn risk is high
+
+. It is easy to explain to managers
+
+. But uncontrolled decision tree may overfit
+```
+
+```python
+tree_model = DecisionTreeClassifier(
+    max_depth=5,
+    min_samples_split=30,
+    min_samples_leaf=15,
+    random_state=42
+)
+
+tree_model.fit(X_train, y_train)
+
+tree_pred = tree_model.predict(X_test)
+tree_prob = tree_model.predict_proba(X_test)[:, 1]
+```
+
+```markdown
+# ================================================================
+# STEP 17  MODEL 3  RANDOM FOREST
+# ================================================================
+
+. Random Forest is an ensemble model
+
+. It uses many decision trees
+
+. It usually performs better than a single decision tree
+
+. It can handle complex relationships
+
+. It also provides feature importance
+
+. Random Forest is often suitable for churn prediction
+```
+
+```python
+rf_model = RandomForestClassifier(
+    n_estimators=200,
+    max_depth=8,
+    min_samples_leaf=10,
+    random_state=42
+)
+
+rf_model.fit(X_train, y_train)
+
+rf_pred = rf_model.predict(X_test)
+rf_prob = rf_model.predict_proba(X_test)[:, 1]
+```
+
+```markdown
+# ================================================================
+# STEP 18  MODEL EVALUATION FUNCTION
+# ================================================================
+
+. We evaluate models using
+
+  . Accuracy
+
+  . Precision
+
+  . Recall
+
+  . F1 Score
+
+  . ROC AUC
+
+
+. Accuracy shows overall correct prediction
+
+. Precision shows how many predicted churn customers were actually churn
+
+. Recall shows how many actual churn customers were correctly found
+
+. F1 Score balances precision and recall
+
+. ROC AUC shows classification ability across thresholds
+```
+
+```python
+def evaluate_model(model_name, y_true, y_pred, y_prob):
+    return {
+        "Model": model_name,
+        "Accuracy": accuracy_score(y_true, y_pred),
+        "Precision": precision_score(y_true, y_pred),
+        "Recall": recall_score(y_true, y_pred),
+        "F1 Score": f1_score(y_true, y_pred),
+        "ROC AUC": roc_auc_score(y_true, y_prob)
+    }
+
+results = pd.DataFrame([
+    evaluate_model("Logistic Regression", y_test, log_pred, log_prob),
+    evaluate_model("Decision Tree", y_test, tree_pred, tree_prob),
+    evaluate_model("Random Forest", y_test, rf_pred, rf_prob)
+])
+
+display(results)
+```
+
+```markdown
+# Interpretation
+
+. The model with higher F1 Score and ROC AUC is usually better for churn prediction
+
+. For churn prediction recall is very important
+
+. High recall means model can identify most customers who may leave
+
+. Random Forest often performs well because it captures complex relationships
+
+. Logistic Regression is better for simple explanation
+
+. Decision Tree is useful for rule based managerial interpretation
+```
+
+```markdown
+# ================================================================
+# STEP 19  VISUALIZE MODEL COMPARISON
+# ================================================================
+```
+
+```python
+metrics_to_plot = ["Accuracy", "Precision", "Recall", "F1 Score", "ROC AUC"]
+
+results_plot = results.set_index("Model")[metrics_to_plot]
+
+results_plot.plot(kind="bar", figsize=(10,5))
+plt.title("Model Performance Comparison")
+plt.ylabel("Score")
+plt.xticks(rotation=30)
+plt.ylim(0, 1)
+plt.show()
+```
+
+```markdown
+# ================================================================
+# STEP 20  CONFUSION MATRIX FOR BEST MODEL
+# ================================================================
+
+. We will use Random Forest as final model
+
+. Confusion matrix shows correct and wrong predictions
+
+. It helps understand model errors
+```
+
+```python
+cm = confusion_matrix(y_test, rf_pred)
+
+plt.figure(figsize=(6,5))
+plt.imshow(cm)
+plt.colorbar()
+plt.xticks([0,1], ["Stay", "Leave"])
+plt.yticks([0,1], ["Stay", "Leave"])
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix  Random Forest")
+
+for i in range(2):
+    for j in range(2):
+        plt.text(j, i, cm[i, j], ha="center", va="center")
+
+plt.show()
+
+print(classification_report(y_test, rf_pred))
+```
+
+```markdown
+# Interpretation
+
+. True Stay means model correctly predicted customer will stay
+
+. True Leave means model correctly predicted customer will leave
+
+. False Stay means model predicted stay but customer actually left
+
+. False Leave means model predicted leave but customer actually stayed
+
+. In churn analytics False Stay is more dangerous because company misses a risky customer
+```
+
+```markdown
+# ================================================================
+# STEP 21  ROC CURVE FOR RANDOM FOREST
+# ================================================================
+```
+
+```python
+fpr, tpr, thresholds = roc_curve(y_test, rf_prob)
+
+plt.figure(figsize=(6,5))
+plt.plot(fpr, tpr, label=f"Random Forest AUC = {roc_auc_score(y_test, rf_prob):.2f}")
+plt.plot([0,1], [0,1], linestyle="--")
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+plt.title("ROC Curve")
+plt.legend()
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. ROC curve shows how well model separates churn and non churn customers
+
+. Curve closer to top left is better
+
+. AUC closer to 1 means better model
+
+. AUC around 0.5 means weak model
+```
+
+```markdown
+# ================================================================
+# STEP 22  FEATURE IMPORTANCE
+# ================================================================
+
+. Feature importance shows which variables are most useful for prediction
+
+. It helps management understand main reasons behind churn
+
+. Random Forest provides feature importance
+```
+
+```python
+feature_importance = pd.DataFrame({
+    "Feature": X.columns,
+    "Importance": rf_model.feature_importances_
+}).sort_values(by="Importance", ascending=False)
+
+display(feature_importance)
+
+plt.figure(figsize=(9,6))
+plt.barh(feature_importance["Feature"], feature_importance["Importance"])
+plt.gca().invert_yaxis()
+plt.title("Feature Importance  Random Forest")
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. Important features may include satisfaction_score complaints monthly_charge downtime and competitor_offer
+
+. If satisfaction_score is highly important then company should improve customer experience
+
+. If technical_complaints is important then network quality must be improved
+
+. If competitor_offer is important then company should create better packages
+
+. If monthly_charge is important then pricing strategy should be reviewed
+```
+
+```markdown
+# ================================================================
+# STEP 23  CREATE PREDICTION FUNCTION
+# ================================================================
+
+. This function takes customer details as input
+
+. It predicts whether customer will stay or leave
+
+. It also gives churn probability
+
+. We use Random Forest as final model
+```
+
+```python
+def predict_churn(
+    tenure_months,
+    monthly_charge,
+    internet_usage_gb,
+    support_calls,
+    technical_complaints,
+    network_downtime_hours,
+    satisfaction_score,
+    payment_delay_days,
+    competitor_offer,
+    auto_payment,
+    multiple_services,
+    contract_type
+):
+    # Prepare input dictionary
+    input_data = {
+        "tenure_months": tenure_months,
+        "monthly_charge": monthly_charge,
+        "internet_usage_gb": internet_usage_gb,
+        "support_calls": support_calls,
+        "technical_complaints": technical_complaints,
+        "network_downtime_hours": network_downtime_hours,
+        "satisfaction_score": satisfaction_score,
+        "payment_delay_days": payment_delay_days,
+        "competitor_offer": competitor_offer,
+        "auto_payment": auto_payment,
+        "multiple_services": multiple_services,
+        "contract_type_One-Year": 0,
+        "contract_type_Two-Year": 0
+    }
+
+    if contract_type == "One-Year":
+        input_data["contract_type_One-Year"] = 1
+    elif contract_type == "Two-Year":
+        input_data["contract_type_Two-Year"] = 1
+
+    input_df = pd.DataFrame([input_data])
+    input_df = input_df[X.columns]
+
+    probability = rf_model.predict_proba(input_df)[0][1]
+    prediction = rf_model.predict(input_df)[0]
+
+    if prediction == 1:
+        result = "Leave"
+    else:
+        result = "Stay"
+
+    return result, probability
+```
+
+```markdown
+# ================================================================
+# STEP 24  PREDICTION EXAMPLES WITH INTERPRETATION
+# ================================================================
+```
+
+```python
+examples = [
+    {
+        "Name": "Example 1  High risk angry customer",
+        "tenure_months": 3,
+        "monthly_charge": 4800,
+        "internet_usage_gb": 25,
+        "support_calls": 8,
+        "technical_complaints": 7,
+        "network_downtime_hours": 14,
+        "satisfaction_score": 2,
+        "payment_delay_days": 12,
+        "competitor_offer": 1,
+        "auto_payment": 0,
+        "multiple_services": 0,
+        "contract_type": "Month-to-Month",
+        "Interpretation": "High charge high complaints low satisfaction and competitor offer make this customer highly risky"
+    },
+    {
+        "Name": "Example 2  Stable loyal customer",
+        "tenure_months": 60,
+        "monthly_charge": 1500,
+        "internet_usage_gb": 80,
+        "support_calls": 1,
+        "technical_complaints": 0,
+        "network_downtime_hours": 1,
+        "satisfaction_score": 9,
+        "payment_delay_days": 0,
+        "competitor_offer": 0,
+        "auto_payment": 1,
+        "multiple_services": 1,
+        "contract_type": "Two-Year",
+        "Interpretation": "Long tenure low complaints high satisfaction and two year contract reduce churn risk"
+    },
+    {
+        "Name": "Example 3  Price sensitive customer",
+        "tenure_months": 15,
+        "monthly_charge": 5200,
+        "internet_usage_gb": 40,
+        "support_calls": 2,
+        "technical_complaints": 1,
+        "network_downtime_hours": 3,
+        "satisfaction_score": 6,
+        "payment_delay_days": 3,
+        "competitor_offer": 1,
+        "auto_payment": 0,
+        "multiple_services": 0,
+        "contract_type": "Month-to-Month",
+        "Interpretation": "High monthly charge and competitor offer may push customer to leave"
+    },
+    {
+        "Name": "Example 4  Network problem customer",
+        "tenure_months": 10,
+        "monthly_charge": 2500,
+        "internet_usage_gb": 65,
+        "support_calls": 6,
+        "technical_complaints": 6,
+        "network_downtime_hours": 12,
+        "satisfaction_score": 4,
+        "payment_delay_days": 5,
+        "competitor_offer": 0,
+        "auto_payment": 1,
+        "multiple_services": 1,
+        "contract_type": "One-Year",
+        "Interpretation": "High downtime and complaints indicate technical service problem"
+    },
+    {
+        "Name": "Example 5  New uncertain customer",
+        "tenure_months": 2,
+        "monthly_charge": 2200,
+        "internet_usage_gb": 50,
+        "support_calls": 2,
+        "technical_complaints": 2,
+        "network_downtime_hours": 4,
+        "satisfaction_score": 6,
+        "payment_delay_days": 2,
+        "competitor_offer": 0,
+        "auto_payment": 0,
+        "multiple_services": 0,
+        "contract_type": "Month-to-Month",
+        "Interpretation": "New customer with short tenure and month to month contract needs onboarding support"
+    },
+    {
+        "Name": "Example 6  Payment delay customer",
+        "tenure_months": 24,
+        "monthly_charge": 2800,
+        "internet_usage_gb": 70,
+        "support_calls": 3,
+        "technical_complaints": 2,
+        "network_downtime_hours": 4,
+        "satisfaction_score": 5,
+        "payment_delay_days": 20,
+        "competitor_offer": 0,
+        "auto_payment": 0,
+        "multiple_services": 1,
+        "contract_type": "One-Year",
+        "Interpretation": "Payment delay and medium satisfaction may indicate dissatisfaction or affordability issue"
+    },
+    {
+        "Name": "Example 7  Premium satisfied customer",
+        "tenure_months": 36,
+        "monthly_charge": 3500,
+        "internet_usage_gb": 120,
+        "support_calls": 1,
+        "technical_complaints": 1,
+        "network_downtime_hours": 2,
+        "satisfaction_score": 8,
+        "payment_delay_days": 1,
+        "competitor_offer": 0,
+        "auto_payment": 1,
+        "multiple_services": 1,
+        "contract_type": "Two-Year",
+        "Interpretation": "Even with higher charge customer is satisfied and uses multiple services so churn risk may be low"
+    }
+]
+
+prediction_results = []
+
+for ex in examples:
+    result, prob = predict_churn(
+        ex["tenure_months"],
+        ex["monthly_charge"],
+        ex["internet_usage_gb"],
+        ex["support_calls"],
+        ex["technical_complaints"],
+        ex["network_downtime_hours"],
+        ex["satisfaction_score"],
+        ex["payment_delay_days"],
+        ex["competitor_offer"],
+        ex["auto_payment"],
+        ex["multiple_services"],
+        ex["contract_type"]
+    )
+
+    prediction_results.append({
+        "Example": ex["Name"],
+        "Predicted Output": result,
+        "Churn Probability": round(prob, 3),
+        "Interpretation": ex["Interpretation"]
+    })
+
+prediction_results_df = pd.DataFrame(prediction_results)
+display(prediction_results_df)
+```
+
+```markdown
+# ================================================================
+# STEP 25  WHAT MODEL SUITS BEST
+# ================================================================
+
+. For this telecom churn problem the target variable is binary
+
+. Binary target means output has two classes
+
+  . Stay
+
+  . Leave
+
+
+. Suitable models are
+
+  . Logistic Regression
+
+  . Decision Tree
+
+  . Random Forest
+
+  . Gradient Boosting
+
+  . XGBoost
+
+
+. Logistic Regression
+
+  . Best when explanation is needed
+
+  . Good baseline model
+
+  . Shows direction of relationship
+
+
+. Decision Tree
+
+  . Best for simple rule explanation
+
+  . Easy to explain to managers
+
+  . May overfit if not controlled
+
+
+. Random Forest
+
+  . Best for better accuracy and stable prediction
+
+  . Handles non linear relationships
+
+  . Gives feature importance
+
+  . Suitable for churn prediction
+
+
+. In this notebook Random Forest is selected as final model because
+
+  . It gives strong performance
+
+  . It handles complex customer behavior
+
+  . It provides feature importance
+
+  . It supports business interpretation
+```
+
+```markdown
+# ================================================================
+# STEP 26  FINAL BUSINESS INTERPRETATION
+# ================================================================
+
+. Telecom churn can be reduced using data analytics
+
+. Integrated customer data helps identify risky customers
+
+. Main churn reasons may include
+
+  . Low satisfaction
+
+  . High complaints
+
+  . High monthly charge
+
+  . Network downtime
+
+  . Competitor offer
+
+  . Short contract type
+
+  . Payment delay
+
+
+. Managers can use churn prediction to take action before customer leaves
+
+. Recommended business actions
+
+  . Give priority support to high complaint customers
+
+  . Give retention discount to high charge customers
+
+  . Improve network quality in high downtime areas
+
+  . Create loyalty plans for month to month customers
+
+  . Use CRM to track customer complaints and follow up
+
+  . Use dashboard to monitor churn rate monthly
+
+  . Use ethical data policy to protect customer privacy
+
+
+. This project shows how MIS BI and machine learning support decision making
+
+. It also shows how independent variables help predict target variable
+```
+
+
+
+
+
+******************************************************************************
+******************************************************************************
+******************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************
+******************************************************************************
+******************************************************************************
+
+
+
+
+
+
+******************************************************************************
+******************************************************************************
+******************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************
+******************************************************************************
+******************************************************************************
+
+
+
+
+
+
+******************************************************************************
+******************************************************************************
+******************************************************************************
+
+
+
+
+
