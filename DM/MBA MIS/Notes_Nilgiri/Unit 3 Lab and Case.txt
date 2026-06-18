@@ -4,7 +4,6 @@
 ******************************************************************************
 ******************************************************************************
 ******************************************************************************
-
 ```text
 ==================================================================
 TELECOM CUSTOMER CHURN ANALYTICS USING DATA ANALYTICS AND ML
@@ -474,7 +473,16 @@ plt.show()
 . We compare churn rate for customers with and without competitor offer
 ```
 
-```pythonc
+```python
+competitor_churn = df.groupby("competitor_offer")["churn"].mean() * 100
+display(competitor_churn)
+
+plt.figure(figsize=(6,4))
+plt.bar(["No Competitor Offer", "Competitor Offer"], competitor_churn.values)
+plt.title("Churn Rate by Competitor Offer")
+plt.xlabel("Competitor Offer")
+plt.ylabel("Churn Rate Percentage")
+plt.show()
 ```
 
 ```markdown
@@ -1244,7 +1252,6 @@ display(prediction_results_df)
 
 . It also shows how independent variables help predict target variable
 ```
-
 
 
 
