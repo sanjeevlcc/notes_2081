@@ -1292,9 +1292,1200 @@ display(prediction_results_df)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ******************************************************************************
 ******************************************************************************
 ******************************************************************************
+
+
+
+```markdown
+# ================================================================
+# SALES STRATEGY OPTIMIZATION USING DATA ANALYTICS AND ML
+# Dataset Size  4000 Records
+# Domain        Retail / E-commerce / Sales Management
+# Goal          Predict sales revenue and optimize sales strategy
+# ================================================================
+
+. Companies use data analytics to improve sales strategy
+
+. Sales strategy means the plan used to increase revenue, customers,
+  profit and market share
+
+. Sales may be affected by
+
+  . Advertising spend
+
+  . Discount percentage
+
+  . Product category
+
+  . Marketing channel
+
+  . Customer rating
+
+  . Website visits
+
+  . Store footfall
+
+  . Competitor price
+
+  . Season
+
+  . Loyalty membership
+
+. The goal of this notebook is to analyze sales data
+
+. We will create 4000 dummy sales records
+
+. We will perform EDA
+
+. We will build machine learning models
+
+. We will predict sales revenue
+
+. We will interpret which factors improve sales
+
+. This is useful for business decision making and MIS dashboard planning
+```
+
+```markdown
+# ================================================================
+# STEP 1  UNDERSTANDING INDEPENDENT AND DEPENDENT VARIABLES
+# ================================================================
+
+. Independent variables are input variables
+
+. These variables help predict the result
+
+. In this sales project independent variables are
+
+  . advertising_spend
+
+  . discount_percent
+
+  . website_visits
+
+  . store_footfall
+
+  . customer_rating
+
+  . competitor_price_index
+
+  . previous_purchase_count
+
+  . loyalty_member
+
+  . season
+
+  . product_category
+
+  . marketing_channel
+
+
+. Dependent variable is the target variable
+
+. This is the output we want to predict
+
+. In this project target variable is
+
+  . sales_revenue
+
+
+. sales_revenue is continuous numerical value
+
+. So this is a regression problem
+
+. Regression is used when target variable is continuous
+
+. Example
+
+  . Predict sales revenue
+
+  . Predict profit
+
+  . Predict demand
+
+  . Predict price
+```
+
+```python
+# ================================================================
+# STEP 2  IMPORT REQUIRED LIBRARIES
+# ================================================================
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+
+import warnings
+warnings.filterwarnings("ignore")
+
+print("Libraries imported successfully")
+```
+
+```python
+# ================================================================
+# STEP 3  CREATE 4000 SALES DATASET
+# ================================================================
+
+np.random.seed(42)
+
+n = 4000
+
+transaction_id = [f"SALE_{i:04d}" for i in range(1, n + 1)]
+
+product_category = np.random.choice(
+    ["Electronics", "Fashion", "Grocery", "Home", "Beauty"],
+    size=n,
+    p=[0.22, 0.24, 0.25, 0.16, 0.13]
+)
+
+marketing_channel = np.random.choice(
+    ["Social Media", "Email", "Search Ads", "Offline", "Referral"],
+    size=n,
+    p=[0.30, 0.18, 0.25, 0.17, 0.10]
+)
+
+season = np.random.choice(
+    ["Normal", "Festival", "Holiday", "Clearance"],
+    size=n,
+    p=[0.50, 0.22, 0.18, 0.10]
+)
+
+advertising_spend = np.random.normal(25000, 10000, n)
+advertising_spend = np.clip(advertising_spend, 2000, 70000)
+
+discount_percent = np.random.normal(12, 7, n)
+discount_percent = np.clip(discount_percent, 0, 40)
+
+website_visits = np.random.normal(3500, 1500, n)
+website_visits = np.clip(website_visits, 200, 12000)
+
+store_footfall = np.random.normal(800, 350, n)
+store_footfall = np.clip(store_footfall, 50, 2500)
+
+customer_rating = np.random.normal(4.0, 0.6, n)
+customer_rating = np.clip(customer_rating, 1, 5)
+
+competitor_price_index = np.random.normal(1.0, 0.15, n)
+competitor_price_index = np.clip(competitor_price_index, 0.65, 1.45)
+
+previous_purchase_count = np.random.poisson(3, n)
+previous_purchase_count = np.clip(previous_purchase_count, 0, 15)
+
+loyalty_member = np.random.choice([0, 1], size=n, p=[0.55, 0.45])
+
+# Category effect
+category_effect = {
+    "Electronics": 90000,
+    "Fashion": 45000,
+    "Grocery": 30000,
+    "Home": 60000,
+    "Beauty": 38000
+}
+
+# Channel effect
+channel_effect = {
+    "Social Media": 18000,
+    "Email": 12000,
+    "Search Ads": 22000,
+    "Offline": 8000,
+    "Referral": 15000
+}
+
+# Season effect
+season_effect = {
+    "Normal": 0,
+    "Festival": 35000,
+    "Holiday": 25000,
+    "Clearance": 15000
+}
+
+base_sales = np.array([category_effect[x] for x in product_category])
+channel_bonus = np.array([channel_effect[x] for x in marketing_channel])
+season_bonus = np.array([season_effect[x] for x in season])
+
+# Create realistic sales revenue
+sales_revenue = (
+    base_sales
+    + channel_bonus
+    + season_bonus
+    + 1.8 * advertising_spend
+    + 750 * discount_percent
+    + 8 * website_visits
+    + 25 * store_footfall
+    + 15000 * customer_rating
+    - 25000 * competitor_price_index
+    + 4000 * previous_purchase_count
+    + 18000 * loyalty_member
+    + np.random.normal(0, 30000, n)
+)
+
+sales_revenue = np.clip(sales_revenue, 10000, 500000)
+
+df = pd.DataFrame({
+    "transaction_id": transaction_id,
+    "product_category": product_category,
+    "marketing_channel": marketing_channel,
+    "season": season,
+    "advertising_spend": advertising_spend.round(2),
+    "discount_percent": discount_percent.round(2),
+    "website_visits": website_visits.round(0).astype(int),
+    "store_footfall": store_footfall.round(0).astype(int),
+    "customer_rating": customer_rating.round(2),
+    "competitor_price_index": competitor_price_index.round(2),
+    "previous_purchase_count": previous_purchase_count,
+    "loyalty_member": loyalty_member,
+    "sales_revenue": sales_revenue.round(2)
+})
+
+df.head()
+```
+
+```markdown
+# ================================================================
+# STEP 4  BASIC DATA UNDERSTANDING
+# ================================================================
+
+. EDA means Exploratory Data Analysis
+
+. EDA helps us understand dataset before model building
+
+. We check
+
+  . Number of rows and columns
+
+  . Data types
+
+  . Missing values
+
+  . Basic statistical summary
+```
+
+```python
+print("Dataset Shape:", df.shape)
+
+print("\nData Types")
+print(df.dtypes)
+
+print("\nMissing Values")
+print(df.isnull().sum())
+
+display(df.head())
+
+display(df.describe())
+```
+
+```markdown
+# ================================================================
+# STEP 5  TARGET VARIABLE ANALYSIS
+# ================================================================
+
+. Target variable is sales_revenue
+
+. We visualize distribution of sales revenue
+
+. This helps understand whether most sales are low, medium or high
+```
+
+```python
+plt.figure(figsize=(8,4))
+plt.hist(df["sales_revenue"], bins=30)
+plt.title("Distribution of Sales Revenue")
+plt.xlabel("Sales Revenue")
+plt.ylabel("Frequency")
+plt.show()
+
+print("Average Sales Revenue:", df["sales_revenue"].mean())
+print("Minimum Sales Revenue:", df["sales_revenue"].min())
+print("Maximum Sales Revenue:", df["sales_revenue"].max())
+```
+
+```markdown
+# Interpretation
+
+. Histogram shows how sales revenue is distributed
+
+. If many values are low, the company needs better sales strategy
+
+. If some values are very high, those transactions should be studied
+
+. High sales records may show successful strategy patterns
+```
+
+```markdown
+# ================================================================
+# STEP 6  SALES BY PRODUCT CATEGORY
+# ================================================================
+
+. Product category may strongly affect sales
+
+. Some categories generate higher revenue than others
+
+. We compare average sales revenue by category
+```
+
+```python
+category_sales = df.groupby("product_category")["sales_revenue"].mean().sort_values(ascending=False)
+
+display(category_sales)
+
+plt.figure(figsize=(8,4))
+plt.bar(category_sales.index, category_sales.values)
+plt.title("Average Sales Revenue by Product Category")
+plt.xlabel("Product Category")
+plt.ylabel("Average Sales Revenue")
+plt.xticks(rotation=30)
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. Product category with highest average sales should receive more focus
+
+. Low performing category may need promotion, discount or product review
+
+. Category wise sales helps optimize inventory and marketing budget
+```
+
+```markdown
+# ================================================================
+# STEP 7  SALES BY MARKETING CHANNEL
+# ================================================================
+
+. Marketing channel affects customer reach
+
+. Some channels may produce higher sales
+
+. We compare sales revenue by marketing channel
+```
+
+```python
+channel_sales = df.groupby("marketing_channel")["sales_revenue"].mean().sort_values(ascending=False)
+
+display(channel_sales)
+
+plt.figure(figsize=(8,4))
+plt.bar(channel_sales.index, channel_sales.values)
+plt.title("Average Sales Revenue by Marketing Channel")
+plt.xlabel("Marketing Channel")
+plt.ylabel("Average Sales Revenue")
+plt.xticks(rotation=30)
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. High performing channels should receive more advertising budget
+
+. Low performing channels should be reviewed
+
+. This helps management optimize marketing strategy
+```
+
+```markdown
+# ================================================================
+# STEP 8  ADVERTISING SPEND VS SALES REVENUE
+# ================================================================
+
+. Advertising spend is an independent variable
+
+. Higher advertising spend may increase sales
+
+. Scatter plot helps see relationship between advertising and sales
+```
+
+```python
+plt.figure(figsize=(7,5))
+plt.scatter(df["advertising_spend"], df["sales_revenue"], alpha=0.4)
+plt.title("Advertising Spend vs Sales Revenue")
+plt.xlabel("Advertising Spend")
+plt.ylabel("Sales Revenue")
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. If points show upward trend then advertising spend has positive relation with sales
+
+. If relationship is weak, advertising may not be efficient
+
+. Management should compare advertising cost with revenue impact
+```
+
+```markdown
+# ================================================================
+# STEP 9  DISCOUNT PERCENT VS SALES REVENUE
+# ================================================================
+
+. Discount can increase sales volume
+
+. But too much discount may reduce profit
+
+. Here we check relation between discount and sales revenue
+```
+
+```python
+plt.figure(figsize=(7,5))
+plt.scatter(df["discount_percent"], df["sales_revenue"], alpha=0.4)
+plt.title("Discount Percent vs Sales Revenue")
+plt.xlabel("Discount Percent")
+plt.ylabel("Sales Revenue")
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. If sales increase with discount, discount strategy is useful
+
+. But business should also check profit, not only revenue
+
+. Very high discount may increase revenue but reduce margin
+```
+
+```markdown
+# ================================================================
+# STEP 10  SEASONAL SALES ANALYSIS
+# ================================================================
+
+. Season affects sales
+
+. Festival and holiday periods often increase sales
+
+. We compare sales across different seasons
+```
+
+```python
+season_sales = df.groupby("season")["sales_revenue"].mean().sort_values(ascending=False)
+
+display(season_sales)
+
+plt.figure(figsize=(7,4))
+plt.bar(season_sales.index, season_sales.values)
+plt.title("Average Sales Revenue by Season")
+plt.xlabel("Season")
+plt.ylabel("Average Sales Revenue")
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. Festival and holiday season may generate higher sales
+
+. Company should increase inventory before high sales seasons
+
+. Marketing campaigns should be planned according to season
+```
+
+```markdown
+# ================================================================
+# STEP 11  CORRELATION ANALYSIS
+# ================================================================
+
+. Correlation helps understand relationship between numerical variables
+
+. Positive correlation with sales_revenue means variable may increase sales
+
+. Negative correlation means variable may reduce sales
+```
+
+```python
+numeric_df = df.drop(columns=["transaction_id", "product_category", "marketing_channel", "season"])
+
+corr = numeric_df.corr()
+
+plt.figure(figsize=(10,7))
+plt.imshow(corr, aspect="auto")
+plt.colorbar()
+plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
+plt.yticks(range(len(corr.columns)), corr.columns)
+plt.title("Correlation Heatmap")
+plt.show()
+
+display(corr["sales_revenue"].sort_values(ascending=False))
+```
+
+```markdown
+# Interpretation
+
+. Strong positive variables may be important for sales improvement
+
+. Expected positive factors
+
+  . advertising_spend
+
+  . website_visits
+
+  . store_footfall
+
+  . customer_rating
+
+  . previous_purchase_count
+
+  . loyalty_member
+
+  . discount_percent
+
+
+. Competitor price index may have negative impact
+
+. If competitor price is attractive, our sales may decrease
+```
+
+```markdown
+# ================================================================
+# STEP 12  PREPARE DATA FOR MACHINE LEARNING
+# ================================================================
+
+. sales_revenue is continuous target variable
+
+. So we use regression models
+
+. Categorical variables must be converted into numbers
+
+. We use one hot encoding for product_category marketing_channel and season
+```
+
+```python
+model_df = df.drop(columns=["transaction_id"])
+
+model_df = pd.get_dummies(
+    model_df,
+    columns=["product_category", "marketing_channel", "season"],
+    drop_first=True
+)
+
+X = model_df.drop(columns=["sales_revenue"])
+y = model_df["sales_revenue"]
+
+print("Independent Variables")
+print(X.columns.tolist())
+
+print("\nTarget Variable")
+print("sales_revenue")
+
+display(X.head())
+```
+
+```markdown
+# ================================================================
+# STEP 13  TRAIN TEST SPLIT
+# ================================================================
+
+. Training data is used to train model
+
+. Testing data is used to evaluate model
+
+. We use 80 percent training and 20 percent testing
+```
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.20,
+    random_state=42
+)
+
+print("Training Data:", X_train.shape)
+print("Testing Data:", X_test.shape)
+```
+
+```markdown
+# ================================================================
+# STEP 14  MODEL 1  LINEAR REGRESSION
+# ================================================================
+
+. Linear Regression predicts continuous values
+
+. It is simple and interpretable
+
+. It assumes linear relationship between input variables and target
+```
+
+```python
+scaler = StandardScaler()
+
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+linear_model = LinearRegression()
+linear_model.fit(X_train_scaled, y_train)
+
+linear_pred = linear_model.predict(X_test_scaled)
+```
+
+```markdown
+# ================================================================
+# STEP 15  MODEL 2  DECISION TREE REGRESSOR
+# ================================================================
+
+. Decision Tree Regressor predicts continuous values using rules
+
+. It is easy to explain
+
+. But it can overfit if not controlled
+```
+
+```python
+tree_model = DecisionTreeRegressor(
+    max_depth=6,
+    min_samples_split=30,
+    min_samples_leaf=15,
+    random_state=42
+)
+
+tree_model.fit(X_train, y_train)
+
+tree_pred = tree_model.predict(X_test)
+```
+
+```markdown
+# ================================================================
+# STEP 16  MODEL 3  RANDOM FOREST REGRESSOR
+# ================================================================
+
+. Random Forest uses many decision trees
+
+. It usually performs better than single decision tree
+
+. It handles non linear relationship
+
+. It gives feature importance
+
+. It is suitable for sales prediction
+```
+
+```python
+rf_model = RandomForestRegressor(
+    n_estimators=200,
+    max_depth=10,
+    min_samples_leaf=10,
+    random_state=42
+)
+
+rf_model.fit(X_train, y_train)
+
+rf_pred = rf_model.predict(X_test)
+```
+
+```markdown
+# ================================================================
+# STEP 17  MODEL EVALUATION
+# ================================================================
+
+. We evaluate regression model using
+
+  . MAE
+
+  . RMSE
+
+  . R2 Score
+
+
+. MAE means average absolute error
+
+. RMSE gives larger penalty to big errors
+
+. R2 score shows how much variation is explained by model
+
+. Higher R2 is better
+
+. Lower MAE and RMSE are better
+```
+
+```python
+def evaluate_regression(model_name, y_true, y_pred):
+    mae = mean_absolute_error(y_true, y_pred)
+    rmse = np.sqrt(mean_squared_error(y_true, y_pred))
+    r2 = r2_score(y_true, y_pred)
+
+    return {
+        "Model": model_name,
+        "MAE": mae,
+        "RMSE": rmse,
+        "R2 Score": r2
+    }
+
+results = pd.DataFrame([
+    evaluate_regression("Linear Regression", y_test, linear_pred),
+    evaluate_regression("Decision Tree", y_test, tree_pred),
+    evaluate_regression("Random Forest", y_test, rf_pred)
+])
+
+display(results)
+```
+
+```markdown
+# Interpretation
+
+. Model with highest R2 score is better
+
+. Model with lowest MAE and RMSE is better
+
+. Linear Regression is simple and explainable
+
+. Decision Tree gives rule based understanding
+
+. Random Forest is usually best for complex sales strategy data
+```
+
+```python
+results_plot = results.set_index("Model")[["R2 Score"]]
+
+results_plot.plot(kind="bar", figsize=(7,4))
+plt.title("Model Comparison using R2 Score")
+plt.ylabel("R2 Score")
+plt.ylim(0, 1)
+plt.xticks(rotation=25)
+plt.show()
+```
+
+```markdown
+# ================================================================
+# STEP 18  ACTUAL VS PREDICTED SALES
+# ================================================================
+
+. Actual vs Predicted plot shows model prediction quality
+
+. If points are closer to diagonal pattern then prediction is better
+```
+
+```python
+plt.figure(figsize=(7,5))
+plt.scatter(y_test, rf_pred, alpha=0.4)
+plt.xlabel("Actual Sales Revenue")
+plt.ylabel("Predicted Sales Revenue")
+plt.title("Actual vs Predicted Sales Revenue  Random Forest")
+plt.show()
+```
+
+```markdown
+# ================================================================
+# STEP 19  FEATURE IMPORTANCE
+# ================================================================
+
+. Feature importance shows which variables affect sales most
+
+. It helps management improve sales strategy
+
+. Random Forest provides feature importance
+```
+
+```python
+feature_importance = pd.DataFrame({
+    "Feature": X.columns,
+    "Importance": rf_model.feature_importances_
+}).sort_values(by="Importance", ascending=False)
+
+display(feature_importance.head(15))
+
+plt.figure(figsize=(9,6))
+plt.barh(feature_importance.head(15)["Feature"], feature_importance.head(15)["Importance"])
+plt.gca().invert_yaxis()
+plt.title("Top 15 Important Features for Sales Prediction")
+plt.xlabel("Importance")
+plt.ylabel("Feature")
+plt.show()
+```
+
+```markdown
+# Interpretation
+
+. If advertising_spend is highly important then marketing budget affects sales
+
+. If customer_rating is important then customer satisfaction improves sales
+
+. If website_visits is important then digital traffic matters
+
+. If season is important then seasonal campaign planning is needed
+
+. If marketing channel is important then budget should shift to best channel
+```
+
+```markdown
+# ================================================================
+# STEP 20  CREATE SALES PREDICTION FUNCTION
+# ================================================================
+
+. This function takes sales strategy inputs
+
+. It predicts expected sales revenue
+
+. Random Forest is used as final model
+```
+
+```python
+def predict_sales(
+    advertising_spend,
+    discount_percent,
+    website_visits,
+    store_footfall,
+    customer_rating,
+    competitor_price_index,
+    previous_purchase_count,
+    loyalty_member,
+    product_category,
+    marketing_channel,
+    season
+):
+    input_data = {
+        "advertising_spend": advertising_spend,
+        "discount_percent": discount_percent,
+        "website_visits": website_visits,
+        "store_footfall": store_footfall,
+        "customer_rating": customer_rating,
+        "competitor_price_index": competitor_price_index,
+        "previous_purchase_count": previous_purchase_count,
+        "loyalty_member": loyalty_member
+    }
+
+    for col in X.columns:
+        if col not in input_data:
+            input_data[col] = 0
+
+    category_col = "product_category_" + product_category
+    channel_col = "marketing_channel_" + marketing_channel
+    season_col = "season_" + season
+
+    if category_col in input_data:
+        input_data[category_col] = 1
+
+    if channel_col in input_data:
+        input_data[channel_col] = 1
+
+    if season_col in input_data:
+        input_data[season_col] = 1
+
+    input_df = pd.DataFrame([input_data])
+    input_df = input_df[X.columns]
+
+    predicted_sales = rf_model.predict(input_df)[0]
+
+    return predicted_sales
+```
+
+```markdown
+# ================================================================
+# STEP 21  PREDICTION EXAMPLES WITH INTERPRETATION
+# ================================================================
+```
+
+```python
+examples = [
+    {
+        "Name": "Example 1  Strong festival electronics campaign",
+        "advertising_spend": 60000,
+        "discount_percent": 18,
+        "website_visits": 9000,
+        "store_footfall": 1800,
+        "customer_rating": 4.7,
+        "competitor_price_index": 0.95,
+        "previous_purchase_count": 8,
+        "loyalty_member": 1,
+        "product_category": "Electronics",
+        "marketing_channel": "Search Ads",
+        "season": "Festival",
+        "Interpretation": "High ad spend festival season strong rating and search ads can generate high sales"
+    },
+    {
+        "Name": "Example 2  Weak normal grocery campaign",
+        "advertising_spend": 8000,
+        "discount_percent": 4,
+        "website_visits": 800,
+        "store_footfall": 200,
+        "customer_rating": 3.2,
+        "competitor_price_index": 1.20,
+        "previous_purchase_count": 1,
+        "loyalty_member": 0,
+        "product_category": "Grocery",
+        "marketing_channel": "Offline",
+        "season": "Normal",
+        "Interpretation": "Low traffic low ad spend and low rating may produce lower sales"
+    },
+    {
+        "Name": "Example 3  Fashion social media discount strategy",
+        "advertising_spend": 35000,
+        "discount_percent": 25,
+        "website_visits": 6500,
+        "store_footfall": 1200,
+        "customer_rating": 4.3,
+        "competitor_price_index": 1.00,
+        "previous_purchase_count": 5,
+        "loyalty_member": 1,
+        "product_category": "Fashion",
+        "marketing_channel": "Social Media",
+        "season": "Holiday",
+        "Interpretation": "Fashion products may perform well with social media and discount during holiday"
+    },
+    {
+        "Name": "Example 4  Home product referral strategy",
+        "advertising_spend": 25000,
+        "discount_percent": 12,
+        "website_visits": 3500,
+        "store_footfall": 850,
+        "customer_rating": 4.1,
+        "competitor_price_index": 0.90,
+        "previous_purchase_count": 4,
+        "loyalty_member": 1,
+        "product_category": "Home",
+        "marketing_channel": "Referral",
+        "season": "Normal",
+        "Interpretation": "Good rating loyalty and referral channel may support medium to high sales"
+    },
+    {
+        "Name": "Example 5  Beauty email campaign",
+        "advertising_spend": 18000,
+        "discount_percent": 15,
+        "website_visits": 2800,
+        "store_footfall": 700,
+        "customer_rating": 4.5,
+        "competitor_price_index": 1.05,
+        "previous_purchase_count": 6,
+        "loyalty_member": 1,
+        "product_category": "Beauty",
+        "marketing_channel": "Email",
+        "season": "Clearance",
+        "Interpretation": "Email campaign with loyal customers can work well for beauty products"
+    },
+    {
+        "Name": "Example 6  High competitor pressure case",
+        "advertising_spend": 30000,
+        "discount_percent": 10,
+        "website_visits": 4000,
+        "store_footfall": 900,
+        "customer_rating": 3.8,
+        "competitor_price_index": 1.35,
+        "previous_purchase_count": 2,
+        "loyalty_member": 0,
+        "product_category": "Electronics",
+        "marketing_channel": "Search Ads",
+        "season": "Normal",
+        "Interpretation": "High competitor price pressure and no loyalty may limit sales performance"
+    },
+    {
+        "Name": "Example 7  Balanced profitable strategy",
+        "advertising_spend": 40000,
+        "discount_percent": 10,
+        "website_visits": 6000,
+        "store_footfall": 1100,
+        "customer_rating": 4.6,
+        "competitor_price_index": 0.95,
+        "previous_purchase_count": 7,
+        "loyalty_member": 1,
+        "product_category": "Electronics",
+        "marketing_channel": "Social Media",
+        "season": "Holiday",
+        "Interpretation": "Balanced discount high rating good traffic and loyalty may generate strong sales without excessive discount"
+    }
+]
+
+prediction_results = []
+
+for ex in examples:
+    predicted = predict_sales(
+        ex["advertising_spend"],
+        ex["discount_percent"],
+        ex["website_visits"],
+        ex["store_footfall"],
+        ex["customer_rating"],
+        ex["competitor_price_index"],
+        ex["previous_purchase_count"],
+        ex["loyalty_member"],
+        ex["product_category"],
+        ex["marketing_channel"],
+        ex["season"]
+    )
+
+    prediction_results.append({
+        "Example": ex["Name"],
+        "Predicted Sales Revenue": round(predicted, 2),
+        "Interpretation": ex["Interpretation"]
+    })
+
+prediction_results_df = pd.DataFrame(prediction_results)
+display(prediction_results_df)
+```
+
+```markdown
+# ================================================================
+# STEP 22  WHAT MODEL SUITS BEST
+# ================================================================
+
+. This is a regression problem because target variable sales_revenue is continuous
+
+. Suitable models are
+
+  . Linear Regression
+
+  . Decision Tree Regressor
+
+  . Random Forest Regressor
+
+  . Gradient Boosting Regressor
+
+  . XGBoost Regressor
+
+
+. Linear Regression
+
+  . Good for simple explanation
+
+  . Best when relationship is mostly linear
+
+  . Useful as baseline model
+
+
+. Decision Tree Regressor
+
+  . Good for rule based explanation
+
+  . Can show decision logic
+
+  . May overfit if not controlled
+
+
+. Random Forest Regressor
+
+  . Good for complex business data
+
+  . Handles non linear effects
+
+  . Gives feature importance
+
+  . Usually strong for sales prediction
+
+
+. In this notebook Random Forest is selected as final model because
+
+  . It captures complex relationship between sales factors
+
+  . It handles category and numerical features well
+
+  . It provides feature importance
+
+  . It supports managerial interpretation
+```
+
+```markdown
+# ================================================================
+# STEP 23  FINAL BUSINESS INTERPRETATION
+# ================================================================
+
+. Data analytics can help optimize sales strategy
+
+. Sales revenue depends on marketing, customer, product and seasonal factors
+
+. Important sales drivers may include
+
+  . Advertising spend
+
+  . Product category
+
+  . Marketing channel
+
+  . Website visits
+
+  . Customer rating
+
+  . Season
+
+  . Loyalty membership
+
+  . Discount percentage
+
+
+. Management can use this analysis to
+
+  . Allocate marketing budget to better channels
+
+  . Plan festival and holiday campaigns
+
+  . Improve customer rating and service quality
+
+  . Use discount carefully
+
+  . Promote high performing product categories
+
+  . Improve website traffic
+
+  . Target loyal customers
+
+  . Build sales dashboard for decision making
+
+
+. MIS and Business Intelligence help managers convert raw sales data into strategic decisions
+
+. Machine learning helps predict expected sales before implementing strategy
+
+. This supports better planning, control and competitive advantage
+```
+
 
 
 
