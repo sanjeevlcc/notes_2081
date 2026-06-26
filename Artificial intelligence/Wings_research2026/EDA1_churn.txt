@@ -1,0 +1,27 @@
+Independent Variables
+--------------------------------------------------
+Monthly Bill
+Complaints
+Network Quality
+Payment Delay
+Contract Type
+Tenure
+Internet Usage
+Competitor Offer
+Customer Satisfaction
+
+                 ↓
+
+Dependent Variable
+--------------------------------------------------
+Churn
+0 = Stayed
+1 = Left
+
+                 ↑
+
+Moderating Variable
+--------------------------------------------------
+Customer Satisfaction
+Competitor Offer
+Contract Type
