@@ -1,0 +1,417 @@
+
+
+
+============================================================
+                CRIMSON COLLEGE OF TECHNOLOGY
+                   ASSIGNMENT NOTICE
+============================================================
+
+Program            : BCA
+Semester           : VI (Sixth Semester)
+Subject            : Simulation and Modeling (MTH 250)
+Assignment Type    : Handwritten Assignment
+
+
+============================================================
+ASSIGNMENT INSTRUCTIONS
+============================================================
+
+. All BCA 6th Semester students are hereby informed that
+  the assignment for Simulation and Modeling (MTH 250)
+  has been assigned.
+
+. Students must prepare the assignment in handwritten format.
+
+. Assignment should be written clearly and neatly with proper:
+
+  . Headings
+  . Sub-headings
+  . Diagrams (if required)
+  . Numerical solutions
+  . Proper explanations
+  . Analytical interpretations
+
+
+============================================================
+SUBMISSION GUIDELINES
+============================================================
+
+Physical Submission:
+
+. Submit handwritten assignment copy to:
+
+  IT Staff Room
+
+
+Submission Deadline:
+
+. Date : 8 July 2026 (Wednesday)
+
+
+============================================================
+DIGITAL SUBMISSION (MANDATORY)
+============================================================
+
+. All students must scan the handwritten assignment.
+
+. The scanned copy must be converted into PDF format.
+
+. PDF file must be sent via email for digital record and
+  academic footprint.
+
+
+Email Address:
+
+sanjeevthapa@cct.edu.np
+
+
+
+
+Submission Deadline:
+
+. Date : 8 July 2026 (Wednesday) , 6 pm onwards
+
+
+
+
+============================================================
+FILE NAMING FORMAT (COMPULSORY)
+============================================================
+
+Format:
+
+Name_BCA6_Simulation_Modeling.pdf
+
+
+Example:
+
+Sishir_Ganywali_BCA6_Simulation_Modeling.pdf
+
+
+============================================================
+IMPORTANT NOTES
+============================================================
+
+. Handwritten submission is compulsory.
+
+. Email submission is compulsory.
+
+. Both submissions must be completed before deadline.
+
+. Late submission may not be accepted.
+
+. Ensure scanned PDF is clear and readable.
+
+. Improper file naming may lead to rejection.
+
+. Numerical solutions must show all calculation steps.
+
+. Diagrams and analytical questions must be properly labeled.
+
+
+============================================================
+REGARDS
+============================================================
+
+Sanjeev Thapa
+IT Faculty
+Crimson College of Technology
+
+Contact No: 9865093594
+
+============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+SECTION A : SHORT QUESTIONS (15)
+(REMEMBER + UNDERSTAND)
+          ============================================================
+          
+          1. Define system, model, and simulation with suitable figure .
+          
+          2. Differentiate between discrete system and continuous system with suitable figure .
+          
+          3. What is computer simulation?
+          
+          4. What is model development life cycle?  with suitable figure 
+          
+          5. List any four advantages of simulation.
+          
+          6. Define Monte Carlo simulation.  with suitable figure 
+          
+          7. What is cobweb model?  with suitable figure and formulae
+          
+          8. Define continuous system model.
+          
+          9. What is hybrid simulation?
+          
+          10. Define pseudo-random numbers.  with suitable example and formulae 
+          
+          11. What is mid-square method?
+          
+          12. What is queuing system?  with suitable example with figure  and formulae 
+          
+          13. Define Markov chain.  with suitable example with figure  and formulae 
+          
+          14. What is software process simulation modeling?  with suitable example with figure 
+
+          15. Differentiate verification and validation.  with suitable example with figure 
+
+
+
+
+
+
+
+
+
+
+============================================================
+SECTION B : MEDIUM + LONG QUESTIONS (25)
+(UNDERSTAND + APPLY + ANALYZE)
+============================================================
+          
+          1. Explain system, model, and simulation with suitable examples.
+          
+          2. Explain discrete and continuous systems with examples.
+          
+          3. Discuss different types of models.
+          
+          4. Explain model development life cycle.
+          
+          5. Discuss advantages and disadvantages of simulation.
+          
+          6. Explain the steps involved in simulation and modeling.
+          
+          7. Explain different techniques of simulation.
+          
+          8. Describe Monte Carlo method with example.
+          
+          9. Compare simulation methods and analytical methods.
+          
+          10. Explain experimental nature of simulation.
+          
+          11. Explain continuous system simulation.
+          
+          12. Discuss differential and partial differential equations in simulation.
+          
+          13. Explain analog computer and analog methods.
+          
+          14. Explain hybrid simulation with examples.
+          
+          15. Discuss feedback systems in continuous simulation.
+          
+          16. Explain random number properties and random number tables.
+          
+          17. Explain pseudo-random number generation.
+          
+          18. Explain random number generation using mid-square method.
+          
+          19. Explain random number generation using residue method.
+          
+          20. Explain elements and characteristics of queuing system.
+          
+          21. Explain queuing notation with examples.
+          
+          22. Discuss applications of queuing systems.
+          
+          23. Explain software development process models:
+              Waterfall and Incremental.
+          
+          24. Explain multi-agent based simulation model.
+          
+          25. Explain calibration, validation, regression analysis, and ANOVA.
+
+
+
+
+
+
+
+
+
+
+============================================================
+SECTION C : LONG NUMERICAL + ANALYTICAL + FIGURE QUESTIONS (15)
+(APPLY + ANALYZE + EVALUATE + CREATE)
+          ============================================================
+          
+          1. Mid-Square Method
+          ------------------------------------------------------------
+          
+          Generate 5 random numbers using Mid-Square method.
+          Initial seed = 5735
+          
+          
+          2. Residue Method
+          ------------------------------------------------------------
+          
+          Generate 8 random numbers using:
+          
+          Xi+1 = (5Xi + 3) mod 16
+          
+          Initial seed X0 = 7
+          
+          
+          3. Monte Carlo Simulation
+          ------------------------------------------------------------
+          
+          A shop has daily demand probability:
+          
+          Demand     Probability
+          0          0.10
+          1          0.20
+          2          0.30
+          3          0.25
+          4          0.15
+          
+          Use random numbers:
+          15, 37, 82, 56, 91, 22
+          
+          Simulate demand for 6 days.
+          
+          
+          4. Chi-Square Test
+          ------------------------------------------------------------
+          
+          Given random numbers:
+          
+          12, 25, 44, 62, 78, 80, 95, 50, 40, 10
+          
+          Test uniformity using Chi-square test.
+          
+          
+          5. Queuing Numerical
+          ------------------------------------------------------------
+          
+          Customers arrive at a bank at rate λ = 10/hour.
+          Service rate μ = 15/hour.
+          
+          Calculate:
+          . Utilization factor
+          . Average number in system
+          . Average waiting time
+          
+          
+          6. Single Server Queue
+          ------------------------------------------------------------
+          
+          Arrival rate = 12 customers/hour
+          Service rate = 18 customers/hour
+          
+          Calculate:
+          . Average queue length
+          . Average waiting time
+          
+          
+          7. Markov Chain
+          ------------------------------------------------------------
+          
+          Transition Matrix:
+          
+          P = [0.7 0.3]
+              [0.4 0.6]
+          
+          Find probability after 2 transitions.
+          
+          
+          8. Regression Analysis
+          ------------------------------------------------------------
+          
+          Given data:
+          
+          X = 1, 2, 3, 4, 5
+          Y = 2, 4, 5, 4, 5
+          
+          Find regression line.
+          
+          
+          9. Traffic Simulation Model
+          ------------------------------------------------------------
+          
+          Design a simulation model for traffic management at a busy
+          city intersection considering:
+          
+          . Vehicle flow
+          . Traffic lights
+          . Pedestrians
+          . Weather
+          
+          Draw conceptual diagram.
+          
+          
+          10. Serial Chase Problem
+          ------------------------------------------------------------
+          
+          A car moves at 60 km/hr.
+          A bike starts 20 km behind at 80 km/hr.
+          
+          Model and analyze chase problem.
+          
+          
+          11. Feedback System
+          ------------------------------------------------------------
+          
+          Draw and explain a feedback control system using block diagram.
+          
+          
+          12. Software Process Simulation
+          ------------------------------------------------------------
+          
+          A software company has:
+          . 5 developers
+          . 2 testers
+          . 3 modules
+          
+          Model software development process using waterfall model.
+          
+          
+          13. ANOVA
+          ------------------------------------------------------------
+          
+          Three machine outputs are:
+          
+          A: 20, 22, 23
+          B: 25, 27, 29
+          C: 18, 19, 21
+          
+          Perform ANOVA test.
+          
+          
+          14. Hospital Queue Simulation
+          ------------------------------------------------------------
+          
+          Design a queuing model for hospital registration system.
+          
+          Draw figure and explain:
+          . Arrival
+          . Queue
+          . Service
+          . Exit
+          
+          
+          15. Agent-Based Simulation
+          ------------------------------------------------------------
+          
+          Design an agent-based simulation for online shopping system.
+          
+          Consider:
+          . Customer agents
+          . Seller agents
+          . Payment agents
+          . Delivery agents
+
+          Draw architecture diagram and explain.
+
+============================================================
