@@ -1,0 +1,829 @@
+============================================================
+                CRIMSON COLLEGE OF TECHNOLOGY
+        PRESENTATION TOPIC ALLOCATION NOTICE
+============================================================
+
+Program              : BCSIT
+Semester             : IV (Fourth Semester)
+Subject              : Data Communication and Networks
+Course Code          : CMP 277
+Presentation Type    : Online PPT + Practical Demo
+Presentation Marks   : 25% Internal Evaluation
+Presentation Time    : 4:30 PM onwards
+
+
+Google Meet Link:
+https://meet.google.com/rye-dfeb-rxw
+
+
+
+Note:
+. Same Google Meet link will be used every day.
+. Each day only 5 students will present.
+. Presentation starts from 7 August 2026.
+. 7 August 2026 -  Tuesday. -------- 23 Ashar 2083
+
+
+
+
+
+============================================================
+PRESENTATION RULES
+============================================================
+
+. Each student must prepare only 4 slides.
+
+. No extra slide is allowed.
+
+Slide 1:
+. Student Name
+. Subject Name
+. Assigned Topic
+
+Slide 2:
+. Main concept
+. Short theory
+. Suitable figure / diagram
+
+Slide 3:
+. Lab scenario
+. Network topology / command flow
+. Tool used
+
+Slide 4:
+. Demo steps
+. Expected output
+. Short conclusion
+
+. After PPT explanation, practical demo is compulsory.
+
+. Only theory-based presentation is not accepted.
+
+. Demo may be performed using:
+
+  . Killer Coda Ubuntu Machine
+  . GNS3 Cloud Scenario
+  . Cisco Packet Tracer
+  . Wireshark
+  . Ubuntu Terminal Networking Commands
+
+. PPT and demo scenario must be sent in Facebook chat
+  at least 5 minutes before presentation.
+
+. Presentation carries 25% of internal marks.
+
+
+
+
+============================================================
+TOPIC ALLOCATION
+============================================================
+
+
+------------------------------------------------------------
+DAY 1 : 7 AUGUST 2026      23 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+------------------------------------------------------------
+        
+        1. Rojan Shahi
+        
+        Topic:
+        Data Communication System and Its Components
+        
+        Demo Tool:
+        Killer Coda Ubuntu Machine
+        
+        Demo Scenario:
+        Use ping command between two systems and explain sender,
+        receiver, message, transmission medium, and protocol.
+        
+        
+        2. Sujal Thapa
+        
+        Topic:
+        Simplex, Half-Duplex, and Full-Duplex Communication
+        
+        Demo Tool:
+        Cisco Packet Tracer
+        
+        Demo Scenario:
+        Create simple PC-to-PC and PC-to-server communication and
+        explain direction of data flow.
+        
+        
+        3. Bramha Prasad Tharu
+        
+        Topic:
+        Block Diagram of Digital Communication System
+        
+        Demo Tool:
+        Killer Coda Ubuntu Machine
+        
+        Demo Scenario:
+        Show message transfer using echo, file creation, and ping
+        concept as source, encoder, channel, decoder, and destination.
+        
+        
+        4. Mohamod Aashif Dhobhi
+        
+        Topic:
+        Nyquist Sampling Theorem and Shannon Channel Capacity
+        
+        Demo Tool:
+        Ubuntu / Calculator Based Demo
+        
+        Demo Scenario:
+        Calculate maximum data rate using bandwidth and signal levels.
+        Show one Shannon capacity numerical example.
+        
+        
+        5. Kundan Shah Rauniyar
+        
+        Topic:
+        Bit Rate, Baud Rate, and Line Coding
+        
+        Demo Tool:
+        Killer Coda Ubuntu Machine
+        
+        Demo Scenario:
+        Explain bit rate vs baud rate using binary data and signal
+        level example. Show Unipolar, Polar, and Bipolar line coding
+        figure.
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 2 : 8 AUGUST 2026    24 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+------------------------------------------------------------
+      
+      6. Vihaan Shrestha
+      
+      Topic:
+      Network Topologies: Bus, Star, Ring, Mesh, Hybrid
+      
+      Demo Tool:
+      Cisco Packet Tracer
+      
+      Demo Scenario:
+      Design star topology with one switch and five PCs. Test
+      connectivity using ping.
+      
+      
+      7. Jhalak Singh Rana
+      
+      Topic:
+      Types of Computer Networks: PAN, LAN, MAN, WAN, CAN
+      
+      Demo Tool:
+      Cisco Packet Tracer
+      
+      Demo Scenario:
+      Draw a college LAN and connect it with another branch network
+      to explain LAN and WAN.
+      
+      
+      8. Birendra Basnet
+      
+      Topic:
+      Client-Server and Peer-to-Peer Network
+      
+      Demo Tool:
+      Cisco Packet Tracer
+      
+      Demo Scenario:
+      Create one server and multiple clients. Configure IP addresses
+      and test communication.
+      
+      
+      9. Gaurav Lamichhane
+      
+      Topic:
+      OSI Reference Model
+      
+      Demo Tool:
+      Cisco Packet Tracer / Wireshark
+      
+      Demo Scenario:
+      Send ping packet and explain how data passes through OSI layers.
+      
+      
+      10. Anmol Gaire
+      
+      Topic:
+      TCP/IP Model and Comparison with OSI Model
+      
+      Demo Tool:
+      Wireshark / Ubuntu
+      
+      Demo Scenario:
+      Use ping and browser request concept to explain TCP/IP layers
+      and compare with OSI.
+      
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 3 : 9 AUGUST 2026      25 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+------------------------------------------------------------
+              
+              11. Aashish Khanal
+              
+              Topic:
+              Networking Hardware: NIC, Hub, Switch, Bridge, Router
+              
+              Demo Tool:
+              Cisco Packet Tracer
+              
+              Demo Scenario:
+              Create a network using switch and router. Explain the role of
+              each networking device.
+              
+              
+              12. Pradeep Kunwar
+              
+              Topic:
+              Basic Networking Commands
+              
+              Demo Tool:
+              Killer Coda Ubuntu Machine
+              
+              Demo Scenario:
+              Run commands:
+              ping, ip addr, netstat, arp, nslookup, traceroute.
+              
+              
+              13. Nikit Kunwar
+              
+              Topic:
+              Transmission Media: Twisted Pair, Coaxial Cable, Optical Fiber
+              
+              Demo Tool:
+              Cisco Packet Tracer
+              
+              Demo Scenario:
+              Design wired LAN and explain why Cat6 and fiber are used in
+              enterprise networks.
+              
+              
+              14. Milan Khanal
+              
+              Topic:
+              Wireless Transmission Media: Radio, Microwave, Infrared, Satellite
+              
+              Demo Tool:
+              Cisco Packet Tracer
+              
+              Demo Scenario:
+              Create wireless network using access point and laptop devices.
+              
+              
+              15. Kamana Koirala
+              
+              Topic:
+              Ethernet, Fast Ethernet, and Gigabit Ethernet
+              
+              Demo Tool:
+              Cisco Packet Tracer
+              
+              Demo Scenario:
+              Create LAN using switches and PCs. Explain speed difference and
+              Ethernet standards.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 4 : 10 AUGUST 2026        26 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+                ------------------------------------------------------------
+                
+                16. Asmita Subedi
+                
+                Topic:
+                Transmission Impairment: Attenuation, Distortion, Noise
+                
+                Demo Tool:
+                Cisco Packet Tracer / Diagram Based
+                
+                Demo Scenario:
+                Create long-distance network diagram and explain signal loss,
+                noise, and poor cable effect.
+                
+                
+                17. Sharwan Timilsina
+                
+                Topic:
+                Multiplexing: TDM, FDM, and WDM
+                
+                Demo Tool:
+                Diagram + Ubuntu Explanation
+                
+                Demo Scenario:
+                Show how multiple users share one communication channel using
+                time, frequency, and wavelength division.
+                
+                
+                18. Anish Sharma
+                
+                Topic:
+                Switching Techniques
+                
+                Demo Tool:
+                Cisco Packet Tracer
+                
+                Demo Scenario:
+                Explain circuit switching, message switching, packet switching,
+                and virtual circuit switching using network diagrams.
+                
+                
+                19. Pramish Subedi
+                
+                Topic:
+                Network Performance: Bandwidth, Throughput, Latency, Jitter
+                
+                Demo Tool:
+                Killer Coda Ubuntu Machine
+                
+                Demo Scenario:
+                Use ping command and explain delay, packet response time, and
+                network performance measurement.
+                
+                
+                20. Alisha Singh KC
+                
+                Topic:
+                Data Link Layer Functions and Framing
+                
+                Demo Tool:
+                Cisco Packet Tracer / Wireshark
+                
+                Demo Scenario:
+                Capture packet/frame and explain source MAC, destination MAC,
+                frame structure, and DLL role.
+                
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 5 : 11 AUGUST 2026    27 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+------------------------------------------------------------
+          
+          21. Pratikshya Chhetri
+          
+          Topic:
+          Flow Control: Stop and Wait, Sliding Window, Go-Back-N
+          
+          Demo Tool:
+          Diagram + Cisco Packet Tracer
+          
+          Demo Scenario:
+          Show sender-receiver communication and explain how frames are
+          controlled during transmission.
+          
+          
+          22. Juna Gautam
+          
+          Topic:
+          Error Detection: Parity, Checksum, CRC
+          
+          Demo Tool:
+          Ubuntu / Python
+          
+          Demo Scenario:
+          Implement simple parity check or CRC logic using Python program.
+          
+          
+          23. Aaditee Agrahari
+          
+          Topic:
+          Hamming Code
+          
+          Demo Tool:
+          Ubuntu / Manual Numerical Demo
+          
+          Demo Scenario:
+          Show Hamming code parity bit calculation and single-bit error
+          detection example.
+          
+          
+          24. Sabina Khanal
+          
+          Topic:
+          ALOHA, Slotted ALOHA, CSMA/CD, CSMA/CA
+          
+          Demo Tool:
+          Diagram + Cisco Packet Tracer
+          
+          Demo Scenario:
+          Explain collision and access control using shared medium network.
+          
+          
+          25. Bijaya Basyal
+          
+          Topic:
+          VLAN Creation and VLAN Trunking
+          
+          Demo Tool:
+          Cisco Packet Tracer
+          
+          Demo Scenario:
+          Create VLAN 10 and VLAN 20, assign ports, configure trunk, and
+          test communication.
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 6 : 12 AUGUST 2026      28 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+------------------------------------------------------------
+            
+            26. Kusum Bhattarai
+            
+            Topic:
+            IPv4 Addressing and IPv4 Classes
+            
+            Demo Tool:
+            Cisco Packet Tracer
+            
+            Demo Scenario:
+            Assign Class C IP addresses to PCs and test connectivity using
+            ping.
+            
+            
+            27. Maliha Mikrani
+            
+            Topic:
+            Private IP, Public IP, and NAT
+            
+            Demo Tool:
+            Cisco Packet Tracer / GNS3
+            
+            Demo Scenario:
+            Create LAN with private IP and configure NAT concept through
+            router.
+            
+            
+            28. Riya Khatri
+            
+            Topic:
+            Subnetting, Subnet Mask, FLSM, and VLSM
+            
+            Demo Tool:
+            Cisco Packet Tracer
+            
+            Demo Scenario:
+            Divide 192.168.10.0/24 into multiple subnets and assign IP to
+            different departments.
+            
+            
+            29. Bihani Dhungana
+            
+            Topic:
+            IPv6 and Transition from IPv4 to IPv6
+            
+            Demo Tool:
+            Cisco Packet Tracer
+            
+            Demo Scenario:
+            Configure IPv6 addresses on two PCs/router interfaces and test
+            connectivity.
+            
+            
+            30. Smarika Sapkota
+            
+            Topic:
+            Routing: Static, Adaptive, Distance Vector, Link State
+            
+            Demo Tool:
+            Cisco Packet Tracer / GNS3
+            
+            Demo Scenario:
+            Create two-router network and configure static routing. Explain
+            dynamic routing concept.
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 7 : 13 AUGUST 2026      29 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+------------------------------------------------------------
+          
+          31. Abinash Chaudhary Tharu
+          
+          Topic:
+          Routing Protocols: RIP, OSPF, EIGRP, BGP
+          
+          Demo Tool:
+          Cisco Packet Tracer / GNS3
+          
+          Demo Scenario:
+          Configure RIP or OSPF between routers and verify routing table.
+          
+          
+          32. Ayush Gupta Baniya
+          
+          Topic:
+          Transport Layer: TCP, UDP, Ports, and Sockets
+          
+          Demo Tool:
+          Killer Coda Ubuntu Machine
+          
+          Demo Scenario:
+          Use netstat or ss command and explain port numbers, sockets,
+          TCP, and UDP services.
+          
+          
+          33. Abinash Acharya
+          
+          Topic:
+          Application Layer: HTTP, HTTPS, DNS, FTP, DHCP
+          
+          Demo Tool:
+          Cisco Packet Tracer
+          
+          Demo Scenario:
+          Configure DNS, DHCP, and Web Server. Access website using domain
+          name from client PC.
+          
+          
+          34. Anish Adhikari
+          
+          Topic:
+          Network Security: Attacks, Firewall, ACL, VPN
+          
+          Demo Tool:
+          Cisco Packet Tracer / GNS3
+          
+          Demo Scenario:
+          Configure basic router ACL to block one PC and allow another PC.
+          
+          
+          35. Nirwon Singh Bura
+          
+          Topic:
+          Wireshark Packet Capture and Header Analysis
+          
+          Demo Tool:
+          Wireshark / Ubuntu
+          
+          Demo Scenario:
+          Capture ICMP packet using Wireshark and explain source IP,
+          destination IP, protocol, and packet header.
+          
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 8 : 14 AUGUST 2026      30 Ashar 2083
+TIME  : 4:30 PM ONWARDS
+------------------------------------------------------------
+  
+          36. Niraj Tandan
+          
+          Topic:
+          DHCP Server Configuration
+          
+          Demo Tool:
+          Cisco Packet Tracer
+          
+          Demo Scenario:
+          Configure DHCP server and show automatic IP address assignment
+          to client PCs.
+          
+          
+          37. Bigyan Karki
+          
+          Topic:
+          DNS, Web, FTP, and DHCP Server Configuration
+          
+          Demo Tool:
+          Cisco Packet Tracer
+          
+          Demo Scenario:
+          Configure DNS server, web server, FTP server, and DHCP server
+          in one small network.
+          
+          
+          38. Jhabindra GC
+          
+          Topic:
+          SNMP, VPN, Firewall, and Proxy
+          
+          Demo Tool:
+          Cisco Packet Tracer / GNS3 / Diagram Based
+          
+          Demo Scenario:
+          Explain network monitoring using SNMP and security protection
+          using VPN, firewall, and proxy server design.
+          
+
+
+
+
+
+
+
+
+
+  ============================================================
+  4-SLIDE PRESENTATION FORMAT
+  ============================================================
+  
+  Slide 1:
+  . Student Name
+  . Program and Semester
+  . Subject
+  . Assigned Topic
+  
+  Slide 2:
+  . Definition
+  . Main concept
+  . Suitable figure / diagram
+  
+  Slide 3:
+  . Lab scenario
+  . Network topology / command flow
+  . Tool used
+  
+  Slide 4:
+  . Demo steps
+  . Expected output
+  . Short conclusion
+
+
+
+
+
+
+
+
+============================================================
+FACEBOOK CHAT SUBMISSION FORMAT
+============================================================
+
+Each student must send:
+
+. PPT file
+. Demo scenario
+. Commands / configuration if required
+. Screenshot if possible
+
+Submission Time:
+
+. At least 5 minutes before presentation
+
+
+File Naming Format:
+
+Name_BCSIT4_DCN_Presentation.pptx
+
+Example:
+
+Riya_Khatri_BCSIT4_DCN_Presentation.pptx
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+MARKING CRITERIA
+============================================================
+
+Total Presentation Weightage: 25% Internal Marks
+
+. Topic Understanding          : 5 Marks
+. Slide Quality                : 5 Marks
+. Figure / Network Diagram     : 5 Marks
+. Practical Demo               : 7 Marks
+. Viva / Question Answer       : 3 Marks
+
+
+
+
+
+
+
+
+============================================================
+IMPORTANT NOTES
+============================================================
+
+. Online presentation starts from 4:30 PM.
+
+. Same Google Meet link will be used every day:
+  https://meet.google.com/rye-dfeb-rxw
+
+. Only 5 students will present per day.
+
+. Only 4 slides are allowed.
+
+. Practical demo is compulsory.
+
+. Do not present unnecessary theory.
+
+. Topic must be explained with figure and lab scenario.
+
+. Use Killer Coda, GNS3, Cisco Packet Tracer, Wireshark,
+  or Ubuntu networking commands as required.
+
+. PPT and demo scenario must be sent in Facebook chat at least
+  5 minutes before presentation.
+
+. Late submission or absence may affect internal marks.
+
+
+
+
+
+
+
+
+============================================================
+REGARDS
+============================================================
+
+Sanjeev Thapa
+IT Faculty
+Crimson College of Technology
+============================================================
+
+
+
+
+
+
+
+
+
+
+
