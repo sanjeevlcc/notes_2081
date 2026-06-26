@@ -1,0 +1,620 @@
+============================================================
+                CRIMSON COLLEGE OF TECHNOLOGY
+        PRESENTATION NOTICE & TOPIC ALLOCATION
+
+we ll go online : from 4:30 PM
+
+meet link :  https://meet.google.com/rye-dfeb-rxw
+============================================================
+
+Program              : BCSIT
+Semester             : VI (Sixth Semester)
+Subject              : Cloud Computing
+Course Code          : CMP 382
+Presentation Marks   : 25% Internal Evaluation
+Presentation Type    : PPT + Practical Demo
+
+
+============================================================
+PRESENTATION INSTRUCTIONS
+============================================================
+      
+      . Each student must prepare presentation on the assigned topic.
+      
+      . Presentation must contain ONLY 3 slides.
+      
+      . No extra slides are allowed.
+      
+      . Slide 1 must contain:
+      
+        . Student Name
+        . Roll / S.N. if required
+        . Assigned Topic
+      
+      . Slide 2 must contain:
+      
+        . Core concept / theory
+        . Figure / architecture / diagram / flowchart
+      
+      . Slide 3 must contain:
+      
+        . Practical scenario
+        . Killer Coda Ubuntu machine demo explanation
+        . Commands / output / result screenshot if required
+      
+      . After PPT explanation, practical demo is compulsory.
+      
+      . Theory-only presentation is not accepted.
+      
+      . Demo must be related to cloud computing, Docker, VM,
+        serverless, monitoring, security, CI/CD, or distributed system
+        concept.
+      
+      . PPT and Killer Coda scenario( like commands in notebook of linux) must be sent in Facebook chat
+        at least 5 minutes before presentation.
+      
+      . Presentation must be clear, short, practical, and technical.
+      
+      . Each student will get 8 to 12 minutes maximum.
+      
+      . Presentation carries 25% of internal marks.
+
+
+============================================================
+PRESENTATION SCHEDULE
+============================================================
+
+. Start Date : 28 July 2026
+
+. 5 students will present per day.
+
+. Presentation Days:
+
+  . 28 July 2026
+  . 29 July 2026
+  . 30 July 2026
+  . 1 August 2026
+  . 2 August 2026
+  . 3 August 2026
+  . 4 August 2026
+
+
+============================================================
+TOPIC ALLOCATION
+============================================================
+
+
+------------------------------------------------------------
+DAY 1 : 28 JULY 2026
+------------------------------------------------------------
+        
+        1. Aishwarya Pandey
+        
+        Topic:
+        Cloud Computing Overview and Evolution
+        
+        Demo Scenario:
+        Run a simple HTML page on Ubuntu Apache server in Killer Coda
+        and explain how local hosting differs from cloud hosting.
+        
+        
+        2. Barsha Nepali
+        
+        Topic:
+        Characteristics of Cloud Computing
+        
+        Demo Scenario:
+        Create a small web service using Docker and explain on-demand
+        resource usage and broad network access.
+        
+        
+        3. Kritika Rana Khand
+        
+        Topic:
+        Benefits and Challenges of Cloud Computing
+        
+        Demo Scenario:
+        Deploy a simple containerized web app and explain benefits like
+        scalability, cost saving, and challenges like security.
+        
+        
+        4. Sandipa Shrestha
+        
+        Topic:
+        Cloud Storage Concepts
+        
+        Demo Scenario:
+        Create a folder-based simulated cloud storage in Ubuntu and
+        demonstrate upload, download, and access control concept.
+        
+        
+        5. Siya Singh Chhetri
+        
+        Topic:
+        Cloud Adoption Strategies
+        
+        Demo Scenario:
+        Show lift-and-shift example by moving a simple PHP/HTML app
+        from local folder to Apache web directory in Ubuntu.
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 2 : 29 JULY 2026
+------------------------------------------------------------
+            
+            6. Surakshya Nepali
+            
+            Topic:
+            IaaS, PaaS, and SaaS
+            
+            Demo Scenario:
+            Show difference using examples:
+            VM as IaaS, Docker platform as PaaS-like environment, and
+            Google Docs/Gmail as SaaS explanation.
+            
+            
+            7. Janaki Neupane
+            
+            Topic:
+            Public, Private, Hybrid, and Community Cloud
+            
+            Demo Scenario:
+            Draw and explain deployment model architecture using a college
+            network case scenario.
+            
+            
+            8. Aadarsh Bhattarai
+            
+            Topic:
+            Shared Responsibility Model
+            
+            Demo Scenario:
+            Show Linux user permission and Apache file permission to explain
+            provider responsibility vs user responsibility.
+            
+            
+            9. Ajay Kunwar
+            
+            Topic:
+            Multi-Cloud and Vendor Lock-in
+            
+            Demo Scenario:
+            Run same simple website using Docker and explain how container
+            helps reduce vendor lock-in.
+            
+            
+            10. Amit Paudel
+            
+            Topic:
+            Serverless Computing and Event-Driven Architecture
+            
+            Demo Scenario:
+            Create simple event-based shell script in Ubuntu where a file
+            creation event triggers output, and relate it to AWS Lambda.
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 3 : 30 JULY 2026
+------------------------------------------------------------
+              
+              11. Arpit Kattel
+              
+              Topic:
+              Layered Cloud Architecture
+              
+              Demo Scenario:
+              Draw cloud architecture showing client, application, platform,
+              infrastructure, and physical layer.
+              
+              
+              12. Arun Bista
+              
+              Topic:
+              Service-Oriented Architecture, SOA
+              
+              Demo Scenario:
+              Create separate folders/services for login, product, and payment
+              and explain how services communicate logically.
+              
+              
+              13. Arun Sunar
+              
+              Topic:
+              Monolithic vs Microservices Architecture
+              
+              Demo Scenario:
+              Run one simple monolithic app and compare with two small Docker
+              containers as microservices.
+              
+              
+              14. Bandana Sharma
+              
+              Topic:
+              Scalability and Elasticity
+              
+              Demo Scenario:
+              Run multiple web containers and explain horizontal scaling using
+              Docker container replicas.
+              
+              
+              15. Bishnu Gupta
+              
+              Topic:
+              Fault Tolerance and High Availability
+              
+              Demo Scenario:
+              Run two web servers and explain how service continues if one
+              container stops.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 4 : 1 AUGUST 2026
+------------------------------------------------------------
+                
+                16. Bijan Adhikari
+                
+                Topic:
+                Load Distribution Concepts
+                
+                Demo Scenario:
+                Use Nginx as load balancer with two backend containers and show
+                request distribution.
+                
+                
+                17. Bindhya Shakya
+                
+                Topic:
+                Security, Trust, and Privacy in Cloud Architecture
+                
+                Demo Scenario:
+                Show basic Linux file permission, password protection, and
+                explain privacy in cloud storage.
+                
+                
+                18. Denish Karki
+                
+                Topic:
+                Cloud Application Design Principles
+                
+                Demo Scenario:
+                Design a simple scalable web application architecture with
+                frontend, backend, database, and monitoring.
+                
+                
+                19. Durga Sarki
+                
+                Topic:
+                Web Application Architecture in Cloud
+                
+                Demo Scenario:
+                Deploy simple PHP/Apache app using Docker and explain frontend,
+                backend, and database connection.
+                
+                
+                20. Mohammad Faheem Khan
+                
+                Topic:
+                Application Migration and Software Licensing in Cloud
+                
+                Demo Scenario:
+                Move a simple app from local Apache setup to Docker container
+                and explain migration steps.
+                
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 5 : 2 AUGUST 2026
+------------------------------------------------------------
+            
+            21. Tejendra Dhurikar
+            
+            Topic:
+            Cloud Cost Models and Pricing Strategies
+            
+            Demo Scenario:
+            Calculate sample VM cost:
+            hourly cost × hours × days, and explain pay-as-you-go model.
+            
+            
+            22. Ranjeeta Belbase
+            
+            Topic:
+            Service Level Agreement, SLA
+            
+            Demo Scenario:
+            Prepare an SLA table showing uptime, downtime, response time,
+            and support level.
+            
+            
+            23. Kripesh Karki
+            
+            Topic:
+            Performance and Availability Metrics
+            
+            Demo Scenario:
+            Use Linux commands like top, free, df, and uptime to monitor
+            system performance.
+            
+            
+            24. Milam Saru Magar
+            
+            Topic:
+            Portability and Interoperability
+            
+            Demo Scenario:
+            Run same Docker image on Ubuntu and explain portability across
+            different environments.
+            
+            
+            25. Nikit Lohani
+            
+            Topic:
+            DevOps and CI/CD Concepts
+            
+            Demo Scenario:
+            Show simple Git pull and shell script deployment process as a
+            basic CI/CD workflow.
+
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 6 : 3 AUGUST 2026
+------------------------------------------------------------
+
+              26. Rajani Bhusal
+              
+              Topic:
+              Infrastructure as Code, IaC Basics
+              
+              Demo Scenario:
+              Create a shell script that installs Apache and deploys a simple
+              web page automatically.
+              
+              
+              27. Nishan Thapa
+              
+              Topic:
+              Monitoring and Logging in Cloud Systems
+              
+              Demo Scenario:
+              Show Apache access logs and error logs using tail command in
+              Ubuntu.
+              
+              
+              28. Sandesh Parajuli
+              
+              Topic:
+              Virtualization Concepts
+              
+              Demo Scenario:
+              Explain VM architecture using VirtualBox/VMware diagram and
+              compare with physical server.
+              
+              
+              29. Smit Paudel
+              
+              Topic:
+              Types of Virtualization
+              
+              Demo Scenario:
+              Explain server, storage, and network virtualization with a
+              college lab example.
+              
+              
+              30. Suraj Shrestha
+              
+              Topic:
+              Hypervisors and Types
+              
+              Demo Scenario:
+              Compare Type 1 and Type 2 hypervisors using VMware ESXi and
+              VirtualBox examples.
+              
+
+
+
+
+
+
+------------------------------------------------------------
+DAY 7 : 4 AUGUST 2026
+------------------------------------------------------------
+                    
+                    31. Sulochan Karki
+                    
+                    Topic:
+                    Virtual Machine Lifecycle
+                    
+                    Demo Scenario:
+                    Explain create, start, pause, snapshot, stop, and delete VM
+                    lifecycle using diagram.
+                    
+                    
+                    32. Surya Prasad Khanal
+                    
+                    Topic:
+                    Containerization and Docker
+                    
+                    Demo Scenario:
+                    Run nginx container using Docker and explain image, container,
+                    port, and volume.
+                    
+                    
+                    33. Ranjan Aryal
+                    
+                    Topic:
+                    Virtual Machine vs Container
+                    
+                    Demo Scenario:
+                    Compare VM and Docker container using architecture diagram and
+                    resource usage example.
+                    
+                    
+                    34. Sushil Bhandari
+                    
+                    Topic:
+                    Hadoop and MapReduce
+                    
+                    Demo Scenario:
+                    Run simple word count logic using Linux commands or Python and
+                    explain Map and Reduce phases.
+                    
+                    
+                    35. Niranjan Chaudhary
+                    
+                    Topic:
+                    Cloud Security, IAM, Encryption, and Governance
+                    
+                    Demo Scenario:
+                    Create Linux users and permission-based access, then explain IAM,
+                    encryption, privacy, and governance in cloud.
+                    
+
+
+
+
+
+
+
+
+
+
+============================================================
+SLIDE FORMAT
+============================================================
+
+          Slide 1:
+          
+          . Name
+          . Program
+          . Semester
+          . Subject
+          . Topic
+          
+          
+          Slide 2:
+          
+          . Definition
+          . Main concept
+          . Diagram / figure
+          . Real-world example
+          
+          
+          Slide 3:
+          
+          . Killer Coda Ubuntu demo scenario
+          . Commands / workflow
+          . Expected output
+          . Short conclusion
+          
+
+
+
+
+
+============================================================
+FACEBOOK CHAT SUBMISSION FORMAT
+============================================================
+          
+          Each student must send:
+          
+          . PPT file
+          . Killer Coda scenario / commands
+          . Demo screenshot if possible
+          
+          Submission Time:
+          
+          . At least 5 minutes before presentation
+          
+          
+          File Naming Format:
+          
+          Name_BCSIT6_Cloud_Presentation.pptx
+          
+          Example:
+          
+          Ranjeeta_Belbase_BCSIT6_Cloud_Presentation.pptx
+          
+
+
+
+============================================================
+IMPORTANT NOTES
+============================================================
+            
+            . Only 3 slides are allowed.
+            
+            . Practical demo is compulsory.
+            
+            . Presentation without demo will lose marks.
+            
+            . Do not present unnecessary theory.
+            
+            . Topic must be explained with real cloud scenario.
+            
+            . Killer Coda Ubuntu machine demo is highly recommended.
+            
+            . Presentation carries 25% internal marks.
+            
+            . Students must be ready on assigned date.
+            
+            . Late submission or absence may affect internal marks.
+
+
+
+
+
+============================================================
+REGARDS
+============================================================
+
+Sanjeev Thapa    9865093594
+IT Faculty
+Crimson College of Technology
+============================================================
+
+
+
+
+
+
+
+
