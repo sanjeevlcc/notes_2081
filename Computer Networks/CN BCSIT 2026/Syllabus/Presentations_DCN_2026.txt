@@ -27,6 +27,131 @@ Note:
 
 
 
+
+============================================================
+SOFTWARE SOURCES
+============================================================
+
+packet tracer: https://www.youtube.com/watch?v=frUQMHXhnvs
+
+packettracer or gns3: https://www.youtube.com/watch?v=MN0KzfzlRio&pp=ygUTd2hhdCBpcyBwYWNrZXQgZ25zIA%3D%3D
+
+
+gns3:  https://www.youtube.com/watch?v=CT5pThgC8bo&list=PLZURQ_XyXLwB5BUDb18M9btWX0WWUNXMR
+
+
+
+
+
+
+============================================================
+FACEBOOK CHAT SUBMISSION FORMAT
+============================================================
+
+Each student must send:
+
+. PPT file
+. Demo scenario
+. Commands / configuration if required
+. Screenshot if possible
+
+Submission Time:
+
+. At least 5 minutes before presentation
+
+
+File Naming Format:
+
+Name_BCSIT4_DCN_Presentation.pptx
+
+Example:
+
+Riya_Khatri_BCSIT4_DCN_Presentation.pptx
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+MARKING CRITERIA
+============================================================
+
+Total Presentation Weightage: 25% Internal Marks
+
+. Topic Understanding          : 5 Marks
+. Slide Quality                : 5 Marks
+. Figure / Network Diagram     : 5 Marks
+. Practical Demo               : 7 Marks
+. Viva / Question Answer       : 3 Marks
+
+
+
+
+
+
+
+
+============================================================
+IMPORTANT NOTES
+============================================================
+
+. Online presentation starts from 4:30 PM.
+
+. Same Google Meet link will be used every day:
+  https://meet.google.com/rye-dfeb-rxw
+
+. Only 5 students will present per day.
+
+. Only 4 slides are allowed.
+
+. Practical demo is compulsory.
+
+. Do not present unnecessary theory.
+
+. Topic must be explained with figure and lab scenario.
+
+. Use Killer Coda, GNS3, Cisco Packet Tracer, Wireshark,
+  or Ubuntu networking commands as required.
+
+. PPT and demo scenario must be sent in Facebook chat at least
+  5 minutes before presentation.
+
+. Late submission or absence may affect internal marks.
+
+
+
+
+
+
+
+
+============================================================
+REGARDS
+============================================================
+
+Sanjeev Thapa
+IT Faculty
+Crimson College of Technology
+============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
 ============================================================
 PRESENTATION RULES
 ============================================================
@@ -71,6 +196,18 @@ Slide 4:
   at least 5 minutes before presentation.
 
 . Presentation carries 25% of internal marks.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -717,105 +854,6 @@ TIME  : 4:30 PM ONWARDS
 
 
 
-
-
-
-
-============================================================
-FACEBOOK CHAT SUBMISSION FORMAT
-============================================================
-
-Each student must send:
-
-. PPT file
-. Demo scenario
-. Commands / configuration if required
-. Screenshot if possible
-
-Submission Time:
-
-. At least 5 minutes before presentation
-
-
-File Naming Format:
-
-Name_BCSIT4_DCN_Presentation.pptx
-
-Example:
-
-Riya_Khatri_BCSIT4_DCN_Presentation.pptx
-
-
-
-
-
-
-
-
-
-
-
-============================================================
-MARKING CRITERIA
-============================================================
-
-Total Presentation Weightage: 25% Internal Marks
-
-. Topic Understanding          : 5 Marks
-. Slide Quality                : 5 Marks
-. Figure / Network Diagram     : 5 Marks
-. Practical Demo               : 7 Marks
-. Viva / Question Answer       : 3 Marks
-
-
-
-
-
-
-
-
-============================================================
-IMPORTANT NOTES
-============================================================
-
-. Online presentation starts from 4:30 PM.
-
-. Same Google Meet link will be used every day:
-  https://meet.google.com/rye-dfeb-rxw
-
-. Only 5 students will present per day.
-
-. Only 4 slides are allowed.
-
-. Practical demo is compulsory.
-
-. Do not present unnecessary theory.
-
-. Topic must be explained with figure and lab scenario.
-
-. Use Killer Coda, GNS3, Cisco Packet Tracer, Wireshark,
-  or Ubuntu networking commands as required.
-
-. PPT and demo scenario must be sent in Facebook chat at least
-  5 minutes before presentation.
-
-. Late submission or absence may affect internal marks.
-
-
-
-
-
-
-
-
-============================================================
-REGARDS
-============================================================
-
-Sanjeev Thapa
-IT Faculty
-Crimson College of Technology
-============================================================
 
 
 
