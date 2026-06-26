@@ -1,1 +1,506 @@
-wqw
+
+
+***********************************************************
+***********************************************************
+***********************************************************
+***********************************************************
+
+
+        
+        
+        
+        ============================================================
+                        CRIMSON COLLEGE OF TECHNOLOGY
+                           ASSIGNMENT NOTICE
+        ============================================================
+        
+        Program            : BCSIT
+        Semester           : VI (Sixth Semester)
+        Subject            : Cloud Computing (CMP 382)
+        Assignment Type    : Handwritten Assignment
+        
+        
+        ============================================================
+        ASSIGNMENT INSTRUCTIONS
+        ============================================================
+        
+        . All BCSIT 6th Semester students are hereby informed that
+          the assignment for Cloud Computing (CMP 382) has been assigned.
+        
+        . Students must prepare the assignment in handwritten format.
+        
+        . Assignment should be written clearly and neatly with proper:
+          
+          . Headings
+          . Sub-headings
+          . Diagrams (if needed)
+          . Proper explanations
+        
+        
+        ============================================================
+        SUBMISSION GUIDELINES
+        ============================================================
+        
+        Physical Submission:
+        
+        . Submit handwritten assignment copy to:
+        
+          IT Staff Room
+        
+        
+        Submission Deadline:
+        
+        . Date : 8 July 2026 (Wednesday)
+        
+        
+        ============================================================
+        DIGITAL SUBMISSION (MANDATORY)
+        ============================================================
+        
+        . All students must scan the handwritten assignment.
+        
+        . The scanned copy must be converted into PDF format.
+        
+        . PDF file must be sent via email for digital record and
+          academic footprint.
+        
+        
+        Email Address:
+        
+          sanjeevthapa@cct.edu.np
+        
+        
+        
+        Submission Deadline:
+        
+        . Date : 8 July 2026 (Wednesday - 6 PM onwards)
+        
+        
+        
+        ============================================================
+        FILE NAMING FORMAT (COMPULSORY)
+        ============================================================
+        
+        Format:
+        
+        Name_BCSIT6_Cloud_Computing.pdf
+        
+        
+        Example:
+        
+        Ranjita_Belbase_BCSIT6_Cloud_Computing.pdf
+        
+        
+        ============================================================
+        IMPORTANT NOTES
+        ============================================================
+        
+        . Handwritten submission is compulsory.
+        
+        . Email submission is compulsory.
+        
+        . Both submissions must be completed before deadline.
+        
+        . Late submission may not be accepted.
+        
+        . Ensure scanned PDF is clear and readable.
+        
+        . Improper file naming may lead to rejection.
+        
+        
+        ============================================================
+        REGARDS
+        ============================================================
+        
+        Sanjeev Thapa
+        IT Faculty
+        Crimson College of Technology
+        
+        Contact No: 9865093594
+        
+        ============================================================
+        
+
+
+
+
+***********************************************************
+***********************************************************
+***********************************************************
+***********************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+SHORT QUESTIONS (15)
+============================================================
+
+1. Define Cloud Computing.
+
+2. List any four characteristics of cloud computing.
+
+3. What is cloud storage?
+
+4. Differentiate between IaaS, PaaS, and SaaS.
+
+5. Define Public Cloud and Private Cloud.
+
+6. What is serverless computing?
+
+7. What is SOA in cloud architecture?
+
+8. Differentiate between Monolithic and Microservices architecture.
+
+9. Define scalability in cloud computing.
+
+10. What is elasticity?
+
+11. What is virtualization?
+
+12. Differentiate between Virtual Machine and Container.
+
+13. What is MapReduce?
+
+14. What is IAM in cloud security?
+
+15. What is data encryption?
+
+
+============================================================
+LONG QUESTIONS (20)
+============================================================
+
+1. Explain cloud computing with its evolution, characteristics,
+   benefits, and challenges. ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+2. Discuss major applications of cloud computing with examples. ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+
+3. Explain cloud service models (IaaS, PaaS, SaaS) with examples.
+
+
+
+
+
+4. Compare different cloud deployment models with examples. ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+
+5. Explain shared responsibility model in cloud environments.
+
+
+
+
+
+6. Discuss multi-cloud concepts and vendor lock-in issues.
+
+
+
+
+
+7. Explain layered cloud architecture with suitable diagram.
+
+
+
+
+
+8. Explain SOA and compare Monolithic vs Microservices architecture. ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+
+9. Explain scalability and elasticity with suitable examples. ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+
+10. Explain fault tolerance and high availability in cloud systems.
+
+
+
+
+
+11. Discuss load distribution concepts with suitable examples.
+
+
+
+
+
+12. Explain design principles of cloud-based applications.
+
+
+
+
+
+13. Explain Service Level Agreement (SLA) and cloud pricing models.
+
+
+
+
+
+14. Discuss DevOps, CI/CD, and Infrastructure as Code (IaC). ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+
+15. Explain virtualization and types of virtualization.
+
+
+
+
+
+16. Compare Virtual Machines and Containers with examples.
+
+
+
+
+
+17. Explain serverless computing and event-driven functions.
+
+
+
+
+
+18. Explain distributed computing and MapReduce model. ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+
+19. Explain Hadoop and modern big data processing models.
+
+
+
+
+
+20. Explain cloud security challenges, IAM, encryption,
+    privacy, governance, and compliance. ( design a suitable figure too , and 
+   align some linux command as per needed in killercoda 
+   scnerio (Compulsory ) )
+
+
+
+
+
+
+
+
+
+
+============================================================
+CASE STUDY
+============================================================
+
+
+    ============================================================
+    CASE STUDY 1 : SMARTMART E-COMMERCE CLOUD TRANSFORMATION
+    (Unit 4 + Unit 5 + Unit 6)
+    ============================================================
+    
+    SmartMart is a fast-growing e-commerce company in Nepal that
+    sells groceries, electronics, and household products online.
+    Initially, the company used traditional on-premise servers to
+    run its website and database. As customer demand increased,
+    especially during festivals like Dashain and Tihar, the system
+    started facing major issues such as slow response time, server
+    overload, downtime, and poor scalability.
+    
+    To solve these problems, SmartMart decided to migrate its
+    entire system to a cloud-based environment. The company moved
+    its web application to cloud infrastructure using virtual
+    machines and containerized services.
+    
+    The frontend web application was deployed using Docker
+    containers to ensure portability and faster deployment. The
+    development team also implemented CI/CD pipelines so that new
+    features and bug fixes could be automatically tested and
+    deployed without manual intervention.
+    
+    To improve resource management, the company used virtualization
+    technology to run multiple virtual machines on a single
+    physical server. This reduced hardware costs and improved
+    resource utilization. During high traffic periods, cloud
+    auto-scaling was enabled to automatically add additional
+    servers when demand increased and remove them when traffic
+    decreased.
+    
+    SmartMart also adopted Infrastructure as Code (IaC) tools to
+    automate infrastructure deployment. This allowed the IT team to
+    quickly create and manage cloud resources with minimal manual
+    effort.
+    
+    As the company grew, it generated massive amounts of data from
+    customer purchases, search history, transactions, and product
+    reviews. Processing such large datasets became difficult using
+    traditional systems.
+    
+    To address this challenge, SmartMart implemented distributed
+    computing techniques using Hadoop and MapReduce. Customer data
+    was stored in distributed file systems across multiple nodes.
+    MapReduce jobs were used to analyze customer purchasing trends,
+    popular products, and seasonal demand.
+    
+    For example, the company used big data analytics to identify
+    which products sold most during festivals and which customers
+    were likely to purchase again. This helped SmartMart improve
+    marketing strategies and inventory management.
+    
+    As a result, SmartMart achieved better scalability, higher
+    availability, improved performance, reduced operational costs,
+    and better business decision-making through cloud computing and
+    big data technologies.
+    
+    ============================================================
+    QUESTIONS
+    ============================================================
+    
+    1. Why did SmartMart migrate from on-premise infrastructure to
+       cloud computing?
+    
+    2. How did Docker help SmartMart in application deployment?
+    
+    3. What role did virtualization play in SmartMart’s cloud
+       infrastructure?
+    
+    4. Why was auto-scaling important during festival sales?
+    
+    5. What is the role of CI/CD in SmartMart’s development process?
+    
+    6. How did Hadoop and MapReduce help SmartMart process large
+       customer datasets?
+    
+    7. What major benefits did SmartMart achieve after adopting
+       cloud computing and distributed computing?
+    
+    ============================================================
+    
+    
+    
+
+
+
+
+
+
+
+
+      
+      ============================================================
+      CASE STUDY 2: 
+      
+      CLOUD-BASED SMART HEALTHCARE ANALYTICS SYSTEM
+      
+      (Unit 4 + Unit 6 + Unit 7)
+      ============================================================
+      
+      A private hospital network in Nepal, called CarePlus Hospital,
+      operates branches in Butwal, Bhairahawa, and Kathmandu. Initially,
+      each branch used separate local servers to store patient records,
+      appointment details, billing data, and laboratory reports. As the
+      number of patients increased, the hospital started facing problems
+      such as slow application performance, data duplication, high server
+      maintenance cost, and difficulty in sharing patient records between
+      branches.
+      
+      To solve these issues, CarePlus decided to migrate its hospital
+      management system to a cloud-based application. The IT team designed
+      a web-based cloud application where doctors, nurses, accountants, and
+      administrators could access the system securely from different
+      locations. The application was deployed in the cloud with proper
+      service management, monitoring, logging, and performance tracking.
+      
+      The hospital also used a cloud cost model to estimate monthly
+      expenses for servers, storage, backup, and bandwidth. Service Level
+      Agreements, SLA, were reviewed to ensure high availability and
+      minimum downtime for critical hospital services. Monitoring tools
+      were used to observe CPU usage, memory usage, application errors,
+      and login activities.
+      
+      As the hospital collected large amounts of patient data, lab reports,
+      medicine records, and diagnosis history, it became difficult to
+      analyze the data using traditional systems. Therefore, CarePlus used
+      distributed computing and big data processing techniques. Patient
+      records were stored in distributed file systems, and MapReduce was
+      used to analyze disease patterns, frequent medicine usage, and
+      department-wise patient flow.
+      
+      Since healthcare data is sensitive, cloud security and governance
+      became very important. The hospital implemented Identity and Access
+      Management, IAM, so that only authorized users could access specific
+      data. Doctors could access medical records, accountants could access
+      billing data, and lab technicians could access lab reports. Data
+      encryption was applied to protect patient records during storage and
+      transmission. Security monitoring, auditing, privacy policies, and
+      compliance rules were also introduced to protect patient information.
+      
+      After adopting cloud computing, distributed data processing, and
+      security governance, CarePlus improved data sharing, reduced cost,
+      increased system availability, and improved decision-making in
+      hospital operations.
+      
+      ============================================================
+      QUESTIONS
+      ============================================================
+      
+      1. Why did CarePlus Hospital migrate its system to a cloud-based
+         application?
+      
+      2. How do monitoring and logging help in managing the hospital cloud
+         application?
+      
+      3. What is the importance of SLA in this healthcare cloud system?
+      
+      4. How can distributed file systems and MapReduce help CarePlus
+         analyze hospital data?
+      
+      5. Why is IAM important in the CarePlus hospital system?
+      
+      6. How does encryption protect sensitive patient records?
+      
+      7. What security, privacy, and governance issues should be considered
+         while storing healthcare data in the cloud?
+      
+      ============================================================
+      
+
+
+
+
