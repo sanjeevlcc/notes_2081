@@ -1,0 +1,675 @@
+
+
+
+============================================================
+                CRIMSON COLLEGE OF TECHNOLOGY
+                   ASSIGNMENT NOTICE
+============================================================
+
+Program            : BCSIT
+Semester           : IV (Fourth Semester)
+Subject            : Data Communication and Networks (CMP 277)
+Assignment Type    : Handwritten Assignment
+
+
+============================================================
+ASSIGNMENT INSTRUCTIONS
+============================================================
+
+. All BCSIT 4th Semester students are hereby informed that
+  the assignment for Data Communication and Networks (CMP 277)
+  has been assigned.
+
+. Students must prepare the assignment in handwritten format.
+
+. Assignment should be written clearly and neatly with proper:
+
+  . Headings
+  . Sub-headings
+  . Diagrams (if required)
+  . Proper explanations
+  . Numerical solutions (where necessary)
+
+
+============================================================
+SUBMISSION GUIDELINES
+============================================================
+
+Physical Submission:
+
+. Submit handwritten assignment copy to:
+
+  IT Staff Room
+
+
+Submission Deadline:
+
+. Date : 8 July 2026 (Wednesday)
+
+
+============================================================
+DIGITAL SUBMISSION (MANDATORY)
+============================================================
+
+. All students must scan the handwritten assignment.
+
+. The scanned copy must be converted into PDF format.
+
+. PDF file must be sent via email for digital record and
+  academic footprint.
+
+
+Email Address:
+
+sanjeevthapa@cct.edu.np
+
+
+
+Submission Deadline:
+
+. Date : 8 July 2026 (Wednesday) 6 pm onwards
+
+
+============================================================
+FILE NAMING FORMAT (COMPULSORY)
+============================================================
+
+Format:
+
+Name_BCSIT4_DCN.pdf
+
+
+Example:
+
+RAM_KC_BCSIT4_DCN.pdf
+
+
+============================================================
+IMPORTANT NOTES
+============================================================
+
+. Handwritten submission is compulsory.
+
+. Email submission is compulsory.
+
+. Both submissions must be completed before deadline.
+
+. Late submission may not be accepted.
+
+. Ensure scanned PDF is clear and readable.
+
+. Improper file naming may lead to rejection.
+
+
+============================================================
+REGARDS
+============================================================
+
+Sanjeev Thapa
+IT Faculty
+Crimson College of Technology
+
+Contact No: 9865093594
+
+============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+CMP 277 : DATA COMMUNICATION AND NETWORKS
+QUESTION BANK
+BCSIT Semester IV
+============================================================
+
+
+============================================================
+SHORT QUESTIONS (25)
+============================================================
+      
+      1. Define data communication. ( show with suitable figure )
+      
+      2. What are simplex, half-duplex, and full-duplex transmission modes?  ( show with suitable figure )
+      
+      3. What are the fundamental characteristics of data communication? ( show with suitable figure )
+      
+      4. State Nyquist Sampling Theorem. ( show with suitable figure  and formulae)
+      
+      5. What is Shannon Channel Capacity Theorem?( show with suitable figure  and formulae)
+      
+      6. Differentiate between bit rate and baud rate.( show with suitable figure )
+      
+      7. What is line coding?( show with suitable figure )
+      
+      8. Define computer network.( show with suitable figure )
+      
+      9. List different network topologies.( show with suitable figure )
+      
+      10. Differentiate LAN and WAN.( show with suitable figure )
+      
+      11. What is OSI reference model?( show with suitable figure )
+      
+      12. What is TCP/IP model?( show with suitable figure )
+      
+      13. What is the function of NIC?
+      
+      14. Differentiate Hub and Switch.
+      
+      15. Define attenuation, distortion, and noise.( show with suitable figure )
+      
+      16. What is multiplexing?
+      
+      17. What is VLAN?( show with suitable figure )
+      
+      18. What is framing in Data Link Layer?
+      
+      19. What is CRC?( show with suitable figure )
+      
+      20. What is subnetting?( show with suitable figure )
+      
+      21. Differentiate private IP and public IP.
+      
+      22. What is NAT?
+      
+      23. Differentiate TCP and UDP.
+      
+      24. What is DNS?( show with suitable figure )
+      
+      25. What is firewall?( show with suitable figure )
+      
+      
+
+
+
+============================================================
+LONG QUESTIONS (20)
+============================================================
+        
+        1. Explain data communication and its components with a suitable block diagram.
+        
+        2. Explain simplex, half-duplex, and full-duplex transmission modes with examples.
+        
+        3. Explain Nyquist Sampling Theorem and Shannon Channel Capacity Theorem with numericals.
+        
+        4. Explain different line coding techniques: Unipolar, Polar, and Bipolar.
+        
+        5. Explain different network topologies with advantages and disadvantages.
+        
+        6. Explain OSI reference model with functions of each layer.
+        
+        7. Compare TCP/IP model with OSI reference model.
+        
+        8. Explain networking devices: NIC, Hub, Repeater, Switch, Bridge, and Router.
+        
+        9. Explain guided and unguided transmission media with examples.
+        
+        10. Explain multiplexing techniques: TDM, FDM, and WDM.
+        
+        11. Explain switching techniques: Circuit, Message, Packet, and Virtual Circuit Switching.
+        
+        12. Explain functions of Data Link Layer with framing techniques.
+        
+        13. Explain flow control mechanisms: Stop and Wait, Sliding Window, Go-Back-N, and Selective Repeat ARQ.
+        
+        14. Explain error detection and correction techniques: Parity Check, Checksum, CRC, and Hamming Code.
+        
+        15. Explain IPv4 addressing, IPv4 classes, and subnetting with examples.
+        
+        16. Explain IPv6 and discuss transition from IPv4 to IPv6.
+        
+        17. Explain routing and compare Distance Vector Routing and Link State Routing.
+        
+        18. Explain routing protocols: RIP, OSPF, EIGRP, and BGP.
+        
+        19. Explain transport layer protocols TCP, UDP, SCTP, and RTP with comparisons.
+        
+        20. Explain network security concepts including cryptography, VPN, firewalls, and proxy.
+
+
+============================================================
+NUMERICAL / LOGICAL QUESTIONS
+============================================================
+      
+      1. Calculate Nyquist bit rate for bandwidth = 4 KHz and 8 signal levels.
+      
+      2. Calculate Shannon channel capacity for bandwidth = 3 KHz and SNR = 30 dB.
+      
+      3. A company has network 192.168.50.0/24.
+         Marketing needs 36 hosts.
+         Finance needs 22 hosts.
+         Operations needs 57 hosts.
+      
+         Perform VLSM subnetting and calculate:
+         . Network Address
+         . Broadcast Address
+         . Usable Host Range
+         . Subnet Mask
+      
+      4. Compare RIP and OSPF for a university network.
+         Which is better and why?
+      
+      5. Design a secure network for a college with:
+         . 3 Labs
+         . 1 Server Room
+         . 2 Routers
+         . Internet Connection
+         Include security measures.
+
+============================================================
+
+
+
+
+
+
+=================================
+CASE STUDY
+=================================
+
+
+============================================================
+CASE STUDY 1: 
+
+DATA COMMUNICATION IN SMART COLLEGE NETWORK
+
+(Unit I + Unit III)
+============================================================
+      
+      Crimson College of Technology recently expanded its IT
+      infrastructure to support online classes, smart labs, digital
+      library services, and campus-wide internet access. The college
+      management decided to build a modern communication system for
+      efficient data transfer between departments, computer labs,
+      library, and administration.
+      
+      The network design included both wired and wireless communication.
+      For wired communication, Cat6 Ethernet cables and optical fiber
+      were used. Fiber optic cables connected major buildings such as
+      the main administrative block, library, and computer labs due to
+      their high speed and low signal loss. Cat6 cables were used inside
+      labs and offices to connect desktop computers and printers.
+      
+      For wireless communication, Wi-Fi access points based on IEEE
+      802.11 standard were installed throughout the campus to provide
+      internet access to students and faculty. Bluetooth devices were
+      also used for short-range communication such as file sharing and
+      peripheral connectivity.
+      
+      The IT team carefully considered data transmission modes. Online
+      lectures mostly used full-duplex communication since teachers and
+      students needed to send and receive data simultaneously. Security
+      camera systems used simplex communication because video data moved
+      only from camera to monitoring center.
+      
+      The network also faced physical layer challenges. During peak
+      hours, students reported slow internet speed and video buffering.
+      The IT team identified several transmission impairments such as
+      attenuation in long cable connections, noise from nearby electrical
+      equipment, and signal distortion due to poor cable quality.
+      
+      To improve performance, the college implemented multiplexing
+      techniques to efficiently utilize communication channels.
+      Bandwidth, throughput, latency, and jitter were also monitored to
+      measure overall network performance. The team upgraded some older
+      Fast Ethernet switches to Gigabit Ethernet switches for better
+      speed and performance.
+      
+      After optimization, the college achieved faster internet speed,
+      better connectivity, reduced packet loss, and smoother online
+      learning experience.
+          
+          ============================================================
+          QUESTIONS
+          ============================================================
+          
+          1. Why did Crimson College use both Cat6 cable and optical fiber
+             in the network design?
+          
+          2. Differentiate simplex and full-duplex communication using
+             examples from the case.
+          
+          3. Which IEEE standard was used for Wi-Fi in this case?
+          
+          4. What transmission impairments affected the college network?
+          
+          5. Why is optical fiber preferred for long-distance communication?
+          
+          6. Explain how multiplexing helps improve communication efficiency.
+          
+          7. Define bandwidth, throughput, latency, and jitter based on
+             this scenario.
+          
+          ============================================================
+
+
+
+
+
+
+
+
+
+============================================================
+CASE STUDY 2 : SMART ONLINE EDUCATION NETWORK SYSTEM
+(Unit I + Unit VI + Unit VII + Unit VIII)
+============================================================
+      
+      Crimson College of Technology recently launched a Smart Online
+      Education System to support online classes, digital learning,
+      online exams, and virtual lab activities for BCSIT students.
+      
+      The system allows students and teachers to communicate through
+      video conferencing, online learning portals, email, and file
+      sharing systems. Since large amounts of data are transmitted
+      daily, efficient data communication became very important.
+      
+      The college network uses both wired and wireless communication.
+      For live classes, data transmission happens in full-duplex mode,
+      where teachers and students can send and receive voice, video,
+      and messages simultaneously. High-speed internet and reliable
+      communication channels are required to minimize delays.
+      
+      At the transport layer, the college uses different protocols for
+      different services. TCP is used for web portals, online exams,
+      and result systems because reliable communication is required.
+      UDP is used for live video conferencing because speed is more
+      important than retransmission delay.
+      
+      During exam periods, network congestion increased significantly
+      due to thousands of students accessing the system at the same
+      time. The IT team implemented congestion control mechanisms and
+      traffic shaping algorithms such as Leaky Bucket and Token Bucket
+      to manage traffic efficiently.
+      
+      At the application layer, several protocols were used. HTTP and
+      HTTPS were used for accessing the college LMS portal. DNS helped
+      convert domain names into IP addresses. SMTP, POP3, and IMAP were
+      used for email communication. DHCP dynamically assigned IP
+      addresses to students and faculty devices connecting to the
+      campus network.
+      
+      Since the entire system handles sensitive data such as student
+      records, exam questions, and financial details, network security
+      became a major concern. The IT team deployed firewalls, VPN, and
+      proxy servers to secure communication. Encryption techniques were
+      used to protect confidential data during transmission.
+      
+      The security team also identified common threats such as phishing,
+      malware, DDoS attacks, and unauthorized access attempts. To
+      counter these threats, strong authentication, access control, and
+      network monitoring systems were implemented.
+      
+      After implementing proper communication, transport protocols,
+      application services, and security mechanisms, the college
+      successfully improved system performance, security, and user
+      experience.
+      
+            ============================================================
+            QUESTIONS
+            ============================================================
+            
+            1. Why is full-duplex communication important in the Smart Online
+               Education System?
+            
+            2. Why is TCP preferred for online exams and result systems?
+            
+            3. Why is UDP preferred for live video conferencing?
+            
+            4. How do Leaky Bucket and Token Bucket help in congestion control?
+            
+            5. Explain the role of DNS, DHCP, and HTTP/HTTPS in this system.
+            
+            6. What security threats were identified in the college network?
+            
+            7. How do firewalls, VPN, and encryption improve network security?
+            
+            ============================================================
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+NUMERICAL QUESTIONS ( not Compulsory , but you can try)
+============================================================
+        
+        
+        1. Shannon Channel Capacity Theorem
+        ------------------------------------------------------------
+        
+        A communication channel has bandwidth 4 KHz and signal-to-noise
+        ratio of 30 dB.
+        Calculate the channel capacity.
+        
+        Formula:
+        C = B log2(1 + S/N)
+        
+        
+        2. Shannon Channel Capacity Theorem
+        ------------------------------------------------------------
+        
+        A channel has bandwidth 5 KHz and SNR = 100.
+        Calculate maximum data rate.
+        
+        
+        3. Bit Rate vs Baud Rate
+        ------------------------------------------------------------
+        
+        A digital signal transmits 4800 bps using 4 signal levels.
+        Calculate baud rate.
+        
+        Formula:
+        Baud Rate = Bit Rate / Bits per Signal
+        
+        
+        4. Bit Rate vs Baud Rate
+        ------------------------------------------------------------
+        
+        A signal has bit rate 9600 bps and each signal carries 3 bits.
+        Calculate baud rate.
+        
+        
+        5. Multiplexing (TDM)
+        ------------------------------------------------------------
+        
+        4 channels each transmit at 2 Mbps using TDM.
+        Calculate total link capacity required.
+        
+        
+        6. Multiplexing (FDM)
+        ------------------------------------------------------------
+        
+        Three channels require 5 KHz bandwidth each.
+        Guard band between channels = 1 KHz.
+        Calculate total bandwidth required.
+        
+        
+        7. Network Performance (Bandwidth-Delay Product)
+        ------------------------------------------------------------
+        
+        Bandwidth = 100 Mbps
+        Delay = 20 ms
+        
+        Calculate bandwidth-delay product.
+        
+        
+        8. Throughput
+        ------------------------------------------------------------
+        
+        A network transfers 500 MB data in 20 seconds.
+        Calculate throughput in Mbps.
+        
+        
+        9. Latency
+        ------------------------------------------------------------
+        
+        Transmission delay = 5 ms
+        Propagation delay = 10 ms
+        Queuing delay = 3 ms
+        Processing delay = 2 ms
+        
+        Calculate total latency.
+        
+        
+        10. CRC
+        ------------------------------------------------------------
+        
+        Data = 1101011011
+        Generator = 10011
+        
+        Find CRC remainder.
+        
+        
+        11. Hamming Code
+        ------------------------------------------------------------
+        
+        For 8-bit data, determine the number of parity bits required.
+        
+        Formula:
+        2^r ≥ m + r + 1
+        
+        
+        12. Checksum
+        ------------------------------------------------------------
+        
+        Data blocks:
+        10101010
+        11001100
+        11110000
+        
+        Find checksum using 1’s complement addition.
+        
+        
+        13. Pure ALOHA
+        ------------------------------------------------------------
+        
+        Traffic load G = 0.5
+        
+        Calculate throughput.
+        
+        Formula:
+        S = G e^(-2G)
+        
+        
+        14. Slotted ALOHA
+        ------------------------------------------------------------
+        
+        Traffic load G = 0.5
+        
+        Calculate throughput.
+        
+        Formula:
+        S = G e^(-G)
+        
+        
+        15. VLAN
+        ------------------------------------------------------------
+        
+        A switch has 48 ports.
+        Ports are divided equally into 4 VLANs.
+        
+        Calculate number of ports per VLAN.
+        
+        
+        16. Leaky Bucket Algorithm
+        ------------------------------------------------------------
+        
+        Bucket size = 10 packets
+        Output rate = 2 packets/sec
+        
+        If 18 packets arrive at once,
+        how many packets are dropped?
+        
+        
+        17. Token Bucket Algorithm
+        ------------------------------------------------------------
+        
+        Token generation rate = 5 tokens/sec
+        Bucket size = 20 tokens
+        
+        How many tokens after 3 seconds if initially empty?
+        
+        
+        18. Queuing
+        ------------------------------------------------------------
+        
+        Packet arrival rate = 50 packets/sec
+        Service rate = 60 packets/sec
+        
+        Calculate utilization factor.
+        
+        Formula:
+        ρ = λ / μ
+        
+        
+        19. Symmetric Cryptography
+        ------------------------------------------------------------
+        
+        A message size is 1024 bits.
+        Encryption speed = 256 bits/sec.
+        
+        Calculate time required for encryption.
+        
+        
+        20. Asymmetric Cryptography
+        ------------------------------------------------------------
+        
+        A message requires:
+        Encryption time = 4 sec
+        Decryption time = 6 sec
+        
+        Calculate total secure communication time.
+        
+        
+        ============================================================
+        BONUS LOGICAL QUESTIONS
+        ============================================================
+        
+        1. Which is more efficient: Pure ALOHA or Slotted ALOHA? Why?
+        
+        2. Why is TCP preferred over UDP for banking systems?
+        
+        3. Why is CSMA/CD not used in Wi-Fi?
+        
+        4. Which routing protocol is better for large enterprise:
+           RIP or OSPF? Why?
+
+============================================================
+
+
+
+
+
