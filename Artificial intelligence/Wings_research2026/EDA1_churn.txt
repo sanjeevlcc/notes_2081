@@ -1,27 +1,1461 @@
-Independent Variables
---------------------------------------------------
-Monthly Bill
-Complaints
-Network Quality
-Payment Delay
-Contract Type
-Tenure
-Internet Usage
-Competitor Offer
-Customer Satisfaction
 
-                 ↓
 
-Dependent Variable
---------------------------------------------------
-Churn
-0 = Stayed
-1 = Left
 
-                 ↑
 
-Moderating Variable
---------------------------------------------------
-Customer Satisfaction
-Competitor Offer
-Contract Type
+============================================================
+CUSTOMER CHURN ANALYSIS NOTEBOOK
+Dummy 5000 Customer Dataset
+Theory + EDA + Analytics + Modeling + Prediction
+Google Colab / Notepad Style Notes
+============================================================
+
+
+------------------------------------------------------------
+NOTEBOOK TITLE
+------------------------------------------------------------
+
+Customer Churn Analysis Using Dummy 5000 Customer Dataset
+Theory + EDA + Analytics + Modeling + Prediction
+
+
+============================================================
+CELL 1: MARKDOWN CELL
+============================================================
+
+# Customer Churn Analysis
+
+## 1. Introduction
+
+Customer churn means the situation where a customer stops using a company's product or service.
+
+In telecom, churn means a customer stops using the SIM, internet package, or subscription service.
+
+In banking, churn means a customer closes an account or stops using banking services.
+
+In e-commerce, churn means a customer stops purchasing from the platform.
+
+## 2. Objective of This Notebook
+
+The main objective of this notebook is to perform customer churn analysis using a dummy dataset of 5000 telecom customers.
+
+This notebook includes:
+
+• Creating a dummy customer churn dataset
+• Understanding dependent and independent variables
+• Understanding moderating variables
+• Performing Exploratory Data Analysis
+• Visualizing churn patterns
+• Training machine learning models
+• Predicting churn for new customers
+• Interpreting the results
+
+## 3. Business Problem
+
+A telecom company wants to know which customers are likely to leave the company.
+
+The company wants to identify high-risk customers early and take action such as:
+
+• Giving discounts
+• Improving customer support
+• Solving network issues
+• Offering loyalty benefits
+• Reducing customer complaints
+
+
+============================================================
+CELL 2: MARKDOWN CELL
+============================================================
+
+# Variables Used in This Study
+
+## Dependent Variable
+
+The dependent variable is the main output variable that we want to predict.
+
+In this notebook:
+
+• Dependent Variable = Churn
+
+Churn has two values:
+
+• 0 = Customer stayed
+• 1 = Customer left
+
+## Independent Variables
+
+Independent variables are input variables that may affect customer churn.
+
+The independent variables used in this notebook are:
+
+• Gender
+• Age
+• Tenure_Months
+• Monthly_Bill
+• Internet_Usage_GB
+• Complaints
+• Contract_Type
+• Payment_Delay_Days
+• Network_Quality
+• Customer_Satisfaction
+• Competitor_Offer
+
+## Moderating Variables
+
+A moderating variable changes the strength or direction of the relationship between independent and dependent variables.
+
+In churn analysis, possible moderating variables are:
+
+• Customer_Satisfaction
+• Competitor_Offer
+• Contract_Type
+
+Example:
+
+Monthly_Bill may increase churn.
+
+But if Customer_Satisfaction is high, customers may not leave even when the bill is high.
+
+So Customer_Satisfaction can moderate the relationship between Monthly_Bill and Churn.
+
+
+============================================================
+CELL 3: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 1: Import Required Libraries
+# =====================================================
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+
+import warnings
+warnings.filterwarnings("ignore")
+
+
+============================================================
+CELL 4: MARKDOWN CELL
+============================================================
+
+# Step 1: Importing Libraries
+
+In this step, we import the required Python libraries.
+
+• NumPy is used for numerical operations.
+• Pandas is used for data handling and analysis.
+• Matplotlib is used for data visualization.
+• Scikit-learn is used for machine learning modeling.
+
+This notebook uses two models:
+
+• Logistic Regression
+• Random Forest Classifier
+
+Logistic Regression is useful for simple classification problems.
+
+Random Forest is useful when data has complex patterns.
+
+
+============================================================
+CELL 5: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 2: Create Dummy Dataset of 5000 Customers
+# =====================================================
+
+np.random.seed(42)
+
+n = 5000
+
+customer_id = np.arange(1, n + 1)
+
+gender = np.random.choice(['Male', 'Female'], size=n)
+
+age = np.random.randint(18, 70, size=n)
+
+tenure_months = np.random.randint(1, 72, size=n)
+
+monthly_bill = np.random.randint(300, 3000, size=n)
+
+internet_usage_gb = np.random.randint(1, 250, size=n)
+
+complaints = np.random.randint(0, 8, size=n)
+
+contract_type = np.random.choice(
+    ['Prepaid', 'Monthly', 'Yearly'],
+    size=n,
+    p=[0.45, 0.40, 0.15]
+)
+
+payment_delay_days = np.random.randint(0, 20, size=n)
+
+network_quality = np.random.choice(
+    ['Poor', 'Average', 'Good'],
+    size=n,
+    p=[0.25, 0.45, 0.30]
+)
+
+customer_satisfaction = np.random.randint(1, 6, size=n)
+
+competitor_offer = np.random.choice(
+    ['Yes', 'No'],
+    size=n,
+    p=[0.35, 0.65]
+)
+
+# Logical churn probability
+churn_probability = (
+    0.15
+    + (monthly_bill > 1800) * 0.15
+    + (complaints > 3) * 0.20
+    + (payment_delay_days > 10) * 0.10
+    + (network_quality == 'Poor') * 0.20
+    + (customer_satisfaction <= 2) * 0.20
+    + (contract_type == 'Prepaid') * 0.08
+    + (competitor_offer == 'Yes') * 0.12
+    - (tenure_months > 36) * 0.10
+    - (contract_type == 'Yearly') * 0.12
+)
+
+churn_probability = np.clip(churn_probability, 0, 1)
+
+churn = np.random.binomial(1, churn_probability)
+
+df = pd.DataFrame({
+    'Customer_ID': customer_id,
+    'Gender': gender,
+    'Age': age,
+    'Tenure_Months': tenure_months,
+    'Monthly_Bill': monthly_bill,
+    'Internet_Usage_GB': internet_usage_gb,
+    'Complaints': complaints,
+    'Contract_Type': contract_type,
+    'Payment_Delay_Days': payment_delay_days,
+    'Network_Quality': network_quality,
+    'Customer_Satisfaction': customer_satisfaction,
+    'Competitor_Offer': competitor_offer,
+    'Churn': churn
+})
+
+df.head()
+
+
+============================================================
+CELL 6: MARKDOWN CELL
+============================================================
+
+# Step 2: Dataset Creation
+
+In this step, we create a dummy dataset of 5000 telecom customers.
+
+The dataset is created using assumptions.
+
+For example:
+
+• Customers with high monthly bills have higher chance of churn.
+• Customers with more complaints have higher chance of churn.
+• Customers with poor network quality have higher chance of churn.
+• Customers with low satisfaction have higher chance of churn.
+• Customers with yearly contracts have lower chance of churn.
+• Customers with longer tenure have lower chance of churn.
+
+This is a dummy dataset, but it follows real business logic.
+
+
+============================================================
+CELL 7: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 3: Basic Data Understanding
+# =====================================================
+
+print("Number of rows and columns:")
+print(df.shape)
+
+print("\nFirst 5 rows:")
+display(df.head())
+
+print("\nLast 5 rows:")
+display(df.tail())
+
+
+============================================================
+CELL 8: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 4: Dataset Information
+# =====================================================
+
+df.info()
+
+
+============================================================
+CELL 9: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 5: Statistical Summary
+# =====================================================
+
+df.describe()
+
+
+============================================================
+CELL 10: MARKDOWN CELL
+============================================================
+
+# Step 3: Basic Data Understanding
+
+Here we check the structure of the dataset.
+
+Important things to observe:
+
+• Number of rows
+• Number of columns
+• Data types
+• Numerical variables
+• Categorical variables
+• General range of values
+
+This is the first part of Exploratory Data Analysis.
+
+
+============================================================
+CELL 11: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 6: Check Missing Values
+# =====================================================
+
+df.isnull().sum()
+
+
+============================================================
+CELL 12: MARKDOWN CELL
+============================================================
+
+# Step 4: Missing Value Analysis
+
+Missing value analysis is an important part of EDA.
+
+If missing values are present, we may need to:
+
+• Remove missing records
+• Fill missing values with mean
+• Fill missing values with median
+• Fill missing values with mode
+• Use domain knowledge
+
+In this dummy dataset, missing values are not created.
+So all columns should have zero missing values.
+
+
+============================================================
+CELL 13: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 7: Check Duplicate Records
+# =====================================================
+
+df.duplicated().sum()
+
+
+============================================================
+CELL 14: MARKDOWN CELL
+============================================================
+
+# Step 5: Duplicate Record Analysis
+
+Duplicate records can create wrong results.
+
+For example, if the same customer appears multiple times, the model may learn biased patterns.
+
+In real-world datasets, duplicate records should be removed carefully.
+
+In this dataset, Customer_ID is unique.
+
+
+============================================================
+CELL 15: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 8: Churn Count
+# =====================================================
+
+churn_count = df['Churn'].value_counts()
+churn_percent = df['Churn'].value_counts(normalize=True) * 100
+
+print("Churn Count:")
+print(churn_count)
+
+print("\nChurn Percentage:")
+print(churn_percent)
+
+
+============================================================
+CELL 16: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 9: Churn Distribution Visualization
+# =====================================================
+
+plt.figure(figsize=(6,4))
+df['Churn'].value_counts().plot(kind='bar')
+plt.title('Churn Distribution')
+plt.xlabel('Churn Status')
+plt.ylabel('Number of Customers')
+plt.xticks([0, 1], ['Stayed', 'Churned'], rotation=0)
+plt.show()
+
+
+============================================================
+CELL 17: MARKDOWN CELL
+============================================================
+
+# Step 6: Churn Distribution Analysis
+
+This graph shows the number of customers who stayed and the number of customers who churned.
+
+Interpretation:
+
+• Churn = 0 means customer stayed.
+• Churn = 1 means customer left.
+
+If churned customers are high, the company has a customer retention problem.
+
+If churned customers are very low, the data may be imbalanced.
+
+In churn analysis, class imbalance is common because usually more customers stay than leave.
+
+
+============================================================
+CELL 18: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 10: Average Monthly Bill by Churn
+# =====================================================
+
+df.groupby('Churn')['Monthly_Bill'].mean()
+
+
+============================================================
+CELL 19: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 11: Monthly Bill Visualization
+# =====================================================
+
+plt.figure(figsize=(7,4))
+df.boxplot(column='Monthly_Bill', by='Churn')
+plt.title('Monthly Bill by Churn')
+plt.suptitle('')
+plt.xlabel('Churn Status')
+plt.ylabel('Monthly Bill')
+plt.xticks([1, 2], ['Stayed', 'Churned'])
+plt.show()
+
+
+============================================================
+CELL 20: MARKDOWN CELL
+============================================================
+
+# Step 7: Monthly Bill Analysis
+
+Here we compare monthly bill amount with churn.
+
+Possible interpretation:
+
+• Customers with higher monthly bills may be more likely to churn.
+• High price can create dissatisfaction.
+• Customers may move to competitors if cheaper packages are available.
+
+Business action:
+
+• Provide discount offers to high-bill customers.
+• Create flexible packages.
+• Offer loyalty rewards to long-term customers.
+
+
+============================================================
+CELL 21: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 12: Complaints Analysis
+# =====================================================
+
+df.groupby('Churn')['Complaints'].mean()
+
+
+============================================================
+CELL 22: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 13: Complaints Visualization
+# =====================================================
+
+plt.figure(figsize=(7,4))
+df.groupby('Churn')['Complaints'].mean().plot(kind='bar')
+plt.title('Average Complaints by Churn')
+plt.xlabel('Churn Status')
+plt.ylabel('Average Complaints')
+plt.xticks([0, 1], ['Stayed', 'Churned'], rotation=0)
+plt.show()
+
+
+============================================================
+CELL 23: MARKDOWN CELL
+============================================================
+
+# Step 8: Complaints Analysis
+
+Customer complaints are very important in churn analysis.
+
+Possible interpretation:
+
+• Customers with more complaints may have higher churn risk.
+• Complaints show dissatisfaction.
+• Poor complaint handling can increase customer loss.
+
+Business action:
+
+• Improve customer support.
+• Solve complaints quickly.
+• Track repeated complaints.
+• Call high-risk customers personally.
+
+
+============================================================
+CELL 24: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 14: Network Quality and Churn
+# =====================================================
+
+network_table = pd.crosstab(df['Network_Quality'], df['Churn'])
+network_table
+
+
+============================================================
+CELL 25: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 15: Network Quality Visualization
+# =====================================================
+
+network_table.plot(kind='bar', figsize=(7,4))
+plt.title('Network Quality vs Churn')
+plt.xlabel('Network Quality')
+plt.ylabel('Number of Customers')
+plt.legend(['Stayed', 'Churned'])
+plt.xticks(rotation=0)
+plt.show()
+
+
+============================================================
+CELL 26: MARKDOWN CELL
+============================================================
+
+# Step 9: Network Quality Analysis
+
+Network quality is one of the major reasons for telecom churn.
+
+Possible interpretation:
+
+• Poor network quality increases churn.
+• Good network quality reduces churn.
+• Customers expect stable internet and call service.
+
+Business action:
+
+• Improve signal coverage.
+• Solve network complaints faster.
+• Identify weak network areas.
+• Upgrade infrastructure in high-churn regions.
+
+
+============================================================
+CELL 27: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 16: Contract Type and Churn
+# =====================================================
+
+contract_table = pd.crosstab(df['Contract_Type'], df['Churn'])
+contract_table
+
+
+============================================================
+CELL 28: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 17: Contract Type Visualization
+# =====================================================
+
+contract_table.plot(kind='bar', figsize=(7,4))
+plt.title('Contract Type vs Churn')
+plt.xlabel('Contract Type')
+plt.ylabel('Number of Customers')
+plt.legend(['Stayed', 'Churned'])
+plt.xticks(rotation=0)
+plt.show()
+
+
+============================================================
+CELL 29: MARKDOWN CELL
+============================================================
+
+# Step 10: Contract Type Analysis
+
+Contract type can influence churn.
+
+Possible interpretation:
+
+• Prepaid customers can leave easily.
+• Monthly customers may leave if they find better offers.
+• Yearly contract customers may churn less because they are committed for longer time.
+
+Business action:
+
+• Convert prepaid customers into monthly or yearly packages.
+• Provide yearly contract discounts.
+• Give loyalty points for long-term contracts.
+
+
+============================================================
+CELL 30: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 18: Customer Satisfaction and Churn
+# =====================================================
+
+satisfaction_churn = df.groupby('Customer_Satisfaction')['Churn'].mean() * 100
+satisfaction_churn
+
+
+============================================================
+CELL 31: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 19: Customer Satisfaction Visualization
+# =====================================================
+
+plt.figure(figsize=(7,4))
+satisfaction_churn.plot(kind='bar')
+plt.title('Churn Rate by Customer Satisfaction')
+plt.xlabel('Customer Satisfaction Level')
+plt.ylabel('Churn Rate (%)')
+plt.xticks(rotation=0)
+plt.show()
+
+
+============================================================
+CELL 32: MARKDOWN CELL
+============================================================
+
+# Step 11: Customer Satisfaction Analysis
+
+Customer satisfaction is very important in churn analysis.
+
+Possible interpretation:
+
+• Low satisfaction customers have high churn risk.
+• High satisfaction customers are more loyal.
+• Satisfaction can reduce the negative effect of high bills or complaints.
+
+Customer Satisfaction can also be used as a moderating variable.
+
+Example:
+
+Monthly_Bill affects Churn.
+
+But this effect depends on Customer_Satisfaction.
+
+If Monthly_Bill is high and Satisfaction is low, churn risk is high.
+
+If Monthly_Bill is high but Satisfaction is high, churn risk may be lower.
+
+
+============================================================
+CELL 33: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 20: Competitor Offer and Churn
+# =====================================================
+
+competitor_table = pd.crosstab(df['Competitor_Offer'], df['Churn'])
+competitor_table
+
+
+============================================================
+CELL 34: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 21: Competitor Offer Visualization
+# =====================================================
+
+competitor_table.plot(kind='bar', figsize=(7,4))
+plt.title('Competitor Offer vs Churn')
+plt.xlabel('Competitor Offer')
+plt.ylabel('Number of Customers')
+plt.legend(['Stayed', 'Churned'])
+plt.xticks(rotation=0)
+plt.show()
+
+
+============================================================
+CELL 35: MARKDOWN CELL
+============================================================
+
+# Step 12: Competitor Offer Analysis
+
+Competitor offers can increase customer churn.
+
+Possible interpretation:
+
+• Customers who receive competitor offers may leave.
+• Price-sensitive customers are more likely to shift.
+• Poor service plus competitor offer creates high churn risk.
+
+Business action:
+
+• Monitor competitor pricing.
+• Give counter offers.
+• Create customer loyalty schemes.
+• Give special packages to high-risk customers.
+
+
+============================================================
+CELL 36: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 22: Encode Categorical Variables
+# =====================================================
+
+df_model = df.copy()
+
+label_cols = ['Gender', 'Contract_Type', 'Network_Quality', 'Competitor_Offer']
+
+encoders = {}
+
+for col in label_cols:
+    le = LabelEncoder()
+    df_model[col] = le.fit_transform(df_model[col])
+    encoders[col] = le
+
+df_model.head()
+
+
+============================================================
+CELL 37: MARKDOWN CELL
+============================================================
+
+# Step 13: Encoding Categorical Variables
+
+Machine learning models cannot directly understand text values.
+
+So categorical variables must be converted into numbers.
+
+Examples:
+
+Gender:
+
+• Female may become 0
+• Male may become 1
+
+Contract_Type:
+
+• Monthly may become 0
+• Prepaid may become 1
+• Yearly may become 2
+
+This process is called label encoding.
+
+
+============================================================
+CELL 38: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 23: Check Encoding Meaning
+# =====================================================
+
+for col in label_cols:
+    print(col)
+    print(dict(zip(encoders[col].classes_, encoders[col].transform(encoders[col].classes_))))
+    print()
+
+
+============================================================
+CELL 39: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 24: Correlation Analysis
+# =====================================================
+
+correlation = df_model.drop('Customer_ID', axis=1).corr()
+
+correlation['Churn'].sort_values(ascending=False)
+
+
+============================================================
+CELL 40: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 25: Correlation Heatmap
+# =====================================================
+
+plt.figure(figsize=(12,8))
+plt.imshow(correlation, aspect='auto')
+plt.colorbar()
+plt.xticks(range(len(correlation.columns)), correlation.columns, rotation=90)
+plt.yticks(range(len(correlation.columns)), correlation.columns)
+plt.title('Correlation Heatmap')
+plt.show()
+
+
+============================================================
+CELL 41: MARKDOWN CELL
+============================================================
+
+# Step 14: Correlation Analysis
+
+Correlation shows the relationship between variables.
+
+Positive correlation with churn means:
+
+• As the variable increases, churn may increase.
+
+Negative correlation with churn means:
+
+• As the variable increases, churn may decrease.
+
+Example:
+
+If Complaints has positive correlation with Churn, more complaints may increase churn.
+
+If Tenure_Months has negative correlation with Churn, long-term customers may be less likely to churn.
+
+
+============================================================
+CELL 42: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 26: Add Moderating Variable
+# =====================================================
+
+df_model['Bill_Satisfaction_Interaction'] = (
+    df_model['Monthly_Bill'] * df_model['Customer_Satisfaction']
+)
+
+df_model[['Monthly_Bill', 'Customer_Satisfaction', 'Bill_Satisfaction_Interaction', 'Churn']].head()
+
+
+============================================================
+CELL 43: MARKDOWN CELL
+============================================================
+
+# Step 15: Moderating Variable Creation
+
+Here we create an interaction variable:
+
+Monthly_Bill × Customer_Satisfaction
+
+This is used to represent moderation.
+
+The idea is:
+
+• Monthly_Bill may affect Churn.
+• But the effect may change depending on Customer_Satisfaction.
+
+Example:
+
+High Bill + Low Satisfaction = High churn risk
+
+High Bill + High Satisfaction = Lower churn risk
+
+So Customer_Satisfaction moderates the relationship between Monthly_Bill and Churn.
+
+
+============================================================
+CELL 44: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 27: Select Independent and Dependent Variables
+# =====================================================
+
+X = df_model.drop(['Customer_ID', 'Churn'], axis=1)
+y = df_model['Churn']
+
+print("Independent variables shape:", X.shape)
+print("Dependent variable shape:", y.shape)
+
+
+============================================================
+CELL 45: MARKDOWN CELL
+============================================================
+
+# Step 16: Feature and Target Selection
+
+Here we divide the dataset into:
+
+## X: Independent Variables
+
+These are input variables used for prediction.
+
+## y: Dependent Variable
+
+This is the output variable.
+
+In this notebook:
+
+• X = all useful customer-related variables
+• y = Churn
+
+
+============================================================
+CELL 46: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 28: Train-Test Split
+# =====================================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    random_state=42
+)
+
+print("Training data shape:", X_train.shape)
+print("Testing data shape:", X_test.shape)
+
+
+============================================================
+CELL 47: MARKDOWN CELL
+============================================================
+
+# Step 17: Train-Test Split
+
+The dataset is divided into training and testing data.
+
+• 80% data is used for training.
+• 20% data is used for testing.
+
+Training data is used to teach the model.
+
+Testing data is used to check model performance on unseen data.
+
+
+============================================================
+CELL 48: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 29: Logistic Regression Model
+# =====================================================
+
+log_model = LogisticRegression(max_iter=1000)
+
+log_model.fit(X_train, y_train)
+
+log_pred = log_model.predict(X_test)
+
+print("Logistic Regression Accuracy:")
+print(accuracy_score(y_test, log_pred))
+
+print("\nClassification Report:")
+print(classification_report(y_test, log_pred))
+
+
+============================================================
+CELL 49: MARKDOWN CELL
+============================================================
+
+# Step 18: Logistic Regression
+
+Logistic Regression is a classification algorithm.
+
+It is useful when the dependent variable has two classes.
+
+In this notebook:
+
+• 0 = Customer stayed
+• 1 = Customer churned
+
+Logistic Regression is simple and easy to explain.
+
+It is suitable for academic understanding.
+
+
+============================================================
+CELL 50: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 30: Random Forest Model
+# =====================================================
+
+rf_model = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
+
+rf_model.fit(X_train, y_train)
+
+rf_pred = rf_model.predict(X_test)
+
+print("Random Forest Accuracy:")
+print(accuracy_score(y_test, rf_pred))
+
+print("\nClassification Report:")
+print(classification_report(y_test, rf_pred))
+
+
+============================================================
+CELL 51: MARKDOWN CELL
+============================================================
+
+# Step 19: Random Forest
+
+Random Forest is an ensemble machine learning algorithm.
+
+It creates many decision trees and combines their results.
+
+Random Forest is useful because:
+
+• It can handle complex patterns.
+• It works well with numerical and encoded categorical variables.
+• It can show feature importance.
+• It usually performs better than a single decision tree.
+
+For practical churn prediction, Random Forest is often better than simple Logistic Regression.
+
+
+============================================================
+CELL 52: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 31: Confusion Matrix
+# =====================================================
+
+cm = confusion_matrix(y_test, rf_pred)
+
+print(cm)
+
+
+============================================================
+CELL 53: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 32: Confusion Matrix Visualization
+# =====================================================
+
+plt.figure(figsize=(6,4))
+plt.imshow(cm)
+plt.title('Confusion Matrix - Random Forest')
+plt.colorbar()
+
+plt.xticks([0, 1], ['Stayed', 'Churned'])
+plt.yticks([0, 1], ['Stayed', 'Churned'])
+
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+
+for i in range(2):
+    for j in range(2):
+        plt.text(j, i, cm[i, j], ha='center', va='center')
+
+plt.show()
+
+
+============================================================
+CELL 54: MARKDOWN CELL
+============================================================
+
+# Step 20: Confusion Matrix Interpretation
+
+The confusion matrix shows correct and incorrect predictions.
+
+## Values in Confusion Matrix
+
+Top-left:
+
+• Actual stayed and predicted stayed.
+
+Top-right:
+
+• Actual stayed but predicted churned.
+
+Bottom-left:
+
+• Actual churned but predicted stayed.
+
+Bottom-right:
+
+• Actual churned and predicted churned.
+
+In churn analysis, bottom-left is very important.
+
+Because it means the customer was going to leave, but the model failed to identify them.
+
+
+============================================================
+CELL 55: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 33: Feature Importance
+# =====================================================
+
+feature_importance = pd.DataFrame({
+    'Feature': X.columns,
+    'Importance': rf_model.feature_importances_
+})
+
+feature_importance = feature_importance.sort_values(
+    by='Importance',
+    ascending=False
+)
+
+feature_importance
+
+
+============================================================
+CELL 56: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 34: Feature Importance Visualization
+# =====================================================
+
+plt.figure(figsize=(9,5))
+plt.barh(feature_importance['Feature'], feature_importance['Importance'])
+plt.title('Feature Importance for Churn Prediction')
+plt.xlabel('Importance Score')
+plt.ylabel('Feature')
+plt.gca().invert_yaxis()
+plt.show()
+
+
+============================================================
+CELL 57: MARKDOWN CELL
+============================================================
+
+# Step 21: Feature Importance Interpretation
+
+Feature importance tells which variables are most useful for churn prediction.
+
+Possible important variables are:
+
+• Complaints
+• Monthly_Bill
+• Customer_Satisfaction
+• Network_Quality
+• Payment_Delay_Days
+• Competitor_Offer
+• Contract_Type
+
+Business interpretation:
+
+If Complaints is highly important, the company should improve customer support.
+
+If Monthly_Bill is highly important, the company should review pricing.
+
+If Network_Quality is highly important, the company should improve service quality.
+
+If Customer_Satisfaction is highly important, the company should improve customer experience.
+
+
+============================================================
+CELL 58: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 35: Create New Customer Data for Prediction
+# =====================================================
+
+new_customers = pd.DataFrame({
+    'Gender': ['Male', 'Female', 'Male', 'Female', 'Male'],
+    'Age': [25, 45, 33, 60, 29],
+    'Tenure_Months': [3, 48, 12, 60, 5],
+    'Monthly_Bill': [2500, 700, 1800, 900, 2800],
+    'Internet_Usage_GB': [20, 120, 80, 60, 15],
+    'Complaints': [6, 0, 3, 1, 7],
+    'Contract_Type': ['Prepaid', 'Yearly', 'Monthly', 'Yearly', 'Prepaid'],
+    'Payment_Delay_Days': [15, 0, 8, 2, 18],
+    'Network_Quality': ['Poor', 'Good', 'Average', 'Good', 'Poor'],
+    'Customer_Satisfaction': [1, 5, 3, 4, 1],
+    'Competitor_Offer': ['Yes', 'No', 'Yes', 'No', 'Yes']
+})
+
+new_customers
+
+
+============================================================
+CELL 59: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 36: Encode New Customer Data
+# =====================================================
+
+new_customers_encoded = new_customers.copy()
+
+for col in label_cols:
+    new_customers_encoded[col] = encoders[col].transform(new_customers_encoded[col])
+
+new_customers_encoded['Bill_Satisfaction_Interaction'] = (
+    new_customers_encoded['Monthly_Bill'] *
+    new_customers_encoded['Customer_Satisfaction']
+)
+
+new_customers_encoded
+
+
+============================================================
+CELL 60: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 37: Predict Churn for New Customers
+# =====================================================
+
+predicted_churn = rf_model.predict(new_customers_encoded)
+
+predicted_probability = rf_model.predict_proba(new_customers_encoded)[:, 1]
+
+new_customers['Predicted_Churn'] = predicted_churn
+new_customers['Churn_Probability'] = predicted_probability
+
+new_customers['Prediction_Result'] = new_customers['Predicted_Churn'].map({
+    0: 'Customer Will Stay',
+    1: 'Customer May Leave'
+})
+
+new_customers
+
+
+============================================================
+CELL 61: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 38: Prediction Interpretation
+# =====================================================
+
+for i, row in new_customers.iterrows():
+    print("Customer", i + 1)
+    print("Prediction Result:", row['Prediction_Result'])
+    print("Churn Probability:", round(row['Churn_Probability'] * 100, 2), "%")
+
+    if row['Predicted_Churn'] == 1:
+        print("Interpretation:")
+        print("This customer has high churn risk.")
+        print("Possible reasons may include high monthly bill, more complaints, poor network quality, low satisfaction, payment delay, or competitor offer.")
+        print("Suggested action: Provide retention offer, solve complaints, and improve service support.")
+    else:
+        print("Interpretation:")
+        print("This customer is likely to stay.")
+        print("Possible reasons may include good satisfaction, long tenure, good network quality, yearly contract, or low complaints.")
+        print("Suggested action: Maintain service quality and offer loyalty benefits.")
+
+    print("-" * 70)
+
+
+============================================================
+CELL 62: MARKDOWN CELL
+============================================================
+
+# Step 22: Prediction Interpretation
+
+The trained Random Forest model is used to predict churn for five new customers.
+
+The output includes:
+
+• Predicted_Churn
+• Churn_Probability
+• Prediction_Result
+
+If Predicted_Churn = 1:
+
+• The customer may leave.
+• The company should take retention action.
+
+If Predicted_Churn = 0:
+
+• The customer may stay.
+• The company should continue maintaining good service.
+
+
+============================================================
+CELL 63: CODE CELL
+============================================================
+
+# =====================================================
+# STEP 39: Save Dataset as CSV
+# =====================================================
+
+df.to_csv("dummy_telecom_churn_5000.csv", index=False)
+
+print("Dataset saved successfully as dummy_telecom_churn_5000.csv")
+
+
+============================================================
+CELL 64: MARKDOWN CELL
+============================================================
+
+# Final Result and Conclusion
+
+This notebook performed customer churn analysis using a dummy telecom dataset of 5000 customers.
+
+## Main Findings
+
+From EDA, we observed that churn may be affected by:
+
+• High monthly bill
+• More customer complaints
+• Poor network quality
+• Payment delay
+• Low customer satisfaction
+• Competitor offer
+• Short customer tenure
+• Prepaid or monthly contract type
+
+## Modeling Result
+
+Two models were trained:
+
+• Logistic Regression
+• Random Forest Classifier
+
+Logistic Regression is simple and useful for basic academic explanation.
+
+Random Forest is better for practical prediction because it can capture complex patterns.
+
+## Dependent Variable
+
+• Churn
+
+## Independent Variables
+
+• Gender
+• Age
+• Tenure_Months
+• Monthly_Bill
+• Internet_Usage_GB
+• Complaints
+• Contract_Type
+• Payment_Delay_Days
+• Network_Quality
+• Customer_Satisfaction
+• Competitor_Offer
+
+## Moderating Variable
+
+Customer_Satisfaction was used as a moderating variable.
+
+The interaction variable was:
+
+Monthly_Bill × Customer_Satisfaction
+
+This shows that the effect of monthly bill on churn may change depending on customer satisfaction.
+
+## Business Recommendation
+
+The telecom company should focus on:
+
+• Reducing complaints
+• Improving network quality
+• Offering better packages
+• Giving loyalty rewards
+• Monitoring competitor offers
+• Identifying high-risk customers early
+• Improving customer satisfaction
+
+## Final Statement
+
+Churn analysis helps companies understand customer behavior and predict which customers may leave.
+
+By using EDA, visualization, and machine learning models, companies can make better customer retention strategies.
+
+
+============================================================
+SHORT NOTEBOOK FLOW
+============================================================
+
+• Step 1: Import libraries
+• Step 2: Create dummy 5000 customer dataset
+• Step 3: Understand dataset
+• Step 4: Check missing values
+• Step 5: Check duplicate records
+• Step 6: Analyze churn distribution
+• Step 7: Analyze monthly bill
+• Step 8: Analyze complaints
+• Step 9: Analyze network quality
+• Step 10: Analyze contract type
+• Step 11: Analyze customer satisfaction
+• Step 12: Analyze competitor offer
+• Step 13: Encode categorical variables
+• Step 14: Perform correlation analysis
+• Step 15: Add moderating variable
+• Step 16: Select X and y variables
+• Step 17: Split train and test data
+• Step 18: Train Logistic Regression
+• Step 19: Train Random Forest
+• Step 20: Evaluate model using confusion matrix
+• Step 21: Analyze feature importance
+• Step 22: Predict churn for new customers
+• Step 23: Interpret results
+• Step 24: Save dataset
+• Step 25: Write final conclusion
+
+
+============================================================
+HOW TO USE THIS FILE IN GOOGLE COLAB
+============================================================
+
+• Open Google Colab.
+• Create a new notebook.
+• Copy each MARKDOWN CELL into a Markdown cell.
+• Copy each CODE CELL into a Code cell.
+• Run code cells one by one.
+• Observe outputs, graphs, model accuracy, confusion matrix, and prediction results.
+
+
+============================================================
+END OF FILE
+============================================================
