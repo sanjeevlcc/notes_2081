@@ -1,0 +1,575 @@
+============================================================
+UNIT V: QUEUING SYSTEM AND PERFORMANCE
+5.1 Elements of Queuing System
+5.2 Characteristics of Queuing Systems
+5.3 Model of Queuing System
+Theory + Scenario + Example + Mathematics
+============================================================
+
+
+CASE SCENARIO:
+PHYSICAL UNIVERSITY FORM REGISTRATION COUNTER
+(Pokhara University Admission Form Submission)
+============================================================
+
+  . Assume Pokhara University opens physical form registration.
+  
+  . Students arrive to submit forms physically.
+  
+  . There are limited counters for service.
+  
+  . Students may need to wait in line.
+  
+  . This creates a queue (waiting line).
+
+
+
+
+
+Example:
+
+      At 10:00 AM:
+          . 20 students arrive in 15 minutes.
+          . Only 2 counters are available.
+          . Each counter takes around 3 minutes per student.
+      
+      This creates congestion and waiting.
+      
+      
+      Real-Life Examples of Queue:
+          . Bank counter
+          . Hospital registration
+          . University form submission
+          . ATM queue
+          . Supermarket billing
+
+
+
+
+
+============================================================
+5.1 ELEMENTS OF QUEUING SYSTEM
+============================================================
+
+. A queuing system has several important elements.
+
+Main Elements:
+
+    . Calling Population
+    . Arrival Process
+    . Queue
+    . Queue Discipline
+    . Service Mechanism
+    . Departure Process
+
+
+        ------------------------------------------------------------
+        1. Calling Population
+        ------------------------------------------------------------
+        
+        . Calling population means source of customers.
+        
+        In this scenario:
+        
+        Calling population = Students coming for registration
+        
+        Example:
+        
+        Total students expected = 500
+        
+        
+        ------------------------------------------------------------
+        2. Arrival Process
+        ------------------------------------------------------------
+        
+        . Arrival process means how customers arrive.
+        
+        Students may arrive:
+        . One by one
+        . In groups
+        . Randomly
+        
+        Example:
+        
+        Arrival rate = λ (lambda)
+        
+        Suppose:
+        
+        60 students arrive per hour
+        
+        Then:
+        
+        λ = 60 students/hour
+        
+        
+        ------------------------------------------------------------
+        3. Queue (Waiting Line)
+        ------------------------------------------------------------
+        
+        . Queue means waiting line.
+        
+        Example:
+        
+        10 students waiting outside registration counter.
+        
+        
+        ------------------------------------------------------------
+        4. Queue Discipline
+        ------------------------------------------------------------
+        
+        . Queue discipline means service rule.
+        
+        Common types:
+        
+        . FIFO (First In First Out)
+        . LIFO (Last In First Out)
+        . Priority-based
+        
+        In university registration:
+        
+        Usually FIFO is used.
+        
+        Example:
+        
+        Student who comes first gets served first.
+        
+        
+        ------------------------------------------------------------
+        5. Service Mechanism
+        ------------------------------------------------------------
+        
+        . Service mechanism defines how service is provided.
+        
+        Includes:
+        
+        . Number of servers
+        . Service rate
+        . Service time
+        
+        Example:
+        
+        2 counters available
+        
+        Each counter serves 20 students/hour
+        
+        Service rate = μ (mu)
+        
+        μ = 20 students/hour per counter
+        
+        
+        ------------------------------------------------------------
+        6. Departure Process
+        ------------------------------------------------------------
+        
+        . After service, customer leaves system.
+        
+        Example:
+        
+        After form submission, student exits queue.
+        
+        
+        
+        
+        
+        
+        
+        ============================================================
+        Example Flow of Queue
+        ============================================================
+        
+                Student Arrives
+                      ↓
+                Waits in Queue
+                      ↓
+                Gets Service at Counter
+                      ↓
+                Leaves System
+                
+
+
+
+
+
+
+
+
+
+============================================================
+5.2 CHARACTERISTICS OF QUEUING SYSTEM
+============================================================
+
+. Characteristics describe queue behavior.
+
+Important characteristics:
+      
+      . Arrival Pattern
+      . Service Pattern
+      . Queue Length
+      . Waiting Time
+      . System Capacity
+      . Number of Servers
+      
+      
+      ------------------------------------------------------------
+      1. Arrival Pattern
+      ------------------------------------------------------------
+      
+      . Describes how customers arrive.
+      
+      Example:
+      
+      During lunch break many students arrive.
+      
+      Morning:
+      Low arrival
+      
+      Afternoon:
+      High arrival
+      
+      
+      ------------------------------------------------------------
+      2. Service Pattern
+      ------------------------------------------------------------
+      
+      . Describes how service happens.
+      
+      Example:
+      
+      Some students submit quickly.
+      Some take more time.
+      
+      
+      ------------------------------------------------------------
+      3. Queue Length
+      ------------------------------------------------------------
+      
+      . Number of customers waiting.
+      
+      Example:
+      
+      Queue length = 15 students
+      
+      
+      ------------------------------------------------------------
+      4. Waiting Time
+      ------------------------------------------------------------
+      
+      . Time customer waits before service.
+      
+      Example:
+      
+      Student waits 10 minutes before reaching counter.
+      
+      
+      ------------------------------------------------------------
+      5. System Capacity
+      ------------------------------------------------------------
+      
+      . Maximum customers system can hold.
+      
+      Example:
+      
+      Waiting hall capacity = 50 students
+      
+      
+      ------------------------------------------------------------
+      6. Number of Servers
+      ------------------------------------------------------------
+      
+      . Number of service counters.
+      
+      Example:
+      
+      2 counters
+
+
+
+
+
+============================================================
+Mathematical Understanding
+============================================================
+
+Given:
+
+      Arrival rate:
+      λ = 60 students/hour
+      
+      Service rate:
+      μ = 20 students/hour per counter
+      
+      Number of servers:
+      s = 2
+      
+      
+      Total service capacity:
+      
+      s × μ
+      
+      = 2 × 20
+      = 40 students/hour
+      
+      
+      Compare:
+      
+      Arrival Rate = 60 students/hour
+      Service Capacity = 40 students/hour
+      
+      
+      Observation:
+      
+      60 > 40
+      
+      This means:
+      
+      . Students arrive faster than service capacity.
+      . Queue grows longer.
+      . Waiting time increases.
+
+
+
+
+
+
+------------------------------------------------------------
+Case 2
+------------------------------------------------------------
+    
+    Suppose 4 counters are opened.
+    
+    Service capacity:
+    
+    4 × 20 = 80 students/hour
+    
+    Compare:
+    
+    Arrival = 60
+    Service = 80
+    
+    
+    Observation:
+    
+    60 < 80
+    
+    Now system becomes stable.
+
+
+
+
+
+
+
+
+
+============================================================
+5.3 MODEL OF QUEUING SYSTEM
+============================================================
+
+. Queue model mathematically represents queuing system.
+
+      A queue model helps analyze:
+      
+            . Waiting time
+            . Queue length
+            . Server utilization
+            . System performance
+            
+
+General Queue Model:
+
+      Input → Queue → Service → Output
+
+
+Example:
+
+Students Arrive → Wait → Registration Counter → Exit
+
+
+
+
+============================================================
+Common Queue Models
+============================================================
+
+. Single Server Queue
+. Multiple Server Queue
+
+
+------------------------------------------------------------
+1. Single Server Queue
+------------------------------------------------------------
+
+Only one counter.
+
+Example:
+
+One registration officer.
+
+Flow:
+
+Students → Queue → Counter → Exit
+
+
+Problem:
+
+. Long waiting time
+. Large queue
+
+
+------------------------------------------------------------
+2. Multi Server Queue
+------------------------------------------------------------
+
+Multiple counters.
+
+Example:
+
+4 registration counters.
+
+Flow:
+
+Students → Queue → Multiple Counters → Exit
+
+
+Advantages:
+
+. Faster service
+. Less waiting time
+
+
+============================================================
+Queuing Notation Example
+============================================================
+
+Simple model:
+
+M/M/1
+
+Meaning:
+
+First M = Markov arrival
+Second M = Markov service
+1 = One server
+
+
+Example:
+
+One bank counter
+
+
+Another model:
+
+M/M/3
+
+Meaning:
+
+3 service counters
+
+
+Example:
+
+University registration with 3 counters
+
+
+============================================================
+Numerical Example
+============================================================
+
+Case:
+
+Arrival rate:
+λ = 15 students/hour
+
+Service rate:
+μ = 20 students/hour
+
+Single server model:
+M/M/1
+
+
+Utilization:
+
+ρ = λ / μ
+
+= 15 / 20
+
+= 0.75
+
+
+Interpretation:
+
+. Server utilization = 75%
+. Counter is busy 75% of time.
+
+
+If utilization > 1:
+
+System unstable
+
+
+If utilization < 1:
+
+System stable
+
+
+============================================================
+Final Summary
+============================================================
+
+5.1 Elements of Queuing System
+
+. Calling Population
+. Arrival Process
+. Queue
+. Queue Discipline
+. Service Mechanism
+. Departure Process
+
+
+------------------------------------------------------------
+
+5.2 Characteristics of Queuing Systems
+
+. Arrival Pattern
+. Service Pattern
+. Queue Length
+. Waiting Time
+. System Capacity
+. Number of Servers
+
+
+------------------------------------------------------------
+
+5.3 Model of Queuing System
+
+. Mathematical representation of queue.
+
+Models:
+
+. Single Server Queue
+. Multi Server Queue
+
+
+Example Scenario:
+
+University Registration Counter
+
+Students arrive → Wait → Get Service → Leave
+
+
+Important Formula:
+
+Utilization:
+
+ρ = λ / μ
+
+where:
+
+λ = Arrival Rate
+μ = Service Rate
+
+
+Decision:
+
+If λ > μ → Queue grows
+If λ < μ → System stable
