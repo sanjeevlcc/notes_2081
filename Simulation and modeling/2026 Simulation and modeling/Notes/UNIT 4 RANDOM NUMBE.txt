@@ -1003,6 +1003,550 @@ Comparison Between Mid-Square and Residue Method
 *************************************************************************
 *************************************************************************
 
+============================================================
+UNIT IV: RANDOM NUMBER
+4.4 Testing Numbers for Randomness
+. Uniformity Test
+. Chi-Square Test
+============================================================
+
+
+4.4 TESTING NUMBERS FOR RANDOMNESS
+
+. After generating random numbers, we must test whether they are random or not.
+
+. Good random numbers should satisfy:
+  . Uniformity
+  . Independence
+
+. Two important tests are:
+  . Uniformity Test
+  . Chi-Square Test
+
+
+============================================================
+A. UNIFORMITY TEST
+============================================================
+
+. Theory:
+
+  . Uniformity test checks whether random numbers are equally distributed
+    between 0 and 1.
+
+  . If numbers are equally distributed in all intervals, they pass the test.
+
+
+------------------------------------------------------------
+Example
+------------------------------------------------------------
+
+Generated random numbers:
+
+0.12, 0.18, 0.26, 0.34, 0.47,
+0.51, 0.63, 0.72, 0.89, 0.95
+
+Divide into intervals:
+
+(0,0.2)
+(0.2,0.4)
+(0.4,0.6)
+(0.6,0.8)
+(0.8,1.0)
+
+------------------------------------------------------------
+Observed Frequency
+------------------------------------------------------------
+
+(0,0.2)   = 2
+(0.2,0.4) = 2
+(0.4,0.6) = 2
+(0.6,0.8) = 2
+(0.8,1.0) = 2
+
+------------------------------------------------------------
+Conclusion
+------------------------------------------------------------
+
+. All intervals have equal frequency.
+
+. Therefore random numbers are uniformly distributed.
+
+
+============================================================
+B. CHI-SQUARE TEST
+============================================================
+
+. Theory:
+
+  . Chi-Square test is used to statistically test uniformity.
+
+  . It compares:
+    . Observed Frequency (Oi)
+    . Expected Frequency (Ei)
+
+
+------------------------------------------------------------
+Formula
+------------------------------------------------------------
+
+χ² = Σ ((Oi − Ei)² / Ei)
+
+Where:
+
+Oi = Observed frequency
+Ei = Expected frequency
+
+
+
+
+The initial 100 random numbers
+      43, 09, 52, 98,
+      78, 44, 21, 12,
+      38, 67, 97, 46, 07, 18, 49, 77,
+      67, 77, 37, 76, 65, 14, 25, 37,
+      74, 03, 71, 28, 65, 05, 54, 13, 97,
+      17, 32, 91, 28, 59, 56, 73,
+      99, 71, 99, 64, 5, 66, 01, 24, 73,
+      15, 45, 10, 18, 82, 96, 43, 27, 34,
+      65, 79, 03, 49, 69, 15, 6, 93, 48,
+      42, 04, 46, 04, 11, 81, 62, 79,
+      85, 49, 74, 06, 11, 64, 76, 22, 63,
+      99, 2, 83, 5, 93, 24, 81, 94, 53,
+      91, 37, 5, 97, 26, 92, 67
+
+
+============================================================
+Algorithm of Chi-Square Test
+============================================================
+
+Step 1: Define Hypothesis
+
+H₀ : Numbers are uniformly distributed
+H₁ : Numbers are not uniformly distributed
+
+
+------------------------------------------------------------
+Step 2: Divide into Equal Intervals
+------------------------------------------------------------
+
+From board:
+
+N = 100 random numbers
+n = 10 intervals
+
+Intervals:
+
+(0,0.1)
+(0.1,0.2)
+(0.2,0.3)
+(0.3,0.4)
+(0.4,0.5)
+(0.5,0.6)
+(0.6,0.7)
+(0.7,0.8)
+(0.8,0.9)
+(0.9,1.0)
+
+
+------------------------------------------------------------
+Step 3: Expected Frequency
+------------------------------------------------------------
+
+Formula:
+
+Ei = N / n
+
+Calculation:
+
+Ei = 100 / 10
+Ei = 10
+
+Therefore:
+
+Expected frequency for each interval = 10
+
+
+------------------------------------------------------------
+Step 4: Observed Frequency (Board Data)
+------------------------------------------------------------
+
+Interval      Oi
+
+(0,0.1)       8
+(0.1,0.2)     9
+(0.2,0.3)     10
+(0.3,0.4)     13
+(0.4,0.5)     8
+(0.5,0.6)     8
+(0.6,0.7)     11
+(0.7,0.8)     7
+(0.8,0.9)     9
+(0.9,1.0)     16
+
+Total = 100
+
+
+------------------------------------------------------------
+Step 5: Compute Chi-Square Value
+------------------------------------------------------------
+
+Interval      Oi    Ei    (Oi−Ei)²/Ei
+
+(0,0.1)       8     10      0.4
+(0.1,0.2)     9     10      0.1
+(0.2,0.3)     10    10      0
+(0.3,0.4)     13    10      0.9
+(0.4,0.5)     8     10      0.4
+(0.5,0.6)     8     10      0.4
+(0.6,0.7)     11    10      0.1
+(0.7,0.8)     7     10      0.9
+(0.8,0.9)     9     10      0.1
+(0.9,1.0)     16    10      3.6
+
+
+------------------------------------------------------------
+Total Chi-Square
+------------------------------------------------------------
+
+χ² = 0.4 + 0.1 + 0 + 0.9 + 0.4 + 0.4 + 0.1 + 0.9 + 0.1 + 3.6
+
+χ² = 6.9
+
+
+------------------------------------------------------------
+Step 6: Critical Value
+------------------------------------------------------------
+
+Degree of Freedom:
+
+df = n − 1
+
+df = 10 − 1
+df = 9
+
+At α = 0.05
+
+From chi-square table:
+
+χ²(0.05,9) = 16.919
+
+
+------------------------------------------------------------
+Step 7: Decision
+------------------------------------------------------------
+
+Calculated value = 6.9
+Critical value   = 16.919
+
+Since:
+
+6.9 < 16.919
+
+Therefore:
+
+Accept H₀
+
+
+------------------------------------------------------------
+Final Conclusion
+------------------------------------------------------------
+
+. Random numbers follow uniform distribution.
+
+. There is no significant difference between observed and expected values.
+
+. Therefore generated random numbers are random.
+
+
+
+
+============================================================
+Final Summary
+============================================================
+            
+            Uniformity Test
+            
+            . Checks whether random numbers are equally distributed.
+            
+            ------------------------------------------------------------
+            
+            Chi-Square Test
+            
+            . Statistical test used to verify uniformity.
+            
+            Formula:
+            
+            χ² = Σ ((Oi − Ei)² / Ei)
+            
+            Decision Rule:
+            
+            If χ² calculated < χ² critical → Accept H₀
+            If χ² calculated > χ² critical → Reject H₀
+            
+
+=======================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+UNIT IV: RANDOM NUMBER
+4.4 Testing Numbers for Randomness
+Chi-Square Test using 15 Students Example
+============================================================
+
+Dataset: 15 Students and Their Weights
+      
+      01 Ram      = 72 kg
+      02 Shyam    = 44 kg
+      03 Gita     = 45 kg
+      04 Hari     = 65 kg
+      05 Rita     = 52 kg
+      06 Sita     = 48 kg
+      07 Ramesh   = 70 kg
+      08 Bina     = 55 kg
+      09 Kumar    = 60 kg
+      10 Mina     = 50 kg
+      11 Suman    = 58 kg
+      12 Anu      = 46 kg
+      13 Kiran    = 62 kg
+      14 Roshan   = 67 kg
+      15 Pooja    = 53 kg
+      
+      ------------------------------------------------------------
+      Goal
+      ------------------------------------------------------------
+      
+      . Test whether student weights are uniformly distributed or not.
+
+
+
+      ============================================================
+      Step 1: Define Hypothesis
+      ============================================================
+      
+                  H₀ : Student weights are uniformly distributed
+                  
+                  H₁ : Student weights are not uniformly distributed
+      
+      ============================================================
+      Step 2: Create Intervals
+      ============================================================
+      
+      Minimum weight = 44
+      Maximum weight = 72
+      
+      Take 5 intervals:
+      
+            40–45
+            46–51
+            52–57
+            58–63
+            64–72
+            
+      Number of intervals:
+      
+            n = 5
+            
+            Total students:
+            
+            N = 15
+      
+      ============================================================
+      Step 3: Calculate Expected Frequency
+      ============================================================
+      
+      Formula:
+      
+            Ei = N / n
+            
+            Calculation:
+            
+            Ei = 15 / 5
+            Ei = 3
+            
+            Expected frequency for each interval = 3
+      
+      ============================================================
+      Step 4: Calculate Observed Frequency
+      ============================================================
+      
+      Interval 40–45
+      
+      Students:
+      . Shyam = 44
+      . Gita = 45
+      
+      Observed frequency:
+      Oi = 2
+      
+      ------------------------------------------------------------
+      
+      Interval 46–51
+      
+      Students:
+      . Sita = 48
+      . Mina = 50
+      . Anu = 46
+      
+      Observed frequency:
+      Oi = 3
+      
+      ------------------------------------------------------------
+      
+      Interval 52–57
+      
+      Students:
+      . Rita = 52
+      . Bina = 55
+      . Pooja = 53
+      
+      Observed frequency:
+      Oi = 3
+      
+      ------------------------------------------------------------
+      
+      Interval 58–63
+      
+      Students:
+      . Kumar = 60
+      . Suman = 58
+      . Kiran = 62
+      
+      Observed frequency:
+      Oi = 3
+      
+      ------------------------------------------------------------
+      
+      Interval 64–72
+      
+      Students:
+      . Ram = 72
+      . Hari = 65
+      . Ramesh = 70
+      . Roshan = 67
+      
+      Observed frequency:
+      Oi = 4
+      
+      ------------------------------------------------------------
+      Observed Frequency Table
+      ------------------------------------------------------------
+      
+            Interval      Oi
+            40–45         2
+            46–51         3
+            52–57         3
+            58–63         3
+            64–72         4
+      
+            Check total:
+            
+            2 + 3 + 3 + 3 + 4 = 15
+      
+            Correct.
+      
+      ============================================================
+      Step 5: Compute Chi-Square Value
+      ============================================================
+      
+      Formula:
+      
+      χ² = Σ ((Oi − Ei)² / Ei)
+      
+      Calculation Table:
+      
+            Interval      Oi    Ei    (Oi−Ei)²/Ei
+            40–45         2     3       0.333
+            46–51         3     3       0
+            52–57         3     3       0
+            58–63         3     3       0
+            64–72         4     3       0.333
+      
+      ------------------------------------------------------------
+      Total Chi-Square
+      ------------------------------------------------------------
+      
+            χ² = 0.333 + 0 + 0 + 0 + 0.333
+            
+            χ² = 0.666
+      
+      ============================================================
+      Step 6: Find Critical Value
+      ============================================================
+      
+      Degree of freedom:
+      
+            df = n − 1
+            
+            df = 5 − 1
+            df = 4
+      
+      At significance level:
+      
+      α = 0.05
+      
+      From chi-square table:
+      
+            χ²(0.05,4) = 9.488
+      
+      ============================================================
+      Step 7: Decision
+      ============================================================
+      
+      Calculated value:
+      
+            χ² = 0.666
+      
+      Critical value:
+      
+            χ² = 9.488
+      
+      Compare:
+      
+            0.666 < 9.488
+      
+      Decision:
+      
+            Accept H₀
+      
+      ============================================================
+      Final Conclusion
+      ============================================================
+      
+            . Student weights are uniformly distributed.
+            
+            . There is no significant difference between observed and expected frequencies.
+            
+            . Therefore, student weight data passes the chi-square uniformity test.
+            
+   
+
+
+
+*************************************************************************
+*************************************************************************
+*************************************************************************
+*************************************************************************
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1016,4 +1560,12 @@ Comparison Between Mid-Square and Residue Method
 
 
 
+
+
+
+
+*************************************************************************
+*************************************************************************
+*************************************************************************
+*************************************************************************
 
