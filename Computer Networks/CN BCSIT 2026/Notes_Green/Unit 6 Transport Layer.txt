@@ -1,0 +1,1166 @@
+
+
+
+============================================================
+         UNIT VI: TRANSPORT LAYER — COMPLETE NOTES
+         With Examples, Scenarios & Data Demonstrations
+============================================================
+
+  Subject  : Computer Networks
+  Unit     : VI
+  Hours    : 5 Hrs.
+  Format   : Study Notes with Examples & Scenarios
+
+============================================================
+
+
+
+
+------------------------------------------------------------
+6.1  INTRODUCTION, FUNCTIONS AND SERVICES
+------------------------------------------------------------
+
+  . WHAT IS THE TRANSPORT LAYER?
+  ..............................
+
+    Layer 4 of the OSI model.
+    Sits between Network Layer (Layer 3) and
+    Session Layer (Layer 5).
+
+    Key job: provide END-TO-END communication between
+    two APPLICATION PROCESSES (not just two hosts).
+
+    Network Layer gets packet from host A to host B.
+    Transport Layer gets data from the BROWSER on host A
+    to the WEB SERVER PROCESS on host B.
+
+        Application Layer   (Data / Messages)
+        ──────────────────────────────────────
+        Transport Layer     (Segments)        ← We are here
+        ──────────────────────────────────────
+        Network Layer       (Packets)
+        ──────────────────────────────────────
+        Data Link Layer     (Frames)
+
+    Data unit at Transport Layer: SEGMENT (TCP)
+                                  DATAGRAM (UDP)
+
+
+  . FUNCTIONS OF TRANSPORT LAYER:
+  ................................
+
+    1. PROCESS-TO-PROCESS DELIVERY
+       . Network layer delivers packet to the correct HOST.
+       . Transport layer delivers data to the correct
+         PROCESS (application) on that host.
+       . Uses PORT NUMBERS to identify processes.
+
+       Scenario:
+       Your PC runs Browser (port 80), Email (port 25)
+       and Zoom (port 443) simultaneously.
+       All share the same IP address (host level).
+       Transport layer separates incoming data
+       and delivers each to the right application.
+
+    2. SEGMENTATION AND REASSEMBLY
+       . Large messages from Application Layer are
+         broken into smaller SEGMENTS for transmission.
+       . Each segment gets a sequence number.
+       . Receiver reassembles them in correct order.
+
+       Example:
+       Send a 10 MB file.
+       Transport layer breaks it into ~7000 segments
+       of ~1460 bytes each (TCP MSS on Ethernet).
+       Each segment travels independently.
+       Receiver reassembles in order using seq numbers.
+
+    3. CONNECTION CONTROL
+       . TCP: establishes a connection before transfer
+         (3-way handshake), tears it down after.
+       . UDP: no connection — just sends.
+
+    4. FLOW CONTROL
+       . Prevents sender from overwhelming receiver's buffer.
+       . TCP uses sliding window (receiver advertises
+         how much buffer space it has).
+
+    5. ERROR CONTROL
+       . Detects and retransmits lost or corrupted segments.
+       . TCP: sequence numbers, ACKs, checksums, retransmit.
+       . UDP: only has checksum (optional in IPv4).
+
+    6. MULTIPLEXING AND DEMULTIPLEXING
+       . MULTIPLEXING: multiple application processes
+         can send data through one transport layer
+         using different port numbers.
+       . DEMULTIPLEXING: on the receiving side, transport
+         layer directs incoming segments to the correct
+         application process based on the destination port.
+
+       Scenario:
+       Browser  → port 1025 → internet (multiplexing)
+       Email    → port 1026 → internet (multiplexing)
+       Incoming → port 1025 → to Browser (demultiplexing)
+       Incoming → port 1026 → to Email   (demultiplexing)
+
+    7. CONGESTION CONTROL
+       . If network is overloaded, transport layer
+         reduces the rate of data transmission.
+       . Only TCP does this — UDP does not.
+
+
+
+
+------------------------------------------------------------
+6.2  TRANSPORT LAYER PROTOCOLS
+------------------------------------------------------------
+
+  ....................................
+  A. TCP — Transmission Control Protocol
+  ....................................
+
+    . Connection-oriented, reliable, ordered delivery.
+    . RFC 793.
+    . Used for: HTTP/HTTPS, FTP, SMTP, SSH, Telnet.
+    . Guarantees: delivery, order, no duplicates, no corruption.
+
+    . TCP SEGMENT STRUCTURE:
+    ................................................................
+    +──────────────────────────+──────────────────────────────────+
+    |  Source Port (16 bits)   |  Destination Port (16 bits)      |
+    +──────────────────────────+──────────────────────────────────+
+    |                 Sequence Number (32 bits)                   |
+    +────────────────────────────────────────────────────────────+
+    |              Acknowledgement Number (32 bits)               |
+    +────────────────────────────────────────────────────────────+
+    | Header  | Reserved |U|A|P|R|S|F|   Window Size (16 bits)   |
+    | Length  | (6 bits) |R|C|S|S|Y|I|                           |
+    | (4 bits)|          |G|K|H|T|N|N|                           |
+    +─────────+──────────+─+─+─+─+─+─+──────────────────────────+
+    |     Checksum (16 bits)   |     Urgent Pointer (16 bits)     |
+    +──────────────────────────+──────────────────────────────────+
+    |                    Options (variable)                       |
+    +────────────────────────────────────────────────────────────+
+    |                      Data (variable)                        |
+    +────────────────────────────────────────────────────────────+
+
+    FIELD EXPLANATIONS:
+
+    . SOURCE PORT (16 bits)
+      Port number of the sending process.
+      Example: Browser on PC uses ephemeral port 54321.
+
+    . DESTINATION PORT (16 bits)
+      Port number of the receiving process.
+      Example: Web server listens on port 80 or 443.
+
+    . SEQUENCE NUMBER (32 bits)
+      Position of the first data byte in this segment
+      within the overall data stream.
+      Example: Segment 1 carries bytes 0-1459, seq=0.
+               Segment 2 carries bytes 1460-2919, seq=1460.
+
+    . ACKNOWLEDGEMENT NUMBER (32 bits)
+      Next sequence number the receiver EXPECTS to receive.
+      = Last successfully received byte + 1.
+      Example: Received up to byte 1459 → ACK=1460.
+
+    . HEADER LENGTH (4 bits)
+      Length of TCP header in 32-bit words. Min = 5 (20 bytes).
+
+    . FLAGS (6 bits — each 1 bit):
+      URG: Urgent pointer field is valid
+      ACK: Acknowledgement number is valid
+      PSH: Push data to application immediately
+      RST: Reset the connection (abort)
+      SYN: Synchronize sequence numbers (connection setup)
+      FIN: No more data from sender (connection teardown)
+
+    . WINDOW SIZE (16 bits)
+      Number of bytes the receiver is willing to accept.
+      Flow control mechanism.
+      Example: Window=65535 means receiver can take
+               65535 bytes before sending an ACK.
+
+    . CHECKSUM (16 bits)
+      Error detection covering header and data.
+
+    . URGENT POINTER (16 bits)
+      Points to urgent data within the segment
+      (used with URG flag).
+
+    . TCP 3-WAY HANDSHAKE (Connection Setup):
+      Client ──SYN (seq=x)──────────────────► Server
+      Client ◄─SYN-ACK (seq=y, ack=x+1)───── Server
+      Client ──ACK (ack=y+1)────────────────► Server
+      Connection ESTABLISHED. Data transfer begins.
+
+    . TCP 4-WAY TEARDOWN (Connection Close):
+      Client ──FIN──► Server
+      Client ◄──ACK── Server
+      Client ◄──FIN── Server
+      Client ──ACK──► Server
+      Connection CLOSED.
+
+
+  ....................................
+  B. UDP — User Datagram Protocol
+  ....................................
+
+    . Connectionless, unreliable, no ordering guarantee.
+    . RFC 768.
+    . Used for: DNS, DHCP, VoIP, Video streaming,
+      Online gaming, SNMP, TFTP.
+    . Fastest — no handshake, no waiting for ACKs.
+
+    . UDP DATAGRAM STRUCTURE:
+    ................................................................
+    +──────────────────────────+──────────────────────────────────+
+    |  Source Port (16 bits)   |  Destination Port (16 bits)      |
+    +──────────────────────────+──────────────────────────────────+
+    |     Length (16 bits)     |     Checksum (16 bits)           |
+    +──────────────────────────+──────────────────────────────────+
+    |                      Data (variable)                        |
+    +────────────────────────────────────────────────────────────+
+
+    Only 8-byte header (vs TCP's 20-byte minimum).
+
+    FIELD EXPLANATIONS:
+
+    . SOURCE PORT:      Sending process port.
+    . DESTINATION PORT: Receiving process port.
+    . LENGTH:           Total length of UDP datagram (header+data).
+    . CHECKSUM:         Optional in IPv4, mandatory in IPv6.
+                        Covers header + data + pseudo-header.
+
+    . WHY USE UDP IF IT'S UNRELIABLE?
+      . Speed: no handshake, no waiting.
+      . Overhead: 8 bytes vs 20 bytes.
+      . Scenario: Video call — losing 1 frame in 30
+        is invisible to the eye. Waiting for retransmit
+        would cause stuttering and lag. Better to drop it.
+      . DNS: single question/answer — faster to retry
+        than to set up a TCP connection.
+
+
+  ....................................
+  C. SCTP — Stream Control Transmission Protocol
+  ....................................
+
+    . RFC 4960. Newer than TCP/UDP.
+    . Originally designed for SS7 telephony signaling.
+    . BEST OF BOTH: connection-oriented like TCP but
+      with some UDP-like features.
+
+    . KEY FEATURES:
+      . MULTI-STREAMING: multiple independent streams
+        within one SCTP association. One stream's
+        lost packet does NOT block other streams.
+        (TCP has head-of-line blocking problem)
+
+      . MULTI-HOMING: an endpoint can have MULTIPLE
+        IP addresses. If one network path fails,
+        SCTP automatically uses another.
+        TCP would break — the connection is tied to one IP.
+
+      . 4-WAY HANDSHAKE: adds a cookie mechanism to
+        prevent SYN flood attacks (more secure than TCP).
+
+      . MESSAGE-ORIENTED: like UDP, preserves message
+        boundaries. Unlike TCP (byte-stream, no boundaries).
+
+    . SCENARIO:
+      VoIP operator: SCTP connects two servers.
+      Path 1 (main link) goes down mid-call.
+      SCTP silently switches to Path 2.
+      Call continues uninterrupted. ✓
+      (TCP would have dropped the connection.)
+
+
+  ....................................
+  D. RTP — Real-time Transport Protocol
+  ....................................
+
+    . RFC 3550.
+    . Designed for REAL-TIME multimedia: audio, video.
+    . Usually runs OVER UDP (to avoid TCP's delay).
+    . Not a transport layer protocol strictly — sits on
+      top of UDP but provides transport-like functions
+      for media.
+
+    . KEY FEATURES:
+      . SEQUENCE NUMBERS: detect packet loss and reorder.
+      . TIMESTAMP: synchronize audio and video playback.
+      . SSRC: Synchronization Source — identifies the sender.
+      . PAYLOAD TYPE: indicates codec (G.711, H.264, etc.)
+
+    . COMPANION PROTOCOL — RTCP (RTP Control Protocol):
+      . Sends periodic reports on quality:
+        packet loss %, jitter, RTT.
+      . Used to adapt bitrate dynamically.
+
+    . SCENARIO:
+      Zoom call sends video at 30 fps using RTP over UDP.
+      Each RTP packet has timestamp and sequence number.
+      If packet 47 is lost:
+        . Receiver gets 46, then 48.
+        . Sequence gap detected.
+        . Concealment: interpolate between 46 and 48.
+        . No retransmit (too late for real-time).
+        . RTCP report: "1% packet loss, 8ms jitter."
+        . Sender may reduce bitrate to compensate.
+
+
+  ....................................
+  E. COMPARISON TABLE
+  ....................................
+
+    .......................................................................
+    Feature       TCP           UDP           SCTP          RTP
+    .......................................................................
+    Connection    Connection-   Connectionless Connection-   Over UDP
+                  oriented                    oriented       (connectionless)
+    Reliability   Reliable      Unreliable    Reliable      Unreliable
+    Ordering      Yes           No            Yes           Sequence
+                                              (per stream)  numbers only
+    Speed         Slower        Faster        Medium        Real-time
+    Header Size   20 bytes min  8 bytes       12 bytes min  12 bytes
+    Flow Control  Yes           No            Yes           No
+    Congestion    Yes           No            Yes           No (RTCP adapts)
+    Multi-stream  No            No            Yes           No
+    Multi-home    No            No            Yes           No
+    Use Cases     HTTP, FTP,    DNS, DHCP,    VoIP signal,  Zoom, VoIP,
+                  SSH, SMTP     VoIP, Gaming  Telecom SS7   Video stream
+    .......................................................................
+
+
+
+
+------------------------------------------------------------
+6.3  CONNECTION-ORIENTED vs CONNECTIONLESS SERVICES
+------------------------------------------------------------
+
+  ....................................
+  CONNECTION-ORIENTED (TCP)
+  ....................................
+
+    . A CONNECTION is established BEFORE data transfer.
+    . Connection is maintained DURING transfer.
+    . Connection is RELEASED after transfer.
+
+    . Analogy: TELEPHONE CALL.
+      . You dial (connection setup).
+      . You talk (data transfer).
+      . You hang up (connection release).
+      . The path is dedicated for the duration.
+
+    . PHASES:
+      1. Connection Establishment (3-way handshake)
+      2. Data Transfer (with ACKs, seq numbers)
+      3. Connection Termination (4-way FIN)
+
+    . GUARANTEES:
+      . Delivery (retransmission if ACK not received)
+      . Order (sequence numbers ensure in-order delivery)
+      . No duplicates (duplicates detected and dropped)
+      . No corruption (checksum verification)
+
+    . OVERHEAD:
+      . Handshake adds latency before data can flow.
+      . State must be maintained at both ends.
+      . More header bytes per segment.
+
+    . BEST FOR:
+      File transfer, email, web browsing — anywhere
+      data correctness matters more than speed.
+
+
+  ....................................
+  CONNECTIONLESS (UDP)
+  ....................................
+
+    . NO connection setup. Data sent immediately.
+    . Each datagram is INDEPENDENT.
+    . No state maintained between sender and receiver.
+
+    . Analogy: POSTAL MAIL.
+      . You write the address and drop it in the box.
+      . No prior arrangement with recipient.
+      . Each letter routed independently.
+      . No guarantee it arrives or arrives in order.
+
+    . NO GUARANTEES:
+      . Packets may be lost (no retransmit).
+      . Packets may arrive out of order.
+      . Packets may be duplicated.
+
+    . ADVANTAGES:
+      . No handshake delay — first packet sent immediately.
+      . No state — server can handle more clients.
+      . Simple, lightweight — 8-byte header only.
+
+    . BEST FOR:
+      VoIP, video streaming, DNS, online gaming —
+      anywhere speed/low-latency matters more than
+      perfect reliability.
+
+  . COMPARISON TABLE:
+  .................................................
+  Feature            Connection-Oriented  Connectionless
+  .................................................
+  Setup required     Yes (handshake)      No
+  Reliability        Guaranteed           Not guaranteed
+  Ordering           In-order delivery    Any order
+  Speed              Slower               Faster
+  Header overhead    Large                Small
+  State maintenance  Yes                  No
+  Example protocol   TCP                  UDP
+  Analogy            Phone call           Postal mail
+  .................................................
+
+
+
+
+------------------------------------------------------------
+6.4  PORT ADDRESSING OVERVIEW
+------------------------------------------------------------
+
+  . WHAT IS A PORT?
+  .................
+
+    A 16-bit number (0 to 65535) that identifies a
+    specific PROCESS or SERVICE on a host.
+    Combined with IP address = SOCKET.
+
+    IP address identifies the HOST (which computer).
+    Port number identifies the PROCESS (which application).
+
+    Full addressing:
+    IP + Port → identifies one specific process on one host.
+    Example: 192.168.1.10 : 80 → web server on that PC.
+
+
+  . THREE RANGES OF PORT NUMBERS:
+  ...............................
+
+    .........................................................
+    Range          Name              Usage
+    .........................................................
+    0 – 1023       Well-Known Ports  Assigned by IANA to
+                   (System Ports)    standard services.
+                                     Needs root/admin to bind.
+
+    1024 – 49151   Registered Ports  Registered by vendors
+                                     for specific apps.
+
+    49152 – 65535  Dynamic / Private Ephemeral ports —
+                   (Ephemeral)       assigned by OS to client
+                                     side of connections.
+                                     Temporary, reused.
+    .........................................................
+
+
+  . WELL-KNOWN PORT NUMBERS:
+  ..........................
+
+    .......................................
+    Port    Protocol    Service
+    .......................................
+    20      TCP         FTP Data Transfer
+    21      TCP         FTP Control
+    22      TCP         SSH
+    23      TCP         Telnet
+    25      TCP         SMTP (Email send)
+    53      TCP/UDP     DNS
+    67      UDP         DHCP Server
+    68      UDP         DHCP Client
+    69      UDP         TFTP
+    80      TCP         HTTP
+    110     TCP         POP3 (Email receive)
+    143     TCP         IMAP (Email receive)
+    161     UDP         SNMP
+    443     TCP         HTTPS (HTTP over TLS)
+    3306    TCP         MySQL
+    3389    TCP         RDP (Remote Desktop)
+    8080    TCP         HTTP Alternate
+    .......................................
+
+
+  . SCENARIO:
+  ...........
+
+    Your PC (192.168.1.5) opens browser → google.com.
+
+    Source socket:       192.168.1.5 : 54321   (ephemeral)
+    Destination socket:  142.250.195.78 : 443  (HTTPS)
+
+    Simultaneously opens email app → gmail SMTP:
+    Source socket:       192.168.1.5 : 54322   (different ephemeral)
+    Destination socket:  74.125.21.109 : 25    (SMTP)
+
+    Two connections, same source IP, different source ports.
+    Transport layer keeps them completely separate. ✓
+
+
+
+
+------------------------------------------------------------
+6.5  INTRODUCTION TO PORTS AND SOCKETS,
+     SOCKET PROGRAMMING
+------------------------------------------------------------
+
+  ....................................
+  A. SOCKET — DEFINITION
+  ....................................
+
+    A SOCKET is the combination of:
+    IP Address + Transport Protocol + Port Number
+
+    Written as:    IP : Port
+    Example:       192.168.1.10 : 80
+
+    A socket uniquely identifies one endpoint of a
+    communication session.
+
+    A CONNECTION is defined by a PAIR of sockets:
+    (Source IP : Source Port) ↔ (Dest IP : Dest Port)
+
+    Example:
+    Client:  192.168.1.5  : 54321
+    Server:  93.184.216.34 : 80
+    → This 4-tuple identifies this ONE unique TCP connection.
+
+    A server on port 80 can handle THOUSANDS of clients
+    simultaneously because each connection has a different
+    client socket (different IP or different port).
+
+
+  ....................................
+  B. TYPES OF SOCKETS
+  ....................................
+
+    . STREAM SOCKET (SOCK_STREAM)
+      . Uses TCP.
+      . Reliable, ordered, connection-oriented.
+      . Like a pipe — continuous byte stream.
+
+    . DATAGRAM SOCKET (SOCK_DGRAM)
+      . Uses UDP.
+      . Unreliable, connectionless.
+      . Like a mailbox — individual messages.
+
+    . RAW SOCKET (SOCK_RAW)
+      . Direct access to IP layer.
+      . Used for custom protocols, ping (ICMP), network tools.
+      . Requires root/admin privilege.
+
+
+  ....................................
+  C. SOCKET PROGRAMMING — CONCEPT & FLOW
+  ....................................
+
+    TCP Socket Programming (Server-Client model):
+
+    SERVER SIDE:                    CLIENT SIDE:
+    ─────────────                   ─────────────
+    1. socket()                     1. socket()
+       Create a socket                 Create a socket
+          │                                 │
+    2. bind()                              │
+       Bind to IP:Port                     │
+          │                                 │
+    3. listen()                            │
+       Mark socket as passive               │
+       (wait for connections)               │
+          │                                 │
+    4. accept()           ◄────────── 2. connect()
+       Block, wait for                 Initiate connection
+       incoming connection             (TCP 3-way handshake)
+          │                                 │
+    5. read()/write()  ◄──────────►  3. write()/read()
+       Exchange data                   Exchange data
+          │                                 │
+    6. close()         ◄──────────►  4. close()
+       Close connection                Close connection
+
+
+  . SCENARIO — What happens when you visit www.example.com:
+
+    1. Browser calls socket()       → creates socket
+    2. Browser calls connect()      → to 93.184.216.34:80
+    3. TCP 3-way handshake occurs   → connection established
+    4. Browser calls write()        → sends HTTP GET request
+    5. Server calls read()          → receives GET request
+    6. Server calls write()         → sends HTTP response (webpage)
+    7. Browser calls read()         → receives webpage
+    8. Both call close()            → connection terminated
+    You see the webpage. ✓
+
+
+  . SOCKET PROGRAMMING PSEUDOCODE:
+  .................................
+
+    SERVER:
+    ........
+    sock = socket(AF_INET, SOCK_STREAM)  // TCP socket
+    bind(sock, "0.0.0.0", 8080)          // listen on port 8080
+    listen(sock, 5)                      // backlog of 5 connections
+    while True:
+        client_sock, addr = accept(sock) // wait for client
+        data = recv(client_sock, 1024)   // receive data
+        send(client_sock, "Hello!")      // send response
+        close(client_sock)               // close this client
+
+    CLIENT:
+    ........
+    sock = socket(AF_INET, SOCK_STREAM)  // TCP socket
+    connect(sock, "192.168.1.10", 8080)  // connect to server
+    send(sock, "Hi Server!")             // send data
+    data = recv(sock, 1024)              // receive response
+    close(sock)                          // close connection
+
+
+
+
+------------------------------------------------------------
+6.6  CONGESTION CONTROL
+------------------------------------------------------------
+
+  . WHAT IS CONGESTION?
+  .....................
+
+    When more data is injected into the network than it
+    can handle → CONGESTION occurs.
+    Symptoms: long delays, packet drops, retransmissions
+    → which cause MORE traffic → makes it WORSE.
+
+    Scenario:
+    Router can process 1 Gbps. Five senders each pushing
+    500 Mbps = 2.5 Gbps total arriving → router's queue
+    fills up → packets dropped → senders retransmit →
+    MORE traffic → worse congestion. (Congestion collapse!)
+
+
+  ....................................
+  A. OPEN LOOP CONGESTION CONTROL
+  ....................................
+
+    . "Prevention" approach — prevent congestion BEFORE it happens.
+    . Policies and decisions made at DESIGN time.
+    . No feedback from network during transmission.
+
+    . TECHNIQUES:
+      . GOOD RETRANSMIT POLICY:
+        Don't retransmit too aggressively — use good
+        timeout estimation (TCP's RTT estimation).
+
+      . GOOD WINDOW POLICY:
+        Use selective ACKs (SACK) so only lost segments
+        are retransmitted, not the whole window.
+
+      . ADMISSION CONTROL:
+        Routers can REJECT new connections/flows if
+        they would cause congestion (used in ATM networks).
+
+      . DISCARDING POLICY:
+        Smart packet dropping — drop less important packets
+        first (e.g., UDP video frames) before TCP packets.
+
+      . TRAFFIC SHAPING:
+        Leaky Bucket and Token Bucket algorithms
+        (covered in 6.7) smooth out bursty traffic.
+
+    . ANALOGY:
+      Like traffic light timing designed in advance
+      to keep intersections from jamming — preventive,
+      not reactive.
+
+
+  ....................................
+  B. CLOSED LOOP CONGESTION CONTROL
+  ....................................
+
+    . "Reaction" approach — detect congestion and respond.
+    . Uses FEEDBACK from the network to adjust behavior.
+    . Three phases: Monitor → Detect → React.
+
+    . MONITORING signals of congestion:
+      . Increased packet delay (queue building up).
+      . Packet loss detected (queue overflowed).
+      . Explicit congestion notifications (ECN bits set).
+
+    . TECHNIQUES:
+
+      1. BACK PRESSURE:
+         Congested router tells its UPSTREAM router to
+         slow down. Upstream tells its upstream. Signal
+         propagates back to source.
+         Used in: Virtual Circuit networks.
+
+      2. CHOKE PACKET:
+         Congested router sends a CHOKE PACKET directly
+         to the SOURCE telling it to slow down.
+         Like a "slow down" signal jumping the queue.
+
+      3. IMPLICIT SIGNALING:
+         Source INFERS congestion from symptoms:
+         . Packet loss detected → assume congestion.
+         . RTT increasing → queues building up.
+         TCP does this: loss event → reduce window size.
+
+      4. EXPLICIT SIGNALING (ECN):
+         Router MARKS the packet header (ECN bits in IP)
+         instead of dropping it.
+         Receiver sees the mark, informs sender → slow down.
+         Advantage: no packet loss needed to signal congestion.
+
+    . TCP CONGESTION CONTROL ALGORITHM:
+    ......................................
+
+      TCP uses Closed Loop control with these phases:
+
+      a) SLOW START:
+         . Begin with congestion window (cwnd) = 1 MSS.
+         . After each ACK: cwnd doubles (exponential growth).
+         . Example:
+           Round 1: cwnd=1 → send 1 segment
+           Round 2: cwnd=2 → send 2 segments
+           Round 3: cwnd=4 → send 4 segments
+           (Doubles each RTT until threshold reached.)
+
+      b) CONGESTION AVOIDANCE:
+         . Once cwnd reaches ssthresh (slow-start threshold):
+         . Grow LINEARLY (add 1 MSS per RTT, not double).
+         . "Additive Increase."
+
+      c) CONGESTION DETECTED (packet loss):
+         . If TIMEOUT: ssthresh = cwnd/2, cwnd=1, restart.
+         . If 3 DUPLICATE ACKs: ssthresh = cwnd/2,
+           cwnd = ssthresh (Fast Recovery — less drastic).
+
+      . SCENARIO DATA:
+        ssthresh starts at 8 MSS.
+
+        Round  Event              cwnd
+        ─────────────────────────────────
+        1      Slow Start         1
+        2      Slow Start         2
+        3      Slow Start         4
+        4      Reaches ssthresh   8
+        5      Cong. Avoidance    9
+        6      Cong. Avoidance    10
+        7      3 dup ACKs!        ssthresh=5, cwnd=5
+        8      Cong. Avoidance    6
+        9      Cong. Avoidance    7
+
+
+
+
+------------------------------------------------------------
+6.7  TRAFFIC SHAPING ALGORITHMS
+------------------------------------------------------------
+
+  . WHY TRAFFIC SHAPING?
+  ......................
+
+    Users often send BURSTY traffic (lots at once, then nothing).
+    Networks need SMOOTH, STEADY flow to prevent congestion.
+    Traffic shaping smooths out bursts before they hit the network.
+
+
+  ....................................
+  A. LEAKY BUCKET ALGORITHM
+  ....................................
+
+    . Think of a BUCKET with a HOLE at the bottom.
+    . Water (packets) pours in at ANY rate (bursty).
+    . Water leaks out at a CONSTANT, FIXED rate.
+    . If bucket overflows → excess packets are DROPPED.
+
+    . KEY CHARACTERISTICS:
+      . Output rate is ALWAYS CONSTANT regardless of input.
+      . Cannot handle bursts — excess is dropped, not delayed.
+      . Acts as a RATE LIMITER.
+
+    . SCENARIO:
+      Network allows 100 packets/sec output rate.
+      Bucket capacity = 10 packets.
+
+      Time 0: 50 packets arrive at once → 10 stored, 40 DROPPED.
+      Time 0-0.1: 10 packets leak out at 100/sec rate.
+      Time 0.1: 30 more arrive → 10 stored, 20 DROPPED.
+      Output is always exactly 100 packets/sec.
+
+    . DATA EXAMPLE:
+      ......................................................
+      Time(s)  Packets  Bucket   Leaked   Dropped
+               Arrived  Level    Out
+      ......................................................
+      0.0      25       10       0        15
+      0.1      0        0        10       0
+      0.2      5        5        0        0
+      0.3      0        0        5        0
+      0.4      30       10       0        20
+      0.5      0        0        10       0
+      ......................................................
+      Output always smooth: 10 packets per 0.1 second. ✓
+
+    . ADVANTAGE:
+      Guaranteed constant output rate.
+      Simple to implement.
+
+    . DISADVANTAGE:
+      Drops bursts even when network has spare capacity.
+      Inflexible — no way to borrow "future" capacity.
+
+    . ALGORITHM:
+      Bucket has capacity B, leak rate r.
+      On packet arrival:
+        If (current_level + packet_size) <= B:
+            Accept packet into bucket.
+        Else:
+            Drop the packet.
+      Every clock tick:
+        Leak r bytes/packets from bucket into network.
+
+
+  ....................................
+  B. TOKEN BUCKET ALGORITHM
+  ....................................
+
+    . A BUCKET holds TOKENS (not packets).
+    . Tokens are generated at a CONSTANT RATE (r tokens/sec).
+    . Bucket holds max B tokens (capacity).
+    . To send a packet: must have a token.
+      Use 1 token, send 1 packet.
+    . If no tokens: packet must WAIT (not dropped!).
+    . Unused tokens accumulate up to bucket capacity.
+
+    . KEY CHARACTERISTICS:
+      . ALLOWS BURSTS: if tokens have accumulated,
+        can send a burst up to B packets instantly.
+      . Average output rate = token generation rate r.
+      . Maximum burst size = bucket capacity B.
+      . More flexible than Leaky Bucket.
+
+    . SCENARIO:
+      Token rate = 100 tokens/sec. Bucket capacity = 500 tokens.
+      Host idle for 5 seconds → accumulates 500 tokens (bucket full).
+      Now wants to send burst of 500 packets:
+        → Uses 500 tokens → sends 500 packets IMMEDIATELY. ✓
+      Leaky Bucket would only allow 100 packets/sec (500 takes 5 sec).
+
+    . DATA EXAMPLE:
+      ......................................................
+      Time(s)  Tokens   Packets  Tokens  Packets
+               Added    Want     Used    Sent
+      ......................................................
+      0.0      100      0        0       0   (accumulate)
+      1.0      100      0        0       0   (accumulate)
+      2.0      100      0        0       0   (accumulate)
+      3.0      100      0        0       0   (accumulate)
+      4.0      100      0        0       0   (bucket=500 max)
+      5.0      0        500      500     500 (burst! all sent)
+      6.0      100      50       50      50  (back to normal)
+      ......................................................
+
+    . ADVANTAGE:
+      Allows controlled bursting.
+      Idle periods can "save up" capacity for a burst.
+      More suitable for real traffic patterns.
+
+    . DISADVANTAGE:
+      More complex than Leaky Bucket.
+      Output rate not strictly constant (bursts allowed).
+
+
+  . COMPARISON TABLE:
+  .....................................................
+  Feature         Leaky Bucket     Token Bucket
+  .....................................................
+  Output rate     Constant always  Variable (up to max)
+  Burst handling  Drops bursts     Allows bursts (up to B)
+  Token concept   No               Yes
+  Flexibility     Low              High
+  Implementation  Simple           Moderate
+  Used when       Strict CBR       Variable rate with burst
+                  needed           tolerance needed
+  Analogy         Bucket with      Tokens required to send;
+                  fixed hole       save tokens to burst
+  .....................................................
+
+
+
+
+------------------------------------------------------------
+6.8  QUEUING TECHNIQUES FOR SCHEDULING
+------------------------------------------------------------
+
+  . WHY QUEUING?
+  ..............
+
+    When packets arrive faster than they can be sent,
+    they are placed in QUEUES at routers.
+    The SCHEDULER decides WHICH QUEUE to serve next
+    and in what order — this determines delay, fairness,
+    and priority for different traffic types.
+
+
+  ....................................
+  A. FIFO — FIRST IN FIRST OUT
+     (Also called: First Come First Served — FCFS)
+  ....................................
+
+    . Simplest queuing discipline.
+    . Packets served in ARRIVAL ORDER.
+    . One queue, no priority.
+
+    . SCENARIO:
+      Queue at time t:  [P1 P2 P3 P4 P5]
+                         ↑ oldest
+      Served first: P1 → P2 → P3 → P4 → P5.
+
+    . ADVANTAGE:   Simple, fair in order of arrival.
+    . DISADVANTAGE: One bursty user can fill the queue
+      and block all others. No priority for
+      real-time traffic (VoIP stuck behind big file).
+
+
+  ....................................
+  B. PRIORITY QUEUING
+  ....................................
+
+    . Multiple queues, each with a PRIORITY LEVEL.
+    . Higher priority queue is ALWAYS served first.
+    . Lower priority queues only served when all higher
+      priority queues are EMPTY.
+
+    . SCENARIO:
+      Queue 1 (High):   VoIP packets        [V1 V2]
+      Queue 2 (Medium): Video packets       [S1 S2 S3]
+      Queue 3 (Low):    File transfer (FTP) [F1 F2 F3 F4]
+
+      Service order: V1 V2 (Queue 1 empty) → S1 S2 S3
+      (Queue 2 empty) → F1 F2 F3 F4.
+
+    . ADVANTAGE:
+      Real-time traffic gets low latency.
+
+    . DISADVANTAGE:
+      STARVATION — if high-priority traffic never stops,
+      low-priority packets NEVER get served.
+
+
+  ....................................
+  C. ROUND ROBIN (RR)
+  ....................................
+
+    . Multiple queues served in ROTATION.
+    . Each queue gets one turn per cycle.
+    . Fair — no starvation.
+
+    . SCENARIO:
+      Queue A: [A1 A2 A3]
+      Queue B: [B1 B2]
+      Queue C: [C1 C2 C3 C4]
+
+      Service order: A1 → B1 → C1 → A2 → B2 → C2
+                   → A3 → (B empty) → C3 → C4
+
+    . ADVANTAGE:
+      Fair to all queues. No starvation.
+
+    . DISADVANTAGE:
+      Doesn't account for packet SIZE. A queue with large
+      packets gets more BYTES per round than one with
+      small packets, even if both get one "turn."
+
+
+  ....................................
+  D. WEIGHTED FAIR QUEUING (WFQ)
+  ....................................
+
+    . Improvement over Round Robin.
+    . Each queue gets a WEIGHT.
+    . Bandwidth allocated PROPORTIONAL to weight.
+    . Also accounts for packet SIZE (bit-by-bit fairness).
+
+    . SCENARIO:
+      Queue A (weight=3): VoIP      → gets 3/6 = 50% BW
+      Queue B (weight=2): Video     → gets 2/6 = 33% BW
+      Queue C (weight=1): FTP       → gets 1/6 = 17% BW
+
+      On a 100 Mbps link:
+      VoIP guaranteed: 50 Mbps
+      Video guaranteed: 33 Mbps
+      FTP guaranteed:   17 Mbps
+
+    . ADVANTAGE:
+      Guaranteed minimum bandwidth per flow.
+      No starvation. Supports QoS.
+
+    . DISADVANTAGE:
+      More complex to implement than FIFO or RR.
+
+
+  ....................................
+  E. FAIR QUEUING (FQ)
+  ....................................
+
+    . Each FLOW (unique src/dest socket pair) gets
+      its OWN queue.
+    . All queues served in round-robin fashion.
+    . Prevents any ONE flow from monopolizing bandwidth.
+
+    . SCENARIO:
+      Flow 1: PC-A downloading large file (1000 packets queued)
+      Flow 2: PC-B sending VoIP (5 packets queued)
+      Flow 3: PC-C browsing (10 packets queued)
+
+      Without FQ: Flow 1 dominates — VoIP suffers.
+      With FQ:    Each gets equal share regardless of
+                  how many packets it has queued.
+      VoIP finishes quickly and stops queuing.
+      Remaining BW shared between Flow 1 and Flow 3. ✓
+
+
+  ....................................
+  F. RED — RANDOM EARLY DETECTION
+  ....................................
+
+    . Active Queue Management (AQM) technique.
+    . Instead of dropping only when queue is FULL (tail-drop),
+      RED proactively drops packets BEFORE the queue fills.
+    . Drop probability INCREASES as queue fills up.
+
+    . HOW IT WORKS:
+      . Set two thresholds: min_threshold and max_threshold.
+      . If queue < min: accept all packets.
+      . If min < queue < max: drop with increasing probability.
+      . If queue > max: drop ALL packets.
+
+    . WHY?
+      Tail-drop (drop only when full) causes TCP sources
+      to all detect loss at the SAME TIME → all back off
+      simultaneously → queue empties → all restart together
+      → synchronization → waves of congestion.
+      RED randomizes drops → different sources back off
+      at DIFFERENT times → smoother network utilization.
+
+    . DATA EXAMPLE:
+      min_threshold = 50 packets
+      max_threshold = 100 packets
+      ....................................................
+      Queue Length   Drop Probability
+      ....................................................
+      0 – 50         0% (accept all)
+      50 – 75        0% – 10% (light random drops)
+      75 – 100       10% – 50% (heavier random drops)
+      > 100          100% (drop all — tail drop)
+      ....................................................
+
+
+  . SUMMARY TABLE — QUEUING ALGORITHMS:
+  .........................................................
+  Algorithm    Queues  Priority   Fairness   Best For
+  .........................................................
+  FIFO         1       No         Arrival    Simple, small
+               (single)           order      networks
+
+  Priority     Multiple  Yes      Biased to  When voice/video
+  Queuing               (strict)  high prio  must be fast
+
+  Round Robin  Multiple  No       Equal per  Equal bandwidth
+                                  queue      sharing
+
+  WFQ          Multiple  Weighted Weighted   QoS, mixed
+                                  fair       traffic types
+
+  Fair Queuing Per-flow  No       Per-flow   Prevent one
+                                  fairness   flow hogging
+
+  RED          One       No       Probabili- Congestion
+               (AQM)              stic       avoidance
+  .........................................................
+
+
+
+
+============================================================
+              QUICK REVISION SUMMARY TABLE
+============================================================
+
+  .......................................................
+  Topic              Key Point
+  .......................................................
+  Transport Layer    Process-to-process delivery;
+  Functions          uses port numbers, not just IP.
+
+  TCP                Connection-oriented, reliable,
+                     ordered; 20-byte header; 3-way
+                     handshake; SYN/ACK/FIN flags.
+
+  UDP                Connectionless, unreliable, fast;
+                     8-byte header; DNS, VoIP, gaming.
+
+  SCTP               Multi-stream, multi-home; combines
+                     TCP reliability + UDP messaging.
+
+  RTP                Real-time media over UDP; timestamp
+                     + sequence number; RTCP for quality.
+
+  Connection-        Handshake first, then data;
+  Oriented           reliable; analogy = phone call.
+
+  Connectionless     No setup; send immediately;
+                     analogy = postal mail.
+
+  Port Ranges        0-1023 = Well-known (HTTP=80,
+                     HTTPS=443, DNS=53, SSH=22).
+                     49152-65535 = Ephemeral (client side).
+
+  Socket             IP + Port = Socket endpoint.
+                     4-tuple (srcIP:port ↔ dstIP:port)
+                     = one unique connection.
+
+  Socket API         socket→bind→listen→accept (server);
+                     socket→connect (client).
+
+  Open Loop CC       Prevention: admission control,
+                     traffic shaping, good policies.
+
+  Closed Loop CC     Reaction: back pressure, choke
+                     packet, ECN, TCP slow start.
+
+  TCP Slow Start     cwnd doubles each RTT until
+                     ssthresh, then linear growth.
+
+  Leaky Bucket       Constant output rate; bursts
+                     dropped; strict rate limiting.
+
+  Token Bucket       Tokens accumulate; burst allowed
+                     up to bucket capacity B.
+
+  FIFO Queuing       First in, first out; simple;
+                     no priority; bursty users harm all.
+
+  Priority Queuing   Higher queue always first;
+                     starvation risk for low priority.
+
+  Round Robin        Equal turns per queue; fair;
+                     ignores packet size.
+
+  WFQ                Weighted share of BW; QoS;
+                     best all-round scheduler.
+
+  RED                Random early drop before queue
+                     full; prevents synchronization.
+  .......................................................
+
+
+
+
+============================================================
+              END OF UNIT VI NOTES
+============================================================
