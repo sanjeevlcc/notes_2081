@@ -1,0 +1,944 @@
+
+============================================================
+       UNIT VII: APPLICATION LAYER — COMPLETE NOTES
+       With Examples, Scenarios & Data Demonstrations
+============================================================
+
+  Subject  : Computer Networks
+  Unit     : VII
+  Hours    : 4 Hrs.
+  Format   : Study Notes with Examples & Scenarios
+
+============================================================
+
+
+
+
+------------------------------------------------------------
+7.1  INTRODUCTION AND FUNCTIONS
+------------------------------------------------------------
+
+  . WHAT IS THE APPLICATION LAYER?
+  .................................
+
+    Layer 7 of the OSI model (Layer 5 in TCP/IP model).
+    The TOPMOST layer — the one users directly interact with.
+    It is NOT the application itself (Chrome, Outlook, etc.)
+    but the PROTOCOLS and SERVICES those applications use
+    to communicate over a network.
+
+        APPLICATION LAYER    ← We are here (HTTP, DNS, SMTP...)
+        ──────────────────────────────────────────────
+        PRESENTATION LAYER   (Encryption, encoding, compression)
+        ──────────────────────────────────────────────
+        SESSION LAYER        (Session management)
+        ──────────────────────────────────────────────
+        TRANSPORT LAYER      (TCP/UDP, ports)
+
+    In the TCP/IP model, the top three OSI layers
+    (Session, Presentation, Application) are merged
+    into ONE Application Layer.
+
+
+  . FUNCTIONS OF APPLICATION LAYER:
+  ..................................
+
+    1. NETWORK VIRTUAL TERMINAL
+       . Allows users to log into a remote host and
+         work as if they were on a local terminal.
+       . Protocol: Telnet, SSH.
+       . Scenario: sysadmin in Kathmandu manages a
+         server physically located in Mumbai via SSH.
+
+    2. FILE TRANSFER, ACCESS AND MANAGEMENT
+       . Transfer files between hosts.
+       . Protocols: FTP, SFTP, TFTP.
+       . Scenario: developer uploads website files
+         from local PC to remote web server using SFTP.
+
+    3. MAIL SERVICES
+       . Send, receive, store email messages.
+       . Protocols: SMTP (send), IMAP/POP3 (receive).
+
+    4. DIRECTORY SERVICES
+       . Translates human-readable names to IP addresses.
+       . Protocol: DNS (Domain Name System).
+       . Scenario: you type www.google.com — DNS converts
+         it to 142.250.195.78 so TCP/IP can route it.
+
+    5. WEB SERVICES
+       . Fetching and displaying web pages.
+       . Protocols: HTTP, HTTPS.
+
+    6. DYNAMIC HOST CONFIGURATION
+       . Automatically assigns IP addresses to hosts.
+       . Protocol: DHCP.
+
+    7. REMOTE PROCEDURE CALL (RPC)
+       . Allows a program to execute a procedure
+         on a remote server as if it were local.
+
+    8. NETWORK MANAGEMENT
+       . Monitors and manages network devices.
+       . Protocol: SNMP (Simple Network Management Protocol).
+
+
+
+
+------------------------------------------------------------
+7.2  WEB AND HTTP / HTTPS
+------------------------------------------------------------
+
+  ....................................
+  A. HOW THE WEB WORKS
+  ....................................
+
+    The World Wide Web uses a CLIENT-SERVER model:
+
+    . CLIENT: web browser (Chrome, Firefox, Safari).
+    . SERVER: web server software (Apache, Nginx, IIS)
+      hosting web content.
+    . RESOURCE: web page, image, video — identified by URL.
+
+    . URL STRUCTURE:
+      https://www.example.com:443/products/item?id=5#reviews
+      │       │               │   │               │   │
+      scheme  hostname        port path            query fragment
+
+      . scheme:   protocol (http or https)
+      . hostname: domain name (resolved by DNS to IP)
+      . port:     80 for HTTP, 443 for HTTPS (optional if default)
+      . path:     specific resource on the server
+      . query:    parameters passed to the server
+      . fragment: section within the page (local, not sent to server)
+
+
+  ....................................
+  B. HTTP — HyperText Transfer Protocol
+  ....................................
+
+    . RFC 7230–7235 (HTTP/1.1), RFC 7540 (HTTP/2).
+    . Application layer protocol for the Web.
+    . Uses TCP port 80.
+    . STATELESS: each request is independent.
+      Server does NOT remember previous requests.
+      (Cookies/Sessions added on top to fake statefulness.)
+
+    . HTTP METHODS (Verbs):
+      ................................................
+      Method   Purpose
+      ................................................
+      GET      Retrieve a resource (no body)
+      POST     Send data to server (create resource)
+      PUT      Update/replace a resource
+      DELETE   Delete a resource
+      HEAD     Like GET but only headers, no body
+      PATCH    Partial update of a resource
+      OPTIONS  Ask server what methods it supports
+      ................................................
+
+    . HTTP REQUEST FORMAT:
+      ──────────────────────────────────────────────
+      GET /index.html HTTP/1.1          ← Request Line
+      Host: www.example.com             ← Headers
+      Accept: text/html
+      Accept-Language: en-US
+      Connection: keep-alive
+                                        ← Blank line (end of headers)
+      ──────────────────────────────────────────────
+
+    . HTTP RESPONSE FORMAT:
+      ──────────────────────────────────────────────
+      HTTP/1.1 200 OK                   ← Status Line
+      Content-Type: text/html           ← Headers
+      Content-Length: 1256
+      Date: Mon, 01 Jul 2026 10:00:00 GMT
+                                        ← Blank line
+      <html>                            ← Body (the web page)
+        <body>Hello World</body>
+      </html>
+      ──────────────────────────────────────────────
+
+
+
+
+
+    . HTTP STATUS CODES:
+      ................................................
+
+                  Code   Meaning
+                  ................................................
+                  1xx    Informational
+                  100    Continue
+                  ................................................
+                  2xx    Success
+                  200    OK (request succeeded)
+                  201    Created (POST succeeded, resource created)
+                  204    No Content
+                  ................................................
+                  3xx    Redirection
+                  301    Moved Permanently (new URL forever)
+                  302    Found (temporary redirect)
+                  304    Not Modified (use cached version)
+                  ................................................
+                  4xx    Client Error
+                  400    Bad Request (malformed request)
+                  401    Unauthorized (login required)
+                  403    Forbidden (no permission)
+                  404    Not Found (resource doesn't exist)
+                  429    Too Many Requests (rate limited)
+                  ................................................
+                  5xx    Server Error
+                  500    Internal Server Error
+                  502    Bad Gateway
+                  503    Service Unavailable (server overloaded)
+                  ................................................
+
+
+
+
+    . HTTP VERSIONS:
+      . HTTP/1.0: one request per TCP connection (slow).
+      . HTTP/1.1: persistent connections (keep-alive),
+        pipelining. Most common until recently.
+      . HTTP/2:   multiplexing (multiple requests in ONE
+        TCP connection simultaneously), header compression,
+        server push. Faster for modern web.
+      . HTTP/3:   runs over QUIC (UDP-based) instead of TCP.
+        Faster connection setup, better for mobile.
+
+    . SCENARIO — Step by step browser request:
+      1. You type www.example.com in browser.
+      2. DNS resolves www.example.com → 93.184.216.34.
+      3. Browser opens TCP connection to 93.184.216.34:80.
+      4. Browser sends: GET / HTTP/1.1
+      5. Server responds: HTTP/1.1 200 OK + HTML content.
+      6. Browser parses HTML, finds <img>, <script>, <css>.
+      7. Browser sends more GET requests for each resource.
+      8. Page renders completely.
+
+
+  ....................................
+  C. HTTPS — HTTP Secure
+  ....................................
+
+    . HTTP + TLS (Transport Layer Security).
+    . Uses TCP port 443.
+    . All data ENCRYPTED in transit.
+    . Server AUTHENTICATED using digital certificate.
+    . Protects against: eavesdropping, man-in-the-middle,
+      tampering.
+
+    . TLS HANDSHAKE (simplified):
+      1. Client Hello: browser tells server supported TLS
+         versions, cipher suites, random number.
+      2. Server Hello: server picks TLS version + cipher,
+         sends its DIGITAL CERTIFICATE.
+      3. Certificate verification: browser checks certificate
+         is signed by a trusted CA (Certificate Authority).
+      4. Key Exchange: both sides derive a shared SECRET KEY.
+      5. Finished: encrypted data transfer begins.
+
+    . SCENARIO:
+      Without HTTPS: your password travels as plain text.
+      Anyone on same Wi-Fi (coffee shop) can see:
+      "password=mysecret123"
+
+      With HTTPS: same data is encrypted as:
+      "7f3a9b2c8d4e1f6a..." (meaningless without the key)
+
+    . DIFFERENCE TABLE:
+      ..............................................
+      Feature     HTTP              HTTPS
+      ..............................................
+      Port        80                443
+      Security    None (plain text) TLS encrypted
+      Certificate Not needed        Required (CA signed)
+      URL         http://           https://
+      Speed       Slightly faster   Tiny overhead from TLS
+      SEO         Penalized by      Preferred by Google
+                  Google
+      ..............................................
+
+
+
+
+------------------------------------------------------------
+7.3  DNS AND ITS WORKING PRINCIPLE
+------------------------------------------------------------
+
+  ....................................
+  A. WHAT IS DNS?
+  ....................................
+
+    . Domain Name System.
+    . RFC 1034, 1035.
+    . Translates HUMAN-READABLE domain names
+      into MACHINE-READABLE IP addresses.
+
+    . Without DNS:
+      You'd have to type 142.250.195.78 instead of google.com.
+      And memorize a different number for every website.
+
+    . DNS = The phone book of the internet.
+
+
+  ....................................
+  B. DNS HIERARCHY
+  ....................................
+
+    DNS is a DISTRIBUTED, HIERARCHICAL database.
+    No single server knows all domain-to-IP mappings.
+
+                          . (Root)
+                         / | \ \
+                        /  |  \ \
+                      com org net np  ← Top-Level Domains (TLDs)
+                      |           |
+                   google       ioe
+                      |           |
+                    www         www
+
+    . ROOT SERVERS: 13 logical root server clusters (A–M).
+      Know where all TLD servers are.
+
+    . TLD SERVERS: know where authoritative servers
+      for each domain under them are.
+      . Generic TLD: .com .org .net .edu .gov
+      . Country Code TLD: .np .in .uk .us
+
+    . AUTHORITATIVE DNS SERVER: holds the actual
+      A records (domain → IP mappings) for a domain.
+      Example: Google's authoritative server knows
+               www.google.com → 142.250.195.78.
+
+    . RECURSIVE RESOLVER: your ISP's or Google's (8.8.8.8)
+      DNS server that does the work of querying the
+      hierarchy on your behalf.
+
+
+  ....................................
+  C. DNS RECORD TYPES
+  ....................................
+
+    ....................................................
+    Record  Purpose                  Example
+    ....................................................
+    A       Domain → IPv4 address    google.com → 142.250.195.78
+    AAAA    Domain → IPv6 address    google.com → 2607:f8b0::200e
+    CNAME   Alias (one name →        www → example.com
+            another name)
+    MX      Mail server for domain   example.com → mail.example.com
+    NS      Name server for domain   example.com → ns1.example.com
+    TXT     Text info (SPF, DKIM,    "v=spf1 include:..."
+            verification)
+    PTR     Reverse: IP → domain     142.250.195.78 → google.com
+    SOA     Start of Authority       Zone admin info
+    ....................................................
+
+
+  ....................................
+  D. DNS QUERY PROCESS — STEP BY STEP
+  ....................................
+
+    SCENARIO: You type www.google.com in browser.
+
+    ACTORS:
+    . Your PC (DNS client)
+    . Recursive Resolver (your ISP / 8.8.8.8)
+    . Root Name Server
+    . .com TLD Server
+    . Google's Authoritative DNS Server
+
+    STEP-BY-STEP:
+
+    Step 1 — CHECK LOCAL CACHE:
+      Your PC checks its own DNS cache.
+      If recently visited → IP found, skip steps 2-7.
+      (Check: Windows = ipconfig /displaydns)
+
+    Step 2 — QUERY RECURSIVE RESOLVER:
+      PC asks recursive resolver (e.g., 8.8.8.8):
+      "What is the IP of www.google.com?"
+
+    Step 3 — RESOLVER CHECKS ITS CACHE:
+      If found → returns immediately to PC.
+      If not → continues to Step 4.
+
+    Step 4 — QUERY ROOT SERVER:
+      Resolver asks Root Server:
+      "Who handles .com?"
+      Root replies: "Ask this .com TLD server: 192.5.6.30"
+
+    Step 5 — QUERY .COM TLD SERVER:
+      Resolver asks .com TLD server:
+      "Who handles google.com?"
+      .com TLD replies: "Ask Google's NS: 216.239.32.10"
+
+    Step 6 — QUERY AUTHORITATIVE SERVER:
+      Resolver asks Google's DNS (216.239.32.10):
+      "What is the IP of www.google.com?"
+      Google DNS replies: "www.google.com → 142.250.195.78"
+      (This is the FINAL ANSWER — an A record.)
+
+    Step 7 — RETURN TO CLIENT:
+      Resolver caches the answer (for TTL duration),
+      returns 142.250.195.78 to your PC.
+
+    Step 8 — BROWSER CONNECTS:
+      Browser opens TCP connection to 142.250.195.78:443
+      (HTTPS). Web page loads.
+
+    VISUAL FLOW:
+    PC → Resolver → Root → .com TLD → Google DNS → Resolver → PC
+
+    . ITERATIVE vs RECURSIVE QUERY:
+      . RECURSIVE: resolver does all the work, returns final answer.
+        (What typically happens — as described above.)
+      . ITERATIVE: each server returns a REFERRAL ("ask them next"),
+        client contacts each server itself.
+
+    . DNS CACHING:
+      Each answer has a TTL (Time To Live) in seconds.
+      Example: google.com A record TTL = 300 seconds (5 min).
+      Resolver caches for 5 min — no need to re-query root
+      for every visit. Dramatically reduces DNS traffic.
+
+    . DNS PORT: UDP port 53 (for queries under 512 bytes).
+                TCP port 53 (for large responses or zone transfers).
+
+
+
+
+------------------------------------------------------------
+7.4  EMAIL PROTOCOLS: SMTP, IMAP, POP3
+------------------------------------------------------------
+
+  . HOW EMAIL WORKS — BIG PICTURE:
+  .................................
+
+    Sender's PC → SMTP → Sender's Mail Server
+                       ↓
+                  Internet (SMTP relay)
+                       ↓
+              Receiver's Mail Server → IMAP or POP3 → Receiver's PC
+
+    Two types of protocol:
+    . OUTGOING (send):  SMTP
+    . INCOMING (fetch): IMAP or POP3
+
+
+  ....................................
+  A. SMTP — Simple Mail Transfer Protocol
+  ....................................
+
+    . RFC 5321.
+    . Used for SENDING and RELAYING email.
+    . Push protocol — client PUSHES mail to server.
+    . Port 25: server-to-server relay (MTA to MTA).
+    . Port 587: client-to-server submission (with auth).
+    . Port 465: SMTPS (SMTP over TLS — older, still used).
+
+    . SMTP CONVERSATION EXAMPLE:
+      ..............................................................
+      CLIENT (your mail app)      SERVER (mail.example.com)
+      ..............................................................
+                                  220 mail.example.com ESMTP Ready
+      EHLO mypc.local        →
+                              ←   250-mail.example.com Hello
+                                  250-AUTH LOGIN PLAIN
+                                  250 STARTTLS
+      AUTH LOGIN             →
+                              ←   334 (base64 username prompt)
+      (username base64)      →
+                              ←   334 (base64 password prompt)
+      (password base64)      →
+                              ←   235 Authentication successful
+      MAIL FROM:<a@x.com>    →
+                              ←   250 OK
+      RCPT TO:<b@y.com>      →
+                              ←   250 OK
+      DATA                   →
+                              ←   354 Start input, end with .
+      Subject: Hello         →
+      From: a@x.com          →
+      To: b@y.com            →
+                              →
+      Hello, this is my email→
+      .                      →    (single dot = end of message)
+                              ←   250 Message accepted for delivery
+      QUIT                   →
+                              ←   221 Bye
+      ..............................................................
+
+
+  ....................................
+  B. POP3 — Post Office Protocol version 3
+  ....................................
+
+    . RFC 1939.
+    . Used for RETRIEVING email from mail server.
+    . Port 110 (plain), Port 995 (POP3 over TLS).
+    . DOWNLOAD and DELETE model:
+      . Downloads emails to local device.
+      . Deletes them from server (by default).
+      . Access only from ONE device (the one that downloaded).
+
+    . POP3 CONVERSATION:
+      ..............................................................
+      CLIENT                      SERVER
+      ..............................................................
+                               ←  +OK POP3 server ready
+      USER alice             →
+                               ←  +OK
+      PASS secret            →
+                               ←  +OK mailbox has 3 messages
+      STAT                   →   (how many, total size)
+                               ←  +OK 3 1200
+      LIST                   →   (list messages and sizes)
+                               ←  +OK 3 messages
+                                  1 400
+                                  2 500
+                                  3 300
+      RETR 1                 →   (retrieve message 1)
+                               ←  +OK 400 octets
+                                  (full email content)
+      DELE 1                 →   (mark message 1 for deletion)
+                               ←  +OK message 1 deleted
+      QUIT                   →   (deletions finalized)
+                               ←  +OK POP3 server signing off
+      ..............................................................
+
+    . LIMITATION:
+      Once downloaded from work PC, email gone from server.
+      Open on phone → not there. BAD for multi-device use.
+
+
+  ....................................
+  C. IMAP — Internet Message Access Protocol
+  ....................................
+
+    . RFC 3501.
+    . Used for RETRIEVING and MANAGING email on server.
+    . Port 143 (plain), Port 993 (IMAP over TLS).
+    . SYNC model:
+      . Emails STAY on the server.
+      . Client sees a synchronized VIEW of server state.
+      . Changes (read, delete, move) sync across ALL devices.
+      . Works from any device — phone, PC, tablet.
+
+    . IMAP FEATURES:
+      . Server-side folders — create, rename, delete.
+      . Message flags — \Seen, \Answered, \Flagged, \Deleted.
+      . Partial fetch — download only headers first,
+        body only when you click to open (saves bandwidth).
+      . IDLE — server PUSHES notification to client when
+        new email arrives (instead of polling).
+
+    . SCENARIO:
+      Alice sends email to bob@example.com.
+      Bob opens email on his phone (IMAP) → reads it → marked Read.
+      Bob opens laptop (IMAP) → email already marked Read. ✓
+      Bob archives email → archived on both phone and laptop. ✓
+      (With POP3 → none of this would sync.)
+
+  . COMPARISON TABLE:
+  ....................................................
+  Feature        SMTP          POP3          IMAP
+  ....................................................
+  Purpose        Send email    Retrieve      Retrieve +
+                               (download)    manage on server
+  Port           25/587/465    110/995       143/993
+  Storage        Not store     Downloads,    Stays on server
+                               deletes
+  Multi-device   N/A           Poor (single) Excellent (sync)
+  Server-side    N/A           No            Yes
+  folders
+  Bandwidth      N/A           Higher (full  Lower (headers
+                               download)     first)
+  Offline access N/A           Yes (local)   Partial
+  ....................................................
+
+
+
+
+------------------------------------------------------------
+7.5  FILE TRANSFER PROTOCOLS: FTP AND SFTP
+------------------------------------------------------------
+
+  ....................................
+  A. FTP — File Transfer Protocol
+  ....................................
+
+    . RFC 959.
+    . Transfers files between client and server.
+    . Uses TWO TCP connections:
+      . CONTROL connection: port 21 (commands & responses).
+      . DATA connection: port 20 (actual file data).
+    . STATEFUL: server remembers the session state.
+    . NO ENCRYPTION — credentials and data sent as plain text.
+
+    . TWO MODES OF DATA CONNECTION:
+      . ACTIVE MODE:
+        Client opens control connection to server port 21.
+        Client tells server: "Connect to me on port X for data."
+        Server opens data connection FROM port 20 TO client port X.
+        Problem: firewalls/NAT block incoming connections to client.
+
+      . PASSIVE MODE (preferred):
+        Client opens control connection to server port 21.
+        Client asks server: "Open a port for me to connect to."
+        Server opens a random high port, tells client.
+        Client opens data connection to that port.
+        Firewall-friendly — client always initiates.
+
+    . FTP SESSION EXAMPLE:
+      ..............................................................
+      CLIENT                      SERVER (port 21)
+      ..............................................................
+                               ←  220 FTP server ready
+      USER alice             →
+                               ←  331 Password required
+      PASS secret123         →
+                               ←  230 Login successful
+      PWD                    →   (print working directory)
+                               ←  257 "/home/alice"
+      LIST                   →   (list files)
+                               ←  (opens data connection)
+                                  150 Opening data connection
+                                  file1.txt   4096 bytes
+                                  file2.pdf  20480 bytes
+                                  226 Transfer complete
+      RETR file1.txt         →   (download file1.txt)
+                               ←  150 Opening data connection
+                                  (file data sent over data channel)
+                                  226 Transfer complete
+      STOR newfile.txt       →   (upload newfile.txt)
+                               ←  150 Opening data connection
+                                  (data sent by client)
+                                  226 Transfer complete
+      QUIT                   →
+                               ←  221 Goodbye
+      ..............................................................
+
+    . FTP COMMANDS:
+      ............................................
+      Command  Action
+      ............................................
+      USER     Send username
+      PASS     Send password
+      LIST     List files in current directory
+      RETR     Download (retrieve) a file
+      STOR     Upload (store) a file
+      DELE     Delete a file on server
+      MKD      Make directory
+      CWD      Change working directory
+      PWD      Print working directory
+      QUIT     End session
+      PASV     Enter passive mode
+      ............................................
+
+    . PROBLEM WITH FTP:
+      . Username, password and ALL file data sent
+        as PLAIN TEXT over the network.
+      . Anyone sniffing the network (Wireshark, etc.)
+        can capture your password and files.
+      . DO NOT use plain FTP over the internet.
+      . Solution: FTPS (FTP over TLS) or SFTP.
+
+
+  ....................................
+  B. SFTP — SSH File Transfer Protocol
+  ....................................
+
+    . NOT an extension of FTP — completely different protocol.
+    . Runs over SSH (Secure Shell) — port 22.
+    . ALL data (commands, credentials, files) ENCRYPTED.
+    . Uses ONE connection (unlike FTP's two).
+    . Firewall-friendly (only one port: 22).
+
+    . SFTP FEATURES:
+      . Encrypted transfer (SSH encryption).
+      . Authentication: password OR SSH key pair.
+      . File operations: upload, download, rename,
+        delete, change permissions, create directories.
+      . Resumable transfers (can resume interrupted uploads).
+
+    . SFTP SESSION EXAMPLE (command line):
+      sftp alice@192.168.1.100
+      Password: ●●●●●●●●
+      Connected to 192.168.1.100
+
+      sftp> ls              (list remote files)
+      sftp> get report.pdf  (download file)
+      sftp> put data.csv    (upload file)
+      sftp> mkdir backup    (create remote directory)
+      sftp> chmod 644 data.csv  (change permissions)
+      sftp> bye             (disconnect)
+
+    . SCENARIO — Developer deploying website:
+      Developer has finished building a website locally.
+      Needs to upload 200 files to web server.
+
+      WITHOUT SFTP (using FTP):
+        Files transferred unencrypted.
+        ISP or anyone on network can see the PHP source
+        code, including database passwords.
+
+      WITH SFTP:
+        SSH tunnel encrypts everything.
+        Same 200 files transferred — nobody can read them.
+        Even file names are encrypted in transit. ✓
+
+  . FTP vs SFTP COMPARISON:
+  ..............................................
+  Feature         FTP               SFTP
+  ..............................................
+  Port            21 (control)      22 (SSH)
+                  20 (data)
+  Connections     2 (control+data)  1
+  Encryption      None (plain text) Full (SSH)
+  Authentication  Username/password Password or SSH key
+  Firewall        Problematic       Simple (port 22)
+  Resume support  No (standard)     Yes
+  Speed           Slightly faster   Tiny overhead
+  Use case        Internal LAN only Anywhere (internet safe)
+  Standard        RFC 959           IETF draft (SSH working group)
+  ..............................................
+
+
+
+
+------------------------------------------------------------
+7.6  DHCP AND ITS WORKING PRINCIPLE
+------------------------------------------------------------
+
+  ....................................
+  A. WHAT IS DHCP?
+  ....................................
+
+    . Dynamic Host Configuration Protocol.
+    . RFC 2131.
+    . Automatically assigns IP configuration to hosts
+      when they join a network.
+    . Without DHCP: every device needs manual IP config.
+    . With DHCP: plug in → get IP automatically in seconds.
+
+    . DHCP ASSIGNS:
+      . IP Address
+      . Subnet Mask
+      . Default Gateway (router)
+      . DNS Server address(es)
+      . Lease time (how long the IP is valid)
+      . Optionally: NTP server, domain name, etc.
+
+    . DHCP USES:
+      . UDP port 67 (server)
+      . UDP port 68 (client)
+      . Runs over UDP (not TCP) because client has
+        no IP yet — can't establish TCP connection.
+
+
+  ....................................
+  B. DHCP WORKING — DORA PROCESS
+  ....................................
+
+    DORA = Discover → Offer → Request → Acknowledge
+
+    ACTORS:
+    . NEW CLIENT: just joined network, has no IP.
+    . DHCP SERVER: usually the router or a dedicated server.
+
+    STEP 1 — DISCOVER:
+    ..................
+      Client has NO IP yet.
+      Sends DHCP Discover as BROADCAST:
+        Source IP:      0.0.0.0         (no IP yet)
+        Destination IP: 255.255.255.255 (all hosts)
+        UDP port:       67 (dest), 68 (source)
+        Message: "I need an IP address! Anyone there?"
+
+    STEP 2 — OFFER:
+    ...............
+      DHCP Server receives Discover.
+      Checks its pool of available IPs.
+      Reserves an IP tentatively.
+      Sends DHCP Offer as BROADCAST (client still has no IP):
+        Source IP:      192.168.1.1     (server)
+        Destination IP: 255.255.255.255
+        Message: "I offer you: IP=192.168.1.50,
+                  Mask=255.255.255.0, GW=192.168.1.1,
+                  DNS=8.8.8.8, Lease=24 hours."
+
+    STEP 3 — REQUEST:
+    .................
+      Client receives Offer (possibly multiple if multiple
+      DHCP servers — picks the FIRST one received).
+      Sends DHCP Request as BROADCAST:
+        (Still no IP, so still broadcast)
+        Message: "I accept the offer from 192.168.1.1.
+                  Please confirm 192.168.1.50 for me."
+        (Broadcast so OTHER DHCP servers know offer rejected.)
+
+    STEP 4 — ACKNOWLEDGE:
+    .....................
+      DHCP Server sends DHCP Acknowledgement:
+        Source IP:      192.168.1.1
+        Destination IP: 255.255.255.255
+        Message: "Confirmed. 192.168.1.50 is yours
+                  for 24 hours. Lease starts now."
+
+      Client configures its NIC:
+        IP:      192.168.1.50
+        Mask:    255.255.255.0
+        Gateway: 192.168.1.1
+        DNS:     8.8.8.8
+      Client is now on the network! ✓
+
+    . VISUAL SUMMARY:
+      Client                          DHCP Server
+        │──── DISCOVER ──────────────────►│  (broadcast, src=0.0.0.0)
+        │◄─── OFFER ──────────────────────│  (IP offered)
+        │──── REQUEST ───────────────────►│  (broadcast, "I accept")
+        │◄─── ACKNOWLEDGE ────────────────│  (IP confirmed)
+        │                                 │
+        [Client configures IP and connects to network]
+
+
+  ....................................
+  C. DHCP LEASE
+  ....................................
+
+    . The IP assignment is a LEASE, not permanent.
+    . Lease has a duration (e.g., 24 hours, 7 days).
+    . At 50% of lease time: client sends RENEW request
+      directly to its DHCP server (unicast).
+    . At 87.5% of lease time: if no renewal, client
+      broadcasts a new REBIND request.
+    . If lease expires and not renewed: IP returned to pool.
+
+    . SCENARIO:
+      Laptop joins Wi-Fi at 9 AM → DORA → gets 192.168.1.50,
+      lease = 8 hours.
+      At 1 PM (4 hrs = 50%): sends Renew → server confirms.
+      At 7 PM (8 hrs): lease expires.
+      If laptop disconnected, IP returned to pool.
+      Another device might get 192.168.1.50 next.
+
+
+  ....................................
+  D. DHCP RELAY AGENT
+  ....................................
+
+    . DHCP uses BROADCASTS (can't cross routers normally).
+    . Problem: DHCP server in one building can't serve
+      clients in another building (different subnet).
+
+    . Solution: DHCP RELAY AGENT (ip helper-address on Cisco).
+      . A router configured to FORWARD DHCP broadcasts
+        to a specific DHCP server on another subnet.
+      . Client thinks it's talking to a local DHCP server.
+      . One central DHCP server can serve many subnets.
+
+    . SCENARIO:
+      Building A (192.168.1.0/24) → DHCP Server: 10.0.0.5
+      Building B (192.168.2.0/24) → DHCP Server: 10.0.0.5 (same)
+
+      Router B has: ip helper-address 10.0.0.5
+      New PC in Building B broadcasts DISCOVER.
+      Router B catches it, forwards to 10.0.0.5 (unicast).
+      DHCP server sees it came from 192.168.2.0/24 subnet.
+      Offers an IP from the 192.168.2.x pool. ✓
+
+
+  ....................................
+  E. DHCP vs STATIC IP — WHEN TO USE WHICH
+  ....................................
+
+    .......................................................
+    Use DHCP for:              Use Static IP for:
+    .......................................................
+    End-user PCs               Servers (web, mail, DNS)
+    Laptops, phones, tablets   Routers and switches
+    Guest networks             Printers (so IP never changes)
+    Large networks (saves      DHCP server itself
+    admin time)                Network cameras/CCTV
+    .......................................................
+
+    . WHY SERVERS NEED STATIC IP:
+      If web server IP changes every 24 hours, DNS records
+      would be wrong — users can't reach the website.
+      Static IP ensures DNS A record always points correctly.
+
+
+
+
+============================================================
+              QUICK REVISION SUMMARY TABLE
+============================================================
+
+  .......................................................
+  Topic              Key Point
+  .......................................................
+  Application Layer  Topmost OSI layer; protocols for
+  Functions          web, email, file transfer, DNS, DHCP.
+
+  HTTP               Port 80; stateless; GET/POST/PUT/
+                     DELETE; status codes 200/404/500.
+
+  HTTPS              HTTP + TLS; port 443; encrypted;
+                     certificate-based auth; must use today.
+
+  HTTP Versions      1.0=one request/conn; 1.1=persistent;
+                     2=multiplexed; 3=over QUIC/UDP.
+
+  DNS Purpose        Domain name → IP address translation.
+                     Port 53 (UDP for queries, TCP for big).
+
+  DNS Hierarchy      Root → TLD (.com/.np) → Authoritative
+                     → Resolver → Your PC.
+
+  DNS Records        A=IPv4, AAAA=IPv6, MX=mail, CNAME=alias,
+                     NS=nameserver, PTR=reverse lookup.
+
+  DNS DORA           PC→Resolver→Root→TLD→Auth Server→
+                     Resolver→PC (Recursive query).
+
+  SMTP               Send email; port 25/587/465;
+                     push protocol; server-to-server relay.
+
+  POP3               Retrieve email; port 110/995;
+                     download+delete; single device.
+
+  IMAP               Retrieve+manage; port 143/993;
+                     stays on server; multi-device sync.
+
+  FTP                File transfer; port 20(data)+21(ctrl);
+                     plain text; active and passive modes.
+
+  SFTP               Secure file transfer over SSH; port 22;
+                     encrypted; single connection.
+
+  DHCP               Auto IP config; UDP 67/68;
+                     DORA = Discover-Offer-Request-ACK.
+
+  DHCP Lease         Temporary IP; 50% renew; 87.5% rebind;
+                     expired = returned to pool.
+
+  DHCP Relay         Forwards broadcasts across subnets;
+                     one DHCP server for many buildings.
+
+  Static vs DHCP     DHCP for clients; Static for servers,
+                     printers, network infrastructure.
+  .......................................................
+
+
+
+
+============================================================
+              END OF UNIT VII NOTES
+============================================================
+
+
+
+
