@@ -1,0 +1,1200 @@
+============================================================
+         UNIT V: NETWORK LAYER — COMPLETE NOTES
+         With Examples, Scenarios & Data Demonstrations
+============================================================
+
+  Subject  : Computer Networks
+  Unit     : V
+  Hours    : 10 Hrs.
+  Format   : Study Notes with Examples & Scenarios
+
+============================================================
+
+
+
+
+------------------------------------------------------------
+5.1  NETWORK LAYER AND ITS FUNCTIONS
+------------------------------------------------------------
+
+  . WHAT IS THE NETWORK LAYER?
+  ............................
+
+    Layer 3 of the OSI model.
+    Sits between Data Link Layer (Layer 2) and
+    Transport Layer (Layer 4).
+
+    Key job: move packets from SOURCE HOST to
+    DESTINATION HOST across MULTIPLE networks
+    (not just one LAN — across the entire internet).
+
+    Data unit at this layer: PACKET
+
+        Transport Layer  (Segments)
+        ─────────────────────────────
+        Network Layer    (Packets)   ← We are here
+        ─────────────────────────────
+        Data Link Layer  (Frames)
+
+
+  . FUNCTIONS OF NETWORK LAYER:
+  .............................
+
+    1. LOGICAL ADDRESSING
+       . Assigns IP addresses (32-bit for IPv4)
+         to identify source and destination globally.
+       . Unlike MAC addresses (local), IP addresses
+         are globally unique and routable.
+
+    2. ROUTING
+       . Determines the BEST PATH for a packet to travel
+         from source to destination across routers.
+       . Uses routing tables and routing algorithms.
+
+       Scenario:
+       PC in Kathmandu → Server in New York
+       Packet may pass through 15-20 routers,
+       each making hop-by-hop routing decisions.
+
+    3. FORWARDING
+       . When a packet arrives at a router, forwarding
+         moves the packet from the incoming interface
+         to the correct outgoing interface.
+       . Routing = deciding the table.
+         Forwarding = using that table for each packet.
+
+    4. FRAGMENTATION AND REASSEMBLY
+       . Different networks have different MTU
+         (Maximum Transmission Unit — max packet size).
+       . If packet is too large, router FRAGMENTS it
+         into smaller pieces.
+       . Destination host REASSEMBLES the fragments.
+
+       Example:
+       Ethernet MTU = 1500 bytes
+       Older token ring MTU = 4096 bytes
+       Packet of 3000 bytes entering Ethernet
+       → gets fragmented into 2 pieces.
+
+    5. ERROR HANDLING AND DIAGNOSTICS
+       . Network layer uses ICMP (Internet Control
+         Message Protocol) to report errors and
+         diagnose problems (ping, traceroute).
+
+    6. CONGESTION CONTROL
+       . Prevents too many packets from flooding
+         the network, causing slowdowns or drops.
+
+
+
+
+------------------------------------------------------------
+5.2  IPv4 ADDRESS, HEADERS AND CLASSES
+------------------------------------------------------------
+
+  ....................................
+  A. IPv4 ADDRESS
+  ....................................
+
+    . 32-bit numeric address
+    . Written in DOTTED DECIMAL NOTATION:
+      4 groups of 8 bits (octets), separated by dots.
+
+    . EXAMPLE:
+      Binary:  11000000 . 10101000 . 00000001 . 00000001
+      Decimal: 192      . 168      . 1        . 1
+      Address: 192.168.1.1
+
+    . Range of each octet: 0 to 255
+    . Total possible IPv4 addresses: 2^32 = 4,294,967,296
+
+
+  ....................................
+  B. IPv4 HEADER FORMAT
+  ....................................
+
+    The IPv4 header is 20 bytes (minimum) to 60 bytes.
+
+    +--------+--------+------------------+------------------+
+    | Ver(4) |  IHL   | Type of Service  |   Total Length   |
+    | 4 bits | 4 bits |    8 bits        |    16 bits       |
+    +--------+--------+------------------+------------------+
+    |       Identification (16)          | Flags | Offset   |
+    |                                    | 3bits | 13 bits  |
+    +------------------------------------+-------+----------+
+    |   TTL (8 bits)  | Protocol (8 bits)|  Header Checksum |
+    |                 |                  |    16 bits       |
+    +-----------------+------------------+------------------+
+    |              Source IP Address (32 bits)              |
+    +-------------------------------------------------------+
+    |           Destination IP Address (32 bits)            |
+    +-------------------------------------------------------+
+    |                  Options (if any)                     |
+    +-------------------------------------------------------+
+
+    . VERSION (4 bits)
+      IPv4 = 0100 (4 in binary)
+
+    . IHL — Internet Header Length (4 bits)
+      Number of 32-bit words in header.
+      Minimum = 5 (means 5×4 = 20 bytes)
+
+    . TYPE OF SERVICE / DSCP (8 bits)
+      Quality of Service — priority of the packet.
+      Voice packets marked higher priority than email.
+
+    . TOTAL LENGTH (16 bits)
+      Total size of IP packet (header + data).
+      Max = 65,535 bytes.
+
+    . IDENTIFICATION (16 bits)
+      Unique ID for each packet.
+      Fragments of the same original packet share
+      the same ID — used during reassembly.
+
+    . FLAGS (3 bits)
+      Bit 0: Reserved (always 0)
+      Bit 1: DF (Don't Fragment) — if set, don't fragment
+      Bit 2: MF (More Fragments) — if set, more fragments follow
+
+    . FRAGMENT OFFSET (13 bits)
+      Position of this fragment in the original packet.
+      Measured in units of 8 bytes.
+
+    . TTL — Time To Live (8 bits)
+      Maximum number of hops (routers) a packet can pass through.
+      Each router decrements TTL by 1.
+      If TTL reaches 0 → packet is DROPPED → ICMP error sent back.
+      Prevents packets from circling forever.
+
+      Example: TTL=64 is common default (Linux).
+               TTL=128 default on Windows.
+
+    . PROTOCOL (8 bits)
+      Identifies the Transport Layer protocol carried in data:
+      TCP = 6
+      UDP = 17
+      ICMP = 1
+
+    . HEADER CHECKSUM (16 bits)
+      Error detection for the HEADER only (not data).
+      Recalculated at each router (since TTL changes).
+
+    . SOURCE IP (32 bits)
+      Sender's IP address.
+
+    . DESTINATION IP (32 bits)
+      Receiver's IP address.
+
+
+  ....................................
+  C. IPv4 CLASSES
+  ....................................
+
+    IPv4 addresses are divided into 5 classes
+    based on the first few bits of the address:
+
+    .....................................................................
+    Class  First Bits  Range               Default      Hosts per Net
+                                           Subnet Mask
+    .....................................................................
+    A      0           1.0.0.0 –           255.0.0.0    16,777,214
+                       126.255.255.255     (/8)
+    ─────────────────────────────────────────────────────────────────────
+    B      10          128.0.0.0 –         255.255.0.0  65,534
+                       191.255.255.255     (/16)
+    ─────────────────────────────────────────────────────────────────────
+    C      110         192.0.0.0 –         255.255.255.0  254
+                       223.255.255.255     (/24)
+    ─────────────────────────────────────────────────────────────────────
+    D      1110        224.0.0.0 –         N/A          Multicast
+                       239.255.255.255                  (no hosts)
+    ─────────────────────────────────────────────────────────────────────
+    E      1111        240.0.0.0 –         N/A          Reserved/
+                       255.255.255.255                  Experimental
+    .....................................................................
+
+    . Special addresses:
+      127.0.0.0/8   → Loopback (127.0.0.1 = "this computer")
+      0.0.0.0       → "This host on this network"
+      255.255.255.255 → Broadcast to all hosts on local network
+
+
+
+
+------------------------------------------------------------
+5.3  PRIVATE IP vs PUBLIC IP
+------------------------------------------------------------
+
+  ....................................
+  A. PUBLIC IP ADDRESS
+  ....................................
+
+    . Assigned by ISP (Internet Service Provider).
+    . Globally UNIQUE — no two devices on the internet
+      share the same public IP.
+    . ROUTABLE on the internet.
+    . Assigned by IANA (Internet Assigned Numbers Authority).
+
+    . Example:
+      Your home router's WAN IP: 103.45.23.156
+      Google's server:           8.8.8.8
+      Facebook's server:         31.13.64.35
+
+
+  ....................................
+  B. PRIVATE IP ADDRESS
+  ....................................
+
+    . Used INSIDE private networks (homes, offices, schools).
+    . NOT routable on the public internet — routers block them.
+    . Multiple networks CAN use the same private IP range
+      (because they're isolated from each other).
+    . Defined by RFC 1918.
+
+    . PRIVATE IP RANGES:
+      ..............................................
+      Class   Range                    CIDR
+      ..............................................
+      A       10.0.0.0 –               10.0.0.0/8
+              10.255.255.255
+      B       172.16.0.0 –             172.16.0.0/12
+              172.31.255.255
+      C       192.168.0.0 –            192.168.0.0/16
+              192.168.255.255
+      ..............................................
+
+    . SCENARIO:
+      Your home PC:     192.168.1.10  (private)
+      Your phone:       192.168.1.11  (private)
+      Your router WAN:  103.45.23.156 (public)
+
+      When PC visits google.com:
+      Packet: src=192.168.1.10 → router → src=103.45.23.156
+      Router uses NAT (Network Address Translation)
+      to replace private IP with public IP before
+      sending to the internet. (Covered in 5.11)
+
+    . KEY DIFFERENCE TABLE:
+      .................................................
+      Feature      Public IP          Private IP
+      .................................................
+      Uniqueness   Globally unique    Reused across
+                                      multiple networks
+      Routable     Yes (internet)     No (LAN only)
+      Assigned by  ISP / IANA         Network Admin
+      Cost         Paid / limited     Free
+      Example      8.8.8.8            192.168.1.1
+      .................................................
+
+
+
+
+------------------------------------------------------------
+5.4  SUBNETTING, SUBNET MASK, FLSM, VLSM
+------------------------------------------------------------
+
+  ....................................
+  A. WHAT IS SUBNETTING?
+  ....................................
+
+    Dividing a LARGE network into smaller
+    SUB-NETWORKS (subnets).
+
+    Why?
+    . Reduce broadcast traffic (smaller broadcast domain)
+    . Improve security (isolate departments)
+    . Better use of IP address space
+
+    Structure of an IP address:
+    +──────────────────+──────────────────+
+    |   Network Part   |    Host Part     |
+    +──────────────────+──────────────────+
+    Subnetting borrows bits from the HOST part
+    to create more NETWORK identifiers.
+
+
+  ....................................
+  B. SUBNET MASK
+  ....................................
+
+    . 32-bit number that separates network and host portions.
+    . Written in dotted decimal or CIDR notation.
+
+    . EXAMPLE:
+      IP Address:    192.168.1.130
+      Subnet Mask:   255.255.255.0  (/24)
+
+      In binary:
+      IP:   11000000.10101000.00000001.10000010
+      Mask: 11111111.11111111.11111111.00000000
+                                       ^^^^^^^^^
+                                       Host portion (8 bits)
+                                       = 2^8 - 2 = 254 usable hosts
+
+    . CIDR NOTATION: /24 means 24 bits are the network part.
+
+    . KEY FORMULAS:
+      Number of subnets  = 2^s   (s = borrowed bits)
+      Hosts per subnet   = 2^h - 2  (h = remaining host bits)
+                          (-2 for network address and broadcast)
+
+
+  ....................................
+  C. FLSM — Fixed Length Subnet Masking
+  ....................................
+
+    . ALL subnets get the SAME size (same mask).
+    . Simple but wasteful — some subnets may have
+      far more addresses than needed.
+
+    . EXAMPLE:
+      Network: 192.168.10.0/24
+      Requirement: 4 equal subnets
+
+      Need 4 subnets → borrow 2 bits from host part
+      (2^2 = 4 subnets)
+      New mask: /24+2 = /26  (255.255.255.192)
+      Hosts per subnet: 2^6 - 2 = 62
+
+      Subnets:
+      ......................................................
+      Subnet  Network Addr     Host Range          Broadcast
+      ......................................................
+      1       192.168.10.0     192.168.10.1 – .62  .63
+      2       192.168.10.64    192.168.10.65 – .126 .127
+      3       192.168.10.128   192.168.10.129 – .190 .191
+      4       192.168.10.192   192.168.10.193 – .254 .255
+      ......................................................
+
+    . PROBLEM:
+      If Subnet 1 only needs 10 hosts, the other
+      52 addresses in that /26 are WASTED.
+
+
+  ....................................
+  D. VLSM — Variable Length Subnet Masking
+  ....................................
+
+    . Different subnets can have DIFFERENT sizes.
+    . More efficient — allocate exactly what is needed.
+    . Subnets must not OVERLAP.
+
+    . EXAMPLE SCENARIO:
+      Company has 192.168.1.0/24
+      Departments:
+      . HR:     50 hosts needed
+      . IT:     25 hosts needed
+      . Finance: 10 hosts needed
+      . Mgmt:    5 hosts needed
+      . WAN link: 2 hosts (router-to-router)
+
+      STEP 1: Sort by size (LARGEST FIRST — always)
+      50 → 25 → 10 → 5 → 2
+
+      STEP 2: Allocate subnets:
+
+      HR (50 hosts):
+        Need 2^h >= 50+2 = 52 → h=6 → /26 (62 hosts)
+        Subnet: 192.168.1.0/26
+        Range:  192.168.1.1 – 192.168.1.62
+        Bcast:  192.168.1.63
+
+      IT (25 hosts):
+        Need 2^h >= 27 → h=5 → /27 (30 hosts)
+        Subnet: 192.168.1.64/27
+        Range:  192.168.1.65 – 192.168.1.94
+        Bcast:  192.168.1.95
+
+      Finance (10 hosts):
+        Need 2^h >= 12 → h=4 → /28 (14 hosts)
+        Subnet: 192.168.1.96/28
+        Range:  192.168.1.97 – 192.168.1.110
+        Bcast:  192.168.1.111
+
+      Mgmt (5 hosts):
+        Need 2^h >= 7 → h=3 → /29 (6 hosts)
+        Subnet: 192.168.1.112/29
+        Range:  192.168.1.113 – 192.168.1.118
+        Bcast:  192.168.1.119
+
+      WAN Link (2 hosts):
+        Need 2^h >= 4 → h=2 → /30 (2 hosts)
+        Subnet: 192.168.1.120/30
+        Range:  192.168.1.121 – 192.168.1.122
+        Bcast:  192.168.1.123
+
+      No overlap. Efficient. ✓
+
+
+
+
+------------------------------------------------------------
+5.5  CASE STUDY
+------------------------------------------------------------
+
+  . SCENARIO:
+    A university has been given the network 172.16.0.0/16.
+    It has 4 faculties:
+
+    . Science:     500 students
+    . Commerce:    250 students
+    . Arts:        100 students
+    . Admin:        50 staff
+
+    Design a VLSM subnetting plan.
+
+  . SOLUTION:
+
+    Sort: 500 → 250 → 100 → 50
+
+    Science (500 hosts):
+      2^h >= 502 → h=9 → /23 (510 hosts usable)
+      Network:   172.16.0.0/23
+      Range:     172.16.0.1 – 172.16.1.254
+      Broadcast: 172.16.1.255
+
+    Commerce (250 hosts):
+      2^h >= 252 → h=8 → /24 (254 hosts usable)
+      Network:   172.16.2.0/24
+      Range:     172.16.2.1 – 172.16.2.254
+      Broadcast: 172.16.2.255
+
+    Arts (100 hosts):
+      2^h >= 102 → h=7 → /25 (126 hosts usable)
+      Network:   172.16.3.0/25
+      Range:     172.16.3.1 – 172.16.3.126
+      Broadcast: 172.16.3.127
+
+    Admin (50 hosts):
+      2^h >= 52 → h=6 → /26 (62 hosts usable)
+      Network:   172.16.3.128/26
+      Range:     172.16.3.129 – 172.16.3.190
+      Broadcast: 172.16.3.191
+
+    Addresses used: Science used .0.0 – .1.255
+                    Commerce used .2.0 – .2.255
+                    Arts used .3.0 – .3.127
+                    Admin used .3.128 – .3.191
+                    Remaining: .3.192 – .255.255 (for future)
+
+
+
+
+------------------------------------------------------------
+5.6  ISSUES WITH IPv4
+------------------------------------------------------------
+
+  . PROBLEM 1: ADDRESS EXHAUSTION
+  ................................
+    . IPv4 has only 2^32 ≈ 4.3 billion addresses.
+    . World population > 8 billion.
+    . IoT devices (smart fridges, sensors, cars) multiply demand.
+    . IANA exhausted its pool of IPv4 addresses in 2011.
+    . Short-term fixes: NAT, private IPs, CIDR.
+    . Long-term fix: IPv6.
+
+  . PROBLEM 2: SECURITY
+  .....................
+    . IPv4 was designed in a trust-based era (1970s).
+    . No built-in encryption or authentication.
+    . IPSec was added as an optional extension —
+      not native, not always enabled.
+
+  . PROBLEM 3: NO QoS SUPPORT (originally)
+  .........................................
+    . IPv4 header's Type of Service field was rarely used.
+    . Modern networks need priority for voice and video.
+
+  . PROBLEM 4: HEADER COMPLEXITY
+  ..............................
+    . IPv4 header has variable length (due to options field).
+    . Each router must process options → slows down routing.
+
+  . PROBLEM 5: NO AUTO-CONFIGURATION
+  ..................................
+    . IPv4 needs DHCP to assign addresses automatically.
+    . No built-in mechanism for hosts to configure themselves.
+
+  . PROBLEM 6: FRAGMENTATION OVERHEAD
+  ....................................
+    . Routers can fragment packets in IPv4.
+    . Fragmentation + reassembly wastes router resources.
+    . Solution in IPv6: only SOURCE does fragmentation.
+
+
+
+
+------------------------------------------------------------
+5.7  OVERVIEW OF IPv6 AND ITS HEADER FORMAT
+------------------------------------------------------------
+
+  ....................................
+  A. WHAT IS IPv6?
+  ....................................
+
+    . 128-bit addressing system (vs 32-bit IPv4).
+    . Total addresses: 2^128 = 340 undecillion
+      = 340,000,000,000,000,000,000,000,000,000,000,000,000
+    . Written in HEXADECIMAL, 8 groups of 16 bits
+      separated by colons.
+
+    . EXAMPLE:
+      Full:         2001:0DB8:0000:0000:0000:0000:0000:0001
+      Shortened:    2001:DB8::1
+      (Rules: omit leading zeros in each group;
+              :: replaces ONE consecutive run of all-zero groups)
+
+
+  ....................................
+  B. IPv6 HEADER FORMAT
+  ....................................
+
+    IPv6 header is FIXED at 40 bytes (simpler than IPv4!)
+
+    +──────────────────────────────────────────────────────+
+    | Version(4) | Traffic Class(8) | Flow Label (20)      |
+    +──────────────────────────────────────────────────────+
+    | Payload Length (16)  | Next Header (8)  |  Hop Limit |
+    +──────────────────────────────────────────────────────+
+    |              Source Address (128 bits)               |
+    |                                                      |
+    +──────────────────────────────────────────────────────+
+    |           Destination Address (128 bits)             |
+    |                                                      |
+    +──────────────────────────────────────────────────────+
+
+    . VERSION (4 bits):        0110 = 6
+
+    . TRAFFIC CLASS (8 bits):  Like IPv4's ToS/DSCP.
+                               QoS priority marking.
+
+    . FLOW LABEL (20 bits):    NEW in IPv6.
+                               Identifies a stream of related
+                               packets (e.g., a video call).
+                               Routers can give same treatment
+                               to all packets in a flow.
+
+    . PAYLOAD LENGTH (16 bits): Size of data AFTER the header.
+
+    . NEXT HEADER (8 bits):    Replaces IPv4 Protocol field.
+                               Points to the NEXT extension
+                               header or the upper-layer
+                               protocol (TCP=6, UDP=17).
+                               Extension headers are chained —
+                               replaces IPv4's Options field.
+
+    . HOP LIMIT (8 bits):      Same as IPv4's TTL.
+                               Decremented by 1 at each router.
+                               Packet dropped when it reaches 0.
+
+    . SOURCE/DEST (128 bits each): IPv6 addresses.
+
+
+  ....................................
+  C. KEY IMPROVEMENTS OF IPv6 OVER IPv4
+  ....................................
+
+    . FIXED HEADER: always 40 bytes, faster to process.
+    . EXTENSION HEADERS: optional info in separate
+      chained headers, not in main header — routers
+      skip them if not needed.
+    . NO FRAGMENTATION BY ROUTERS: only the source
+      fragments using Path MTU Discovery.
+    . BUILT-IN IPSec: security is mandatory, not optional.
+    . AUTO-CONFIGURATION: SLAAC (Stateless Address
+      Auto-Configuration) — devices configure themselves.
+    . NO BROADCAST: uses MULTICAST and ANYCAST instead.
+    . HEADER CHECKSUM REMOVED: upper layers handle this,
+      saves recalculation at every router.
+
+    . IPv4 vs IPv6 COMPARISON:
+      .................................................
+      Feature           IPv4            IPv6
+      .................................................
+      Address size      32 bit          128 bit
+      Notation          Decimal dotted  Hex with colons
+      Header size       20–60 bytes     Fixed 40 bytes
+      Fragmentation     Routers/Source  Source only
+      Checksum          Yes (header)    No
+      Security          Optional IPSec  Built-in IPSec
+      Config            DHCP needed     SLAAC built-in
+      Broadcast         Yes             No (multicast)
+      Total addresses   ~4.3 billion    ~340 undecillion
+      .................................................
+
+
+
+
+------------------------------------------------------------
+5.8  TRANSITION FROM IPv4 TO IPv6
+------------------------------------------------------------
+
+  The internet cannot switch from IPv4 to IPv6 overnight.
+  Billions of devices, routers, ISPs all need time.
+  Three main transition mechanisms are used:
+
+  ....................................
+  1. DUAL STACK
+  ....................................
+
+    . A device runs BOTH IPv4 AND IPv6 simultaneously.
+    . When communicating with an IPv4 host → use IPv4.
+    . When communicating with an IPv6 host → use IPv6.
+    . Most common approach today.
+
+    . Scenario:
+      Your laptop has both 192.168.1.10 (IPv4)
+      and 2001:DB8::A (IPv6) configured.
+      Visiting an IPv6-capable website → IPv6 used.
+      Visiting an IPv4-only website → IPv4 used.
+
+
+  ....................................
+  2. TUNNELING
+  ....................................
+
+    . IPv6 packets are ENCAPSULATED inside IPv4 packets
+      to cross parts of the internet that are still IPv4-only.
+    . The IPv4 network is used as a "tunnel" or carrier.
+
+    . Scenario:
+      IPv6 island A ──[IPv4 internet]── IPv6 island B
+      IPv6 packet wrapped inside IPv4 packet →
+      travels through IPv4 network →
+      unwrapped at the other end.
+
+    . Types:
+      . 6to4:    Automatic tunneling using prefix 2002::/16
+      . Teredo:  Tunneling through NAT devices
+      . ISATAP:  Within an organization's IPv4 network
+
+
+  ....................................
+  3. TRANSLATION (NAT64 / DNS64)
+  ....................................
+
+    . Allows IPv6-only devices to communicate with
+      IPv4-only devices.
+    . NAT64 gateway translates between IPv4 and IPv6.
+
+    . Scenario:
+      IPv6 phone → NAT64 gateway → IPv4 server
+      Gateway maintains mapping table:
+      IPv6 client ↔ IPv4 address pool
+
+    . DNS64: creates synthetic AAAA records (IPv6)
+      for IPv4-only hosts so IPv6 clients can resolve them.
+
+
+
+
+------------------------------------------------------------
+5.9  ROUTING: ADAPTIVE AND NON-ADAPTIVE
+------------------------------------------------------------
+
+  . WHAT IS ROUTING?
+  ................
+
+    Process of selecting a PATH for a packet to travel
+    from source to destination through a network of routers.
+    Each router makes a local decision: "which next hop?"
+
+  ....................................
+  A. NON-ADAPTIVE ROUTING (Static Routing)
+  ....................................
+
+    . Routes are SET MANUALLY by an administrator.
+    . Routes do NOT change automatically in response
+      to network conditions (link failures, congestion).
+    . Routing table is fixed.
+
+    . ADVANTAGES:
+      . Simple, predictable, no routing overhead.
+      . Good for small, stable networks.
+
+    . DISADVANTAGES:
+      . No automatic failover — if a link fails,
+        packets are dropped until admin manually fixes.
+      . Not scalable for large networks.
+
+    . EXAMPLE:
+      ip route 192.168.2.0 255.255.255.0 10.0.0.2
+      (tells router: packets for 192.168.2.0/24
+       should go to next-hop 10.0.0.2 — forever,
+       regardless of what happens)
+
+
+  ....................................
+  B. ADAPTIVE ROUTING (Dynamic Routing)
+  ....................................
+
+    . Routes CHANGE AUTOMATICALLY based on current
+      network topology and conditions.
+    . Routers exchange routing information using
+      routing protocols.
+    . If a link fails, routers recalculate routes.
+
+    . ADVANTAGES:
+      . Fault tolerant.
+      . Scales to large networks.
+
+    . DISADVANTAGES:
+      . Routing overhead (extra traffic for updates).
+      . More complex to configure.
+
+    . TWO MAIN ALGORITHMS:
+      . Distance Vector
+      . Link State
+
+
+  ....................................
+  C. DISTANCE VECTOR ROUTING
+  ....................................
+
+    . Each router knows only its DIRECT NEIGHBORS
+      and their distances (hop count or metric).
+    . Routers share their routing table with neighbors.
+    . Each router updates its own table based on
+      what neighbors report.
+    . Also called: Bellman-Ford algorithm.
+
+    . "I know what MY neighbors told me about the world."
+
+    . SCENARIO (3 routers: A, B, C):
+      A─────B─────C
+      A tells B: I can reach A in 0 hops.
+      B tells A: I can reach B in 0 hops, C in 1 hop.
+      A updates: C is reachable in 2 hops (via B).
+
+    . PROBLEM — COUNT TO INFINITY:
+      If link A–B fails, A thinks it can reach B via C
+      (which thinks it can reach B via A).
+      They keep incrementing each other's count.
+      Fix: Split Horizon, Route Poisoning, Hold-down timers.
+
+
+  ....................................
+  D. LINK STATE ROUTING
+  ....................................
+
+    . Each router knows the COMPLETE MAP of the network.
+    . Every router sends LSAs (Link State Advertisements)
+      to ALL other routers (flooding).
+    . Every router builds its own topology database.
+    . Then runs DIJKSTRA'S SHORTEST PATH ALGORITHM
+      to find the best path to every destination.
+    . Also called: Shortest Path First (SPF).
+
+    . "I know what the WHOLE network looks like."
+
+    . COMPARISON TABLE:
+      .................................................
+      Feature       Distance Vector    Link State
+      .................................................
+      Knowledge     Neighbors only     Full topology
+      Algorithm     Bellman-Ford       Dijkstra (SPF)
+      Updates       Periodic           Event-triggered
+      Convergence   Slow               Fast
+      Bandwidth     More (full table   Less (only LSAs)
+      usage         shared)
+      CPU/Memory    Low                High
+      Example       RIP                OSPF
+      .................................................
+
+
+
+
+------------------------------------------------------------
+5.10 FAMOUS ROUTING PROTOCOLS
+------------------------------------------------------------
+
+  ....................................
+  A. RIP — Routing Information Protocol
+  ....................................
+
+    . Type: Distance Vector
+    . Standard: RFC 1058 (RIPv1), RFC 2453 (RIPv2)
+    . Metric: HOP COUNT (lower = better)
+    . Max hop count: 15 (16 = unreachable — infinity)
+    . Update interval: every 30 seconds (broadcasts/multicasts
+      full routing table to neighbors)
+    . Admin Distance (Cisco): 120 (higher = less trusted)
+
+    . VERSIONS:
+      RIPv1: classful, no subnet mask in updates,
+             broadcast (255.255.255.255)
+      RIPv2: classless, carries subnet mask,
+             multicast (224.0.0.9)
+
+    . SCENARIO:
+      Network: A─B─C─D─E  (5 hops)
+      RIP metric from A to E = 4 hops ✓
+      Network: A─B─C─D─E─F─G─H─I─J─K─L─M─N─O─P (15 hops)
+      A to P = 15 hops ✓ (just barely reachable)
+      Add one more router: 16 hops = UNREACHABLE in RIP.
+
+    . DISADVANTAGE:
+      Slow convergence. Max 15 hops (small networks only).
+
+
+  ....................................
+  B. OSPF — Open Shortest Path First
+  ....................................
+
+    . Type: Link State
+    . Standard: RFC 2328 (OSPFv2 for IPv4)
+                RFC 5340 (OSPFv3 for IPv6)
+    . Metric: COST = 100 Mbps / Interface bandwidth
+    . Updates: triggered (only when topology changes)
+    . Admin Distance: 110
+    . Multicast: 224.0.0.5 (all OSPF routers)
+                 224.0.0.6 (designated routers)
+
+    . KEY CONCEPTS:
+      . AREA: OSPF divides large networks into AREAS.
+        Area 0 = backbone area (all areas connect to it).
+        Reduces LSA flooding and routing table size.
+
+      . ROUTER ROLES:
+        DR  (Designated Router)  — collects/distributes LSAs
+        BDR (Backup DR)          — takes over if DR fails
+        Others: regular OSPF routers
+
+      . OSPF NEIGHBOR STATES:
+        Down → Init → 2-Way → ExStart → Exchange
+        → Loading → FULL
+
+    . SCENARIO:
+      Router A (1 Gbps link to B) and Router C (10 Mbps link to B).
+      OSPF cost:
+        A: 100M / 1000M = 0.1 → rounds to 1
+        C: 100M / 10M = 10
+      OSPF prefers A's route (lower cost = faster link). ✓
+
+
+  ....................................
+  C. EIGRP — Enhanced Interior Gateway Routing Protocol
+  ....................................
+
+    . Type: Advanced Distance Vector (Hybrid)
+    . Cisco PROPRIETARY (partially open now, RFC 7868)
+    . Metric: COMPOSITE (bandwidth + delay + reliability
+              + load + MTU — by default bandwidth + delay)
+    . Admin Distance: 90 (internal), 170 (external)
+    . Very FAST convergence using DUAL algorithm
+      (Diffusing Update Algorithm).
+
+    . KEY TERMS:
+      . Successor: best route to a destination
+      . Feasible Successor: backup route (pre-calculated)
+        If successor fails → feasible successor used INSTANTLY
+        (no recalculation needed).
+
+    . SCENARIO:
+      Three paths A→D:
+        Via B: bandwidth=100Mbps, delay=10ms → metric=2560
+        Via C: bandwidth=56Kbps, delay=5ms  → metric=2,170,000
+      EIGRP picks Via B (lower metric). ✓
+      If B fails, pre-computed feasible successor Via C used.
+
+
+  ....................................
+  D. BGP — Border Gateway Protocol
+  ....................................
+
+    . THE routing protocol of the INTERNET.
+    . Type: Path Vector
+    . Standard: RFC 4271 (BGP-4)
+    . Used between different AUTONOMOUS SYSTEMS (AS).
+    . An AS = a large network under one organization's control.
+      (ISP, university, government, big company = one AS)
+    . Each AS has an ASN (Autonomous System Number).
+
+    . iBGP: BGP WITHIN one AS
+    . eBGP: BGP BETWEEN two different AS's
+
+    . METRIC: AS-PATH (list of ASNs a route passes through)
+      Shorter AS-PATH = preferred.
+
+    . Admin Distance: 20 (eBGP), 200 (iBGP)
+
+    . SCENARIO:
+      Nepal Telecom (AS9829) peers with
+      BSNL India (AS9829) using eBGP.
+      NT advertises: "I can reach 202.45.0.0/16 via AS9829"
+      BSNL records the path: AS9829 → 202.45.0.0/16
+
+    . COMPARISON SUMMARY:
+      ..........................................................
+      Protocol  Type          Interior/    Metric
+                              Exterior
+      ..........................................................
+      RIP       Distance Vec  Interior     Hop count (max 15)
+      OSPF      Link State    Interior     Cost (100M/BW)
+      EIGRP     Hybrid        Interior     Composite (BW+delay)
+      BGP       Path Vector   Exterior     AS-PATH length
+      ..........................................................
+
+
+
+
+------------------------------------------------------------
+5.11 PING, ICMP AND NATING
+------------------------------------------------------------
+
+  ....................................
+  A. ICMP — Internet Control Message Protocol
+  ....................................
+
+    . Operates at Network Layer (part of IP suite).
+    . Used for ERROR REPORTING and DIAGNOSTICS.
+    . Not for data transfer — only control messages.
+    . Protocol number = 1 (in IP header).
+
+    . KEY ICMP MESSAGE TYPES:
+      .....................................................
+      Type  Code  Message
+      .....................................................
+      0     0     Echo Reply (ping response)
+      3     0     Destination Network Unreachable
+      3     1     Destination Host Unreachable
+      3     3     Destination Port Unreachable
+      4     0     Source Quench (congestion — deprecated)
+      5     0     Redirect (better route exists)
+      8     0     Echo Request (ping)
+      11    0     TTL Exceeded in Transit
+      11    1     Fragment Reassembly Time Exceeded
+      .....................................................
+
+
+  ....................................
+  B. PING (Lab Related)
+  ....................................
+
+    . Ping = Packet Internet Groper.
+    . Uses ICMP Echo Request (Type 8) and
+      Echo Reply (Type 0).
+    . Tests if a host is reachable and measures RTT
+      (Round Trip Time).
+
+    . HOW PING WORKS:
+      1. Your PC sends ICMP Echo Request to target IP.
+      2. Target responds with ICMP Echo Reply.
+      3. RTT = time between request and reply.
+
+    . COMMON PING SCENARIOS:
+
+      Successful ping:
+      C:\> ping 8.8.8.8
+      Reply from 8.8.8.8: bytes=32 time=14ms TTL=117
+      Reply from 8.8.8.8: bytes=32 time=13ms TTL=117
+      → Host is reachable, RTT ≈ 14ms
+
+      Host unreachable:
+      C:\> ping 192.168.1.254
+      Request timed out.
+      → No reply (host down, firewall blocking, wrong IP)
+
+      TTL Expired:
+      ping returns "TTL expired in transit"
+      → Packet went through too many routers (routing loop?)
+
+    . PING OPTIONS (Linux/Windows):
+      ping -c 4 google.com     (send 4 packets, Linux)
+      ping -t google.com       (continuous ping, Windows)
+      ping -s 1400 google.com  (specify packet size)
+
+    . TRACEROUTE / TRACERT:
+      . Extended use of ICMP TTL manipulation.
+      . Sends packets with TTL=1, 2, 3... progressively.
+      . Each router that drops due to TTL=0 sends
+        ICMP "TTL Exceeded" back.
+      . Reveals each hop along the path to destination.
+
+      C:\> tracert google.com
+      1   2ms   192.168.1.1     (your router)
+      2  15ms   103.45.23.1     (ISP gateway)
+      3  20ms   202.79.32.5     (ISP backbone)
+      ...
+      12  14ms  8.8.8.8         (Google)
+
+
+  ....................................
+  C. NAT — Network Address Translation
+  ....................................
+
+    . Translates PRIVATE IP addresses to PUBLIC IP
+      (and back) at the router/gateway.
+    . Allows multiple devices with private IPs to share
+      ONE public IP address.
+    . Defined in RFC 3022.
+
+    . WHY NAT EXISTS:
+      . Conserves public IPv4 addresses.
+      . Adds a layer of security (hides internal topology).
+      . Without NAT: every device would need a public IP
+        (impossible given IPv4 exhaustion).
+
+    . TYPES OF NAT:
+    ..........................................................
+    1. STATIC NAT
+       . One private IP ↔ One fixed public IP (1:1 mapping).
+       . Used for servers that need a consistent public IP.
+
+       Example:
+       Private: 192.168.1.5  → always maps to Public: 203.0.113.5
+       Anyone on internet reaching 203.0.113.5 gets to 192.168.1.5.
+
+    ..........................................................
+    2. DYNAMIC NAT
+       . Pool of public IPs available.
+       . Private IPs get assigned a public IP from the pool
+         dynamically when they initiate a connection.
+       . When session ends, public IP returned to pool.
+
+       Example:
+       Public IP pool: 203.0.113.10 – 203.0.113.20
+       PC-A (192.168.1.10) connects → assigned 203.0.113.10
+       PC-B (192.168.1.11) connects → assigned 203.0.113.11
+
+    ..........................................................
+    3. PAT — Port Address Translation (NAPT / NAT Overload)
+       . MOST COMMON type (used in every home router).
+       . MANY private IPs → ONE public IP.
+       . Uses PORT NUMBERS to distinguish connections.
+
+       . HOW IT WORKS:
+         PC-A (192.168.1.10:49152) → google.com
+         PC-B (192.168.1.11:49153) → youtube.com
+
+         NAT table (in router):
+         ......................................................
+         Private IP:Port          Public IP:Port
+         ......................................................
+         192.168.1.10 : 49152     203.0.113.5 : 1024
+         192.168.1.11 : 49153     203.0.113.5 : 1025
+         ......................................................
+
+         Router replaces private IP:port with public IP:port
+         when sending OUT.
+         When reply comes back to 203.0.113.5:1024,
+         router checks table → sends to 192.168.1.10:49152.
+
+    . SCENARIO (Full PAT Example):
+      Home network: 3 devices, 1 public IP.
+
+      Device A: 192.168.0.2  opens  youtube.com (port 80)
+      Device B: 192.168.0.3  opens  gmail.com   (port 443)
+      Device C: 192.168.0.4  opens  youtube.com (port 80)
+
+      Router's NAT table:
+      .......................................................
+      Inside Local         Inside Global       Destination
+      .......................................................
+      192.168.0.2:50001    103.45.23.5:1001    youtube.com
+      192.168.0.3:50002    103.45.23.5:1002    gmail.com
+      192.168.0.4:50003    103.45.23.5:1003    youtube.com
+      .......................................................
+
+      All three appear to youtube/gmail as coming from
+      ONE IP: 103.45.23.5 — but different ports.
+      Reply to :1001 → goes back to 192.168.0.2. ✓
+      Reply to :1003 → goes back to 192.168.0.4. ✓
+
+    . NAT TERMINOLOGY (Cisco):
+      Inside Local:   Private IP of internal device
+      Inside Global:  Public IP representing internal device
+      Outside Local:  IP of external server as seen from inside
+      Outside Global: Actual IP of external server
+
+    . LIMITATIONS OF NAT:
+      . Breaks end-to-end connectivity (internet was designed
+        so any host can reach any other host directly).
+      . Peer-to-peer applications (VoIP, gaming, torrent)
+        have difficulty with NAT.
+      . Stateful — router must maintain NAT table, adds load.
+      . IPv6 eliminates the NEED for NAT (enough addresses
+        for every device to have a public IP directly).
+
+
+
+
+============================================================
+              QUICK REVISION SUMMARY TABLE
+============================================================
+
+  .......................................................
+  Topic              Key Point
+  .......................................................
+  Network Layer      Logical addressing, Routing,
+  Functions          Forwarding, Fragmentation, ICMP
+
+  IPv4 Header        20 bytes min; key fields: TTL,
+                     Protocol, Flags, Fragment Offset
+
+  IPv4 Classes       A(1-126/8) B(128-191/16)
+                     C(192-223/24) D(Multicast) E(Reserved)
+
+  Private IP         10/8, 172.16/12, 192.168/16
+                     (RFC 1918, not routable on internet)
+
+  Subnetting         Borrow host bits; 2^s subnets;
+                     2^h-2 hosts per subnet
+
+  FLSM               All subnets same size — simple/wasteful
+
+  VLSM               Variable size — efficient, largest first
+
+  IPv4 Issues        Exhaustion, no security, slow header,
+                     no auto-config, fragmentation overhead
+
+  IPv6               128-bit, 40-byte fixed header, IPSec
+                     built-in, no broadcast, SLAAC
+
+  IPv6 Transition    Dual Stack / Tunneling / NAT64
+
+  Non-Adaptive       Static routes, manual, simple, no
+                     failover
+
+  Adaptive           Dynamic, auto-updates, Distance
+                     Vector or Link State
+
+  Distance Vector    Bellman-Ford, knows neighbors only,
+                     slow convergence, RIP uses this
+
+  Link State         Dijkstra, knows full topology, fast
+                     convergence, OSPF uses this
+
+  RIP                DV, hop count metric, max 15 hops,
+                     AD=120, 30-sec updates
+
+  OSPF               LS, cost=100M/BW, areas, AD=110,
+                     fastest interior protocol
+
+  EIGRP              Hybrid, composite metric, DUAL algo,
+                     AD=90, Cisco (mostly)
+
+  BGP                Path Vector, AS-PATH metric, internet
+                     routing protocol, eBGP/iBGP
+
+  ICMP               Error reporting (Type 3 unreachable,
+                     Type 11 TTL exceeded, Type 8 ping)
+
+  Ping               ICMP Echo Request/Reply, tests
+                     reachability and RTT
+
+  Static NAT         1 private ↔ 1 public (1:1)
+
+  Dynamic NAT        Pool of public IPs, dynamic assignment
+
+  PAT/NAT Overload   Many private ↔ 1 public (uses ports)
+                     — used in every home router
+  .......................................................
+
+
+
+
+============================================================
+              END OF UNIT V NOTES
+============================================================
