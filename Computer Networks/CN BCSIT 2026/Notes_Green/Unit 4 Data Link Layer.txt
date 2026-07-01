@@ -28,10 +28,14 @@
   . FUNCTIONS:
   ..............
 
-    1. FRAMING
+    1. FRAMING       
        . Divides the stream of bits from the network layer
          into manageable units called FRAMES.
        . Adds header and trailer around data.
+
+       https://scaler.com/topics/images/framing-and-link-access.webp
+
+
 
     2. PHYSICAL ADDRESSING
        . Adds MAC (hardware) addresses of sender and receiver
@@ -59,6 +63,8 @@
        . Establishes, maintains and releases the link
          between two directly connected nodes.
 
+
+
   . SCENARIO:
   ............
 
@@ -80,6 +86,9 @@
 ------------------------------------------------------------
 4.2  OVERVIEW OF LLC AND MAC
 ------------------------------------------------------------
+       
+https://www.codershelpline.com/courses/theorypapers/computer-network/data-link-layer/
+
 
   The Data Link Layer is divided into TWO sub-layers:
 
@@ -100,18 +109,25 @@
       and the MAC sub-layer.
     . Protocol-independent — can carry IP, IPX, etc.
 
+
+
     . FUNCTIONS:
       . Error checking (acknowledgement of frames)
       . Flow control between logical connections
       . Multiplexing different network protocols
 
+
+
     . TYPES OF LLC SERVICES:
+       -----------------------------
       . Type 1 (Unacknowledged Connectionless)
           - No connection setup, no acknowledgement
           - Example: Ethernet, most LAN traffic
+
       . Type 2 (Connection-Oriented)
           - Connection established before data transfer
           - Example: Token Ring legacy networks
+
       . Type 3 (Acknowledged Connectionless)
           - No connection, but each frame acknowledged
 
@@ -142,9 +158,12 @@
         . 00:1A:2B = OUI (assigned to, say, Dell)
         . 3C:4D:5E = unique device ID
 
+
+
+
+
   . KEY DIFFERENCE:
   .................
-
     LLC — WHAT to do with the data (which protocol, flow)
     MAC — HOW to access the medium and addressing
 
@@ -276,9 +295,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
 ------------------------------------------------------------
 4.4  FLOW CONTROL MECHANISMS
 ------------------------------------------------------------
+
+https://un.uobasrah.edu.iq/lectures/3081.pdf
+
 
   . WHAT IS FLOW CONTROL?
   ........................
@@ -308,18 +339,19 @@
       PC-A <---[ACK 1]------- PC-B
 
     . EFFICIENCY FORMULA:
-      Efficiency = 1 / (1 + 2a)
-      where a = Propagation Delay / Transmission Time
+             Efficiency = 1 / (1 + 2a)
+             where a = Propagation Delay / Transmission Time
 
     . EXAMPLE:
-      Transmission time = 1 ms
-      Propagation delay = 10 ms
-      a = 10/1 = 10
+             Transmission time = 1 ms
+             Propagation delay = 10 ms
+             a = 10/1 = 10
+
       Efficiency = 1/(1+20) = 1/21 ≈ 4.76%
 
     . PROBLEM:
-      Very inefficient for long-distance links.
-      Sender is idle most of the time, waiting.
+             Very inefficient for long-distance links.
+             Sender is idle most of the time, waiting.
 
 
   ....................................
@@ -331,18 +363,18 @@
     . WINDOW SIZE (W) = max frames in flight at once.
 
     . SCENARIO (Window size W=4):
-      Sender sends frames: 0, 1, 2, 3  (window full)
-      Receives ACK 0 → window slides → can now send 4
-      Receives ACK 1 → window slides → can now send 5
-      ... and so on.
+             Sender sends frames: 0, 1, 2, 3  (window full)
+             Receives ACK 0 → window slides → can now send 4
+             Receives ACK 1 → window slides → can now send 5
+             ... and so on.
 
     . EFFICIENCY:
-      If W >= (1 + 2a):  Efficiency = 1  (100%)
-      If W <  (1 + 2a):  Efficiency = W / (1 + 2a)
+             If W >= (1 + 2a):  Efficiency = 1  (100%)
+             If W <  (1 + 2a):  Efficiency = W / (1 + 2a)
 
     . EXAMPLE:
-      W=7, a=10
-      1+2a = 21
+             W=7, a=10
+             1+2a = 21
       Since 7 < 21:  Efficiency = 7/21 = 33.3%
 
 
@@ -357,10 +389,10 @@
       Sender GOES BACK and retransmits from the lost frame.
 
     . SCENARIO (W=4, frames 0-6):
-      Sender sends:  0  1  2  3  (window)
-      Frame 2 is LOST.
-      Receiver: ACKs 0, 1 — but discards 2, 3, 4...
-      Sender goes back to frame 2, retransmits: 2 3 4 5
+             Sender sends:  0  1  2  3  (window)
+             Frame 2 is LOST.
+             Receiver: ACKs 0, 1 — but discards 2, 3, 4...
+             Sender goes back to frame 2, retransmits: 2 3 4 5
 
     . EXAMPLE DATA:
       Frames:         0   1   2   3   4   5   6
@@ -385,23 +417,27 @@
       that came after the lost one.
 
     . SCENARIO (W=4):
-      Sender sends:  0  1  2  3
-      Frame 2 LOST.
-      Receiver: ACKs 0, 1. Buffers 3 (since 2 missing).
-      Sender retransmits ONLY frame 2.
-      Receiver: gets 2, reassembles: 0 1 2 3 in order.
+             Sender sends:  0  1  2  3
+             Frame 2 LOST.
+             Receiver: ACKs 0, 1. Buffers 3 (since 2 missing).
+             Sender retransmits ONLY frame 2.
+             Receiver: gets 2, reassembles: 0 1 2 3 in order.
+
+
+
+
 
     . COMPARISON TABLE:
-      ...............................................
-      Feature          Go-Back-N    Selective Repeat
-      ...............................................
-      Window Size      2^n - 1      2^(n-1)
-      Retransmission   All from     Only lost
-                       lost frame   frame
-      Receiver Buffer  Not needed   Needed
-      Efficiency       Lower        Higher
-      Complexity       Lower        Higher
-      ...............................................
+             ...............................................
+             Feature          Go-Back-N    Selective Repeat
+             ...............................................
+             Window Size      2^n - 1      2^(n-1)
+             Retransmission   All from     Only lost
+                              lost frame   frame
+             Receiver Buffer  Not needed   Needed
+             Efficiency       Lower        Higher
+             Complexity       Lower        Higher
+             ...............................................
 
 
 
@@ -413,9 +449,9 @@
   . WHY ERRORS OCCUR?
   ...................
 
-    Physical media is imperfect.
-    Noise, interference, signal decay → bits flip:
-    0 becomes 1, or 1 becomes 0 during transmission.
+           Physical media is imperfect.
+           Noise, interference, signal decay → bits flip:
+           0 becomes 1, or 1 becomes 0 during transmission.
 
 
   ....................................
@@ -643,6 +679,8 @@
 
 
 
+
+
 ------------------------------------------------------------
 4.7  CHANNEL ALLOCATION TECHNIQUES
        (MULTIPLE ACCESS TECHNIQUES)
@@ -661,6 +699,11 @@
     3. Channelization  (FDMA, TDMA, CDMA)
 
   [This unit focuses on Random Access → ALOHA, CSMA]
+
+
+
+https://electronicsdesk.com/aloha-protocol.html
+
 
 
   ....................................
@@ -837,28 +880,28 @@
       C transmits next. Then B. No collision! ✓
 
     . HIDDEN NODE PROBLEM:
-      Station A and C can't hear each other (hidden).
-      Both hear B, but not each other.
-      Both might transmit to B simultaneously → collision.
-
-      Solution: RTS/CTS (Request to Send / Clear to Send)
-      A sends RTS to B → B broadcasts CTS → C hears CTS
-      and stays silent while A transmits. ✓
+             Station A and C can't hear each other (hidden).
+             Both hear B, but not each other.
+             Both might transmit to B simultaneously → collision.
+       
+             Solution: RTS/CTS (Request to Send / Clear to Send)
+             A sends RTS to B → B broadcasts CTS → C hears CTS
+             and stays silent while A transmits. ✓
 
     . COMPARISON TABLE:
-      .............................................
-      Feature       CSMA/CD          CSMA/CA
-      .............................................
-      Full form     Collision         Collision
-                    Detection         Avoidance
-      Used in       Wired Ethernet    Wireless Wi-Fi
-      Standard      IEEE 802.3        IEEE 802.11
-      Detection     After collision   Before collision
-      Method        JAM + backoff     Random backoff
-                                      + RTS/CTS
-      Min frame     64 bytes          No fixed minimum
-      Efficiency    Good on wired     Good on wireless
-      .............................................
+             .............................................
+             Feature       CSMA/CD          CSMA/CA
+             .............................................
+             Full form     Collision         Collision
+                           Detection         Avoidance
+             Used in       Wired Ethernet    Wireless Wi-Fi
+             Standard      IEEE 802.3        IEEE 802.11
+             Detection     After collision   Before collision
+             Method        JAM + backoff     Random backoff
+                                             + RTS/CTS
+             Min frame     64 bytes          No fixed minimum
+             Efficiency    Good on wired     Good on wireless
+             .............................................
 
 
 
@@ -974,64 +1017,3 @@
     . MANAGEMENT     — easier network administration
 
 
-
-
-============================================================
-              QUICK REVISION SUMMARY TABLE
-============================================================
-
-  .......................................................
-  Topic              Key Point
-  .......................................................
-  DLL Functions      Framing, Addressing, Flow Control,
-                     Error Control, Access Control
-
-  LLC                Upper sub-layer, protocol-independent,
-                     flow control, multiplexing
-
-  MAC                Lower sub-layer, physical addressing,
-                     channel access, 48-bit MAC address
-
-  Framing Types      Count / Flag+Byte-Stuff /
-                     Flag+Bit-Stuff / Coding Violation
-
-  Stop & Wait        1 frame at a time, max 18.4% efficient
-
-  Sliding Window     W frames at once, up to 100% efficient
-
-  Go-Back-N          Retransmit from error frame onwards
-                     Window = 2^n - 1
-
-  Selective Repeat   Retransmit ONLY errored frame
-                     Window = 2^(n-1), needs buffer
-
-  Parity             Detect odd-number bit errors only
-
-  Checksum           Sum + complement; used in TCP/IP
-
-  CRC                Division by generator polynomial;
-                     most powerful detection
-
-  Hamming Code       ERROR CORRECTION; redundant bits at
-                     powers-of-2 positions
-
-  Pure ALOHA         Transmit anytime; max 18.4% throughput
-
-  Slotted ALOHA      Transmit at slot start; max 36.8%
-
-  CSMA/CD            Listen before transmit; detect collision;
-                     used in wired Ethernet 802.3
-
-  CSMA/CA            Avoid collision with backoff + RTS/CTS;
-                     used in Wi-Fi 802.11
-
-  VLAN               Logical network segmentation using
-                     802.1Q tags; isolation + security
-  .......................................................
-
-
-
-
-============================================================
-              END OF UNIT IV NOTES
-============================================================
