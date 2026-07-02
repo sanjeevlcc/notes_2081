@@ -206,14 +206,14 @@ https://www.codershelpline.com/courses/theorypapers/computer-network/data-link-l
       the frame ends.
 
     . EXAMPLE:
-      Frame: [5] H E L L O
-             ^
-             First byte says "5 bytes follow"
-
-    . PROBLEM:
-      If the count field is corrupted, receiver loses
-      track of all subsequent frames — catastrophic
-      synchronization error.
+             Frame: [5] H E L L O
+                    ^
+                    First byte says "5 bytes follow"
+       
+           . PROBLEM:
+                    If the count field is corrupted, receiver loses
+                    track of all subsequent frames — catastrophic
+                    synchronization error.
 
 
   ....................................
@@ -227,18 +227,18 @@ https://www.codershelpline.com/courses/theorypapers/computer-network/data-link-l
       in the DATA itself?
 
     . SOLUTION — BYTE STUFFING:
-      Insert an ESCAPE byte (ESC = 0x7D) before any
-      flag or escape byte that appears in the data.
+             Insert an ESCAPE byte (ESC = 0x7D) before any
+             flag or escape byte that appears in the data.
 
     . EXAMPLE:
-      Data to send: H E [0x7E] L L O
-                             ^
-                             This looks like a flag!
-
-      After byte stuffing:
-      [FLAG] H E [ESC] [0x7E] L L O [FLAG]
-                  ^
-                  ESC inserted before the data 0x7E
+             Data to send: H E [0x7E] L L O
+                                    ^
+                                    This looks like a flag!
+       
+             After byte stuffing:
+             [FLAG] H E [ESC] [0x7E] L L O [FLAG]
+                         ^
+                         ESC inserted before the data 0x7E
 
       Receiver: whenever it sees ESC, it removes it
       and treats next byte as data, not a flag.
@@ -271,8 +271,8 @@ https://www.codershelpline.com/courses/theorypapers/computer-network/data-link-l
       the next 0 (it knows it was stuffed).
 
     . USED IN:
-      HDLC (High-level Data Link Control)
-      SONET/SDH networks
+             HDLC (High-level Data Link Control)
+             SONET/SDH networks
 
 
   ....................................
@@ -285,12 +285,12 @@ https://www.codershelpline.com/courses/theorypapers/computer-network/data-link-l
       layer's own out-of-band signals.
 
     . EXAMPLE (Manchester encoding):
-      Normal bits: High-to-Low or Low-to-High transitions
-      Violation: High-to-High or Low-to-Low (never occurs
-      in valid data) = used as frame delimiter
+             Normal bits: High-to-Low or Low-to-High transitions
+             Violation: High-to-High or Low-to-Low (never occurs
+             in valid data) = used as frame delimiter
 
     . USED IN:
-      Token Ring, 100BASE-TX Ethernet (4B/5B encoding)
+             Token Ring, 100BASE-TX Ethernet (4B/5B encoding)
 
 
 
@@ -354,6 +354,11 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
              Sender is idle most of the time, waiting.
 
 
+
+
+
+
+
   ....................................
   B. SLIDING WINDOW
   ....................................
@@ -378,6 +383,11 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
       Since 7 < 21:  Efficiency = 7/21 = 33.3%
 
 
+
+
+
+
+
   ....................................
   C. GO-BACK-N ARQ
   ....................................
@@ -387,6 +397,9 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
     . If a frame is LOST or ERRORED:
       Receiver DISCARDS that frame AND all subsequent frames.
       Sender GOES BACK and retransmits from the lost frame.
+
+
+
 
     . SCENARIO (W=4, frames 0-6):
              Sender sends:  0  1  2  3  (window)
@@ -403,6 +416,9 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
     . PROBLEM:
       Wastes bandwidth retransmitting frames that were
       already correctly received (like 3, 4, 5).
+
+
+
 
 
   ....................................
@@ -442,6 +458,11 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
 
 
 
+
+
+
+
+
 ------------------------------------------------------------
 4.5  ERROR DETECTION AND CORRECTION
 ------------------------------------------------------------
@@ -463,17 +484,20 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
       of 1s either EVEN (even parity) or ODD (odd parity).
 
     . EXAMPLE (Even Parity):
-      Data:        1 0 1 1 0 0 1   (four 1s — already even)
-      Parity bit:  0
-      Sent:        1 0 1 1 0 0 1 0
+             Data:        1 0 1 1 0 0 1   (four 1s — already even)
+             Parity bit:  0
+             Sent:        1 0 1 1 0 0 1 0
 
-      Data:        1 0 1 1 0 0 0   (three 1s — odd)
-      Parity bit:  1  (added to make it even)
-      Sent:        1 0 1 1 0 0 0 1
+             Data:        1 0 1 1 0 0 0   (three 1s — odd)
+             Parity bit:  1  (added to make it even)
+             Sent:        1 0 1 1 0 0 0 1
+
+
+
 
     . LIMITATION:
-      Can only detect ODD number of bit errors.
-      If 2 bits flip, parity stays even — ERROR MISSED.
+             Can only detect ODD number of bit errors.
+             If 2 bits flip, parity stays even — ERROR MISSED.
 
 
   ....................................
@@ -487,20 +511,24 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
       If result = all 1s → no error.
 
     . EXAMPLE:
-      Two 8-bit segments:
-      Segment 1:   1 0 1 0 1 1 0 0   (= 172)
-      Segment 2:   0 1 1 0 1 1 0 1   (= 109)
-
-      Sum:        10001 1001   (= 281, carry wraps around)
-      After wrap: 0 0 0 1 1 0 0 1 + 0 0 0 0 0 0 0 1 = 00011010
-
-      Checksum (1's complement): 11100101
-
-      Receiver adds all three → should get 11111111 (all 1s)
-      If any bit differs → ERROR DETECTED.
+             Two 8-bit segments:
+             Segment 1:   1 0 1 0 1 1 0 0   (= 172)
+             Segment 2:   0 1 1 0 1 1 0 1   (= 109)
+       
+             Sum:        10001 1001   (= 281, carry wraps around)
+             After wrap: 0 0 0 1 1 0 0 1 + 0 0 0 0 0 0 0 1 = 00011010
+       
+             Checksum (1's complement): 11100101
+       
+             Receiver adds all three → should get 11111111 (all 1s)
+             If any bit differs → ERROR DETECTED.
 
     . USED IN:
       TCP, UDP, IP protocols
+
+
+
+
 
 
   ....................................
@@ -515,36 +543,40 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
       if remainder is 0, no error; else error detected.
 
     . STEPS:
-      1. Take data bits, append r zeros (r = degree of generator)
-      2. Divide by generator using XOR (modulo-2 division)
-      3. Remainder = CRC  →  append to original data
-      4. Send: [Data + CRC]
+             1. Take data bits, append r zeros (r = degree of generator)
+             2. Divide by generator using XOR (modulo-2 division)
+             3. Remainder = CRC  →  append to original data
+             4. Send: [Data + CRC]
 
     . EXAMPLE:
-      Data:       1 0 1 1 0 0 1
-      Generator:  1 0 0 1  (x³ + 1, degree = 3)
-      Append 3 zeros to data: 1 0 1 1 0 0 1 0 0 0
-
-      Divide 1011001000 by 1001 using XOR:
-      1011001000
-      1001
-      ----
-       010001000
-           1001
-           ----
-            000000  (remainder = 000)
-
-      CRC = 000
-      Transmitted: 1 0 1 1 0 0 1 0 0 0
-
-      Receiver divides 1011001000 by 1001 → remainder 0
-      → NO ERROR detected ✓
+             Data:       1 0 1 1 0 0 1
+             Generator:  1 0 0 1  (x³ + 1, degree = 3)
+             Append 3 zeros to data: 1 0 1 1 0 0 1 0 0 0
+       
+             Divide 1011001000 by 1001 using XOR:
+             1011001000
+             1001
+             ----
+              010001000
+                  1001
+                  ----
+                   000000  (remainder = 000)
+       
+             CRC = 000
+             Transmitted: 1 0 1 1 0 0 1 0 0 0
+       
+             Receiver divides 1011001000 by 1001 → remainder 0
+             → NO ERROR detected ✓
 
     . DETECTS:
-      . All single-bit errors
-      . All double-bit errors
-      . All odd number of errors
-      . All burst errors up to r bits
+             . All single-bit errors
+             . All double-bit errors
+             . All odd number of errors
+             . All burst errors up to r bits
+
+
+
+
 
 
   ....................................
@@ -561,38 +593,40 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
       2^r >= m + r + 1
 
     . EXAMPLE (4 data bits: 1 0 1 1):
-      m=4, solve: 2^r >= 4+r+1
-      r=3: 2^3=8 >= 8 ✓
+             m=4, solve: 2^r >= 4+r+1
+             r=3: 2^3=8 >= 8 ✓
+       
+             Positions: 1  2  3  4  5  6  7
+             Data bits occupy: positions 3, 5, 6, 7
+             Parity bits at:   positions 1, 2, 4
+       
+             Place data: _  _  1  _  0  1  1
+             (positions 1,2,4 are blank — parity bits)
+       
+             Calculate P1 (pos 1): covers positions 1,3,5,7
+               Bits at 3,5,7 = 1,0,1 → three 1s (odd) → P1=1
 
-      Positions: 1  2  3  4  5  6  7
-      Data bits occupy: positions 3, 5, 6, 7
-      Parity bits at:   positions 1, 2, 4
+             Calculate P2 (pos 2): covers positions 2,3,6,7
+               Bits at 3,6,7 = 1,1,1 → three 1s (odd) → P2=1
 
-      Place data: _  _  1  _  0  1  1
-      (positions 1,2,4 are blank — parity bits)
-
-      Calculate P1 (pos 1): covers positions 1,3,5,7
-        Bits at 3,5,7 = 1,0,1 → three 1s (odd) → P1=1
-      Calculate P2 (pos 2): covers positions 2,3,6,7
-        Bits at 3,6,7 = 1,1,1 → three 1s (odd) → P2=1
-      Calculate P4 (pos 4): covers positions 4,5,6,7
-        Bits at 5,6,7 = 0,1,1 → two 1s (even) → P4=0
-
-      Final Hamming Code: 1 1 1 0 0 1 1
-                          ^ ^ ^ ^
-                          P1 P2 D P4
-
-    . ON RECEIVING:
-      If a bit is corrupted, recalculate all parity bits.
-      The binary number formed by failed parity checks
-      gives the EXACT POSITION of the error → flip it.
+             Calculate P4 (pos 4): covers positions 4,5,6,7
+               Bits at 5,6,7 = 0,1,1 → two 1s (even) → P4=0
+       
+             Final Hamming Code: 1 1 1 0 0 1 1
+                                 ^ ^ ^ ^
+                                 P1 P2 D P4
+       
+           . ON RECEIVING:
+             If a bit is corrupted, recalculate all parity bits.
+             The binary number formed by failed parity checks
+             gives the EXACT POSITION of the error → flip it.
 
     . SCENARIO:
-      Transmitted: 1 1 1 0 0 1 1
-      Received:    1 1 1 0 1 1 1  ← bit 5 flipped
-      Recalculate parity: P1 fails, P2 passes, P4 fails
-      Failed parity bits: P4=1, P2=0, P1=1 → binary 101 = 5
-      Flip bit 5 → corrected! ✓
+             Transmitted: 1 1 1 0 0 1 1
+             Received:    1 1 1 0 1 1 1  ← bit 5 flipped
+             Recalculate parity: P1 fails, P2 passes, P4 fails
+             Failed parity bits: P4=1, P2=0, P1=1 → binary 101 = 5
+             Flip bit 5 → corrected! ✓
 
 
 
@@ -681,6 +715,10 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
 
 
 
+
+
+
+
 ------------------------------------------------------------
 4.7  CHANNEL ALLOCATION TECHNIQUES
        (MULTIPLE ACCESS TECHNIQUES)
@@ -694,15 +732,17 @@ https://un.uobasrah.edu.iq/lectures/3081.pdf
     Solution: allocate channel fairly and efficiently.
 
   . THREE BROAD CATEGORIES:
-    1. Random Access   (anyone can try anytime)
-    2. Controlled Access (turn-based, token-based)
-    3. Channelization  (FDMA, TDMA, CDMA)
+           1. Random Access   (anyone can try anytime)
+           2. Controlled Access (turn-based, token-based)
+           3. Channelization  (FDMA, TDMA, CDMA)
 
   [This unit focuses on Random Access → ALOHA, CSMA]
 
 
 
 https://electronicsdesk.com/aloha-protocol.html
+
+
 
 
 
@@ -725,24 +765,24 @@ https://electronicsdesk.com/aloha-protocol.html
     . Wait RANDOM time (backoff), retransmit.
 
     . SCENARIO:
-      Station A sends frame at time t=0
-      Station B sends frame at time t=0.4 (before A's
-        frame finishes transmitting)
-      → COLLISION — both frames corrupted.
-      A and B each wait a different random time, retry.
+             Station A sends frame at time t=0
+             Station B sends frame at time t=0.4 (before A's
+               frame finishes transmitting)
+             → COLLISION — both frames corrupted.
+             A and B each wait a different random time, retry.
 
     . VULNERABLE PERIOD:
-      2 × Tt  (two full frame transmission times)
-      A frame sent at time t can collide with any frame
-      sent between (t - Tt) and (t + Tt).
+             2 × Tt  (two full frame transmission times)
+             A frame sent at time t can collide with any frame
+             sent between (t - Tt) and (t + Tt).
 
     . THROUGHPUT FORMULA:
-      S = G × e^(-2G)
-      where G = offered load (frames per frame-time)
+             S = G × e^(-2G)
+             where G = offered load (frames per frame-time)
 
     . MAXIMUM THROUGHPUT:
-      Occurs at G = 0.5
-      S_max = 0.5 × e^(-1) = 0.184 = 18.4%
+             Occurs at G = 0.5
+             S_max = 0.5 × e^(-1) = 0.184 = 18.4%
 
     . Meaning: Pure ALOHA uses only 18.4% of channel capacity!
 
@@ -757,21 +797,22 @@ https://electronicsdesk.com/aloha-protocol.html
     . Never in the middle — reduces overlap.
 
     . SCENARIO:
-      Slot 1: Station A transmits (alone) → SUCCESS ✓
-      Slot 2: Stations B and C both transmit → COLLISION ✗
-      Slot 3: B waits (random), C retransmits → SUCCESS ✓
+             Slot 1: Station A transmits (alone) → SUCCESS ✓
+             Slot 2: Stations B and C both transmit → COLLISION ✗
+             Slot 3: B waits (random), C retransmits → SUCCESS ✓
 
     . VULNERABLE PERIOD:
-      Tt  (only ONE frame time — half of Pure ALOHA!)
-      Two frames can only collide if they start the
-      SAME slot — not if one starts during the other.
+             Tt  (only ONE frame time — half of Pure ALOHA!)
+             Two frames can only collide if they start the
+             SAME slot — not if one starts during the other.
 
     . THROUGHPUT FORMULA:
-      S = G × e^(-G)
+             S = G × e^(-G)
 
     . MAXIMUM THROUGHPUT:
-      Occurs at G = 1
-      S_max = 1 × e^(-1) = 0.368 = 36.8%
+             Occurs at G = 1
+             S_max = 1 × e^(-1) = 0.368 = 36.8%
+
 
     . COMPARISON:
       .......................................
@@ -785,24 +826,31 @@ https://electronicsdesk.com/aloha-protocol.html
 
 
 
+
+
+
+
 ------------------------------------------------------------
 4.8  CARRIER SENSE MULTIPLE ACCESS (CSMA)
 ------------------------------------------------------------
 
   . KEY IMPROVEMENT OVER ALOHA:
-    Before transmitting, LISTEN to the channel first
-    ("Carrier Sense" = sense if carrier signal is present).
-    If busy → don't transmit now.
+           Before transmitting, LISTEN to the channel first
+           ("Carrier Sense" = sense if carrier signal is present).
+           If busy → don't transmit now.
 
   . "1-persistent CSMA":
-    If channel idle → transmit immediately (prob=1)
-    If channel busy → wait until idle, then transmit
+           If channel idle → transmit immediately (prob=1)
+           If channel busy → wait until idle, then transmit
 
   . "Non-persistent CSMA":
-    If channel busy → wait RANDOM time, then sense again
+           If channel busy → wait RANDOM time, then sense again
 
   . "p-persistent CSMA":
-    If idle → transmit with probability p, wait with (1-p)
+           If idle → transmit with probability p, wait with (1-p)
+
+
+
 
 
   ....................................
@@ -813,38 +861,44 @@ https://electronicsdesk.com/aloha-protocol.html
     . CD = Collision Detection
     . While transmitting, station MONITORS the channel.
     . If it detects its own signal mixed with another
+
       → COLLISION DETECTED → STOP immediately.
-    . Sends a JAM signal to alert all stations.
-    . Waits using BINARY EXPONENTIAL BACKOFF, then retries.
+           . Sends a JAM signal to alert all stations.
+           . Waits using BINARY EXPONENTIAL BACKOFF, then retries.
+
+
 
     . BINARY EXPONENTIAL BACKOFF:
-      After 1st collision: wait 0 or 1 slot (random)
-      After 2nd collision: wait 0,1,2 or 3 slots
-      After nth collision: wait 0 to 2^n - 1 slots
-      Max attempts: 16 — then give up, report error.
+             After 1st collision: wait 0 or 1 slot (random)
+             After 2nd collision: wait 0,1,2 or 3 slots
+             After nth collision: wait 0 to 2^n - 1 slots
+             Max attempts: 16 — then give up, report error.
 
     . SCENARIO:
-      Station A and C both sense idle channel at same time.
-      Both start transmitting → signals collide midway.
-      Both detect collision (voltage spike on cable).
-      Both send jam signal, stop, wait random times.
-      A waits 1 slot, C waits 3 slots.
-      A retransmits successfully. Then C goes. ✓
+             Station A and C both sense idle channel at same time.
+             Both start transmitting → signals collide midway.
+             Both detect collision (voltage spike on cable).
+             Both send jam signal, stop, wait random times.
+             A waits 1 slot, C waits 3 slots.
+             A retransmits successfully. Then C goes. ✓
 
     . MINIMUM FRAME SIZE:
-      Station must still be transmitting when collision
-      signal returns from the far end.
-      Min frame size = 2 × Propagation delay × Bandwidth
+             Station must still be transmitting when collision
+             signal returns from the far end.
+             Min frame size = 2 × Propagation delay × Bandwidth
 
       For Ethernet (10Mbps, max 2500m):
-      Propagation time ≈ 25 microseconds
-      2 × 25μs × 10Mbps = 500 bits → min frame = 64 bytes
+             Propagation time ≈ 25 microseconds
+             2 × 25μs × 10Mbps = 500 bits → min frame = 64 bytes
 
     . WHY CSMA/CD DOESN'T WORK FOR WIRELESS:
-      A station can't detect its own collision in wireless
-      because while transmitting, its own strong signal
-      drowns out the weaker incoming (colliding) signal.
-      → Solution: CSMA/CA
+             A station can't detect its own collision in wireless
+             because while transmitting, its own strong signal
+             drowns out the weaker incoming (colliding) signal.
+             → Solution: CSMA/CA
+
+
+
 
 
   ....................................
@@ -856,28 +910,31 @@ https://electronicsdesk.com/aloha-protocol.html
     . Goal: AVOID collisions before they happen
       (because wireless can't detect them after).
 
+
+
+
     . MECHANISM — DCF (Distributed Coordination Function):
-      1. Sense channel.
-      2. If idle for DIFS (DCF Interframe Space) period:
-         Wait a random BACKOFF time (slots), then transmit.
-      3. If channel becomes busy during backoff:
-         FREEZE the backoff counter, wait until idle again,
-         then continue counting down from where you paused.
-      4. When counter reaches 0: transmit.
-      5. Receiver sends ACK after SIFS (Short IFS) period.
-      6. If no ACK received: assume collision, retry.
+             1. Sense channel.
+             2. If idle for DIFS (DCF Interframe Space) period:
+                Wait a random BACKOFF time (slots), then transmit.
+             3. If channel becomes busy during backoff:
+                FREEZE the backoff counter, wait until idle again,
+                then continue counting down from where you paused.
+             4. When counter reaches 0: transmit.
+             5. Receiver sends ACK after SIFS (Short IFS) period.
+             6. If no ACK received: assume collision, retry.
 
     . SCENARIO:
-      Station A, B, C all want to transmit.
-      A picks backoff = 2 slots.
-      B picks backoff = 5 slots.
-      C picks backoff = 3 slots.
-      A transmits first (lowest backoff).
-      B and C freeze their counters during A's transmission.
-      After A finishes + DIFS:
-      C resumes (3-2=1 slot remaining).
-      B resumes (5-2=3 slots remaining).
-      C transmits next. Then B. No collision! ✓
+             Station A, B, C all want to transmit.
+             A picks backoff = 2 slots.
+             B picks backoff = 5 slots.
+             C picks backoff = 3 slots.
+             A transmits first (lowest backoff).
+             B and C freeze their counters during A's transmission.
+             After A finishes + DIFS:
+             C resumes (3-2=1 slot remaining).
+             B resumes (5-2=3 slots remaining).
+             C transmits next. Then B. No collision! ✓
 
     . HIDDEN NODE PROBLEM:
              Station A and C can't hear each other (hidden).
