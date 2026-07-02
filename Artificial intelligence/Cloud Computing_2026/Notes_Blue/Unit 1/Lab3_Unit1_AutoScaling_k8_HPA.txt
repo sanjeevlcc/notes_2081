@@ -549,9 +549,9 @@ kubectl apply -f demo-web-hpa.yaml
 
 
 # Note:
-# . Use either command method or YAML method.
-# . Do not create duplicate HPA for the same Deployment in real practice.
-
+        # . Use either command method or YAML method.
+        # . Do not create duplicate HPA for the same Deployment in real practice.
+        
 
 
 
@@ -574,12 +574,12 @@ kubectl run -i --tty load-generator --rm --image=busybox:1.36 --restart=Never --
 while true; do wget -q -O- http://demo-web.default.svc.cluster.local; done
 
 
-# Explanation:
-
-# . This command continuously sends requests to demo-web Service.
-# . More requests increase CPU usage.
-# . When CPU crosses 40%, HPA starts scaling Pods.
-
+  # Explanation:
+  
+        # . This command continuously sends requests to demo-web Service.
+        # . More requests increase CPU usage.
+        # . When CPU crosses 40%, HPA starts scaling Pods.
+        
 
 
 
@@ -603,32 +603,32 @@ kubectl get pods -w
 
 
 # Expected Scaling Behavior:
-
-# . Start:
-#   CPU low, Pods = 2
-
-# . Load increases:
-#   CPU crosses 40%, Pods increase
-
-# . Heavy load:
-#   Pods may increase up to 8
+          
+          # . Start:
+          #   CPU low, Pods = 2
+          
+          # . Load increases:
+          #   CPU crosses 40%, Pods increase
+          
+          # . Heavy load:
+          #   Pods may increase up to 8
 
 # Example:
 
-# TIME        CPU USAGE        PODS
-# Start       5%               2
-# Load high   45%              4
-# More load   65%              6
-# Heavy load  85%              8
+      # TIME        CPU USAGE        PODS
+      # Start       5%               2
+      # Load high   45%              4
+      # More load   65%              6
+      # Heavy load  85%              8
 
 
 # Example HPA Output:
 
-# NAME       TARGETS    MINPODS   MAXPODS   REPLICAS
-# demo-web   25%/40%    2         8         2
-# demo-web   48%/40%    2         8         4
-# demo-web   66%/40%    2         8         6
-# demo-web   83%/40%    2         8         8
+      # NAME       TARGETS    MINPODS   MAXPODS   REPLICAS
+      # demo-web   25%/40%    2         8         2
+      # demo-web   48%/40%    2         8         4
+      # demo-web   66%/40%    2         8         6
+      # demo-web   83%/40%    2         8         8
 
 
 
@@ -645,11 +645,11 @@ kubectl get pods -w
 # Press CTRL + C inside load-generator terminal.
 
 # After stopping load:
-# . Requests decrease
-# . CPU usage decreases
-# . HPA waits for stable low CPU
-# . HPA removes extra Pods
-
+        # . Requests decrease
+        # . CPU usage decreases
+        # . HPA waits for stable low CPU
+        # . HPA removes extra Pods
+        
 
 # Watch HPA again:
 
@@ -658,11 +658,11 @@ kubectl get hpa -w
 
 # Example Scale Down:
 
-# TIME             CPU USAGE        PODS
-# Load stopped     20%              8
-# After cooling    10%              6
-# Low traffic      5%               4
-# Normal traffic   2%               2
+      # TIME             CPU USAGE        PODS
+      # Load stopped     20%              8
+      # After cooling    10%              6
+      # Low traffic      5%               4
+      # Normal traffic   2%               2
 
 
 
@@ -685,10 +685,14 @@ kubectl get deployment
 
 # Final expected state:
 
-# . Deployment: demo-web
-# . Minimum Pods: 2
-# . Maximum Pods: 8
-# . HPA target CPU: 40%
+      # . Deployment: demo-web
+      # . Minimum Pods: 2
+      # . Maximum Pods: 8
+      # . HPA target CPU: 40%
+
+
+
+
 
 
 
@@ -705,29 +709,39 @@ kubectl get deployment
 # Suppose a Nepal online result portal is running in Kubernetes.
 
 # Normal Day:
-# . Only few students visit the website.
-# . 2 Pods are enough.
-# . CPU usage is low.
+        # . Only few students visit the website.
+        # . 2 Pods are enough.
+        # . CPU usage is low.
+
+
+
+
 
 # Result Published Day:
-# . Thousands of students open the website.
-# . CPU usage increases above 40%.
-# . HPA detects high CPU.
-# . Kubernetes increases Pods from 2 to 4.
-# . If traffic is still high, Pods increase from 4 to 6.
-# . If traffic is very high, Pods increase from 6 to 8.
+      # . Thousands of students open the website.
+      # . CPU usage increases above 40%.
+      # . HPA detects high CPU.
+      # . Kubernetes increases Pods from 2 to 4.
+      # . If traffic is still high, Pods increase from 4 to 6.
+      # . If traffic is very high, Pods increase from 6 to 8.
+
+
+
 
 # Load Balancing:
-# . Kubernetes Service distributes traffic to all Pods.
-# . Users get smooth response.
-# . Website does not crash easily.
+      # . Kubernetes Service distributes traffic to all Pods.
+      # . Users get smooth response.
+      # . Website does not crash easily.
+
+
+
 
 # After Traffic Decreases:
-# . CPU usage becomes low.
-# . HPA removes extra Pods.
-# . Application returns back to 2 Pods.
-# . Resources are saved.
-
+        # . CPU usage becomes low.
+        # . HPA removes extra Pods.
+        # . Application returns back to 2 Pods.
+        # . Resources are saved.
+        
 
 
 
@@ -776,28 +790,28 @@ kubectl get deployment
 # SIMPLE DIAGRAM
 # ============================================================
 
-# Students / Users
-#        ↓
-# Kubernetes Service
-#        ↓
-# +-----------------------------+
-# | demo-web Pods               |
-# |                             |
-# | Pod 1        Pod 2          |
-# +-----------------------------+
-#        ↓
-# CPU crosses 40%
-#        ↓
-# Metrics Server reports CPU usage
-#        ↓
-# HPA makes scaling decision
-#        ↓
-# +-----------------------------+
-# | demo-web Pods               |
-# |                             |
-# | Pod 1  Pod 2  Pod 3  Pod 4  |
-# | Pod 5  Pod 6  Pod 7  Pod 8  |
-# +-----------------------------+
+                     Students / Users
+                              ↓
+                     Kubernetes Service
+                            ↓
+               +-----------------------------+
+               | demo-web Pods               |
+               |                             |
+               | Pod 1        Pod 2          |
+               +-----------------------------+
+                            ↓
+                     CPU crosses 40%
+                            ↓
+               Metrics Server reports CPU usage
+                            ↓
+                   HPA makes scaling decision
+                            ↓
+               +-----------------------------+
+               | demo-web Pods               |
+               |                             |
+               | Pod 1  Pod 2  Pod 3  Pod 4  |
+               | Pod 5  Pod 6  Pod 7  Pod 8  |
+               +-----------------------------+
 
 
 
