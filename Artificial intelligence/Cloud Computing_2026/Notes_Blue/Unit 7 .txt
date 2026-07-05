@@ -1,0 +1,1429 @@
+============================================================
+      UNIT 7: CLOUD SECURITY AND GOVERNANCE
+      Complete Notes with Examples, Data and Analysis
+      Subject : Cloud Computing (CMP 382)
+      Pokhara University — BCSIT III Year / VI Semester
+============================================================
+
+  Lecture Hours : 7
+  Course Code   : CMP 382
+  Format        : Study Notes with Examples, Data and Scenarios
+
+============================================================
+
+
+
+
+------------------------------------------------------------
+  WHY CLOUD SECURITY MATTERS
+------------------------------------------------------------
+
+  . Cloud computing moves an organization's data,
+    applications, and infrastructure OUTSIDE its own walls.
+    Data no longer sits in a locked server room —
+    it lives in a shared data center managed by Amazon,
+    Google, or Microsoft.
+
+  . GLOBAL SECURITY STATISTICS (2024-2025):
+    . Average cost of a data breach globally: USD 4.88 million.
+    . 45% of all data breaches now involve cloud assets.
+    . 80% of organizations suffered at least one cloud
+      security incident in the past 18 months.
+    . Misconfiguration is the #1 cause of cloud breaches.
+
+  . NEPAL CONTEXT:
+    . Nepal Rastra Bank (NRB) issued cloud security directives
+      for banks and financial institutions.
+    . eSewa, Khalti, and IME Pay process millions of transactions
+      — a single breach could expose all customer financial data.
+    . Government of Nepal's Digital Nepal Framework requires
+      public cloud data to meet local storage requirements.
+
+  . THE SHARED RESPONSIBILITY MODEL (Key concept):
+    . In cloud computing, BOTH the cloud provider AND
+      the customer share security responsibilities.
+    . Provider secures: physical hardware, data centers,
+      network infrastructure, hypervisors.
+    . Customer secures: data, applications, user access,
+      configuration, identity management.
+    . Most breaches happen because CUSTOMERS fail their
+      part — not because AWS or Azure were hacked.
+
+    .......................................................
+    Responsibility   IaaS          PaaS          SaaS
+    .......................................................
+    Physical DC      Provider      Provider      Provider
+    Network infra    Provider      Provider      Provider
+    Hypervisor       Provider      Provider      Provider
+    OS               Customer      Provider      Provider
+    Runtime/App      Customer      Provider      Provider
+    Data             Customer      Customer      Customer
+    Identity (IAM)   Customer      Customer      Customer
+    Configuration    Customer      Customer      Customer
+    .......................................................
+
+    LESSON: Even in SaaS (Office 365, Gmail),
+    the CUSTOMER is responsible for WHO can access the data.
+    If an employee shares a sensitive folder publicly —
+    that is the customer's failure, not Microsoft's.
+
+
+
+
+------------------------------------------------------------
+7.1  CLOUD SECURITY ISSUES AND CHALLENGES
+------------------------------------------------------------
+
+  ....................................
+  A. TOP CLOUD SECURITY THREATS
+  ....................................
+
+    1. DATA BREACHES
+       . Unauthorized access to sensitive/confidential data.
+       . CAUSE: weak passwords, stolen credentials, misconfiguration.
+
+       . EXAMPLE — Capital One Breach (2019):
+         A former AWS employee exploited a misconfigured
+         Web Application Firewall (WAF) to access 100 million
+         customer records stored in Amazon S3.
+         Cost: USD 80 million fine + reputation damage.
+         ROOT CAUSE: misconfiguration (customer's responsibility).
+
+       . DATA EXAMPLE — Categories of exposed data:
+         .....................................................
+         Data Type          Records Exposed   Sensitivity
+         .....................................................
+         Credit card info   140,000           Critical
+         SSN / National ID  80,000            Critical
+         Bank account       1 million         Very High
+         Email addresses    100 million       High
+         Home addresses     100 million       High
+         .....................................................
+
+    2. MISCONFIGURATION
+       . Most common cause of cloud security incidents.
+       . Accidental exposure of storage buckets (S3, Azure Blob)
+         to the public internet.
+       . Example: company accidentally sets S3 bucket as
+         "public read" → entire database exposed to anyone.
+
+       . REAL INCIDENTS FROM OPEN BUCKETS:
+         . Twitch: 125 GB of source code leaked.
+         . Accenture: 137 GB of client data exposed.
+         . US Department of Defense: 1.8 billion surveillance
+           posts exposed on unprotected Elasticsearch server.
+
+    3. INSECURE APIs
+       . Cloud services are accessed via APIs (Application
+         Programming Interfaces).
+       . Weak or unprotected APIs = direct path to data.
+       . Missing authentication, no rate limiting,
+         no input validation.
+
+    4. ACCOUNT HIJACKING
+       . Attackers steal cloud account credentials.
+       . Phishing emails targeting cloud admin accounts.
+       . Once inside: steal data, run crypto mining,
+         delete backups, launch attacks from your account.
+       . Scenario: Nepal bank employee receives email
+         "Your AWS account has been suspended — click here."
+         Employee enters credentials → attacker logs in
+         → shuts down all servers or steals all data.
+
+    5. DENIAL OF SERVICE (DoS / DDoS)
+       . Flood a cloud service with traffic until it crashes.
+       . Distributed DoS: millions of infected devices attack
+         one target simultaneously.
+       . Cloud providers offer DDoS protection (AWS Shield,
+         Azure DDoS Protection, Cloudflare).
+
+    6. INSIDER THREATS
+       . Malicious or careless employees with legitimate access.
+       . They already have the credentials — no hacking needed.
+       . Example: database administrator exports entire
+         customer table and sells it to competitor.
+
+    7. SUPPLY CHAIN ATTACKS
+       . Attacking a SUPPLIER of a target organization.
+       . SolarWinds attack (2020): hackers inserted malware
+         into software update — reached 18,000 organizations
+         including US government agencies via a trusted supplier.
+
+
+  ....................................
+  B. CLOUD SECURITY CHALLENGES
+  ....................................
+
+    1. VISIBILITY PROBLEM:
+       . In traditional IT: security team can see ALL traffic
+         flowing through their own network switches.
+       . In cloud: traffic happens INSIDE the cloud provider's
+         infrastructure — customer has limited visibility.
+       . Solution: Cloud-native monitoring tools (CloudTrail,
+         Azure Monitor).
+
+    2. DYNAMIC AND EPHEMERAL RESOURCES:
+       . Cloud resources spin up and down in seconds.
+       . A server that existed for 5 minutes may have been
+         compromised and deleted — no logs remain.
+       . Traditional security tools designed for static infra
+         don't work in this dynamic environment.
+
+    3. MULTI-CLOUD COMPLEXITY:
+       . Organizations use AWS for some workloads, Azure for others,
+         GCP for analytics.
+       . Each cloud has its OWN security model, tools, terminology.
+       . Security team must master all three simultaneously.
+
+    4. COMPLIANCE IN MULTIPLE JURISDICTIONS:
+       . Data stored in AWS us-east-1 is physically in USA.
+       . European customer data stored in USA may violate
+         EU GDPR (General Data Protection Regulation).
+       . Where is the data? Which country's laws apply?
+
+    5. SHADOW IT:
+       . Employees or teams use cloud services WITHOUT IT approval.
+       . Marketing team signs up for a cloud tool, uploads
+         customer data — IT never knew.
+       . Data in unapproved, unmonitored, unsecured services.
+
+
+
+
+------------------------------------------------------------
+7.2  IDENTITY AND ACCESS MANAGEMENT (IAM)
+------------------------------------------------------------
+
+  . WHAT IS IAM?
+  .............
+
+    . IAM = the system that controls WHO can access WHAT,
+      WHEN, and HOW within a cloud environment.
+    . Answers three security questions:
+      . Authentication: WHO are you? (prove your identity)
+      . Authorization:  WHAT can you do? (your permissions)
+      . Accounting:     WHAT did you do? (audit logs)
+
+    . IAM is the FOUNDATION of cloud security.
+      If identity is compromised, everything else fails.
+
+
+  ....................................
+  A. AUTHENTICATION — PROVING YOUR IDENTITY
+  ....................................
+
+    . THREE FACTORS OF AUTHENTICATION:
+
+      Factor 1 — SOMETHING YOU KNOW:
+        . Password, PIN, security question.
+        . Weakest factor — can be guessed, stolen, phished.
+
+      Factor 2 — SOMETHING YOU HAVE:
+        . Mobile phone (OTP), hardware token (YubiKey),
+          smart card.
+        . Stronger — attacker needs physical device too.
+
+      Factor 3 — SOMETHING YOU ARE:
+        . Fingerprint, face recognition, iris scan.
+        . Biometrics — hardest to steal.
+
+    . MFA — MULTI-FACTOR AUTHENTICATION:
+      . Requires 2 or more factors to log in.
+      . Even if password is stolen, attacker needs
+        the phone too to get the OTP.
+      . Microsoft reports MFA blocks 99.9% of
+        automated account attacks.
+
+    . DATA EXAMPLE — Login attack scenarios:
+      .....................................................
+      Auth Method       Phishing   Brute Force   Credential
+                        Attack     Attack        Stuffing
+      .....................................................
+      Password only     Fails      Fails         Fails
+      Password + OTP    Blocks     Blocks        Blocks
+      Password + HW key Blocks     Blocks        Blocks
+      Biometric + PIN   Blocks     Blocks        Blocks
+      .....................................................
+      MFA blocks ALL common attack types. ✓
+
+
+  ....................................
+  B. AUTHORIZATION — WHAT CAN YOU DO?
+  ....................................
+
+    . RBAC — ROLE-BASED ACCESS CONTROL:
+      . Assign permissions to ROLES, not individuals.
+      . Users are assigned roles.
+      . Simpler management: change role → user's permissions change.
+
+      EXAMPLE — Hospital cloud system:
+      .....................................................
+      Role           Permissions
+      .....................................................
+      Doctor         Read patient records
+                     Write diagnosis notes
+                     Prescribe medications
+      Nurse          Read patient records
+                     Update vital signs only
+      Receptionist   Read appointment schedules
+                     Create/edit appointments
+                     No access to medical records
+      IT Admin       Manage user accounts
+                     No access to patient records
+      Auditor        Read-only access to all logs
+                     No data modification
+      .....................................................
+
+    . PRINCIPLE OF LEAST PRIVILEGE:
+      . Give users ONLY the minimum permissions needed for their job.
+      . Developer should NOT have delete permissions on production database.
+      . Reduces damage if account is compromised.
+
+      BAD PRACTICE:
+        Developer accidentally deletes production database.
+        Why? Developer had admin rights "just in case."
+        Entire system down for 6 hours.
+
+      GOOD PRACTICE:
+        Developer has read access to dev database only.
+        Separate admin account (with MFA) for production.
+        Accidental deletion impossible from developer account.
+
+    . ABAC — ATTRIBUTE-BASED ACCESS CONTROL:
+      . More granular than RBAC.
+      . Access based on: user attributes + resource attributes +
+        environment conditions.
+      . Example: "Doctor can access patient records IF
+        the doctor is assigned to that patient AND
+        it is during business hours AND
+        access is from a hospital-approved device."
+
+
+  ....................................
+  C. AWS IAM — PRACTICAL EXAMPLE
+  ....................................
+
+    . In AWS, IAM has four key entities:
+      . Users:    individual human accounts.
+      . Groups:   collection of users with same permissions.
+      . Roles:    temporary identities for services or apps.
+      . Policies: JSON documents defining permissions.
+
+    . EXAMPLE IAM POLICY (JSON):
+      Policy: "Allow reading S3 bucket, deny deletion"
+      ....................................................
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": ["s3:GetObject", "s3:ListBucket"],
+            "Resource": "arn:aws:s3:::company-data/*"
+          },
+          {
+            "Effect": "Deny",
+            "Action": "s3:DeleteObject",
+            "Resource": "arn:aws:s3:::company-data/*"
+          }
+        ]
+      }
+      ....................................................
+      This policy: developers can read and list S3 objects.
+      Deletion is explicitly DENIED — even if another policy
+      grants it, Deny always wins in AWS IAM.
+
+    . IAM ROLES FOR SERVICES:
+      . An EC2 instance (virtual server) needs to read from S3.
+      . Instead of hardcoding AWS credentials in the code
+        (BAD PRACTICE — anyone who reads the code gets credentials!),
+        ASSIGN a ROLE to the EC2 instance.
+      . EC2 automatically gets temporary credentials.
+      . When role is removed, credentials expire. ✓
+
+
+
+
+------------------------------------------------------------
+7.3  DATA SECURITY AND ENCRYPTION
+------------------------------------------------------------
+
+  . DATA STATES AND SECURITY:
+    . Data at Rest:    stored on disk, database, S3 bucket.
+    . Data in Transit: moving over network.
+    . Data in Use:     being processed in memory.
+
+    Each state requires different security approaches.
+
+
+  ....................................
+  A. ENCRYPTION — THE CORE OF DATA SECURITY
+  ....................................
+
+    . Encryption converts readable data (plaintext)
+      into unreadable scrambled form (ciphertext).
+    . Only someone with the correct KEY can decrypt it.
+    . Even if attacker steals the data, they cannot read it
+      without the key.
+
+    . ANALOGY:
+      Data = a letter.
+      Encryption = locking it in a safe.
+      Attacker steals the safe — useless without the combination.
+      Key = the combination.
+
+    . SYMMETRIC ENCRYPTION:
+      . SAME key used for encryption AND decryption.
+      . Fast — suitable for large data volumes.
+      . Algorithm: AES (Advanced Encryption Standard).
+        AES-256 = 256-bit key = 2^256 possible keys.
+        Brute force: would take longer than the age of the universe.
+      . Problem: how do you securely share the key with
+        the recipient? (Key distribution problem)
+      . Used for: encrypting files, disks, databases.
+
+    . ASYMMETRIC ENCRYPTION:
+      . TWO keys: Public Key (share with everyone) and
+        Private Key (keep secret forever).
+      . Encrypted with PUBLIC KEY, decrypted with PRIVATE KEY.
+      . Solve key distribution: publish public key openly.
+      . Algorithm: RSA (Rivest-Shamir-Adleman).
+      . Slower than symmetric — not for large data.
+      . Used for: TLS (HTTPS), SSH, digital signatures,
+        exchanging the symmetric key securely.
+
+    . HYBRID ENCRYPTION (How HTTPS works):
+      Step 1: Client gets server's PUBLIC KEY.
+      Step 2: Client generates a random SYMMETRIC KEY.
+      Step 3: Client encrypts that symmetric key with
+              server's PUBLIC KEY and sends it.
+      Step 4: Server decrypts using PRIVATE KEY.
+              Now both have the same symmetric key.
+      Step 5: All further communication encrypted with
+              fast SYMMETRIC AES encryption.
+      Result: security of asymmetric + speed of symmetric. ✓
+
+
+  ....................................
+  B. ENCRYPTION AT REST
+  ....................................
+
+    . Data stored on disk is encrypted.
+    . If hard drive is physically stolen, data is unreadable.
+
+    . AWS S3 Encryption options:
+      . SSE-S3: AWS manages keys (simplest, less control).
+      . SSE-KMS: AWS Key Management Service manages keys
+                 (audit trail of who used which key, when).
+      . SSE-C: Customer provides their own keys.
+               AWS uses them but never stores them.
+
+    . Full Disk Encryption:
+      . BitLocker (Windows), FileVault (Mac), LUKS (Linux).
+      . Entire disk encrypted — even OS.
+      . Used for: laptops, portable hard drives.
+
+    . DATABASE ENCRYPTION:
+      . Transparent Data Encryption (TDE) in SQL Server, Oracle.
+      . Data encrypted on disk, automatically decrypted on read.
+      . Application code changes not required.
+
+
+  ....................................
+  C. ENCRYPTION IN TRANSIT
+  ....................................
+
+    . All data moving over the network must be encrypted.
+    . TLS (Transport Layer Security) — HTTPS uses TLS.
+      All web traffic between browser and server encrypted.
+
+    . SCENARIO — Unencrypted vs Encrypted:
+      WITHOUT HTTPS (HTTP only):
+        User types password "Nepal@123" on login page.
+        Data travels over network as: "Nepal@123" (plaintext).
+        Attacker on same Wi-Fi can read it with Wireshark.
+
+      WITH HTTPS (TLS encrypted):
+        Same password travels as encrypted ciphertext.
+        Attacker intercepts: "xK9#mP2&qL1!zR4..."
+        Completely unreadable. ✓
+
+    . VPN (Virtual Private Network):
+      . Creates encrypted tunnel over public internet.
+      . All traffic inside the tunnel is encrypted.
+      . Even if network is compromised, data is safe.
+      . Used for: remote workers connecting to company cloud.
+
+
+  ....................................
+  D. KEY MANAGEMENT
+  ....................................
+
+    . Encryption is only as good as KEY PROTECTION.
+    . If attacker gets the key, encryption is useless.
+
+    . KEY MANAGEMENT SERVICES (KMS):
+      . AWS KMS, Azure Key Vault, Google Cloud KMS.
+      . Centralized storage and management of encryption keys.
+      . Hardware Security Module (HSM): tamper-proof hardware
+        device that stores keys — keys never leave the HSM.
+      . Key rotation: change encryption keys regularly.
+        Even if old key is stolen, new data is safe.
+
+    . DATA EXAMPLE — Cost of poor key management:
+      Company encrypts 10 TB of customer data.
+      Stores the decryption key in a README.txt file
+      in the same S3 bucket as the data.
+      Attacker finds the bucket → reads README.txt →
+      has the key → decrypts all 10 TB.
+      Encryption provided ZERO protection.
+      Lesson: NEVER store the key with the data. ✓
+
+
+
+
+------------------------------------------------------------
+7.4  APPLICATION AND VM SECURITY
+------------------------------------------------------------
+
+  ....................................
+  A. APPLICATION SECURITY IN CLOUD
+  ....................................
+
+    . OWASP TOP 10 — Most Critical Web Application Vulnerabilities:
+      (Applicable to cloud-hosted applications)
+
+      1. BROKEN ACCESS CONTROL:
+         Users can access data or functions they should not.
+         Example: URL change exposes other user's account.
+         Prevention: server-side authorization checks.
+
+      2. INJECTION (SQL, Command):
+         Attacker inserts malicious code into input fields.
+         Classic example: login form with SQL injection.
+
+         Normal query:
+         SELECT * FROM users WHERE username='admin' AND password='1234'
+
+         Attacker inputs: admin' OR '1'='1
+         Resulting query:
+         SELECT * FROM users WHERE username='admin' OR '1'='1'
+         '1'='1' is ALWAYS TRUE → logged in without password!
+
+         Prevention: parameterized queries, input validation.
+
+      3. CRYPTOGRAPHIC FAILURES:
+         Sensitive data transmitted without encryption.
+         Weak algorithms (MD5, SHA-1) used for passwords.
+         Prevention: Always use TLS, use bcrypt for passwords.
+
+      4. SECURITY MISCONFIGURATION:
+         Default passwords, open ports, verbose error messages,
+         publicly accessible S3 buckets.
+         Prevention: security hardening checklist, CIS Benchmarks.
+
+    . WEB APPLICATION FIREWALL (WAF):
+      . Filters malicious HTTP requests before they reach the app.
+      . AWS WAF, Azure Application Gateway WAF.
+      . Blocks: SQL injection, Cross-Site Scripting (XSS),
+        known attack patterns, specific IP ranges.
+
+    . SECURE SDLC (Secure Software Development Lifecycle):
+      . Integrate security at EVERY stage of development.
+      . Not just testing at the end.
+      . Security code review, SAST (Static Analysis),
+        DAST (Dynamic Analysis), penetration testing.
+
+
+  ....................................
+  B. VIRTUAL MACHINE SECURITY
+  ....................................
+
+    . VMs in cloud face unique security challenges:
+
+      1. VM IMAGE SECURITY:
+         . Templates used to launch VMs may contain vulnerabilities.
+         . Always use official, verified images from AWS AMI
+           Marketplace, Azure Marketplace, or your own hardened images.
+         . Never use random third-party images — they may contain
+           pre-installed malware.
+
+      2. PATCH MANAGEMENT:
+         . VMs run operating systems (Linux, Windows).
+         . OS vulnerabilities must be patched regularly.
+         . Cloud does NOT patch your OS automatically in IaaS.
+         . AWS Systems Manager Patch Manager automates patching.
+
+      3. SECURITY GROUPS AND NETWORK ACLs:
+         . Security Groups: virtual firewall for EC2 instances.
+         . Control which ports are OPEN to which IPs.
+
+         BAD CONFIGURATION (dangerous):
+         Port 22 (SSH) open to 0.0.0.0/0 (entire internet).
+         Anyone on earth can attempt to log into your server.
+         Brute force attacks will start within minutes.
+
+         GOOD CONFIGURATION:
+         Port 22 open to 203.0.113.5/32 (only your office IP).
+         Port 443 open to 0.0.0.0/0 (HTTPS from everyone — needed).
+         All other ports: DENY by default.
+
+      4. INSTANCE METADATA SERVICE:
+         . VMs can query their own metadata (IP, role, credentials).
+         . Attackers exploit Server-Side Request Forgery (SSRF)
+           to query metadata and steal credentials.
+         . Mitigation: IMDSv2 (token-required metadata access).
+
+      5. HYPERVISOR SECURITY:
+         . VM ESCAPE: hypothetical attack where attacker breaks
+           out of a VM and accesses the hypervisor or other VMs.
+         . Cloud providers invest heavily in preventing this.
+         . AWS uses Nitro hypervisor — custom-built, minimal
+           attack surface, hardware-enforced isolation.
+
+
+
+
+------------------------------------------------------------
+7.5  MULTI-TENANCY ISSUES
+------------------------------------------------------------
+
+  . WHAT IS MULTI-TENANCY?
+  .......................
+
+    . Multiple customers (tenants) share the SAME physical
+      infrastructure in cloud computing.
+    . Your EC2 instance might run on the same physical server
+      as another company's EC2 instance.
+    . Isolation between tenants is critical for security.
+
+  ....................................
+  A. MULTI-TENANCY RISKS
+  ....................................
+
+    1. DATA LEAKAGE BETWEEN TENANTS:
+       . If isolation is imperfect, one tenant's data could
+         be visible to another tenant.
+       . Usually prevented by hypervisor-level separation.
+       . Has happened in edge cases: Rowhammer attack (2015)
+         allowed memory bit flipping across VM boundaries.
+
+    2. NOISY NEIGHBOR PROBLEM:
+       . Security perspective: one tenant consuming unusual
+         resources may indicate cryptomining malware or
+         DDoS botnet activity that also affects neighboring VMs.
+       . Performance AND security concern.
+
+    3. SHARED VULNERABILITY:
+       . If a vulnerability exists in the hypervisor or cloud
+         management plane, ALL tenants on that infrastructure
+         are potentially affected simultaneously.
+       . Spectre/Meltdown (2018): CPU vulnerabilities that
+         allowed reading other processes' memory.
+         Cloud providers had to patch ALL servers for ALL tenants.
+
+    4. FORENSIC CHALLENGES:
+       . If a security incident occurs, data from multiple
+         tenants may be on the same physical disk.
+       . Forensic investigation must not expose other tenants' data.
+       . Cloud providers have strict access controls for forensics.
+
+  ....................................
+  B. ISOLATION MECHANISMS
+  ....................................
+
+    . HYPERVISOR ISOLATION:
+      Each VM runs in its own isolated virtual environment.
+      VMs cannot see each other's memory or disk.
+
+    . NETWORK ISOLATION:
+      . VPC (Virtual Private Cloud): isolated network space.
+      . Your VMs communicate within your VPC.
+      . Other tenants' VMs are in DIFFERENT VPCs.
+      . VPCs cannot communicate unless explicitly connected.
+
+    . DEDICATED INSTANCES:
+      . VMs that run on hardware NOT shared with other AWS accounts.
+      . More expensive — for compliance-sensitive workloads.
+
+    . DEDICATED HOSTS:
+      . Entire physical server dedicated to one customer.
+      . No hardware sharing at all.
+      . Used for: financial institutions, healthcare, defense.
+
+  ....................................
+  C. MULTI-TENANCY MODELS
+  ....................................
+
+    .......................................................
+    Model           Isolation Level   Cost      Use Case
+    .......................................................
+    Shared tenant   Software only     Cheapest  General apps
+    Dedicated inst  Hardware-isolated Higher    Compliance
+    Dedicated host  Full server       Highest   Regulated data
+    Private cloud   Separate infra    Most      Top security
+    .......................................................
+
+  ....................................
+  D. TENANT DATA SEPARATION IN SaaS
+  ....................................
+
+    . SaaS applications must separate data between customers.
+
+    APPROACH 1 — SEPARATE DATABASE PER TENANT:
+      . Each customer gets their own database.
+      . Strongest isolation, expensive at scale.
+      . Example: each hospital gets its own database schema.
+
+    APPROACH 2 — SHARED DATABASE, TENANT ID COLUMN:
+      . All customers in one database table.
+      . Every row has a tenant_id column.
+      . Application filters by tenant_id on every query.
+      . Risk: developer forgets the filter → data leakage!
+      . Example bug: Hospital A sees Hospital B's patient records
+        because a developer forgot WHERE tenant_id = 'HospA'.
+
+    APPROACH 3 — SEPARATE SCHEMA PER TENANT:
+      . One database, multiple schemas (hospital_a.patients,
+        hospital_b.patients).
+      . Middle ground between isolation and cost.
+
+
+
+
+------------------------------------------------------------
+7.6  SECURITY MONITORING AND AUDITING
+------------------------------------------------------------
+
+  . WHAT IS SECURITY MONITORING?
+  .............................
+
+    . Continuously watching cloud systems for suspicious
+      activity, anomalies, and security events.
+    . Goal: DETECT attacks before or as they happen —
+      not discover them weeks later.
+
+    . STATISTICS:
+      Average time to identify a data breach: 194 DAYS.
+      Average time to contain a breach: 64 MORE DAYS.
+      Total: 258 days from breach to containment.
+      58% of breaches would not have been detected at all
+      without monitoring tools.
+
+
+  ....................................
+  A. WHAT TO MONITOR
+  ....................................
+
+    . AUTHENTICATION EVENTS:
+      . Failed logins (who is trying to get in?)
+      . Logins from unusual locations (user in Nepal suddenly
+        logs in from Russia 5 minutes later — impossible!)
+      . Multiple failed logins then success = account compromise.
+
+    . CONFIGURATION CHANGES:
+      . New IAM user created (who authorized this?)
+      . Security group rule changed (port opened)
+      . S3 bucket made public (data exposure risk!)
+      . New API key generated
+
+    . DATA ACCESS:
+      . Large data downloads (employee exfiltrating data?)
+      . Access to sensitive data outside business hours.
+      . Accessing data in unusual patterns.
+
+    . NETWORK TRAFFIC:
+      . Unusual outbound traffic (data exfiltration?).
+      . Traffic to known malicious IP addresses.
+      . Port scanning of other instances.
+
+    . DATA EXAMPLE — Suspicious activity detection:
+      Normal behavior for user "admin@company.com":
+        Login time: 9 AM - 6 PM Nepal time
+        Location:   Kathmandu IP range
+        Actions:    Read files, create reports
+        Data volume: < 100 MB per day
+
+      Alert triggered when:
+      ....................................................
+      Anomaly                  Alert Level   Action
+      ....................................................
+      Login at 2 AM local      Medium        Notify security
+      Login from Russia IP     High          Block + Notify
+      200 GB download in 1 hr  Critical      Block immediately
+      New admin user created   High          Require approval
+      S3 bucket made public    Critical      Revert + Alert
+      ....................................................
+
+
+  ....................................
+  B. CLOUD MONITORING TOOLS
+  ....................................
+
+    . AWS CLOUDTRAIL:
+      . Records EVERY API call made in the AWS account.
+      . Who did what, when, from which IP address.
+      . "CCTV camera for your cloud account."
+      . Stores logs in S3 for long-term retention.
+
+      Example CloudTrail log entry:
+      ....................................................
+      {
+        "eventTime": "2025-03-15T02:34:12Z",
+        "userIdentity": {"userName": "dev-user"},
+        "sourceIPAddress": "185.220.101.45",
+        "eventName": "DeleteBucket",
+        "requestParameters": {"bucketName": "prod-data"}
+      }
+      ....................................................
+      Interpretation: "dev-user" deleted a production bucket
+      at 2 AM from a suspicious IP (Tor exit node).
+      Action: immediate investigation, credential rotation.
+
+    . AWS GUARDDUTY:
+      . AI-powered threat detection service.
+      . Analyzes CloudTrail, VPC Flow Logs, DNS logs.
+      . Automatically detects: cryptocurrency mining,
+        compromised instances, unusual API calls.
+      . Generates "findings" with severity level.
+
+    . AWS SECURITY HUB:
+      . Aggregates security alerts from all AWS services.
+      . Single dashboard for all security findings.
+      . Checks against security standards (CIS, PCI DSS, GDPR).
+
+    . SIEM — Security Information and Event Management:
+      . Centralized log collection from all sources.
+      . Correlates events across multiple systems.
+      . Tools: Splunk, IBM QRadar, Microsoft Sentinel.
+      . Example: login failure on 5 different servers in
+        10 minutes from same IP = coordinated attack.
+        SIEM correlates all 5 events and raises ONE alert.
+
+
+  ....................................
+  C. SECURITY AUDITING
+  ....................................
+
+    . AUDIT = formal review of security controls and activities.
+    . Who accessed what data, when, and why?
+    . Prove to regulators that security controls are in place.
+    . Find gaps before attackers do.
+
+    . TYPES OF AUDITS:
+      . Internal Audit: your own team reviews security posture.
+      . External Audit: independent third party reviews.
+        More credible — no conflict of interest.
+      . Penetration Testing (Pen Test): ethical hackers try
+        to break into your system. Find vulnerabilities first.
+      . Vulnerability Assessment: automated scanning for
+        known security weaknesses.
+
+    . AUDIT TRAIL REQUIREMENTS:
+      . All privileged access logged.
+      . Logs must be TAMPER-PROOF (stored separately, immutable).
+      . Retained for defined period (1 year minimum typically).
+      . Include: who, what, when, where, outcome.
+
+
+
+
+------------------------------------------------------------
+7.7  LEGAL AND REGULATORY ASPECTS
+------------------------------------------------------------
+
+  . Cloud computing involves data crossing geographic boundaries.
+  . Data subject to laws of WHERE IT IS STORED, not just where
+    the company is headquartered.
+  . Understanding the legal landscape is REQUIRED for compliance.
+
+
+  ....................................
+  A. KEY REGULATIONS
+  ....................................
+
+    1. GDPR — GENERAL DATA PROTECTION REGULATION (EU):
+       . European Union law, effective May 2018.
+       . Applies to ANY organization processing EU citizens' data,
+         regardless of where the company is located.
+         (Nepali company serving European customers → GDPR applies!)
+
+       KEY REQUIREMENTS:
+       . Lawful basis for processing personal data.
+       . Explicit CONSENT from users before collecting data.
+       . Right to access: users can request all data held about them.
+       . Right to erasure ("right to be forgotten"):
+         users can request deletion of their data.
+       . Data breach notification within 72 HOURS.
+       . Data Protection Officer (DPO) required for some organizations.
+       . Data transfers outside EU require adequate protections.
+
+       FINES:
+       . Up to 4% of global annual revenue OR EUR 20 million.
+       . Meta fined EUR 1.2 billion in 2023 for GDPR violation.
+
+    2. HIPAA — HEALTH INSURANCE PORTABILITY AND ACCOUNTABILITY ACT (USA):
+       . US law protecting patient health information (PHI).
+       . Applies to healthcare organizations and their vendors.
+       . Cloud provider must sign a Business Associate Agreement (BAA).
+       . AWS, Azure, GCP all offer HIPAA-compliant services (with BAA).
+       . PHI must be encrypted at rest and in transit.
+       . Access logs required for all PHI access.
+
+    3. PCI DSS — PAYMENT CARD INDUSTRY DATA SECURITY STANDARD:
+       . Required for ANY organization storing, processing, or
+         transmitting credit/debit card data.
+       . 12 requirements covering: network security, encryption,
+         access control, monitoring, testing, security policy.
+       . eSewa and Khalti processing card payments must comply.
+       . Annual assessment by Qualified Security Assessor (QSA).
+
+    4. ISO 27001:
+       . International standard for Information Security Management.
+       . Certifiable: third party audits and certifies compliance.
+       . Proves to customers that your security is systematic.
+       . Cloud providers hold ISO 27001 certification.
+
+    5. NEPAL — NRB DIRECTIVES:
+       . Nepal Rastra Bank requires financial institutions to:
+         . Keep core banking data within Nepal for critical systems.
+         . Conduct annual security audits.
+         . Report security incidents within defined timeframes.
+         . Use encrypted communication for all financial transactions.
+       . Digital Nepal Framework 2019 defines cloud policy for government.
+
+
+  ....................................
+  B. DATA RESIDENCY AND SOVEREIGNTY
+  ....................................
+
+    . DATA RESIDENCY: requirement that data must be stored within
+      a specific geographic region.
+      "Customer data of Nepal citizens must remain in Nepal."
+
+    . DATA SOVEREIGNTY: data is subject to the laws of the country
+      where it is stored.
+      US data stored on AWS us-east-1 → subject to US laws.
+      US government can compel AWS to hand over that data.
+      EU organization's data in US → may violate GDPR.
+
+    . SOLUTIONS:
+      . Use cloud regions in your home country.
+        AWS has regions in Mumbai (closest to Nepal currently).
+        Some countries (India, UAE, Saudi Arabia) require
+        specific data to stay within their borders.
+      . Private cloud: data never leaves your own data center.
+      . Contractual protections with cloud providers.
+
+    . DATA EXAMPLE — Where major cloud providers have regions:
+      .....................................................
+      Provider   Nearest to Nepal    Compliant For
+      .....................................................
+      AWS        Mumbai, India       Most South Asian data
+      Azure      Pune/Mumbai, India  Most South Asian data
+      GCP        Mumbai, India       Most South Asian data
+      .....................................................
+      No cloud provider has a datacenter IN Nepal currently.
+      Nepal government data requiring local storage must use
+      private cloud or own data centers.
+
+
+
+
+------------------------------------------------------------
+7.8  DATA PRIVACY AND COMPLIANCE
+------------------------------------------------------------
+
+  . DATA PRIVACY = protecting individual's personal information
+    from unauthorized collection, use, or disclosure.
+
+  . PERSONAL DATA INCLUDES:
+    Name, email, phone number, address, ID number,
+    location data, IP address, cookie data, biometrics,
+    financial data, health records.
+
+  . PRIVACY PRINCIPLES (based on GDPR and global standards):
+    1. PURPOSE LIMITATION: collect data for SPECIFIC stated purposes.
+       Do not use birth data collected for health forms
+       to send marketing emails.
+    2. DATA MINIMIZATION: collect ONLY what is necessary.
+       If you only need email, don't collect phone and address too.
+    3. STORAGE LIMITATION: don't keep data longer than needed.
+       Delete customer data when they close account.
+    4. ACCURACY: keep data accurate and up to date.
+    5. INTEGRITY AND CONFIDENTIALITY: protect data with appropriate security.
+
+
+  ....................................
+  A. PRIVACY BY DESIGN
+  ....................................
+
+    . Build privacy protections INTO the system FROM THE START.
+    . Not an afterthought, not a bolt-on.
+    . 7 principles by Ann Cavoukian (Ontario Privacy Commissioner):
+      1. Proactive, not reactive
+      2. Privacy as default setting
+      3. Privacy embedded into design
+      4. Full functionality (positive-sum not zero-sum)
+      5. End-to-end lifecycle security
+      6. Visibility and transparency
+      7. Respect for user privacy
+
+
+  ....................................
+  B. DATA CLASSIFICATION
+  ....................................
+
+    . Classify data by sensitivity → apply appropriate controls.
+
+    .......................................................
+    Classification    Examples              Controls Required
+    .......................................................
+    Public            Marketing materials   No restriction
+    Internal          Employee handbook     Access control
+    Confidential      Business strategies   Encryption + Access
+    Restricted        Medical records,      Encryption + MFA
+                      Financial data,       + Audit logs +
+                      Passwords, Keys       Regulatory compliance
+    .......................................................
+
+    . Example for a hospital cloud system:
+      .....................................................
+      Data                 Classification   Encryption  Audit
+      .....................................................
+      Hospital logo        Public           No          No
+      Staff directory      Internal         No          No
+      Employee salaries    Confidential     Yes         Yes
+      Patient diagnoses    Restricted       Yes         Yes (all access)
+      HIV test results     Restricted       Yes         Yes (every query)
+      .....................................................
+
+
+  ....................................
+  C. BREACH NOTIFICATION
+  ....................................
+
+    . WHEN a breach occurs (and breaches do occur),
+      laws require NOTIFICATION within specific timeframes.
+
+    .......................................................
+    Regulation   Notification To       Time Limit
+    .......................................................
+    GDPR         Data Protection Auth  72 hours
+    HIPAA        HHS + affected users  60 days
+    PCI DSS      Card brands + banks   Immediately
+    NRB Nepal    Nepal Rastra Bank     Immediately
+    .......................................................
+
+    . BREACH RESPONSE PLAN (must have BEFORE a breach):
+      1. Detection: identify that a breach has occurred.
+      2. Containment: stop ongoing breach, isolate systems.
+      3. Assessment: what data was exposed? How many affected?
+      4. Notification: inform regulators, affected individuals.
+      5. Remediation: fix the vulnerability, restore systems.
+      6. Post-incident review: how to prevent recurrence?
+
+
+
+
+------------------------------------------------------------
+7.9  GOVERNANCE MODELS
+------------------------------------------------------------
+
+  . CLOUD GOVERNANCE = the framework of policies, processes,
+    and standards that control how cloud is used, managed,
+    and secured across an organization.
+
+  . WHY GOVERNANCE IS NEEDED:
+    . Without governance: every team does what they want.
+      Random cloud services, inconsistent security, budget chaos.
+    . With governance: consistent security, controlled costs,
+      compliance maintained, accountability clear.
+
+
+  ....................................
+  A. CLOUD GOVERNANCE FRAMEWORK COMPONENTS
+  ....................................
+
+    1. POLICIES:
+       . Rules that MUST be followed.
+       . "All data stored in cloud must be encrypted."
+       . "All cloud accounts must have MFA enabled."
+       . "No public S3 buckets without CISO approval."
+
+    2. STANDARDS:
+       . Specific technical requirements that implement policies.
+       . "AES-256 encryption must be used for all data at rest."
+       . "TLS 1.2 minimum for all data in transit."
+
+    3. PROCEDURES:
+       . Step-by-step instructions for implementing standards.
+       . How to create a new cloud account (approved process).
+       . How to onboard a new cloud vendor (security review checklist).
+
+    4. GUIDELINES:
+       . Recommended best practices (not mandatory).
+       . "Consider using Reserved Instances for cost savings."
+
+    5. CONTROLS:
+       . Technical enforcement of policies.
+       . AWS Service Control Policies (SCPs): prevent certain
+         actions across entire AWS organization.
+       . Example SCP: "Block any attempt to disable CloudTrail."
+         Even if a compromised admin tries to turn off logging,
+         the SCP prevents it.
+
+
+  ....................................
+  B. CLOUD CENTER OF EXCELLENCE (CCoE)
+  ....................................
+
+    . A centralized team that governs cloud usage across
+      the entire organization.
+
+    . RESPONSIBILITIES:
+      . Define cloud standards and best practices.
+      . Review and approve cloud architecture designs.
+      . Manage cloud costs and optimization.
+      . Ensure security and compliance.
+      . Train development teams on cloud best practices.
+      . Evaluate new cloud services before adoption.
+
+    . TEAM COMPOSITION:
+      . Cloud architects
+      . Security engineers
+      . Finance/FinOps specialists
+      . DevOps engineers
+      . Legal/compliance representation
+
+
+  ....................................
+  C. CSPM — CLOUD SECURITY POSTURE MANAGEMENT
+  ....................................
+
+    . Automated tools that continuously scan cloud configurations
+      for security misconfigurations and compliance violations.
+
+    . CHECKS PERFORMED:
+      . S3 buckets publicly accessible? → Flag and alert.
+      . Security groups with 0.0.0.0/0 SSH? → Flag.
+      . RDS databases publicly accessible? → Flag.
+      . MFA not enabled for root account? → Critical flag.
+      . Encryption not enabled for EBS volumes? → Flag.
+
+    . TOOLS: AWS Security Hub, Prisma Cloud, Wiz, Lacework.
+
+    . DATA EXAMPLE — CSPM audit report for hypothetical org:
+      ......................................................
+      Check                        Status     Risk Level
+      ......................................................
+      MFA on root account          FAIL       Critical
+      CloudTrail enabled all reg.  FAIL       High
+      Public S3 buckets (3 found)  FAIL       High
+      Encrypted EBS volumes        PASS       -
+      Security group 22 open       FAIL       High
+      Unused IAM access keys       FAIL       Medium
+      VPC Flow Logs enabled        PASS       -
+      GuardDuty enabled            PASS       -
+      ......................................................
+      Total: 4 FAILURES needing immediate remediation.
+
+
+  ....................................
+  D. GOVERNANCE FRAMEWORKS — INDUSTRY STANDARDS
+  ....................................
+
+    . NIST CYBERSECURITY FRAMEWORK (CSF):
+      Five functions: IDENTIFY, PROTECT, DETECT, RESPOND, RECOVER.
+      Widely adopted framework for cybersecurity governance.
+      Used by governments and large enterprises globally.
+
+    . CIS CONTROLS (Center for Internet Security):
+      18 prioritized security controls.
+      Implementation Groups 1, 2, 3 based on organization size.
+      Start with IG1 (basic hygiene) before advanced controls.
+
+    . COBIT (Control Objectives for Information Technologies):
+      IT governance framework.
+      Aligns IT goals with business objectives.
+      Used for internal audits and governance reporting.
+
+    . ISO 27001 / 27002:
+      International standard for information security management.
+      Certifiable — shows external parties you're serious.
+      Required by: European contracts, financial institutions.
+
+
+
+
+------------------------------------------------------------
+7.10  SECURITY CASE STUDIES
+------------------------------------------------------------
+
+  ....................................
+  CASE STUDY 1: CAPITOL ONE DATA BREACH (2019)
+  ....................................
+
+    . One of the largest financial data breaches in US history.
+    . 100 MILLION customers affected.
+    . Cost: USD 80 million regulatory fine + USD 190 million
+      class action settlement.
+
+    . WHAT HAPPENED:
+      . Capital One hosted data in AWS (IaaS).
+      . Web Application Firewall (WAF) was misconfigured.
+      . The WAF had overly permissive server-side request forgery
+        (SSRF) protection.
+      . A former AWS employee (Paige Thompson) discovered the
+        misconfigured WAF.
+      . Used SSRF to query AWS instance metadata service.
+      . Retrieved temporary AWS credentials for a role
+        with excessive S3 read permissions.
+      . Downloaded 100 million customer records from S3.
+
+    . ROOT CAUSE ANALYSIS:
+      .....................................................
+      Factor                    Details
+      .....................................................
+      Misconfiguration          WAF allowed SSRF to metadata
+      Excess permissions        IAM role had too much S3 access
+      No anomaly detection      Large download not flagged
+      No principle of least     Role could read all S3 buckets
+      privilege
+      .....................................................
+
+    . LESSONS LEARNED:
+      . WAF rules must be rigorously tested and regularly audited.
+      . IAM roles must follow least privilege (only needed buckets).
+      . IMDSv2 (metadata service v2) prevents SSRF attacks.
+      . Anomaly detection must alert on large data downloads.
+      . Encryption at rest would not have prevented this —
+        the attacker had VALID AWS credentials (IAM issue, not crypto).
+
+
+  ....................................
+  CASE STUDY 2: MICROSOFT EXCHANGE SERVER + CLOUD MISCONFIGURATION (2023)
+  ....................................
+
+    . Chinese hackers accessed email accounts of US government
+      officials and European organizations.
+    . Compromised: US Secretary of State's emails, US Department
+      of Commerce.
+    . Method: forged authentication tokens using stolen
+      Microsoft cryptographic signing key.
+    . A single stolen key allowed access to Microsoft 365
+      email accounts of any organization.
+
+    . CLOUD GOVERNANCE FAILURE:
+      . Microsoft's audit logs did NOT capture the token forging
+        in a way that customers could detect in their own tenants.
+      . Customers had no visibility into this attack.
+      . Violated the shared responsibility: Microsoft must protect
+        its own signing keys — they failed their responsibility.
+
+    . LESSONS:
+      . Cloud providers are not immune to breaches.
+      . Key management is critical at provider level.
+      . Security visibility must extend to cloud provider activities.
+
+
+  ....................................
+  CASE STUDY 3: TESLA — KUBERNETES CRYPTOJACKING (2018)
+  ....................................
+
+    . Tesla's Kubernetes management dashboard (Kubernetes Dashboard)
+      was exposed to the internet WITHOUT AUTHENTICATION.
+
+    . WHAT HAPPENED:
+      . Attacker found the unsecured dashboard via internet scan.
+      . Logged in (no password required — default config).
+      . Deployed a cryptocurrency mining container inside
+        Tesla's Kubernetes cluster.
+      . Mining container throttled CPU to avoid detection.
+      . AWS billing for compute would skyrocket (Tesla's cost).
+      . Attacker gets free computing power (Tesla pays).
+
+    . ROOT CAUSE: MISCONFIGURATION (most common cloud issue!)
+      . Default Kubernetes Dashboard deployment has no auth.
+      . Nobody checked: is this exposed to the internet?
+
+    . LESSONS:
+      . Default configurations are often INSECURE.
+      . Never expose management interfaces to public internet.
+      . Enable authentication on ALL management tools.
+      . Monitor cloud costs — sudden spike = possible compromise.
+      . Use network policies to restrict Kubernetes dashboard access.
+      . Never leave default configurations in production.
+
+
+  ....................................
+  CASE STUDY 4: SMALL BUSINESS — RANSOMWARE IN CLOUD (2024)
+  ....................................
+
+    . Hypothetical Nepali logistics company (100 employees).
+    . Moved all operations to cloud (AWS + Google Workspace).
+    . No security training, basic IAM setup, no MFA.
+
+    . INCIDENT TIMELINE:
+      Day 0: Phishing email sent to finance employee.
+      Day 0: Employee clicks link, enters credentials on fake
+             Google login page. Credentials stolen.
+      Day 1: Attacker logs into Google Workspace.
+             Reads 6 months of emails, financial plans.
+      Day 3: Attacker uses credentials to access AWS console
+             (same password — no MFA).
+      Day 4: Attacker downloads all S3 data (customer records,
+             contracts, financial data — 2 TB total).
+      Day 4: Attacker deploys ransomware across all EC2 instances.
+             All servers encrypted. All backups deleted.
+      Day 5: Company discovers attack. All systems offline.
+             Ransom demand: USD 50,000 in Bitcoin.
+
+    . DAMAGE ASSESSMENT:
+      .....................................................
+      Impact               Value
+      .....................................................
+      Downtime             7 days
+      Revenue loss         Rs 35 lakhs
+      Recovery cost        Rs 20 lakhs
+      Ransom paid          USD 50,000 (Rs 65 lakhs)
+      Customer trust       Severely damaged
+      Regulatory fine      Under investigation
+      Total estimated      Rs 1.5 crore+
+      .....................................................
+
+    . WHAT COULD HAVE PREVENTED THIS:
+      . MFA on all accounts → stolen password useless.
+      . Separate password for AWS → no lateral movement.
+      . S3 versioning + backup to separate account → ransomware fails.
+      . Employee security training → phishing detected.
+      . Incident response plan → faster recovery.
+      . Immutable backups → restore without paying ransom.
+      . Cost: Security setup = Rs 50,000/year.
+        Incident cost: Rs 1.5 crore. ROI = 30x.
+
+
+
+
+------------------------------------------------------------
+  COMPLETE SUMMARY TABLE — UNIT 7
+------------------------------------------------------------
+
+  .......................................................
+  Topic                  Key Point
+  .......................................................
+  Shared Responsibility  Provider: physical infra, hypervisor.
+                         Customer: data, IAM, config, apps.
+                         Misconfiguration is #1 breach cause.
+
+  Top Threats            Breach, Misconfiguration, Insecure API,
+                         Account Hijacking, DDoS, Insider, Supply
+                         Chain.
+
+  IAM                    Authentication (who) + Authorization
+                         (what) + Accounting (audit).
+                         MFA blocks 99.9% of automated attacks.
+
+  RBAC                   Roles assigned permissions.
+                         Users assigned roles.
+                         Principle of Least Privilege always.
+
+  Encryption at Rest     AES-256 for stored data.
+                         AWS SSE-KMS for key management.
+                         Never store key with the data.
+
+  Encryption in Transit  TLS for all HTTPS traffic.
+                         VPN for remote access.
+                         HTTP without TLS = plaintext visible.
+
+  Hybrid Encryption      Asymmetric to exchange key securely.
+                         Symmetric (AES) for bulk data speed.
+                         How HTTPS actually works.
+
+  Application Security   OWASP Top 10: injection, broken access,
+                         misconfiguration, cryptographic failures.
+                         WAF filters malicious HTTP requests.
+
+  VM Security            Patch OS regularly (not cloud's job in IaaS).
+                         Security groups: whitelist approach.
+                         SSH port not open to 0.0.0.0/0.
+
+  Multi-Tenancy          Multiple customers share one physical host.
+                         VPC isolates network segments.
+                         Dedicated hosts for full isolation.
+
+  Security Monitoring    CloudTrail = who did what (every API call).
+                         GuardDuty = AI threat detection.
+                         SIEM = correlate events across systems.
+
+  GDPR                   EU data protection law.
+                         72-hour breach notification.
+                         Fines up to 4% global revenue.
+
+  HIPAA                  US health data protection.
+                         BAA required from cloud provider.
+                         Encrypt all PHI at rest and transit.
+
+  PCI DSS                Payment card data security standard.
+                         12 requirements, annual audit.
+                         Applies to eSewa, Khalti, any card processor.
+
+  Data Residency         Data must stay in specific country.
+                         Nepal = no local cloud region (use Mumbai).
+                         NRB requires some data stay in Nepal.
+
+  Data Privacy           Purpose limitation, data minimization,
+                         storage limitation, accuracy.
+                         Right to erasure, right to access.
+
+  Governance             Policies + Standards + Procedures +
+                         Controls enforced via SCPs.
+                         CSPM tools scan for misconfigurations.
+                         CCoE team manages cloud-wide governance.
+
+  Case Studies           Capital One: SSRF + misconfigured WAF.
+                         Tesla: unauth Kubernetes dashboard.
+                         Nepal SME: phishing + no MFA = Rs 1.5Cr loss.
+  .......................................................
+
+
+
+
+============================================================
+  KEY FORMULAS AND QUICK REFERENCE
+============================================================
+
+  ROI OF SECURITY:
+  . Cost of security controls / Cost of incident avoided
+  . Nepal SME example: Rs 50,000 / Rs 1,50,00,000 = 0.003
+    Security cost is 300x less than the incident cost.
+
+  ENCRYPTION KEY STRENGTH:
+  . AES-128 : 2^128 possible keys (secure)
+  . AES-256 : 2^256 possible keys (quantum-resistant)
+  . RSA-2048: minimum recommended for asymmetric encryption
+
+  MFA EFFECTIVENESS:
+  . Microsoft data: MFA blocks 99.9% of automated attacks.
+  . If 1000 accounts targeted, only 1 compromised with MFA.
+    Without MFA: all 1000 vulnerable.
+
+  GDPR FINES:
+  . Tier 1: up to EUR 10 million OR 2% global revenue.
+  . Tier 2: up to EUR 20 million OR 4% global revenue.
+  . Whichever is higher applies.
+
+  BREACH DETECTION TIMELINE (IBM/Ponemon 2024):
+  . Average days to identify breach: 194 days.
+  . Average days to contain breach:   64 days.
+  . Total:                           258 days average.
+
+  REGULATION QUICK MATCH:
+  . EU customers data    → GDPR
+  . US health data       → HIPAA
+  . Payment card data    → PCI DSS
+  . Nepal banking data   → NRB Directives
+  . International org    → ISO 27001
+
+============================================================
+              END OF UNIT 7 NOTES
+============================================================
