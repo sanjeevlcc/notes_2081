@@ -1,0 +1,1315 @@
+============================================================
+     UNIT VI — 6.1: SOFTWARE DEVELOPMENT AS A PROCESS
+     HANDS-ON LAB GUIDE
+     Tools: Google Colab / KillerCoda / Docker / Linux Shell
+     Subject : Simulation and Modeling (MTH 250)
+     Pokhara University — BCA III Year / VI Semester
+============================================================
+
+
+  Coverage : Waterfall Model + Incremental Model
+             Simulated via Python, Shell Scripts, Docker
+
+  Goal     : Observe, measure, and simulate software
+             development process behavior with real data
+
+============================================================
+
+
+
+
+------------------------------------------------------------
+  OVERVIEW — WHAT WE WILL BUILD IN THESE LABS
+------------------------------------------------------------
+
+  . Lab 1 : Simulate Waterfall Model in Google Colab
+            (Python — phases, timelines, burndown chart)
+
+  . Lab 2 : Simulate Incremental Model in Google Colab
+            (Python — multiple iterations, feedback loop)
+
+  . Lab 3 : Waterfall vs Incremental — Data Comparison
+            (Python — side by side metrics, visualization)
+
+  . Lab 4 : Shell Script Simulation on KillerCoda / Linux
+            (Bash — simulate phase transitions, logging)
+
+  . Lab 5 : Docker Container per Phase
+            (Docker — each phase runs in its own container)
+
+  . Lab 6 : Git-based Process Simulation
+            (Git on Linux — branches simulate phases)
+
+
+
+  . Each lab builds on the previous.
+  . All labs use FREE tools — no license needed.
+  . All labs runnable on: Google Colab, KillerCoda,
+    local Ubuntu, or any Linux terminal.
+
+
+
+
+============================================================
+  LAB 1: WATERFALL MODEL SIMULATION — GOOGLE COLAB
+============================================================
+
+  TOOL     : Google Colab (Python 3)
+  URL      : https://colab.research.google.com
+  TIME     : 30-45 minutes
+  CONCEPTS : Sequential phases, time tracking,
+             task completion, defect injection
+
+------------------------------------------------------------
+  WHAT THIS LAB SHOWS:
+------------------------------------------------------------
+
+  . Each waterfall phase is simulated with:
+    . Planned vs actual time
+    . Tasks completed per phase
+    . Defects injected and detected
+    . Cumulative progress tracking
+
+  . At the end: generate a burndown chart and
+    phase comparison table
+
+------------------------------------------------------------
+  STEP 1: Open Google Colab
+------------------------------------------------------------
+
+  . Go to: https://colab.research.google.com
+  . Click: New Notebook
+  . Title: "Waterfall_Model_Simulation"
+  . You are now in a Python Jupyter environment
+
+------------------------------------------------------------
+  STEP 2: Copy and run Cell 1 — Setup
+------------------------------------------------------------
+
+  . Create a new code cell and paste:
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 1: SETUP AND IMPORTS
+  import numpy as np
+  import pandas as pd
+  import matplotlib.pyplot as plt
+  import matplotlib.patches as mpatches
+  import random
+  random.seed(42)
+  np.random.seed(42)
+  print("Libraries loaded. Waterfall Simulation Ready.")
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+  . Press Shift+Enter to run
+  . Expected output: "Libraries loaded. Waterfall Simulation Ready."
+
+------------------------------------------------------------
+  STEP 3: Copy and run Cell 2 — Define Waterfall Phases
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 2: DEFINE WATERFALL PHASE DATA
+  # Each phase has: name, planned_weeks, tasks, defect_rate
+
+  phases = [
+      {
+          "name": "Requirements",
+          "planned_weeks": 4,
+          "tasks_total": 50,
+          "defect_rate": 0.10,    # 10% of tasks have issues
+          "detection_rate": 0.80  # 80% of defects caught here
+      },
+      {
+          "name": "Design",
+          "planned_weeks": 6,
+          "tasks_total": 80,
+          "defect_rate": 0.15,
+          "detection_rate": 0.70
+      },
+      {
+          "name": "Implementation",
+          "planned_weeks": 16,
+          "tasks_total": 300,
+          "defect_rate": 0.20,
+          "detection_rate": 0.60
+      },
+      {
+          "name": "Testing",
+          "planned_weeks": 8,
+          "tasks_total": 150,
+          "defect_rate": 0.05,
+          "detection_rate": 0.90
+      },
+      {
+          "name": "Deployment",
+          "planned_weeks": 2,
+          "tasks_total": 20,
+          "defect_rate": 0.02,
+          "detection_rate": 0.95
+      },
+      {
+          "name": "Maintenance",
+          "planned_weeks": 4,
+          "tasks_total": 30,
+          "defect_rate": 0.05,
+          "detection_rate": 0.70
+      }
+  ]
+
+  print("Waterfall phases defined:")
+  print(f"{'Phase':<18} {'Planned Wks':>12} {'Tasks':>8} {'Defect Rate':>12}")
+  print("-" * 55)
+  for p in phases:
+      print(f"{p['name']:<18} {p['planned_weeks']:>12} "
+            f"{p['tasks_total']:>8} {p['defect_rate']*100:>11.0f}%")
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 4: Copy and run Cell 3 — Run the Simulation
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 3: SIMULATE WATERFALL EXECUTION
+  # Simulate each phase with random variation (real projects vary)
+
+  results = []
+  total_planned = 0
+  total_actual  = 0
+  cumulative_weeks = 0
+  total_defects_injected = 0
+  total_defects_found    = 0
+
+  for phase in phases:
+      planned = phase["planned_weeks"]
+      tasks   = phase["tasks_total"]
+
+      # Actual time varies +/- 50% of planned (real-world variation)
+      variation    = np.random.uniform(0.8, 1.6)
+      actual_weeks = round(planned * variation, 1)
+
+      # Defects: injected based on tasks, some detected, some slip
+      defects_injected = int(tasks * phase["defect_rate"])
+      defects_detected = int(defects_injected * phase["detection_rate"])
+      defects_slipped  = defects_injected - defects_detected
+
+      # Rework: each detected defect costs extra time
+      rework_weeks = defects_detected * 0.05  # 0.05 weeks per defect
+      actual_weeks_with_rework = round(actual_weeks + rework_weeks, 1)
+
+      cumulative_weeks       += actual_weeks_with_rework
+      total_planned          += planned
+      total_actual           += actual_weeks_with_rework
+      total_defects_injected += defects_injected
+      total_defects_found    += defects_detected
+
+      results.append({
+          "Phase":             phase["name"],
+          "Planned (wks)":     planned,
+          "Actual (wks)":      actual_weeks_with_rework,
+          "Variance":          round(actual_weeks_with_rework - planned, 1),
+          "Tasks":             tasks,
+          "Defects Injected":  defects_injected,
+          "Defects Found":     defects_detected,
+          "Defects Slipped":   defects_slipped,
+          "Cumulative Wks":    round(cumulative_weeks, 1)
+      })
+
+  df_waterfall = pd.DataFrame(results)
+  print("WATERFALL SIMULATION RESULTS")
+  print("=" * 75)
+  print(df_waterfall.to_string(index=False))
+  print("=" * 75)
+  print(f"Total Planned  : {total_planned:.0f} weeks")
+  print(f"Total Actual   : {total_actual:.1f} weeks")
+  print(f"Overrun        : {total_actual - total_planned:.1f} weeks "
+        f"({(total_actual/total_planned - 1)*100:.1f}%)")
+  print(f"Defects Injected: {total_defects_injected}")
+  print(f"Defects Found   : {total_defects_found}")
+  print(f"Defects Slipped : {total_defects_injected - total_defects_found}")
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 5: Copy and run Cell 4 — Visualize Results
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 4: VISUALIZE WATERFALL RESULTS
+
+  fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+  fig.suptitle("Waterfall Model Simulation Results", fontsize=14)
+
+  phase_names = df_waterfall["Phase"]
+  x = range(len(phase_names))
+
+  # Plot 1: Planned vs Actual weeks per phase
+  axes[0,0].bar([i-0.2 for i in x], df_waterfall["Planned (wks)"],
+                0.4, label="Planned", color="#3498db")
+  axes[0,0].bar([i+0.2 for i in x], df_waterfall["Actual (wks)"],
+                0.4, label="Actual",  color="#e74c3c")
+  axes[0,0].set_xticks(list(x))
+  axes[0,0].set_xticklabels(phase_names, rotation=30, ha="right")
+  axes[0,0].set_title("Planned vs Actual Time per Phase")
+  axes[0,0].set_ylabel("Weeks")
+  axes[0,0].legend()
+
+  # Plot 2: Cumulative progress (burndown style)
+  axes[0,1].plot(df_waterfall["Phase"],
+                 df_waterfall["Cumulative Wks"],
+                 marker="o", color="#2ecc71", linewidth=2)
+  axes[0,1].set_title("Cumulative Project Timeline")
+  axes[0,1].set_ylabel("Cumulative Weeks")
+  axes[0,1].set_xticklabels(phase_names, rotation=30, ha="right")
+  axes[0,1].grid(True, alpha=0.4)
+
+  # Plot 3: Defects injected vs found per phase
+  axes[1,0].bar([i-0.2 for i in x], df_waterfall["Defects Injected"],
+                0.4, label="Injected", color="#e67e22")
+  axes[1,0].bar([i+0.2 for i in x], df_waterfall["Defects Found"],
+                0.4, label="Found",    color="#9b59b6")
+  axes[1,0].set_xticks(list(x))
+  axes[1,0].set_xticklabels(phase_names, rotation=30, ha="right")
+  axes[1,0].set_title("Defects Injected vs Found per Phase")
+  axes[1,0].set_ylabel("Defect Count")
+  axes[1,0].legend()
+
+  # Plot 4: Variance per phase (how much over/under planned)
+  colors = ["#e74c3c" if v > 0 else "#2ecc71"
+            for v in df_waterfall["Variance"]]
+  axes[1,1].bar(phase_names, df_waterfall["Variance"], color=colors)
+  axes[1,1].axhline(0, color="black", linewidth=0.8)
+  axes[1,1].set_xticklabels(phase_names, rotation=30, ha="right")
+  axes[1,1].set_title("Schedule Variance per Phase (+ = Over, - = Under)")
+  axes[1,1].set_ylabel("Weeks Variance")
+
+  plt.tight_layout()
+  plt.show()
+  print("Chart generated successfully.")
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  EXPECTED OUTPUT FROM LAB 1:
+------------------------------------------------------------
+
+  . A table showing all 6 phases with planned, actual,
+    variance, tasks, defects injected, found, slipped.
+  . 4 charts:
+    . Blue/red bars: planned vs actual per phase
+    . Green line: cumulative project weeks
+    . Orange/purple bars: defects injected vs found
+    . Red/green bars: schedule variance
+  . Console output showing total overrun percentage.
+
+  WHAT TO OBSERVE AND ANALYZE:
+  . Which phase had the BIGGEST overrun?
+  . How many defects slipped into the next phase?
+  . What happened to schedule when defects were high?
+  . Did rework in testing cause a cascade delay?
+
+
+
+
+============================================================
+  LAB 2: INCREMENTAL MODEL SIMULATION — GOOGLE COLAB
+============================================================
+
+  TOOL     : Google Colab (Python 3)
+  TIME     : 30-45 minutes
+  CONCEPTS : Iterations, learning curve, feedback,
+             quality improvement across increments
+
+------------------------------------------------------------
+  STEP 1: New Colab Notebook
+------------------------------------------------------------
+
+  . Create a new notebook: "Incremental_Model_Simulation"
+
+------------------------------------------------------------
+  STEP 2: Cell 1 — Setup (same as Lab 1)
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 1: SETUP
+  import numpy as np
+  import pandas as pd
+  import matplotlib.pyplot as plt
+  np.random.seed(7)
+  print("Incremental Model Simulation Ready.")
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 3: Cell 2 — Define Increments
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 2: DEFINE 4 INCREMENTS
+  # Each increment delivers working software
+  # Team LEARNS from each increment — productivity grows
+
+  increments = [
+      {
+          "id": 1,
+          "name": "Core Features",
+          "planned_weeks": 8,
+          "features": ["Login", "Basic Search", "User Profiles"],
+          "tasks": 80,
+          "learning_factor": 1.00  # No prior experience
+      },
+      {
+          "id": 2,
+          "name": "Main Features",
+          "planned_weeks": 8,
+          "features": ["Reports", "Issue/Return", "Fines"],
+          "tasks": 100,
+          "learning_factor": 1.15  # 15% more productive from learning
+      },
+      {
+          "id": 3,
+          "name": "Advanced Features",
+          "planned_weeks": 8,
+          "features": ["Analytics", "Advanced Search", "Notifications"],
+          "tasks": 90,
+          "learning_factor": 1.25  # 25% more productive
+      },
+      {
+          "id": 4,
+          "name": "Final Polish",
+          "planned_weeks": 8,
+          "features": ["Admin Panel", "Export", "Performance"],
+          "tasks": 70,
+          "learning_factor": 1.35  # 35% more productive
+      }
+  ]
+
+  print("Increments defined:")
+  for inc in increments:
+      print(f"  Increment {inc['id']}: {inc['name']}")
+      print(f"    Features  : {', '.join(inc['features'])}")
+      print(f"    Tasks     : {inc['tasks']}")
+      print(f"    Learning  : {inc['learning_factor']}x baseline")
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 4: Cell 3 — Simulate Each Increment
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 3: SIMULATE INCREMENTAL EXECUTION
+
+  inc_results = []
+  cumulative  = 0
+  base_defect_rate = 0.20  # Starts high, drops with experience
+
+  for inc in increments:
+      planned = inc["planned_weeks"]
+      tasks   = inc["tasks"]
+      lf      = inc["learning_factor"]
+
+      # Actual time reduces with learning factor
+      # More experienced team = faster delivery
+      variation    = np.random.uniform(0.85, 1.30)
+      actual_weeks = round((planned / lf) * variation, 1)
+
+      # Defect rate improves with each increment (team learns)
+      defect_rate      = base_defect_rate / lf
+      defects_injected = int(tasks * defect_rate)
+
+      # Customer feedback: 20% chance of scope change per increment
+      scope_change = np.random.random() < 0.20
+      extra_tasks  = int(tasks * 0.15) if scope_change else 0
+      if scope_change:
+          actual_weeks += 1.0  # Scope change costs 1 extra week
+
+      # Customer satisfaction: improves with each increment
+      satisfaction = min(5.0, 2.5 + (inc["id"] * 0.5)
+                         + np.random.uniform(-0.3, 0.3))
+
+      cumulative += actual_weeks
+
+      inc_results.append({
+          "Increment":     inc["id"],
+          "Name":          inc["name"],
+          "Planned (wks)": planned,
+          "Actual (wks)":  actual_weeks,
+          "Variance":      round(actual_weeks - planned, 1),
+          "Tasks Done":    tasks + extra_tasks,
+          "Defect Rate":   f"{defect_rate*100:.1f}%",
+          "Defects":       defects_injected,
+          "Scope Change":  "YES" if scope_change else "NO",
+          "Satisfaction":  round(satisfaction, 1),
+          "Cumulative":    round(cumulative, 1)
+      })
+
+  df_inc = pd.DataFrame(inc_results)
+  print("INCREMENTAL MODEL SIMULATION RESULTS")
+  print("=" * 80)
+  print(df_inc.to_string(index=False))
+  print("=" * 80)
+  total_weeks = df_inc["Actual (wks)"].sum()
+  avg_sat     = df_inc["Satisfaction"].mean()
+  print(f"Total Duration      : {total_weeks:.1f} weeks")
+  print(f"Avg Satisfaction    : {avg_sat:.1f} / 5.0")
+  print(f"Defect Rate Trend   : Improving across increments (learning)")
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 5: Cell 4 — Visualize Incremental Results
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL 4: VISUALIZE INCREMENTAL RESULTS
+
+  fig, axes = plt.subplots(2, 2, figsize=(14, 9))
+  fig.suptitle("Incremental Model Simulation Results", fontsize=14)
+
+  inc_names = [f"Inc {r['Increment']}\n{r['Name']}" for _, r in df_inc.iterrows()]
+
+  # Plot 1: Planned vs Actual per increment
+  x = range(4)
+  axes[0,0].bar([i-0.2 for i in x], df_inc["Planned (wks)"],
+                0.4, label="Planned", color="#3498db")
+  axes[0,0].bar([i+0.2 for i in x], df_inc["Actual (wks)"],
+                0.4, label="Actual",  color="#e74c3c")
+  axes[0,0].set_xticks(list(x))
+  axes[0,0].set_xticklabels(inc_names, fontsize=8)
+  axes[0,0].set_title("Planned vs Actual Time per Increment")
+  axes[0,0].set_ylabel("Weeks"); axes[0,0].legend()
+
+  # Plot 2: Customer satisfaction rising over increments
+  axes[0,1].plot(df_inc["Increment"], df_inc["Satisfaction"],
+                 marker="o", color="#f39c12", linewidth=2.5)
+  axes[0,1].set_ylim(0, 5)
+  axes[0,1].set_title("Customer Satisfaction per Increment")
+  axes[0,1].set_xlabel("Increment Number")
+  axes[0,1].set_ylabel("Satisfaction (1-5)")
+  axes[0,1].axhline(4.0, color="green", linestyle="--",
+                    alpha=0.5, label="Good threshold")
+  axes[0,1].legend(); axes[0,1].grid(True, alpha=0.4)
+
+  # Plot 3: Defects per increment (should decrease)
+  axes[1,0].bar(inc_names, df_inc["Defects"], color="#9b59b6")
+  axes[1,0].set_title("Defects per Increment (Should Decrease)")
+  axes[1,0].set_ylabel("Defect Count")
+
+  # Plot 4: Cumulative progress curve
+  axes[1,1].plot(df_inc["Increment"], df_inc["Cumulative"],
+                 marker="s", color="#2ecc71", linewidth=2)
+  axes[1,1].set_title("Cumulative Project Duration")
+  axes[1,1].set_xlabel("Increment"); axes[1,1].set_ylabel("Total Weeks")
+  axes[1,1].grid(True, alpha=0.4)
+
+  plt.tight_layout(); plt.show()
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+
+
+
+============================================================
+  LAB 3: WATERFALL vs INCREMENTAL COMPARISON — COLAB
+============================================================
+
+  TOOL     : Google Colab (continue in same notebook or new)
+  TIME     : 20 minutes
+  CONCEPTS : Direct comparison of both models on same project
+
+------------------------------------------------------------
+  STEP 1: Cell — Run Comparison
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # CELL: WATERFALL vs INCREMENTAL COMPARISON
+  # Assume both models applied to the SAME project
+
+  import matplotlib.pyplot as plt
+  import pandas as pd
+
+  # Summary metrics from Labs 1 and 2
+  # (replace with your actual simulation output values)
+  comparison = {
+      "Metric": [
+          "Total Duration (weeks)",
+          "Total Defects Injected",
+          "Defects Slipped to Production",
+          "Customer Satisfaction (1-5)",
+          "First Working Delivery (week)",
+          "Schedule Overrun (%)",
+      ],
+      "Waterfall": [
+          df_waterfall["Actual (wks)"].sum(),
+          df_waterfall["Defects Injected"].sum(),
+          df_waterfall["Defects Slipped"].sum(),
+          2.5,    # Low: customer only sees product at the end
+          df_waterfall["Actual (wks)"].sum(),  # Only at the very end
+          round((df_waterfall["Actual (wks)"].sum()
+                 / df_waterfall["Planned (wks)"].sum() - 1) * 100, 1)
+      ],
+      "Incremental": [
+          df_inc["Actual (wks)"].sum(),
+          df_inc["Defects"].sum(),
+          int(df_inc["Defects"].sum() * 0.03),  # fewer slip through
+          df_inc["Satisfaction"].mean(),
+          df_inc.iloc[0]["Actual (wks)"],  # After increment 1
+          round((df_inc["Actual (wks)"].sum() / 32 - 1) * 100, 1)
+      ]
+  }
+
+  df_compare = pd.DataFrame(comparison)
+  print("WATERFALL vs INCREMENTAL — HEAD TO HEAD")
+  print("=" * 60)
+  print(df_compare.to_string(index=False))
+  print("=" * 60)
+
+  # Visual comparison bar chart
+  fig, ax = plt.subplots(figsize=(10, 6))
+  metrics  = ["Duration\n(weeks)", "Total\nDefects",
+              "Slipped\nDefects",  "Satisfaction\n(x10)"]
+  wf_vals  = [df_waterfall["Actual (wks)"].sum(),
+              df_waterfall["Defects Injected"].sum(),
+              df_waterfall["Defects Slipped"].sum(),
+              25]
+  inc_vals = [df_inc["Actual (wks)"].sum(),
+              df_inc["Defects"].sum(),
+              int(df_inc["Defects"].sum() * 0.03),
+              df_inc["Satisfaction"].mean() * 10]
+
+  x = range(len(metrics))
+  ax.bar([i-0.2 for i in x], wf_vals,  0.4,
+         label="Waterfall",   color="#e74c3c", alpha=0.8)
+  ax.bar([i+0.2 for i in x], inc_vals, 0.4,
+         label="Incremental", color="#2ecc71", alpha=0.8)
+  ax.set_xticks(list(x)); ax.set_xticklabels(metrics)
+  ax.set_title("Waterfall vs Incremental — Key Metrics Comparison")
+  ax.legend(); plt.tight_layout(); plt.show()
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+
+
+
+============================================================
+  LAB 4: SHELL SCRIPT SIMULATION — KILLERCODA / LINUX
+============================================================
+
+  TOOL     : KillerCoda Ubuntu Shell OR any Linux terminal
+  URL      : https://killercoda.com  → Ubuntu Playground
+  TIME     : 25-35 minutes
+  CONCEPTS : Phase transitions, logging, file-based state,
+             process simulation without Python
+
+------------------------------------------------------------
+  WHAT THIS LAB DOES:
+------------------------------------------------------------
+
+  . Simulates waterfall phases as shell script stages.
+  . Each phase: creates a log file, waits (simulates work),
+    prints status, then passes control to next phase.
+  . A project log tracks all events.
+  . Demonstrates how process simulation can be done
+    with just Linux tools (no Python needed).
+
+------------------------------------------------------------
+  STEP 1: Open KillerCoda
+------------------------------------------------------------
+
+  . Go to: https://killercoda.com
+  . Click: Playgrounds → Ubuntu
+  . Wait for the Ubuntu terminal to load.
+  . You now have a full Ubuntu Linux shell.
+
+------------------------------------------------------------
+  STEP 2: Create the project directory
+------------------------------------------------------------
+
+  . Type in the terminal:
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  mkdir -p ~/waterfall_sim/phases
+  mkdir -p ~/waterfall_sim/logs
+  mkdir -p ~/waterfall_sim/artifacts
+  cd ~/waterfall_sim
+  echo "Project directory created."
+  ls -la
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 3: Create the waterfall simulation script
+------------------------------------------------------------
+
+  . Type the following to create the script file:
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  cat > ~/waterfall_sim/waterfall.sh << 'SCRIPT'
+  #!/bin/bash
+
+  # ================================================
+  # WATERFALL MODEL SIMULATION SCRIPT
+  # Simulates 6 phases of software development
+  # ================================================
+
+  PROJECT="LibrarySystem"
+  LOG="./logs/project_log.txt"
+  DATE=$(date "+%Y-%m-%d %H:%M:%S")
+
+  # Initialize log file
+  echo "================================================" > $LOG
+  echo " WATERFALL SIMULATION: $PROJECT"               >> $LOG
+  echo " Started: $DATE"                               >> $LOG
+  echo "================================================" >> $LOG
+
+  # ---- Helper function: simulate phase ----
+  run_phase() {
+      local PHASE=$1
+      local PLANNED=$2   # planned weeks
+      local TASKS=$3     # total tasks
+
+      echo ""
+      echo "========================================"
+      echo " PHASE: $PHASE"
+      echo " Planned Duration: $PLANNED weeks"
+      echo " Total Tasks: $TASKS"
+      echo "========================================"
+
+      # Simulate work (random variation +/- 30%)
+      VARIATION=$(echo "scale=2; $PLANNED * (0.8 + $RANDOM % 50 / 100.0)" | bc)
+      ACTUAL=$(echo "scale=1; $VARIATION" | bc)
+
+      # Simulate tasks completed
+      COMPLETED=$(echo "$TASKS - ($TASKS * $RANDOM / 100000)" | bc)
+
+      # Simulate defects found
+      DEFECTS=$(echo "$TASKS / 10 + $RANDOM % 5" | bc)
+
+      # Write to log
+      echo "---" >> $LOG
+      echo "Phase     : $PHASE"           >> $LOG
+      echo "Planned   : $PLANNED weeks"   >> $LOG
+      echo "Actual    : $ACTUAL weeks"    >> $LOG
+      echo "Tasks     : $COMPLETED/$TASKS" >> $LOG
+      echo "Defects   : $DEFECTS found"   >> $LOG
+
+      # Create phase artifact file
+      echo "$PHASE complete. Tasks:$COMPLETED. Defects:$DEFECTS." \
+           > ./artifacts/${PHASE}.txt
+
+      # Wait briefly (simulates work happening)
+      sleep 1
+
+      echo " Status: COMPLETE"
+      echo " Artifact saved: ./artifacts/${PHASE}.txt"
+  }
+
+  # ---- Run all 6 Waterfall phases in sequence ----
+  echo "Starting Waterfall Simulation..."
+  echo ""
+
+  run_phase "Requirements"    4  50
+  run_phase "Design"          6  80
+  run_phase "Implementation" 16 300
+  run_phase "Testing"         8 150
+  run_phase "Deployment"      2  20
+  run_phase "Maintenance"     4  30
+
+  # ---- Final report ----
+  echo ""
+  echo "================================================"
+  echo " SIMULATION COMPLETE"
+  echo "================================================"
+  echo "Project Log:"
+  cat $LOG
+
+  echo ""
+  echo "Phase Artifacts Created:"
+  ls -lh ./artifacts/
+  SCRIPT
+
+  chmod +x ~/waterfall_sim/waterfall.sh
+  echo "Script created successfully."
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 4: Run the simulation
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  cd ~/waterfall_sim
+  bash waterfall.sh
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+  . Watch each phase execute one by one.
+  . Each phase prints its status to terminal.
+  . Each phase creates an artifact file.
+  . Project log collects all events.
+
+------------------------------------------------------------
+  STEP 5: View the project log
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  cat ~/waterfall_sim/logs/project_log.txt
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 6: Now simulate Incremental model
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  cat > ~/waterfall_sim/incremental.sh << 'SCRIPT'
+  #!/bin/bash
+
+  # ================================================
+  # INCREMENTAL MODEL SIMULATION SCRIPT
+  # Simulates 4 increments, each delivering software
+  # ================================================
+
+  LOG="./logs/incremental_log.txt"
+  echo "INCREMENTAL MODEL SIMULATION" > $LOG
+  echo "============================" >> $LOG
+
+  run_increment() {
+      local NUM=$1
+      local NAME=$2
+      local WEEKS=$3
+      local FEATURES=$4
+
+      echo ""
+      echo "========================================"
+      echo " INCREMENT $NUM: $NAME"
+      echo " Duration: $WEEKS weeks"
+      echo " Features: $FEATURES"
+      echo "========================================"
+
+      # Learning factor improves with each increment
+      LEARN=$(echo "scale=2; 1 + ($NUM - 1) * 0.15" | bc)
+      ACTUAL=$(echo "scale=1; $WEEKS / $LEARN" | bc)
+
+      echo " Learning Factor : ${LEARN}x"
+      echo " Planned Duration: $WEEKS weeks"
+      echo " Actual Duration : $ACTUAL weeks (faster due to learning)"
+
+      # Satisfaction increases with each increment
+      SAT=$(echo "scale=1; 2.5 + $NUM * 0.5" | bc)
+      echo " Customer Satisfaction: $SAT / 5.0"
+
+      echo "---"                          >> $LOG
+      echo "Increment $NUM: $NAME"        >> $LOG
+      echo "  Planned : $WEEKS weeks"     >> $LOG
+      echo "  Actual  : $ACTUAL weeks"    >> $LOG
+      echo "  Satisfaction: $SAT/5.0"     >> $LOG
+      echo "  Features: $FEATURES"        >> $LOG
+
+      # Create deliverable
+      echo "INCREMENT $NUM DELIVERED: $NAME ($FEATURES)" \
+           > ./artifacts/increment_${NUM}.txt
+
+      sleep 1
+      echo " Delivered to customer. Feedback collected."
+  }
+
+  echo "Starting Incremental Simulation..."
+  run_increment 1 "Core Features"     8  "Login,Search,Profiles"
+  run_increment 2 "Main Features"     8  "Reports,Issue,Return"
+  run_increment 3 "Advanced Features" 8  "Analytics,Notifications"
+  run_increment 4 "Final Polish"      8  "Admin,Export,Performance"
+
+  echo ""
+  echo "INCREMENTAL SIMULATION COMPLETE"
+  echo "Deliverables:"
+  ls -lh ./artifacts/increment_*.txt
+  echo ""
+  echo "Full Log:"
+  cat $LOG
+  SCRIPT
+
+  chmod +x ~/waterfall_sim/incremental.sh
+  bash ~/waterfall_sim/incremental.sh
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+
+
+
+
+
+
+
+
+============================================================
+  LAB 5: DOCKER — EACH PHASE AS A CONTAINER
+============================================================
+
+  TOOL     : Docker on KillerCoda or local Ubuntu
+  TIME     : 30-40 minutes
+  CONCEPTS : Each phase = isolated Docker container,
+             containers pass artifacts between phases,
+             demonstrates real CI/CD pipeline concept
+
+------------------------------------------------------------
+  WHY DOCKER FOR THIS LAB?
+------------------------------------------------------------
+
+  . In real software projects, each phase often runs in
+    an ISOLATED ENVIRONMENT:
+    . Requirements: collaboration tools
+    . Development: coding environments
+    . Testing: test runner environments
+    . Deployment: production containers
+  . Docker containers are PERFECT for modeling this.
+  . Each container = one phase = one isolated environment.
+  . Containers share a VOLUME (like a shared file system)
+    to pass artifacts from one phase to the next.
+
+------------------------------------------------------------
+  STEP 1: Verify Docker is available
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  docker --version
+  docker ps
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+  . On KillerCoda Docker playground: Docker is pre-installed.
+  . On Ubuntu: sudo apt install docker.io -y
+
+------------------------------------------------------------
+  STEP 2: Create shared volume for artifacts
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # Create a shared directory that all phase containers use
+  mkdir -p ~/docker_waterfall/shared
+  cd ~/docker_waterfall
+  echo "Shared volume directory created."
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 3: Simulate Requirements Phase Container
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # Phase 1: Requirements — runs in an Alpine container
+  # Writes requirements document to shared volume
+
+  docker run --rm \
+    -v ~/docker_waterfall/shared:/output \
+    alpine:latest \
+    sh -c '
+      echo "Running Requirements Phase..."
+      echo "REQUIREMENTS DOCUMENT"            > /output/requirements.txt
+      echo "========================"         >> /output/requirements.txt
+      echo "Feature 1: User Login"            >> /output/requirements.txt
+      echo "Feature 2: Book Search"           >> /output/requirements.txt
+      echo "Feature 3: Issue Management"      >> /output/requirements.txt
+      echo "Feature 4: Return Management"     >> /output/requirements.txt
+      echo "Feature 5: Fine Calculation"      >> /output/requirements.txt
+      echo "STATUS: Requirements COMPLETE"    >> /output/requirements.txt
+      echo "Requirements phase done."
+      cat /output/requirements.txt
+    '
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 4: Simulate Design Phase Container
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # Phase 2: Design — reads requirements, produces design doc
+
+  docker run --rm \
+    -v ~/docker_waterfall/shared:/workspace \
+    alpine:latest \
+    sh -c '
+      echo "Running Design Phase..."
+      if [ ! -f /workspace/requirements.txt ]; then
+        echo "ERROR: Requirements not found. Cannot design."
+        exit 1
+      fi
+      echo "Reading requirements..."
+      REQ_COUNT=$(grep -c "Feature" /workspace/requirements.txt)
+      echo "Found $REQ_COUNT features to design."
+
+      echo "DESIGN DOCUMENT"               > /workspace/design.txt
+      echo "==================="          >> /workspace/design.txt
+      echo "Architecture: 3-tier"         >> /workspace/design.txt
+      echo "Database: PostgreSQL"         >> /workspace/design.txt
+      echo "Backend: Python Flask"        >> /workspace/design.txt
+      echo "Frontend: HTML/CSS/JS"        >> /workspace/design.txt
+      echo "Modules designed: $REQ_COUNT" >> /workspace/design.txt
+      echo "STATUS: Design COMPLETE"      >> /workspace/design.txt
+      echo "Design phase done."
+      cat /workspace/design.txt
+    '
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 5: Simulate Implementation Phase Container
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # Phase 3: Implementation — reads design, writes code summary
+
+  docker run --rm \
+    -v ~/docker_waterfall/shared:/workspace \
+    alpine:latest \
+    sh -c '
+      echo "Running Implementation Phase..."
+      if [ ! -f /workspace/design.txt ]; then
+        echo "ERROR: Design not found. Cannot implement."
+        exit 1
+      fi
+
+      echo "IMPLEMENTATION REPORT"          > /workspace/code.txt
+      echo "====================="          >> /workspace/code.txt
+      echo "Files created: 47"             >> /workspace/code.txt
+      echo "Lines of code: 12,450"         >> /workspace/code.txt
+      echo "Functions:     238"            >> /workspace/code.txt
+      echo "Test files:    12"             >> /workspace/code.txt
+      echo "Defects injected (estimated): 124" >> /workspace/code.txt
+      echo "STATUS: Implementation COMPLETE"   >> /workspace/code.txt
+      echo "Implementation phase done."
+      cat /workspace/code.txt
+    '
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 6: Simulate Testing Phase Container
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # Phase 4: Testing — runs tests, generates test report
+
+  docker run --rm \
+    -v ~/docker_waterfall/shared:/workspace \
+    alpine:latest \
+    sh -c '
+      echo "Running Testing Phase..."
+      if [ ! -f /workspace/code.txt ]; then
+        echo "ERROR: No code to test."
+        exit 1
+      fi
+
+      echo "TEST REPORT"                   > /workspace/test_report.txt
+      echo "==========="                  >> /workspace/test_report.txt
+      echo "Tests run:          256"      >> /workspace/test_report.txt
+      echo "Tests passed:       231"      >> /workspace/test_report.txt
+      echo "Tests failed:        25"      >> /workspace/test_report.txt
+      echo "Pass rate:         90.2%"     >> /workspace/test_report.txt
+      echo "Defects found:       89"      >> /workspace/test_report.txt
+      echo "Defects fixed:       76"      >> /workspace/test_report.txt
+      echo "Defects remaining:   13"      >> /workspace/test_report.txt
+      echo "STATUS: Testing COMPLETE"     >> /workspace/test_report.txt
+      echo "Testing phase done."
+      cat /workspace/test_report.txt
+    '
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 7: View all artifacts from all phases
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  echo "=== ALL PHASE ARTIFACTS ==="
+  ls -lh ~/docker_waterfall/shared/
+  echo ""
+  echo "=== REQUIREMENTS ==="
+  cat ~/docker_waterfall/shared/requirements.txt
+  echo ""
+  echo "=== DESIGN ==="
+  cat ~/docker_waterfall/shared/design.txt
+  echo ""
+  echo "=== CODE SUMMARY ==="
+  cat ~/docker_waterfall/shared/code.txt
+  echo ""
+  echo "=== TEST REPORT ==="
+  cat ~/docker_waterfall/shared/test_report.txt
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+  WHAT TO OBSERVE:
+  . Each phase only runs if previous phase artifact exists.
+  . This enforces the SEQUENTIAL nature of Waterfall.
+  . If you run Testing before Implementation → ERROR.
+  . Each container is ISOLATED — clean environment per phase.
+  . Shared volume = the "project repository" in real life.
+
+
+
+
+============================================================
+  LAB 6: GIT-BASED PROCESS SIMULATION — LINUX TERMINAL
+============================================================
+
+  TOOL     : Git on KillerCoda / Ubuntu / any Linux
+  TIME     : 25-35 minutes
+  CONCEPTS : Branches simulate phases/increments,
+             commits simulate task completion,
+             merge simulates phase integration
+
+------------------------------------------------------------
+  WHY GIT FOR PROCESS SIMULATION?
+------------------------------------------------------------
+
+  . In real software projects, Git branches MAP to:
+    . Waterfall: one branch per phase
+    . Incremental: one branch per increment/feature
+  . Git history = complete audit trail of process.
+  . Merge conflicts = integration problems.
+  . Git log = project timeline.
+
+------------------------------------------------------------
+  STEP 1: Setup Git repository
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  mkdir -p ~/git_sim_project
+  cd ~/git_sim_project
+  git init
+  git config user.email "student@pu.edu.np"
+  git config user.name  "BCA Student"
+  echo "Git repository initialized."
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 2: Simulate Waterfall with Git branches
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  # MAIN branch = production-ready code
+  echo "# Library Management System" > README.md
+  git add README.md
+  git commit -m "PROJECT START: Initial commit"
+
+  # ---- REQUIREMENTS PHASE ----
+  git checkout -b phase/requirements
+  echo "Feature 1: Login"         > requirements.txt
+  echo "Feature 2: Search"       >> requirements.txt
+  echo "Feature 3: Issue/Return" >> requirements.txt
+  git add requirements.txt
+  git commit -m "[Requirements] User stories documented"
+  git commit --allow-empty -m "[Requirements] Stakeholder review done"
+  git commit --allow-empty -m "[Requirements] Requirements SIGNED OFF"
+  echo "Requirements phase: $(git log --oneline | wc -l) commits"
+
+  # ---- DESIGN PHASE ----
+  git checkout main
+  git merge phase/requirements -m "Merge Requirements into main"
+  git checkout -b phase/design
+  echo "Architecture: 3-tier MVC"    > design.txt
+  echo "DB: PostgreSQL"             >> design.txt
+  echo "API: REST with Flask"       >> design.txt
+  git add design.txt
+  git commit -m "[Design] Architecture decision recorded"
+  git commit --allow-empty -m "[Design] Database schema v1"
+  git commit --allow-empty -m "[Design] Design review PASSED"
+  echo "Design phase: $(git log --oneline | wc -l) commits"
+
+  # ---- IMPLEMENTATION PHASE ----
+  git checkout main
+  git merge phase/design -m "Merge Design into main"
+  git checkout -b phase/implementation
+  echo "class User: pass"           > app.py
+  echo "class Book: pass"          >> app.py
+  echo "def search(): pass"        >> app.py
+  git add app.py
+  git commit -m "[Impl] Core models created"
+  git commit --allow-empty -m "[Impl] Login feature done"
+  git commit --allow-empty -m "[Impl] Search feature done"
+  git commit --allow-empty -m "[Impl] Issue/Return done"
+  git commit --allow-empty -m "[Impl] Code review passed"
+  echo "Implementation: $(git log --oneline | wc -l) commits"
+
+  # ---- TESTING PHASE ----
+  git checkout main
+  git merge phase/implementation -m "Merge Implementation"
+  git checkout -b phase/testing
+  echo "Test 1: Login - PASS"      > test_report.txt
+  echo "Test 2: Search - PASS"    >> test_report.txt
+  echo "Test 3: Issue - FAIL"     >> test_report.txt
+  git add test_report.txt
+  git commit -m "[Testing] Initial test run: 1 failure found"
+  # Fix the bug
+  echo "Test 3: Issue - PASS (fixed)" >> test_report.txt
+  git add test_report.txt
+  git commit -m "[Testing] Bug #3 fixed. All tests passing."
+  git commit --allow-empty -m "[Testing] UAT complete. APPROVED."
+
+  # ---- MERGE ALL TO MAIN ----
+  git checkout main
+  git merge phase/testing -m "FINAL RELEASE: All phases merged"
+  echo "Git-based Waterfall Simulation complete."
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 3: View the complete project history
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  echo "=== FULL PROJECT HISTORY ==="
+  git log --oneline --graph --all
+
+  echo ""
+  echo "=== BRANCHES CREATED ==="
+  git branch -a
+
+  echo ""
+  echo "=== COMMIT STATISTICS ==="
+  echo "Total commits: $(git log --oneline | wc -l)"
+  echo "Contributors:  $(git log --format='%an' | sort -u | wc -l)"
+
+  echo ""
+  echo "=== PHASE COMMITS BREAKDOWN ==="
+  for phase in requirements design implementation testing; do
+      count=$(git log --oneline --grep="\[$phase\]" \
+              --all --ignore-case | wc -l)
+      echo "  $(echo $phase | tr 'a-z' 'A-Z'): $count commits"
+  done
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+------------------------------------------------------------
+  STEP 4: Simulate Incremental Model with Git branches
+------------------------------------------------------------
+
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  mkdir -p ~/git_incremental && cd ~/git_incremental
+  git init
+  git config user.email "student@pu.edu.np"
+  git config user.name  "BCA Student"
+  echo "# Library System" > README.md
+  git add README.md
+  git commit -m "Project start"
+
+  # Each increment gets its own branch, merged when done
+  for i in 1 2 3 4; do
+      case $i in
+          1) NAME="core-features"     ;;
+          2) NAME="main-features"     ;;
+          3) NAME="advanced-features" ;;
+          4) NAME="final-polish"      ;;
+      esac
+
+      git checkout -b "increment/$NAME"
+      echo "Increment $i: $NAME" >> progress.txt
+      git add progress.txt
+      git commit -m "[Inc-$i] $NAME: Development started"
+      git commit --allow-empty -m "[Inc-$i] $NAME: Code complete"
+      git commit --allow-empty -m "[Inc-$i] $NAME: Tests passing"
+      git commit --allow-empty -m "[Inc-$i] $NAME: DELIVERED to customer"
+
+      git checkout main
+      git merge "increment/$NAME" \
+          -m "RELEASE $i: $NAME delivered to customer"
+      echo "Increment $i complete and delivered."
+  done
+
+  echo ""
+  echo "=== INCREMENTAL PROJECT HISTORY ==="
+  git log --oneline --graph --all
+
+  echo ""
+  echo "Total increments delivered: 4"
+  echo "Customer received working software after each merge."
+  . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+
+
+
+============================================================
+  LAB SUMMARY AND WHAT YOU LEARNED
+============================================================
+
+  .......................................................
+  Lab  Tool            Model        What Simulated
+  .......................................................
+  1    Google Colab    Waterfall    Phases, time, defects,
+       (Python)                     charts, overrun analysis
+
+  2    Google Colab    Incremental  Iterations, learning
+       (Python)                     curve, satisfaction
+                                    improvement
+
+  3    Google Colab    Comparison   Both models head to
+       (Python)                     head on same project
+
+  4    KillerCoda      Waterfall +  Shell phases, logging,
+       (Bash)          Incremental  artifact creation
+
+  5    Docker          Waterfall    Isolated containers
+                                    per phase, artifact
+                                    passing, dependency
+                                    enforcement
+
+  6    Git             Both models  Branches = phases,
+       (Linux)                      commits = tasks,
+                                    merge = integration,
+                                    log = project timeline
+  .......................................................
+
+
+  KEY OBSERVATIONS ACROSS ALL LABS:
+  ...................................
+
+  . WATERFALL shows cascade effect: delay in one phase
+    delays ALL subsequent phases.
+
+  . INCREMENTAL shows learning curve: later increments
+    are faster and produce fewer defects.
+
+  . Docker lab shows DEPENDENCY: later phases cannot
+    run without earlier phase artifacts.
+
+  . Git lab shows TRACEABILITY: every decision, fix,
+    and delivery is recorded with timestamp.
+
+  . In ALL labs: adding random variation simulates
+    the unpredictability of real software projects.
+
+
+  QUESTIONS TO ANSWER AFTER DOING LABS:
+  ......................................
+
+  . Which model had shorter total duration?
+  . In which model did defects decrease over time?
+  . Which phase caused the biggest overrun in Waterfall?
+  . At what increment did customer satisfaction reach 4.0+?
+  . In Docker lab: what happened when you ran phases
+    out of order?
+  . In Git lab: how many commits represent each phase?
+
+
+
+
+============================================================
+  TOOLS REFERENCE
+============================================================
+
+  .......................................................
+  Tool          Access                    Cost
+  .......................................................
+  Google Colab  colab.research.google.com Free
+  KillerCoda    killercoda.com            Free (1hr sessions)
+  Docker        killercoda.com/Docker     Free
+                OR local Ubuntu
+  Git           Pre-installed on          Free
+                KillerCoda / Ubuntu
+  Python        Pre-installed on Colab    Free
+  .......................................................
+
+
+  SETUP CHEATSHEET (KillerCoda Ubuntu):
+  ......................................
+
+  . sudo apt update -y
+  . sudo apt install -y git python3 python3-pip bc
+  . pip3 install pandas matplotlib numpy
+  . docker --version   (already installed on KillerCoda)
+  . python3 --version
+  . git --version
+
+
+  FILE EXTENSIONS USED IN LABS:
+  ..............................
+
+  . .py   Python scripts (Colab)
+  . .sh   Bash shell scripts (Linux)
+  . .txt  Phase artifact files
+  . .md   Markdown documentation (Git)
+  . All created in the lab — nothing to download.
+
+============================================================
+              END OF LAB GUIDE — UNIT VI 6.1
+============================================================
