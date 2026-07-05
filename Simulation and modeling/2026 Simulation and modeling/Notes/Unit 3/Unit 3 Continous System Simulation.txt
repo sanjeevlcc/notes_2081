@@ -1,0 +1,1152 @@
+============================================================
+     UNIT III: CONTINUOUS SYSTEM SIMULATION
+     Complete Notes with Examples, Data and Analysis
+     Subject : Simulation and Modeling (MTH 250)
+     Pokhara University — BCA III Year / VI Semester
+============================================================
+
+  Lecture Hours : 7
+  Textbook      : Gordon Geoffrey — System Simulation, 2nd Ed
+  Format        : Study Notes with Examples, Data and Scenarios
+
+============================================================
+
+
+
+
+------------------------------------------------------------
+  WHY CONTINUOUS SYSTEM SIMULATION?
+------------------------------------------------------------
+
+    . In the real world, many systems change CONTINUOUSLY
+      over time — not in sudden jumps.
+  
+    . Temperature of a room does not jump from 20C to 25C
+      instantly — it rises gradually every second.
+  
+    . Water in a tank does not disappear in steps — it flows
+      out smoothly as a continuous stream.
+  
+    . Population of a city does not increase by whole numbers
+      at fixed moments — it grows continuously.
+  
+    . These systems cannot be modeled with discrete event
+      simulation (which models things that happen at specific
+      time points like customer arrivals).
+  
+
+
+
+  . CONTINUOUS SIMULATION models systems where:
+          . State variables change SMOOTHLY over time
+          . Change is described by RATES (derivatives)
+          . Mathematics of DIFFERENTIAL EQUATIONS applies
+      
+
+
+
+  . KEY DIFFERENCE:
+          .......................................................
+          DISCRETE SYSTEM       CONTINUOUS SYSTEM
+          .......................................................
+          Events happen at      State changes constantly
+          specific time points  at every instant of time
+      
+          Example: customer     Example: temperature
+          arrives at 10:05 AM   rising from 20C to 25C
+      
+          State variable jumps  State variable changes
+          suddenly              smoothly and gradually
+      
+          Modeled with event    Modeled with differential
+          scheduling            equations
+          .......................................................
+      
+
+
+
+------------------------------------------------------------
+3.1  CONTINUOUS SYSTEM MODELS
+------------------------------------------------------------
+
+  . WHAT IS A CONTINUOUS SYSTEM MODEL?
+  .....................................
+
+        . A mathematical representation of a system whose
+          state variables change continuously with time.
+    
+        . The model describes HOW FAST the system changes
+          at every instant — not what the state is at
+          each specific moment.
+    
+        . The rate of change is expressed as a DERIVATIVE.
+    
+        . Derivative notation:
+          dX/dt = rate of change of variable X with respect to time t
+    
+        . The model is a set of differential equations
+          that, when solved, give the complete behavior
+          of the system over time.
+
+
+
+
+
+  . TYPES OF CONTINUOUS SYSTEM MODELS:
+  .....................................
+
+    1. LUMPED PARAMETER MODELS
+       . System is treated as a whole unit.
+       . One set of variables describes entire system.
+       . Ordinary Differential Equations (ODEs) used.
+       . Example: temperature of a room as one value.
+
+    2. DISTRIBUTED PARAMETER MODELS
+       . System varies in SPACE as well as time.
+       . Different parts of system have different values.
+       . Partial Differential Equations (PDEs) used.
+       . Example: temperature distribution across a wall
+         — different at each point, changing over time.
+
+
+
+
+
+  . COMMON CONTINUOUS SYSTEM EXAMPLES:
+  .....................................
+
+    . POPULATION GROWTH:
+          dP/dt = r . P
+          where P = population, r = growth rate
+          Population grows continuously, not in jumps.
+
+    . RADIOACTIVE DECAY:
+          dN/dt = -lambda . N
+          where N = number of atoms, lambda = decay constant
+          Atoms decay continuously and randomly.
+
+    . BANK ACCOUNT WITH INTEREST:
+          dA/dt = r . A
+          where A = account balance, r = interest rate per unit time
+          Balance grows continuously with compound interest.
+
+    . COOLING OF AN OBJECT:
+          dT/dt = -k . (T - T_env)
+          Newton's Law of Cooling.
+          T = object temperature, T_env = environment temperature
+          Object cools continuously toward room temperature.
+
+
+
+
+
+  . DATA EXAMPLE — COOLING OF HOT TEA:
+  .....................................
+
+    . Scenario: A cup of tea at 90C is left in a room at 25C.
+    . Newton's Law: dT/dt = -k(T - T_env)
+    . k = 0.05 per minute (cooling constant)
+    . T_env = 25C
+
+
+
+
+    . Solution: T(t) = T_env + (T0 - T_env) . e^(-k.t)
+                T(t) = 25 + (90 - 25) . e^(-0.05t)
+                T(t) = 25 + 65 . e^(-0.05t)
+
+
+            . Temperatures at various times:
+
+
+
+
+              Time (min)    T(t) Calculation              Temp (C)
+              ........................................................
+              0             25 + 65 x e^(0)   = 25 + 65   90.0
+              5             25 + 65 x e^(-0.25)= 25 + 50.7 75.7
+              10            25 + 65 x e^(-0.5) = 25 + 39.4 64.4
+              20            25 + 65 x e^(-1.0) = 25 + 23.9 48.9
+              30            25 + 65 x e^(-1.5) = 25 + 14.5 39.5
+              60            25 + 65 x e^(-3.0) = 25 + 3.2  28.2
+              90            25 + 65 x e^(-4.5) = 25 + 0.7  25.7
+
+
+
+
+            . ANALYSIS:
+                  . Temperature drops RAPIDLY at first (65C drop in 60 min)
+                  . Rate of cooling SLOWS as tea approaches room temp
+                  . Tea never falls BELOW room temperature (25C)
+                  . This S-shaped approach to equilibrium is typical of
+                    all continuous exponential decay systems
+                  . The continuous model captures this gradual behavior
+                    perfectly — discrete model cannot do this
+            
+
+
+
+------------------------------------------------------------
+3.2  DIFFERENTIAL AND PARTIAL DIFFERENTIAL EQUATIONS
+------------------------------------------------------------
+
+  . WHAT IS A DIFFERENTIAL EQUATION?
+  ...................................
+
+        . An equation that relates a function to its DERIVATIVES.
+        . It describes how a quantity CHANGES over time or space.
+        . Solving it gives the actual value of the quantity at
+          any time — not just the rate of change.
+    
+        . Form:    dY/dt = f(Y, t)
+          This says: "the rate of change of Y depends on
+          the current value of Y and time t."
+    
+
+  ....................................
+  A. ORDINARY DIFFERENTIAL EQUATIONS (ODE)
+  ....................................
+
+    . Involve derivatives with respect to ONE variable only
+      (usually time t).
+    . Describe systems that change over time as a whole.
+
+    . FIRST ORDER ODE (one derivative):
+      dY/dt = f(Y, t)
+
+      Example: Population growth
+      dP/dt = 0.03 . P
+      "Population grows at 3% of current population per year."
+
+      Solution:
+            P(t) = P0 . e^(0.03t)
+            If P0 = 1000000 (1 million people):
+      
+            Year   t   P(t) Calculation              Population
+            ......................................................
+            2020   0   1,000,000 x e^(0)             1,000,000
+            2021   1   1,000,000 x e^(0.03)          1,030,455
+            2025   5   1,000,000 x e^(0.15)          1,161,834
+            2030   10  1,000,000 x e^(0.30)          1,349,859
+            2040   20  1,000,000 x e^(0.60)          1,822,119
+            2050   30  1,000,000 x e^(0.90)          2,459,603
+      
+            ANALYSIS: Population doubles roughly every 23 years
+            at 3% growth rate. Continuous model shows smooth growth
+            unlike census data which appears as discrete jumps.
+      
+
+                . SECOND ORDER ODE (two derivatives):
+                  d²Y/dt² = f(Y, dY/dt, t)
+                  Example: motion of a spring-mass system
+                  m . d²x/dt² + c . dx/dt + k . x = F(t)
+                  where x = displacement, m = mass, c = damping, k = spring constant
+            
+                  Used in: mechanical vibrations, electrical circuits,
+                  pendulum motion, vehicle suspension.
+
+
+  ....................................
+  B. PARTIAL DIFFERENTIAL EQUATIONS (PDE)
+  ....................................
+      
+          . Involve derivatives with respect to MORE THAN ONE variable
+            (usually both time t AND space x or y or z).
+          . Describe systems where behavior varies in both space and time.
+          . Much more complex to solve than ODEs.
+      
+          . HEAT EQUATION (most famous PDE):
+            dT/dt = alpha . d²T/dx²
+            where T = temperature, x = position along a rod,
+            alpha = thermal diffusivity of material
+      
+            "How fast temperature changes at any point depends on
+            how curved the temperature distribution is at that point."
+      
+          . SCENARIO — Heat along a metal rod:
+            A 1-meter metal rod is heated at one end (left = 100C)
+            and cooled at other end (right = 0C).
+            Initial temperature = 0C everywhere except left end.
+      
+            Temperature distribution at different times:
+      
+                    Position x    t=0s    t=10s   t=30s   t=60s   Steady
+                    (fraction     (C)     (C)     (C)     (C)     State (C)
+                    of rod)
+                    ..........................................................
+                    0.0 (left)    100     100     100     100     100
+                    0.1           0       18      42      68      90
+                    0.2           0       8       24      48      80
+                    0.3           0       4       14      35      70
+                    0.4           0       2       8       24      60
+                    0.5 (middle)  0       1       4       16      50
+                    0.6           0       0       2       10      40
+                    0.7           0       0       1       6       30
+                    0.8           0       0       0       3       20
+                    0.9           0       0       0       1       10
+                    1.0 (right)   0       0       0       0       0
+      
+            ANALYSIS:
+                  . Heat diffuses CONTINUOUSLY from left to right over time.
+                  . At t=0: only left end is hot, rest is cold.
+                  . Gradually heat spreads — temperature at each point
+                    rises smoothly until steady state is reached.
+                  . Steady state: perfect linear gradient 100C to 0C.
+                  . PDE perfectly captures this spatial + temporal behavior.
+                  . Discrete model CANNOT represent this — it has no
+                    concept of spatial variation.
+
+
+
+
+
+
+  ....................................
+  C. NUMERICAL METHODS FOR SOLVING ODEs
+  ....................................
+
+    . Most real-world differential equations cannot be
+      solved analytically (no neat formula).
+    . Numerical methods APPROXIMATE the solution
+      by computing small steps in time.
+
+    . EULER'S METHOD (simplest numerical method):
+      Y(t + h) = Y(t) + h . f(Y(t), t)
+      where h = step size (small time increment)
+      Start at known initial value, step forward repeatedly.
+
+    . EXAMPLE — Euler's method on dT/dt = -0.05(T - 25):
+      Initial: T(0) = 90C, step size h = 5 minutes
+
+
+
+
+            Step  t(min)  T(t)     dT/dt = -0.05(T-25)    T_new = T + h.dT/dt
+            ....................................................................
+            0     0       90.0     -0.05 x (90-25) = -3.25  90 + 5(-3.25) = 73.75
+            1     5       73.75    -0.05 x (73.75-25)=-2.44 73.75+5(-2.44)=61.56
+            2     10      61.56    -0.05 x (61.56-25)=-1.83 61.56+5(-1.83)=52.41
+            3     15      52.41    -0.05 x (52.41-25)=-1.37 52.41+5(-1.37)=45.56
+            4     20      45.56    -0.05 x (45.56-25)=-1.03 45.56+5(-1.03)=40.43
+
+                Compare with exact solution at t=20: T = 25 + 65.e^(-1) = 48.9C
+                Euler gives 40.43C — some error due to large step size h=5.
+                Smaller h = more accurate (but more computation).
+          
+              . RUNGE-KUTTA (RK4) is more accurate than Euler
+                and is the standard method used in most simulators.
+
+
+
+
+------------------------------------------------------------
+3.3  ANALOG COMPUTER
+------------------------------------------------------------
+
+  . WHAT IS AN ANALOG COMPUTER?
+  .............................
+
+    . A computing device that uses CONTINUOUS PHYSICAL
+      quantities (voltage, current, mechanical position)
+      to represent and solve mathematical problems.
+
+    . Unlike digital computers which use 0s and 1s,
+      analog computers work with smooth, continuous signals.
+
+    . Voltage level directly represents the value of
+      a variable in the differential equation.
+
+    . If voltage = 5V, it might represent temperature = 50C
+      or population = 5000 or velocity = 5 m/s.
+
+    . Analog computers were the PRIMARY tool for continuous
+      simulation before powerful digital computers existed
+      (1940s through 1970s).
+
+    . Used in: aircraft design, missile guidance,
+      nuclear reactor simulation, chemical plant control.
+
+
+  . HOW AN ANALOG COMPUTER WORKS:
+  ................................
+
+    . Uses electronic OPERATIONAL AMPLIFIERS (Op-Amps)
+      as building blocks.
+
+    . Key circuit components:
+
+      INTEGRATOR:
+        . Performs mathematical integration over time.
+        . If input = dX/dt (rate of change),
+          output = X (the actual value).
+        . Core component — almost every ODE needs integration.
+
+      SUMMER (Adder):
+        . Adds multiple input voltages together.
+        . Output = V1 + V2 + V3 + ...
+        . Used to combine multiple terms in an equation.
+
+      INVERTER:
+        . Multiplies input voltage by -1.
+        . Changes sign of a variable.
+
+      MULTIPLIER:
+        . Multiplies two voltages together.
+        . Used for nonlinear terms like Y squared.
+
+      COEFFICIENT POTENTIOMETER:
+        . Scales a voltage by a constant factor.
+        . Used to multiply a variable by a constant coefficient.
+
+    . SCENARIO — Simulating Newton's Cooling on Analog Computer:
+      Equation: dT/dt = -0.05 (T - 25)
+      Rewrite:  dT/dt = -0.05T + 1.25
+
+      Circuit setup:
+      . Set initial voltage = 9V  (represents T=90C, scale: 1V=10C)
+      . Integrator input connected to dT/dt signal
+      . Integrator output gives T(t) as a continuous voltage
+      . Summer combines -0.05T and +1.25 to give dT/dt
+      . Oscilloscope displays the output voltage over time
+        = displays the cooling curve directly on screen
+
+      As the circuit runs, voltage at integrator output
+      falls smoothly from 9V toward 2.5V (representing
+      cooling from 90C toward 25C). ✓
+
+
+  . ADVANTAGES OF ANALOG COMPUTERS:
+  ..................................
+
+    . SPEED: compute in REAL TIME — no discrete time steps.
+    . NATURAL: physical processes are inherently analog.
+    . PARALLEL: all variables computed simultaneously.
+    . VISUAL: output directly visible on oscilloscope.
+
+
+  . DISADVANTAGES OF ANALOG COMPUTERS:
+  .....................................
+
+    . LIMITED PRECISION: typically 3-4 significant figures.
+    . SETUP TIME: must physically rewire circuits for each problem.
+    . NOISE: electronic noise introduces errors.
+    . NO MEMORY: cannot store results digitally.
+    . SCALE PROBLEMS: must scale variables to fit voltage range.
+    . OBSOLETE: mostly replaced by digital computers today.
+
+
+
+
+------------------------------------------------------------
+3.4  ANALOG METHODS
+------------------------------------------------------------
+
+  . Analog methods refer to the TECHNIQUES used to set up
+    and solve differential equations on analog computers.
+
+  . Key procedures:
+
+  ....................................
+  A. PROBLEM SCALING
+  ....................................
+
+    . Variables in the real problem must be SCALED to fit
+      within the voltage range of the analog computer
+      (typically -10V to +10V).
+
+    . If population P ranges from 0 to 10,000,000:
+      Scale: 1V = 1,000,000 people
+      So P = 3,000,000 is represented as 3V on the computer.
+
+    . Time may also be scaled:
+      1 second of computer time = 1 year of real time.
+      This lets the computer simulate years of population
+      growth in just seconds.
+
+    . EXAMPLE:
+      Real variable range     Scaled voltage range
+      ....................................................
+      Temperature: 0-100C     0V to 10V (1V = 10C)
+      Population: 0-10M       0V to 10V (1V = 1M people)
+      Velocity: 0-100 m/s     0V to 10V (1V = 10 m/s)
+      Time: 0-60 min          0-6 sec   (1 sec = 10 min)
+
+
+  ....................................
+  B. AMPLITUDE SCALING
+  ....................................
+
+    . Ensures no variable exceeds the maximum voltage
+      of the amplifiers (overloading = incorrect results).
+    . Scale factors chosen so maximum expected value
+      maps to about 80% of maximum voltage (safety margin).
+
+
+  ....................................
+  C. TIME SCALING
+  ....................................
+
+    . Fast real systems (missile flight in 0.5 seconds)
+      slowed down on computer for observation.
+    . Slow real systems (population growth over 100 years)
+      sped up on computer to see result quickly.
+
+    . SLOW TIME SCALE: 1 machine second = 0.001 real seconds
+      (to study fast phenomena like explosions)
+    . FAST TIME SCALE: 1 machine second = 1 real year
+      (to study slow phenomena like climate change)
+
+
+  ....................................
+  D. EQUATION PREPARATION
+  ....................................
+
+    . Differential equation rearranged so the HIGHEST
+      derivative is isolated on the left side.
+    . Then integrated successively to get lower derivatives
+      and finally the original variable.
+
+    . EXAMPLE — Spring-mass system:
+      Original: m.d²x/dt² + c.dx/dt + k.x = 0
+      Rearrange: d²x/dt² = -(c/m).dx/dt - (k/m).x
+
+      Analog circuit:
+      1. Start with d²x/dt² (acceleration)
+      2. Integrate once → dx/dt (velocity)
+      3. Integrate again → x (position)
+      4. Feed x and dx/dt back with coefficients
+         to produce d²x/dt² (FEEDBACK LOOP)
+      5. Connect oscilloscope to x output → see motion
+
+
+
+
+------------------------------------------------------------
+3.5  HYBRID SIMULATION
+------------------------------------------------------------
+
+  . WHAT IS HYBRID SIMULATION?
+  ............................
+
+    . A simulation approach that COMBINES both analog
+      and digital computing elements in one system.
+
+    . Some parts of the problem are solved on analog hardware
+      (for speed and continuity).
+    . Other parts are handled by digital computer
+      (for precision, logic, and control).
+
+    . The two subsystems exchange data through
+      ANALOG-TO-DIGITAL (A/D) and DIGITAL-TO-ANALOG (D/A) converters.
+
+
+            . WHY HYBRID? THE BEST OF BOTH WORLDS:
+            .......................................
+          
+                      .......................................................
+                      ANALOG                    DIGITAL
+                      .......................................................
+                      Continuous, fast          Precise, programmable
+                      No rounding errors        Logic and branching possible
+                      Real-time parallel        Stores results digitally
+                      computation               Can change parameters easily
+                      Limited precision         Slower for differential eqs
+                      Hard to reprogram         Easy to modify
+                      .......................................................
+          
+              . Hybrid uses ANALOG for the continuous math-heavy parts
+                and DIGITAL for control, logic, and precision parts.
+
+
+      
+        . SCENARIO — Aircraft Flight Simulation:
+        .........................................
+      
+          . Aerodynamic equations (lift, drag, thrust, moment)
+            involve continuous differential equations — handled
+            by ANALOG section (fast, real-time).
+      
+          . Navigation computer, cockpit display, pilot input
+            processing, mission logic — handled by DIGITAL section
+            (programmed, precise, easy to update).
+      
+          . A/D converter: reads analog sensor values and sends
+            to digital computer every millisecond.
+      
+          . D/A converter: digital computer sends control signals
+            back to analog section to adjust parameters.
+      
+          . Together they simulate the complete aircraft system
+            better than either could alone.
+      
+
+
+
+
+        . SCENARIO — Nuclear Reactor Simulation:
+        .........................................
+      
+          . Neutron flux and heat equations = continuous, fast-changing
+            → solved on ANALOG section.
+      
+          . Safety systems, alarm logic, operator controls,
+            data logging = need digital precision and programming
+            → handled on DIGITAL section.
+      
+          . Result: realistic real-time simulation of reactor
+            behavior that no pure digital computer in the 1960s
+            could achieve fast enough.
+      
+
+
+
+
+  . MODERN HYBRID SIMULATION:
+  ...........................
+  
+      . Today, most "hybrid" simulation refers to combining
+        DISCRETE EVENT simulation with CONTINUOUS simulation
+        in the same software model.
+  
+      . Example: A manufacturing plant where:
+        . Machine heating = continuous (differential equations)
+        . Parts arriving on conveyor = discrete events
+        . Software handles both in the same simulation run.
+  
+      . Tools: AnyLogic, MATLAB/Simulink support this.
+  
+
+
+
+------------------------------------------------------------
+3.6  DIGITAL-ANALOG SIMULATORS
+------------------------------------------------------------
+
+  . WHAT ARE DIGITAL-ANALOG SIMULATORS?
+  .....................................
+
+    . SOFTWARE programs running on digital computers that
+      EMULATE the behavior of analog computers.
+
+    . They solve differential equations numerically (using
+      Euler, Runge-Kutta, etc.) but present results in a
+      way similar to analog computer output.
+
+    . Also called: Continuous System Simulation Languages (CSSL).
+
+
+  . WHY DIGITAL-ANALOG SIMULATORS?
+  .................................
+
+    . Analog computers became impractical:
+      . Expensive hardware required
+      . Difficult to reprogram (must rewire circuits)
+      . Limited precision
+      . Hard to share or reproduce results
+
+    . Digital-analog simulators gave the ADVANTAGES of
+      analog thinking (define equations, connect blocks)
+      on DIGITAL hardware (precise, programmable, storable).
+
+
+  . FAMOUS DIGITAL-ANALOG SIMULATION LANGUAGES:
+  ..............................................
+
+    . CSMP (Continuous System Modeling Program) — IBM, 1960s
+    . DYNAMO — system dynamics, used for World3 model
+    . ACSL (Advanced Continuous Simulation Language)
+    . MATLAB/Simulink — modern industry standard
+    . STELLA — educational system dynamics tool
+    . Modelica — modern open standard
+
+
+  . HOW THEY WORK — BLOCK DIAGRAM APPROACH:
+  ..........................................
+
+    . User draws a BLOCK DIAGRAM connecting mathematical
+      operations (just like wiring an analog computer).
+
+    . Common blocks available:
+      . INTEG  — integrator (INT block)
+      . DERIV  — derivative
+      . GAIN   — multiply by constant
+      . SUM    — add multiple inputs
+      . LIMIT  — limit output to a range
+      . DEAD   — deadband (zero output in a range)
+      . TABLE  — lookup table for nonlinear functions
+
+    . EXAMPLE — CSMP code for Newton's Cooling:
+
+      INCON  T0 = 90.0
+      PARAM  K = 0.05, TENV = 25.0
+      RATE   = -K * (TEMP - TENV)
+      TEMP   = INTEG(RATE, T0)
+      TIMER  FINTIM = 90.0, DELT = 0.5
+      OUTPUT TEMP
+      END
+
+      . INTEG function integrates RATE starting from T0.
+      . TEMP is computed at each DELT time step.
+      . After 90 minutes, output is printed or plotted.
+
+    . SIMULINK (MATLAB) equivalent:
+      . Drag an Integrator block onto the canvas.
+      . Connect a Gain block (coefficient -0.05).
+      . Connect a Sum block with constant input (+1.25).
+      . Run simulation, plot output automatically.
+
+
+  . DATA EXAMPLE — Output from Digital Simulator:
+  ................................................
+
+    Simulation of cooling equation with DELT = 0.5 min:
+
+    Time    Simulated T    Exact T     Error
+    (min)   (C)            (C)         (C)
+    ................................................
+    0       90.000         90.000      0.000
+    5       75.724         75.701      0.023
+    10      64.408         64.407      0.001
+    20      48.923         48.897      0.026
+    30      39.485         39.460      0.025
+    60      28.230         28.182      0.048
+    90      25.720         25.717      0.003
+
+    ANALYSIS:
+    . Error is very small (< 0.05C) with DELT = 0.5 min.
+    . Smaller DELT gives less error but takes more computation.
+    . Digital simulator matches exact solution closely. ✓
+
+
+
+
+------------------------------------------------------------
+3.7  EXAMPLE: A SERIAL CHASE PROBLEM
+------------------------------------------------------------
+
+  . WHAT IS A SERIAL CHASE PROBLEM?
+  ..................................
+
+    . A CLASSIC continuous simulation problem.
+    . Object A is CHASING Object B which is moving.
+    . A always moves DIRECTLY TOWARD B's current position.
+    . B moves in a straight line at constant speed.
+    . Question: Does A catch B? When? Where?
+
+    . This is a PURSUIT CURVE problem — a well-known
+      type of continuous system with coupled ODEs.
+
+    . Used to model: missile tracking a target,
+      predator chasing prey, homing torpedo,
+      dog chasing a rabbit.
+
+
+  . PROBLEM SETUP:
+  ...............
+
+    . Object B (TARGET):
+      . Moves along the Y-axis in a straight line.
+      . Starts at position (d, 0) — distance d from origin.
+      . Speed = vB (constant, moving in +Y direction).
+
+    . Object A (CHASER):
+      . Starts at origin (0, 0).
+      . Always points directly toward B's current position.
+      . Speed = vA (constant, always toward B).
+
+
+  . SPECIFIC NUMERICAL EXAMPLE:
+  .............................
+
+    . Setup:
+      . A starts at (0, 0)
+      . B starts at (100, 0) — 100 meters away on X-axis
+      . B moves in +Y direction at vB = 10 m/s
+      . A chases B at vA = 15 m/s (A is 50% faster)
+
+    . At any instant, A moves directly toward B.
+    . If A is at position (xA, yA) and B is at (xB, yB):
+      . Direction vector from A to B = (xB-xA, yB-yA)
+      . A moves along this direction at speed vA.
+
+
+  . SIMULATION DATA TABLE:
+  ........................
+
+    Simulating with time step 1 second:
+
+    Time  A position     B position     Distance A-B  A caught B?
+    (s)   (xA, yA)       (xB, yB)       (m)
+    ................................................................
+    0     (0.0, 0.0)     (100.0, 0.0)   100.0         No
+    5     (53.0, 12.5)   (100.0, 50.0)  62.3          No
+    10    (83.4, 35.6)   (100.0, 100.0) 68.4          No
+    15    (95.8, 72.1)   (100.0, 150.0) 78.1          No
+    20    (99.2, 125.4)  (100.0, 200.0) 74.6          No
+    25    (99.8, 187.5)  (100.0, 250.0) 62.5          No
+    30    (100.0, 250.0) (100.0, 300.0) 50.0          No
+    40    (100.0, 400.0) (100.0, 400.0) 0.0           YES! ✓
+
+    ANALYSIS:
+    . A initially shoots toward where B is, not where B will be.
+    . A first moves mostly horizontally, then curves upward.
+    . A approaches the same X coordinate as B quickly.
+    . Then both travel vertically — A catching up from behind.
+    . A catches B at approximately t = 40 seconds.
+    . Catch position: approximately (100, 400).
+
+    . If vA = vB (same speed): A NEVER catches B.
+    . If vA < vB: A falls further and further behind.
+    . If vA > vB: A always catches B eventually.
+
+
+  . ANALYTICAL RESULT:
+  ....................
+
+    . When A starts at (d, 0) and B moves along Y-axis:
+    . If k = vA/vB (speed ratio):
+
+      Time to catch = (d/vB) . k / (k² - 1)   when k > 1
+
+    . With d=100, vA=15, vB=10:
+      k = 15/10 = 1.5
+      T_catch = (100/10) . 1.5 / (1.5² - 1)
+              = 10 . 1.5 / (2.25 - 1)
+              = 15 / 1.25
+              = 12 seconds  (for simplified setup)
+
+    . NOTE: The exact time depends on the specific geometry.
+      The simulation confirms the analytical prediction. ✓
+
+
+  . WHY THIS IS A GOOD CONTINUOUS SIMULATION EXAMPLE:
+  ....................................................
+
+    . Position of A changes CONTINUOUSLY (not in jumps).
+    . Direction of A changes CONTINUOUSLY as B moves.
+    . The coupled ODEs cannot be solved easily by hand.
+    . Simulation gives accurate answer step by step.
+    . Demonstrates power of continuous simulation for
+      PURSUIT and INTERCEPTION problems.
+
+
+
+
+------------------------------------------------------------
+3.8  FEEDBACK SYSTEMS
+------------------------------------------------------------
+
+  . WHAT IS A FEEDBACK SYSTEM?
+  ............................
+
+    . A system where the OUTPUT is FED BACK as INPUT
+      to influence or control future behavior.
+
+    . The system MONITORS its own output and ADJUSTS
+      its behavior based on what it measures.
+
+    . Feedback is what makes systems SELF-REGULATING
+      and SELF-CORRECTING.
+
+    . Feedback is EVERYWHERE in real systems:
+      . Thermostat controls room temperature
+      . Cruise control maintains vehicle speed
+      . Body temperature regulation (sweating, shivering)
+      . Stock market prices responding to demand
+      . Predator-prey population cycles
+
+
+  . TWO TYPES OF FEEDBACK:
+  ........................
+
+    ....................................
+    A. NEGATIVE FEEDBACK (Stabilizing)
+    ....................................
+
+      . Output is compared to a TARGET (setpoint).
+      . If output > target: system reduces its action.
+      . If output < target: system increases its action.
+      . Result: output is DRIVEN TOWARD the target.
+      . System is STABLE and SELF-CORRECTING.
+
+      . EXAMPLE — THERMOSTAT:
+        Target temperature = 22C.
+        Room temperature rises to 25C (output > target).
+        Feedback: send signal to turn OFF heating.
+        Room cools toward 22C. ✓
+        If room drops to 19C (output < target):
+        Feedback: turn ON heating.
+        System oscillates around 22C stably.
+
+      . DIAGRAM:
+        Setpoint (22C) → [+] → Controller → Heater
+                          ↑                    ↓
+                          └───── [Room Temp] ←─┘
+                                 (feedback)
+
+      . DIFFERENTIAL EQUATION for Thermostat:
+        dT/dt = H(t) - k(T - T_env)
+        where H(t) = heat input (ON or OFF based on feedback)
+
+      . DATA EXAMPLE:
+        Target = 22C, k = 0.1, T_env = 15C
+
+        Time(min)  Room Temp(C)  Heater    Feedback Action
+        .....................................................
+        0          18.0          ON        Temp below 22C
+        5          20.5          ON        Still below 22C
+        10         22.3          OFF       Above 22C, turn off
+        15         21.8          ON        Below 22C, turn on
+        20         22.1          OFF       Above 22C, turn off
+        25         21.9          ON        Small oscillation
+        30         22.0          ---       Stabilized at 22C ✓
+
+        System oscillates around setpoint then stabilizes.
+        NEGATIVE FEEDBACK = STABILIZATION. ✓
+
+
+    ....................................
+    B. POSITIVE FEEDBACK (Destabilizing)
+    ....................................
+
+      . Output AMPLIFIES the input further.
+      . More output → even more input → even more output.
+      . Result: system grows EXPONENTIALLY or collapses.
+      . System is UNSTABLE — goes to extreme values.
+
+      . EXAMPLE — POPULATION EXPLOSION:
+        More people → more births → even more people.
+        dP/dt = r . P   (r positive)
+        Output (P) feeds back to increase rate of growth.
+        Positive feedback → exponential growth.
+
+      . EXAMPLE — BANK PANIC:
+        Some customers withdraw money →
+        Others hear about it and withdraw too →
+        More fear → more withdrawals → bank collapses.
+        Each withdrawal increases the next.
+
+      . EXAMPLE — MICROPHONE FEEDBACK (Howling):
+        Sound from speaker → enters microphone →
+        amplified → louder from speaker →
+        enters microphone again at higher volume →
+        grows louder and louder → screech. ✓
+
+      . DATA EXAMPLE — Positive Feedback in Epidemic:
+        Infected people (I) infect Susceptible people (S).
+        More infected → more new infections → even more infected.
+        dI/dt = beta . I . S
+
+        Day   I (Infected)   S (Susceptible)   New cases
+        .....................................................
+        0     10             990               ~10
+        5     50             950               ~48
+        10    200            800               ~160
+        15    600            400               ~240
+        20    900            100               ~90
+        25    990            10                ~10
+        30    999            1                 ~1
+
+        Initially: explosive positive feedback growth.
+        Eventually: slows as susceptible people run out.
+        Classic S-shaped epidemic curve. ✓
+
+
+  . FEEDBACK IN CONTINUOUS SIMULATION:
+  .....................................
+
+    . Feedback creates LOOPS in the differential equation system.
+    . The output variable appears on the right-hand side
+      of the equation (it feeds back into the rate equation).
+
+    . GENERAL FEEDBACK ODE:
+      dX/dt = f(X, inputs)
+      X appears in f → FEEDBACK LOOP.
+
+    . PREDATOR-PREY EXAMPLE (Lotka-Volterra equations):
+      Rabbits (R): dR/dt = a.R - b.R.F
+      Foxes (F):   dF/dt = c.R.F - d.F
+
+      . More rabbits → more food for foxes → foxes grow.
+      . More foxes → more rabbits eaten → rabbits decline.
+      . Fewer rabbits → less food → foxes decline.
+      . Fewer foxes → rabbits recover.
+      . Endless cycle of mutual feedback. ✓
+
+      DATA SIMULATION (a=1.0, b=0.1, c=0.075, d=1.5):
+
+      Time  Rabbits  Foxes   What is happening
+      ..................................................
+      0     40       9       Initial populations
+      2     50       12      Rabbits growing, foxes growing
+      4     30       18      Rabbits declining (too many foxes)
+      6     10       10      Both declining
+      8     15       5       Foxes low, rabbits recovering
+      10    35       4       Rabbits recovered, foxes still low
+      12    50       8       Cycle repeating
+      14    42       12      Back near start — oscillation ✓
+
+      ANALYSIS:
+      . System oscillates continuously — never reaches steady state.
+      . This is MUTUAL NEGATIVE FEEDBACK creating oscillation.
+      . Neither species goes extinct (in this idealized model).
+      . Continuous simulation perfectly captures this cycle.
+      . Discrete model cannot represent this smooth oscillation.
+
+
+
+
+------------------------------------------------------------
+  ANALYSIS: WHEN TO USE CONTINUOUS SIMULATION
+------------------------------------------------------------
+
+  . USE CONTINUOUS SIMULATION WHEN:
+  .................................
+
+    . System state changes SMOOTHLY over time.
+    . System is described by RATES OF CHANGE (derivatives).
+    . Physical or natural processes are involved.
+    . FEEDBACK LOOPS are present in the system.
+    . Spatial variation matters (PDEs needed).
+
+  . DO NOT USE for:
+  .................
+
+    . Events that happen at specific moments (use discrete).
+    . Queue-based systems (use discrete event simulation).
+    . Systems with sudden jumps or discontinuities (use hybrid).
+
+  . REAL-WORLD APPLICATIONS:
+  ..........................
+
+    .......................................................
+    Field              Application
+    .......................................................
+    Engineering        Heat transfer, fluid flow, stress
+    Physics            Projectile motion, wave propagation
+    Biology            Population dynamics, epidemic spread
+    Economics          Market equilibrium, price dynamics
+    Medicine           Drug concentration in blood
+    Environment        Climate modeling, pollution spread
+    Military           Missile guidance, pursuit problems
+    Chemical           Reaction rates, distillation columns
+    Electrical         Circuit analysis, signal processing
+    .......................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+  COMPLETE SUMMARY TABLE — UNIT III
+------------------------------------------------------------
+
+  .......................................................
+  Topic               Key Point
+  .......................................................
+  Continuous System   State changes smoothly over time.
+                      Described by differential equations.
+                      Not by discrete events.
+
+  ODE                 Ordinary Differential Equation.
+                      One independent variable (time).
+                      dY/dt = f(Y,t).
+                      Example: population growth, cooling.
+
+  PDE                 Partial Differential Equation.
+                      Multiple variables (time AND space).
+                      dT/dt = alpha.d2T/dx2 (heat equation).
+                      Distributed parameter systems.
+
+  Euler Method        Numerical ODE solver.
+                      Y_new = Y + h . f(Y,t)
+                      Simple but less accurate.
+                      Smaller h = more accurate.
+
+  Analog Computer     Uses voltage to represent variables.
+                      Op-amps: integrators, summers, inverters.
+                      Solves ODEs in real time.
+                      Fast but imprecise and hard to reprogram.
+
+  Problem Scaling     Mapping real variable ranges to
+                      voltage range (-10V to +10V).
+                      Amplitude scaling + time scaling.
+
+  Hybrid Simulation   Combines analog (continuous, fast) with
+                      digital (precise, logical).
+                      A/D and D/A converters link them.
+                      Used in aircraft, nuclear, defense.
+
+  Digital-Analog      Software on digital computer that
+  Simulator           emulates analog computer.
+                      CSMP, DYNAMO, MATLAB/Simulink.
+                      Block diagram approach.
+
+  Serial Chase        A chases B which moves in a line.
+                      A always points toward B's position.
+                      Coupled ODEs describe the pursuit.
+                      A catches B only if vA > vB.
+
+  Negative Feedback   Output compared to target.
+                      Corrects deviation. Stabilizing.
+                      Example: thermostat, cruise control.
+
+  Positive Feedback   Output amplifies itself.
+                      Grows or collapses. Destabilizing.
+                      Example: population growth, bank panic.
+
+  Lotka-Volterra      Predator-prey coupled ODEs.
+                      Mutual feedback creates oscillation.
+                      Neither species extinct in ideal model.
+  .......................................................
+
+
+
+
+============================================================
+  KEY FORMULAS REFERENCE
+============================================================
+
+  NEWTON'S COOLING:
+  . dT/dt = -k(T - T_env)
+  . T(t) = T_env + (T0 - T_env).e^(-k.t)
+
+  POPULATION GROWTH:
+  . dP/dt = r.P
+  . P(t) = P0.e^(r.t)
+
+  EULER METHOD:
+  . Y(t+h) = Y(t) + h . f(Y(t), t)
+
+  LOTKA-VOLTERRA:
+  . dR/dt = a.R - b.R.F
+  . dF/dt = c.R.F - d.F
+
+  SERIAL CHASE CATCH TIME:
+  . T_catch = (d/vB) . k / (k^2 - 1)
+  . where k = vA/vB > 1
+
+  HEAT EQUATION (PDE):
+  . dT/dt = alpha . d2T/dx2
+
+
+
+
+
+
+
+
+
