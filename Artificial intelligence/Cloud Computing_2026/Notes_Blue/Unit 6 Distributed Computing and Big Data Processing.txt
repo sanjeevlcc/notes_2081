@@ -10,8 +10,6 @@
 
   Lecture Hours : 7
   Course Code   : CMP 382
-  Format        : Study Notes with Examples, Data and Scenarios
-
 ============================================================
 
 
@@ -25,28 +23,44 @@
     bytes of data EVERY SINGLE DAY.
 
   . Facebook processes 500 terabytes of new data DAILY.
+
   . Google handles 8.5 BILLION search queries per day.
   . Amazon processes millions of transactions per minute
     during peak hours (like Dashain sales season).
 
+
+
   . ONE single computer cannot:
-    . Store all this data
-    . Process it fast enough
-    . Stay running 24/7 without ever failing
+          . Store all this data
+          . Process it fast enough
+          . Stay running 24/7 without ever failing
+
+
+
+      https://i.ytimg.com/vi/YS-QvfCZWvc/maxresdefault.jpg
+      
+      
+      https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfBkKmgq-NsWsxwWlxtqAUUHunvtUFOZwb5lKvcSBfFxEHDIrlY5tnvAVY&s=10
+      
+      
+      https://www.solarwinds.com/wp-content/uploads/2022/01/What-is-a-distributed-system-distributed-system-sharded-pattern-example.png
+
+
 
   . Solution: DISTRIBUTED COMPUTING
-    Spread the work across HUNDREDS or THOUSANDS of computers
-    working together as if they are ONE powerful system.
-
-  . This unit explains HOW that is done, WHY it works,
-    and WHAT tools (Hadoop, MapReduce, Spark) make it possible.
-
-  . REAL NEPAL CONTEXT:
-    . Ncell or NTC managing call records of 18 million+ subscribers.
-    . eSewa or Khalti processing millions of daily transactions.
-    . Nepal Telecom storing years of network logs.
-    . All of these NEED distributed systems to function.
-
+   -----------------------------------------
+             Spread the work across HUNDREDS or THOUSANDS of computers
+             working together as if they are ONE powerful system.
+         
+           . This unit explains HOW that is done, WHY it works,
+             and WHAT tools (Hadoop, MapReduce, Spark) make it possible.
+         
+           . REAL NEPAL CONTEXT:
+                   . Ncell or NTC managing call records of 18 million+ subscribers.
+                   . eSewa or Khalti processing millions of daily transactions.
+                   . Nepal Telecom storing years of network logs.
+                   . All of these NEED distributed systems to function.
+      
 
 
 
@@ -56,119 +70,158 @@
 
   ....................................
   A. PARALLEL COMPUTING
-  ....................................
+  ....................................   https://pythonnumericalmethods.studentorg.berkeley.edu/_images/13.01.01-parallel_vs_serial.png
 
   . DEFINITION:
-    Multiple processors work on DIFFERENT PARTS of the SAME task
-    SIMULTANEOUSLY on ONE machine or tightly coupled machines.
+   ------------
+          Multiple processors work on DIFFERENT PARTS of the SAME task
+          SIMULTANEOUSLY on ONE machine or tightly coupled machines.
 
   . KEY IDEA:
-    Divide one big problem into smaller sub-problems.
-    Solve all sub-problems AT THE SAME TIME.
-    Combine results.
+   ------------
+          Divide one big problem into smaller sub-problems.
+          Solve all sub-problems AT THE SAME TIME.
+          Combine results.
 
   . ANALOGY:
-    Counting money in a cash register.
-    One cashier counts 1000 notes alone = 10 minutes.
-    Ten cashiers each count 100 notes = 1 minute.
-    SAME WORK, TEN TIMES FASTER.
+   --------=
+          Counting money in a cash register.
+          One cashier counts 1000 notes alone = 10 minutes.
+          Ten cashiers each count 100 notes = 1 minute.
+          SAME WORK, TEN TIMES FASTER.
+
+
+
 
   . EXAMPLE — Sorting 1 million numbers:
-    Single processor:     Sort all 1,000,000 = 100 seconds
-    4 parallel cores:     Each sorts 250,000  = 25 seconds
-    16 parallel cores:    Each sorts 62,500   = 6.25 seconds
-    Speed improves nearly linearly with more cores.
+   ----------------------------------------
+          Single processor:     Sort all 1,000,000 = 100 seconds
+          4 parallel cores:     Each sorts 250,000  = 25 seconds
+          16 parallel cores:    Each sorts 62,500   = 6.25 seconds
+      
+          Speed improves nearly linearly with more cores.
+
+
+
 
   . WHERE IT IS USED:
-    . Weather forecasting (atmospheric simulation)
-    . Video rendering (each frame calculated in parallel)
-    . Scientific simulations (nuclear, molecular)
-    . Machine learning model training (matrix operations)
+   ----------------------
+          . Weather forecasting (atmospheric simulation)
+          . Video rendering (each frame calculated in parallel)
+          . Scientific simulations (nuclear, molecular)
+          . Machine learning model training (matrix operations)
+
+
+
 
 
   ....................................
   B. DISTRIBUTED COMPUTING
-  ....................................
+  .................................... https://cdn.kastatic.org/ka-perseus-images/0db827a36e9287ee9c130cf17610faaed276b931.svg
+
+                                       https://www.tutorialspoint.com/operating_system/images/distributed_system.jpg
+
 
   . DEFINITION:
-    Multiple SEPARATE computers (nodes) connected over a NETWORK
-    work together to solve a problem or provide a service.
-    Each node has its OWN memory, processor, and storage.
+          Multiple SEPARATE computers (nodes) connected over a NETWORK
+          work together to solve a problem or provide a service.
+          Each node has its OWN memory, processor, and storage.
 
   . KEY IDEA:
-    . No single machine has complete picture.
-    . Nodes communicate by PASSING MESSAGES over network.
-    . Failure of one node does not crash the system.
-    . System appears as ONE unified resource to users.
+          . No single machine has complete picture.
+          . Nodes communicate by PASSING MESSAGES over network.
+          . Failure of one node does not crash the system.
+          . System appears as ONE unified resource to users.
 
   . ANALOGY:
-    A chain of post offices across Nepal.
-    Each office (node) handles mail for its district.
-    They coordinate by calling each other (message passing).
-    If one office burns down, others continue serving.
+          A chain of post offices across Nepal.
+          Each office (node) handles mail for its district.
+          They coordinate by calling each other (message passing).
+          If one office burns down, others continue serving.
+
+
 
   . DATA EXAMPLE:
-    E-commerce platform — 10 million product records.
+          E-commerce platform — 10 million product records.
+      
+          WITHOUT distribution (single server):
+                Server   Products Stored    Response Time    Risk
+                ............................................................
+                Server 1 10,000,000         1200 ms          High (single fail)
 
-    WITHOUT distribution (single server):
-    Server   Products Stored    Response Time    Risk
-    ............................................................
-    Server 1 10,000,000         1200 ms          High (single fail)
 
-    WITH distribution (10 servers):
-    Server   Products Stored    Response Time    Risk
-    ............................................................
-    Server 1 1,000,000          120 ms           Low
-    Server 2 1,000,000          120 ms           Low
-    Server 3 1,000,000          120 ms           Low
-    ...
-    Server 10 1,000,000         120 ms           Low
-    One server fails: 9 servers still work. ✓
+
+          WITH distribution (10 servers):
+                   Server   Products Stored    Response Time    Risk
+                   ............................................................
+                   Server 1 1,000,000          120 ms           Low
+                   Server 2 1,000,000          120 ms           Low
+                   Server 3 1,000,000          120 ms           Low
+                   ...
+                   Server 10 1,000,000         120 ms           Low
+          One server fails: 9 servers still work. ✓
+
+
+
 
 
   ....................................
   C. PARALLEL vs DISTRIBUTED — KEY DIFFERENCES
   ....................................
 
-    .......................................................
-    Feature          Parallel            Distributed
-    .......................................................
-    Location         Same machine        Multiple machines
-    Memory           Shared memory       Independent memory
-    Communication    Shared variables    Message passing
-    Failure          Rare (hardware)     Common (network)
-    Latency          Nanoseconds         Milliseconds
-    Scalability      Limited (one PC)    Near infinite
-    Cost             High (supercomp.)   Low (commodity PCs)
-    Example          Multi-core CPU      Hadoop cluster
-    .......................................................
+            https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs11227-025-07295-7/MediaObjects/11227_2025_7295_Fig6_HTML.png
+            
+            https://miro.medium.com/v2/resize:fit:1400/1*gvuQ9F57zmk2-vKF4ioVYg.png
+
+             .......................................................
+             Feature          Parallel            Distributed
+             .......................................................
+             Location         Same machine        Multiple machines
+             Memory           Shared memory       Independent memory
+             Communication    Shared variables    Message passing
+             Failure          Rare (hardware)     Common (network)
+             Latency          Nanoseconds         Milliseconds
+             Scalability      Limited (one PC)    Near infinite
+             Cost             High (supercomp.)   Low (commodity PCs)
+             Example          Multi-core CPU      Hadoop cluster
+             .......................................................
+         
+
+
 
 
   ....................................
   D. KEY CHALLENGES IN DISTRIBUTED COMPUTING
   ....................................
 
-    1. FAULT TOLERANCE
-       . Any node can fail at any time.
-       . System must continue working despite failures.
-       . Solution: replicate data across multiple nodes.
+          https://www.researchgate.net/profile/Dr-H-Shaheen/publication/330993768/figure/fig1/AS:754371591688194@1556867611529/Challenges-in-Distributed-Systems.jpg
 
-    2. CONSISTENCY
-       . When data is updated on one node, others must see
-         the same update (or know about it quickly).
+         https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb0LmHTon-EheXLku5Rs0Gu-PkbK4Nn5PJjQT2os9ufQR4jC9_pO_1zAY&s=10
 
-    3. NETWORK LATENCY
-       . Communication between nodes takes time.
-       . Unlike shared memory (nanoseconds), network
-         messages take milliseconds.
+          1. FAULT TOLERANCE
+             . Any node can fail at any time.
+             . System must continue working despite failures.
+             . Solution: replicate data across multiple nodes.
+      
+          2. CONSISTENCY
+             . When data is updated on one node, others must see
+               the same update (or know about it quickly).
+      
+          3. NETWORK LATENCY
+             . Communication between nodes takes time.
+             . Unlike shared memory (nanoseconds), network
+               messages take milliseconds.
+      
+          4. COORDINATION
+             . Nodes must coordinate without a central authority.
+             . Who is the leader? Who makes decisions?
+      
+          5. SCALABILITY
+             . Adding more nodes should increase performance.
+             . Bad design: bottleneck at one component.
+      
 
-    4. COORDINATION
-       . Nodes must coordinate without a central authority.
-       . Who is the leader? Who makes decisions?
 
-    5. SCALABILITY
-       . Adding more nodes should increase performance.
-       . Bad design: bottleneck at one component.
 
 
 
@@ -177,104 +230,147 @@
 6.2  DISTRIBUTED FILE SYSTEMS
 ------------------------------------------------------------
 
-  . WHAT IS A DISTRIBUTED FILE SYSTEM (DFS)?
-  ...........................................
-
-    . A file system that stores data across MULTIPLE machines
-      but presents them to the user as ONE unified file system.
-    . Users see: /data/sales/report.csv
-    . Reality: that file is split and stored across 5 servers.
-
-  . WHY DISTRIBUTE FILES?
-    . Files too large for one disk (Netflix movie library = petabytes)
-    . Access speed — multiple machines serve data in parallel
-    . Reliability — data stored in multiple locations
-
-  ....................................
-  A. HDFS — HADOOP DISTRIBUTED FILE SYSTEM
-  ....................................
-
-    . The most widely used distributed file system.
-    . Designed for very large files (GB to TB range).
-    . Optimized for BATCH READS, not random access.
-    . Runs on COMMODITY HARDWARE (cheap, ordinary servers).
-
-    . KEY DESIGN DECISIONS:
-      . Large block size: 128 MB per block (vs 4 KB on local disk).
-        Why? Fewer metadata operations for large files.
-      . Write once, read many: files written once, read many times.
-        No updates in place (immutable after write).
-      . Data locality: process data WHERE IT IS STORED.
-        Move computation, not data (reduces network traffic).
-
-    . HDFS ARCHITECTURE:
-      NameNode (Master):
-        . Stores METADATA only (file names, locations, blocks).
-        . Does NOT store actual data.
-        . Knows: "file.csv is split into 3 blocks,
-          Block1 on Server2, Block2 on Server4, Block3 on Server1"
-        . Single point of failure — must be backed up (HA mode).
-
-      DataNode (Workers — many of them):
-        . Stores ACTUAL DATA blocks.
-        . Sends heartbeat to NameNode every 3 seconds.
-        . If DataNode dies: NameNode detects within 10 minutes,
-          re-replicates its blocks on other DataNodes.
-
-    . DATA EXAMPLE — Storing a 384 MB CSV file in HDFS:
-      File: nepal_transactions_2024.csv  (384 MB)
-      Block size: 128 MB
-      Replication factor: 3 (each block stored on 3 nodes)
-
-      Block splitting:
-      Block 1: 128 MB  → transactions 1 to 500,000
-      Block 2: 128 MB  → transactions 500,001 to 1,000,000
-      Block 3: 128 MB  → transactions 1,000,001 to 1,500,000
-
-      Storage layout (with replication):
-      ..........................................................
-      Block    Primary    Replica 1    Replica 2    Size
-      ..........................................................
-      Block 1  Node 3     Node 7       Node 1       128 MB
-      Block 2  Node 1     Node 5       Node 9       128 MB
-      Block 3  Node 9     Node 2       Node 6       128 MB
-      ..........................................................
-      Total disk used: 384 MB x 3 = 1,152 MB (replication cost)
-      If Node 3 fails: Block 1 still available on Node 7 and Node 1. ✓
-
-    . HDFS READ PROCESS:
-      1. Client asks NameNode: "Where is file nepal_transactions.csv?"
-      2. NameNode returns: block locations.
-      3. Client reads DIRECTLY from DataNodes (not through NameNode).
-      4. Reading 3 blocks in parallel = 3x faster than sequential. ✓
-
-    . HDFS WRITE PROCESS:
-      1. Client splits file into 128 MB blocks.
-      2. Sends Block 1 to DataNode 3.
-      3. DataNode 3 pipelines copy to DataNode 7.
-      4. DataNode 7 pipelines copy to DataNode 1.
-      5. Acknowledgement flows back to client.
-      6. Client reports to NameNode: "Block 1 written to 3, 7, 1."
-
-
-  ....................................
-  B. OTHER DISTRIBUTED FILE SYSTEMS
-  ....................................
-
-    . GFS (Google File System):
-      . Google's proprietary DFS, designed in 2003.
-      . Inspired HDFS directly.
-      . Handles thousands of concurrent reads/writes.
-
-    . Amazon S3 (Simple Storage Service):
-      . Object storage, not a file system technically.
-      . Stores objects (files) with unique keys.
-      . 99.999999999% (11 nines) durability guarantee.
-      . Used by: Netflix, Airbnb, Reddit and millions more.
-
-    . Azure Blob Storage, Google Cloud Storage:
-      . Similar to S3, cloud-provider specific.
-
+                  https://javatechonline.com/wp-content/uploads/2025/07/Cloud_Storage_Systems_Architecture_Diagram_1-1.jpg
+      
+      
+      
+        . WHAT IS A DISTRIBUTED FILE SYSTEM (DFS)?
+        ...........................................
+      
+                . A file system that stores data across MULTIPLE machines
+                  but presents them to the user as ONE unified file system.
+                . Users see: /data/sales/report.csv
+                . Reality: that file is split and stored across 5 servers.
+      
+      
+      
+      
+              . WHY DISTRIBUTE FILES?
+                      . Files too large for one disk (Netflix movie library = petabytes)
+                      . Access speed — multiple machines serve data in parallel
+                      . Reliability — data stored in multiple locations
+      
+      
+      
+      
+        ....................................
+        A. HDFS — HADOOP DISTRIBUTED FILE SYSTEM
+        ....................................
+      
+            https://www.bsetec.com/blog/wp-content/uploads/2017/06/HDFS.png
+            
+            https://media.licdn.com/dms/image/v2/C4D12AQF0Qdm_A759IQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1650451161972?e=2147483647&v=beta&t=f2UDNVFSf6Itf_jPN0c8AduJQdRk4wydvwOsJueIPJA
+            
+            
+            https://miro.medium.com/1*Spvi2dg2oBJRHvNABhhA-Q.jpeg
+      
+      
+          . The most widely used distributed file system.
+          . Designed for very large files (GB to TB range).
+          . Optimized for BATCH READS, not random access.
+          . Runs on COMMODITY HARDWARE (cheap, ordinary servers).
+      
+      
+      
+          . KEY DESIGN DECISIONS:
+           ---------------------------
+                  . Large block size: 128 MB per block (vs 4 KB on local disk).
+                          Why? Fewer metadata operations for large files.
+      
+                  . Write once, read many: files written once, read many times.
+                          No updates in place (immutable after write).
+      
+                  . Data locality: process data WHERE IT IS STORED.
+                          Move computation, not data (reduces network traffic).
+      
+      
+      
+          . HDFS ARCHITECTURE:
+         ------------------------    https://www.ksolves.com/wp-content/uploads/Info_21.jpg
+            NameNode (Master):
+              . Stores METADATA only (file names, locations, blocks).
+              . Does NOT store actual data.
+              . Knows: "file.csv is split into 3 blocks,
+                Block1 on Server2, Block2 on Server4, Block3 on Server1"
+              . Single point of failure — must be backed up (HA mode).
+      
+            DataNode (Workers — many of them):
+              . Stores ACTUAL DATA blocks.
+              . Sends heartbeat to NameNode every 3 seconds.
+              . If DataNode dies: NameNode detects within 10 minutes,
+                re-replicates its blocks on other DataNodes.
+      
+      
+      
+          . DATA EXAMPLE — Storing a 384 MB CSV file in HDFS:
+            ----------------------------------------------------
+                  File: nepal_transactions_2024.csv  (384 MB)
+                  Block size: 128 MB
+                  Replication factor: 3 (each block stored on 3 nodes)
+            
+                  Block splitting:
+                        Block 1: 128 MB  → transactions 1 to 500,000
+                        Block 2: 128 MB  → transactions 500,001 to 1,000,000
+                        Block 3: 128 MB  → transactions 1,000,001 to 1,500,000
+            
+                  Storage layout (with replication):
+                        ..........................................................
+                        Block    Primary    Replica 1    Replica 2    Size
+                        ..........................................................
+                        Block 1  Node 3     Node 7       Node 1       128 MB
+                        Block 2  Node 1     Node 5       Node 9       128 MB
+                        Block 3  Node 9     Node 2       Node 6       128 MB
+                        ..........................................................
+      
+                  Total disk used: 384 MB x 3 = 1,152 MB (replication cost)
+                  If Node 3 fails: Block 1 still available on Node 7 and Node 1. ✓
+      
+      
+          . HDFS READ PROCESS:
+            ---------------------
+                  1. Client asks NameNode: "Where is file nepal_transactions.csv?"
+                  2. NameNode returns: block locations.
+                  3. Client reads DIRECTLY from DataNodes (not through NameNode).
+                  4. Reading 3 blocks in parallel = 3x faster than sequential. ✓
+      
+      
+      
+          . HDFS WRITE PROCESS:
+            -----------------------
+                  1. Client splits file into 128 MB blocks.
+                  2. Sends Block 1 to DataNode 3.
+                  3. DataNode 3 pipelines copy to DataNode 7.
+                  4. DataNode 7 pipelines copy to DataNode 1.
+                  5. Acknowledgement flows back to client.
+                  6. Client reports to NameNode: "Block 1 written to 3, 7, 1."
+            
+      
+      
+      
+      
+        ....................................
+        B. OTHER DISTRIBUTED FILE SYSTEMS
+        ....................................
+      
+             . GFS (Google File System):
+                     . Google's proprietary DFS, designed in 2003.
+                     . Inspired HDFS directly.
+                     . Handles thousands of concurrent reads/writes.
+         
+         
+         
+             . Amazon S3 (Simple Storage Service):
+                     . Object storage, not a file system technically.
+                     . Stores objects (files) with unique keys.
+                     . 99.999999999% (11 nines) durability guarantee.
+                     . Used by: Netflix, Airbnb, Reddit and millions more.
+         
+             . Azure Blob Storage, Google Cloud Storage:
+                     . Similar to S3, cloud-provider specific.
+      
+      
+            https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlLe0FXDRCZuS2c-P1m5BDOSDxha7r8JM_5ciMKk2-JYFGQsocGwirHA1H&s=10
+      
 
 
 
@@ -294,12 +390,14 @@
     . If 1000 users request the same file simultaneously,
       10 replicas means 10 servers share the load.
 
+
+
     . FAILURE PROBABILITY ANALYSIS:
-      Single hard drive fail probability per year = 4%
-      1 drive: 4% chance of data loss per year.
-      3 replicas (independent drives):
-        All 3 fail simultaneously = 0.04 x 0.04 x 0.04 = 0.000064%
-        Data loss probability reduced 62,500 times! ✓
+            Single hard drive fail probability per year = 4%
+            1 drive: 4% chance of data loss per year.
+            3 replicas (independent drives):
+              All 3 fail simultaneously = 0.04 x 0.04 x 0.04 = 0.000064%
+              Data loss probability reduced 62,500 times! ✓
 
 
   ....................................
@@ -375,18 +473,18 @@
     . In real distributed systems, NETWORK PARTITIONS HAPPEN.
       So you must choose: C + P or A + P.
 
-    .......................................................
-    Choice       Systems              Trade-off
-    .......................................................
-    C + P        HBase, MongoDB       May be unavailable
-                 (strong consistency)  during partition
-
-    A + P        Cassandra, DynamoDB  May return stale data
-                 (eventual consist.)  but always responds
-
-    C + A        Traditional RDBMS    Cannot handle network
-                 (not distributed)    partitions at scale
-    .......................................................
+             .......................................................
+             Choice       Systems              Trade-off
+             .......................................................
+             C + P        HBase, MongoDB       May be unavailable
+                          (strong consistency)  during partition
+         
+             A + P        Cassandra, DynamoDB  May return stale data
+                          (eventual consist.)  but always responds
+         
+             C + A        Traditional RDBMS    Cannot handle network
+                          (not distributed)    partitions at scale
+             .......................................................
 
 
 
@@ -400,65 +498,75 @@
 
     . A programming model for processing LARGE datasets
       in parallel across a distributed cluster.
+
     . Developed by Google (Jeffrey Dean and Sanjay Ghemawat, 2004).
     . Paper: "MapReduce: Simplified Data Processing on Large Clusters."
+
     . KEY IDEA: Split problem into two simple steps:
-      MAP:    Filter and transform data (parallel, per node)
-      REDUCE: Aggregate and summarize results (combine outputs)
+               MAP:    Filter and transform data (parallel, per node)
+               REDUCE: Aggregate and summarize results (combine outputs)
+
+
 
   . ANALOGY — WORD COUNT IN A LIBRARY:
-    Task: Count how many times each word appears in 1000 books.
+   -------------------------------------
+       Task: Count how many times each word appears in 1000 books.
 
-    WITHOUT MapReduce (one person):
-      Read all 1000 books sequentially → count words.
-      Time: 1000 hours (if 1 hour per book).
+             WITHOUT MapReduce (one person):
+                     Read all 1000 books sequentially → count words.
+                     Time: 1000 hours (if 1 hour per book).
+         
+             WITH MapReduce (100 librarians):
+                     Map phase: Each librarian reads 10 books,
+                                writes a slip for EACH word found:
+                                "hadoop=1", "cloud=1", "hadoop=1", "data=1"
+                     Shuffle:   All slips for "hadoop" collected in one pile.
+                     Reduce:    Count slips per word: hadoop=47, cloud=23, data=61.
+                     Time: ~10 hours (100x faster). ✓
 
-    WITH MapReduce (100 librarians):
-      Map phase: Each librarian reads 10 books,
-                 writes a slip for EACH word found:
-                 "hadoop=1", "cloud=1", "hadoop=1", "data=1"
-      Shuffle:   All slips for "hadoop" collected in one pile.
-      Reduce:    Count slips per word: hadoop=47, cloud=23, data=61.
-      Time: ~10 hours (100x faster). ✓
+
 
 
   ....................................
   A. MAPREDUCE PHASES — IN DETAIL
   ....................................
 
+https://cdn.educba.com/academy/wp-content/uploads/2019/11/How-MapReduce-Works.png
+
     COMPLETE MapReduce has 5 phases:
 
-    Phase 1 — INPUT SPLIT:
-    . Input data divided into chunks (InputSplits).
-    . Each chunk assigned to one Map task.
-    . Size typically = HDFS block size (128 MB).
-    . Example: 1 GB file → 8 splits of 128 MB each → 8 Mappers.
-
-    Phase 2 — MAP:
-    . Each Mapper processes its own input split INDEPENDENTLY.
-    . Reads key-value pairs from the input.
-    . Applies user-defined Map function.
-    . Produces intermediate key-value pairs as output.
-    . Map tasks run IN PARALLEL on different nodes.
-    . Data locality: Map runs on the node where data IS STORED.
-
-    Phase 3 — SHUFFLE AND SORT:
-    . Framework automatically handles this.
-    . Groups all intermediate values with the SAME KEY together.
-    . Sorts keys alphabetically/numerically.
-    . Transfers data across network to correct Reducer nodes.
-    . This is the most NETWORK-INTENSIVE phase.
-
-    Phase 4 — REDUCE:
-    . Each Reducer receives ALL values for ONE key.
-    . Applies user-defined Reduce function.
-    . Aggregates, summarizes, or transforms the grouped data.
-    . Produces final output key-value pairs.
-
-    Phase 5 — OUTPUT:
-    . Reducer writes final results to HDFS.
-    . Each Reducer writes to a separate output file.
-    . Combined: the complete result of the job.
+          Phase 1 — INPUT SPLIT:
+                . Input data divided into chunks (InputSplits).
+                . Each chunk assigned to one Map task.
+                . Size typically = HDFS block size (128 MB).
+                . Example: 1 GB file → 8 splits of 128 MB each → 8 Mappers.
+      
+          Phase 2 — MAP:
+                . Each Mapper processes its own input split INDEPENDENTLY.
+                . Reads key-value pairs from the input.
+                . Applies user-defined Map function.
+                . Produces intermediate key-value pairs as output.
+                . Map tasks run IN PARALLEL on different nodes.
+                . Data locality: Map runs on the node where data IS STORED.
+      
+          Phase 3 — SHUFFLE AND SORT:
+                . Framework automatically handles this.
+                . Groups all intermediate values with the SAME KEY together.
+                . Sorts keys alphabetically/numerically.
+                . Transfers data across network to correct Reducer nodes.
+                . This is the most NETWORK-INTENSIVE phase.
+      
+          Phase 4 — REDUCE:
+                . Each Reducer receives ALL values for ONE key.
+                . Applies user-defined Reduce function.
+                . Aggregates, summarizes, or transforms the grouped data.
+                . Produces final output key-value pairs.
+      
+          Phase 5 — OUTPUT:
+                . Reducer writes final results to HDFS.
+                . Each Reducer writes to a separate output file.
+                . Combined: the complete result of the job.
+      
 
 
   ....................................
@@ -466,154 +574,172 @@
   ....................................
 
     INPUT TEXT (split across 2 DataNodes):
-    Node 1 block: "cloud computing is powerful cloud is future"
-    Node 2 block: "computing power grows cloud wins future"
+          Node 1 block: "cloud computing is powerful cloud is future"
+          Node 2 block: "computing power grows cloud wins future"
 
     PHASE 2 — MAP (both mappers run simultaneously):
 
-    Mapper 1 output (from Node 1):
-      (cloud, 1)
-      (computing, 1)
-      (is, 1)
-      (powerful, 1)
-      (cloud, 1)
-      (is, 1)
-      (future, 1)
+          Mapper 1 output (from Node 1):
+            (cloud, 1)
+            (computing, 1)
+            (is, 1)
+            (powerful, 1)
+            (cloud, 1)
+            (is, 1)
+            (future, 1)
+      
+          Mapper 2 output (from Node 2):
+            (computing, 1)
+            (power, 1)
+            (grows, 1)
+            (cloud, 1)
+            (wins, 1)
+            (future, 1)
 
-    Mapper 2 output (from Node 2):
-      (computing, 1)
-      (power, 1)
-      (grows, 1)
-      (cloud, 1)
-      (wins, 1)
-      (future, 1)
+
+
 
     PHASE 3 — SHUFFLE AND SORT (framework does this):
-      All values for each key collected:
-      (cloud,     [1, 1, 1])
-      (computing, [1, 1])
-      (future,    [1, 1])
-      (grows,     [1])
-      (is,        [1, 1])
-      (power,     [1])
-      (powerful,  [1])
-      (wins,      [1])
+         All values for each key collected:
+               (cloud,     [1, 1, 1])
+               (computing, [1, 1])
+               (future,    [1, 1])
+               (grows,     [1])
+               (is,        [1, 1])
+               (power,     [1])
+               (powerful,  [1])
+               (wins,      [1])
 
     PHASE 4 — REDUCE (count values per key):
-      (cloud,     3)
-      (computing, 2)
-      (future,    2)
-      (grows,     1)
-      (is,        2)
-      (power,     1)
-      (powerful,  1)
-      (wins,      1)
+         (cloud,     3)
+         (computing, 2)
+         (future,    2)
+         (grows,     1)
+         (is,        2)
+         (power,     1)
+         (powerful,  1)
+         (wins,      1)
+
+
+
 
     FINAL OUTPUT (written to HDFS):
-    Word           Count
-    .......................
-    cloud          3
-    computing      2
-    future         2
-    grows          1
-    is             2
-    power          1
-    powerful       1
-    wins           1
-    .......................
+
+          Word           Count
+          .......................
+          cloud          3
+          computing      2
+          future         2
+          grows          1
+          is             2
+          power          1
+          powerful       1
+          wins           1
+          .......................
 
     Total time: Both mappers ran IN PARALLEL → faster than sequential. ✓
+
+
 
 
   ....................................
   C. MAPREDUCE DATA FLOW DIAGRAM (TEXT)
   ....................................
 
-    Input Data (HDFS)
-         |
-         | Split into blocks
-         v
-    +──────────+  +──────────+  +──────────+
-    | Mapper 1 |  | Mapper 2 |  | Mapper 3 |   (parallel)
-    | (Node 1) |  | (Node 2) |  | (Node 3) |
-    +──────────+  +──────────+  +──────────+
-         |              |              |
-         v              v              v
-    Intermediate key-value pairs
-    (cloud,1)(cloud,1)(hadoop,1) etc.
-         |
-         | SHUFFLE AND SORT
-         | (all same keys grouped)
-         v
-    +──────────+  +──────────+
-    | Reducer1 |  | Reducer2 |   (parallel)
-    | key=cloud|  | key=hadoop|
-    +──────────+  +──────────+
-         |              |
-         v              v
-    Output to HDFS
-    (cloud, 3)   (hadoop, 5)
-
+                         Input Data (HDFS)
+                              |
+                              | Split into blocks
+                              v
+             +──────────+  +──────────+  +──────────+
+             | Mapper 1 |  | Mapper 2 |  | Mapper 3 |   (parallel)
+             | (Node 1) |  | (Node 2) |  | (Node 3) |
+             +──────────+  +──────────+  +──────────+
+                  |              |              |
+                  v              v              v
+                Intermediate key-value pairs
+                (cloud,1)(cloud,1)(hadoop,1) etc.
+                        |
+                        | SHUFFLE AND SORT
+                        | (all same keys grouped)
+                        v
+                +──────────+  +──────────+
+                | Reducer1 |  | Reducer2 |   (parallel)
+                | key=cloud|  | key=hadoop|
+                +──────────+  +──────────+
+                     |              |
+                     v              v
+                   Output to HDFS
+                   (cloud, 3)   (hadoop, 5)
+            
+         
+         
 
 
 
 ------------------------------------------------------------
 6.5  APPLICATIONS OF MAPREDUCE
 ------------------------------------------------------------
-
-  . MapReduce is not just for word count.
-  . It is a GENERAL PATTERN for distributed batch processing.
-
-  ....................................
-  A. REAL-WORLD APPLICATIONS
-  ....................................
-
-    1. WEB INDEXING (Google's original use):
-       . Map: For each web page, emit (word, URL) pairs.
-       . Reduce: For each word, collect all URLs containing it.
-       . Result: The inverted index behind Google search.
-
-    2. LOG ANALYSIS:
-       . Map: Parse each server log line, emit (error_type, 1).
-       . Reduce: Count occurrences of each error type.
-       . Real example: E-commerce analyzing 500 GB of web logs.
-
-       DATA EXAMPLE:
-       Input logs (1 billion lines):
-         "2024-10-15 09:23:01 ERROR 404 /product/123"
-         "2024-10-15 09:23:02 INFO  200 /home"
-         "2024-10-15 09:23:03 ERROR 500 /checkout"
-
-       Map output: (404, 1), (200, 1), (500, 1)
-       Reduce:     (200, 45000000)
-                   (404, 8500000)
-                   (500, 2100000)
-       Result: 500 errors found 2.1 million times = server issue!
-
-    3. RECOMMENDATION SYSTEMS:
-       . Map: For each user-product purchase, emit
-              (product, user_id) pairs.
-       . Reduce: Find users who bought same products.
-       . Collaborative filtering — "users like you also bought..."
-       . Used by: Amazon, Netflix, YouTube.
-
-    4. FINANCIAL FRAUD DETECTION:
-       . Map: For each transaction, emit (account, transaction).
-       . Reduce: Per account, look for unusual patterns.
-         . Multiple transactions > Rs 50,000 in 1 hour?
-         . Transactions from 2 countries in 30 minutes?
-       . Flag suspicious accounts for review.
-
-    5. SOCIAL NETWORK ANALYSIS:
-       . Map: For each friend pair, emit connections.
-       . Reduce: Count common friends between users.
-       . "You may know..." friend suggestions.
-
-    6. GENOME SEQUENCING:
-       . Map: Compare each DNA segment with reference.
-       . Reduce: Assemble complete genetic map.
-       . Human genome: 3 billion base pairs — distributed processing
-         reduces analysis from weeks to hours.
+      
+        . MapReduce is not just for word count.
+        . It is a GENERAL PATTERN for distributed batch processing.
+      
+        ....................................
+        A. REAL-WORLD APPLICATIONS
+        ....................................
+      
+          1. WEB INDEXING (Google's original use):
+             . Map: For each web page, emit (word, URL) pairs.
+             . Reduce: For each word, collect all URLs containing it.
+             . Result: The inverted index behind Google search.
+      
+          2. LOG ANALYSIS:
+             . Map: Parse each server log line, emit (error_type, 1).
+             . Reduce: Count occurrences of each error type.
+             . Real example: E-commerce analyzing 500 GB of web logs.
+      
+      
+      
+                      DATA EXAMPLE:
+                     --------------
+                      Input logs (1 billion lines):
+                           "2024-10-15 09:23:01 ERROR 404 /product/123"
+                           "2024-10-15 09:23:02 INFO  200 /home"
+                           "2024-10-15 09:23:03 ERROR 500 /checkout"
+               
+                      Map output: (404, 1), (200, 1), (500, 1)
+                            Reduce:     (200, 45000000)
+                                        (404, 8500000)
+                                        (500, 2100000)
+                      Result: 500 errors found 2.1 million times = server issue!
+      
+      
+      
+          3. RECOMMENDATION SYSTEMS:
+             . Map: For each user-product purchase, emit
+                    (product, user_id) pairs.
+             . Reduce: Find users who bought same products.
+             . Collaborative filtering — "users like you also bought..."
+             . Used by: Amazon, Netflix, YouTube.
+      
+          4. FINANCIAL FRAUD DETECTION:
+             . Map: For each transaction, emit (account, transaction).
+             . Reduce: Per account, look for unusual patterns.
+               . Multiple transactions > Rs 50,000 in 1 hour?
+               . Transactions from 2 countries in 30 minutes?
+             . Flag suspicious accounts for review.
+      
+          5. SOCIAL NETWORK ANALYSIS:
+             . Map: For each friend pair, emit connections.
+             . Reduce: Count common friends between users.
+             . "You may know..." friend suggestions.
+      
+          6. GENOME SEQUENCING:
+             . Map: Compare each DNA segment with reference.
+             . Reduce: Assemble complete genetic map.
+             . Human genome: 3 billion base pairs — distributed processing
+               reduces analysis from weeks to hours.
+      
+      
 
 
   ....................................
@@ -633,7 +759,7 @@
     . COMPLEX MULTI-STEP JOBS: chaining many MapReduce jobs
       becomes hard to manage. Each step reads/writes disk.
 
-    . Solution to limitations: Apache Spark (covers in 6.9).
+    . Solution to limitations: Apache Spark (covers in 6.9).  <<<<<<<<<<<<<<<
 
 
 
@@ -645,185 +771,223 @@
   . WHAT IS PARALLEL EFFICIENCY?
   ..............................
 
-    . Measures HOW WELL parallelism improves performance.
-    . Ideal: double the processors = half the time.
-    . Reality: overhead always exists.
-
-  ....................................
-  A. SPEEDUP
-  ....................................
-
-    . Speedup = Time with 1 processor / Time with N processors
-    . Ideal (linear) speedup = N (N processors = N times faster).
-
-    . EXAMPLE:
-      Sorting 10 million records:
-      Single processor:  T1 = 100 seconds
-      4 processors:      T4 = 28 seconds
-      8 processors:      T8 = 15 seconds
-      16 processors:    T16 = 9 seconds
-
-      Speedup calculations:
-      S(4)  = 100/28  = 3.57  (ideal = 4.0)
-      S(8)  = 100/15  = 6.67  (ideal = 8.0)
-      S(16) = 100/9   = 11.11 (ideal = 16.0)
-
-      Why not ideal? OVERHEAD:
-      . Communication between processors takes time.
-      . Some parts of code are NOT parallelizable.
-      . Synchronization points where all must wait.
+          . Measures HOW WELL parallelism improves performance.
+          . Ideal: double the processors = half the time.
+          . Reality: overhead always exists.
 
 
-  ....................................
-  B. AMDAHL'S LAW
-  ....................................
-
-    . A formula that LIMITS maximum speedup in parallel systems.
-    . Even with infinite processors, the SERIAL (non-parallel) part
-      of a program limits overall speedup.
-
-    . FORMULA:
-      Maximum Speedup = 1 / [S + (1 - S)/N]
-      where:
-        S = fraction of program that is SERIAL (cannot be parallel)
-        N = number of processors
-        (1 - S) = fraction that CAN be parallel
-
-    . DATA EXAMPLE:
-      Suppose 30% of a program cannot be parallelized (S = 0.30).
-
-      N processors   Max Speedup   Interpretation
-      .....................................................
-      1              1.00          Baseline
-      2              1.54          54% faster
-      4              2.11          2x faster
-      8              2.58          2.6x faster
-      16             2.80          2.8x faster
-      infinity       3.33          MAXIMUM EVER (even with ∞ CPUs!)
-
-      ANALYSIS:
-      Even with INFINITE processors, this program can NEVER be
-      more than 3.33x faster due to the 30% serial bottleneck.
-      Adding more processors beyond 16 gives diminishing returns.
-
-
-  ....................................
-  C. GUSTAFSON'S LAW
-  ....................................
-
-    . A more optimistic law than Amdahl's.
-    . Idea: with MORE processors, you can handle LARGER problems
-      in the same time — not just same problem faster.
-    . "Scaled speedup" — real-world parallel computing works this way.
-    . Example: same cluster that processed 1 GB in 1 hour
-      can now process 100 GB in 1 hour with 100x more nodes.
-      The SCALE of problem grows, not just the speed.
-
-
-  ....................................
-  D. PARALLEL EFFICIENCY FORMULA
-  ....................................
-
-    . Efficiency = Speedup / N
-    . Perfect efficiency = 1.0 (100%)
-    . Real efficiency is always < 1.0 due to overhead.
-
-    . From our example:
-      E(4)  = 3.57/4   = 0.893 = 89.3%
-      E(8)  = 6.67/8   = 0.834 = 83.4%
-      E(16) = 11.11/16 = 0.694 = 69.4%
-
-      More processors = lower efficiency per processor.
-      Trade-off: more speed but less efficiency.
-
-
+     ....................................
+     A. SPEEDUP
+     ....................................
+   
+       . Speedup = Time with 1 processor / Time with N processors
+       . Ideal (linear) speedup = N (N processors = N times faster).
+   
+       . EXAMPLE:
+            Sorting 10 million records:
+               Single processor:  T1 = 100 seconds
+               4 processors:      T4 = 28 seconds
+               8 processors:      T8 = 15 seconds
+               16 processors:    T16 = 9 seconds
+   
+            Speedup calculations:
+                  S(4)  = 100/28  = 3.57  (ideal = 4.0)
+                  S(8)  = 100/15  = 6.67  (ideal = 8.0)
+                  S(16) = 100/9   = 11.11 (ideal = 16.0)
+   
+   
+         Why not ideal? OVERHEAD:
+               . Communication between processors takes time.
+               . Some parts of code are NOT parallelizable.
+               . Synchronization points where all must wait.
+   
+   
+   
+   
+     ....................................
+     B. AMDAHL'S LAW
+     ....................................
+   
+       . A formula that LIMITS maximum speedup in parallel systems.
+       . Even with infinite processors, the SERIAL (non-parallel) part
+         of a program limits overall speedup.
+   
+       . FORMULA:
+            Maximum Speedup = 1 / [S + (1 - S)/N]
+   
+               where:
+                 S = fraction of program that is SERIAL (cannot be parallel)
+                 N = number of processors
+                 (1 - S) = fraction that CAN be parallel
+   
+   
+       . DATA EXAMPLE:
+         Suppose 30% of a program cannot be parallelized (S = 0.30).
+   
+               N processors   Max Speedup   Interpretation
+               .....................................................
+               1              1.00          Baseline
+               2              1.54          54% faster
+               4              2.11          2x faster
+               8              2.58          2.6x faster
+               16             2.80          2.8x faster
+               infinity       3.33          MAXIMUM EVER (even with ∞ CPUs!)
+   
+         ANALYSIS:
+            Even with INFINITE processors, this program can NEVER be
+            more than 3.33x faster due to the 30% serial bottleneck.
+   
+            Adding more processors beyond 16 gives diminishing returns.
+   
+   
+   
+   
+     ....................................
+     C. GUSTAFSON'S LAW
+     ....................................
+   
+       . A more optimistic law than Amdahl's.
+   
+       . Idea: with MORE processors, you can handle LARGER problems
+         in the same time — not just same problem faster.
+   
+       . "Scaled speedup" — real-world parallel computing works this way.
+   
+       . Example: 
+               same cluster that processed 1 GB in 1 hour
+               can now process 100 GB in 1 hour with 100x more nodes.
+               The SCALE of problem grows, not just the speed.
+   
+   
+   
+     ....................................
+     D. PARALLEL EFFICIENCY FORMULA
+     ....................................
+   
+       . Efficiency = Speedup / N
+       . Perfect efficiency = 1.0 (100%)
+       . Real efficiency is always < 1.0 due to overhead.
+   
+             . From our example:
+                     E(4)  = 3.57/4   = 0.893 = 89.3%
+                     E(8)  = 6.67/8   = 0.834 = 83.4%
+                     E(16) = 11.11/16 = 0.694 = 69.4%
+         
+               More processors = lower efficiency per processor.
+   
+         Trade-off: more speed but less efficiency.
+   
+   
 
 
 ------------------------------------------------------------
 6.7  BATCH PROCESSING TECHNIQUES
 ------------------------------------------------------------
-
-  . WHAT IS BATCH PROCESSING?
-  ...........................
-
-    . Processing a LARGE COLLECTION of data all at once,
-      usually on a scheduled basis (hourly, daily, weekly).
-    . No user interaction during processing.
-    . Results available AFTER processing completes.
-    . NOT real-time — accepts latency in exchange for throughput.
-
-  . ANALOGY:
-    A laundry shop accepts all dirty clothes from a hotel,
-    washes all of them together every morning at 6 AM,
-    and returns them by 10 AM.
-    Much more efficient than washing each piece individually.
-
-  ....................................
-  A. CHARACTERISTICS OF BATCH PROCESSING
-  ....................................
-
-    . HIGH THROUGHPUT: process millions of records per second.
-    . SCHEDULED: runs at defined intervals.
-    . NON-INTERACTIVE: no user waiting for each result.
-    . FAULT TOLERANT: if it fails midway, restart from checkpoint.
-    . RESOURCE INTENSIVE: uses full system resources during the run.
-
-  ....................................
-  B. BATCH PROCESSING SCENARIOS
-  ....................................
-
-    SCENARIO 1 — Bank End-of-Day Processing:
-      During business hours:
-        . Transactions recorded in a fast database.
-        . No batch calculations done yet.
-      At midnight (batch window):
-        . Calculate interest on all 2 million accounts.
-        . Generate statements for 500,000 customers.
-        . Reconcile all transactions.
-        . Update credit scores.
-        . Send SMS/email notifications.
-      Result available by: 6 AM next morning.
-
-    SCENARIO 2 — E-commerce Daily Report:
-      Every night at 11 PM:
-        . Process 500 GB of clickstream logs from the day.
-        . Count products viewed, items abandoned in cart.
-        . Calculate sales by category, region, time.
-        . Update recommendation models.
-        . Generate reports for management dashboard.
-
-      DATA EXAMPLE — Batch results for Dashain sale day:
-      ......................................................
-      Metric                    Value         Processing Time
-      ......................................................
-      Total orders processed    142,560       2.3 hours
-      Total revenue calculated  Rs 8.7 crore  batch
-      Products out of stock     1,247         detected overnight
-      Failed payments           3,821         report generated
-      Top product (views)       iPhone 15     top 10 list
-      Customers acquired        18,500        CRM updated
-      ......................................................
-
-    SCENARIO 3 — Telecom CDR Processing:
-      . Every day, Nepal Telecom generates 500 million
-        Call Detail Records (CDRs).
-      . Batch job at night:
-        . Calculate each subscriber's usage.
-        . Apply tariff rules.
-        . Generate billing for 18 million subscribers.
-        . Detect fraud patterns.
-
-
-  ....................................
-  C. TRADITIONAL BATCH TOOLS
-  ....................................
-
-    . UNIX Cron jobs: schedule shell scripts.
-    . Apache Oozie: workflow scheduler for Hadoop.
-    . Apache Airflow: modern DAG-based workflow orchestration.
-    . AWS Batch: managed batch computing in cloud.
-    . Spring Batch: Java framework for batch applications.
-
+   
+     . WHAT IS BATCH PROCESSING?
+     ...........................
+   
+       . Processing a LARGE COLLECTION of data all at once,
+         usually on a scheduled basis (hourly, daily, weekly).
+   
+       . No user interaction during processing.
+       . Results available AFTER processing completes.
+       . NOT real-time — accepts latency in exchange for throughput.
+   
+   
+   
+     . ANALOGY:
+             A laundry shop accepts all dirty clothes from a hotel,
+             washes all of them together every morning at 6 AM,
+             and returns them by 10 AM.
+   
+             Much more efficient than washing each piece individually.
+   
+     ....................................
+     A. CHARACTERISTICS OF BATCH PROCESSING
+     ....................................
+   
+             . HIGH THROUGHPUT: process millions of records per second.
+             . SCHEDULED: runs at defined intervals.
+             . NON-INTERACTIVE: no user waiting for each result.
+             . FAULT TOLERANT: if it fails midway, restart from checkpoint.
+             . RESOURCE INTENSIVE: uses full system resources during the run.
+   
+   
+   
+     ....................................
+     B. BATCH PROCESSING SCENARIOS
+     ....................................
+   
+       SCENARIO 1 — Bank End-of-Day Processing:
+      ----------------------------------------------
+                  During business hours:
+                    . Transactions recorded in a fast database.
+                    . No batch calculations done yet.
+            
+                  At midnight (batch window):
+                    . Calculate interest on all 2 million accounts.
+                    . Generate statements for 500,000 customers.
+                    . Reconcile all transactions.
+                    . Update credit scores.
+                    . Send SMS/email notifications.
+            
+                  Result available by: 6 AM next morning.
+            
+   
+   
+       SCENARIO 2 — E-commerce Daily Report:
+      ----------------------------------------------
+         Every night at 11 PM:
+                 . Process 500 GB of clickstream logs from the day.
+                 . Count products viewed, items abandoned in cart.
+                 . Calculate sales by category, region, time.
+                 . Update recommendation models.
+                 . Generate reports for management dashboard.
+   
+   
+                  DATA EXAMPLE — Batch results for Dashain sale day:
+                        ......................................................
+                        Metric                    Value         Processing Time
+                        ......................................................
+                        Total orders processed    142,560       2.3 hours
+                        Total revenue calculated  Rs 8.7 crore  batch
+                        Products out of stock     1,247         detected overnight
+                        Failed payments           3,821         report generated
+                        Top product (views)       iPhone 15     top 10 list
+                        Customers acquired        18,500        CRM updated
+                        ......................................................
+   
+   
+   
+   
+       SCENARIO 3 — Telecom CDR Processing:
+      ----------------------------------------------
+         . Every day, Nepal Telecom generates 500 million
+           Call Detail Records (CDRs).
+   
+         . Batch job at night:
+                 . Calculate each subscriber's usage.
+                 . Apply tariff rules.
+                 . Generate billing for 18 million subscribers.
+                 . Detect fraud patterns.
+   
+   
+   
+   
+   
+   
+     ....................................
+     C. TRADITIONAL BATCH TOOLS
+     ....................................
+   
+       . UNIX Cron jobs: schedule shell scripts.
+       . Apache Oozie: workflow scheduler for Hadoop.
+       . Apache Airflow: modern DAG-based workflow orchestration.
+       . AWS Batch: managed batch computing in cloud.
+       . Spring Batch: Java framework for batch applications.
+   
+   
 
 
 
@@ -836,7 +1000,11 @@
 
     . An open-source framework for distributed storage and
       processing of large datasets.
+
     . Created by Doug Cutting and Mike Cafarella (2005).
+
+            https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK4LykTnxodqFL2RVJXW3GT_BhXFddIWmWsX2nS5f4Jy2UD9u9yxfciu4&s=10
+
     . Named after Doug Cutting's son's toy yellow elephant.
     . Inspired by Google's GFS and MapReduce papers.
     . Now maintained by Apache Software Foundation.
@@ -848,53 +1016,75 @@
   A. HADOOP CORE COMPONENTS
   ....................................
 
-    +──────────────────────────────────────────+
-    |           HADOOP ECOSYSTEM               |
-    +──────────────────────────────────────────+
-    | HDFS      | Distributed File System      |
-    | YARN      | Resource Management          |
-    | MapReduce | Processing Framework         |
-    +──────────────────────────────────────────+
+             +──────────────────────────────────────────+
+             |           HADOOP ECOSYSTEM               |
+             +──────────────────────────────────────────+
+             | HDFS      | Distributed File System      |
+             | YARN      | Resource Management          |
+             | MapReduce | Processing Framework         |
+             +──────────────────────────────────────────+
 
     1. HDFS (Hadoop Distributed File System):
-       . Already covered in section 6.2.
-       . Stores data across the cluster.
-       . NameNode + DataNodes architecture.
+             . Already covered in section 6.2.
+             . Stores data across the cluster.
+             . NameNode + DataNodes architecture.
+
 
     2. YARN (Yet Another Resource Negotiator):
-       . The resource manager for the cluster.
-       . Decides: how much CPU and memory each job gets.
-       . Schedules jobs from multiple users fairly.
-       . Components:
-         . ResourceManager: cluster-wide scheduler.
-         . NodeManager: per-node agent, manages containers.
-         . ApplicationMaster: per-job coordinator.
-       . YARN allows running NOT JUST MapReduce on Hadoop.
-         Also Spark, Tez, and other frameworks use YARN.
+          . The resource manager for the cluster.
+          . Decides: how much CPU and memory each job gets.
+          . Schedules jobs from multiple users fairly.
+   
+   
+          . Components:
+                  . ResourceManager: cluster-wide scheduler.
+                  . NodeManager: per-node agent, manages containers.
+                  . ApplicationMaster: per-job coordinator.
+   
+   
+          . YARN allows running NOT JUST MapReduce on Hadoop.
+                     Also Spark, Tez, and other frameworks use YARN.
+
+
+
+
+
 
     3. MapReduce:
        . The original processing model (covered in 6.4).
        . Now one of many frameworks that run on YARN.
 
 
+
+
   ....................................
   B. HADOOP ECOSYSTEM — EXTENDED TOOLS
   ....................................
 
-    .......................................................
-    Tool          Purpose                  Analogy
-    .......................................................
-    HDFS          Distributed storage      Hard drive for cluster
-    YARN          Resource management      OS scheduler for cluster
-    MapReduce     Batch processing         Excel macros but parallel
-    Hive          SQL on Hadoop            Excel with SQL interface
-    Pig           Data flow scripting      Scripting language
-    HBase         NoSQL database on HDFS   Fast key-value store
-    Sqoop         Import/export RDBMS      Copy data in/out
-    Flume         Log collection           Pipe for streaming logs
-    Oozie         Workflow scheduling      Task scheduler
-    ZooKeeper     Coordination service     Team coordinator
-    .......................................................
+             .......................................................
+             Tool          Purpose                  Analogy
+             .......................................................
+             HDFS          Distributed storage      Hard drive for cluster
+             YARN          Resource management      OS scheduler for cluster
+             MapReduce     Batch processing         Excel macros but parallel
+             Hive          SQL on Hadoop            Excel with SQL interface
+             Pig           Data flow scripting      Scripting language
+             HBase         NoSQL database on HDFS   Fast key-value store
+             Sqoop         Import/export RDBMS      Copy data in/out
+             Flume         Log collection           Pipe for streaming logs
+             Oozie         Workflow scheduling      Task scheduler
+             ZooKeeper     Coordination service     Team coordinator
+             .......................................................
+         
+         https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRiTSp-zXZkSx2if4QB69eVAK6FN5fvMSBr2JClSGI_xHqG9n-oIa939M&s=10
+         
+         
+         https://media.licdn.com/dms/image/v2/C4E12AQEtVhgliNl_4w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1602593517647?e=2147483647&v=beta&t=yYiSDTkLezjlbyYg-mG0wEb6J5HnDev3L9MDlF6XEk8
+         
+
+
+
+
 
 
   ....................................
@@ -902,24 +1092,31 @@
   ....................................
 
     MASTER NODES (control the cluster):
-      . NameNode: HDFS metadata.
-      . ResourceManager: YARN job scheduling.
-      . JobHistoryServer: tracks completed jobs.
+            . NameNode: HDFS metadata.
+            . ResourceManager: YARN job scheduling.
+            . JobHistoryServer: tracks completed jobs.
+
+
 
     SLAVE/WORKER NODES (do the actual work — many of them):
-      . DataNode: stores HDFS blocks.
-      . NodeManager: runs Map and Reduce tasks.
-      . Usually same physical machine handles BOTH.
+            . DataNode: stores HDFS blocks.
+            . NodeManager: runs Map and Reduce tasks.
+            . Usually same physical machine handles BOTH.
+
+
 
     TYPICAL CLUSTER SIZES:
-    .......................................................
-    Organization Size    Nodes    Storage    Use Case
-    .......................................................
-    Small startup        5-10     5-50 TB    Log analysis
-    Medium company       50-100   500 TB     Analytics
-    Large enterprise     500+     5-50 PB    Full platform
-    Google/Facebook      10,000+  Exabytes   Global systems
-    .......................................................
+             .......................................................
+             Organization Size    Nodes    Storage    Use Case
+             .......................................................
+             Small startup        5-10     5-50 TB    Log analysis
+             Medium company       50-100   500 TB     Analytics
+             Large enterprise     500+     5-50 PB    Full platform
+             Google/Facebook      10,000+  Exabytes   Global systems
+             .......................................................
+
+
+
 
 
   ....................................
@@ -928,73 +1125,89 @@
 
     SCENARIO: Count page views per URL in 10 TB of web logs.
 
-    Step 1 — Job Submission:
-      Developer submits MapReduce job JAR to ResourceManager.
-      Job contains: Mapper class, Reducer class, input path, output path.
+          Step 1 — Job Submission:
+                  Developer submits MapReduce job JAR to ResourceManager.
+                  Job contains: Mapper class, Reducer class, input path, output path.
+      
+          Step 2 — Resource Allocation:
+                  ResourceManager calculates: "10 TB file = 80,000 blocks.
+                  Need 80,000 Map tasks. Assign each to available NodeManager."
+      
+          Step 3 — ApplicationMaster Launch:
+                  ResourceManager launches one ApplicationMaster for this job.
+                  ApplicationMaster coordinates all tasks for this job.
+      
+          Step 4 — Map Tasks:
+                  Each NodeManager launches Map tasks on local data.
+                  Data locality: Map task runs on same node where data block sits.
+                  Intermediate results written to LOCAL disk.
+      
+          Step 5 — Shuffle and Sort:
+                  Framework copies Map outputs to Reducer nodes over network.
+                  Sorted by key. Most network-intensive step.
+      
+          Step 6 — Reduce Tasks:
+                  Reducers aggregate values per key.
+                  Write final output to HDFS.
+      
+          Step 7 — Completion:
+                  ApplicationMaster notifies ResourceManager.
+                  Results available in specified output directory in HDFS.
 
-    Step 2 — Resource Allocation:
-      ResourceManager calculates: "10 TB file = 80,000 blocks.
-      Need 80,000 Map tasks. Assign each to available NodeManager."
 
-    Step 3 — ApplicationMaster Launch:
-      ResourceManager launches one ApplicationMaster for this job.
-      ApplicationMaster coordinates all tasks for this job.
 
-    Step 4 — Map Tasks:
-      Each NodeManager launches Map tasks on local data.
-      Data locality: Map task runs on same node where data block sits.
-      Intermediate results written to LOCAL disk.
-
-    Step 5 — Shuffle and Sort:
-      Framework copies Map outputs to Reducer nodes over network.
-      Sorted by key. Most network-intensive step.
-
-    Step 6 — Reduce Tasks:
-      Reducers aggregate values per key.
-      Write final output to HDFS.
-
-    Step 7 — Completion:
-      ApplicationMaster notifies ResourceManager.
-      Results available in specified output directory in HDFS.
 
     DATA EXAMPLE — Timing for 10 TB web log job:
-    ......................................................
-    Step                  Time          Notes
-    ......................................................
-    Job submission        5 sec         Fast
-    Resource allocation   30 sec        YARN scheduling
-    Map phase             45 min        80,000 mappers parallel
-    Shuffle + Sort        15 min        Network transfer
-    Reduce phase          10 min        1,000 reducers parallel
-    Output write          5 min         HDFS write
-    ......................................................
-    Total                 75 min        10 TB processed in 1.25 hrs
-    ......................................................
+          ......................................................
+          Step                  Time          Notes
+          ......................................................
+          Job submission        5 sec         Fast
+          Resource allocation   30 sec        YARN scheduling
+          Map phase             45 min        80,000 mappers parallel
+          Shuffle + Sort        15 min        Network transfer
+          Reduce phase          10 min        1,000 reducers parallel
+          Output write          5 min         HDFS write
+          ......................................................
+          Total                 75 min        10 TB processed in 1.25 hrs
+          ......................................................
+
     Same job without Hadoop (single server): estimated 3-4 DAYS.
+
+
 
 
   ....................................
   E. HADOOP vs TRADITIONAL RDBMS
   ....................................
 
-    .......................................................
-    Feature          Hadoop              Traditional RDBMS
-    .......................................................
-    Data type        Any (structured,    Structured only
-                     unstructured, semi)
-    Schema           Schema on read      Schema on write
-    Processing       Batch               OLTP (transactional)
-    Scaling          Horizontal          Vertical (bigger server)
-    Cost             Cheap commodity     Expensive licensed
-                     hardware
-    Data size        Petabytes           Terabytes (typical)
-    Speed            Minutes-hours       Milliseconds-seconds
-                     (batch)             (queries)
-    Fault tolerance  Built-in            Requires extra setup
-    Use case         Analytics, ML,      Banking, ERP,
-                     log processing      e-commerce transactions
-    Examples         Netflix analytics   Bank core system
-    .......................................................
+          .......................................................
+          Feature          Hadoop              Traditional RDBMS
+          .......................................................
+          Data type        Any (structured,    Structured only
+                           unstructured, semi)
+
+          Schema           Schema on read      Schema on write
+
+          Processing       Batch               OLTP (transactional)
+
+          Scaling          Horizontal          Vertical (bigger server)
+
+          Cost             Cheap commodity     Expensive licensed
+                           hardware
+
+          Data size        Petabytes           Terabytes (typical)
+
+          Speed            Minutes-hours       Milliseconds-seconds
+                           (batch)             (queries)
+
+          Fault tolerance  Built-in            Requires extra setup
+
+          Use case         Analytics, ML,      Banking, ERP,
+                           log processing      e-commerce transactions
+
+          Examples         Netflix analytics   Bank core system
+          .......................................................
+      
 
 
 
@@ -1004,11 +1217,12 @@
 ------------------------------------------------------------
 
   . Hadoop and MapReduce solved big data storage and batch processing.
+
   . But new requirements emerged:
-    . REAL-TIME processing (not minutes/hours — milliseconds!)
-    . ITERATIVE algorithms (machine learning trains repeatedly)
-    . INTERACTIVE queries (analyst types SQL, gets answer in seconds)
-    . STREAMING data (process as it arrives, not after collection)
+          . REAL-TIME processing (not minutes/hours — milliseconds!)
+          . ITERATIVE algorithms (machine learning trains repeatedly)
+          . INTERACTIVE queries (analyst types SQL, gets answer in seconds)
+          . STREAMING data (process as it arrives, not after collection)
 
   . New tools were built to address these:
 
@@ -1018,36 +1232,50 @@
   ....................................
 
     . Created at UC Berkeley AMPLab (2009), now Apache project.
+
     . IN-MEMORY processing engine — keeps data in RAM, not disk.
+
     . 10x to 100x faster than Hadoop MapReduce for many workloads.
+
     . Supports: batch, streaming, SQL, ML, graph processing.
+
     . Languages: Scala (native), Java, Python (PySpark), R.
 
+
+
     . KEY INNOVATION — RDD (Resilient Distributed Dataset):
-      . Immutable distributed collection of objects.
-      . Stays in MEMORY across multiple operations.
-      . MapReduce writes to disk between steps.
-        Spark keeps intermediate data in RAM.
-      . Transformations are LAZY — computed only when needed.
-      . Fault tolerance via lineage (can recompute lost partitions).
+               . Immutable distributed collection of objects.
+               . Stays in MEMORY across multiple operations.
+               . MapReduce writes to disk between steps.
+                 Spark keeps intermediate data in RAM.
+               . Transformations are LAZY — computed only when needed.
+               . Fault tolerance via lineage (can recompute lost partitions).
+
+
+
+
 
     . SPEED COMPARISON — Logistic Regression training:
       ..................................................
-      Framework        Time (100 iterations)
+            Framework        Time (100 iterations)
+            ..................................................
+            Hadoop MapReduce 110 seconds
+            Apache Spark     10 seconds
       ..................................................
-      Hadoop MapReduce 110 seconds
-      Apache Spark     10 seconds
-      ..................................................
-      Spark 11x faster because:
-        MapReduce: reads disk 100 times (one per iteration).
-        Spark: reads data ONCE into memory, iterates in RAM.
 
-    . SPARK COMPONENTS:
-      . Spark Core:    base engine, RDD, task scheduling
-      . Spark SQL:     query data with SQL (DataFrame API)
-      . Spark Streaming: process live data streams
-      . MLlib:         machine learning library
-      . GraphX:        graph processing
+            Spark 11x faster because:
+              MapReduce: reads disk 100 times (one per iteration).
+              Spark: reads data ONCE into memory, iterates in RAM.
+
+
+          . SPARK COMPONENTS:
+                  . Spark Core:    base engine, RDD, task scheduling
+                  . Spark SQL:     query data with SQL (DataFrame API)
+                  . Spark Streaming: process live data streams
+                  . MLlib:         machine learning library
+                  . GraphX:        graph processing
+      
+
 
 
   ....................................
@@ -1058,28 +1286,38 @@
     . Not collect-then-process like batch — process CONTINUOUSLY.
 
     . USE CASES:
-      . Credit card fraud detection (must decide in < 1 second!)
-      . Real-time stock price alerts.
-      . Live social media trending topics.
-      . IoT sensor monitoring (temperature alert, fire detection).
+            . Credit card fraud detection (must decide in < 1 second!)
+            . Real-time stock price alerts.
+            . Live social media trending topics.
+            . IoT sensor monitoring (temperature alert, fire detection).
+
+
+
 
     . TOOLS:
-      . Apache Kafka:      high-throughput message streaming.
-      . Apache Flink:      stateful stream processing.
-      . Apache Storm:      real-time computation.
-      . Spark Streaming:   micro-batch stream processing.
-      . AWS Kinesis:       managed cloud streaming.
+            . Apache Kafka:      high-throughput message streaming.
+            . Apache Flink:      stateful stream processing.
+            . Apache Storm:      real-time computation.
+            . Spark Streaming:   micro-batch stream processing.
+            . AWS Kinesis:       managed cloud streaming.
+
+
 
     . SCENARIO — Real-Time Fraud Detection (eSewa):
-      Customer initiates Rs 50,000 transfer.
-      Stream processor receives event:
-        . Check: Is this unusual for this account?
-        . Compare: Has this account sent > 3 transactions
-                   in last 5 minutes?
-        . Compare: Is the destination account new?
-        . Decision in < 500 milliseconds.
-        . ALLOW or BLOCK instantly before money moves. ✓
-      Batch processing would be TOO LATE — money already gone.
+      -------------------------------------------------
+               Customer initiates Rs 50,000 transfer.
+         
+               Stream processor receives event:
+                       . Check: Is this unusual for this account?
+                       . Compare: Has this account sent > 3 transactions
+                                  in last 5 minutes?
+                       . Compare: Is the destination account new?
+                       . Decision in < 500 milliseconds.
+                       . ALLOW or BLOCK instantly before money moves. ✓
+         
+               Batch processing would be TOO LATE — money already gone.
+
+
 
 
   ....................................
@@ -1088,28 +1326,31 @@
 
     . A data processing architecture that combines BOTH
       batch and real-time processing.
+
     . Proposed by Nathan Marz.
 
-    . THREE LAYERS:
-      Batch Layer:
-        . Processes ALL historical data at once.
-        . Accurate but slow (hours delay).
-        . Stores pre-computed batch views.
-
-      Speed Layer:
-        . Processes only RECENT data in real-time.
-        . Less accurate but fast (seconds).
-        . Handles data from last few hours while batch catches up.
-
-      Serving Layer:
-        . Merges batch and speed layer results.
-        . Answers queries from combined view.
+             . THREE LAYERS:
+                           Batch Layer:
+                                . Processes ALL historical data at once.
+                                . Accurate but slow (hours delay).
+                                . Stores pre-computed batch views.
+                        
+                           Speed Layer:
+                                . Processes only RECENT data in real-time.
+                                . Less accurate but fast (seconds).
+                                . Handles data from last few hours while batch catches up.
+                        
+                           Serving Layer:
+                                . Merges batch and speed layer results.
+                                . Answers queries from combined view.
 
     . EXAMPLE — E-commerce recommendation:
-      Batch layer: process last 1 year purchase history overnight.
-      Speed layer: process what user clicked in last 10 minutes.
-      Serving layer: merge → "users like you bought X" (past) +
-                             "you just viewed Y, also look at Z" (now).
+            Batch layer: process last 1 year purchase history overnight.
+            Speed layer: process what user clicked in last 10 minutes.
+            Serving layer: merge → "users like you bought X" (past) +
+                                   "you just viewed Y, also look at Z" (now).
+
+
 
 
   ....................................
@@ -1119,6 +1360,7 @@
     . Simplified version of Lambda — ONLY stream processing.
     . Everything treated as a stream (even batch becomes a bounded stream).
     . Single codebase instead of separate batch and stream systems.
+
     . Used by: LinkedIn (Apache Kafka), Uber.
 
 
@@ -1126,22 +1368,28 @@
   E. MODERN DATA PROCESSING COMPARISON
   ....................................
 
-    .......................................................
-    Model         Latency      Throughput    Complexity
-    .......................................................
-    MapReduce     Minutes-hrs  Very high     Low
-    Spark Batch   Seconds-min  Very high     Medium
-    Spark Stream  Seconds      High          Medium
-    Flink         Milliseconds High          High
-    Kafka         Milliseconds Very high     Medium
-    .......................................................
+             .......................................................
+             Model         Latency      Throughput    Complexity
+             .......................................................
+             MapReduce     Minutes-hrs  Very high     Low
+             Spark Batch   Seconds-min  Very high     Medium
+             Spark Stream  Seconds      High          Medium
+             Flink         Milliseconds High          High
+             Kafka         Milliseconds Very high     Medium
+             .......................................................
 
-    DECISION GUIDE:
-    . Historical analysis, nightly reports → Hadoop MapReduce / Spark
-    . Interactive analytics → Spark SQL, Hive
-    . Machine learning on big data → Spark MLlib
-    . Real-time alerts, fraud detection → Kafka + Flink
-    . Both historical + real-time → Lambda Architecture
+
+
+
+             DECISION GUIDE:
+                   . Historical analysis, nightly reports → Hadoop MapReduce / Spark
+                   . Interactive analytics → Spark SQL, Hive
+                   . Machine learning on big data → Spark MLlib
+                   . Real-time alerts, fraud detection → Kafka + Flink
+                   . Both historical + real-time → Lambda Architecture
+
+
+
 
 
 
@@ -1149,6 +1397,7 @@
 ------------------------------------------------------------
 6.10  CASE STUDIES IN DISTRIBUTED SYSTEMS
 ------------------------------------------------------------
+
 
   ....................................
   CASE STUDY 1: FACEBOOK — SOCIAL GRAPH
@@ -1159,20 +1408,26 @@
     . "People you may know" — find friends of friends quickly.
 
     . SCALE:
-      Nodes (users):        3 billion
-      Edges (friendships):  Over 1 trillion connections
-      Data size:            Multiple exabytes total
+            Nodes (users):        3 billion
+            Edges (friendships):  Over 1 trillion connections
+            Data size:            Multiple exabytes total
 
     . DISTRIBUTED SOLUTION:
-      . Apache Hive: SQL-like queries on petabytes of user data.
-      . Apache Presto: fast interactive SQL for analyst queries.
-      . Custom graph storage: TAO (The Associations and Objects)
-        distributed graph store handles social graph.
+            . Apache Hive: SQL-like queries on petabytes of user data.
+            . Apache Presto: fast interactive SQL for analyst queries.
+            . Custom graph storage: TAO (The Associations and Objects)
+              distributed graph store handles social graph.
 
     . RESULT:
-      . "People You May Know" computed for 3B users daily.
-      . News feed ranked for each user in milliseconds.
-      . 100+ petabytes of data processed in Hive daily.
+            . "People You May Know" computed for 3B users daily.
+            . News feed ranked for each user in milliseconds.
+            . 100+ petabytes of data processed in Hive daily.
+
+
+
+
+
+
 
 
   ....................................
@@ -1184,25 +1439,35 @@
     . Wrong recommendation = subscriber cancels.
 
     . DATA THEY PROCESS:
-      . Every play, pause, rewind, fast-forward event.
-      . What device was used.
-      . What time of day.
-      . What shows watched to completion vs abandoned.
-      . 500 billion events processed per day.
+            . Every play, pause, rewind, fast-forward event.
+            . What device was used.
+            . What time of day.
+            . What shows watched to completion vs abandoned.
+            . 500 billion events processed per day.
+
+
+
 
     . DISTRIBUTED SOLUTION:
-      . Apache Spark: trains recommendation models on viewing history.
-      . Apache Kafka: real-time streaming of viewing events.
-      . Amazon S3: stores all raw event data.
-      . Cassandra: serves personalized recommendations in real-time.
+            . Apache Spark: trains recommendation models on viewing history.
+            . Apache Kafka: real-time streaming of viewing events.
+            . Amazon S3: stores all raw event data.
+            . Cassandra: serves personalized recommendations in real-time.
+
+
 
     . MAPREDUCE USE:
-      Map: (user_id, show_watched, rating_signal)
-      Reduce: build user preference profile per genre, language, etc.
+            Map: (user_id, show_watched, rating_signal)
+            Reduce: build user preference profile per genre, language, etc.
 
     . RESULT:
-      . 75% reduction in customer churn attributed to good recommendations.
-      . $1 billion+ annual value estimated from recommendation system.
+            . 75% reduction in customer churn attributed to good recommendations.
+            . $1 billion+ annual value estimated from recommendation system.
+
+
+
+
+
 
 
   ....................................
@@ -1215,21 +1480,28 @@
     . Must respond in < 1 second when rider requests a trip.
 
     . SCALE:
-      Trips per day:  25 million globally.
-      GPS pings:      Driver location sent every 4 seconds.
-      Cities:         70+ countries, hundreds of cities.
+            Trips per day:  25 million globally.
+            GPS pings:      Driver location sent every 4 seconds.
+            Cities:         70+ countries, hundreds of cities.
+
+
 
     . DISTRIBUTED SOLUTION:
-      . Apache Kafka: ingests millions of GPS location events/second.
-      . Apache Flink: stream processing — computes supply/demand
-                      per geo-cell in real-time.
-      . Cassandra: globally distributed database for trip data.
-      . Custom geospatial partitioning of maps.
+            . Apache Kafka: ingests millions of GPS location events/second.
+            . Apache Flink: stream processing — computes supply/demand
+                            per geo-cell in real-time.
+            . Cassandra: globally distributed database for trip data.
+            . Custom geospatial partitioning of maps.
+
+
 
     . RESULT:
-      . Surge price calculated and updated every 60 seconds per area.
-      . Driver-rider matching happens in < 1 second.
-      . 25 million trips per day handled smoothly.
+            . Surge price calculated and updated every 60 seconds per area.
+            . Driver-rider matching happens in < 1 second.
+            . 25 million trips per day handled smoothly.
+
+
+
 
 
   ....................................
@@ -1241,38 +1513,52 @@
     . Problem: analyze customer behavior, improve recommendations.
 
     . DATA COLLECTED DAILY:
-      . 500 GB website clickstream logs.
-      . 150 MB order data.
-      . 50 MB search query logs.
-      . 10 MB customer review data.
+            . 500 GB website clickstream logs.
+            . 150 MB order data.
+            . 50 MB search query logs.
+            . 10 MB customer review data.
+
+
+
 
     . DISTRIBUTED SOLUTION (appropriate scale):
-      . 5-node Hadoop cluster (modest but sufficient).
-      . HDFS stores all log data.
-      . MapReduce batch job runs at 2 AM daily:
-        . Count views per product category.
-        . Find most abandoned products (viewed not bought).
-        . Calculate average order value by region (Province 1-7).
-        . Update product recommendation scores.
+            . 5-node Hadoop cluster (modest but sufficient).
+            . HDFS stores all log data.
+            . MapReduce batch job runs at 2 AM daily:
+                    . Count views per product category.
+                    . Find most abandoned products (viewed not bought).
+                    . Calculate average order value by region (Province 1-7).
+                    . Update product recommendation scores.
+
 
     . MAPREDUCE JOB EXAMPLE:
-      Map input: (session_id, product_viewed, duration_seconds)
-      Map output: (product_id, 1) for each view
-      Reduce: (product_id, total_views)
+            Map input: (session_id, product_viewed, duration_seconds)
+            Map output: (product_id, 1) for each view
+            Reduce: (product_id, total_views)
+
+
 
       Daily output:
-      Product Category    Views    Orders    Conversion
-      .....................................................
-      Electronics         89,000   4,500     5.1%
-      Clothing            145,000  8,200     5.7%
-      Books               23,000     890     3.9%
-      Home & Kitchen      67,000   3,100     4.6%
-      Sports              18,000     540     3.0%
-      .....................................................
+               .....................................................
+               Product             Views    Orders    Conversion
+               Category
+               .....................................................
+               Electronics         89,000   4,500     5.1%
+               Clothing            145,000  8,200     5.7%
+               Books               23,000     890     3.9%
+               Home & Kitchen      67,000   3,100     4.6%
+               Sports              18,000     540     3.0%
+               .....................................................
 
     . INSIGHT: Books have lowest conversion rate (3.9%).
+
       Recommendation: Improve book product pages, add reviews.
       This decision came from overnight MapReduce batch processing.
+
+
+
+
+
 
 
 
@@ -1280,73 +1566,73 @@
 ------------------------------------------------------------
   COMPLETE SUMMARY TABLE — UNIT 6
 ------------------------------------------------------------
-
-  .......................................................
-  Topic                  Key Point
-  .......................................................
-  Parallel Computing     Multiple processors on ONE machine.
-                         Same memory, very fast communication.
-                         Limited by hardware (one server).
-
-  Distributed Computing  Multiple SEPARATE machines on network.
-                         Independent memory, message passing.
-                         Scales to thousands of nodes.
-
-  HDFS                   128 MB blocks, 3x replication.
-                         NameNode (metadata) + DataNodes (data).
-                         Write once, read many times.
-
-  Data Replication       3 replicas by default in Hadoop.
-                         Rack awareness for extra safety.
-                         Reduces data loss probability 62,500x.
-
-  Consistency Models     Strong: all see same data, slower.
-                         Eventual: eventually consistent, faster.
-                         CAP: choose 2 of Consistency,
-                         Availability, Partition tolerance.
-
-  MapReduce Phases       Input Split → Map → Shuffle/Sort
-                         → Reduce → Output.
-                         Map runs parallel on each node's data.
-                         Shuffle groups same keys together.
-
-  MapReduce Uses         Word count, web indexing, log analysis,
-                         recommendations, fraud detection,
-                         genome sequencing.
-
-  Amdahl's Law           Max speedup limited by serial fraction.
-                         30% serial code → max 3.33x speedup ever.
-                         Diminishing returns with more processors.
-
-  Batch Processing       Large data processed on schedule.
-                         High throughput, high latency.
-                         Bank end-of-day, telecom billing.
-
-  Hadoop Ecosystem       HDFS + YARN + MapReduce (core).
-                         Hive, Pig, HBase, Sqoop, Oozie, ZooKeeper.
-                         Runs on commodity hardware clusters.
-
-  Apache Spark           In-memory processing, 10-100x faster.
-                         RDD keeps data in RAM between steps.
-                         Batch + Streaming + SQL + ML + Graph.
-
-  Stream Processing      Millisecond latency, process as it arrives.
-                         Kafka, Flink, Storm, Spark Streaming.
-                         Used for fraud detection, real-time alerts.
-
-  Lambda Architecture    Batch layer + Speed layer + Serving layer.
-                         Combines accuracy (batch) + speed (stream).
-                         Best of both worlds.
-
-  Hadoop vs RDBMS        Hadoop: petabytes, unstructured, batch.
-                         RDBMS: terabytes, structured, real-time.
-                         Not competitors — complementary.
-
-  Case Studies           Facebook: 3B users, TAO graph store.
-                         Netflix: 500B events/day, Spark recommendations.
-                         Uber: Kafka + Flink for surge pricing.
-  .......................................................
-
+            
+              .......................................................
+              Topic                  Key Point
+              .......................................................
+              Parallel Computing     Multiple processors on ONE machine.
+                                     Same memory, very fast communication.
+                                     Limited by hardware (one server).
+            
+              Distributed Computing  Multiple SEPARATE machines on network.
+                                     Independent memory, message passing.
+                                     Scales to thousands of nodes.
+            
+              HDFS                   128 MB blocks, 3x replication.
+                                     NameNode (metadata) + DataNodes (data).
+                                     Write once, read many times.
+            
+              Data Replication       3 replicas by default in Hadoop.
+                                     Rack awareness for extra safety.
+                                     Reduces data loss probability 62,500x.
+            
+              Consistency Models     Strong: all see same data, slower.
+                                     Eventual: eventually consistent, faster.
+                                     CAP: choose 2 of Consistency,
+                                     Availability, Partition tolerance.
+            
+              MapReduce Phases       Input Split → Map → Shuffle/Sort
+                                     → Reduce → Output.
+                                     Map runs parallel on each node's data.
+                                     Shuffle groups same keys together.
+            
+              MapReduce Uses         Word count, web indexing, log analysis,
+                                     recommendations, fraud detection,
+                                     genome sequencing.
+            
+              Amdahl's Law           Max speedup limited by serial fraction.
+                                     30% serial code → max 3.33x speedup ever.
+                                     Diminishing returns with more processors.
+            
+              Batch Processing       Large data processed on schedule.
+                                     High throughput, high latency.
+                                     Bank end-of-day, telecom billing.
+            
+              Hadoop Ecosystem       HDFS + YARN + MapReduce (core).
+                                     Hive, Pig, HBase, Sqoop, Oozie, ZooKeeper.
+                                     Runs on commodity hardware clusters.
+            
+              Apache Spark           In-memory processing, 10-100x faster.
+                                     RDD keeps data in RAM between steps.
+                                     Batch + Streaming + SQL + ML + Graph.
+            
+              Stream Processing      Millisecond latency, process as it arrives.
+                                     Kafka, Flink, Storm, Spark Streaming.
+                                     Used for fraud detection, real-time alerts.
+            
+              Lambda Architecture    Batch layer + Speed layer + Serving layer.
+                                     Combines accuracy (batch) + speed (stream).
+                                     Best of both worlds.
+            
+              Hadoop vs RDBMS        Hadoop: petabytes, unstructured, batch.
+                                     RDBMS: terabytes, structured, real-time.
+                                     Not competitors — complementary.
+            
+              Case Studies           Facebook: 3B users, TAO graph store.
+                                     Netflix: 500B events/day, Spark recommendations.
+                                     Uber: Kafka + Flink for surge pricing.
+              .......................................................
+            
 
 
 
@@ -1354,32 +1640,28 @@
   KEY FORMULAS REFERENCE
 ============================================================
 
-  SPEEDUP:
-  . S(N) = T(1) / T(N)
-  . T(1) = time with 1 processor
-  . T(N) = time with N processors
-
-  PARALLEL EFFICIENCY:
-  . E(N) = S(N) / N
-  . Perfect efficiency = 1.0 (100%)
-
-  AMDAHL'S LAW:
-  . Max Speedup = 1 / [S + (1-S)/N]
-  . S = serial fraction, N = number of processors
-
-  REPLICATION FAILURE PROBABILITY:
-  . P(all fail) = P(one fail)^R
-  . R = replication factor
-
-  HDFS BLOCK CALCULATION:
-  . Number of blocks = file size / block size (rounded up)
-  . Total storage = file size x replication factor
-
-  MAPREDUCE TASKS:
-  . Map tasks = number of input splits (approx = blocks in input)
-  . Reduce tasks = configured by developer (default = 1)
-
-============================================================
-              END OF UNIT 6 NOTES
-============================================================
+              SPEEDUP:
+                    . S(N) = T(1) / T(N)
+                    . T(1) = time with 1 processor
+                    . T(N) = time with N processors
+                  
+              PARALLEL EFFICIENCY:
+                    . E(N) = S(N) / N
+                    . Perfect efficiency = 1.0 (100%)
+                  
+              AMDAHL'S LAW:
+                    . Max Speedup = 1 / [S + (1-S)/N]
+                    . S = serial fraction, N = number of processors
+                  
+              REPLICATION FAILURE PROBABILITY:
+                    . P(all fail) = P(one fail)^R
+                    . R = replication factor
+                  
+              HDFS BLOCK CALCULATION:
+                    . Number of blocks = file size / block size (rounded up)
+                    . Total storage = file size x replication factor
+                  
+              MAPREDUCE TASKS:
+                    . Map tasks = number of input splits (approx = blocks in input)
+                    . Reduce tasks = configured by developer (default = 1)
 
