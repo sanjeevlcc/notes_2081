@@ -1,0 +1,1565 @@
+============================================================
+     UNIT VI: SOFTWARE PROCESS SIMULATION MODELING
+     Complete Notes with Examples, Data and Analysis
+     Subject : Simulation and Modeling (MTH 250)
+     Pokhara University — BCA III Year / VI Semester
+============================================================
+
+  Lecture Hours : 9  (Highest in the course — most important unit)
+  Textbook      : Gordon Geoffrey — System Simulation, 2nd Ed
+  Format        : Study Notes with Examples, Data and Scenarios
+
+============================================================
+
+
+
+
+------------------------------------------------------------
+  WHY SOFTWARE PROCESS SIMULATION?
+------------------------------------------------------------
+
+  . Software projects FAIL at an alarming rate worldwide.
+  . The Standish Group CHAOS Report consistently shows:
+        . Only ~30% of software projects succeed on time and budget.
+        . ~50% are challenged (late, over budget, fewer features).
+        . ~20% are cancelled before completion.
+
+
+
+  . WHY DO THEY FAIL?
+-------------------------
+    . Wrong effort estimates (project takes 3x longer than planned)
+    . Adding more developers makes things SLOWER (Brooks's Law)
+    . Quality problems found too late (expensive to fix)
+    . Poor team communication causing rework
+    . Scope creep destroying schedules
+
+
+  . TRADITIONAL APPROACH TO THESE PROBLEMS:
+    . Guess based on experience.
+    . Use rules of thumb.
+    . Hope for the best.
+
+
+
+  . SIMULATION APPROACH:
+-------------------------
+          . Build a model of the software development process.
+          . Run the simulation BEFORE the project starts.
+                  . Test: what if we add 3 more developers in month 4?
+                  . Test: what if requirements change at 60% completion?
+                  . Test: what if testers find more bugs than expected?
+          . Make INFORMED decisions without risk to real project.
+
+
+
+
+
+  . BENEFITS:
+-------------------------
+    . Test management decisions safely and cheaply.
+    . Understand complex interactions between people,
+      tasks, quality, and time.
+    . Predict project outcomes before committing resources.
+    . Train project managers in a risk-free environment.
+
+
+
+
+  . KEY INSIGHT:
+-------------------------
+    Software development is a COMPLEX SYSTEM with:
+        . Human factors (skill, learning, fatigue, communication)
+        . Technical factors (complexity, defects, rework)
+        . Management factors (scheduling, resource allocation)
+        . Feedback loops (finding bugs creates more work)
+    Simulation is the ONLY way to study all these interactions.
+
+
+
+
+
+
+------------------------------------------------------------
+6.1  SOFTWARE DEVELOPMENT AS A PROCESS
+------------------------------------------------------------
+
+  . WHAT IS A SOFTWARE DEVELOPMENT PROCESS?
+  ..........................................
+
+        . A structured set of activities that transforms
+          user requirements into a working software system.
+    
+        . Activities include: requirements, design, coding,
+          testing, deployment, maintenance.
+    
+        . A PROCESS defines WHO does WHAT, WHEN, and HOW.
+    
+        . Different process models exist — each with different
+          structure, risks, advantages, and simulation challenges.
+
+
+
+
+
+
+
+  ....................................
+  A. WATERFALL MODEL
+  ....................................
+
+    https://www.linkedin.com/pulse/waterfall-model-sdlc-logesh-kumar-p-eol1c
+
+
+
+    . The OLDEST and most traditional process model.
+    . Proposed by Winston Royce (1970).
+    . Activities flow DOWNWARD like a waterfall —
+      each phase must be COMPLETELY FINISHED before
+      the next phase begins.
+
+    . PHASES IN ORDER:
+-------------------------
+              1. Requirements Analysis
+                 . What must the system do?
+                 . All requirements documented in full before design begins.
+        
+              2. System Design
+                 . Architecture, database, interfaces defined.
+                 . High-level and detailed design completed.
+        
+              3. Implementation (Coding)
+                 . Developers write code based on design documents.
+                 . No new requirements accepted at this stage.
+        
+              4. Testing (Verification)
+                 . System tested against requirements.
+                 . Bugs found, fixed, re-tested.
+        
+              5. Deployment
+                 . System delivered to customer.
+                 . Installed in production environment.
+        
+              6. Maintenance
+                 . Bug fixes and small updates after release.
+                 . Any major change restarts the cycle.
+
+
+
+
+    . VISUAL REPRESENTATION:
+    -------------------------
+              Requirements
+                   |
+                   v
+                Design
+                   |
+                   v
+              Implementation
+                   |
+                   v
+                Testing
+                   |
+                   v
+               Deployment
+                   |
+                   v
+               Maintenance
+
+
+
+
+
+    . DATA EXAMPLE — Waterfall Project Timeline:
+    --------------------------------------------------
+      Project: University Library Management System
+      Team: 8 developers
+
+      Phase            Planned    Actual    Variance    Reason
+      ...........................................................
+      Requirements     4 weeks    6 weeks   +2 weeks    Stakeholder
+                                                         conflicts
+      Design           6 weeks    8 weeks   +2 weeks    Late start
+      Implementation  16 weeks   22 weeks   +6 weeks    Design gaps
+      Testing          8 weeks   14 weeks   +6 weeks    High defect
+                                                         rate
+      Deployment       2 weeks    2 weeks    0 weeks    On time
+      ...........................................................
+      Total           36 weeks   52 weeks   +16 weeks   44% overrun
+
+
+
+      ANALYSIS:
+            . Every phase was delayed — classic waterfall cascade effect.
+            . Testing found bugs that required going BACK to design.
+            . In strict waterfall this is expensive and disruptive.
+            . If simulation was run BEFORE project:
+              Predicted testing overrun due to high expected defect
+              density → recommend more time in design review.
+              Could have prevented the +6 week testing delay.
+      
+
+
+
+        . ADVANTAGES OF WATERFALL:
+        -------------------------
+              . Simple to understand and manage.
+              . Clear milestones and deliverables per phase.
+              . Good for small, well-understood projects.
+              . Easy to model in simulation (sequential phases).
+
+
+
+        . DISADVANTAGES:
+        -------------------------
+              . Inflexible — cannot accommodate changing requirements.
+              . Customer sees working software VERY LATE.
+              . Bugs found in testing are expensive to fix.
+              . Real projects rarely fit the strict sequential model.
+              . Simulation difficulty: interactions between phases
+                are hard to capture in a purely sequential model.
+    
+
+
+
+
+
+  ....................................
+  B. INCREMENTAL MODEL
+  ....................................
+    
+    https://miro.medium.com/v2/resize:fit:1400/1*V76HwDEYIFmoBqYnwTxPSA.png
+    
+    
+    https://files.codingninjas.in/article_images/incremental-model-0-1646852390.webp
+    
+
+    . Divides the system into INCREMENTS (smaller pieces).
+    . Each increment delivers a WORKING, USABLE portion
+      of the final system.
+
+    . Each increment goes through its own mini-waterfall:
+            requirements → design → code → test → deliver.
+
+    . Customer sees working software EARLY and OFTEN.
+    . Feedback from each increment improves the next.
+
+
+
+
+    . HOW IT WORKS:
+      -------------------------
+      Total System = Increment 1 + Increment 2 + Increment 3 + ...
+
+              Increment 1: Core features (login, basic functions)
+              Increment 2: Important features (reports, search)
+              Increment 3: Advanced features (analytics, export)
+              Increment 4: Polish and remaining features
+
+
+
+
+    . DATA EXAMPLE — Incremental Library System:
+      --------------------------------------------------
+      Same project as Waterfall example above.
+      Team: 8 developers. 4 increments of 8 weeks each.
+
+                Increment  Features Delivered       Status    Customer Feedback                                                              
+                ..................................................................
+                1 (wk 1-8) Book catalog, login      On time   Positive
+                           Basic search                        Minor changes
+                2 (wk9-16) Issue/return, fines      +1 week   Good, small
+                           Member management                  adjustments
+                3 (wk17-24)Reports, statistics      On time   Excellent
+                           Advanced search
+                4 (wk25-32)Admin panel, exports     On time   System accepted
+                           Final polish
+                .........................................................
+                Total: 33 weeks (vs 52 weeks waterfall = 37% faster)
+
+
+
+
+      ANALYSIS:
+      -----------
+      . Customer feedback after each increment PREVENTED
+        large design mistakes from accumulating.
+      . Team learned from each increment — quality IMPROVED.
+      . Simulation of incremental model must capture:
+              . Learning curve between increments.
+              . Requirement changes requested after each delivery.
+              . Overlapping increments if team is large enough.
+
+
+
+
+    . ADVANTAGES:
+      --------------------
+            . Early delivery of working software.
+            . Customer feedback reduces final rework.
+            . Easier to manage risk (problems found early).
+            . Team builds experience over increments.
+
+
+
+    . DISADVANTAGES:
+    ------------------
+            . More complex management than waterfall.
+            . Requires good initial planning to define increments.
+            . Integration of increments can be complex.
+            . Simulation difficulty: overlapping increments and
+              requirement changes between increments are complex
+              to model accurately.
+
+
+
+
+
+
+
+
+  . WATERFALL vs INCREMENTAL — SIMULATION PERSPECTIVE:
+  .....................................................
+
+                  .......................................................
+                  Feature            Waterfall         Incremental
+                  .......................................................
+                  Phases             Sequential, once  Repeated cycles
+                  Feedback           End of project    After each increment
+                  Risk               High (late bugs)  Lower (early bugs)
+                  Simulation model   Simpler (linear)  Complex (iterative)
+                  Rework model       Rare, expensive   Built into cycle
+                  Learning           Minimal           Grows each iteration
+                  Customer contact   Start and end     Continuous
+                  .......................................................
+              
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+6.2  MODELING THE SOFTWARE DEVELOPMENT PROCESS
+------------------------------------------------------------
+
+  . The goal is to build a QUANTITATIVE model that captures
+    the key dynamics of software development.
+
+  . Three sub-models are developed and integrated:
+            . EPM — Effort Performance Model
+            . HKM — Human Knowledge Model
+            . AQM — Artifact Quality Model
+
+  . Together with the Developer Interaction Model, they
+    form a complete simulation of a software project.
+
+
+  ....................................
+  A. EPM — EFFORT PERFORMANCE MODEL
+  ....................................
+
+    . Models the relationship between EFFORT APPLIED
+      and WORK PRODUCED (tasks completed, code written).
+
+    . Core insight: MORE EFFORT does NOT always mean
+      MORE OUTPUT. There are limits and diminishing returns.
+
+
+
+    . KEY VARIABLES:
+            . Staff          = number of developers on project
+            . Effort         = staff x time (person-months)
+            . Productivity   = tasks completed per person per week
+            . Progress       = cumulative work completed (%)
+            . Rework         = extra effort to fix defects
+
+
+
+    . BROOKS'S LAW (built into EPM):
+    -------------------------------------
+      "Adding manpower to a late software project
+       makes it later."  — Fred Brooks (1975)
+      Adding new developers:
+              . Takes time to train (reduced output during training)
+              . Experienced developers must stop to train newcomers
+              . More communication links = more meetings = less coding
+
+
+
+
+    . COMMUNICATION OVERHEAD FORMULA:
+    --------------------------------------
+              Communication_links = N x (N-1) / 2
+              where N = number of developers
+
+
+                  ..............................
+                  N    Links   Explanation
+                  ..............................
+                  2    1       1 link between 2 people
+                  5    10      10 links between 5 people
+                  10   45      45 links between 10 people
+                  20   190     190 links between 20 people
+
+
+
+      ANALYSIS: 
+              Adding 1 developer to a 9-person team
+              (9 to 10) adds 9 new communication links.
+        
+              Each link consumes coordination time.
+              This is why large teams are often inefficient.
+
+
+
+    . DATA EXAMPLE — EPM Simulation:
+      ---------------------------------------
+      Project: 1000 function points to implement.
+        Baseline: 5 developers, 20 weeks.
+
+      Scenario A: Keep 5 developers throughout
+            Week   Staff  Tasks Done/Wk  Cumulative %  On Track?
+            ......................................................
+            1-5    5      50 tasks/wk    25%           Yes
+            6-10   5      50 tasks/wk    50%           Yes
+            11-15  5      50 tasks/wk    75%           Yes
+            16-20  5      50 tasks/wk    100%          Done ✓
+
+
+
+      Scenario B: Add 5 developers at week 10 (mid-project)
+              Week   Staff  Tasks Done/Wk  Cumulative %  Comment
+              ......................................................
+              1-9    5      50 tasks/wk    45%           Normal
+              10-12  10     30 tasks/wk    54%           Training new staff
+                                                          slows everyone
+              13-16  10     70 tasks/wk    82%           New staff productive
+              17-22  10     70 tasks/wk    100%          Done in 22 weeks!
+
+
+
+
+      ANALYSIS: 
+              Adding staff mid-project made it LONGER (22 vs 20 weeks)
+              — exactly Brooks's Law. EPM captures this dynamic.
+              Simulation reveals this BEFORE the manager makes the mistake.
+
+
+
+
+
+
+  ....................................
+  B. HKM — HUMAN KNOWLEDGE MODEL
+  ....................................
+
+    . Models how developer SKILL and KNOWLEDGE
+      evolve over the course of a project.
+
+
+    . Key insight: 
+              People are NOT constant productivity machines.
+
+              . New developers start with LOW productivity.
+              . They LEARN the codebase, domain, and team practices.
+              . Productivity GROWS over time (learning curve).
+              . Experienced developers are MUCH more productive
+                than new ones on the same task.
+
+
+
+
+    . KEY VARIABLES:
+            . Experience_Level   = 0 (novice) to 1 (expert)
+            . Learning_Rate      = how fast skill grows
+            . Knowledge_Decay    = skill lost when developer leaves
+            . Productivity       = function of experience level
+
+
+
+    . LEARNING CURVE FORMULA:
+                  Productivity(t) = P_max x (1 - e^(-learning_rate x t))
+
+      https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0275814
+
+
+
+    . DATA EXAMPLE — HKM Simulation:
+      ----------------------------------------
+              New developer joins team. P_max = 10 tasks/day.
+              
+              Learning rate = 0.1 per week.
+        
+        
+        
+              Week  Experience   Tasks/Day     Compare to Expert
+                    Level        (Simulated)   (10 tasks/day)
+              .....................................................
+              0     0.00         0.0           0%
+              1     0.10         0.95          9.5%
+              2     0.18         1.81          18.1%
+              4     0.33         3.30          33.0%
+              8     0.55         5.50          55.0%
+              12    0.70         7.00          70.0%
+              16    0.80         8.00          80.0%
+              24    0.91         9.10          91.0%
+              36    0.97         9.70          97.0%
+
+
+
+      ANALYSIS:
+              . New developer reaches 50% productivity only after ~7 weeks.
+              . Full productivity approached only after 6+ months.
+              . This explains why replacing a developer is so costly —
+                the replacement is unproductive for months.
+              . If a key developer LEAVES the project:
+
+                Knowledge_Decay: team loses critical system knowledge.
+                HKM models this as a sudden drop in team expertise.
+
+
+
+    . SCENARIO — Developer leaves at week 12:
+                    Team productivity before departure: 90 tasks/week.
+                    Developer who leaves contributed 20 tasks/week.
+                    Knowledge they carried (undocumented): team loses
+                    domain context that slows others by 10%.
+              
+                    After departure: 90 - 20 - (70 x 0.10) = 63 tasks/week
+                    Time to recover: ~4-6 weeks as others absorb the knowledge.
+                    HKM models this entire decline and recovery curve. ✓
+
+
+
+
+
+
+  ....................................
+  C. AQM — ARTIFACT QUALITY MODEL
+  ....................................
+          
+                https://modeling-languages.com/guidelines-for-quality-management-of-research-artifacts-in-model-driven-engineering/
+                      
+                https://www.sciencedirect.com/topics/computer-science/artifact-model
+                      
+                https://ars.els-cdn.com/content/image/3-s2.0-B9780123852410000063-f06-17-9780123852410.jpg
+
+
+    . Models the QUALITY of work products (artifacts)
+      produced during software development.
+
+    . Artifacts include: requirement documents, design
+      documents, source code, test cases, user manuals.
+
+
+
+    . Key insight: Low quality artifacts at one stage
+              PROPAGATE DEFECTS to the next stage.
+              Poor requirements → bad design.
+              Bad design → buggy code.
+              Buggy code → expensive testing.
+              This is the DEFECT AMPLIFICATION EFFECT.
+
+
+
+    . KEY VARIABLES:
+            . Defect_Density    = defects per 1000 lines of code (KLOC)
+            . Defect_Injection  = rate at which defects are created
+            . Defect_Detection  = rate at which defects are found/fixed
+            . Rework            = effort to fix detected defects
+            . Latent_Defects    = defects not yet found (in production)
+
+
+
+    . DEFECT LIFECYCLE IN AQM:
+            Code written → Defects injected → Testing detects some →
+            Fixed (rework) → Some defects remain latent →
+            Found in production → Customer complaints → Maintenance.
+
+
+
+    . DATA EXAMPLE — AQM Simulation:
+            Project: 50,000 lines of code (50 KLOC).
+            Industry average defect injection rate = 30 defects/KLOC.
+            Expected total defects = 50 x 30 = 1,500 defects.
+              
+              Defect Detection at each phase (industry data):
+              --------------------------------------------------
+                      Phase            % Defects Found   Defects Found   Cost/Defect
+                      ............................................................
+                      Requirements rev  10%              150             Rs 1,000
+                      Design review     25%              375             Rs 2,000
+                      Code review       20%              300             Rs 5,000
+                      Unit testing      15%              225             Rs 8,000
+                      Integration test  15%              225             Rs 15,000
+                      System testing    10%              150             Rs 25,000
+                      Production         5%               75             Rs 100,000
+                      ............................................................
+                      Total            100%             1,500
+        
+                  TOTAL COST OF DEFECTS = 150x1K + 375x2K + 300x5K
+                                        + 225x8K + 225x15K + 150x25K
+                                        + 75x100K
+                                        = 150K + 750K + 1.5M + 1.8M
+                                          + 3.375M + 3.75M + 7.5M
+                                        = Rs 18.825 Million
+
+
+
+
+
+      ANALYSIS (KEY INSIGHT):
+              . 5% of defects reach production BUT cost 40% of total.
+              . Fixing a defect in production costs 100x more than
+                finding it during requirements review.
+              . AQM simulation shows: investing more in early reviews
+                dramatically reduces total project cost.
+              . Simulation recommendation: double requirements review
+                effort → catch 20% early → save Rs 7-10M. ✓
+
+
+
+
+
+
+  ....................................
+  D. INTEGRATING THE MODELS
+  ....................................
+
+    . EPM, HKM, and AQM are not independent.
+    . They INTERACT with each other in complex ways.
+    . Integration captures these cross-model effects.
+
+
+
+
+    . KEY INTERACTIONS:
+              . Developer experience (HKM) affects productivity (EPM).
+                Low experience → low output → schedule slips.
+        
+              . Productivity pressure (EPM) affects quality (AQM).
+                Rushing to meet schedule → more defects injected.
+        
+              . High defect rate (AQM) creates rework (EPM).
+                More defects found → developers pulled off new work
+                → less progress → further schedule pressure.
+        
+              . Rework increases pressure → more rushing → more defects.
+                VICIOUS CYCLE (positive feedback loop!).
+
+
+
+
+    . INTEGRATION DATA EXAMPLE:
+              Project at week 15 of 20 (75% through schedule).
+              Only 55% of tasks complete (behind schedule).
+        
+              Management response WITHOUT simulation:
+                "Add 5 more developers immediately."
+              Result: Brooks's Law kicks in → project delayed further.
+
+
+
+              Management response WITH integrated simulation:
+                Run simulation → shows:
+                    . 40% of delays caused by rework (AQM effect on EPM).
+                    . Rework caused by skipping code reviews (AQM issue).
+                    . New developers will hurt for 4 weeks (HKM effect).
+
+
+                Recommendation:
+                        . Do NOT add developers yet.
+                        . Mandatory code reviews for 2 weeks.
+                        . Reduce defect injection → reduce rework → progress.
+                        . Then add 2 (not 5) developers in week 17.
+
+                Result: Project completes in week 22 (vs week 30+ without sim).
+
+
+
+
+  ....................................
+  E. DEVELOPER INTERACTION MODEL
+  ....................................
+
+    . Models how COMMUNICATION between developers
+      affects overall team productivity and quality.
+
+    . Key insight: Communication is both ESSENTIAL and COSTLY.
+      . Without communication: work is duplicated, interfaces
+        are incompatible, team members block each other.
+      . With TOO MUCH communication: meetings dominate the day,
+        developers have no focused coding time.
+
+    . KEY CONCEPTS:
+
+      COMMUNICATION NETWORK:
+      . Each developer pair = one communication link.
+      . Links = N(N-1)/2 for N developers.
+      . Each link has a COMMUNICATION FREQUENCY and OVERHEAD.
+
+      COORDINATION COST:
+      . Time spent in meetings, emails, code reviews,
+        discussions = time NOT spent coding.
+      . Estimated: 15-30% of developer time in typical project.
+
+      INFORMATION FLOW:
+      . Correct information must reach the right person
+        at the right time.
+      . Delayed or missing information = design conflicts,
+        duplicate work, integration failures.
+
+    . DATA EXAMPLE — Interaction Model:
+      8-developer team working on a banking application.
+      Communication links = 8x7/2 = 28 links.
+
+      Communication overhead measurement:
+      Activity              Time/week/developer
+      ..............................................
+      Team meetings         3 hours
+      Code reviews          2 hours
+      Email/chat            4 hours
+      One-on-one discussion 3 hours
+      Documentation update  2 hours
+      ..............................................
+      Total overhead        14 hours/week (35% of 40hr week)
+      Available coding      26 hours/week (65% of 40hr week)
+
+      ANALYSIS:
+      . 35% of developer time is coordination, not coding.
+      . This is NORMAL and NECESSARY — not waste.
+      . Simulation with Developer Interaction Model shows:
+        . Reducing team to 5: coding time rises to 75%
+          but some work cannot be done in parallel.
+        . Increasing to 12: coding time drops to 55%
+          due to communication explosion.
+        . Optimal team size for this project = 7-8 people.
+
+
+
+
+------------------------------------------------------------
+6.3  MULTI-AGENT BASED SIMULATION MODEL
+------------------------------------------------------------
+
+  . WHAT IS AGENT-BASED SIMULATION?
+  ..................................
+
+    . A simulation approach where the system is modeled
+      as a collection of individual AGENTS.
+
+    . Each agent is a SOFTWARE ENTITY that:
+      . Has its own STATE (knowledge, skill, task, location)
+      . PERCEIVES its environment (sees what is around it)
+      . Makes its own DECISIONS based on rules or goals
+      . Takes ACTIONS that affect itself and others
+      . Can COMMUNICATE with other agents
+
+    . GLOBAL BEHAVIOR EMERGES from local agent interactions.
+      No central controller — behavior appears bottom-up.
+
+    . In software process simulation:
+      Each DEVELOPER = one agent.
+      Each TASK = an entity in the environment.
+      The PROJECT = the environment.
+      Team dynamics EMERGE from individual agent behaviors.
+
+
+  ....................................
+  A. AGENTS AND THEIR ENVIRONMENT
+  ....................................
+
+    . The AGENT is the basic unit of the simulation.
+    . In software process context:
+
+      Agent = Individual Developer
+      Agent state includes:
+        . Current_Task    (what they are working on)
+        . Skill_Level     (0 to 1, from HKM)
+        . Fatigue_Level   (affects productivity)
+        . Knowledge_Areas (which modules they know)
+        . Status          (Coding / Testing / Reviewing / Idle)
+
+    . The ENVIRONMENT is everything the agent exists within:
+      . Task_Queue       (list of tasks awaiting assignment)
+      . Defect_Database  (all found bugs)
+      . Codebase         (shared artifact)
+      . Calendar         (deadlines, milestones)
+      . Other_Agents     (teammates to interact with)
+
+
+  ....................................
+  B. ENVIRONMENT
+  ....................................
+
+    . The shared world that all agents live and operate in.
+
+    . In software process simulation, environment contains:
+
+      PROJECT REPOSITORY:
+      . All code, documents, test cases.
+      . Shared and modified by multiple agents.
+      . Conflicts arise when two agents modify same file.
+
+      TASK BOARD:
+      . All tasks (features to implement, bugs to fix).
+      . Each task has: priority, estimated effort, dependencies.
+      . Agents pick tasks from the board based on their skills.
+
+      COMMUNICATION CHANNELS:
+      . Meeting rooms (synchronous, scheduled).
+      . Chat systems (asynchronous, always available).
+      . Code review system (structured communication).
+
+    . DATA EXAMPLE — Environment State at Week 8:
+      Task Board Snapshot:
+
+      Task ID  Description           Priority  Status      Agent
+      ...........................................................
+      T001     Login module          High      DONE        Dev-1
+      T002     Database schema       High      DONE        Dev-2
+      T003     User authentication   High      IN PROGRESS Dev-3
+      T004     Search functionality  Medium    WAITING     None
+      T005     Report generation     Medium    WAITING     None
+      T006     Admin dashboard       Low       WAITING     None
+      T007     Fix bug #247          High      IN PROGRESS Dev-4
+      T008     Fix bug #251          Medium    WAITING     None
+      ...........................................................
+      Completion: 25%  On schedule: NO (was 30% planned)
+
+
+  ....................................
+  C. CHARACTERS (Properties of Agents)
+  ....................................
+
+    . Each agent has a set of CHARACTERISTICS that
+      define its behavior and capabilities.
+
+    . DEVELOPER AGENT CHARACTERISTICS:
+      ...........................................................
+      Characteristic    Description                 Example Value
+      ...........................................................
+      Skill_Level       Overall programming skill   0.75 (Senior)
+      Domain_Knowledge  Knows the business domain   0.40 (Medium)
+      Learning_Rate     How fast they improve       0.08 per week
+      Productivity      Tasks completed per day     8 tasks/day
+      Error_Rate        Defects introduced per KLOC 15 defects/KLOC
+      Fatigue           Tiredness affecting perf.   0.20 (low)
+      Communication     Willingness to share info   0.85 (high)
+      Experience        Years of experience         5 years
+      ...........................................................
+
+    . SCENARIO — Team of 4 developers with different characters:
+
+      Developer  Skill  Domain  Productivity  Error Rate
+      .....................................................
+      Dev-A      0.90   0.80    12 tasks/day  8 def/KLOC   (Senior)
+      Dev-B      0.70   0.60    9 tasks/day   15 def/KLOC  (Mid-level)
+      Dev-C      0.50   0.40    6 tasks/day   22 def/KLOC  (Junior)
+      Dev-D      0.60   0.30    7 tasks/day   20 def/KLOC  (New hire)
+
+      . Assigning complex tasks to Dev-A → faster, fewer bugs.
+      . Assigning complex tasks to Dev-D → slow, many bugs.
+      . Simulation can test OPTIMAL TASK ASSIGNMENT strategies.
+
+
+  ....................................
+  D. AUTONOMY
+  ....................................
+
+    . AUTONOMY means agents make their OWN DECISIONS
+      without being told what to do at every moment.
+
+    . Developer agents are AUTONOMOUS — they:
+      . Choose which task to work on next (based on priority).
+      . Decide when to ask for help vs. figure it out alone.
+      . Choose whether to attend an optional meeting.
+      . Decide when code is "good enough" to submit.
+
+    . AUTONOMOUS DECISION RULES (examples):
+      . "If task difficulty > my skill level: ask for help."
+      . "If task queue has high-priority items: skip meeting."
+      . "If defect count in my code is high: do self-review."
+      . "If fatigue > 0.7: work slower, make more mistakes."
+
+    . SCENARIO:
+      Dev-C (junior, skill=0.50) encounters a complex database
+      optimization task (difficulty = 0.80).
+      Autonomous decision rule: 0.80 > 0.50 → ASK FOR HELP.
+      Dev-C asks Dev-A (expert in databases).
+      Dev-A spends 1 hour explaining → Dev-C's knowledge grows.
+      This interaction is modeled automatically in agent-based sim.
+      In aggregate: junior agents slow seniors by ~15% time.
+      Simulation captures this hidden cost. ✓
+
+
+  ....................................
+  E. INTELLIGENCE
+  ....................................
+
+    . INTELLIGENCE refers to the agent's ability to
+      LEARN, ADAPT, and make SMART DECISIONS over time.
+
+    . Unlike simple rule-based agents, intelligent agents:
+      . Learn from past experience (do what worked before).
+      . Adapt to changing project conditions.
+      . Predict consequences of their actions.
+      . Balance multiple competing goals.
+
+    . LEVELS OF INTELLIGENCE IN SIMULATION:
+
+      REACTIVE (Simplest):
+      . Respond to current situation only.
+      . "If queue is empty: become idle."
+      . "If deadline near: work overtime."
+      . No memory, no planning.
+
+      DELIBERATIVE (Medium):
+      . Plan ahead, consider multiple options.
+      . "I could work on Task A now or Task B.
+         Task A blocks 3 other developers, so do A first."
+      . Uses a simple planning algorithm.
+
+      LEARNING (Advanced):
+      . Updates behavior based on outcomes.
+      . "Last time I rushed this type of task, I created
+        many bugs. This time I'll take more time."
+      . Uses reinforcement learning or case-based reasoning.
+
+    . DATA EXAMPLE — Agent Learning:
+      Dev-B initially rushes code reviews (5 min each).
+      Result: many defects pass through → later rework.
+      Intelligent agent updates behavior:
+      After 3 weeks of high rework: "Increase review time."
+      Dev-B increases reviews to 15 min.
+      Defect rate drops 40% → rework drops → schedule recovers.
+      This adaptive behavior is modeled in intelligent agents.
+
+
+  ....................................
+  F. IMPLEMENTATION
+  ....................................
+
+    . HOW AGENT-BASED SIMULATION IS IMPLEMENTED:
+
+      STEP 1: Define agent types
+        . Developer Agent, Manager Agent, Customer Agent.
+        . Each type has its own attributes and behaviors.
+
+      STEP 2: Define agent state
+        . Attributes: skill, task, fatigue, knowledge.
+        . Initial values set for each agent at start.
+
+      STEP 3: Define agent behavior rules
+        . IF-THEN rules or more complex algorithms.
+        . Example: "IF fatigue > 0.8 THEN productivity *= 0.5"
+
+      STEP 4: Define environment
+        . Task board, codebase, communication channels.
+        . Initial state: tasks defined, agents positioned.
+
+      STEP 5: Define interaction protocols
+        . How agents communicate (request help, share info).
+        . Task assignment mechanism (who picks what).
+
+      STEP 6: Run simulation
+        . Each time step: all agents perceive, decide, act.
+        . Environment updates based on agent actions.
+        . Collect statistics on performance measures.
+
+    . SIMULATION TOOLS FOR AGENT-BASED MODELING:
+      . NetLogo    — educational, visual, free
+      . AnyLogic   — professional, multi-paradigm
+      . JADE       — Java Agent DEvelopment framework
+      . REPAST     — research-grade, open source
+      . Mesa       — Python-based agent simulation
+
+
+  ....................................
+  G. AGENTS (Types in Software Process Simulation)
+  ....................................
+
+    . DEVELOPER AGENT:
+      . Implements features, writes code, fixes bugs.
+      . Attributes: skill, productivity, error_rate, fatigue.
+      . Behaviors: code, test, review, attend meetings.
+
+    . TESTER AGENT:
+      . Finds defects in code written by developers.
+      . Attributes: test_coverage, detection_rate.
+      . Behaviors: write test cases, execute tests, log bugs.
+
+    . MANAGER AGENT:
+      . Monitors progress, allocates resources, makes decisions.
+      . Attributes: risk_tolerance, decision_speed.
+      . Behaviors: schedule meetings, assign tasks, report status.
+
+    . CUSTOMER AGENT:
+      . Provides requirements, reviews deliverables.
+      . Attributes: clarity, change_frequency, responsiveness.
+      . Behaviors: submit requirements, approve features, request changes.
+
+    . DATA EXAMPLE — Agent Interaction Simulation:
+      Week 12 event log:
+
+      Time   Agent     Action              Result
+      ..........................................................
+      Mon 9am Manager   Assigns T004       Dev-B picks up task
+      Mon 10am Dev-C    Asks Dev-A for     Dev-A helps 45 min
+                        help on T003       (Dev-A loses 45 min coding)
+      Mon 2pm  Dev-B    Submits T002 code  Tester picks up review
+      Tue 10am Tester   Finds 4 bugs       Logs to defect DB
+      Tue 11am Dev-B    Gets bug notice    Stops T004, fixes bugs
+      Wed 9am  Customer Requests change    T004 scope expands 20%
+               to T004
+      Wed 2pm  Manager  Sees schedule slip Calls team meeting
+                                           (all 8 lose 1 hour)
+      ..........................................................
+      Week productivity: 72% of plan (vs 100% planned)
+      Reasons: help requests, bug fixes, scope change, meeting.
+
+
+  ....................................
+  H. DECISION MAKING
+  ....................................
+
+    . Agents must make DECISIONS continuously:
+
+      TASK SELECTION DECISION:
+      . Which task should I work on next?
+      . Options: highest priority / easiest / most dependencies.
+      . Decision rule based on agent type and project state.
+
+      HELP SEEKING DECISION:
+      . Should I ask for help or figure it out alone?
+      . Factors: task difficulty vs. own skill, time pressure,
+        availability of expert, team culture.
+
+      EFFORT ALLOCATION DECISION:
+      . How much time on coding vs. documentation vs. testing?
+      . Trade-off: more testing now = fewer bugs later.
+        Less testing now = faster progress but more rework.
+
+      OVERTIME DECISION (Manager):
+      . Should developers work overtime to meet deadline?
+      . Short term: more output.
+      . Long term: fatigue increases → more errors → more rework.
+        Often overtime makes final delivery LATER.
+
+    . DATA EXAMPLE — Overtime Decision Simulation:
+      Project 3 weeks behind. Manager considers mandatory overtime.
+      
+      Without overtime:
+        Weeks 18-20: Normal pace. Finish at week 23.
+        Quality: 12 defects/KLOC. 
+
+      With overtime (2 extra hours/day from week 18):
+        Week 18: productivity +20% (catching up)
+        Week 19: fatigue grows. Productivity +5%
+        Week 20: fatigue = 0.85. Errors double. Rework increases.
+        Week 21: rework from week 20 errors. Fall behind again.
+        Finish: week 24. Quality: 18 defects/KLOC.
+
+      ANALYSIS: Overtime made the project 1 week LATER
+      and quality 50% WORSE. Simulation revealed this
+      before the manager made the decision. ✓
+
+
+
+
+------------------------------------------------------------
+6.4  SYSTEM DYNAMICS SIMULATOR
+------------------------------------------------------------
+
+  . WHAT IS SYSTEM DYNAMICS?
+  .........................
+
+    . A methodology for modeling and simulating COMPLEX SYSTEMS
+      that evolve over time with FEEDBACK LOOPS.
+
+    . Developed by Jay W. Forrester at MIT (1950s-60s).
+    . His book "Industrial Dynamics" (1961) founded the field.
+    . Later applied to software by Abdel-Hamid and Madnick
+      in "Software Project Dynamics" (1991).
+
+    . System dynamics models are:
+      . CONTINUOUS (state changes smoothly over time)
+      . FEEDBACK-BASED (outputs loop back as inputs)
+      . NONLINEAR (relationships are often S-curves, not lines)
+      . AGGREGATE (models groups, not individuals)
+
+    . Contrast with agent-based:
+      Agent-based = individual people modeled separately.
+      System dynamics = whole team modeled as one stock.
+
+
+  ....................................
+  A. MODEL PREREQUISITES
+  ....................................
+
+    . Before building a system dynamics model:
+
+      1. DEFINE THE SYSTEM BOUNDARY:
+         . What is inside the model? What is outside?
+         . Inside: developers, tasks, defects, schedule.
+         . Outside: market conditions, technology changes.
+
+      2. IDENTIFY KEY VARIABLES:
+         . What are the important quantities?
+         . Examples: Staff, Tasks_Remaining, Defects_Found.
+
+      3. IDENTIFY FEEDBACK LOOPS:
+         . What reinforces itself? (positive feedback)
+         . What controls itself? (negative feedback)
+         . Example: More defects → more rework → less progress
+           → more schedule pressure → more rushing → more defects.
+
+      4. IDENTIFY TIME DELAYS:
+         . Most important and often overlooked.
+         . Hiring a new developer takes 4 weeks → delay.
+         . Defect injection happens now, found later → delay.
+         . Managers see delayed information → react wrongly.
+
+      5. COLLECT DATA FOR CALIBRATION:
+         . Historical project data to set initial values.
+         . Industry benchmarks for rates and constants.
+
+
+  ....................................
+  B. SYSTEM DYNAMIC MODEL
+  ....................................
+
+    . THE FUNDAMENTAL STRUCTURE:
+      Every system dynamics model consists of:
+      . LEVELS (Stocks)
+      . FLOWS (Rates)
+      . AUXILIARY VARIABLES (Converters)
+      . FEEDBACK LOOPS (Connectors)
+
+    . Think of it like a BATHTUB:
+      . The water in the tub = LEVEL (how much you have)
+      . The tap (filling) = INFLOW (rate water enters)
+      . The drain (emptying) = OUTFLOW (rate water leaves)
+      . Level changes = Inflow rate - Outflow rate
+
+    . SOFTWARE PROJECT EXAMPLE:
+      . Tasks_Remaining   = LEVEL  (total work left to do)
+      . Tasks_Completed   = OUTFLOW (work done per week)
+      . New_Tasks_Added   = INFLOW  (scope creep or new bugs)
+
+      Tasks_Remaining(t) = Tasks_Remaining(t-1)
+                         + New_Tasks_Added(t)
+                         - Tasks_Completed(t)
+
+
+  ....................................
+  C. FEEDBACK
+  ....................................
+
+    . FEEDBACK is what makes system dynamics powerful.
+    . Software projects are FULL of feedback loops.
+
+    . REINFORCING LOOP (Positive Feedback — R loops):
+      . Variable grows → causes itself to grow MORE.
+      . Creates exponential growth or collapse.
+      . Example — Bug Breeding Loop:
+        More code written → more bugs introduced →
+        more testing time needed → less time for new code →
+        but also: more bugs in system → each fix risks new bugs.
+
+    . BALANCING LOOP (Negative Feedback — B loops):
+      . Variable grows → causes itself to decrease.
+      . Creates goal-seeking behavior.
+      . Example — Schedule Pressure Loop:
+        Behind schedule → manager adds staff →
+        new staff eventually productive →
+        progress increases → back on schedule.
+        (But with DELAY in new staff becoming productive.)
+
+    . DATA EXAMPLE — Feedback Loops in Software Project:
+
+      LOOP 1 (Reinforcing — R1: Rework Cycle):
+        Schedule pressure → rush coding → more defects →
+        more rework → more delay → more schedule pressure
+        → (back to start, vicious cycle)
+
+      LOOP 2 (Balancing — B1: Hiring Response):
+        Understaffed → hire more developers →
+        (delay: 4-8 weeks training) →
+        more productive staff →
+        more work done → adequate staffing
+
+      LOOP 3 (Balancing — B2: Quality Control):
+        High defect rate → more testing time allocated →
+        more defects found and fixed →
+        lower defect density in field →
+        less production support time →
+        more time available for new development
+
+      . CRITICAL INSIGHT: The DELAY in Loop 2 (hiring)
+        means managers often OVERHIRE.
+        They hire, see no improvement immediately (staff in training),
+        hire MORE, then suddenly have too many people.
+        System dynamics reveals this time-delay trap. ✓
+
+
+  ....................................
+  D. LEVELS (Stocks)
+  ....................................
+
+    . A LEVEL (also called STOCK or STATE VARIABLE)
+      represents an ACCUMULATION in the system.
+    . It is a quantity that builds up or drains over time.
+    . Levels have INERTIA — they cannot change instantly.
+    . The level at any time = level at previous time
+      + all inflows - all outflows during the interval.
+
+    . KEY LEVELS in software project model:
+      ...........................................................
+      Level Name          What it Represents          Unit
+      ...........................................................
+      Workforce           Number of developers         Person
+      Tasks_Remaining     Work not yet started         Task
+      Tasks_In_Progress   Work currently being done    Task
+      Tasks_Completed     Finished and verified work   Task
+      Defects_Present     Known bugs not yet fixed     Defect
+      Knowledge           Team's understanding of sys  0 to 1
+      Morale              Team motivation              0 to 1
+      ...........................................................
+
+    . EXAMPLE — Tasks_Remaining Level:
+      Initial value: 500 tasks (full project scope)
+
+      Week  Tasks_Remaining   Inflow (new)   Outflow (done)
+      ......................................................
+      0     500               0              0
+      1     490               5 (scope creep) 15
+      2     478               3              15
+      3     462               4              20
+      4     445               3              20
+      5     425               0              20
+      ...
+
+      ANALYSIS:
+      . Scope creep (inflow) partially offsets work done.
+      . Even as team works hard, new tasks keep appearing.
+      . System dynamics captures this accumulation perfectly.
+      . Pure Gantt chart planning IGNORES scope creep.
+
+
+  ....................................
+  E. FLOWS
+  ....................................
+
+    . A FLOW (also called RATE) is the SPEED at which
+      a level changes — how fast it fills or empties.
+
+    . Flows are the VALVES controlling the bathtub.
+    . Flows are expressed as: units per time period.
+      Example: 15 tasks/week, 3 developers/month.
+
+    . KEY FLOWS in software project model:
+      ...........................................................
+      Flow Name              What it Represents          Unit
+      ...........................................................
+      Hiring_Rate            Developers joining/month    Person/month
+      Attrition_Rate         Developers leaving/month    Person/month
+      Task_Completion_Rate   Tasks finished per week     Task/week
+      Defect_Injection_Rate  Bugs created per KLOC       Defect/KLOC
+      Defect_Fix_Rate        Bugs fixed per week         Defect/week
+      Scope_Growth_Rate      New requirements per week   Task/week
+      ...........................................................
+
+    . FLOW EQUATIONS:
+      Task_Completion_Rate = Workforce x Productivity_Per_Person
+                           x (1 - Rework_Fraction)
+
+      . If Workforce = 8, Productivity = 10 tasks/person/week,
+        Rework_Fraction = 0.20 (20% time on rework):
+        Rate = 8 x 10 x 0.80 = 64 tasks/week net progress.
+
+      Defect_Fix_Rate = Testers x Detection_Rate
+                      x Testing_Coverage
+
+    . INTERPLAY OF FLOWS — DATA EXAMPLE:
+      Project week 10 simulation snapshot:
+
+      Stock/Level           Value       Change This Week
+      ....................................................
+      Workforce             8 people    +0 (stable)
+      Tasks_Remaining       380 tasks   -15 (progress)
+      Tasks_In_Progress     24 tasks    +2
+      Tasks_Completed       120 tasks   +20
+      Defects_Present       45 defects  -5 (net: 10 fixed, 5 new)
+      Team_Morale           0.72        -0.02 (slight pressure)
+
+      Flow Rates This Week:
+      Task_Completion       20 tasks/week
+      Defect_Injection      5 defects/week (new code)
+      Defect_Fix            10 defects/week
+      Scope_Growth          5 tasks/week (new requirements)
+
+      ANALYSIS:
+      . Net progress = 20 (done) - 5 (new scope) = 15 tasks/week.
+      . At this rate: 380/15 = 25.3 more weeks to complete.
+      . That is much more than the 10 weeks planned.
+      . Simulation reveals this BEFORE the deadline is missed.
+
+
+  ....................................
+  F. AUXILIARY VARIABLES
+  ....................................
+
+    . Also called CONVERTERS or INTERMEDIATE VARIABLES.
+    . They are NOT stocks (not accumulated).
+    . They compute INTERMEDIATE VALUES used by flows.
+    . They convert information from levels into
+      rates that flows can use.
+
+    . KEY AUXILIARY VARIABLES in software model:
+      ...........................................................
+      Variable                Formula / Explanation
+      ...........................................................
+      Productivity_Per_Person = base_prod x experience_factor
+                                x (1 - fatigue_factor)
+                                x (1 - overtime_penalty)
+
+      Schedule_Pressure       = Tasks_Remaining / Time_Available
+                                (ratio of work to time)
+
+      Rework_Fraction         = f(Defect_Density, Review_Quality)
+                                (how much time spent fixing)
+
+      Average_Experience      = Sum(all developer experience)
+                                / Workforce_Level
+
+      Effective_Workforce     = Workforce x Average_Experience
+                                (raw staff weighted by skill)
+
+      Quality_Level           = 1 - (Defects_Present
+                                / Tasks_Completed)
+      ...........................................................
+
+    . DATA EXAMPLE — Auxiliary Variable Calculation:
+      At week 12 of a project:
+
+      Variable              Value         Calculation
+      ....................................................
+      Workforce             8 persons     (direct)
+      Average_Experience    0.65          (mix of juniors/seniors)
+      Fatigue               0.25          (moderate, normal week)
+      Overtime_Penalty      0.00          (no overtime this week)
+      Base_Productivity     12 tasks/day  (experienced developer)
+
+      Productivity_Per_Person:
+        = 12 x 0.65 x (1-0.25) x (1-0.00)
+        = 12 x 0.65 x 0.75
+        = 5.85 tasks/person/day
+
+      Effective_Team_Output:
+        = 5.85 x 8 persons x 5 days
+        = 234 tasks/week (theoretical)
+
+      After rework fraction (0.20):
+        = 234 x 0.80 = 187 tasks/week net
+
+
+  ....................................
+  G. DIFFICULTIES IN SYSTEM DYNAMICS MODELING
+  ....................................
+
+    . Building accurate system dynamics models of
+      software projects is CHALLENGING for many reasons.
+
+    1. IDENTIFYING ALL FEEDBACK LOOPS:
+       . Real projects have dozens of interlocked loops.
+       . Missing one important loop = wrong predictions.
+       . Example: Forgetting the "quality vs. speed" tradeoff
+         loop makes model always recommend rushing.
+
+    2. ESTIMATING PARAMETERS:
+       . What is the exact defect injection rate for this team?
+       . What is the learning rate for new hires?
+       . Parameters vary by organization, team, technology.
+       . Often must use industry averages or expert estimates.
+
+    3. DEFINING THE RIGHT BOUNDARY:
+       . What to include? What to exclude?
+       . Too narrow: misses important effects.
+       . Too wide: model becomes too complex to understand.
+
+    4. HANDLING TIME DELAYS CORRECTLY:
+       . Delays cause counterintuitive behavior.
+       . If hiring delay = 8 weeks, manager hiring today
+         sees no effect for 2 months.
+       . Easy to miss delays → model gives wrong advice.
+
+    5. NONLINEAR RELATIONSHIPS:
+       . Productivity is not linear with staffing.
+       . Quality is not linear with testing time.
+       . These require table functions or special curves.
+
+    6. CALIBRATION DIFFICULTY:
+       . Matching model output to historical project data.
+       . Historical data is often incomplete or inaccurate.
+       . Model may fit one project type but not another.
+
+    7. VALIDATION:
+       . Hard to prove model is correct before using it.
+       . No real project can be run twice to compare.
+       . Must rely on face validation and structural validity.
+
+    . DATA EXAMPLE — Difficulty with Delays:
+      Manager sees project 20% behind at week 8.
+      Hires 4 more developers immediately.
+      In model WITHOUT delay: output increases week 9.
+      In CORRECT model WITH 6-week training delay:
+      Week 9-14: output DECREASES (seniors training newcomers).
+      Week 15: output starts to increase.
+      Manager panics at week 10 (still behind) and hires 4 MORE.
+      By week 16: overstaffed, communication chaos, project collapses.
+      Delay = the root cause. Model revealed it. Real manager missed it.
+
+
+
+
+------------------------------------------------------------
+  ANALYSIS: AGENT-BASED vs SYSTEM DYNAMICS
+------------------------------------------------------------
+
+  .......................................................
+  Feature            Agent-Based         System Dynamics
+  .......................................................
+  Unit of analysis   Individual person   Aggregate group
+  Behavior           Rules per agent     Equations (flows)
+  Heterogeneity      Each agent differs  Averages used
+  Emergence          YES — complex       Limited
+                     behavior emerges
+  Feedback           Through interaction Through loop structure
+  Computational      High (many agents)  Low (equations)
+  load
+  Best for           Studying individual Studying overall
+                     behaviors, roles,   project dynamics,
+                     team structures     trends, policies
+  Data needs         Individual-level    Aggregate statistics
+  Validation         Harder (emergent)   Easier (calibrate)
+  Tools              NetLogo, AnyLogic   Vensim, STELLA, iThink
+  .......................................................
+
+  . In practice: both are used together.
+    System dynamics for project-level strategy decisions.
+    Agent-based for team-level process understanding.
+
+
+
+
+------------------------------------------------------------
+  COMPLETE SUMMARY TABLE — UNIT VI
+------------------------------------------------------------
+
+  .......................................................
+  Topic                    Key Point
+  .......................................................
+  Why Simulate Software?   30% of projects succeed.
+                           Simulation tests decisions
+                           safely before project runs.
+
+  Waterfall Model          Sequential phases. One pass.
+                           Simple to model. Inflexible.
+                           Bugs found late = expensive.
+
+  Incremental Model        Repeated mini-waterfalls.
+                           Early feedback. Lower risk.
+                           Better quality outcomes.
+
+  EPM                      Effort vs output. Brooks's Law.
+                           Adding staff mid-project slows.
+                           Communication overhead = N(N-1)/2.
+
+  HKM                      Skill grows over time (curve).
+                           New developer at 50% for 7 wks.
+                           Departure = knowledge loss.
+
+  AQM                      Defect lifecycle model.
+                           Early detection = 100x cheaper.
+                           Rework creates vicious cycle.
+
+  Developer Interaction    Communication overhead 15-30%.
+  Model                    Optimal team size exists.
+                           More links = more meetings.
+
+  Agent-Based              Each developer = one agent.
+                           Behavior rules + autonomy.
+                           Emergent team behavior.
+
+  Environment              Task board, codebase, channels.
+                           Shared world all agents use.
+
+  Autonomy                 Agents decide independently.
+                           Rule-based self-direction.
+
+  Intelligence             Agents learn and adapt.
+                           Reactive / Deliberative / Learning.
+
+  System Dynamics          Stocks (Levels) + Flows.
+                           Feedback loops over time.
+                           Aggregate team modeling.
+
+  Levels (Stocks)          Accumulated quantities.
+                           Tasks_Remaining, Workforce.
+                           Cannot change instantly.
+
+  Flows (Rates)            Speed of change in levels.
+                           Tasks/week, Defects/KLOC.
+                           Controlled by auxiliaries.
+
+  Auxiliary Variables      Intermediate computations.
+                           Productivity, Schedule_Pressure.
+                           Convert levels to flow rates.
+
+  Feedback Loops           R-loops: reinforce (vicious).
+                           B-loops: balance (corrective).
+                           Delays cause manager mistakes.
+
+  Difficulties             Finding all loops, estimating
+                           parameters, handling delays,
+                           nonlinear relationships.
+  .......................................................
+
+
+
+
+============================================================
+  KEY FORMULAS REFERENCE
+============================================================
+
+  COMMUNICATION LINKS:
+  . Links = N x (N-1) / 2
+  . N = number of developers
+
+  BROOKS'S LAW (informal):
+  . Adding staff mid-project increases training overhead,
+    initially REDUCING total output.
+
+  LEARNING CURVE (HKM):
+  . Productivity(t) = P_max x (1 - e^(-r.t))
+  . r = learning rate, P_max = maximum productivity
+
+  EFFECTIVE PRODUCTIVITY (Auxiliary):
+  . Prod = Base_Prod x Experience x (1-Fatigue) x (1-Overtime_Penalty)
+
+  TASK COMPLETION RATE (Flow):
+  . Rate = Workforce x Productivity_Per_Person x (1 - Rework_Fraction)
+
+  LEVEL UPDATE (Stock-Flow):
+  . Level(t) = Level(t-1) + Inflow(t) - Outflow(t)
+
+  SCHEDULE PRESSURE (Auxiliary):
+  . Pressure = Tasks_Remaining / Time_Remaining
+
+============================================================
+              END OF UNIT VI NOTES
+============================================================
