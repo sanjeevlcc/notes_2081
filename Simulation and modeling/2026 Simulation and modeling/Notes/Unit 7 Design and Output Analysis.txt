@@ -19,18 +19,23 @@
 
   . Building a simulation model is only HALF the work.
   . The other half is making sure:
-    . The model actually represents reality (Validation)
-    . The model is built correctly without bugs (Verification)
-    . The experiment is designed properly (Experiment Design)
-    . The output is interpreted correctly (Output Analysis)
+         . The model actually represents reality (Validation)
+         . The model is built correctly without bugs (Verification)
+         . The experiment is designed properly (Experiment Design)
+         . The output is interpreted correctly (Output Analysis)
 
   . A beautifully coded simulation that models the WRONG
     thing is completely useless.
 
   . This unit answers three fundamental questions:
-    . Is our model CORRECT?     → Verification
-    . Is our model REALISTIC?   → Validation
-    . Do our results MEAN anything? → Output Analysis
+         . Is our model CORRECT?     → Verification
+         . Is our model REALISTIC?   → Validation
+         . Do our results MEAN anything? → Output Analysis
+
+
+
+
+
 
   . KEY DISTINCTION (memorize this):
     .......................................................
@@ -41,13 +46,15 @@
                    (Does the model match the real system?)
     .......................................................
 
+
+
   . Scenario to remember this:
-    A programmer simulates a hospital queue.
-    The code runs perfectly — no bugs. (Verified)
-    But she assumed patients arrive every 5 minutes
-    when in reality they arrive every 2 minutes.
-    The model is VERIFIED but NOT VALIDATED.
-    Outputs will be completely wrong. ✗
+              A programmer simulates a hospital queue.
+              The code runs perfectly — no bugs. (Verified)
+              But she assumed patients arrive every 5 minutes
+              when in reality they arrive every 2 minutes.
+              The model is VERIFIED but NOT VALIDATED.
+              Outputs will be completely wrong. ✗
 
 
 
@@ -68,6 +75,8 @@
 
     . Validation is an ongoing process — not a one-time check.
 
+
+
   . WHAT IS CALIBRATION?
   .....................
 
@@ -84,194 +93,194 @@
       until the simulation also shows ~38 km/h.
       That process of adjustment = CALIBRATION.
 
-
-  ....................................
-  A. FACE VALIDATION
-  ....................................
-
-    . The SIMPLEST and FIRST validation method used.
-    . Show the model and its outputs to DOMAIN EXPERTS
-      (people who know the real system well).
-    . Ask: "Does this look right to you?"
-    . If experts say the behavior looks realistic
-      → model passes face validation.
-
-    . Also called: Subjective Validation or Expert Review.
-
-    . WHAT IS CHECKED:
-      . Does the model structure make sense?
-      . Do the outputs follow expected trends?
-      . Do extreme inputs produce sensible extreme outputs?
-      . Does the model behavior match intuition?
-
-    . SCENARIO:
-      A hospital queue simulation is built.
-      The hospital administrator (domain expert) reviews it.
-      She checks:
-        . When 50 patients arrive per hour and
-          only 2 doctors are available, does the
-          waiting time go up sharply? → YES ✓
-        . When a third doctor is added, does
-          waiting time drop significantly? → YES ✓
-        . Does adding more beds reduce ward wait? → YES ✓
-      She says: "This behaves like our real hospital."
-      → FACE VALIDATION PASSED ✓
-
-    . EXAMPLE WITH DATA:
-      Bank simulation output (face validation check):
-
-      Scenario           Expected (Real Bank)  Simulation Output
-      ...............................................................
-      1 teller, 20/hr    Long queue, 15 min    Queue=18, wait=14 min
-      2 tellers, 20/hr   Short queue, 4 min    Queue=3, wait=4.5 min
-      3 tellers, 30/hr   Moderate, 6 min       Queue=5, wait=5.8 min
-      3 tellers, 5/hr    Very short, <1 min    Queue=0, wait=0.8 min
-
-      All trends match expected direction → Face Validation ✓
-
-    . ADVANTAGE:
-      . Quick, cheap, no formal math needed.
-      . Catches obvious structural errors early.
-
-    . LIMITATION:
-      . Subjective — depends on expert's opinion.
-      . Cannot catch subtle statistical errors.
-      . Expert may not notice small discrepancies.
-
-
-  ....................................
-  B. VALIDATION FOR ASSUMPTIONS
-  ....................................
-
-    . Every simulation model is built on a set of ASSUMPTIONS.
-    . These assumptions must be checked against reality.
-    . If a core assumption is wrong, ALL results are wrong.
-
-    . COMMON ASSUMPTIONS IN SIMULATION:
-      . Arrival rate follows Poisson distribution.
-      . Service time follows Exponential distribution.
-      . Queue is FIFO (first come, first served).
-      . System is in steady state.
-      . Customers are independent (one does not affect another).
-
-    . HOW TO VALIDATE ASSUMPTIONS:
-      1. Collect real data from the actual system.
-      2. Test whether the data fits the assumed distribution.
-      3. Use statistical tests (chi-square, K-S test).
-
-    . SCENARIO AND DATA EXAMPLE:
-      Assumption: "Customers arrive at the bank counter
-      following a Poisson distribution with lambda = 10/hour."
-
-      We collect REAL data for 10 one-hour periods:
-      Hour     Actual Arrivals    Expected (Poisson, λ=10)
-      .....................................................
-      1        9                  10
-      2        11                 10
-      3        10                 10
-      4        12                 10
-      5        8                  10
-      6        10                 10
-      7        11                 10
-      8        9                  10
-      9        10                 10
-      10       10                 10
-
-      The real arrivals are close to expected Poisson values.
-      Chi-square test confirms Poisson fits the data.
-      → Assumption is VALIDATED ✓
-
-    . ANOTHER EXAMPLE — WRONG ASSUMPTION CAUGHT:
-      Assumption: "Service time = 3 minutes exactly (constant)."
-      Real data collected:
-        2.1, 4.5, 1.8, 6.2, 3.1, 2.8, 5.0, 1.5, 3.7, 4.0 minutes
-      Mean = 3.47, Std Dev = 1.42
-
-      Service times are NOT constant — they follow an
-      Exponential distribution with mean 3.47 minutes.
-      Assumption of constant service time is WRONG.
-      → Fix the model, use Exponential distribution. ✗→✓
-
-
-  ....................................
-  C. OUTPUT DATA VALIDATION
-  ....................................
-
-    . Compare the OUTPUTS of the simulation with
-      REAL observed outputs from the actual system.
-    . This is the most rigorous form of validation.
-    . If simulation output ≈ real system output
-      → model is considered valid.
-
-    . METHOD:
-      1. Run the simulation for a defined time period.
-      2. Collect the same performance measures from
-         the real system over the same period.
-      3. Compare: are they statistically similar?
-
-    . DATA EXAMPLE:
-      Single server bank simulation vs real bank data.
-      Period: 8 hours, 80 customers.
-
-      Performance Measure    Real Bank    Simulation    Difference
-      ..............................................................
-      Avg waiting time       4.2 min      4.5 min       +0.3 min
-      Avg service time       3.0 min      3.1 min       +0.1 min
-      Max queue length       9 customers  10 customers  +1
-      Server utilization     82%          84%           +2%
-      Avg time in system     7.2 min      7.6 min       +0.4 min
-
-      All differences are small (< 5%).
-      → Simulation output is acceptably close to reality.
-      → OUTPUT VALIDATION PASSED ✓
-
-    . WHAT IF OUTPUT DOES NOT MATCH?
-      . Re-check input data (arrival rates, service times).
-      . Re-check assumptions (queue discipline, priority).
-      . Re-calibrate model parameters.
-      . Run more simulation replications for stable averages.
-
-
-  ....................................
-  D. VERIFICATION AND VALIDATION OF SIMULATOR MODELS
-  ....................................
-
-    . VERIFICATION (checking the MODEL ITSELF):
-      . Does the computer code correctly implement
-        the conceptual model?
-      . Is there a bug in the simulation program?
-      . Are the formulas coded correctly?
-      . Are random number streams used correctly?
-
-      VERIFICATION TECHNIQUES:
-      . Code walkthrough / desk checking
-      . Use simple, known inputs and check if output is correct
-      . Test extreme values (what if arrival rate = 0?)
-      . Use structured programming and modular testing
-      . Compare sub-model outputs with hand calculations
-
-      SCENARIO:
-        Queue simulation: manually calculate by hand
-        the expected waiting time for 5 customers arriving
-        at specific times with known service durations.
-        Compare hand result with simulation result.
-        If they match → code is verified ✓
-
-    . COMBINED V&V APPROACH:
-      . First VERIFY (make sure code is correct).
-      . Then VALIDATE (make sure model is realistic).
-      . Both are necessary — neither alone is sufficient.
-
-      .......................................................
-      Status                Result
-      .......................................................
-      Verified + Validated  GOOD — use the model ✓
-      Verified, NOT Valid   Model structure is wrong ✗
-      NOT Verified, Valid   Lucky coincidence — fix bugs ✗
-      NOT Verified, NOT Valid  Start over ✗✗
-      .......................................................
-
-
+          
+            ....................................
+            A. FACE VALIDATION
+            ....................................
+          
+              . The SIMPLEST and FIRST validation method used.
+              . Show the model and its outputs to DOMAIN EXPERTS
+                (people who know the real system well).
+              . Ask: "Does this look right to you?"
+              . If experts say the behavior looks realistic
+                → model passes face validation.
+          
+              . Also called: Subjective Validation or Expert Review.
+          
+              . WHAT IS CHECKED:
+                . Does the model structure make sense?
+                . Do the outputs follow expected trends?
+                . Do extreme inputs produce sensible extreme outputs?
+                . Does the model behavior match intuition?
+          
+              . SCENARIO:
+                A hospital queue simulation is built.
+                The hospital administrator (domain expert) reviews it.
+                She checks:
+                  . When 50 patients arrive per hour and
+                    only 2 doctors are available, does the
+                    waiting time go up sharply? → YES ✓
+                  . When a third doctor is added, does
+                    waiting time drop significantly? → YES ✓
+                  . Does adding more beds reduce ward wait? → YES ✓
+                She says: "This behaves like our real hospital."
+                → FACE VALIDATION PASSED ✓
+          
+              . EXAMPLE WITH DATA:
+                Bank simulation output (face validation check):
+          
+                Scenario           Expected (Real Bank)  Simulation Output
+                ...............................................................
+                1 teller, 20/hr    Long queue, 15 min    Queue=18, wait=14 min
+                2 tellers, 20/hr   Short queue, 4 min    Queue=3, wait=4.5 min
+                3 tellers, 30/hr   Moderate, 6 min       Queue=5, wait=5.8 min
+                3 tellers, 5/hr    Very short, <1 min    Queue=0, wait=0.8 min
+          
+                All trends match expected direction → Face Validation ✓
+          
+              . ADVANTAGE:
+                . Quick, cheap, no formal math needed.
+                . Catches obvious structural errors early.
+          
+              . LIMITATION:
+                . Subjective — depends on expert's opinion.
+                . Cannot catch subtle statistical errors.
+                . Expert may not notice small discrepancies.
+          
+          
+            ....................................
+            B. VALIDATION FOR ASSUMPTIONS
+            ....................................
+          
+              . Every simulation model is built on a set of ASSUMPTIONS.
+              . These assumptions must be checked against reality.
+              . If a core assumption is wrong, ALL results are wrong.
+          
+              . COMMON ASSUMPTIONS IN SIMULATION:
+                . Arrival rate follows Poisson distribution.
+                . Service time follows Exponential distribution.
+                . Queue is FIFO (first come, first served).
+                . System is in steady state.
+                . Customers are independent (one does not affect another).
+          
+              . HOW TO VALIDATE ASSUMPTIONS:
+                1. Collect real data from the actual system.
+                2. Test whether the data fits the assumed distribution.
+                3. Use statistical tests (chi-square, K-S test).
+          
+              . SCENARIO AND DATA EXAMPLE:
+                Assumption: "Customers arrive at the bank counter
+                following a Poisson distribution with lambda = 10/hour."
+          
+                We collect REAL data for 10 one-hour periods:
+                Hour     Actual Arrivals    Expected (Poisson, λ=10)
+                .....................................................
+                1        9                  10
+                2        11                 10
+                3        10                 10
+                4        12                 10
+                5        8                  10
+                6        10                 10
+                7        11                 10
+                8        9                  10
+                9        10                 10
+                10       10                 10
+          
+                The real arrivals are close to expected Poisson values.
+                Chi-square test confirms Poisson fits the data.
+                → Assumption is VALIDATED ✓
+          
+              . ANOTHER EXAMPLE — WRONG ASSUMPTION CAUGHT:
+                Assumption: "Service time = 3 minutes exactly (constant)."
+                Real data collected:
+                  2.1, 4.5, 1.8, 6.2, 3.1, 2.8, 5.0, 1.5, 3.7, 4.0 minutes
+                Mean = 3.47, Std Dev = 1.42
+          
+                Service times are NOT constant — they follow an
+                Exponential distribution with mean 3.47 minutes.
+                Assumption of constant service time is WRONG.
+                → Fix the model, use Exponential distribution. ✗→✓
+          
+          
+            ....................................
+            C. OUTPUT DATA VALIDATION
+            ....................................
+          
+              . Compare the OUTPUTS of the simulation with
+                REAL observed outputs from the actual system.
+              . This is the most rigorous form of validation.
+              . If simulation output ≈ real system output
+                → model is considered valid.
+          
+              . METHOD:
+                1. Run the simulation for a defined time period.
+                2. Collect the same performance measures from
+                   the real system over the same period.
+                3. Compare: are they statistically similar?
+          
+              . DATA EXAMPLE:
+                Single server bank simulation vs real bank data.
+                Period: 8 hours, 80 customers.
+          
+                Performance Measure    Real Bank    Simulation    Difference
+                ..............................................................
+                Avg waiting time       4.2 min      4.5 min       +0.3 min
+                Avg service time       3.0 min      3.1 min       +0.1 min
+                Max queue length       9 customers  10 customers  +1
+                Server utilization     82%          84%           +2%
+                Avg time in system     7.2 min      7.6 min       +0.4 min
+          
+                All differences are small (< 5%).
+                → Simulation output is acceptably close to reality.
+                → OUTPUT VALIDATION PASSED ✓
+          
+              . WHAT IF OUTPUT DOES NOT MATCH?
+                . Re-check input data (arrival rates, service times).
+                . Re-check assumptions (queue discipline, priority).
+                . Re-calibrate model parameters.
+                . Run more simulation replications for stable averages.
+          
+          
+            ....................................
+            D. VERIFICATION AND VALIDATION OF SIMULATOR MODELS
+            ....................................
+          
+              . VERIFICATION (checking the MODEL ITSELF):
+                . Does the computer code correctly implement
+                  the conceptual model?
+                . Is there a bug in the simulation program?
+                . Are the formulas coded correctly?
+                . Are random number streams used correctly?
+          
+                VERIFICATION TECHNIQUES:
+                . Code walkthrough / desk checking
+                . Use simple, known inputs and check if output is correct
+                . Test extreme values (what if arrival rate = 0?)
+                . Use structured programming and modular testing
+                . Compare sub-model outputs with hand calculations
+          
+                SCENARIO:
+                  Queue simulation: manually calculate by hand
+                  the expected waiting time for 5 customers arriving
+                  at specific times with known service durations.
+                  Compare hand result with simulation result.
+                  If they match → code is verified ✓
+          
+              . COMBINED V&V APPROACH:
+                . First VERIFY (make sure code is correct).
+                . Then VALIDATE (make sure model is realistic).
+                . Both are necessary — neither alone is sufficient.
+          
+                .......................................................
+                Status                Result
+                .......................................................
+                Verified + Validated  GOOD — use the model ✓
+                Verified, NOT Valid   Model structure is wrong ✗
+                NOT Verified, Valid   Lucky coincidence — fix bugs ✗
+                NOT Verified, NOT Valid  Start over ✗✗
+                .......................................................
+          
+          
 
 
 ------------------------------------------------------------
@@ -311,23 +320,26 @@
   . SCENARIO — HOSPITAL QUEUE:
   ............................
 
-    Real hospital waiting room data (Monday, 10 patients):
-    Patient  Arrival  Service Start  Wait Time
-    .............................................
-    1        09:00    09:00          0 min
-    2        09:07    09:10          3 min
-    3        09:15    09:18          3 min
-    4        09:20    09:25          5 min
-    5        09:28    09:33          5 min
+              Real hospital waiting room data (Monday, 10 patients):
+              Patient  Arrival  Service Start  Wait Time
+              .............................................
+              1        09:00    09:00          0 min
+              2        09:07    09:10          3 min
+              3        09:15    09:18          3 min
+              4        09:20    09:25          5 min
+              5        09:28    09:33          5 min
 
-    Simulation output (same scenario, simulated):
-    Patient  Arrival  Service Start  Wait Time
-    .............................................
-    1        09:00    09:00          0 min
-    2        09:06    09:11          5 min
-    3        09:14    09:19          5 min
-    4        09:21    09:26          5 min
-    5        09:29    09:34          5 min
+
+
+
+              Simulation output (same scenario, simulated):
+              Patient  Arrival  Service Start  Wait Time
+              .............................................
+              1        09:00    09:00          0 min
+              2        09:06    09:11          5 min
+              3        09:14    09:19          5 min
+              4        09:21    09:26          5 min
+              5        09:29    09:34          5 min
 
     Both show similar patterns: first patient waits 0,
     queue builds gradually, waiting times stabilize.
@@ -335,40 +347,43 @@
     Hospital administrator reviews both datasets
     without labels: "Both look like my hospital on a
     typical Monday morning."
-    → Cannot distinguish real from simulated.
-    → TURING TEST PASSED ✓
+              → Cannot distinguish real from simulated.
+              → TURING TEST PASSED ✓
+
+
+
 
 
   . DATA EXAMPLE — TRAFFIC SIMULATION:
   .....................................
-
-    Three traffic speed datasets shown to a traffic engineer.
-    She must identify which is from real road sensors.
-
-    Dataset A (speeds in km/h over 10 time slots):
-    45, 42, 38, 35, 30, 28, 32, 40, 44, 46
-
-    Dataset B (simulated):
-    43, 44, 37, 36, 29, 27, 33, 41, 43, 45
-
-    Dataset C (simulated):
-    50, 50, 50, 50, 50, 50, 50, 50, 50, 50
-
-    Engineer: "C is clearly NOT real — traffic never
-    stays perfectly constant. A and B both look real
-    to me — I cannot tell which is the simulation."
-
-    Dataset A was real. Dataset B was simulation.
-    Dataset C fails the Turing test badly.
-    → Model B passes, Model C fails. ✓ / ✗
-
+          
+              Three traffic speed datasets shown to a traffic engineer.
+              She must identify which is from real road sensors.
+          
+              Dataset A (speeds in km/h over 10 time slots):
+              45, 42, 38, 35, 30, 28, 32, 40, 44, 46
+          
+              Dataset B (simulated):
+              43, 44, 37, 36, 29, 27, 33, 41, 43, 45
+          
+              Dataset C (simulated):
+              50, 50, 50, 50, 50, 50, 50, 50, 50, 50
+          
+              Engineer: "C is clearly NOT real — traffic never
+              stays perfectly constant. A and B both look real
+              to me — I cannot tell which is the simulation."
+          
+              Dataset A was real. Dataset B was simulation.
+              Dataset C fails the Turing test badly.
+              → Model B passes, Model C fails. ✓ / ✗
+          
 
   . LIMITATION:
   ............
 
-    . Depends on the expert's experience and perception.
-    . Expert may be fooled by a bad model or reject a good one.
-    . Should be used alongside statistical validation, not alone.
+         . Depends on the expert's experience and perception.
+         . Expert may be fooled by a bad model or reject a good one.
+         . Should be used alongside statistical validation, not alone.
 
 
 
@@ -406,24 +421,26 @@
     . Results from the early period are BIASED.
     . Including them in analysis gives wrong averages.
 
+
+
     . SCENARIO:
-      A bank opens at 9 AM. Simulation starts with
-      zero customers and zero queue (empty system).
-      In reality, by 9:05 AM there are already 8 people
-      waiting (early morning rush carried over from
-      before opening).
-
-      First 30 minutes of simulation:
-        Waiting time = 0.5 minutes (system barely loaded)
-      After 30 minutes (steady state):
-        Waiting time = 4.2 minutes (system fully loaded)
-
-      If we include the first 30 minutes in our average:
-        Overall average = (0.5 + 4.2) / 2 = 2.35 min
-        This is WRONG — it understates real congestion.
-
-      If we discard first 30 minutes:
-        Average = 4.2 min (true steady-state average) ✓
+                A bank opens at 9 AM. Simulation starts with
+                zero customers and zero queue (empty system).
+                In reality, by 9:05 AM there are already 8 people
+                waiting (early morning rush carried over from
+                before opening).
+          
+                First 30 minutes of simulation:
+                  Waiting time = 0.5 minutes (system barely loaded)
+                After 30 minutes (steady state):
+                  Waiting time = 4.2 minutes (system fully loaded)
+          
+                If we include the first 30 minutes in our average:
+                  Overall average = (0.5 + 4.2) / 2 = 2.35 min
+                  This is WRONG — it understates real congestion.
+          
+                If we discard first 30 minutes:
+                  Average = 4.2 min (true steady-state average) ✓
 
 
   . WHAT IS THE WARM-UP PERIOD?
