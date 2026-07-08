@@ -27,7 +27,7 @@
                          example : MIS522_Manish_KC.ipynb
 
 
-  4. Upload file in runtime: MIS522_DataViz_Survey.csv when prompted
+  4. Upload file in runtime: MIS522_DataViz_Survey.csv when prompted. [STEP 2]
 
   5. Copy each CODE CELL below into Colab and run with Shift+Enter
 
@@ -537,6 +537,12 @@ print(f"% Viz Labeled Effective  : {df_clean['viz_effective'].mean()*100:.1f}%")
 print(f"Most Used Viz Tool       : {df_clean['viz_tool'].mode()[0]}")
 print(f"Most Common Cynefin      : {df_clean['cynefin_domain'].mode()[0]}")
 print(f"Best D3M Industry        : {df_clean.groupby('industry')['d3m_adoption_score'].mean().idxmax()}")
+
+
+
+
+
+
 
 
 
