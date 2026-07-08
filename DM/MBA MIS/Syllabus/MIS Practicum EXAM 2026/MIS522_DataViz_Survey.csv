@@ -1,0 +1,1031 @@
+respondent_id,industry,region,exec_level,viz_tool,cynefin_domain,data_type,data_trust,data_quality_score,viz_clarity_score,decision_confidence,decision_speed_score,collaboration_score,cognitive_load_score,d3m_adoption_score,big_data_readiness,years_using_viz,pct_decisions_datadriven,monthly_data_gb,num_dashboards,viz_effective
+R0001,IT/Software,Pokhara,CFO,Python/Matplotlib,Complex,Structured,Medium,5,2,2.0,9,2,2,10,5,12,30,48.2,22,0
+R0002,Healthcare,Biratnagar,CEO,Power BI,Complicated,Semi-structured,Medium,8,10,1.0,5,5,7,8,6,14,0,13.5,18,0
+R0003,Education,Lalitpur,Department Head,Excel Charts,Complex,Structured,Low,5,3,1.0,8,3,2,1,9,16,27,25.6,21,0
+R0004,Education,Pokhara,CEO,Excel Charts,Complicated,Unstructured,High,5,4,3.0,8,3,9,5,3,9,95,17.4,12,0
+R0005,IT/Software,Kathmandu,CEO,Python/Matplotlib,Complicated,Multi-structured,Low,3,8,,2,3,10,7,10,17,9,60.2,7,0
+R0006,Healthcare,Lalitpur,CFO,No Tool,Complex,Unstructured,Medium,9,1,9.0,8,10,4,2,2,8,42,29.1,28,0
+R0007,Banking,Biratnagar,COO,No Tool,Complex,Structured,Medium,5,8,2.0,1,4,3,1,1,17,1,46.3,25,0
+R0008,Healthcare,Biratnagar,COO,Tableau,Simple,Structured,High,7,8,1.0,6,8,2,1,5,3,90,6.6,7,0
+R0009,Retail,Kathmandu,General Manager,Power BI,Chaotic,Multi-structured,High,3,8,7.0,3,5,7,3,3,12,27,114.3,10,0
+R0010,Retail,Chitwan,General Manager,Tableau,Complicated,Semi-structured,Medium,7,3,8.0,8,10,5,10,10,8,64,9999.0,21,0
+R0011,Banking,Lalitpur,Department Head,No Tool,Complex,Semi-structured,Medium,8,7,4.0,10,4,6,2,10,10,26,11.0,8,0
+R0012,IT/Software,Lalitpur,Department Head,Power BI,Chaotic,Structured,Medium,3,6,10.0,1,2,9,6,5,6,51,30.8,10,0
+R0013,Banking,Kathmandu,Department Head,Excel Charts,Complex,Multi-structured,Low,9,10,9.0,6,1,9,4,9,3,10,58.5,17,1
+R0014,IT/Software,Chitwan,Department Head,Tableau,Complicated,Structured,Medium,1,4,6.0,3,1,6,6,8,8,42,25.6,29,0
+R0015,Banking,Biratnagar,General Manager,No Tool,Chaotic,Semi-structured,Medium,5,9,6.0,9,6,2,6,6,9,42,48.6,14,0
+R0016,Education,Pokhara,Department Head,Power BI,Complex,Structured,Medium,2,1,1.0,1,1,5,4,7,15,50,43.3,7,0
+R0017,Retail,Lalitpur,General Manager,Excel Charts,Complicated,Multi-structured,High,6,1,8.0,4,4,6,3,8,11,16,49.6,29,0
+R0018,Education,Chitwan,Department Head,Power BI,Chaotic,Unstructured,Medium,10,7,7.0,7,3,6,9,6,14,85,95.8,3,1
+R0019,IT/Software,Pokhara,CFO,Power BI,Complex,Structured,Medium,8,1,6.0,9,7,7,10,10,19,34,23.3,12,0
+R0020,IT/Software,Pokhara,Department Head,Python/Matplotlib,Complicated,Unstructured,Medium,4,1,9.0,5,10,4,5,5,1,95,9.6,20,0
+R0021,Consulting,Biratnagar,Department Head,Tableau,Complicated,Multi-structured,High,8,3,4.0,6,8,6,5,2,18,6,67.0,14,0
+R0022,Banking,Pokhara,General Manager,Power BI,Simple,Unstructured,High,3,2,5.0,8,4,7,1,2,4,6,18.6,8,0
+R0023,Banking,Lalitpur,General Manager,Power BI,Complex,Structured,Medium,6,6,8.0,9,7,4,5,10,2,23,10.8,22,1
+R0024,Consulting,Pokhara,General Manager,Python/Matplotlib,Complex,Structured,Low,9,10,9.0,9,4,8,8,9,5,70,1.5,13,1
+R0025,Banking,Biratnagar,CEO,No Tool,Simple,Structured,Medium,8,6,7.0,9,2,9,5,1,8,45,96.8,17,1
+R0026,Education,Kathmandu,COO,Python/Matplotlib,Complicated,Structured,High,4,9,2.0,3,7,3,6,8,5,41,45.6,4,0
+R0027,Consulting,Chitwan,General Manager,No Tool,Complicated,Structured,Medium,5,7,9.0,7,1,9,6,7,4,9,20.5,17,0
+R0028,Banking,Chitwan,CFO,Excel Charts,Complex,Structured,High,7,10,3.0,10,5,7,8,2,19,64,9.2,25,0
+R0029,Retail,Pokhara,Department Head,Excel Charts,Simple,Structured,High,1,2,9.0,5,7,7,1,9,10,65,108.2,2,0
+R0030,Banking,Lalitpur,COO,Tableau,Complex,Multi-structured,Low,5,4,1.0,2,2,5,3,7,17,77,7.5,3,0
+R0031,HEALTHCARE,Lalitpur,COO,Python/Matplotlib,Complex,Unstructured,Medium,9,5,6.0,1,9,4,3,5,12,35,29.5,8,0
+R0032,IT/Software,Lalitpur,CFO,No Tool,Complex,Structured,High,3,10,5.0,9,5,2,9,7,3,59,9.4,14,0
+R0033,Healthcare,Lalitpur,COO,Power BI,Complicated,Structured,High,4,8,6.0,5,9,10,5,1,5,23,58.7,9,0
+R0034,Education,Kathmandu,CEO,Tableau,Complicated,Unstructured,Low,10,1,,3,6,7,9,1,3,46,25.5,3,0
+R0035,Education,Chitwan,CFO,Python/Matplotlib,Simple,Structured,Low,2,1,7.0,8,1,10,1,5,13,17,8.1,4,0
+R0036,Banking,Lalitpur,CFO,No Tool,Complicated,Semi-structured,Medium,4,10,2.0,10,4,8,2,3,5,55,6.1,5,0
+R0037,Education,Lalitpur,Department Head,Power BI,Complex,Structured,Medium,2,8,7.0,10,5,6,6,7,13,70,0.1,2,0
+R0038,Banking,Pokhara,CFO,Python/Matplotlib,Complicated,Multi-structured,Medium,7,1,7.0,1,3,3,1,1,3,89,37.0,11,0
+R0039,Healthcare,Lalitpur,CFO,Tableau,Complex,Semi-structured,High,4,8,7.0,8,5,3,1,7,5,25,28.3,4,0
+R0040,Banking,Lalitpur,Department Head,Tableau,Complicated,Structured,Medium,7,5,3.0,8,1,5,10,8,9,82,9.3,14,0
+R0041,Banking,Lalitpur,COO,Python/Matplotlib,Simple,Unstructured,High,3,5,3.0,8,8,1,8,3,18,8,0.6,13,0
+R0042,Consulting,Chitwan,Department Head,Tableau,Complicated,Structured,High,7,5,10.0,9,6,7,5,10,3,91,69.5,23,0
+R0043,IT/Software,Kathmandu,CEO,Python/Matplotlib,Chaotic,Structured,Low,2,1,8.0,1,8,5,3,6,5,25,69.1,15,0
+R0044,IT/Software,Kathmandu,Department Head,Python/Matplotlib,Complicated,Multi-structured,Low,10,10,8.0,1,2,1,5,3,11,32,31.8,17,1
+R0045,IT/Software,Kathmandu,Department Head,Excel Charts,Complicated,Unstructured,Medium,8,3,7.0,7,1,4,3,6,14,98,3.1,23,0
+R0046,Retail,Lalitpur,Department Head,No Tool,Complex,Structured,Low,4,9,7.0,3,2,4,1,7,8,56,4.3,3,0
+R0047,Healthcare,Chitwan,CFO,Excel Charts,Complicated,Structured,Low,2,9,1.0,4,2,9,8,7,4,81,6.1,22,0
+R0048,Education,Kathmandu,CFO,Python/Matplotlib,Complicated,Unstructured,High,8,9,1.0,7,10,1,7,8,19,16,49.9,21,0
+R0049,Banking,Lalitpur,COO,Excel Charts,Complicated,Structured,Medium,1,10,1.0,5,10,1,8,9,4,91,203.2,27,0
+R0050,Consulting,Kathmandu,General Manager,Python/Matplotlib,Chaotic,Unstructured,Medium,6,7,10.0,4,3,4,9,6,17,45,4.6,23,1
+R0051,IT/Software,Chitwan,CEO,Power BI,Simple,Structured,High,2,9,2.0,3,10,2,7,9,0,40,21.3,10,0
+R0052,Banking,Biratnagar,CFO,Excel Charts,Simple,Structured,Medium,3,10,8.0,6,10,2,1,4,6,34,29.8,4,0
+R0053,Consulting,Biratnagar,Department Head,Power BI,Complex,Structured,Medium,9,4,5.0,1,8,4,1,6,6,44,73.2,19,0
+R0054,IT/Software,Biratnagar,CFO,Excel Charts,Simple,Structured,Medium,4,5,1.0,7,5,6,1,2,10,52,50.7,9,0
+R0055,Education,Lalitpur,General Manager,Python/Matplotlib,Simple,Unstructured,Medium,4,4,6.0,8,8,3,6,3,1,52,69.0,19,0
+R0056,Healthcare,Kathmandu,CEO,No Tool,Complicated,Multi-structured,High,7,6,5.0,10,9,8,10,4,19,95,88.5,10,0
+R0057,Education,Chitwan,General Manager,Tableau,Complex,Structured,High,2,3,6.0,4,9,3,6,7,9,30,38.2,24,0
+R0058,Education,Chitwan,CFO,Tableau,Chaotic,Structured,Medium,8,2,7.0,8,10,7,3,4,7,95,71.5,5,0
+R0059,Education,Kathmandu,COO,Power BI,Chaotic,Unstructured,Medium,7,10,4.0,3,2,1,5,3,1,77,26.9,13,0
+R0060,Healthcare,Kathmandu,CEO,Excel Charts,Complicated,Semi-structured,High,7,8,6.0,4,2,3,9,4,19,5,9999.0,7,1
+R0061,Education,Chitwan,CEO,Power BI,Chaotic,Unstructured,Medium,2,4,4.0,7,9,6,5,10,1,21,9.9,22,0
+R0062,Education,Biratnagar,General Manager,No Tool,Simple,Unstructured,Low,10,9,3.0,6,8,2,4,10,17,37,126.2,11,0
+R0063,IT/Software,Kathmandu,CEO,Excel Charts,Complicated,Semi-structured,Medium,3,7,9.0,10,1,10,9,4,18,44,19.9,22,0
+R0064,Education,Kathmandu,Department Head,Tableau,Complex,Unstructured,High,6,4,2.0,6,8,3,6,5,13,44,28.1,4,0
+R0065,Healthcare,Biratnagar,CFO,No Tool,Complicated,Structured,Medium,9,9,2.0,6,10,1,5,9,12,98,138.1,5,0
+R0066,Education,Kathmandu,General Manager,Python/Matplotlib,Chaotic,Unstructured,Medium,6,6,9.0,6,4,4,5,7,15,88,47.7,2,1
+R0067,Healthcare,Biratnagar,CFO,No Tool,Complex,Structured,Medium,7,8,3.0,5,2,9,9,5,4,86,21.1,22,0
+R0068,Consulting,Lalitpur,CEO,Excel Charts,Complicated,Structured,Low,5,3,3.0,6,3,7,7,5,14,82,46.5,12,0
+R0069,Healthcare,Kathmandu,CFO,Excel Charts,Complex,Unstructured,Medium,2,4,8.0,5,6,5,7,4,6,45,31.8,13,0
+R0070,Consulting,Lalitpur,General Manager,Tableau,Complex,Structured,Medium,6,7,,2,5,10,5,7,2,43,128.8,18,0
+R0071,Healthcare,Biratnagar,General Manager,Power BI,Simple,Semi-structured,High,6,8,3.0,4,9,6,2,3,2,99,0.4,10,0
+R0072,Retail,Pokhara,CFO,No Tool,Complicated,Unstructured,Medium,2,1,10.0,3,5,5,1,1,10,66,26.7,27,0
+R0073,Education,Chitwan,Department Head,Python/Matplotlib,Complicated,Semi-structured,High,3,6,8.0,10,3,8,8,6,17,95,47.2,24,0
+R0074,Retail,Chitwan,General Manager,No Tool,Chaotic,Semi-structured,High,7,8,9.0,1,2,1,7,7,3,27,32.0,18,1
+R0075,Retail,Kathmandu,COO,Tableau,Complex,Multi-structured,Low,2,3,3.0,4,6,5,8,5,14,2,15.1,1,0
+R0076,Consulting,Biratnagar,General Manager,Power BI,Complicated,Structured,High,6,6,3.0,2,10,10,3,4,8,52,35.9,0,0
+R0077,Education,Pokhara,CEO,Power BI,Chaotic,Semi-structured,Medium,8,1,,1,4,10,3,8,0,98,1.0,20,0
+R0078,Education,Biratnagar,CEO,No Tool,Simple,Unstructured,Medium,1,8,7.0,4,6,10,1,1,14,62,56.0,20,0
+R0079,Retail,Lalitpur,CEO,No Tool,Complicated,Multi-structured,Low,5,6,10.0,10,7,8,10,6,19,47,43.9,18,0
+R0080,Banking,Biratnagar,CFO,Power BI,Complicated,Structured,Medium,10,6,6.0,8,1,8,9,3,4,44,16.9,28,1
+R0081,IT/Software,Chitwan,CFO,Tableau,Complex,Structured,High,3,2,4.0,1,8,6,8,3,8,99,88.2,16,0
+R0082,Consulting,Pokhara,CEO,No Tool,Chaotic,Unstructured,Medium,3,1,4.0,3,8,6,4,10,15,63,52.6,25,0
+R0083,Education,Chitwan,General Manager,Tableau,Complex,Semi-structured,High,5,7,7.0,8,8,4,3,9,16,21,10.7,28,0
+R0084,Healthcare,Pokhara,COO,Excel Charts,Simple,Structured,High,9,2,4.0,5,8,6,6,8,18,82,17.9,25,0
+R0085,Healthcare,Biratnagar,General Manager,Excel Charts,Complicated,Multi-structured,Medium,2,8,2.0,8,4,9,9,3,6,85,2.8,1,0
+R0086,IT/Software,Chitwan,CFO,Python/Matplotlib,Complex,Multi-structured,Medium,10,2,8.0,6,3,6,3,9,3,91,48.7,22,0
+R0087,Education,Biratnagar,COO,Python/Matplotlib,Complicated,Structured,Low,4,9,3.0,1,1,10,1,2,12,87,9.4,13,0
+R0088,IT/Software,Biratnagar,CFO,Python/Matplotlib,Complex,Structured,High,10,1,1.0,9,2,9,5,10,7,20,23.5,26,0
+R0089,IT/Software,Chitwan,COO,Power BI,Complex,Semi-structured,Medium,1,3,3.0,3,6,7,9,3,6,21,24.8,27,0
+R0090,Consulting,Kathmandu,COO,Python/Matplotlib,Complex,Structured,High,6,3,3.0,4,10,8,10,6,15,19,16.5,19,0
+R0091,IT/Software,Lalitpur,Department Head,Power BI,Complex,Structured,Medium,4,4,6.0,2,8,9,4,4,13,68,45.3,3,0
+R0092,Education,Lalitpur,Department Head,Python/Matplotlib,Complex,Structured,High,8,6,1.0,1,10,2,6,2,13,35,141.2,14,0
+R0093,Education,Chitwan,CEO,Tableau,Simple,Unstructured,Medium,5,7,4.0,3,4,5,4,9,6,6,5.1,21,0
+R0094,Banking,Lalitpur,CFO,Python/Matplotlib,Complex,Structured,High,6,7,2.0,1,8,8,1,4,16,44,32.5,3,0
+R0095,IT/Software,Biratnagar,General Manager,Python/Matplotlib,Complex,Multi-structured,High,9,6,1.0,2,7,6,3,1,5,95,6.5,8,0
+R0096,Education,Pokhara,General Manager,Python/Matplotlib,Complex,Unstructured,High,4,10,5.0,7,8,3,10,7,15,54,10.0,26,0
+R0097,Banking,Biratnagar,CFO,Power BI,Simple,Structured,Medium,9,10,3.0,10,2,1,3,5,13,26,24.5,26,0
+R0098,Retail,Kathmandu,General Manager,No Tool,Simple,Structured,Medium,4,9,9.0,6,3,1,7,1,4,14,7.5,16,0
+R0099,Retail,Pokhara,CFO,Python/Matplotlib,Complex,Structured,Medium,4,9,9.0,2,8,7,1,4,5,80,5.7,11,0
+R0100,Education,Kathmandu,CEO,Excel Charts,Complex,Structured,High,8,1,7.0,7,8,5,4,2,12,34,39.7,29,0
+R0101,Consulting,Lalitpur,General Manager,Python/Matplotlib,Complicated,Unstructured,High,3,8,2.0,8,8,6,4,8,17,15,48.9,0,0
+R0102,Retail,Biratnagar,CFO,Excel Charts,Complex,Semi-structured,Medium,6,3,2.0,6,8,7,8,8,0,25,85.6,23,0
+R0103,Education,Biratnagar,Department Head,No Tool,Simple,Unstructured,Medium,8,7,7.0,7,4,4,3,2,4,1,14.4,0,1
+R0104,Consulting,Chitwan,COO,Excel Charts,Simple,Structured,Medium,4,3,4.0,1,3,4,7,2,2,93,79.5,1,0
+R0105,IT/Software,Kathmandu,CEO,Python/Matplotlib,Complex,Unstructured,High,4,7,10.0,6,4,1,5,9,10,41,0.5,1,0
+R0106,IT/Software,Kathmandu,Department Head,No Tool,Chaotic,Multi-structured,High,2,6,9.0,6,10,4,10,8,18,78,16.8,12,0
+R0107,Consulting,Biratnagar,COO,Tableau,Complicated,Structured,Medium,6,3,10.0,2,7,7,6,6,8,62,11.4,26,0
+R0108,Banking,Pokhara,Department Head,Python/Matplotlib,Complicated,Structured,High,10,7,9.0,6,7,1,6,10,16,5,16.6,22,1
+R0109,Consulting,Chitwan,CFO,Python/Matplotlib,Complicated,Unstructured,Medium,5,9,5.0,3,2,7,5,8,17,17,52.4,12,0
+R0110,Consulting,Lalitpur,Department Head,Excel Charts,Complex,Structured,Medium,10,1,10.0,10,1,9,2,8,15,57,103.0,15,0
+R0111,IT/Software,Chitwan,Department Head,Power BI,Complicated,Structured,Low,2,4,7.0,8,7,8,5,8,13,56,12.1,8,0
+R0112,Education,Biratnagar,COO,Tableau,Complicated,Unstructured,Medium,10,1,9.0,8,6,9,6,8,7,69,36.1,0,0
+R0113,Healthcare,Pokhara,CEO,Tableau,Complex,Unstructured,High,8,2,4.0,4,8,4,3,5,14,6,60.8,26,0
+R0114,RETAIL,Pokhara,General Manager,Excel Charts,Simple,Multi-structured,High,4,2,5.0,10,1,7,2,5,14,99,43.8,14,0
+R0115,Consulting,Lalitpur,General Manager,Tableau,Complex,Structured,High,7,7,1.0,4,6,5,5,2,7,47,18.1,11,0
+R0116,IT/Software,Biratnagar,CFO,Tableau,Complex,Semi-structured,Low,1,1,1.0,1,8,3,7,8,14,13,45.5,7,0
+R0117,IT/Software,Biratnagar,Department Head,Tableau,Chaotic,Structured,High,5,6,7.0,3,10,6,2,8,11,62,3.6,7,0
+R0118,Healthcare,Pokhara,CEO,Power BI,Complex,Semi-structured,Medium,6,3,5.0,1,4,4,5,3,18,13,32.3,14,0
+R0119,Healthcare,Pokhara,CFO,No Tool,Complex,Unstructured,High,6,2,9.0,2,2,2,2,4,0,15,126.1,12,0
+R0120,CONSULTING,Pokhara,CEO,Power BI,Complicated,Structured,High,3,2,10.0,7,9,4,5,4,14,21,16.6,13,0
+R0121,Retail,Kathmandu,CEO,Excel Charts,Complex,Semi-structured,Medium,10,8,7.0,9,4,3,9,8,14,28,9999.0,17,1
+R0122,Banking,Kathmandu,Department Head,Python/Matplotlib,Complex,Semi-structured,High,3,10,4.0,7,6,4,1,5,6,75,8.8,29,0
+R0123,IT/Software,Lalitpur,CFO,Tableau,Complicated,Structured,High,7,4,8.0,3,10,4,7,2,12,57,18.0,17,0
+R0124,Retail,Lalitpur,General Manager,Tableau,Complex,Structured,Low,6,4,7.0,1,5,3,5,1,0,43,4.0,20,0
+R0125,IT/Software,Kathmandu,General Manager,Tableau,Complicated,Structured,Medium,7,10,9.0,6,10,2,9,4,12,64,6.4,4,1
+R0126,Banking,Kathmandu,CFO,Python/Matplotlib,Chaotic,Multi-structured,Medium,7,4,4.0,2,2,10,5,7,9,15,42.3,12,0
+R0127,Retail,Kathmandu,CFO,Power BI,Complex,Semi-structured,Medium,9,1,8.0,4,10,7,4,8,6,95,21.2,6,0
+R0128,Education,Pokhara,General Manager,No Tool,Complex,Semi-structured,Medium,5,6,3.0,4,8,10,5,8,6,98,37.3,15,0
+R0129,Retail,Biratnagar,General Manager,Excel Charts,Chaotic,Structured,Medium,4,7,7.0,3,5,4,7,10,14,3,117.4,15,0
+R0130,IT/Software,Pokhara,CEO,Python/Matplotlib,Complex,Unstructured,High,9,9,1.0,6,2,4,4,5,3,19,9999.0,26,0
+R0131,Healthcare,Kathmandu,CEO,Python/Matplotlib,Complex,Structured,Low,6,10,6.0,9,2,8,9,7,7,86,103.9,23,1
+R0132,Consulting,Kathmandu,Department Head,No Tool,Complex,Unstructured,High,6,9,4.0,1,1,1,10,8,11,96,19.3,8,0
+R0133,Retail,Kathmandu,Department Head,Python/Matplotlib,Complex,Structured,Low,9,3,9.0,3,9,6,5,6,12,20,35.7,9,0
+R0134,Healthcare,Biratnagar,CFO,Power BI,Chaotic,Multi-structured,Low,10,9,1.0,6,10,4,10,5,16,22,12.1,1,0
+R0135,Consulting,Kathmandu,General Manager,No Tool,Complex,Structured,High,3,5,7.0,7,10,7,7,1,17,26,35.4,19,0
+R0136,Healthcare,Pokhara,General Manager,Excel Charts,Complex,Structured,Medium,7,8,7.0,2,4,2,8,1,3,57,21.3,24,1
+R0137,IT/Software,Lalitpur,COO,No Tool,Chaotic,Unstructured,Medium,4,8,8.0,10,2,3,6,5,15,38,71.7,23,0
+R0138,Healthcare,Pokhara,CEO,No Tool,Complex,Structured,Medium,8,8,10.0,1,5,7,2,3,19,70,2.5,1,1
+R0139,Banking,Kathmandu,CFO,Python/Matplotlib,Simple,Semi-structured,Medium,10,9,1.0,3,5,6,10,4,18,76,23.9,20,0
+R0140,IT/Software,Kathmandu,CEO,Python/Matplotlib,Complex,Structured,High,9,3,10.0,4,4,4,8,3,8,82,17.9,5,0
+R0141,Consulting,Biratnagar,COO,Python/Matplotlib,Complex,Semi-structured,Low,6,2,9.0,2,4,3,7,7,4,2,49.6,21,0
+R0142,Healthcare,Pokhara,CEO,Power BI,Complex,Semi-structured,High,8,4,2.0,2,5,2,9,4,14,80,5.0,25,0
+R0143,Consulting,Biratnagar,General Manager,No Tool,Chaotic,Structured,Medium,10,4,3.0,6,4,10,10,1,1,83,9.5,23,0
+R0144,IT/Software,Pokhara,COO,Python/Matplotlib,Complex,Structured,High,5,1,8.0,10,3,10,10,10,15,25,24.5,4,0
+R0145,Education,Lalitpur,COO,No Tool,Chaotic,Unstructured,High,3,2,8.0,1,3,4,1,10,18,57,73.4,25,0
+R0146,IT/Software,Pokhara,General Manager,Power BI,Complex,Structured,High,7,3,10.0,2,2,6,7,10,2,67,159.3,20,0
+R0147,Healthcare,Pokhara,CEO,Tableau,Chaotic,Unstructured,Medium,10,1,8.0,9,9,6,1,7,9,43,47.3,10,0
+R0148,Education,Lalitpur,COO,Excel Charts,Complicated,Structured,High,5,6,1.0,4,4,10,3,10,15,69,67.9,11,0
+R0149,Banking,Pokhara,CEO,No Tool,Complicated,Unstructured,Medium,2,10,1.0,10,8,6,5,6,5,45,51.1,12,0
+R0150,Healthcare,Biratnagar,General Manager,Python/Matplotlib,Complex,Structured,Medium,9,6,5.0,9,2,7,7,7,10,45,4.0,4,0
+R0151,Consulting,Biratnagar,CEO,Tableau,Complex,Semi-structured,Medium,4,10,,3,9,3,8,5,19,22,53.2,11,0
+R0152,Consulting,Chitwan,General Manager,No Tool,Complex,Structured,Medium,6,5,6.0,7,5,5,1,3,4,43,58.5,6,0
+R0153,Education,Pokhara,General Manager,Excel Charts,Complex,Multi-structured,Medium,3,1,10.0,9,1,7,4,4,11,19,25.7,6,0
+R0154,IT/Software,Biratnagar,COO,Power BI,Complicated,Multi-structured,Medium,8,4,1.0,8,10,3,5,7,10,72,64.6,27,0
+R0155,Banking,Pokhara,CEO,Excel Charts,Complicated,Unstructured,Medium,6,9,5.0,3,6,4,8,2,6,19,109.2,26,0
+R0156,Education,Kathmandu,General Manager,Python/Matplotlib,Simple,Unstructured,Medium,10,6,4.0,4,5,7,3,8,9,37,49.8,23,0
+R0157,Healthcare,Biratnagar,CFO,Excel Charts,Complicated,Unstructured,Medium,9,9,3.0,1,6,3,8,7,13,46,19.8,16,0
+R0158,IT/Software,Kathmandu,CEO,Power BI,Complex,Structured,High,4,9,6.0,4,6,3,6,7,18,57,18.0,7,0
+R0159,IT/Software,Lalitpur,General Manager,No Tool,Chaotic,Structured,Medium,1,8,6.0,7,6,4,7,7,9,8,84.3,15,0
+R0160,Consulting,Pokhara,CFO,No Tool,Complex,Structured,Low,6,4,1.0,3,8,1,1,1,2,93,0.1,23,0
+R0161,IT/Software,Lalitpur,Department Head,Tableau,Complex,Structured,Medium,10,10,10.0,1,3,7,5,7,12,62,42.1,5,1
+R0162,Consulting,Kathmandu,General Manager,Power BI,Complicated,Semi-structured,Medium,1,7,10.0,10,9,9,7,2,15,17,39.3,23,0
+R0163,Retail,Kathmandu,CFO,Excel Charts,Simple,Multi-structured,Low,8,4,2.0,10,3,8,4,3,5,96,39.6,7,0
+R0164,Healthcare,Pokhara,COO,Excel Charts,Complicated,Multi-structured,High,6,8,2.0,1,7,5,5,10,1,43,15.2,19,0
+R0165,Education,Pokhara,CEO,Power BI,Complex,Structured,Medium,1,8,1.0,10,4,6,6,8,3,37,32.8,22,0
+R0166,Education,Chitwan,COO,Tableau,Complex,Structured,Medium,5,2,4.0,2,6,8,2,10,12,31,9999.0,18,0
+R0167,Retail,Pokhara,Department Head,No Tool,Chaotic,Semi-structured,High,1,3,5.0,6,3,1,7,5,17,66,84.1,8,0
+R0168,IT/Software,Biratnagar,CFO,Power BI,Complicated,Structured,High,5,4,10.0,4,10,1,7,7,11,51,132.5,1,0
+R0169,Banking,Biratnagar,Department Head,Power BI,Complex,Unstructured,Low,2,7,10.0,3,10,8,8,4,14,37,20.3,17,0
+R0170,Consulting,Kathmandu,COO,Excel Charts,Complex,Unstructured,High,3,3,5.0,8,2,8,2,4,19,61,80.6,19,0
+R0171,Education,Biratnagar,COO,Excel Charts,Complex,Semi-structured,Low,6,6,1.0,2,8,5,8,6,2,54,26.3,27,0
+R0172,Consulting,Chitwan,COO,Excel Charts,Simple,Unstructured,High,9,9,10.0,1,9,9,9,9,3,31,70.9,0,1
+R0173,Banking,Lalitpur,General Manager,Python/Matplotlib,Complex,Structured,Medium,10,6,6.0,7,5,10,8,7,0,83,11.4,0,1
+R0174,Consulting,Lalitpur,COO,Python/Matplotlib,Complex,Unstructured,Medium,4,3,9.0,1,10,2,1,3,11,80,36.0,28,0
+R0175,Healthcare,Biratnagar,CEO,Power BI,Complex,Structured,Medium,10,8,8.0,2,10,8,6,7,7,8,2.9,28,1
+R0176,Consulting,Kathmandu,CFO,Excel Charts,Simple,Semi-structured,Medium,7,2,9.0,2,3,2,9,6,14,21,7.0,23,0
+R0177,Banking,Pokhara,Department Head,Python/Matplotlib,Chaotic,Multi-structured,High,4,3,6.0,3,3,4,1,9,16,52,43.1,20,0
+R0178,IT/Software,Chitwan,CEO,Power BI,Complex,Semi-structured,High,10,1,6.0,9,4,7,4,3,5,46,4.9,22,0
+R0179,Education,Pokhara,CFO,Python/Matplotlib,Simple,Unstructured,Low,2,6,7.0,7,7,6,8,1,19,86,13.9,24,0
+R0180,Consulting,Pokhara,Department Head,Tableau,Complex,Structured,Low,9,6,4.0,10,2,1,7,2,2,73,0.9,28,0
+R0181,Healthcare,Pokhara,General Manager,No Tool,Simple,Structured,Medium,8,1,3.0,6,6,4,6,6,4,82,10.1,22,0
+R0182,Retail,Pokhara,CEO,Power BI,Simple,Multi-structured,Medium,7,4,7.0,10,5,10,6,7,11,63,25.9,21,0
+R0183,Banking,Chitwan,CEO,Excel Charts,Complex,Multi-structured,Low,6,4,4.0,4,2,9,6,6,16,81,40.4,18,0
+R0184,Retail,Pokhara,COO,Tableau,Complex,Unstructured,Medium,6,10,6.0,8,7,4,6,6,5,35,9999.0,8,1
+R0185,Banking,Kathmandu,COO,Excel Charts,Complex,Structured,Medium,3,2,7.0,10,2,7,9,7,10,58,3.4,10,0
+R0186,Retail,Lalitpur,Department Head,Excel Charts,Simple,Structured,Low,1,5,8.0,10,1,6,1,5,12,13,114.8,2,0
+R0187,Healthcare,Kathmandu,Department Head,Tableau,Complicated,Structured,Medium,1,2,9.0,7,7,1,4,4,6,38,49.5,12,0
+R0188,Healthcare,Kathmandu,Department Head,Power BI,Simple,Unstructured,Medium,10,4,2.0,9,4,3,1,5,15,70,39.7,8,0
+R0189,Consulting,Lalitpur,Department Head,No Tool,Complicated,Unstructured,Medium,7,8,1.0,1,9,6,7,2,10,3,21.1,24,0
+R0190,Consulting,Kathmandu,CFO,No Tool,Simple,Structured,Medium,2,9,9.0,8,9,10,7,1,3,86,9.5,6,0
+R0191,Education,Lalitpur,General Manager,Python/Matplotlib,Complex,Semi-structured,Low,4,10,3.0,9,2,1,5,2,5,51,9999.0,7,0
+R0192,Healthcare,Kathmandu,COO,No Tool,Complex,Semi-structured,Medium,7,6,3.0,4,8,6,3,5,8,30,23.2,12,0
+R0193,Banking,Pokhara,Department Head,Tableau,Complex,Structured,High,2,1,10.0,6,8,5,2,2,15,17,90.3,5,0
+R0194,Banking,Pokhara,CEO,Excel Charts,Complex,Structured,High,6,8,5.0,5,5,3,9,1,10,90,60.1,27,0
+R0195,Healthcare,Lalitpur,Department Head,No Tool,Simple,Semi-structured,Medium,10,2,9.0,4,7,7,2,1,3,16,91.3,26,0
+R0196,Healthcare,Lalitpur,Department Head,Excel Charts,Chaotic,Structured,High,5,4,8.0,8,1,7,6,10,6,57,3.2,25,0
+R0197,Healthcare,Pokhara,General Manager,Excel Charts,Complex,Structured,Medium,9,10,10.0,10,6,10,4,5,16,99,89.3,1,1
+R0198,Consulting,Lalitpur,General Manager,Tableau,Simple,Structured,High,4,10,9.0,2,10,4,6,10,1,76,35.7,22,0
+R0199,Education,Pokhara,CEO,Excel Charts,Complex,Structured,High,10,8,10.0,9,1,1,9,9,1,80,15.5,0,1
+R0200,Retail,Kathmandu,CEO,Excel Charts,Complicated,Structured,Medium,5,1,4.0,5,2,4,2,1,5,24,9.2,3,0
+R0201,Banking,Kathmandu,CFO,Python/Matplotlib,Complex,Multi-structured,Low,7,6,6.0,6,9,5,10,10,13,73,84.6,22,1
+R0202,Consulting,Kathmandu,COO,Excel Charts,Complex,Multi-structured,Medium,6,5,2.0,3,1,8,9,1,10,45,10.6,4,0
+R0203,Retail,Kathmandu,CFO,Power BI,Simple,Semi-structured,Low,4,10,8.0,6,10,1,10,6,15,57,13.5,8,0
+R0204,Retail,Kathmandu,CFO,Tableau,Complex,Structured,Medium,9,5,4.0,4,3,6,9,2,2,44,55.4,17,0
+R0205,IT/Software,Lalitpur,COO,Power BI,Simple,Semi-structured,High,3,8,7.0,4,1,5,2,6,14,85,19.9,19,0
+R0206,Retail,Biratnagar,CFO,Excel Charts,Complicated,Structured,Medium,7,5,7.0,1,7,10,3,2,9,70,6.3,27,0
+R0207,Education,Lalitpur,Department Head,Excel Charts,Complex,Structured,Medium,10,3,6.0,4,5,7,3,7,9,59,42.1,4,0
+R0208,IT/Software,Lalitpur,CFO,No Tool,Simple,Unstructured,High,4,9,9.0,10,9,10,2,6,16,66,3.6,27,0
+R0209,Banking,Lalitpur,Department Head,Python/Matplotlib,Complex,Unstructured,High,1,6,4.0,4,4,3,3,10,1,7,64.6,8,0
+R0210,Healthcare,Lalitpur,CFO,Power BI,Complicated,Unstructured,High,7,5,7.0,9,9,6,10,4,11,95,1.6,19,0
+R0211,IT/Software,Pokhara,CEO,Power BI,Simple,Structured,High,5,10,2.0,5,2,2,4,10,11,60,15.0,27,0
+R0212,Healthcare,Biratnagar,CEO,Excel Charts,Complex,Structured,Medium,6,3,8.0,6,1,2,7,3,2,34,63.9,27,0
+R0213,IT/Software,Kathmandu,CEO,Tableau,Complex,Structured,Medium,4,5,,9,6,3,6,1,7,91,28.6,17,0
+R0214,Education,Kathmandu,General Manager,Python/Matplotlib,Complicated,Semi-structured,Medium,9,4,6.0,3,8,2,5,5,14,56,131.6,28,0
+R0215,RETAIL,Chitwan,CFO,Excel Charts,Complicated,Unstructured,Low,6,8,9.0,5,6,1,6,9,4,72,38.0,4,1
+R0216,IT/Software,Chitwan,COO,Power BI,Complicated,Unstructured,Low,4,2,10.0,9,1,7,3,8,10,74,40.8,6,0
+R0217,HEALTHCARE,Biratnagar,CFO,Power BI,Complex,Semi-structured,Low,6,3,8.0,7,10,1,2,9,1,67,77.1,1,0
+R0218,Banking,Pokhara,CFO,Excel Charts,Chaotic,Structured,High,10,8,7.0,7,3,3,7,6,17,31,110.1,27,1
+R0219,Retail,Pokhara,CFO,Power BI,Complex,Unstructured,High,9,3,6.0,6,7,6,5,6,16,83,3.0,10,0
+R0220,IT/Software,Pokhara,CEO,Power BI,Simple,Semi-structured,High,5,2,3.0,4,1,4,3,4,5,86,85.2,26,0
+R0221,Banking,Chitwan,CEO,Excel Charts,Simple,Multi-structured,High,10,6,1.0,8,1,4,8,5,1,28,58.0,24,0
+R0222,Banking,Biratnagar,COO,Excel Charts,Complicated,Structured,Low,2,2,10.0,9,1,10,1,5,18,16,75.4,19,0
+R0223,IT/Software,Lalitpur,CFO,Tableau,Complex,Structured,Medium,8,1,10.0,7,9,7,4,1,16,0,59.2,5,0
+R0224,Healthcare,Biratnagar,CFO,Tableau,Simple,Unstructured,Medium,3,7,4.0,1,2,6,10,8,1,74,68.1,25,0
+R0225,Banking,Biratnagar,CEO,Tableau,Complex,Structured,Medium,10,9,10.0,7,10,8,7,3,1,6,3.0,11,1
+R0226,Retail,Kathmandu,Department Head,Excel Charts,Simple,Structured,Medium,5,9,4.0,2,4,8,4,4,11,15,54.9,18,0
+R0227,Banking,Biratnagar,CFO,Power BI,Complicated,Semi-structured,High,8,1,1.0,6,2,8,1,9,6,52,9.8,21,0
+R0228,Education,Kathmandu,CEO,Power BI,Complex,Semi-structured,Medium,1,4,6.0,5,9,1,7,4,18,3,68.7,2,0
+R0229,Consulting,Lalitpur,CFO,Python/Matplotlib,Complex,Structured,High,5,10,7.0,9,10,9,8,3,14,27,10.6,18,0
+R0230,Consulting,Kathmandu,Department Head,No Tool,Simple,Structured,Medium,5,9,1.0,1,5,10,2,9,7,60,22.0,29,0
+R0231,Banking,Kathmandu,CFO,Tableau,Simple,Semi-structured,High,8,5,4.0,5,5,8,10,4,17,62,115.0,4,0
+R0232,Healthcare,Kathmandu,CEO,Excel Charts,Complicated,Unstructured,Low,2,2,5.0,10,7,3,4,4,16,45,9999.0,27,0
+R0233,Education,Kathmandu,COO,Python/Matplotlib,Complicated,Multi-structured,High,4,6,1.0,10,2,3,9,2,12,36,73.3,28,0
+R0234,Retail,Biratnagar,General Manager,No Tool,Complicated,Structured,High,2,8,9.0,6,6,2,9,5,10,100,10.3,28,0
+R0235,Banking,Chitwan,General Manager,Power BI,Complex,Structured,High,6,1,3.0,8,1,4,9,6,11,82,37.0,2,0
+R0236,Banking,Chitwan,CFO,Tableau,Simple,Unstructured,Low,3,8,9.0,5,10,5,7,6,15,63,23.7,9,0
+R0237,IT/Software,Pokhara,Department Head,Excel Charts,Complicated,Unstructured,Medium,9,7,3.0,10,9,1,2,4,12,45,12.8,11,0
+R0238,Consulting,Lalitpur,CEO,Power BI,Complicated,Structured,Medium,7,9,3.0,3,1,4,7,10,2,16,3.2,20,0
+R0239,IT/Software,Pokhara,General Manager,Python/Matplotlib,Complex,Structured,Medium,6,10,6.0,10,8,9,10,9,15,11,40.6,6,1
+R0240,Education,Chitwan,Department Head,Power BI,Complex,Structured,Medium,8,3,6.0,4,4,4,1,3,17,6,85.7,6,0
+R0241,Consulting,Pokhara,Department Head,Excel Charts,Simple,Structured,Low,1,5,1.0,1,5,5,10,8,7,55,9.9,23,0
+R0242,Healthcare,Lalitpur,COO,Python/Matplotlib,Complex,Semi-structured,Medium,9,5,5.0,2,1,4,1,3,8,70,1.6,16,0
+R0243,Consulting,Chitwan,CFO,No Tool,Complex,Structured,High,7,2,6.0,10,2,10,1,7,8,70,2.3,4,0
+R0244,Retail,Kathmandu,CFO,Power BI,Complicated,Structured,Medium,1,3,7.0,3,5,4,1,4,3,100,31.1,1,0
+R0245,IT/Software,Chitwan,CEO,Python/Matplotlib,Complex,Multi-structured,Medium,8,6,4.0,5,1,5,8,7,14,16,2.6,7,0
+R0246,Banking,Pokhara,Department Head,Tableau,Simple,Semi-structured,Low,9,2,5.0,2,3,10,9,7,5,80,46.8,0,0
+R0247,IT/Software,Kathmandu,General Manager,Power BI,Complex,Structured,High,10,8,3.0,8,10,10,2,7,19,69,33.4,1,0
+R0248,Retail,Chitwan,CEO,No Tool,Complex,Unstructured,High,10,4,2.0,10,7,1,9,9,3,36,18.5,3,0
+R0249,Retail,Kathmandu,CEO,Python/Matplotlib,Chaotic,Structured,Low,5,9,4.0,2,3,2,1,1,10,13,16.3,21,0
+R0250,Banking,Kathmandu,CEO,No Tool,Simple,Structured,High,1,1,7.0,5,5,6,5,7,4,6,9999.0,20,0
+R0251,Consulting,Pokhara,General Manager,Python/Matplotlib,Complex,Semi-structured,High,6,1,9.0,2,1,7,8,2,5,21,45.1,2,0
+R0252,Education,Lalitpur,CEO,Tableau,Complicated,Unstructured,Medium,1,9,8.0,8,9,1,4,3,13,56,16.2,22,0
+R0253,Healthcare,Chitwan,COO,No Tool,Complex,Multi-structured,Medium,2,6,6.0,3,9,7,10,4,14,7,4.9,10,0
+R0254,Consulting,Chitwan,General Manager,Excel Charts,Complex,Structured,Medium,8,5,8.0,1,10,6,5,6,12,6,19.8,16,0
+R0255,Banking,Pokhara,Department Head,Excel Charts,Complex,Structured,Medium,5,2,,7,7,2,10,2,12,98,20.4,13,0
+R0256,Education,Biratnagar,General Manager,No Tool,Simple,Structured,Medium,9,9,8.0,7,6,6,7,2,19,92,5.8,13,1
+R0257,Healthcare,Chitwan,CFO,Tableau,Chaotic,Structured,High,4,2,1.0,1,1,5,3,9,13,30,14.4,22,0
+R0258,Retail,Pokhara,CFO,Excel Charts,Complicated,Structured,Medium,1,6,6.0,2,1,10,4,9,19,34,17.0,8,0
+R0259,Banking,Biratnagar,Department Head,Excel Charts,Complex,Structured,Low,4,4,9.0,3,1,10,2,9,11,29,22.6,20,0
+R0260,Healthcare,Kathmandu,Department Head,Power BI,Complicated,Structured,High,5,4,9.0,8,1,7,3,1,0,70,48.2,19,0
+R0261,Education,Biratnagar,CFO,Power BI,Simple,Multi-structured,Medium,1,9,4.0,8,4,3,6,10,4,79,24.1,5,0
+R0262,Education,Chitwan,CEO,Python/Matplotlib,Complicated,Multi-structured,Medium,5,6,4.0,5,9,6,8,6,19,65,33.8,6,0
+R0263,IT/Software,Kathmandu,General Manager,Python/Matplotlib,Complex,Structured,High,3,10,9.0,1,3,10,9,6,9,5,12.0,25,0
+R0264,Consulting,Biratnagar,General Manager,No Tool,Chaotic,Structured,Medium,4,2,5.0,10,2,2,3,5,8,52,63.2,29,0
+R0265,Education,Pokhara,COO,Python/Matplotlib,Complicated,Unstructured,High,6,8,3.0,7,10,1,2,8,7,75,37.9,17,0
+R0266,Healthcare,Biratnagar,CEO,No Tool,Complicated,Unstructured,High,4,8,4.0,4,10,7,4,9,13,2,45.0,0,0
+R0267,Consulting,Pokhara,CFO,Power BI,Chaotic,Unstructured,Low,9,6,4.0,5,2,4,9,2,2,9,23.7,20,0
+R0268,IT/Software,Kathmandu,CEO,Python/Matplotlib,Complex,Structured,High,3,3,9.0,1,6,6,2,8,18,8,3.0,7,0
+R0269,Education,Kathmandu,CEO,No Tool,Complicated,Structured,Medium,9,8,,6,10,9,7,3,16,23,39.9,25,0
+R0270,IT/Software,Biratnagar,COO,Excel Charts,Complex,Structured,Medium,7,6,10.0,5,3,5,9,5,15,97,33.2,26,1
+R0271,Banking,Lalitpur,Department Head,Power BI,Complicated,Structured,Medium,9,8,1.0,2,8,1,6,5,7,84,67.1,23,0
+R0272,Healthcare,Chitwan,COO,No Tool,Complicated,Semi-structured,Medium,3,4,7.0,3,7,10,6,9,4,20,35.4,29,0
+R0273,Retail,Lalitpur,Department Head,Excel Charts,Complicated,Semi-structured,High,4,6,3.0,8,3,4,3,8,11,99,81.4,4,0
+R0274,Retail,Chitwan,Department Head,Tableau,Complicated,Structured,Low,10,9,7.0,3,5,6,10,5,12,40,37.4,2,1
+R0275,Banking,Kathmandu,CFO,Tableau,Simple,Unstructured,Medium,3,7,6.0,2,2,1,4,9,11,33,9999.0,23,0
+R0276,IT/Software,Chitwan,Department Head,No Tool,Complicated,Semi-structured,Medium,10,4,6.0,3,1,6,3,3,12,48,135.0,16,0
+R0277,Education,Kathmandu,General Manager,Tableau,Complex,Structured,Low,1,5,1.0,2,8,10,9,9,6,76,44.9,15,0
+R0278,Healthcare,Lalitpur,CEO,No Tool,Complex,Structured,Low,8,9,1.0,4,8,4,8,2,4,100,15.7,7,0
+R0279,Banking,Lalitpur,General Manager,Tableau,Complicated,Structured,High,5,4,3.0,2,1,2,7,2,4,36,12.8,12,0
+R0280,IT/Software,Kathmandu,Department Head,Python/Matplotlib,Complex,Semi-structured,Medium,1,7,6.0,5,7,1,6,10,0,64,116.8,18,0
+R0281,Healthcare,Chitwan,COO,No Tool,Simple,Structured,Medium,6,8,7.0,7,8,3,2,7,13,23,125.7,9,1
+R0282,Banking,Pokhara,COO,Tableau,Complex,Multi-structured,Medium,1,10,2.0,3,2,5,1,8,9,37,67.7,10,0
+R0283,Consulting,Chitwan,COO,Python/Matplotlib,Complex,Semi-structured,Medium,5,10,8.0,2,6,7,2,10,8,90,16.6,17,0
+R0284,Retail,Biratnagar,CEO,Power BI,Simple,Structured,Low,1,2,8.0,5,10,6,7,8,5,37,32.5,9,0
+R0285,IT/Software,Kathmandu,Department Head,Python/Matplotlib,Complex,Unstructured,Medium,7,1,,6,9,2,1,5,17,1,96.4,13,0
+R0286,IT/Software,Pokhara,CFO,Python/Matplotlib,Complex,Semi-structured,Medium,8,4,7.0,5,7,2,9,6,11,23,22.9,17,0
+R0287,IT/Software,Kathmandu,CFO,Tableau,Complicated,Structured,Medium,5,5,8.0,4,1,2,6,2,19,10,9999.0,6,0
+R0288,IT/Software,Lalitpur,COO,Tableau,Complicated,Semi-structured,Low,5,1,10.0,5,4,4,1,9,6,85,14.9,6,0
+R0289,Education,Lalitpur,General Manager,Python/Matplotlib,Complex,Unstructured,High,1,10,,4,10,4,9,2,13,59,5.9,22,0
+R0290,Healthcare,Kathmandu,COO,Power BI,Complicated,Structured,Low,8,2,4.0,2,5,2,10,4,5,32,29.2,24,0
+R0291,Retail,Lalitpur,General Manager,Tableau,Simple,Semi-structured,Low,9,8,1.0,5,6,10,3,9,15,59,48.0,3,0
+R0292,Banking,Kathmandu,CEO,Excel Charts,Complicated,Structured,High,4,9,9.0,7,3,4,10,3,6,1,23.7,11,0
+R0293,Consulting,Chitwan,CFO,Python/Matplotlib,Complex,Structured,High,3,7,7.0,9,2,8,2,10,7,8,9.2,6,0
+R0294,Retail,Biratnagar,CEO,Tableau,Complex,Structured,Medium,9,8,6.0,5,3,7,9,10,8,38,1.1,28,1
+R0295,Healthcare,Pokhara,General Manager,Excel Charts,Complicated,Multi-structured,High,5,1,6.0,4,9,1,3,4,12,9,112.0,13,0
+R0296,Retail,Chitwan,COO,Power BI,Chaotic,Structured,Medium,3,3,1.0,10,2,3,8,8,19,81,33.2,15,0
+R0297,Consulting,Lalitpur,Department Head,Tableau,Complicated,Structured,Medium,4,10,8.0,5,10,1,5,4,8,22,12.1,3,0
+R0298,Consulting,Biratnagar,Department Head,No Tool,Simple,Semi-structured,Low,5,10,3.0,3,10,4,3,4,18,87,16.3,21,0
+R0299,Consulting,Chitwan,CFO,No Tool,Complex,Unstructured,Medium,6,8,8.0,4,10,5,2,1,13,67,73.3,2,1
+R0300,Consulting,Kathmandu,Department Head,Python/Matplotlib,Simple,Multi-structured,High,4,8,1.0,7,6,6,3,10,6,21,72.1,7,0
+R0301,Banking,Pokhara,CEO,No Tool,Complex,Semi-structured,Low,9,8,4.0,7,7,5,10,9,5,69,7.8,8,0
+R0302,Retail,Kathmandu,Department Head,Excel Charts,Complex,Structured,Low,4,2,1.0,3,4,2,6,3,3,25,44.9,8,0
+R0303,IT/Software,Kathmandu,COO,Power BI,Simple,Structured,High,8,3,9.0,2,4,10,9,5,19,71,9.5,17,0
+R0304,Consulting,Chitwan,Department Head,No Tool,Complicated,Unstructured,Medium,3,2,2.0,7,9,6,2,5,6,40,22.8,3,0
+R0305,Retail,Biratnagar,CFO,Power BI,Complex,Structured,Low,4,4,5.0,4,2,2,5,8,14,12,25.7,11,0
+R0306,IT/Software,Pokhara,CEO,Python/Matplotlib,Complicated,Structured,Medium,6,5,7.0,7,3,3,3,9,19,97,23.4,6,0
+R0307,Banking,Chitwan,COO,No Tool,Complex,Multi-structured,High,7,5,7.0,1,5,4,3,5,4,54,22.1,18,0
+R0308,Consulting,Kathmandu,Department Head,Python/Matplotlib,Complex,Unstructured,Medium,9,4,7.0,7,2,5,4,2,13,50,102.3,11,0
+R0309,Education,Pokhara,CEO,Python/Matplotlib,Simple,Unstructured,High,9,10,9.0,3,1,7,9,10,18,79,22.1,24,1
+R0310,Education,Lalitpur,CFO,Power BI,Complex,Structured,Medium,6,7,5.0,1,10,6,10,5,0,22,9999.0,11,0
+R0311,BANKING,Pokhara,General Manager,Tableau,Complex,Unstructured,Low,5,9,9.0,1,7,4,4,1,16,90,29.5,8,0
+R0312,IT/Software,Biratnagar,General Manager,Power BI,Complicated,Structured,Medium,3,5,5.0,4,6,2,1,7,14,9,48.8,14,0
+R0313,Consulting,Kathmandu,CFO,Power BI,Complex,Structured,Medium,6,2,1.0,1,9,9,3,4,9,35,57.7,3,0
+R0314,Banking,Chitwan,CFO,Excel Charts,Complicated,Structured,Low,8,4,3.0,7,1,4,2,6,4,1,55.8,6,0
+R0315,Consulting,Chitwan,General Manager,Python/Matplotlib,Complicated,Structured,High,6,6,7.0,10,5,5,7,2,0,84,20.0,26,1
+R0316,Healthcare,Biratnagar,COO,Python/Matplotlib,Complicated,Unstructured,High,10,3,7.0,8,2,1,10,8,17,0,24.5,1,0
+R0317,IT/Software,Pokhara,COO,Power BI,Complex,Unstructured,High,10,2,,7,6,10,2,2,1,15,2.9,25,0
+R0318,Retail,Lalitpur,CEO,Excel Charts,Simple,Semi-structured,High,8,5,7.0,3,6,4,10,6,18,82,53.1,3,0
+R0319,Consulting,Biratnagar,CEO,Python/Matplotlib,Complex,Semi-structured,Medium,5,4,4.0,3,8,2,6,5,4,99,8.2,13,0
+R0320,Healthcare,Kathmandu,CEO,Excel Charts,Simple,Structured,Low,7,7,10.0,1,2,5,9,9,4,48,14.3,0,1
+R0321,Healthcare,Lalitpur,COO,Tableau,Complicated,Structured,High,2,3,5.0,1,9,4,4,7,8,50,0.6,28,0
+R0322,Education,Kathmandu,COO,Python/Matplotlib,Complex,Structured,High,2,6,7.0,4,3,1,7,1,2,72,72.3,21,0
+R0323,IT/Software,Lalitpur,General Manager,No Tool,Complicated,Unstructured,Medium,1,3,4.0,7,5,5,2,10,17,28,0.5,6,0
+R0324,Banking,Biratnagar,General Manager,Excel Charts,Complex,Semi-structured,Medium,8,8,4.0,8,4,2,4,1,17,20,50.4,19,0
+R0325,Education,Lalitpur,COO,Python/Matplotlib,Complicated,Structured,High,6,2,9.0,7,8,2,8,1,0,22,13.8,3,0
+R0326,Consulting,Biratnagar,Department Head,Power BI,Chaotic,Structured,Medium,3,4,9.0,1,5,2,2,4,5,58,115.5,18,0
+R0327,IT/Software,Kathmandu,CEO,Power BI,Chaotic,Structured,Low,2,1,2.0,5,2,4,3,7,3,65,61.5,0,0
+R0328,Banking,Kathmandu,Department Head,No Tool,Complicated,Structured,Medium,1,5,9.0,5,7,4,9,5,7,24,5.9,17,0
+R0329,IT/Software,Chitwan,COO,Excel Charts,Chaotic,Structured,High,10,7,4.0,4,3,1,8,7,8,20,51.6,21,0
+R0330,Healthcare,Biratnagar,COO,Excel Charts,Chaotic,Structured,High,3,4,4.0,3,7,2,6,8,19,44,24.8,9,0
+R0331,Consulting,Chitwan,CEO,Power BI,Complicated,Unstructured,Low,4,9,3.0,5,7,1,3,10,7,43,40.9,8,0
+R0332,Retail,Chitwan,Department Head,No Tool,Complicated,Structured,Low,5,4,4.0,6,3,6,3,10,19,79,20.3,14,0
+R0333,Education,Lalitpur,CFO,Tableau,Simple,Structured,Medium,6,3,9.0,10,6,10,4,6,12,93,15.7,12,0
+R0334,Education,Pokhara,Department Head,Excel Charts,Complicated,Unstructured,Medium,3,7,2.0,4,8,9,2,1,7,84,109.7,25,0
+R0335,IT/Software,Lalitpur,General Manager,Tableau,Complex,Semi-structured,Low,8,9,3.0,4,7,2,10,10,19,39,23.9,22,0
+R0336,Banking,Pokhara,Department Head,Excel Charts,Complex,Semi-structured,Low,1,6,2.0,7,7,9,10,1,3,81,14.5,27,0
+R0337,Consulting,Kathmandu,CEO,Power BI,Complicated,Unstructured,High,6,9,5.0,2,10,1,1,1,13,30,2.2,0,0
+R0338,Education,Chitwan,CEO,No Tool,Simple,Unstructured,Medium,1,5,4.0,7,3,5,3,10,18,42,7.4,9,0
+R0339,Consulting,Kathmandu,CFO,Power BI,Complex,Structured,Low,3,8,3.0,4,1,6,3,2,7,12,43.1,27,0
+R0340,Consulting,Kathmandu,General Manager,Power BI,Chaotic,Semi-structured,High,3,1,9.0,3,2,5,6,1,3,84,22.1,15,0
+R0341,Consulting,Chitwan,CFO,Tableau,Complicated,Structured,Medium,7,5,2.0,10,1,6,1,3,9,89,30.4,8,0
+R0342,Education,Kathmandu,COO,Excel Charts,Complex,Structured,High,5,3,8.0,1,8,4,9,2,8,58,34.2,18,0
+R0343,Consulting,Lalitpur,COO,Excel Charts,Complicated,Structured,High,8,6,1.0,1,6,3,9,4,12,12,4.5,7,0
+R0344,Retail,Biratnagar,COO,Python/Matplotlib,Complex,Structured,Low,10,8,2.0,5,8,7,2,10,9,47,34.8,8,0
+R0345,Education,Chitwan,CEO,Tableau,Complex,Unstructured,Medium,4,10,2.0,3,8,3,4,5,14,19,6.3,0,0
+R0346,Healthcare,Chitwan,COO,Excel Charts,Chaotic,Structured,Medium,3,8,7.0,8,9,7,7,6,9,23,52.1,3,0
+R0347,Healthcare,Lalitpur,CFO,No Tool,Simple,Structured,Medium,7,3,4.0,3,6,6,10,6,13,84,28.6,14,0
+R0348,Banking,Lalitpur,CFO,Power BI,Complex,Structured,Low,6,2,1.0,10,7,1,5,1,1,90,66.2,2,0
+R0349,IT/Software,Pokhara,General Manager,Excel Charts,Complicated,Unstructured,High,8,2,6.0,4,6,2,10,4,15,11,6.4,8,0
+R0350,Retail,Biratnagar,CEO,Python/Matplotlib,Complicated,Semi-structured,High,1,2,7.0,8,3,1,10,5,1,20,23.6,28,0
+R0351,Retail,Kathmandu,CEO,No Tool,Complicated,Semi-structured,Medium,8,1,3.0,9,5,6,7,4,15,91,8.2,1,0
+R0352,Education,Pokhara,Department Head,Python/Matplotlib,Chaotic,Semi-structured,Medium,3,9,3.0,4,5,8,2,8,1,83,37.4,23,0
+R0353,Education,Pokhara,COO,Excel Charts,Complicated,Structured,High,6,7,6.0,7,6,1,2,10,7,20,3.0,14,1
+R0354,Healthcare,Lalitpur,Department Head,Excel Charts,Complex,Unstructured,High,3,6,4.0,4,5,8,6,7,15,14,20.9,4,0
+R0355,Retail,Lalitpur,CEO,Power BI,Simple,Structured,Medium,10,8,8.0,10,2,5,4,7,5,52,28.9,10,1
+R0356,Banking,Lalitpur,CFO,Tableau,Chaotic,Structured,Medium,8,2,1.0,1,9,1,9,8,0,33,255.8,13,0
+R0357,Banking,Biratnagar,CFO,Power BI,Complex,Structured,Medium,1,3,2.0,5,9,1,4,1,8,25,19.2,7,0
+R0358,Consulting,Kathmandu,General Manager,Python/Matplotlib,Complex,Multi-structured,High,9,6,3.0,6,4,10,3,3,2,2,29.6,20,0
+R0359,Banking,Kathmandu,CEO,Python/Matplotlib,Complex,Unstructured,High,6,1,1.0,8,2,2,1,10,12,68,6.6,23,0
+R0360,IT/Software,Biratnagar,CFO,Power BI,Complicated,Semi-structured,High,4,1,9.0,1,8,6,9,1,13,7,9.1,14,0
+R0361,Healthcare,Lalitpur,General Manager,Excel Charts,Complicated,Semi-structured,High,2,1,5.0,7,10,7,2,7,11,0,11.9,8,0
+R0362,Retail,Pokhara,COO,Python/Matplotlib,Complex,Semi-structured,High,7,9,2.0,5,4,1,9,6,12,35,109.1,12,0
+R0363,Education,Pokhara,Department Head,Excel Charts,Complex,Structured,Medium,3,1,9.0,9,5,10,4,10,18,64,125.3,26,0
+R0364,IT/Software,Chitwan,COO,No Tool,Complex,Structured,High,3,3,3.0,2,9,3,3,4,13,69,52.0,22,0
+R0365,Banking,Pokhara,Department Head,Python/Matplotlib,Complicated,Semi-structured,Low,1,2,1.0,7,8,1,3,8,1,80,112.7,2,0
+R0366,Retail,Chitwan,CFO,No Tool,Complex,Semi-structured,High,6,8,10.0,9,6,2,4,10,12,78,81.5,10,1
+R0367,Healthcare,Chitwan,General Manager,Excel Charts,Complicated,Unstructured,Low,7,3,9.0,5,7,3,8,5,18,9,9999.0,19,0
+R0368,Education,Chitwan,COO,Tableau,Simple,Semi-structured,Low,3,6,3.0,9,5,1,10,9,10,15,1.6,23,0
+R0369,Healthcare,Lalitpur,COO,Python/Matplotlib,Simple,Unstructured,Medium,9,2,4.0,8,1,4,10,4,19,99,21.8,1,0
+R0370,Consulting,Biratnagar,CFO,Python/Matplotlib,Complicated,Semi-structured,Medium,4,2,6.0,8,5,3,6,10,13,18,20.5,15,0
+R0371,Consulting,Lalitpur,General Manager,No Tool,Chaotic,Structured,Medium,7,10,7.0,10,6,1,4,7,3,4,81.0,21,1
+R0372,Banking,Lalitpur,Department Head,No Tool,Complex,Structured,Low,7,9,3.0,8,5,5,9,4,10,79,24.3,7,0
+R0373,Healthcare,Pokhara,General Manager,Power BI,Complex,Multi-structured,High,5,2,3.0,4,1,1,2,6,5,12,130.6,7,0
+R0374,Education,Lalitpur,CEO,Power BI,Complicated,Multi-structured,Medium,3,3,3.0,1,3,2,1,9,13,35,14.3,7,0
+R0375,Education,Kathmandu,COO,Excel Charts,Complicated,Unstructured,High,7,10,8.0,2,6,1,4,10,15,15,32.0,7,1
+R0376,Education,Pokhara,CFO,Python/Matplotlib,Complicated,Semi-structured,High,5,8,3.0,1,8,6,6,10,12,66,39.8,15,0
+R0377,Retail,Pokhara,CFO,Excel Charts,Complex,Structured,Low,10,1,5.0,4,1,7,7,8,16,34,32.5,4,0
+R0378,IT/Software,Chitwan,CFO,Power BI,Simple,Structured,Medium,9,9,1.0,9,2,4,10,4,2,92,15.9,28,0
+R0379,Retail,Biratnagar,CEO,No Tool,Complex,Multi-structured,High,5,6,7.0,10,3,1,1,4,1,48,0.6,3,0
+R0380,Banking,Pokhara,General Manager,Tableau,Complicated,Structured,Medium,4,9,10.0,2,6,5,1,9,14,33,27.7,21,0
+R0381,Retail,Kathmandu,COO,Excel Charts,Complex,Structured,Medium,4,3,10.0,7,8,6,1,2,9,30,158.3,1,0
+R0382,IT/Software,Pokhara,COO,Python/Matplotlib,Complex,Unstructured,Medium,3,2,5.0,9,9,8,7,9,6,4,2.6,9,0
+R0383,Healthcare,Chitwan,CEO,Tableau,Simple,Structured,Low,6,9,4.0,4,10,3,10,4,13,8,71.3,15,0
+R0384,Banking,Biratnagar,CEO,Excel Charts,Complicated,Unstructured,Medium,4,1,,2,8,8,1,5,16,28,22.5,7,0
+R0385,Retail,Kathmandu,CFO,Excel Charts,Complex,Structured,Low,6,5,8.0,1,7,2,9,1,14,98,90.5,3,0
+R0386,Banking,Kathmandu,General Manager,No Tool,Complex,Unstructured,High,10,7,5.0,1,3,5,4,8,3,97,28.3,12,0
+R0387,Retail,Biratnagar,CEO,No Tool,Complex,Unstructured,Medium,9,4,10.0,3,1,6,5,6,18,8,90.8,19,0
+R0388,Consulting,Pokhara,General Manager,Python/Matplotlib,Complex,Structured,Low,5,3,1.0,6,6,4,9,6,3,36,39.7,13,0
+R0389,Retail,Kathmandu,COO,Excel Charts,Complicated,Structured,High,8,3,1.0,5,9,1,9,10,14,93,11.4,14,0
+R0390,IT/Software,Pokhara,COO,Python/Matplotlib,Complicated,Structured,Medium,9,7,4.0,5,7,5,3,6,14,40,1.4,2,0
+R0391,Education,Kathmandu,COO,No Tool,Complex,Semi-structured,Medium,3,2,7.0,6,1,3,1,5,2,55,44.3,22,0
+R0392,Healthcare,Kathmandu,Department Head,No Tool,Simple,Multi-structured,Medium,10,1,10.0,7,1,6,1,2,8,80,31.4,24,0
+R0393,IT/Software,Chitwan,CFO,No Tool,Complex,Semi-structured,High,7,10,4.0,2,8,6,6,4,19,31,127.7,27,0
+R0394,CONSULTING,Chitwan,CEO,Python/Matplotlib,Complex,Structured,Low,2,3,6.0,5,10,3,10,1,6,76,5.2,11,0
+R0395,IT/Software,Chitwan,CFO,Power BI,Complicated,Structured,Medium,9,8,3.0,10,7,6,10,8,10,42,10.0,0,0
+R0396,Consulting,Lalitpur,CEO,Tableau,Simple,Structured,Low,2,7,10.0,7,6,7,4,7,19,89,13.4,21,0
+R0397,Healthcare,Lalitpur,Department Head,Tableau,Complex,Semi-structured,High,9,5,9.0,5,3,10,1,6,4,46,40.0,4,0
+R0398,Healthcare,Biratnagar,Department Head,Power BI,Complex,Structured,Medium,10,7,9.0,2,1,10,5,6,3,64,26.8,19,1
+R0399,Healthcare,Lalitpur,Department Head,Tableau,Complicated,Unstructured,High,3,2,10.0,5,8,9,5,6,8,49,10.2,18,0
+R0400,IT/Software,Chitwan,General Manager,Excel Charts,Complicated,Semi-structured,Medium,7,9,2.0,2,6,1,4,7,2,50,2.3,18,0
+R0401,Banking,Kathmandu,Department Head,Python/Matplotlib,Complicated,Multi-structured,High,1,7,10.0,7,9,2,4,3,16,49,11.2,28,0
+R0402,IT/Software,Biratnagar,CEO,Excel Charts,Simple,Structured,Medium,6,10,9.0,10,10,1,9,3,5,42,36.5,3,1
+R0403,Retail,Pokhara,Department Head,Tableau,Complex,Semi-structured,Medium,8,6,1.0,3,8,1,6,1,16,3,57.5,2,0
+R0404,IT/Software,Kathmandu,General Manager,No Tool,Complicated,Structured,Medium,5,8,8.0,3,8,1,10,4,2,74,56.6,4,0
+R0405,Consulting,Pokhara,General Manager,Tableau,Complex,Unstructured,Medium,2,3,10.0,8,5,6,10,10,4,42,7.4,21,0
+R0406,Education,Pokhara,Department Head,Excel Charts,Complex,Structured,Medium,6,3,3.0,3,9,10,5,9,11,70,10.9,27,0
+R0407,Education,Pokhara,CFO,No Tool,Simple,Structured,Medium,9,10,6.0,3,8,5,3,7,7,88,15.0,3,1
+R0408,Consulting,Lalitpur,CFO,Python/Matplotlib,Complex,Structured,Low,3,4,9.0,10,8,4,2,10,18,94,22.1,29,0
+R0409,Retail,Kathmandu,Department Head,Excel Charts,Simple,Unstructured,Low,9,6,7.0,6,9,10,7,5,18,50,9.1,14,1
+R0410,IT/Software,Lalitpur,CEO,Excel Charts,Complex,Semi-structured,High,5,6,7.0,3,3,10,10,9,11,46,89.8,2,0
+R0411,Education,Biratnagar,COO,Python/Matplotlib,Simple,Structured,High,1,9,6.0,9,3,9,10,9,17,52,40.8,13,0
+R0412,Retail,Biratnagar,Department Head,Tableau,Complex,Multi-structured,High,4,10,3.0,2,7,6,5,8,3,34,51.4,9,0
+R0413,IT/Software,Pokhara,CFO,Python/Matplotlib,Complicated,Unstructured,Medium,2,8,8.0,10,9,4,5,6,6,29,6.0,26,0
+R0414,Consulting,Chitwan,COO,Tableau,Complex,Structured,High,5,10,3.0,7,7,6,5,8,16,11,6.8,10,0
+R0415,Healthcare,Biratnagar,CFO,No Tool,Complex,Structured,Medium,5,10,6.0,3,5,6,4,6,3,68,30.4,3,0
+R0416,Consulting,Pokhara,CFO,Power BI,Complex,Semi-structured,Medium,3,8,10.0,10,1,4,4,7,0,15,35.2,28,0
+R0417,Banking,Biratnagar,Department Head,Power BI,Simple,Unstructured,High,9,8,7.0,8,3,8,10,8,9,1,59.2,26,1
+R0418,Education,Kathmandu,CEO,Tableau,Simple,Unstructured,Medium,8,3,1.0,10,7,5,2,8,3,43,4.9,21,0
+R0419,Retail,Chitwan,CFO,Python/Matplotlib,Chaotic,Unstructured,Low,10,4,10.0,3,7,9,9,9,10,46,19.4,2,0
+R0420,Consulting,Biratnagar,CEO,Power BI,Complicated,Structured,Medium,6,3,8.0,7,4,4,2,8,11,97,48.4,21,0
+R0421,Retail,Chitwan,COO,No Tool,Complex,Structured,Medium,8,8,6.0,5,5,8,2,6,7,51,82.7,13,1
+R0422,Banking,Biratnagar,General Manager,Python/Matplotlib,Complex,Structured,High,3,6,1.0,7,7,7,8,3,16,11,35.9,29,0
+R0423,Healthcare,Chitwan,COO,Excel Charts,Complex,Structured,Medium,1,7,10.0,2,4,7,4,3,14,36,9.6,17,0
+R0424,Education,Kathmandu,CFO,Tableau,Simple,Semi-structured,High,6,10,6.0,6,10,9,2,10,9,99,3.9,25,1
+R0425,Retail,Lalitpur,CFO,No Tool,Complex,Multi-structured,High,10,7,6.0,1,9,2,8,5,14,45,44.3,7,1
+R0426,Retail,Biratnagar,CEO,Power BI,Complex,Structured,Medium,1,1,9.0,4,6,2,7,2,14,75,20.0,8,0
+R0427,Retail,Lalitpur,Department Head,Excel Charts,Complicated,Semi-structured,Low,9,9,6.0,4,2,8,8,4,0,34,18.2,27,1
+R0428,IT/Software,Kathmandu,COO,No Tool,Complex,Structured,High,2,3,6.0,7,8,2,10,1,16,15,21.7,6,0
+R0429,EDUCATION,Chitwan,CEO,Python/Matplotlib,Complex,Structured,Low,6,4,6.0,4,8,8,3,1,10,91,19.0,26,0
+R0430,IT/Software,Kathmandu,COO,No Tool,Complex,Structured,High,6,5,1.0,9,4,6,3,10,5,25,63.6,15,0
+R0431,Banking,Chitwan,CFO,Excel Charts,Complicated,Unstructured,High,4,1,6.0,4,7,2,7,1,12,42,2.3,20,0
+R0432,Retail,Biratnagar,CFO,Python/Matplotlib,Chaotic,Multi-structured,Medium,7,6,7.0,9,3,7,8,4,3,52,52.0,19,1
+R0433,Retail,Kathmandu,General Manager,Python/Matplotlib,Complex,Structured,Low,5,9,2.0,9,2,10,10,6,11,46,10.2,28,0
+R0434,Banking,Biratnagar,CEO,Power BI,Simple,Structured,Low,9,2,6.0,7,1,10,6,10,16,99,92.1,16,0
+R0435,Retail,Kathmandu,Department Head,Python/Matplotlib,Complex,Unstructured,Low,1,7,3.0,3,4,9,6,2,15,77,5.2,2,0
+R0436,Banking,Pokhara,General Manager,Excel Charts,Complicated,Structured,Low,8,2,,3,1,10,7,10,5,69,118.7,7,0
+R0437,Retail,Biratnagar,General Manager,Excel Charts,Complicated,Unstructured,Low,7,10,1.0,3,10,6,6,8,9,86,67.8,13,0
+R0438,Banking,Chitwan,General Manager,Excel Charts,Complicated,Semi-structured,High,8,3,2.0,4,9,4,4,8,2,57,9999.0,4,0
+R0439,Consulting,Pokhara,Department Head,Python/Matplotlib,Complex,Structured,Low,8,1,4.0,6,3,10,2,1,6,73,2.4,27,0
+R0440,IT/Software,Kathmandu,Department Head,Tableau,Simple,Semi-structured,Medium,1,2,1.0,3,1,5,2,10,13,13,185.3,13,0
+R0441,Banking,Chitwan,Department Head,Excel Charts,Complex,Structured,Low,7,9,1.0,5,9,1,10,1,13,62,173.8,14,0
+R0442,IT/Software,Pokhara,General Manager,No Tool,Complex,Structured,High,7,4,8.0,1,9,8,3,5,16,68,8.1,19,0
+R0443,Healthcare,Biratnagar,CEO,Excel Charts,Complicated,Structured,Low,6,1,6.0,7,10,10,10,3,14,68,33.4,14,0
+R0444,IT/Software,Lalitpur,General Manager,Python/Matplotlib,Chaotic,Semi-structured,Medium,4,6,4.0,5,2,2,10,2,3,53,22.4,16,0
+R0445,IT/Software,Biratnagar,Department Head,Python/Matplotlib,Simple,Unstructured,Medium,4,5,10.0,2,6,6,2,9,12,18,10.9,12,0
+R0446,Consulting,Chitwan,CFO,Python/Matplotlib,Simple,Structured,Medium,4,4,2.0,2,10,1,5,4,1,66,37.9,0,0
+R0447,Healthcare,Kathmandu,COO,Python/Matplotlib,Complex,Structured,Medium,7,6,8.0,3,8,5,9,10,18,33,90.4,1,1
+R0448,Banking,Chitwan,CFO,No Tool,Complicated,Structured,High,3,5,5.0,9,1,4,2,2,4,58,54.8,29,0
+R0449,Healthcare,Pokhara,CFO,Excel Charts,Complicated,Multi-structured,Medium,5,3,3.0,9,3,7,8,4,5,18,10.5,22,0
+R0450,Banking,Lalitpur,General Manager,Tableau,Simple,Structured,High,7,3,10.0,4,2,2,8,10,7,23,34.0,14,0
+R0451,Retail,Biratnagar,CEO,Power BI,Complicated,Structured,Low,1,4,3.0,8,1,2,9,5,19,74,6.1,3,0
+R0452,Retail,Kathmandu,CFO,Power BI,Simple,Structured,Low,8,10,4.0,10,3,3,6,4,13,53,7.6,26,0
+R0453,Banking,Pokhara,COO,Power BI,Complex,Semi-structured,Low,2,2,1.0,3,3,3,5,7,16,40,111.0,12,0
+R0454,Retail,Chitwan,CFO,No Tool,Simple,Semi-structured,High,4,1,2.0,7,6,1,7,7,12,24,4.3,16,0
+R0455,IT/Software,Pokhara,COO,No Tool,Complicated,Semi-structured,High,5,7,,2,10,10,2,1,13,71,0.0,5,0
+R0456,IT/Software,Kathmandu,COO,Python/Matplotlib,Complex,Semi-structured,Medium,9,5,7.0,7,4,6,6,9,18,19,8.7,23,0
+R0457,Healthcare,Biratnagar,COO,Tableau,Complex,Structured,Medium,9,6,6.0,4,10,1,7,2,13,65,16.1,14,1
+R0458,Retail,Pokhara,Department Head,Tableau,Complicated,Multi-structured,Medium,9,2,4.0,4,10,7,9,5,16,49,22.6,24,0
+R0459,Banking,Lalitpur,General Manager,Excel Charts,Simple,Unstructured,Medium,3,4,10.0,6,8,9,8,7,5,84,56.5,27,0
+R0460,Banking,Chitwan,Department Head,Power BI,Chaotic,Structured,High,10,8,7.0,2,9,10,1,5,15,7,46.4,13,1
+R0461,Retail,Chitwan,CFO,Power BI,Simple,Structured,Medium,7,3,2.0,7,1,1,1,5,18,40,1.7,17,0
+R0462,Education,Biratnagar,CFO,No Tool,Complicated,Structured,High,4,9,1.0,3,7,3,2,10,17,87,15.7,26,0
+R0463,IT/Software,Chitwan,CFO,Excel Charts,Complicated,Unstructured,Medium,9,3,2.0,1,5,8,1,9,18,88,27.5,4,0
+R0464,Healthcare,Biratnagar,COO,Power BI,Complex,Unstructured,High,10,5,9.0,1,9,10,3,2,4,88,35.3,25,0
+R0465,Education,Chitwan,COO,Excel Charts,Complex,Semi-structured,High,4,5,4.0,4,10,9,9,4,19,66,9.7,13,0
+R0466,Consulting,Pokhara,CEO,Excel Charts,Chaotic,Structured,High,4,4,2.0,6,10,1,2,3,3,32,25.8,22,0
+R0467,Consulting,Chitwan,General Manager,Tableau,Chaotic,Unstructured,Medium,7,5,3.0,6,9,2,5,4,17,19,58.2,25,0
+R0468,Banking,Chitwan,COO,Power BI,Complex,Structured,High,5,8,7.0,6,7,6,1,2,18,58,56.3,6,0
+R0469,IT/Software,Kathmandu,COO,Power BI,Complicated,Structured,Medium,9,7,7.0,8,6,7,3,2,3,82,4.2,23,1
+R0470,IT/Software,Lalitpur,CFO,No Tool,Complex,Semi-structured,Medium,7,1,9.0,7,5,7,3,5,19,77,17.4,3,0
+R0471,Education,Pokhara,COO,Tableau,Chaotic,Structured,Low,7,8,6.0,5,7,2,6,4,9,44,46.3,1,1
+R0472,Education,Chitwan,COO,Power BI,Complex,Multi-structured,High,2,5,3.0,7,3,9,5,10,19,91,111.4,16,0
+R0473,Banking,Lalitpur,CEO,Tableau,Complex,Semi-structured,High,3,9,7.0,6,5,6,5,3,11,63,9999.0,20,0
+R0474,Education,Pokhara,CEO,Tableau,Chaotic,Structured,High,5,5,10.0,9,6,1,2,8,1,42,18.6,20,0
+R0475,Consulting,Pokhara,CEO,Python/Matplotlib,Complicated,Unstructured,Low,2,1,4.0,3,7,1,9,8,12,97,8.2,4,0
+R0476,IT/Software,Kathmandu,CFO,No Tool,Complex,Multi-structured,Low,8,9,3.0,8,7,9,9,7,15,19,56.2,1,0
+R0477,IT/Software,Biratnagar,COO,Excel Charts,Complex,Structured,Low,5,9,9.0,10,1,8,1,8,19,68,105.4,11,0
+R0478,Retail,Pokhara,General Manager,No Tool,Complicated,Structured,High,6,9,5.0,3,3,7,1,1,16,87,65.8,17,0
+R0479,Consulting,Lalitpur,General Manager,Excel Charts,Complex,Structured,High,10,1,10.0,6,2,8,2,10,10,24,13.0,16,0
+R0480,Healthcare,Kathmandu,CFO,Excel Charts,Simple,Unstructured,Medium,10,1,9.0,6,1,6,9,10,2,40,45.3,18,0
+R0481,Retail,Kathmandu,CEO,Power BI,Simple,Unstructured,High,1,9,10.0,10,8,5,6,8,5,58,1.5,12,0
+R0482,Retail,Pokhara,COO,Tableau,Complex,Semi-structured,High,2,2,7.0,2,2,6,6,1,2,41,157.4,2,0
+R0483,Banking,Lalitpur,Department Head,Tableau,Chaotic,Unstructured,High,10,3,9.0,2,8,9,3,8,0,48,9.3,28,0
+R0484,Retail,Lalitpur,CEO,Tableau,Complicated,Unstructured,Medium,7,5,3.0,3,1,1,1,2,14,21,58.6,24,0
+R0485,Healthcare,Pokhara,COO,Power BI,Complicated,Structured,Medium,1,10,8.0,8,1,8,6,6,19,87,42.1,16,0
+R0486,Banking,Chitwan,CEO,Power BI,Complicated,Multi-structured,Low,2,6,3.0,4,9,1,1,2,2,40,11.7,7,0
+R0487,Banking,Lalitpur,CEO,Python/Matplotlib,Chaotic,Unstructured,Medium,2,7,6.0,9,5,1,7,10,16,50,36.9,24,0
+R0488,Consulting,Kathmandu,Department Head,No Tool,Complicated,Semi-structured,Medium,8,6,,4,2,7,4,4,12,56,46.0,11,0
+R0489,IT/Software,Biratnagar,COO,No Tool,Complex,Unstructured,Low,6,2,,8,8,7,8,1,4,42,52.2,25,0
+R0490,Education,Pokhara,Department Head,Excel Charts,Complex,Unstructured,Low,8,4,4.0,7,6,8,6,10,4,0,13.3,1,0
+R0491,Banking,Pokhara,General Manager,Tableau,Complicated,Structured,Medium,4,2,,9,5,9,10,1,14,49,100.6,8,0
+R0492,IT/Software,Kathmandu,COO,Tableau,Chaotic,Semi-structured,Medium,5,6,,1,5,7,5,4,15,52,95.4,5,0
+R0493,IT/Software,Pokhara,CEO,Excel Charts,Complicated,Structured,High,2,4,3.0,2,3,9,8,10,16,52,14.5,12,0
+R0494,IT/Software,Chitwan,Department Head,Excel Charts,Complex,Structured,Medium,7,8,1.0,5,10,5,6,9,9,30,1.6,8,0
+R0495,Banking,Biratnagar,General Manager,No Tool,Complicated,Unstructured,High,2,7,4.0,9,8,8,7,1,13,86,61.9,19,0
+R0496,Banking,Pokhara,CEO,Excel Charts,Complicated,Semi-structured,Medium,9,5,4.0,10,6,10,3,10,2,20,22.1,19,0
+R0497,Retail,Chitwan,CFO,Excel Charts,Complex,Structured,High,4,3,7.0,4,5,10,4,7,7,85,114.6,15,0
+R0498,Consulting,Kathmandu,COO,Excel Charts,Complicated,Structured,High,4,3,5.0,6,2,9,5,5,7,71,15.9,1,0
+R0499,Education,Kathmandu,CFO,Excel Charts,Complex,Structured,Medium,1,3,6.0,8,9,7,6,3,19,25,5.7,12,0
+R0500,Banking,Chitwan,General Manager,Tableau,Chaotic,Structured,High,5,2,9.0,3,8,3,7,7,7,69,16.7,7,0
+R0501,IT/Software,Lalitpur,General Manager,Power BI,Complicated,Structured,Low,8,3,5.0,4,6,5,6,7,10,38,2.2,22,0
+R0502,Education,Kathmandu,CEO,No Tool,Complicated,Unstructured,Low,9,10,9.0,9,5,1,7,6,6,86,48.8,14,1
+R0503,RETAIL,Chitwan,General Manager,Python/Matplotlib,Simple,Structured,Medium,7,5,1.0,6,9,1,1,3,7,64,22.9,3,0
+R0504,Consulting,Chitwan,CFO,Excel Charts,Complicated,Semi-structured,High,2,5,3.0,5,1,9,10,8,14,20,3.7,22,0
+R0505,IT/Software,Kathmandu,CEO,Power BI,Complex,Multi-structured,Medium,1,2,2.0,6,7,9,9,4,4,81,9.0,27,0
+R0506,Healthcare,Pokhara,CEO,No Tool,Simple,Structured,Medium,9,5,2.0,7,4,4,1,2,0,23,21.1,29,0
+R0507,Consulting,Biratnagar,Department Head,No Tool,Chaotic,Structured,High,2,9,7.0,4,1,3,5,10,17,53,2.7,4,0
+R0508,Healthcare,Pokhara,CEO,Tableau,Simple,Structured,Medium,10,7,6.0,4,8,6,9,8,13,64,59.0,6,1
+R0509,IT/SOFTWARE,Kathmandu,Department Head,No Tool,Complex,Structured,Medium,4,5,3.0,4,5,3,8,4,19,19,7.0,18,0
+R0510,Healthcare,Kathmandu,Department Head,Excel Charts,Simple,Multi-structured,High,5,10,3.0,7,1,10,5,6,18,16,16.3,1,0
+R0511,Healthcare,Pokhara,CEO,Python/Matplotlib,Complicated,Structured,High,8,3,10.0,4,6,1,1,2,12,76,0.3,13,0
+R0512,Retail,Pokhara,CFO,Excel Charts,Complex,Structured,Medium,3,8,3.0,9,4,6,9,1,8,10,4.5,12,0
+R0513,Consulting,Kathmandu,COO,Excel Charts,Complicated,Unstructured,Low,9,1,10.0,9,8,3,8,1,8,31,24.1,11,0
+R0514,Education,Chitwan,COO,Excel Charts,Complex,Structured,Medium,6,8,7.0,5,7,5,9,7,5,92,33.7,15,1
+R0515,Banking,Lalitpur,CFO,No Tool,Complex,Structured,Medium,10,5,7.0,5,3,8,4,6,9,92,41.2,7,0
+R0516,Consulting,Biratnagar,COO,Excel Charts,Complicated,Semi-structured,High,10,9,5.0,4,9,2,7,10,7,61,29.0,21,0
+R0517,Healthcare,Chitwan,General Manager,Python/Matplotlib,Simple,Structured,Medium,10,7,1.0,7,1,9,9,6,7,33,0.1,22,0
+R0518,IT/Software,Pokhara,COO,Tableau,Complex,Structured,Medium,2,9,4.0,7,4,1,4,4,12,66,48.8,26,0
+R0519,Consulting,Biratnagar,General Manager,Python/Matplotlib,Chaotic,Structured,High,8,9,1.0,5,2,9,9,4,3,84,39.5,28,0
+R0520,Banking,Lalitpur,General Manager,Tableau,Complicated,Semi-structured,High,7,10,9.0,2,7,2,9,8,9,78,9.4,0,1
+R0521,Retail,Kathmandu,General Manager,Python/Matplotlib,Simple,Semi-structured,Medium,6,3,3.0,5,3,1,6,9,0,71,19.3,8,0
+R0522,Retail,Biratnagar,CEO,Python/Matplotlib,Complex,Unstructured,Medium,8,10,3.0,1,6,7,4,9,13,100,21.0,12,0
+R0523,Consulting,Biratnagar,COO,No Tool,Complex,Structured,Medium,1,4,7.0,1,2,2,4,3,2,6,0.6,26,0
+R0524,Education,Biratnagar,General Manager,No Tool,Complicated,Structured,Medium,8,5,8.0,3,8,7,8,1,8,62,83.5,24,0
+R0525,Healthcare,Biratnagar,Department Head,Tableau,Simple,Unstructured,High,7,1,8.0,1,8,10,7,6,7,10,55.9,2,0
+R0526,Banking,Biratnagar,COO,Tableau,Complicated,Unstructured,Medium,5,4,3.0,2,1,7,5,8,3,27,19.2,4,0
+R0527,Banking,Lalitpur,General Manager,Python/Matplotlib,Chaotic,Structured,High,9,6,1.0,5,1,10,7,10,11,35,33.5,4,0
+R0528,IT/Software,Pokhara,CFO,Tableau,Simple,Structured,High,5,2,1.0,7,8,4,9,6,0,89,38.8,5,0
+R0529,Banking,Chitwan,General Manager,Excel Charts,Complex,Structured,Low,9,9,6.0,3,1,3,9,6,12,3,11.3,23,1
+R0530,Retail,Biratnagar,CFO,Excel Charts,Complicated,Unstructured,Low,4,4,3.0,6,6,2,2,7,13,32,12.4,16,0
+R0531,Healthcare,Pokhara,CEO,No Tool,Complex,Structured,Low,8,2,10.0,10,9,4,9,7,2,61,8.3,7,0
+R0532,Healthcare,Lalitpur,CFO,No Tool,Complicated,Structured,High,3,7,2.0,5,5,4,3,9,8,47,40.7,8,0
+R0533,Retail,Lalitpur,COO,Tableau,Complex,Structured,Low,6,4,7.0,5,8,1,1,2,5,21,35.7,23,0
+R0534,Retail,Lalitpur,CEO,No Tool,Simple,Structured,Medium,3,4,7.0,10,6,3,3,2,19,78,19.6,6,0
+R0535,Banking,Chitwan,CEO,Tableau,Complex,Semi-structured,High,6,5,3.0,10,9,2,8,4,12,32,8.9,1,0
+R0536,Consulting,Lalitpur,COO,Python/Matplotlib,Chaotic,Structured,High,9,1,1.0,7,9,4,10,10,1,71,0.6,27,0
+R0537,IT/Software,Kathmandu,COO,Power BI,Complicated,Structured,Low,10,2,9.0,1,3,3,9,4,19,4,28.1,14,0
+R0538,Healthcare,Biratnagar,General Manager,Python/Matplotlib,Complicated,Multi-structured,Medium,2,4,9.0,5,10,9,2,4,3,85,2.6,27,0
+R0539,Retail,Lalitpur,General Manager,Power BI,Complex,Structured,High,3,4,7.0,2,1,10,6,1,19,96,6.5,6,0
+R0540,Retail,Kathmandu,Department Head,Power BI,Simple,Structured,High,1,4,3.0,3,3,1,3,8,13,16,30.6,0,0
+R0541,IT/Software,Chitwan,CFO,No Tool,Simple,Unstructured,Medium,10,4,5.0,8,10,2,2,6,17,64,77.3,21,0
+R0542,IT/Software,Chitwan,Department Head,Excel Charts,Complex,Semi-structured,Medium,10,8,5.0,3,5,9,9,4,18,14,29.3,8,0
+R0543,IT/Software,Kathmandu,CFO,Tableau,Complex,Structured,High,8,9,3.0,3,8,10,8,6,19,42,22.0,13,0
+R0544,Education,Chitwan,CEO,No Tool,Complex,Unstructured,High,8,8,5.0,1,6,7,9,6,1,49,12.7,27,0
+R0545,Healthcare,Chitwan,CEO,Python/Matplotlib,Simple,Structured,Medium,6,9,3.0,8,10,8,4,9,12,36,9.6,16,0
+R0546,Consulting,Kathmandu,General Manager,Excel Charts,Complex,Structured,High,2,1,5.0,2,9,7,4,7,13,31,9999.0,20,0
+R0547,Healthcare,Biratnagar,General Manager,Excel Charts,Complex,Multi-structured,High,5,8,1.0,8,2,5,10,3,1,4,94.1,18,0
+R0548,Banking,Chitwan,CFO,Tableau,Simple,Structured,Medium,8,7,8.0,7,5,2,3,9,2,42,21.4,6,1
+R0549,Healthcare,Pokhara,COO,Excel Charts,Complex,Structured,Medium,2,6,,5,4,10,4,4,5,87,12.4,19,0
+R0550,Banking,Lalitpur,Department Head,Excel Charts,Chaotic,Structured,High,4,1,3.0,1,7,6,10,7,12,76,17.6,15,0
+R0551,Retail,Chitwan,General Manager,Power BI,Complicated,Multi-structured,High,7,5,9.0,5,1,5,4,4,14,78,218.8,22,0
+R0552,IT/Software,Pokhara,Department Head,Power BI,Chaotic,Structured,High,8,5,9.0,2,10,9,2,5,18,100,20.1,7,0
+R0553,Retail,Pokhara,Department Head,No Tool,Chaotic,Semi-structured,Medium,3,7,2.0,4,2,7,5,6,13,70,31.2,7,0
+R0554,Education,Lalitpur,General Manager,No Tool,Complex,Unstructured,Low,6,1,7.0,7,8,10,9,1,10,15,81.5,10,0
+R0555,Healthcare,Pokhara,Department Head,Python/Matplotlib,Complicated,Structured,Medium,6,1,7.0,1,10,10,6,1,15,68,69.7,16,0
+R0556,IT/Software,Pokhara,COO,Excel Charts,Complicated,Structured,Medium,5,6,2.0,1,10,6,4,5,9,75,43.6,2,0
+R0557,Banking,Biratnagar,CEO,No Tool,Complicated,Unstructured,Low,4,6,10.0,10,4,4,3,3,16,83,10.0,10,0
+R0558,Education,Biratnagar,CEO,Python/Matplotlib,Complex,Structured,High,8,10,6.0,7,6,6,8,9,2,67,9.3,21,1
+R0559,Consulting,Kathmandu,CEO,Excel Charts,Simple,Structured,High,3,9,10.0,2,6,2,4,4,16,15,21.3,21,0
+R0560,Education,Chitwan,CEO,Power BI,Complex,Semi-structured,Medium,8,5,2.0,1,7,7,8,2,17,10,12.0,9,0
+R0561,Education,Chitwan,COO,Power BI,Complex,Unstructured,High,1,6,7.0,5,8,6,10,2,1,6,61.7,12,0
+R0562,IT/Software,Chitwan,General Manager,Python/Matplotlib,Chaotic,Structured,Medium,4,6,6.0,2,9,1,4,5,5,98,5.7,3,0
+R0563,Healthcare,Biratnagar,Department Head,Power BI,Chaotic,Structured,High,3,2,2.0,6,7,4,4,6,6,63,70.3,19,0
+R0564,Consulting,Lalitpur,COO,Power BI,Complicated,Structured,Medium,4,1,6.0,5,10,4,6,6,5,15,31.8,28,0
+R0565,Consulting,Chitwan,COO,Power BI,Complex,Structured,Low,6,10,4.0,4,1,1,5,1,0,82,19.1,2,0
+R0566,Healthcare,Lalitpur,General Manager,Python/Matplotlib,Complex,Semi-structured,High,7,2,,9,4,4,2,9,6,61,8.7,20,0
+R0567,Retail,Pokhara,General Manager,Power BI,Complex,Multi-structured,Medium,8,8,3.0,10,10,1,10,7,4,78,0.7,12,0
+R0568,IT/Software,Kathmandu,CEO,Tableau,Complicated,Semi-structured,Medium,6,2,4.0,6,8,2,9,2,10,38,24.7,8,0
+R0569,Healthcare,Kathmandu,COO,No Tool,Simple,Structured,Medium,3,5,2.0,6,7,7,10,9,2,18,26.4,23,0
+R0570,Consulting,Pokhara,General Manager,Power BI,Complex,Semi-structured,High,10,9,8.0,8,5,1,1,5,19,77,0.9,20,1
+R0571,Healthcare,Chitwan,CEO,Tableau,Complicated,Structured,Medium,8,6,4.0,4,2,10,8,10,7,25,67.3,9,0
+R0572,Banking,Pokhara,CFO,Python/Matplotlib,Complicated,Structured,Medium,5,4,10.0,9,9,4,3,3,18,76,14.2,4,0
+R0573,Education,Lalitpur,CEO,No Tool,Complicated,Structured,Low,1,2,1.0,2,2,9,10,10,5,10,89.6,24,0
+R0574,Banking,Lalitpur,Department Head,Tableau,Simple,Multi-structured,Low,2,9,2.0,8,5,10,5,1,0,91,0.6,16,0
+R0575,Education,Pokhara,CEO,No Tool,Complex,Semi-structured,Medium,9,5,4.0,6,2,9,3,10,19,39,9999.0,10,0
+R0576,Retail,Chitwan,Department Head,Python/Matplotlib,Simple,Structured,High,9,4,7.0,7,8,7,1,8,1,71,35.6,23,0
+R0577,Retail,Pokhara,Department Head,Power BI,Simple,Multi-structured,Medium,4,7,3.0,10,9,9,4,9,18,16,48.9,15,0
+R0578,Retail,Chitwan,COO,Power BI,Complex,Structured,High,2,4,6.0,9,10,3,7,2,14,29,66.7,1,0
+R0579,Education,Chitwan,Department Head,No Tool,Simple,Structured,Medium,10,8,1.0,1,7,1,6,8,12,39,24.6,0,0
+R0580,Consulting,Chitwan,CFO,Python/Matplotlib,Complex,Semi-structured,Medium,7,10,1.0,4,6,10,10,4,4,83,8.2,17,0
+R0581,Healthcare,Biratnagar,General Manager,Excel Charts,Complicated,Semi-structured,Medium,3,10,7.0,10,8,5,3,9,3,70,36.1,18,0
+R0582,IT/Software,Kathmandu,General Manager,Power BI,Complicated,Semi-structured,Medium,4,10,3.0,5,4,4,7,4,12,59,11.8,28,0
+R0583,Healthcare,Chitwan,CFO,Python/Matplotlib,Complex,Structured,Medium,3,8,5.0,4,6,10,4,6,19,95,21.4,6,0
+R0584,IT/Software,Chitwan,CFO,Python/Matplotlib,Complex,Structured,High,3,1,6.0,6,7,3,10,10,18,7,38.4,4,0
+R0585,Healthcare,Lalitpur,CEO,Excel Charts,Chaotic,Structured,Medium,8,6,,4,8,4,1,8,5,25,27.1,13,0
+R0586,Consulting,Kathmandu,CFO,Tableau,Chaotic,Semi-structured,High,9,2,7.0,3,3,5,5,3,12,82,48.2,10,0
+R0587,Education,Biratnagar,Department Head,No Tool,Complicated,Structured,Low,9,3,9.0,9,10,9,9,4,11,1,108.2,20,0
+R0588,Consulting,Kathmandu,CFO,Tableau,Complicated,Structured,Low,7,10,4.0,9,8,3,4,1,19,54,105.1,5,0
+R0589,Retail,Kathmandu,COO,Power BI,Complex,Semi-structured,Medium,3,1,,10,1,9,10,9,9,48,109.4,19,0
+R0590,Education,Chitwan,CFO,Python/Matplotlib,Simple,Structured,High,9,9,9.0,8,4,9,3,1,17,35,14.3,24,1
+R0591,Consulting,Kathmandu,General Manager,Python/Matplotlib,Complex,Multi-structured,Low,10,7,8.0,10,2,9,4,3,14,4,71.8,29,1
+R0592,Consulting,Lalitpur,CFO,Python/Matplotlib,Simple,Unstructured,Medium,1,10,5.0,10,6,2,10,8,5,24,65.4,6,0
+R0593,Banking,Kathmandu,CEO,No Tool,Complicated,Multi-structured,High,7,4,5.0,9,4,3,9,5,7,81,36.6,2,0
+R0594,Banking,Pokhara,CFO,Power BI,Complex,Structured,High,2,7,10.0,4,2,8,10,5,13,79,6.4,8,0
+R0595,Retail,Kathmandu,Department Head,Python/Matplotlib,Complex,Semi-structured,High,3,6,5.0,1,8,9,4,7,0,12,25.9,12,0
+R0596,IT/Software,Biratnagar,Department Head,No Tool,Complicated,Multi-structured,Medium,5,6,10.0,5,10,10,4,6,16,12,52.5,8,0
+R0597,Banking,Chitwan,Department Head,Tableau,Chaotic,Unstructured,Medium,1,8,10.0,8,7,6,7,6,5,47,4.1,22,0
+R0598,IT/Software,Lalitpur,CFO,No Tool,Simple,Structured,Low,10,8,7.0,3,8,6,10,7,5,34,3.5,1,1
+R0599,Consulting,Lalitpur,CFO,Power BI,Complicated,Unstructured,Medium,4,4,2.0,6,2,10,10,10,3,4,8.3,3,0
+R0600,IT/Software,Biratnagar,COO,Python/Matplotlib,Complex,Semi-structured,High,9,6,5.0,5,4,8,1,7,14,11,19.8,22,0
+R0601,IT/Software,Biratnagar,General Manager,Power BI,Complicated,Structured,Medium,4,8,4.0,8,1,8,8,8,16,82,19.4,24,0
+R0602,Consulting,Biratnagar,CEO,Tableau,Complex,Unstructured,High,5,5,7.0,9,5,6,10,5,16,45,15.2,27,0
+R0603,Banking,Pokhara,CEO,Tableau,Simple,Structured,Low,7,6,2.0,9,5,6,8,9,5,96,9999.0,27,0
+R0604,IT/Software,Biratnagar,CFO,Power BI,Complex,Structured,Medium,10,7,2.0,6,2,6,10,5,3,48,17.9,27,0
+R0605,Retail,Pokhara,COO,Excel Charts,Simple,Structured,Low,8,4,8.0,7,8,1,1,4,5,83,111.7,16,0
+R0606,Banking,Biratnagar,COO,Power BI,Complicated,Structured,Medium,4,9,5.0,6,9,8,1,8,11,53,75.4,21,0
+R0607,Education,Pokhara,COO,No Tool,Simple,Unstructured,Low,6,9,10.0,5,1,7,10,6,16,65,69.9,2,1
+R0608,Education,Lalitpur,CFO,Excel Charts,Complex,Structured,Medium,8,6,5.0,4,3,10,8,4,10,42,15.1,8,0
+R0609,Healthcare,Lalitpur,CEO,Excel Charts,Simple,Multi-structured,Medium,6,10,1.0,7,4,4,7,8,11,77,1.4,5,0
+R0610,Banking,Kathmandu,COO,No Tool,Chaotic,Structured,High,7,2,6.0,10,9,2,6,9,18,56,112.2,4,0
+R0611,Banking,Kathmandu,COO,Excel Charts,Complicated,Structured,High,7,5,1.0,3,9,4,5,5,18,68,107.6,10,0
+R0612,Education,Chitwan,CFO,Python/Matplotlib,Complicated,Structured,Medium,6,8,5.0,4,1,6,3,7,10,70,36.9,16,0
+R0613,IT/Software,Chitwan,CEO,No Tool,Complicated,Semi-structured,Low,3,10,6.0,9,7,7,10,9,14,3,32.6,16,0
+R0614,Education,Biratnagar,General Manager,Tableau,Complicated,Semi-structured,High,7,8,6.0,10,6,8,2,8,3,50,15.9,16,1
+R0615,Banking,Pokhara,General Manager,Power BI,Complicated,Structured,Medium,1,4,8.0,10,4,2,4,1,15,20,59.5,27,0
+R0616,Retail,Lalitpur,Department Head,Python/Matplotlib,Complex,Semi-structured,Medium,8,7,9.0,8,6,2,9,5,10,34,29.9,29,1
+R0617,Healthcare,Pokhara,CEO,Tableau,Complex,Structured,High,10,2,7.0,7,3,2,1,1,19,65,9.4,23,0
+R0618,Education,Lalitpur,COO,Excel Charts,Complex,Structured,Medium,10,3,10.0,10,8,3,3,7,19,81,12.6,15,0
+R0619,Retail,Chitwan,CFO,Python/Matplotlib,Chaotic,Structured,High,3,5,7.0,5,3,1,10,8,13,26,1.6,5,0
+R0620,Education,Kathmandu,Department Head,Python/Matplotlib,Complex,Structured,High,1,3,7.0,10,6,5,8,2,1,100,19.5,8,0
+R0621,Healthcare,Chitwan,General Manager,No Tool,Simple,Unstructured,Medium,9,8,5.0,2,4,4,4,7,16,60,32.1,8,0
+R0622,Retail,Pokhara,CEO,Tableau,Complicated,Unstructured,Medium,4,6,9.0,1,3,1,1,2,6,0,9999.0,21,0
+R0623,Consulting,Pokhara,CFO,Tableau,Complicated,Structured,High,5,7,6.0,8,4,9,2,10,12,62,57.4,22,0
+R0624,IT/Software,Kathmandu,COO,Python/Matplotlib,Complicated,Semi-structured,Medium,4,5,5.0,4,1,10,3,7,0,71,4.9,5,0
+R0625,IT/Software,Pokhara,CFO,Tableau,Complicated,Structured,Medium,6,7,8.0,7,9,6,3,9,12,38,36.5,5,1
+R0626,Retail,Biratnagar,COO,Tableau,Complicated,Structured,High,3,5,1.0,1,6,7,8,8,10,73,221.5,14,0
+R0627,Healthcare,Pokhara,Department Head,Python/Matplotlib,Complex,Structured,High,1,3,1.0,5,6,3,4,10,2,11,11.3,25,0
+R0628,Healthcare,Pokhara,General Manager,Python/Matplotlib,Complex,Unstructured,High,5,7,6.0,2,2,4,6,1,11,77,21.0,0,0
+R0629,Consulting,Chitwan,COO,Python/Matplotlib,Complex,Semi-structured,Medium,8,9,4.0,8,7,8,4,5,1,75,72.0,20,0
+R0630,IT/Software,Pokhara,Department Head,No Tool,Complex,Semi-structured,Medium,8,2,7.0,2,9,9,9,3,9,33,9.7,12,0
+R0631,Healthcare,Kathmandu,CFO,No Tool,Simple,Structured,Medium,9,4,10.0,9,7,10,2,5,6,22,62.9,26,0
+R0632,Retail,Kathmandu,General Manager,Tableau,Chaotic,Unstructured,High,1,7,5.0,5,1,10,10,10,18,57,30.7,16,0
+R0633,Consulting,Biratnagar,CEO,No Tool,Simple,Semi-structured,Medium,3,3,2.0,1,10,1,8,9,16,39,31.0,19,0
+R0634,Healthcare,Pokhara,COO,No Tool,Complicated,Semi-structured,High,3,4,3.0,1,9,8,8,9,8,43,39.1,4,0
+R0635,Healthcare,Chitwan,CEO,Python/Matplotlib,Simple,Unstructured,Medium,7,10,7.0,7,6,7,4,7,5,61,179.5,1,1
+R0636,Retail,Chitwan,CFO,Excel Charts,Complex,Structured,High,4,2,9.0,1,8,2,9,9,14,96,69.8,25,0
+R0637,Banking,Pokhara,General Manager,No Tool,Complex,Structured,High,9,4,9.0,6,9,2,5,2,0,39,32.0,26,0
+R0638,Consulting,Chitwan,CFO,No Tool,Complicated,Structured,High,1,8,4.0,1,10,8,8,1,8,64,8.8,8,0
+R0639,Consulting,Kathmandu,General Manager,Excel Charts,Chaotic,Structured,Medium,7,9,9.0,3,6,10,4,7,15,24,51.9,21,1
+R0640,Banking,Chitwan,COO,Python/Matplotlib,Simple,Unstructured,Medium,8,4,1.0,4,3,5,3,6,9,33,20.5,1,0
+R0641,Education,Chitwan,COO,Python/Matplotlib,Chaotic,Semi-structured,Medium,2,5,7.0,3,2,9,7,3,5,82,21.2,2,0
+R0642,Retail,Biratnagar,Department Head,Python/Matplotlib,Complex,Structured,Medium,9,2,2.0,10,4,9,2,9,4,17,100.0,0,0
+R0643,Healthcare,Biratnagar,COO,Power BI,Simple,Structured,Low,8,9,6.0,3,9,10,2,4,5,61,86.8,25,1
+R0644,Consulting,Lalitpur,CEO,Power BI,Simple,Semi-structured,Low,10,3,9.0,5,4,7,7,3,12,57,60.7,1,0
+R0645,Consulting,Kathmandu,CFO,No Tool,Simple,Unstructured,High,4,6,9.0,7,1,2,5,10,9,54,24.5,3,0
+R0646,Banking,Kathmandu,General Manager,No Tool,Complex,Structured,High,10,9,10.0,7,8,3,8,8,11,29,38.3,6,1
+R0647,IT/Software,Chitwan,General Manager,Excel Charts,Complicated,Structured,Medium,1,5,9.0,8,4,2,7,5,7,26,23.1,26,0
+R0648,Education,Kathmandu,Department Head,Tableau,Chaotic,Multi-structured,Low,6,9,6.0,9,9,8,7,9,0,52,26.7,5,1
+R0649,IT/Software,Kathmandu,General Manager,Excel Charts,Simple,Unstructured,Medium,5,8,7.0,6,10,3,7,1,14,85,26.7,21,0
+R0650,CONSULTING,Chitwan,General Manager,Tableau,Complex,Semi-structured,Medium,6,4,6.0,3,9,4,5,7,16,24,28.5,29,0
+R0651,IT/Software,Lalitpur,Department Head,Python/Matplotlib,Complicated,Structured,High,10,7,3.0,5,10,4,10,7,9,30,17.3,18,0
+R0652,IT/Software,Chitwan,COO,No Tool,Simple,Structured,Medium,4,5,7.0,6,3,2,2,2,17,27,62.8,19,0
+R0653,Banking,Biratnagar,COO,No Tool,Complex,Structured,Medium,7,4,5.0,8,3,1,7,2,8,77,33.0,8,0
+R0654,Consulting,Biratnagar,CEO,Python/Matplotlib,Complex,Structured,Medium,7,4,6.0,4,3,9,1,10,13,4,81.1,21,0
+R0655,Retail,Chitwan,Department Head,Tableau,Complicated,Structured,High,10,4,4.0,10,1,8,8,9,17,16,138.1,23,0
+R0656,Consulting,Pokhara,COO,Excel Charts,Complicated,Semi-structured,Medium,3,2,9.0,6,10,8,5,10,18,10,32.6,24,0
+R0657,Healthcare,Pokhara,CFO,No Tool,Simple,Semi-structured,Medium,1,3,2.0,8,8,5,8,7,6,84,40.9,28,0
+R0658,Consulting,Biratnagar,Department Head,Excel Charts,Simple,Structured,High,10,7,9.0,3,10,7,5,1,12,56,45.3,4,1
+R0659,Education,Lalitpur,CFO,Python/Matplotlib,Complex,Structured,Medium,10,5,10.0,2,6,4,6,10,7,77,81.0,22,0
+R0660,IT/Software,Lalitpur,CFO,Power BI,Complex,Unstructured,Low,2,9,6.0,7,3,9,10,9,0,6,78.5,25,0
+R0661,Retail,Kathmandu,COO,Tableau,Complicated,Structured,Medium,2,3,5.0,8,4,9,7,5,8,60,2.3,6,0
+R0662,Banking,Pokhara,Department Head,Python/Matplotlib,Complicated,Semi-structured,High,1,8,6.0,2,2,6,5,5,4,91,39.8,23,0
+R0663,Education,Pokhara,CFO,Excel Charts,Chaotic,Semi-structured,Low,8,2,6.0,5,7,9,5,1,5,81,4.3,0,0
+R0664,Banking,Chitwan,CFO,No Tool,Complicated,Structured,High,5,2,3.0,8,8,6,4,10,8,69,24.1,17,0
+R0665,Education,Pokhara,CFO,Excel Charts,Complicated,Structured,High,6,6,8.0,2,9,10,9,5,19,19,31.6,23,1
+R0666,Education,Kathmandu,Department Head,Python/Matplotlib,Simple,Semi-structured,Medium,4,2,7.0,4,9,8,9,1,5,74,16.2,26,0
+R0667,Banking,Pokhara,CFO,Power BI,Simple,Semi-structured,Low,4,6,4.0,5,9,7,4,5,9,65,83.3,27,0
+R0668,Banking,Biratnagar,CFO,Power BI,Complex,Structured,High,10,2,8.0,1,1,9,8,9,14,77,48.5,21,0
+R0669,Consulting,Lalitpur,CFO,No Tool,Complicated,Structured,Low,1,3,6.0,8,3,4,9,4,0,68,71.5,22,0
+R0670,BANKING,Lalitpur,CFO,No Tool,Complex,Semi-structured,Medium,6,6,4.0,8,4,6,3,1,3,17,1.8,21,0
+R0671,IT/Software,Biratnagar,COO,Python/Matplotlib,Complicated,Structured,High,4,6,10.0,6,8,5,1,3,2,48,67.6,17,0
+R0672,Retail,Biratnagar,CFO,No Tool,Complicated,Structured,Low,3,4,2.0,9,4,7,5,2,8,16,52.2,18,0
+R0673,IT/Software,Lalitpur,Department Head,Power BI,Complex,Unstructured,High,10,5,5.0,5,10,6,6,6,4,73,38.0,7,0
+R0674,Retail,Kathmandu,COO,Python/Matplotlib,Complex,Unstructured,Low,7,6,2.0,4,8,8,8,9,11,7,4.7,0,0
+R0675,Consulting,Pokhara,General Manager,No Tool,Complicated,Semi-structured,High,9,6,2.0,8,7,5,8,4,9,76,59.8,18,0
+R0676,Consulting,Biratnagar,CFO,Tableau,Complex,Semi-structured,Medium,5,7,5.0,6,10,9,4,7,8,99,9999.0,7,0
+R0677,Consulting,Chitwan,Department Head,Power BI,Complex,Structured,Medium,8,6,7.0,1,1,1,10,5,3,58,3.9,18,1
+R0678,Banking,Biratnagar,General Manager,Tableau,Complex,Semi-structured,High,4,7,10.0,3,10,10,8,3,6,0,48.5,9,0
+R0679,Banking,Pokhara,COO,Excel Charts,Complex,Structured,High,8,7,7.0,6,9,1,5,8,10,50,11.1,5,1
+R0680,Consulting,Pokhara,General Manager,Excel Charts,Complex,Unstructured,Low,6,10,9.0,9,3,9,6,9,9,28,3.9,11,1
+R0681,Education,Chitwan,CFO,Python/Matplotlib,Complicated,Structured,Low,5,9,7.0,2,10,6,7,6,0,66,76.1,1,0
+R0682,Education,Lalitpur,General Manager,Power BI,Simple,Semi-structured,High,7,7,4.0,5,5,5,5,10,11,21,9.9,25,0
+R0683,Retail,Kathmandu,COO,Python/Matplotlib,Simple,Unstructured,Medium,5,7,7.0,5,5,5,4,5,10,28,10.7,25,0
+R0684,Consulting,Chitwan,Department Head,No Tool,Complicated,Structured,Medium,7,8,8.0,10,6,10,1,2,0,68,83.0,13,1
+R0685,IT/Software,Chitwan,General Manager,Power BI,Complicated,Multi-structured,High,3,9,2.0,9,3,8,5,8,5,54,152.3,21,0
+R0686,Consulting,Kathmandu,Department Head,No Tool,Complicated,Semi-structured,High,8,10,5.0,8,7,1,2,2,1,83,50.4,13,0
+R0687,Education,Biratnagar,COO,Excel Charts,Simple,Structured,Medium,7,1,2.0,9,9,3,1,2,0,5,24.2,15,0
+R0688,IT/Software,Lalitpur,Department Head,Tableau,Complicated,Unstructured,High,8,4,9.0,10,10,10,1,5,16,11,3.2,26,0
+R0689,Banking,Lalitpur,COO,Python/Matplotlib,Complicated,Semi-structured,High,4,5,7.0,9,9,10,2,6,8,58,45.4,2,0
+R0690,Retail,Biratnagar,CFO,Power BI,Simple,Structured,Medium,8,7,9.0,3,7,8,8,10,14,87,67.3,3,1
+R0691,Education,Pokhara,Department Head,Python/Matplotlib,Complex,Structured,High,6,1,2.0,2,10,7,4,3,1,36,21.7,24,0
+R0692,BANKING,Chitwan,Department Head,Power BI,Complex,Unstructured,Medium,8,5,7.0,10,2,1,1,1,6,65,3.4,24,0
+R0693,Consulting,Biratnagar,CEO,Power BI,Simple,Semi-structured,Low,6,3,1.0,8,9,6,6,6,6,84,9999.0,26,0
+R0694,Healthcare,Lalitpur,Department Head,No Tool,Complicated,Structured,Medium,2,7,7.0,7,5,2,10,3,3,92,3.0,11,0
+R0695,Consulting,Kathmandu,Department Head,Tableau,Complex,Multi-structured,Medium,3,9,6.0,7,3,2,6,3,15,47,6.6,23,0
+R0696,Education,Biratnagar,General Manager,Python/Matplotlib,Simple,Structured,High,7,5,3.0,2,4,2,1,9,8,11,10.6,21,0
+R0697,Consulting,Pokhara,COO,Tableau,Complex,Semi-structured,High,8,8,3.0,6,2,5,3,5,14,39,44.2,20,0
+R0698,Banking,Biratnagar,General Manager,Python/Matplotlib,Complex,Structured,Medium,8,10,2.0,2,8,9,9,7,12,72,24.8,10,0
+R0699,Consulting,Lalitpur,CFO,Power BI,Simple,Structured,Medium,4,8,3.0,8,1,6,10,7,8,29,53.1,15,0
+R0700,Healthcare,Biratnagar,COO,Tableau,Complex,Structured,Low,6,8,6.0,8,4,7,10,4,0,70,67.1,23,1
+R0701,Retail,Biratnagar,General Manager,Power BI,Complex,Structured,Low,2,4,1.0,10,3,9,3,4,0,88,47.5,15,0
+R0702,Retail,Chitwan,Department Head,Python/Matplotlib,Complex,Structured,Medium,3,9,4.0,9,4,5,9,10,13,91,10.3,18,0
+R0703,Education,Pokhara,General Manager,Power BI,Complicated,Structured,Low,8,3,4.0,5,5,6,10,6,15,45,24.0,11,0
+R0704,IT/Software,Pokhara,General Manager,Power BI,Simple,Structured,High,4,8,2.0,8,7,8,5,8,9,79,74.1,21,0
+R0705,IT/Software,Lalitpur,General Manager,Python/Matplotlib,Chaotic,Multi-structured,High,10,9,3.0,8,10,9,5,8,16,81,1.8,20,0
+R0706,Banking,Kathmandu,General Manager,Python/Matplotlib,Chaotic,Structured,Medium,3,9,1.0,8,3,3,3,10,3,48,38.9,20,0
+R0707,Retail,Chitwan,COO,Tableau,Complex,Structured,Low,7,6,8.0,10,8,5,3,7,4,70,3.7,3,1
+R0708,IT/Software,Kathmandu,CEO,Power BI,Complicated,Structured,Medium,2,1,9.0,3,1,6,2,10,7,88,64.1,22,0
+R0709,Consulting,Lalitpur,COO,No Tool,Complex,Structured,High,10,10,10.0,10,9,9,2,2,8,96,1.6,16,1
+R0710,Education,Chitwan,CFO,No Tool,Complex,Structured,Medium,8,7,3.0,4,5,3,7,10,18,54,48.2,17,0
+R0711,Retail,Biratnagar,Department Head,Excel Charts,Complex,Structured,Medium,5,3,8.0,4,10,10,9,9,2,94,8.2,23,0
+R0712,IT/Software,Pokhara,CEO,Excel Charts,Chaotic,Structured,Medium,7,10,2.0,3,3,4,4,2,14,99,5.8,7,0
+R0713,Healthcare,Biratnagar,General Manager,Power BI,Complex,Semi-structured,Medium,9,4,1.0,10,4,8,1,7,4,36,37.2,6,0
+R0714,Education,Lalitpur,CEO,Excel Charts,Simple,Structured,Medium,5,2,4.0,6,3,1,8,7,1,83,42.8,6,0
+R0715,Banking,Biratnagar,CEO,Tableau,Complicated,Structured,High,2,2,4.0,4,5,10,10,6,14,30,18.7,0,0
+R0716,Retail,Kathmandu,CFO,Power BI,Chaotic,Structured,Medium,1,8,4.0,1,10,8,10,2,3,61,5.4,3,0
+R0717,Healthcare,Chitwan,CEO,Power BI,Chaotic,Unstructured,Low,1,10,1.0,4,1,1,7,3,6,26,17.3,22,0
+R0718,Healthcare,Chitwan,COO,Power BI,Chaotic,Structured,High,2,9,5.0,2,9,8,8,1,18,100,32.4,6,0
+R0719,IT/Software,Lalitpur,General Manager,Tableau,Complicated,Unstructured,High,9,1,3.0,3,10,2,6,6,2,75,11.9,12,0
+R0720,Retail,Pokhara,Department Head,Python/Matplotlib,Complicated,Unstructured,Medium,8,4,1.0,10,8,4,9,8,7,62,8.9,28,0
+R0721,Education,Chitwan,CEO,Excel Charts,Complex,Structured,High,1,2,2.0,9,6,8,4,2,13,87,19.3,11,0
+R0722,Consulting,Chitwan,Department Head,No Tool,Simple,Unstructured,Low,9,3,10.0,10,4,6,9,1,8,4,24.0,20,0
+R0723,IT/Software,Kathmandu,CEO,Power BI,Complex,Semi-structured,High,4,1,5.0,5,8,6,4,8,14,27,92.4,6,0
+R0724,Education,Kathmandu,CEO,Tableau,Complicated,Unstructured,Medium,1,1,6.0,6,3,5,4,1,14,30,77.4,25,0
+R0725,Banking,Biratnagar,Department Head,Tableau,Complex,Unstructured,Low,7,10,6.0,8,9,5,4,9,19,66,5.1,26,1
+R0726,IT/Software,Chitwan,COO,Excel Charts,Complex,Structured,Medium,3,5,1.0,7,7,8,5,1,0,51,31.0,2,0
+R0727,Education,Kathmandu,Department Head,Power BI,Complicated,Semi-structured,High,7,10,10.0,4,3,4,1,4,10,7,9999.0,25,1
+R0728,Banking,Lalitpur,CEO,Python/Matplotlib,Chaotic,Structured,High,8,4,4.0,1,10,10,10,3,0,17,91.2,2,0
+R0729,Healthcare,Pokhara,General Manager,Excel Charts,Complicated,Structured,Medium,3,8,9.0,5,5,3,2,3,4,23,11.3,2,0
+R0730,IT/Software,Kathmandu,CFO,No Tool,Complex,Structured,High,8,7,,3,6,8,6,9,15,54,3.6,24,0
+R0731,Retail,Kathmandu,General Manager,No Tool,Complicated,Structured,Medium,8,7,10.0,4,3,3,2,3,5,17,16.1,10,1
+R0732,Education,Pokhara,Department Head,Excel Charts,Complex,Semi-structured,Medium,9,9,6.0,7,7,5,4,10,5,58,75.2,22,1
+R0733,Consulting,Kathmandu,Department Head,Power BI,Complex,Structured,Low,3,9,2.0,10,10,8,4,5,3,5,6.5,29,0
+R0734,Banking,Kathmandu,COO,No Tool,Complicated,Structured,Medium,6,4,2.0,10,2,7,2,7,17,22,9999.0,15,0
+R0735,Consulting,Chitwan,COO,Python/Matplotlib,Complicated,Unstructured,Medium,5,7,7.0,5,2,2,5,6,5,83,166.8,4,0
+R0736,Education,Kathmandu,General Manager,No Tool,Complicated,Structured,Medium,7,3,8.0,8,6,5,3,7,5,19,79.9,25,0
+R0737,Banking,Chitwan,General Manager,Python/Matplotlib,Simple,Unstructured,Low,10,10,3.0,5,6,4,4,2,10,91,46.7,22,0
+R0738,Retail,Pokhara,General Manager,Python/Matplotlib,Complicated,Unstructured,Medium,6,2,5.0,10,3,9,1,9,8,75,44.6,4,0
+R0739,Healthcare,Chitwan,CEO,Python/Matplotlib,Simple,Structured,High,2,1,2.0,10,1,4,9,1,13,49,86.0,15,0
+R0740,Banking,Biratnagar,General Manager,Tableau,Complicated,Semi-structured,High,1,9,8.0,2,7,4,2,10,10,88,129.0,20,0
+R0741,Healthcare,Kathmandu,COO,Tableau,Chaotic,Semi-structured,Low,7,3,7.0,9,10,2,6,7,2,27,18.5,0,0
+R0742,Healthcare,Kathmandu,CEO,Power BI,Complex,Semi-structured,Medium,5,10,4.0,1,10,5,6,5,8,68,33.3,0,0
+R0743,Education,Lalitpur,COO,Excel Charts,Complicated,Multi-structured,High,1,7,7.0,1,5,3,9,2,10,95,31.9,17,0
+R0744,Education,Chitwan,Department Head,Python/Matplotlib,Chaotic,Multi-structured,High,7,10,6.0,5,4,3,2,4,1,26,33.7,6,1
+R0745,IT/Software,Kathmandu,COO,Power BI,Chaotic,Structured,Medium,6,5,3.0,8,6,9,3,10,11,7,72.4,23,0
+R0746,Healthcare,Pokhara,CFO,No Tool,Complex,Structured,Medium,3,7,5.0,10,6,1,3,2,15,100,53.8,23,0
+R0747,Healthcare,Chitwan,CEO,Power BI,Complicated,Structured,High,8,3,8.0,3,8,6,9,8,12,53,12.5,2,0
+R0748,Consulting,Kathmandu,CEO,Power BI,Complex,Structured,Medium,5,3,9.0,7,9,4,6,3,12,17,33.5,23,0
+R0749,Retail,Pokhara,General Manager,Tableau,Complex,Semi-structured,Low,6,7,10.0,8,4,3,5,5,12,56,1.6,19,1
+R0750,Healthcare,Pokhara,COO,Excel Charts,Complex,Unstructured,High,1,7,4.0,8,1,8,2,10,1,92,10.8,25,0
+R0751,Education,Lalitpur,CEO,Tableau,Complicated,Structured,Medium,6,1,9.0,9,2,3,7,8,7,87,101.2,20,0
+R0752,Healthcare,Biratnagar,CEO,Python/Matplotlib,Complicated,Semi-structured,Medium,5,8,6.0,9,2,1,5,1,13,46,16.2,22,0
+R0753,Healthcare,Pokhara,CEO,Tableau,Complicated,Structured,Medium,5,2,2.0,2,9,1,1,2,5,68,33.3,19,0
+R0754,Healthcare,Lalitpur,Department Head,Tableau,Complex,Unstructured,Low,8,5,3.0,10,6,4,1,6,15,61,29.4,19,0
+R0755,Retail,Kathmandu,CEO,Excel Charts,Complex,Multi-structured,High,3,7,10.0,9,3,10,4,10,8,82,100.9,27,0
+R0756,Healthcare,Biratnagar,CEO,Excel Charts,Complicated,Structured,Low,5,3,5.0,4,7,2,9,5,3,25,184.4,4,0
+R0757,Consulting,Pokhara,COO,Python/Matplotlib,Complex,Structured,High,8,8,6.0,10,7,8,8,9,18,23,13.7,19,1
+R0758,Education,Kathmandu,Department Head,Tableau,Complicated,Unstructured,High,7,5,10.0,2,7,7,8,4,2,97,4.4,2,0
+R0759,Retail,Lalitpur,COO,Python/Matplotlib,Simple,Structured,Low,10,2,4.0,9,9,9,10,8,14,27,55.2,21,0
+R0760,Banking,Lalitpur,General Manager,No Tool,Simple,Structured,High,8,9,6.0,6,2,7,5,7,18,12,42.8,25,1
+R0761,Healthcare,Pokhara,CFO,Tableau,Complex,Multi-structured,Medium,7,5,4.0,3,4,9,3,8,11,60,8.7,5,0
+R0762,Banking,Chitwan,COO,Python/Matplotlib,Simple,Multi-structured,Medium,2,9,9.0,8,7,7,2,9,14,2,14.0,9,0
+R0763,Banking,Kathmandu,COO,Power BI,Complicated,Structured,Medium,4,1,2.0,3,1,10,8,1,11,51,105.0,29,0
+R0764,Consulting,Chitwan,CFO,Excel Charts,Simple,Structured,Medium,3,1,6.0,5,10,7,9,6,18,1,73.1,18,0
+R0765,Healthcare,Chitwan,COO,Tableau,Simple,Multi-structured,High,8,6,4.0,7,8,7,3,3,17,36,3.4,11,0
+R0766,IT/Software,Pokhara,COO,Excel Charts,Chaotic,Multi-structured,High,10,2,1.0,10,3,1,7,3,7,34,89.8,24,0
+R0767,IT/Software,Pokhara,CEO,Excel Charts,Complicated,Structured,Medium,9,7,9.0,2,10,1,4,3,10,82,86.9,14,1
+R0768,IT/Software,Lalitpur,CEO,Tableau,Chaotic,Structured,Medium,5,1,1.0,2,4,9,8,10,0,71,26.7,6,0
+R0769,Retail,Chitwan,General Manager,Excel Charts,Complicated,Unstructured,Medium,6,4,4.0,8,1,5,6,7,0,24,7.3,13,0
+R0770,IT/Software,Biratnagar,General Manager,Excel Charts,Chaotic,Structured,Low,1,2,1.0,6,3,6,8,7,19,50,5.6,25,0
+R0771,Healthcare,Biratnagar,COO,No Tool,Simple,Structured,Medium,1,7,4.0,7,7,6,5,7,5,79,3.2,13,0
+R0772,Education,Lalitpur,Department Head,Tableau,Complicated,Structured,Low,8,5,5.0,1,2,3,9,2,5,76,30.6,19,0
+R0773,Banking,Chitwan,CEO,Python/Matplotlib,Complicated,Structured,Medium,8,9,10.0,6,3,4,9,2,1,20,155.4,8,1
+R0774,Banking,Chitwan,General Manager,No Tool,Complex,Structured,Low,2,3,9.0,7,1,9,10,7,4,83,12.1,6,0
+R0775,Healthcare,Chitwan,CFO,Excel Charts,Complicated,Structured,Medium,1,3,8.0,2,8,3,7,4,3,8,24.0,3,0
+R0776,Retail,Lalitpur,CEO,Power BI,Complex,Unstructured,Medium,5,8,7.0,7,5,6,1,4,8,22,6.2,12,0
+R0777,Banking,Biratnagar,COO,Excel Charts,Simple,Multi-structured,Low,9,10,5.0,3,9,6,1,3,15,91,21.1,14,0
+R0778,HEALTHCARE,Biratnagar,CFO,Tableau,Simple,Structured,Low,10,1,,6,5,9,3,7,14,6,6.1,12,0
+R0779,Banking,Biratnagar,CEO,Excel Charts,Complex,Structured,High,3,2,10.0,1,8,5,9,10,19,17,26.7,3,0
+R0780,Education,Chitwan,General Manager,Tableau,Complex,Semi-structured,High,5,10,10.0,8,10,3,6,9,7,18,19.0,22,0
+R0781,Education,Kathmandu,COO,Power BI,Complex,Semi-structured,Medium,8,9,1.0,8,2,4,8,7,11,7,121.2,17,0
+R0782,Retail,Kathmandu,Department Head,No Tool,Chaotic,Unstructured,Medium,5,6,1.0,7,10,5,6,6,1,13,17.0,25,0
+R0783,Education,Chitwan,CFO,Tableau,Complex,Semi-structured,Medium,3,5,9.0,10,9,1,4,7,15,22,33.8,0,0
+R0784,Retail,Biratnagar,General Manager,No Tool,Simple,Unstructured,High,6,3,7.0,5,10,4,7,2,14,32,29.2,4,0
+R0785,IT/Software,Kathmandu,COO,Excel Charts,Complicated,Structured,Low,3,5,7.0,1,5,3,6,3,13,98,2.1,18,0
+R0786,Retail,Kathmandu,General Manager,Excel Charts,Complicated,Structured,Medium,6,6,6.0,5,5,3,10,1,3,13,51.6,21,1
+R0787,Healthcare,Pokhara,CFO,No Tool,Chaotic,Structured,Medium,1,10,8.0,7,8,2,8,6,15,15,61.2,22,0
+R0788,BANKING,Lalitpur,Department Head,Tableau,Simple,Multi-structured,Medium,1,7,6.0,6,1,1,7,1,1,15,15.5,7,0
+R0789,Healthcare,Biratnagar,CFO,No Tool,Complex,Multi-structured,High,2,2,3.0,9,7,4,2,2,0,68,19.7,1,0
+R0790,IT/Software,Pokhara,CFO,No Tool,Simple,Semi-structured,High,5,1,10.0,2,8,9,7,5,15,65,114.7,27,0
+R0791,Consulting,Kathmandu,COO,No Tool,Simple,Unstructured,Medium,8,1,7.0,2,1,7,3,7,7,1,21.9,15,0
+R0792,Consulting,Kathmandu,CEO,Power BI,Complicated,Semi-structured,Low,6,7,7.0,6,7,9,7,4,10,72,1.3,1,1
+R0793,Banking,Chitwan,CFO,No Tool,Complicated,Multi-structured,Medium,7,5,2.0,1,8,6,6,8,8,83,0.8,5,0
+R0794,Education,Pokhara,CEO,Python/Matplotlib,Chaotic,Unstructured,High,4,1,3.0,7,3,7,10,7,11,87,39.1,23,0
+R0795,IT/Software,Lalitpur,COO,Python/Matplotlib,Complex,Semi-structured,Medium,10,6,3.0,5,8,10,6,6,17,44,18.0,9,0
+R0796,Retail,Pokhara,Department Head,Tableau,Complicated,Structured,High,9,6,6.0,7,4,10,10,3,4,34,41.2,17,1
+R0797,Retail,Pokhara,Department Head,No Tool,Chaotic,Semi-structured,Medium,9,9,7.0,7,10,9,9,6,12,85,3.3,11,1
+R0798,Retail,Pokhara,COO,Python/Matplotlib,Simple,Structured,Medium,8,8,7.0,1,9,6,1,5,18,56,104.6,9,1
+R0799,IT/Software,Lalitpur,General Manager,No Tool,Simple,Structured,Low,1,6,3.0,1,10,7,8,1,14,16,31.1,25,0
+R0800,Education,Kathmandu,Department Head,Excel Charts,Complicated,Structured,High,7,4,2.0,7,8,1,9,6,6,44,29.7,5,0
+R0801,Retail,Chitwan,Department Head,Excel Charts,Complicated,Structured,High,8,10,6.0,4,10,5,10,10,19,88,84.6,27,1
+R0802,Consulting,Kathmandu,General Manager,Tableau,Complex,Multi-structured,Medium,3,2,8.0,7,6,3,6,1,4,93,80.1,8,0
+R0803,IT/Software,Chitwan,Department Head,Tableau,Simple,Semi-structured,Medium,9,10,9.0,3,9,4,3,4,8,30,54.4,9,1
+R0804,Education,Biratnagar,COO,Excel Charts,Complex,Unstructured,High,5,5,8.0,1,4,8,9,10,3,39,21.1,15,0
+R0805,Healthcare,Chitwan,COO,Tableau,Complicated,Structured,Medium,2,10,7.0,9,7,8,9,3,16,75,18.4,24,0
+R0806,Banking,Pokhara,General Manager,No Tool,Complex,Structured,High,9,4,9.0,8,6,2,6,5,1,82,170.4,23,0
+R0807,Banking,Biratnagar,CEO,Python/Matplotlib,Simple,Structured,Low,4,4,9.0,2,1,2,10,2,4,92,63.4,10,0
+R0808,Banking,Kathmandu,General Manager,No Tool,Chaotic,Unstructured,Medium,8,5,4.0,2,2,3,3,10,7,6,17.9,17,0
+R0809,Banking,Pokhara,COO,Power BI,Complex,Structured,High,1,3,6.0,2,7,7,9,7,3,52,85.4,20,0
+R0810,Consulting,Pokhara,Department Head,Excel Charts,Complex,Structured,High,1,9,8.0,5,6,5,4,5,5,27,23.5,8,0
+R0811,Retail,Lalitpur,General Manager,No Tool,Complex,Unstructured,Medium,5,6,10.0,10,10,10,9,6,9,53,6.3,4,0
+R0812,Education,Biratnagar,CFO,Excel Charts,Complex,Semi-structured,High,6,1,10.0,8,10,10,5,5,10,52,0.1,13,0
+R0813,EDUCATION,Chitwan,CEO,Excel Charts,Complex,Structured,Medium,8,1,1.0,10,5,4,7,9,10,29,51.1,6,0
+R0814,Healthcare,Kathmandu,CEO,Power BI,Complex,Semi-structured,Medium,5,6,5.0,4,2,9,3,3,16,37,61.1,1,0
+R0815,Banking,Biratnagar,Department Head,Python/Matplotlib,Chaotic,Structured,Medium,8,6,10.0,1,3,7,2,8,19,46,37.8,6,1
+R0816,Retail,Kathmandu,Department Head,Tableau,Complex,Structured,Medium,3,6,3.0,6,6,1,8,3,18,64,35.9,12,0
+R0817,Healthcare,Kathmandu,General Manager,Excel Charts,Complex,Semi-structured,High,4,4,6.0,7,4,1,1,9,6,70,0.5,7,0
+R0818,Banking,Lalitpur,Department Head,Excel Charts,Complicated,Multi-structured,High,10,4,8.0,5,10,4,7,4,5,20,21.6,6,0
+R0819,Healthcare,Pokhara,COO,Python/Matplotlib,Chaotic,Structured,Low,7,6,10.0,2,10,6,9,1,16,100,1.2,5,1
+R0820,Retail,Pokhara,Department Head,Tableau,Simple,Structured,Low,4,10,2.0,9,3,1,2,7,9,26,0.8,20,0
+R0821,Retail,Lalitpur,CEO,Python/Matplotlib,Complex,Semi-structured,High,10,5,7.0,6,6,5,10,4,3,47,57.3,23,0
+R0822,Healthcare,Kathmandu,Department Head,Excel Charts,Complicated,Unstructured,Medium,4,10,7.0,7,6,4,9,8,16,90,5.4,16,0
+R0823,Banking,Pokhara,Department Head,No Tool,Complex,Unstructured,High,6,5,5.0,6,1,6,9,4,5,66,5.2,23,0
+R0824,IT/Software,Lalitpur,General Manager,Excel Charts,Simple,Structured,Medium,9,3,2.0,7,10,8,1,9,10,12,44.7,11,0
+R0825,Consulting,Biratnagar,CEO,Power BI,Complicated,Unstructured,Medium,6,2,4.0,8,7,10,8,4,9,49,7.7,6,0
+R0826,IT/Software,Chitwan,General Manager,No Tool,Complex,Structured,High,5,3,2.0,2,10,9,9,5,9,10,11.8,1,0
+R0827,IT/Software,Kathmandu,COO,No Tool,Complicated,Structured,High,7,3,3.0,6,10,2,3,1,13,81,27.5,6,0
+R0828,Banking,Kathmandu,CEO,No Tool,Complex,Unstructured,High,10,10,1.0,1,3,10,6,1,3,87,52.8,3,0
+R0829,Consulting,Pokhara,CFO,Python/Matplotlib,Complex,Unstructured,High,2,5,9.0,3,5,3,2,10,7,97,32.6,13,0
+R0830,IT/Software,Lalitpur,COO,Excel Charts,Simple,Semi-structured,Low,5,9,3.0,7,1,2,10,4,19,53,4.7,29,0
+R0831,Consulting,Chitwan,COO,Excel Charts,Complex,Semi-structured,Low,6,1,10.0,8,1,2,1,6,2,27,22.6,22,0
+R0832,Healthcare,Chitwan,General Manager,Power BI,Complicated,Structured,Low,4,1,2.0,5,2,8,6,1,6,53,51.1,9,0
+R0833,Retail,Chitwan,CEO,No Tool,Complicated,Multi-structured,Medium,5,10,5.0,1,3,6,1,5,4,53,9999.0,10,0
+R0834,BANKING,Pokhara,General Manager,No Tool,Complex,Structured,Low,10,10,4.0,2,9,7,8,4,2,42,1.1,25,0
+R0835,Retail,Biratnagar,CFO,Power BI,Complicated,Unstructured,Medium,2,6,10.0,1,1,6,6,7,4,20,84.2,27,0
+R0836,Consulting,Chitwan,COO,Python/Matplotlib,Complicated,Unstructured,Medium,9,9,9.0,5,1,7,9,4,4,29,40.1,13,1
+R0837,Education,Biratnagar,CEO,No Tool,Simple,Semi-structured,Low,10,7,10.0,5,3,7,9,5,14,95,103.9,2,1
+R0838,Education,Lalitpur,COO,Excel Charts,Complex,Structured,Medium,5,5,10.0,3,10,7,2,10,13,48,2.6,28,0
+R0839,Healthcare,Pokhara,General Manager,No Tool,Complex,Unstructured,High,9,3,6.0,7,9,1,10,3,2,16,0.7,22,0
+R0840,Consulting,Pokhara,CFO,No Tool,Simple,Multi-structured,High,9,3,2.0,4,2,10,6,1,5,45,12.1,16,0
+R0841,Banking,Biratnagar,Department Head,Power BI,Complex,Structured,Low,1,2,9.0,2,6,9,1,8,5,31,5.2,23,0
+R0842,Retail,Biratnagar,General Manager,No Tool,Simple,Multi-structured,Medium,10,7,9.0,7,1,4,10,10,12,58,26.9,19,1
+R0843,IT/Software,Pokhara,CFO,No Tool,Complex,Structured,Medium,7,8,2.0,6,1,4,6,1,0,41,99.7,1,0
+R0844,Banking,Lalitpur,General Manager,Power BI,Complicated,Unstructured,High,10,3,8.0,5,2,3,8,6,4,33,25.5,27,0
+R0845,Healthcare,Kathmandu,Department Head,Python/Matplotlib,Complicated,Multi-structured,Medium,10,8,10.0,6,8,4,7,9,16,80,45.3,19,1
+R0846,Education,Kathmandu,Department Head,No Tool,Complex,Multi-structured,Medium,7,7,8.0,6,4,2,2,6,18,53,34.1,24,1
+R0847,IT/Software,Chitwan,Department Head,Excel Charts,Complicated,Structured,Medium,3,5,8.0,9,1,3,4,4,13,97,15.6,5,0
+R0848,Retail,Biratnagar,COO,Power BI,Complicated,Multi-structured,Low,5,6,7.0,4,8,10,3,3,13,79,59.0,26,0
+R0849,Banking,Chitwan,CFO,Excel Charts,Complicated,Unstructured,Medium,6,2,2.0,5,4,1,1,9,3,70,69.2,28,0
+R0850,Healthcare,Chitwan,General Manager,No Tool,Complex,Unstructured,Medium,9,9,3.0,7,7,1,7,9,0,45,2.9,12,0
+R0851,IT/Software,Kathmandu,CFO,Power BI,Complicated,Semi-structured,High,6,6,7.0,8,7,9,9,10,15,36,176.0,26,1
+R0852,Retail,Biratnagar,General Manager,Power BI,Complex,Structured,High,8,3,2.0,9,3,9,6,4,1,24,14.7,16,0
+R0853,Retail,Lalitpur,COO,No Tool,Simple,Semi-structured,Medium,9,7,3.0,10,3,3,5,10,8,75,66.2,9,0
+R0854,Banking,Biratnagar,CEO,Tableau,Chaotic,Unstructured,Low,2,8,2.0,5,8,1,1,6,9,59,35.8,11,0
+R0855,Banking,Kathmandu,Department Head,No Tool,Chaotic,Structured,High,2,3,6.0,6,3,4,9,1,4,51,9999.0,1,0
+R0856,Retail,Kathmandu,CEO,Power BI,Simple,Semi-structured,Medium,8,6,3.0,8,6,8,10,9,3,27,94.5,22,0
+R0857,Healthcare,Pokhara,CFO,Python/Matplotlib,Complicated,Unstructured,Medium,7,3,7.0,6,1,4,3,3,4,21,81.0,12,0
+R0858,CONSULTING,Chitwan,General Manager,Tableau,Simple,Unstructured,Medium,8,10,9.0,4,6,9,8,10,6,29,60.3,10,1
+R0859,Healthcare,Chitwan,General Manager,No Tool,Complicated,Structured,Medium,6,7,1.0,3,2,5,6,10,3,95,14.3,27,0
+R0860,Healthcare,Lalitpur,CFO,Python/Matplotlib,Complex,Unstructured,Medium,6,3,6.0,9,10,3,9,4,13,44,10.1,11,0
+R0861,IT/Software,Pokhara,COO,No Tool,Complex,Unstructured,High,8,8,3.0,8,8,5,5,5,3,42,49.5,4,0
+R0862,Banking,Biratnagar,Department Head,Tableau,Simple,Unstructured,Medium,5,10,3.0,8,1,7,5,8,13,52,2.5,8,0
+R0863,Healthcare,Biratnagar,CFO,Tableau,Chaotic,Structured,High,10,7,9.0,2,2,4,10,6,7,74,39.5,19,1
+R0864,Retail,Pokhara,COO,Excel Charts,Complex,Structured,Medium,3,4,2.0,7,1,2,9,10,11,33,57.6,1,0
+R0865,Healthcare,Biratnagar,CFO,No Tool,Simple,Structured,High,6,9,5.0,2,8,1,6,4,13,97,22.4,0,0
+R0866,Education,Pokhara,Department Head,No Tool,Complicated,Structured,High,2,4,10.0,6,10,8,4,8,9,55,43.4,12,0
+R0867,Consulting,Biratnagar,General Manager,Tableau,Simple,Structured,High,3,8,4.0,6,8,1,5,1,12,91,34.4,16,0
+R0868,Consulting,Pokhara,General Manager,No Tool,Complex,Structured,Low,4,3,3.0,6,1,2,1,4,6,94,47.5,13,0
+R0869,Retail,Chitwan,Department Head,Python/Matplotlib,Complicated,Unstructured,High,6,1,4.0,5,3,4,5,3,9,51,75.5,5,0
+R0870,Banking,Pokhara,General Manager,Tableau,Complicated,Structured,Low,6,1,8.0,4,7,6,4,2,3,72,19.2,7,0
+R0871,Healthcare,Chitwan,COO,Excel Charts,Complex,Structured,Medium,8,1,5.0,7,8,6,10,10,18,22,0.8,25,0
+R0872,Banking,Pokhara,COO,No Tool,Complex,Structured,Low,10,4,9.0,10,8,6,7,7,5,95,22.6,29,0
+R0873,Banking,Lalitpur,CEO,Excel Charts,Simple,Structured,Medium,10,8,7.0,1,7,4,9,7,16,74,9999.0,7,1
+R0874,Banking,Chitwan,COO,No Tool,Simple,Unstructured,High,4,6,5.0,3,5,4,8,10,10,83,37.8,2,0
+R0875,Education,Kathmandu,Department Head,Python/Matplotlib,Simple,Semi-structured,High,7,6,7.0,9,6,10,7,10,12,21,18.7,29,1
+R0876,Education,Chitwan,CEO,No Tool,Complex,Unstructured,High,8,7,2.0,1,1,8,5,2,18,37,9999.0,15,0
+R0877,Education,Pokhara,General Manager,No Tool,Complex,Unstructured,Low,10,4,10.0,9,8,9,4,2,7,25,54.0,16,0
+R0878,Retail,Kathmandu,CEO,Tableau,Complicated,Multi-structured,Medium,1,9,8.0,2,9,7,3,5,5,97,79.1,24,0
+R0879,Banking,Lalitpur,CFO,Tableau,Complicated,Structured,High,4,6,8.0,6,7,4,8,3,8,55,10.0,12,0
+R0880,IT/Software,Lalitpur,CFO,Tableau,Simple,Unstructured,High,6,4,2.0,2,4,9,1,2,13,64,64.7,19,0
+R0881,Banking,Kathmandu,General Manager,Tableau,Simple,Structured,Medium,9,9,6.0,5,6,9,9,10,3,72,11.4,26,1
+R0882,Education,Pokhara,COO,Power BI,Complex,Structured,Medium,2,1,9.0,5,9,4,8,1,19,26,4.3,14,0
+R0883,Banking,Biratnagar,CEO,Power BI,Complex,Structured,Medium,10,1,5.0,4,3,6,1,10,14,80,12.8,10,0
+R0884,Retail,Pokhara,General Manager,Python/Matplotlib,Complex,Unstructured,High,1,1,2.0,2,5,6,1,5,15,35,9.3,20,0
+R0885,Retail,Chitwan,Department Head,Tableau,Complex,Structured,High,1,1,5.0,7,4,8,5,10,13,1,56.5,17,0
+R0886,Banking,Kathmandu,CEO,No Tool,Complicated,Semi-structured,High,4,7,4.0,9,3,4,3,5,17,17,49.4,4,0
+R0887,Healthcare,Pokhara,General Manager,Python/Matplotlib,Simple,Structured,High,7,8,6.0,4,9,6,1,7,14,52,24.6,8,1
+R0888,Consulting,Chitwan,CFO,Tableau,Simple,Unstructured,Low,9,5,8.0,2,1,2,7,1,15,44,12.3,16,0
+R0889,Consulting,Chitwan,CFO,Power BI,Complex,Structured,High,1,10,6.0,6,4,6,2,6,2,91,7.0,29,0
+R0890,IT/Software,Pokhara,CEO,Power BI,Complex,Structured,Medium,5,10,9.0,4,7,2,4,7,19,96,19.9,8,0
+R0891,IT/Software,Pokhara,COO,Python/Matplotlib,Chaotic,Multi-structured,High,3,7,10.0,7,1,7,10,9,5,56,8.7,21,0
+R0892,Healthcare,Chitwan,CEO,Excel Charts,Complicated,Structured,Medium,10,9,7.0,8,8,8,7,3,19,21,14.6,0,1
+R0893,IT/Software,Kathmandu,CFO,Tableau,Complex,Structured,Low,6,10,2.0,9,9,2,7,6,16,8,13.0,27,0
+R0894,Healthcare,Kathmandu,CEO,Python/Matplotlib,Complex,Structured,Medium,6,8,10.0,3,4,6,7,7,18,90,34.0,15,1
+R0895,Retail,Chitwan,COO,Excel Charts,Complex,Structured,Low,9,10,5.0,8,1,9,4,6,8,68,28.5,23,0
+R0896,Banking,Biratnagar,CEO,Power BI,Complex,Structured,Medium,4,5,4.0,5,3,6,3,4,3,60,36.4,28,0
+R0897,Healthcare,Biratnagar,General Manager,Power BI,Chaotic,Structured,High,8,9,9.0,2,7,8,7,8,16,94,19.5,12,1
+R0898,Consulting,Lalitpur,Department Head,No Tool,Complicated,Structured,High,7,4,10.0,10,2,8,3,2,10,77,18.1,22,0
+R0899,Retail,Pokhara,COO,Tableau,Complex,Semi-structured,High,3,9,9.0,2,9,8,4,10,1,5,2.4,11,0
+R0900,Education,Pokhara,General Manager,No Tool,Complicated,Structured,Medium,5,6,5.0,1,9,2,10,8,7,58,9999.0,7,0
+R0901,Banking,Biratnagar,CFO,Excel Charts,Complex,Multi-structured,Low,7,2,2.0,6,1,7,8,9,9,74,99.4,15,0
+R0902,Banking,Pokhara,General Manager,Excel Charts,Chaotic,Multi-structured,Medium,10,9,8.0,9,6,3,8,10,14,68,27.9,4,1
+R0903,Consulting,Lalitpur,COO,No Tool,Chaotic,Structured,Medium,4,6,2.0,3,1,3,6,8,0,59,16.5,12,0
+R0904,Consulting,Chitwan,General Manager,Tableau,Complex,Semi-structured,Medium,1,2,8.0,8,5,8,5,1,6,23,37.9,17,0
+R0905,Healthcare,Lalitpur,COO,Power BI,Chaotic,Structured,Medium,8,6,4.0,8,9,3,7,5,12,62,39.8,16,0
+R0906,Healthcare,Pokhara,CEO,No Tool,Simple,Structured,High,10,5,4.0,3,6,5,8,1,4,30,2.8,16,0
+R0907,Consulting,Kathmandu,CFO,Python/Matplotlib,Simple,Unstructured,High,6,6,7.0,8,9,3,9,4,9,59,42.2,13,1
+R0908,Banking,Kathmandu,Department Head,Tableau,Complicated,Structured,Medium,7,9,3.0,10,6,1,9,4,18,25,9.4,7,0
+R0909,Banking,Pokhara,CEO,Excel Charts,Complex,Structured,High,5,1,2.0,2,7,9,6,5,16,83,9.5,12,0
+R0910,Healthcare,Kathmandu,General Manager,Power BI,Complex,Structured,Low,2,1,9.0,10,1,2,7,8,9,36,96.1,10,0
+R0911,Healthcare,Biratnagar,General Manager,No Tool,Complex,Structured,Low,5,4,7.0,2,4,2,1,8,11,63,46.8,15,0
+R0912,IT/Software,Chitwan,COO,No Tool,Simple,Semi-structured,Medium,10,1,6.0,10,4,1,10,2,14,50,36.3,20,0
+R0913,Banking,Chitwan,CEO,Excel Charts,Complex,Structured,High,6,8,5.0,9,10,7,5,1,5,76,56.0,2,0
+R0914,Retail,Kathmandu,General Manager,Power BI,Complex,Multi-structured,Low,5,10,8.0,3,6,10,2,7,16,42,31.6,3,0
+R0915,Retail,Kathmandu,COO,No Tool,Simple,Semi-structured,High,4,9,5.0,6,7,2,7,4,18,37,43.2,23,0
+R0916,Healthcare,Chitwan,CFO,No Tool,Complicated,Unstructured,High,8,9,2.0,6,9,8,2,8,1,91,8.6,20,0
+R0917,Education,Pokhara,Department Head,No Tool,Complex,Multi-structured,High,7,7,9.0,9,5,7,10,9,8,21,53.0,7,1
+R0918,Retail,Chitwan,General Manager,Excel Charts,Simple,Structured,Medium,3,6,3.0,4,9,9,8,6,16,89,50.2,26,0
+R0919,Education,Lalitpur,General Manager,Power BI,Complex,Unstructured,Medium,2,4,7.0,1,5,4,4,5,19,98,28.3,11,0
+R0920,Consulting,Lalitpur,General Manager,Excel Charts,Simple,Structured,Medium,5,10,8.0,8,8,7,5,6,2,67,50.6,11,0
+R0921,Consulting,Pokhara,COO,Power BI,Simple,Structured,High,10,3,2.0,3,3,2,1,1,12,80,19.1,25,0
+R0922,Retail,Pokhara,CEO,Tableau,Complicated,Semi-structured,High,5,6,9.0,5,2,6,4,7,18,18,3.7,20,0
+R0923,Banking,Kathmandu,COO,Power BI,Complex,Semi-structured,Medium,10,7,7.0,4,7,9,4,8,9,85,132.4,12,1
+R0924,Banking,Biratnagar,CFO,Power BI,Complex,Unstructured,High,6,6,10.0,3,2,2,7,8,14,25,58.4,9,1
+R0925,Education,Pokhara,COO,Excel Charts,Complex,Structured,Medium,9,7,7.0,8,4,2,10,1,4,7,64.8,20,1
+R0926,Banking,Kathmandu,General Manager,Power BI,Simple,Semi-structured,High,8,2,6.0,5,1,7,8,5,2,30,91.7,14,0
+R0927,CONSULTING,Pokhara,COO,Power BI,Complicated,Unstructured,High,10,8,4.0,3,10,6,8,5,19,70,20.0,14,0
+R0928,Education,Lalitpur,COO,Python/Matplotlib,Complicated,Structured,High,7,5,4.0,7,5,4,10,3,19,28,20.9,0,0
+R0929,Healthcare,Lalitpur,General Manager,No Tool,Complicated,Structured,Medium,9,5,3.0,1,4,8,6,9,14,35,18.0,2,0
+R0930,Retail,Lalitpur,CFO,Python/Matplotlib,Complicated,Multi-structured,High,3,3,7.0,1,8,3,8,7,8,89,78.9,27,0
+R0931,Education,Chitwan,General Manager,Excel Charts,Chaotic,Structured,High,3,6,8.0,7,10,6,9,2,4,17,24.8,13,0
+R0932,Retail,Kathmandu,Department Head,Excel Charts,Complex,Semi-structured,Medium,6,7,7.0,1,4,9,10,6,15,9,53.5,26,1
+R0933,Retail,Kathmandu,CEO,Power BI,Complicated,Semi-structured,Low,4,7,7.0,9,9,9,9,8,4,25,126.7,4,0
+R0934,Retail,Lalitpur,COO,Excel Charts,Chaotic,Semi-structured,High,5,10,4.0,9,2,6,9,10,19,68,84.3,7,0
+R0935,Healthcare,Pokhara,General Manager,Python/Matplotlib,Complex,Multi-structured,Medium,2,2,9.0,3,6,5,1,4,18,8,23.8,22,0
+R0936,Retail,Chitwan,CFO,Excel Charts,Simple,Multi-structured,High,4,4,3.0,6,7,4,4,8,16,100,87.1,19,0
+R0937,Healthcare,Chitwan,COO,Excel Charts,Simple,Structured,Low,7,3,8.0,9,6,9,8,5,10,7,16.8,28,0
+R0938,Retail,Lalitpur,CEO,Power BI,Complex,Unstructured,Low,8,6,5.0,2,6,10,3,1,3,9,22.9,23,0
+R0939,Consulting,Kathmandu,General Manager,Power BI,Simple,Unstructured,Low,3,1,5.0,9,6,2,10,7,13,35,110.5,28,0
+R0940,Consulting,Lalitpur,CFO,Excel Charts,Complicated,Structured,Low,2,3,4.0,2,3,9,9,8,19,98,90.2,10,0
+R0941,Retail,Chitwan,Department Head,Power BI,Complicated,Semi-structured,Low,3,7,10.0,3,3,8,9,3,7,81,60.9,9,0
+R0942,Consulting,Lalitpur,General Manager,Power BI,Complex,Structured,Low,5,4,10.0,10,7,3,4,7,9,34,41.5,25,0
+R0943,Banking,Biratnagar,Department Head,No Tool,Chaotic,Structured,Low,6,1,2.0,6,2,1,5,1,19,7,34.2,17,0
+R0944,IT/Software,Chitwan,CEO,Tableau,Simple,Structured,Low,5,4,3.0,1,7,7,5,10,19,30,4.5,6,0
+R0945,Banking,Biratnagar,Department Head,Power BI,Chaotic,Unstructured,Medium,1,3,9.0,6,2,2,4,2,0,4,38.6,26,0
+R0946,Banking,Kathmandu,COO,Tableau,Complicated,Structured,Medium,10,1,1.0,7,1,2,4,8,9,72,40.7,3,0
+R0947,Banking,Lalitpur,General Manager,Power BI,Complicated,Multi-structured,Medium,9,1,5.0,7,10,7,3,9,11,12,21.2,4,0
+R0948,Healthcare,Chitwan,Department Head,No Tool,Complicated,Unstructured,Medium,10,9,6.0,10,3,4,9,4,18,64,7.3,10,1
+R0949,Healthcare,Biratnagar,CFO,Python/Matplotlib,Complicated,Unstructured,Low,3,1,3.0,7,3,6,7,2,19,79,176.1,24,0
+R0950,Retail,Biratnagar,General Manager,Power BI,Complicated,Multi-structured,High,7,3,9.0,10,3,4,9,3,11,93,87.0,11,0
+R0951,Banking,Lalitpur,CEO,Tableau,Complicated,Semi-structured,Medium,6,6,6.0,9,9,4,8,6,10,71,23.1,10,1
+R0952,Healthcare,Pokhara,COO,Power BI,Complex,Semi-structured,High,4,7,5.0,10,1,7,8,3,18,65,47.0,19,0
+R0953,Education,Biratnagar,COO,Tableau,Complicated,Structured,Medium,1,5,3.0,6,5,4,4,8,18,3,39.5,17,0
+R0954,Retail,Kathmandu,CEO,Python/Matplotlib,Complicated,Structured,High,1,10,9.0,6,10,10,4,7,1,25,7.4,18,0
+R0955,Healthcare,Chitwan,General Manager,Python/Matplotlib,Chaotic,Unstructured,Medium,8,3,6.0,3,1,4,8,8,0,40,18.6,28,0
+R0956,Retail,Pokhara,CEO,Power BI,Complex,Semi-structured,Low,6,1,5.0,9,6,10,6,4,1,93,98.7,8,0
+R0957,Retail,Biratnagar,CEO,No Tool,Simple,Unstructured,Medium,10,2,1.0,6,6,4,9,9,2,62,51.1,8,0
+R0958,Banking,Biratnagar,COO,No Tool,Complex,Structured,Low,9,8,3.0,9,2,10,3,8,6,40,9999.0,5,0
+R0959,Education,Kathmandu,CFO,Python/Matplotlib,Complex,Structured,High,4,1,3.0,10,6,1,3,9,19,20,0.8,0,0
+R0960,IT/Software,Chitwan,General Manager,Tableau,Simple,Structured,High,10,5,8.0,6,1,2,2,5,9,90,9999.0,13,0
+R0961,Healthcare,Biratnagar,CEO,Excel Charts,Complicated,Multi-structured,Medium,3,5,2.0,10,3,10,8,2,14,24,3.5,22,0
+R0962,Consulting,Chitwan,COO,Power BI,Simple,Unstructured,Low,7,3,4.0,2,7,9,8,4,0,48,16.4,22,0
+R0963,Banking,Chitwan,COO,No Tool,Simple,Structured,High,5,1,3.0,10,9,8,4,3,3,42,204.4,12,0
+R0964,Education,Chitwan,COO,Power BI,Complex,Structured,High,1,7,1.0,1,5,8,6,3,0,40,128.2,26,0
+R0965,Banking,Lalitpur,General Manager,Power BI,Simple,Structured,High,9,10,,2,7,7,9,8,8,42,45.5,0,0
+R0966,Healthcare,Lalitpur,CEO,Tableau,Complicated,Structured,High,3,3,4.0,9,9,2,1,8,3,81,20.8,21,0
+R0967,Banking,Pokhara,CEO,Python/Matplotlib,Complicated,Semi-structured,Medium,2,2,2.0,1,2,7,7,6,8,35,21.6,27,0
+R0968,IT/Software,Pokhara,CEO,Tableau,Complex,Structured,Low,10,7,1.0,10,9,9,9,1,8,93,114.5,15,0
+R0969,IT/Software,Kathmandu,CFO,Excel Charts,Complex,Unstructured,Medium,9,3,9.0,9,5,2,2,3,10,51,6.8,28,0
+R0970,Banking,Biratnagar,CEO,Power BI,Simple,Structured,Low,6,8,10.0,5,6,1,8,9,17,30,82.0,12,1
+R0971,Consulting,Lalitpur,General Manager,Power BI,Simple,Structured,High,3,3,8.0,4,8,2,8,2,5,96,6.5,0,0
+R0972,Retail,Lalitpur,Department Head,Power BI,Complex,Unstructured,High,10,4,6.0,8,6,5,10,9,7,28,6.4,2,0
+R0973,IT/Software,Pokhara,CEO,No Tool,Complicated,Unstructured,Medium,4,3,9.0,5,1,2,7,5,5,19,1.5,23,0
+R0974,IT/Software,Biratnagar,General Manager,No Tool,Simple,Semi-structured,High,1,5,2.0,2,8,1,6,7,0,61,1.2,5,0
+R0975,Education,Lalitpur,CEO,No Tool,Simple,Structured,High,7,3,4.0,2,3,5,9,1,5,79,43.5,26,0
+R0976,Education,Biratnagar,General Manager,Python/Matplotlib,Simple,Semi-structured,Low,2,1,7.0,2,9,1,6,1,12,78,55.7,10,0
+R0977,IT/Software,Biratnagar,COO,No Tool,Chaotic,Structured,Medium,5,7,7.0,7,6,10,2,9,4,57,52.9,20,0
+R0978,Healthcare,Biratnagar,COO,Tableau,Complicated,Semi-structured,High,9,8,1.0,2,3,7,3,5,3,38,21.9,24,0
+R0979,Consulting,Kathmandu,CFO,Power BI,Complex,Structured,Medium,2,1,8.0,2,1,6,1,9,13,52,40.6,21,0
+R0980,Healthcare,Biratnagar,CFO,Tableau,Complex,Structured,High,4,3,9.0,2,9,9,2,9,17,75,1.5,5,0
+R0981,IT/Software,Kathmandu,CFO,Python/Matplotlib,Complex,Unstructured,High,10,2,10.0,6,4,2,4,4,8,49,38.4,23,0
+R0982,Consulting,Lalitpur,COO,No Tool,Complicated,Multi-structured,High,7,8,8.0,8,3,4,4,5,3,83,19.7,25,1
+R0983,Retail,Biratnagar,Department Head,Python/Matplotlib,Complicated,Structured,Medium,1,9,2.0,3,6,8,10,7,12,47,23.7,28,0
+R0984,Banking,Chitwan,Department Head,Power BI,Complex,Unstructured,Medium,9,7,10.0,4,4,8,6,8,17,83,42.1,9,1
+R0985,Consulting,Biratnagar,General Manager,Excel Charts,Complicated,Structured,Medium,1,2,6.0,7,4,8,4,6,19,70,71.0,3,0
+R0986,Banking,Lalitpur,COO,No Tool,Simple,Unstructured,High,4,9,9.0,1,4,1,4,4,2,48,72.8,19,0
+R0987,Education,Kathmandu,CFO,Excel Charts,Chaotic,Unstructured,High,5,2,6.0,9,5,8,10,10,15,42,26.8,19,0
+R0988,IT/SOFTWARE,Biratnagar,CEO,Power BI,Chaotic,Semi-structured,Medium,1,2,9.0,4,2,10,1,1,8,38,1.5,0,0
+R0989,Retail,Biratnagar,CEO,Python/Matplotlib,Complicated,Unstructured,High,7,10,10.0,8,6,5,7,10,17,94,76.0,9,1
+R0990,Consulting,Kathmandu,General Manager,Python/Matplotlib,Complex,Multi-structured,High,8,9,9.0,10,6,7,10,8,4,57,2.5,16,1
+R0991,Healthcare,Biratnagar,COO,Tableau,Complex,Semi-structured,Medium,7,7,8.0,2,2,3,4,9,16,85,34.3,10,1
+R0992,Education,Lalitpur,CEO,Tableau,Complicated,Semi-structured,High,8,2,7.0,7,8,10,1,7,3,38,3.3,3,0
+R0993,Banking,Chitwan,General Manager,Tableau,Simple,Multi-structured,Medium,8,2,3.0,8,7,4,2,5,8,15,27.8,20,0
+R0994,Consulting,Pokhara,CEO,Power BI,Simple,Structured,Medium,1,10,2.0,3,5,7,2,4,4,15,72.2,19,0
+R0995,IT/Software,Pokhara,COO,Python/Matplotlib,Complex,Unstructured,Medium,7,8,5.0,4,1,1,7,6,9,73,37.2,17,0
+R0996,Retail,Biratnagar,COO,Excel Charts,Chaotic,Unstructured,Low,6,8,2.0,4,8,10,7,1,16,89,8.1,6,0
+R0997,Healthcare,Chitwan,CFO,No Tool,Complicated,Semi-structured,Medium,3,4,10.0,2,6,9,5,4,3,25,48.8,25,0
+R0998,Education,Lalitpur,CFO,Power BI,Chaotic,Semi-structured,High,1,7,3.0,5,4,8,10,5,13,91,82.6,7,0
+R0999,Education,Biratnagar,COO,Python/Matplotlib,Complicated,Structured,Medium,6,8,10.0,4,4,9,8,10,2,16,55.6,7,1
+R1000,Healthcare,Lalitpur,CEO,Power BI,Complicated,Unstructured,Medium,4,8,7.0,6,2,9,6,6,15,42,20.2,8,0
+R0131,Healthcare,Kathmandu,CEO,Python/Matplotlib,Complex,Structured,Low,6,10,6.0,9,2,8,9,7,7,86,103.9,23,1
+R0555,Healthcare,Pokhara,Department Head,Python/Matplotlib,Complicated,Structured,Medium,6,1,7.0,1,10,10,6,1,15,68,69.7,16,0
+R0155,Banking,Pokhara,CEO,Excel Charts,Complicated,Unstructured,Medium,6,9,5.0,3,6,4,8,2,6,19,109.2,26,0
+R0946,Banking,Kathmandu,COO,Tableau,Complicated,Structured,Medium,10,1,1.0,7,1,2,4,8,9,72,40.7,3,0
+R0918,Retail,Chitwan,General Manager,Excel Charts,Simple,Structured,Medium,3,6,3.0,4,9,9,8,6,16,89,50.2,26,0
+R0607,Education,Pokhara,COO,No Tool,Simple,Unstructured,Low,6,9,10.0,5,1,7,10,6,16,65,69.9,2,1
+R0370,Consulting,Biratnagar,CFO,Python/Matplotlib,Complicated,Semi-structured,Medium,4,2,6.0,8,5,3,6,10,13,18,20.5,15,0
+R0989,Retail,Biratnagar,CEO,Python/Matplotlib,Complicated,Unstructured,High,7,10,10.0,8,6,5,7,10,17,94,76.0,9,1
+R0962,Consulting,Chitwan,COO,Power BI,Simple,Unstructured,Low,7,3,4.0,2,7,9,8,4,0,48,16.4,22,0
+R0039,Healthcare,Lalitpur,CFO,Tableau,Complex,Semi-structured,High,4,8,7.0,8,5,3,1,7,5,25,28.3,4,0
+R0970,Banking,Biratnagar,CEO,Power BI,Simple,Structured,Low,6,8,10.0,5,6,1,8,9,17,30,82.0,12,1
+R0112,Education,Biratnagar,COO,Tableau,Complicated,Unstructured,Medium,10,1,9.0,8,6,9,6,8,7,69,36.1,0,0
+R0335,IT/Software,Lalitpur,General Manager,Tableau,Complex,Semi-structured,Low,8,9,3.0,4,7,2,10,10,19,39,23.9,22,0
+R0521,Retail,Kathmandu,General Manager,Python/Matplotlib,Simple,Semi-structured,Medium,6,3,3.0,5,3,1,6,9,0,71,19.3,8,0
+R0017,Retail,Lalitpur,General Manager,Excel Charts,Complicated,Multi-structured,High,6,1,8.0,4,4,6,3,8,11,16,49.6,29,0
+R0729,Healthcare,Pokhara,General Manager,Excel Charts,Complicated,Structured,Medium,3,8,9.0,5,5,3,2,3,4,23,11.3,2,0
+R0139,Banking,Kathmandu,CFO,Python/Matplotlib,Simple,Semi-structured,Medium,10,9,1.0,3,5,6,10,4,18,76,23.9,20,0
+R0212,Healthcare,Biratnagar,CEO,Excel Charts,Complex,Structured,Medium,6,3,8.0,6,1,2,7,3,2,34,63.9,27,0
+R0050,Consulting,Kathmandu,General Manager,Python/Matplotlib,Chaotic,Unstructured,Medium,6,7,10.0,4,3,4,9,6,17,45,4.6,23,1
+R0790,IT/Software,Pokhara,CFO,No Tool,Simple,Semi-structured,High,5,1,10.0,2,8,9,7,5,15,65,114.7,27,0
+R0128,Education,Pokhara,General Manager,No Tool,Complex,Semi-structured,Medium,5,6,3.0,4,8,10,5,8,6,98,37.3,15,0
+R0224,Healthcare,Biratnagar,CFO,Tableau,Simple,Unstructured,Medium,3,7,4.0,1,2,6,10,8,1,74,68.1,25,0
+R0074,Retail,Chitwan,General Manager,No Tool,Chaotic,Semi-structured,High,7,8,9.0,1,2,1,7,7,3,27,32.0,18,1
+R0569,Healthcare,Kathmandu,COO,No Tool,Simple,Structured,Medium,3,5,2.0,6,7,7,10,9,2,18,26.4,23,0
+R0125,IT/Software,Kathmandu,General Manager,Tableau,Complicated,Structured,Medium,7,10,9.0,6,10,2,9,4,12,64,6.4,4,1
+R0484,Retail,Lalitpur,CEO,Tableau,Complicated,Unstructured,Medium,7,5,3.0,3,1,1,1,2,14,21,58.6,24,0
+R0814,Healthcare,Kathmandu,CEO,Power BI,Complex,Semi-structured,Medium,5,6,5.0,4,2,9,3,3,16,37,61.1,1,0
+R0215,RETAIL,Chitwan,CFO,Excel Charts,Complicated,Unstructured,Low,6,8,9.0,5,6,1,6,9,4,72,38.0,4,1
+R0953,Education,Biratnagar,COO,Tableau,Complicated,Structured,Medium,1,5,3.0,6,5,4,4,8,18,3,39.5,17,0
+R0286,IT/Software,Pokhara,CFO,Python/Matplotlib,Complex,Semi-structured,Medium,8,4,7.0,5,7,2,9,6,11,23,22.9,17,0
