@@ -1,0 +1,905 @@
+
+
+
+
+===========================================================================
+  MIS 522 — MANAGEMENT INFORMATION SYSTEM PRACTICUM
+  POKHARA UNIVERSITY
+  FACULTY OF MANAGEMENT STUDIES
+  
+  GOOGLE COLAB LAB + QUESTIONS
+  Article: Moore (2017)
+           Data Visualization in Support of Executive Decision Making
+===========================================================================
+
+
+
+  ======================
+  NOTE:
+  ======================
+  1. Read Moore (2017) article completely 
+     [DATA VISUALIZATION IN SUPPORT OF EXECUTIVE DECISION MAKING]
+
+  2. Open Google Colab: https://colab.research.google.com
+
+  3. Create new notebook: MIS522_Lab_YourName.ipynb
+
+                         example : MIS522_Manish_KC.ipynb
+
+
+  4. Upload file in runtime: MIS522_DataViz_Survey.csv when prompted
+
+  5. Copy each CODE CELL below into Colab and run with Shift+Enter
+
+  6. Answer all 10 questions at the bottom of this file in [text cell] as analyzed answers
+
+  7. Submit: Download the final you run and analysed answers form 
+              File > Download > Download.ipynb
+
+             and send it to mail [sanjeevthapa@cct.edu.np] 
+             inside 12 june 2026 as  sunday  6 pm onwards ....
+
+
+
+
+  DATASET: MIS522_DataViz_Survey.csv
+  ROWS   : 1,030  (including 30 duplicate rows seeded intentionally)
+  COLUMNS: 21
+
+
+
+
+
+
+
+
+
+  COLUMN GUIDE:
+  ==================================================================
+  respondent_id           - Unique ID
+  industry                - Banking / Healthcare / Retail / Education /
+                            IT-Software / Consulting
+  region                  - Kathmandu / Pokhara / Chitwan /
+                            Biratnagar / Lalitpur
+  exec_level              - CEO / CFO / COO / General Manager /
+                            Department Head
+  viz_tool                - Power BI / Tableau / Excel Charts /
+                            Python-Matplotlib / No Tool
+  cynefin_domain          - Simple / Complicated / Complex / Chaotic
+  data_type               - Structured / Semi-structured /
+                            Unstructured / Multi-structured
+  data_trust              - Low / Medium / High
+  data_quality_score      - 1 to 10
+  viz_clarity_score       - 1 to 10
+  decision_confidence     - 1 to 10  (25 values are missing — intentional)
+  decision_speed_score    - 1 to 10
+  collaboration_score     - 1 to 10
+  cognitive_load_score    - 1 to 10  (lower is better)
+  d3m_adoption_score      - 1 to 10  (Data Driven Decision Making)
+  big_data_readiness      - 1 to 10
+  years_using_viz         - 0 to 20 years
+  pct_decisions_datadriven- 0 to 100 percent
+  monthly_data_gb         - GB per month (30 corrupt values seeded)
+  num_dashboards          - Number of dashboards built
+  viz_effective           - 1 = Effective  /  0 = Not effective
+
+
+
+
+
+
+
+===========================================================================
+  STEP 1 — IMPORT LIBRARIES
+===========================================================================
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+matplotlib.rcParams['figure.dpi'] = 100
+
+print("Libraries ready.")
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 2 — UPLOAD AND LOAD DATASET
+===========================================================================
+
+from google.colab import files
+uploaded = files.upload()
+
+df = pd.read_csv("MIS522_DataViz_Survey.csv")
+print("Dataset loaded.")
+print("Shape:", df.shape)
+df.head()
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 3 — INSPECT STRUCTURE
+===========================================================================
+
+print("Columns and types:")
+print(df.dtypes)
+
+print("\nFirst 5 rows:")
+df.head()
+
+print("\nBasic stats:")
+df.describe()
+
+
+
+
+
+
+
+===========================================================================
+  STEP 4 — CHECK MISSING VALUES
+===========================================================================
+
+print("Missing values per column:")
+print(df.isnull().sum())
+
+print("\nTotal missing:", df.isnull().sum().sum())
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 5 — CHECK DUPLICATES AND DATA PROBLEMS
+===========================================================================
+
+print("Duplicate rows:", df.duplicated().sum())
+
+print("\nImpossible monthly_data_gb values (> 9000):")
+print((df["monthly_data_gb"] > 9000).sum())
+
+print("\nInconsistent industry casing:")
+print(df["industry"].unique())
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 6 — CLEAN THE DATASET
+===========================================================================
+
+df_clean = df.copy()
+
+# Remove duplicates
+df_clean = df_clean.drop_duplicates()
+print("After removing duplicates:", df_clean.shape)
+
+# Fix impossible values
+df_clean.loc[df_clean["monthly_data_gb"] > 9000, "monthly_data_gb"] = np.nan
+df_clean["monthly_data_gb"].fillna(df_clean["monthly_data_gb"].median(), inplace=True)
+
+# Fill missing decision_confidence
+df_clean["decision_confidence"].fillna(df_clean["decision_confidence"].median(), inplace=True)
+
+# Normalize text
+df_clean["industry"] = df_clean["industry"].str.strip().str.title()
+df_clean["data_trust"] = df_clean["data_trust"].str.strip().str.title()
+df_clean["cynefin_domain"] = df_clean["cynefin_domain"].str.strip().str.title()
+
+print("After cleaning:", df_clean.shape)
+print("Remaining missing:", df_clean.isnull().sum().sum())
+print("Remaining duplicates:", df_clean.duplicated().sum())
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 7 — DESCRIPTIVE STATISTICS
+===========================================================================
+
+numeric_cols = [
+    "data_quality_score", "viz_clarity_score",
+    "decision_confidence", "decision_speed_score",
+    "collaboration_score", "d3m_adoption_score",
+    "big_data_readiness", "pct_decisions_datadriven"
+]
+
+print("Key metrics summary:")
+print(df_clean[numeric_cols].describe().round(2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 8 — VISUALIZATION 1: VIZ TOOL USAGE (BAR CHART)
+===========================================================================
+
+tool_counts = df_clean["viz_tool"].value_counts()
+
+fig, ax = plt.subplots(figsize=(9, 5))
+bars = ax.bar(tool_counts.index, tool_counts.values,
+              color=["#2a78d6","#1baf7a","#eda100","#e34948","#4a3aa7"],
+              width=0.5, edgecolor="white")
+
+for bar in bars:
+    ax.text(bar.get_x() + bar.get_width()/2,
+            bar.get_height() + 3,
+            str(bar.get_height()),
+            ha="center", fontsize=10, fontweight="bold")
+
+ax.set_title("Visualization Tool Usage — MIS522 Survey (n=1000)",
+             fontsize=13, fontweight="bold")
+ax.set_xlabel("Tool", fontsize=11)
+ax.set_ylabel("Number of Organizations", fontsize=11)
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+plt.tight_layout()
+plt.savefig("chart1_tool_usage.png", dpi=150)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 9 — VISUALIZATION 2: D3M SCORE BY INDUSTRY (HORIZONTAL BAR)
+===========================================================================
+
+d3m_by_industry = df_clean.groupby("industry")["d3m_adoption_score"].mean().sort_values()
+
+fig, ax = plt.subplots(figsize=(9, 5))
+ax.barh(d3m_by_industry.index, d3m_by_industry.values,
+        color="#2a78d6", edgecolor="white")
+
+ax.axvline(x=5, color="#e34948", linestyle="--",
+           linewidth=1.5, label="Threshold (5.0)")
+ax.axvline(x=d3m_by_industry.mean(), color="#eda100",
+           linestyle="-", linewidth=1.5,
+           label=f"Mean ({d3m_by_industry.mean():.2f})")
+
+ax.set_title("Avg D3M Adoption Score by Industry\n"
+             "(Article Ref: D3M Framework — Moore, 2017)",
+             fontsize=13, fontweight="bold")
+ax.set_xlabel("Average D3M Score (1-10)", fontsize=11)
+ax.legend(fontsize=9)
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+plt.tight_layout()
+plt.savefig("chart2_d3m_industry.png", dpi=150)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 10 — VISUALIZATION 3: DATA QUALITY vs DECISION CONFIDENCE (SCATTER)
+===========================================================================
+
+colors_map = {"Low":"#e34948","Medium":"#eda100","High":"#1baf7a"}
+colors_scatter = df_clean["data_trust"].map(colors_map)
+
+fig, ax = plt.subplots(figsize=(9, 6))
+ax.scatter(df_clean["data_quality_score"],
+           df_clean["decision_confidence"],
+           c=colors_scatter, alpha=0.35, s=15)
+
+for label, color in colors_map.items():
+    ax.scatter([], [], color=color, label=f"Trust: {label}", s=40)
+
+z = np.polyfit(df_clean["data_quality_score"].dropna(),
+               df_clean["decision_confidence"].dropna(), 1)
+p = np.poly1d(z)
+x_line = np.linspace(1, 10, 100)
+ax.plot(x_line, p(x_line), "#2a78d6", linewidth=2,
+        linestyle="--", label="Trend")
+
+ax.set_title("Data Quality vs Decision Confidence\n"
+             "(Article Ref: Trust Theory — Moore, 2017)",
+             fontsize=13, fontweight="bold")
+ax.set_xlabel("Data Quality Score (1-10)", fontsize=11)
+ax.set_ylabel("Decision Confidence (1-10)", fontsize=11)
+ax.legend(fontsize=9)
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+plt.tight_layout()
+plt.savefig("chart3_quality_confidence.png", dpi=150)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 11 — VISUALIZATION 4: CYNEFIN DOMAIN DISTRIBUTION (PIE)
+===========================================================================
+
+cynefin_counts = df_clean["cynefin_domain"].value_counts()
+
+fig, ax = plt.subplots(figsize=(7, 6))
+ax.pie(cynefin_counts.values,
+       labels=cynefin_counts.index,
+       autopct="%1.1f%%",
+       colors=["#2a78d6","#eda100","#e34948","#1baf7a"],
+       wedgeprops=dict(edgecolor="white", linewidth=2),
+       startangle=120)
+
+ax.set_title("Cynefin Decision Domain Distribution\n"
+             "(Article Ref: Cynefin Framework — Moore, 2017)",
+             fontsize=13, fontweight="bold")
+plt.tight_layout()
+plt.savefig("chart4_cynefin.png", dpi=150)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 12 — PIVOT TABLE: D3M SCORE BY INDUSTRY AND DATA TRUST
+===========================================================================
+
+pivot = pd.pivot_table(
+    df_clean,
+    values="d3m_adoption_score",
+    index="industry",
+    columns="data_trust",
+    aggfunc="mean"
+).round(2)
+
+print("Pivot Table: Avg D3M Score by Industry and Data Trust Level")
+print(pivot)
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 13 — GROUP ANALYSIS: VIZ TOOL vs KEY OUTCOMES
+===========================================================================
+
+tool_profile = df_clean.groupby("viz_tool").agg(
+    Avg_D3M        = ("d3m_adoption_score", "mean"),
+    Avg_Clarity    = ("viz_clarity_score", "mean"),
+    Avg_Confidence = ("decision_confidence", "mean"),
+    Pct_Effective  = ("viz_effective", "mean"),
+    Count          = ("respondent_id", "count")
+).round(2)
+
+tool_profile["Pct_Effective"] = (tool_profile["Pct_Effective"]*100).round(1)
+
+print("Viz Tool Performance Profile:")
+print(tool_profile.sort_values("Avg_D3M", ascending=False))
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 14 — CORRELATION HEATMAP
+===========================================================================
+
+corr_cols = [
+    "data_quality_score","viz_clarity_score",
+    "decision_confidence","decision_speed_score",
+    "collaboration_score","d3m_adoption_score",
+    "big_data_readiness","pct_decisions_datadriven"
+]
+
+corr = df_clean[corr_cols].corr().round(2)
+
+fig, ax = plt.subplots(figsize=(9, 7))
+cax = ax.imshow(corr, cmap="RdBu_r", vmin=-1, vmax=1)
+plt.colorbar(cax, ax=ax, fraction=0.046, label="Correlation r")
+
+labels = ["Data Quality","Viz Clarity","Confidence","Speed",
+          "Collaboration","D3M Score","Big Data Ready","% D3M Decisions"]
+ax.set_xticks(range(len(corr_cols)))
+ax.set_yticks(range(len(corr_cols)))
+ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=9)
+ax.set_yticklabels(labels, fontsize=9)
+
+for i in range(len(corr_cols)):
+    for j in range(len(corr_cols)):
+        val = corr.iloc[i, j]
+        color = "white" if abs(val) > 0.5 else "black"
+        ax.text(j, i, f"{val}", ha="center",
+                va="center", fontsize=7.5, color=color)
+
+ax.set_title("Correlation Heatmap — MIS522 Survey\n"
+             "(Article Ref: CFT + D3M — Moore, 2017)",
+             fontsize=13, fontweight="bold", pad=15)
+plt.tight_layout()
+plt.savefig("chart5_heatmap.png", dpi=150)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  STEP 15 — SUMMARY REPORT
+===========================================================================
+
+print("=" * 55)
+print("  MIS522 SURVEY — FINAL SUMMARY REPORT")
+print("=" * 55)
+
+print(f"Total Records            : {len(df_clean)}")
+print(f"Industries               : {df_clean['industry'].nunique()}")
+print(f"Avg D3M Adoption Score   : {df_clean['d3m_adoption_score'].mean():.2f}")
+print(f"Avg Data Quality Score   : {df_clean['data_quality_score'].mean():.2f}")
+print(f"Avg Decision Confidence  : {df_clean['decision_confidence'].mean():.2f}")
+print(f"Avg Viz Clarity Score    : {df_clean['viz_clarity_score'].mean():.2f}")
+print(f"% Orgs with Low Trust    : {(df_clean['data_trust']=='Low').mean()*100:.1f}%")
+print(f"% Viz Labeled Effective  : {df_clean['viz_effective'].mean()*100:.1f}%")
+print(f"Most Used Viz Tool       : {df_clean['viz_tool'].mode()[0]}")
+print(f"Most Common Cynefin      : {df_clean['cynefin_domain'].mode()[0]}")
+print(f"Best D3M Industry        : {df_clean.groupby('industry')['d3m_adoption_score'].mean().idxmax()}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========================================================================
+  ANSWER YOUR SUBMISSION in Collab Text Cell at the end in {text cell}
+  Total: 50 Marks
+  Article Reference: Moore, J. (2017). IJIKM, Vol. 12, pp. 125-138.
+===========================================================================
+
+---------------------------------------------------------------------------
+Q1. [5 Marks]
+Data, Information, Knowledge
+Article Reference: Literature Analysis section, Moore (2017)
+Colab Reference : Step 2 and Step 15
+---------------------------------------------------------------------------
+    
+    Run Step 2 (load dataset) and Step 15 (summary report).
+    
+    (a) The raw dataset loaded in Step 2 contains numbers like
+        data_quality_score = 7 for a single respondent. According to
+        Moore (2017), does this single value represent Data, Information,
+        or Knowledge? Define all three terms using the article and
+        classify this value correctly.                          [2 marks]
+    
+    (b) Step 15 prints "Best D3M Industry : ___". At which level of
+        the hierarchy does this statement sit — Data, Information, or
+        Knowledge? Justify using Moore's (2017) exact definition.
+                                                               [2 marks]
+    
+    (c) The article says "data has no meaning when contained in
+        isolation." Give one specific example from this dataset where
+        a score of 5 is meaningless without context.           [1 mark]
+    
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q2. [5 Marks]
+Big Data Challenges
+Article Reference: Table 1 and Table 2, Moore (2017)
+Colab Reference : Step 5
+---------------------------------------------------------------------------
+    
+    Run Step 5 (check duplicates and data problems).
+    
+    (a) The dataset contains 3 intentional data problems:
+        30 duplicate rows, 25 missing values in decision_confidence,
+        and 30 corrupt values in monthly_data_gb (value = 9999).
+        Match each problem to one challenge from Moore's (2017)
+        Table 1 or Table 2. Write the challenge name and the
+        solution the article recommends.                       [3 marks]
+    
+    (b) Moore (2017) identifies "data quality" as a general big data
+        challenge requiring accuracy, timeliness, completeness,
+        and credibility. Which of these four dimensions is violated
+        by each of the 3 problems above?                       [2 marks]
+    
+    
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q3. [5 Marks]
+Data Cleaning and Preparation
+Article Reference: Trust Theory section, Moore (2017)
+Colab Reference : Step 6
+---------------------------------------------------------------------------
+    
+    Run Step 6 (clean the dataset).
+    
+    (a) The article states that "data source and pipeline accuracy,
+        data definition and structure consistency, timely retrieval
+        and data support are vital considerations for data trust."
+        Step 6 performs 4 cleaning actions. Map each action to one
+        of Moore's trust considerations listed above.           [3 marks]
+    
+    (b) After cleaning, the shape changes from (1030, 21) to
+        approximately (1000, 21). How many rows were removed and why?
+        If an executive made a decision using the uncleaned data,
+        what specific wrong conclusion could they reach based on
+        Moore's (2017) Trust Theory?                           [2 marks]
+    
+    
+    
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q4. [5 Marks]
+D3M Framework
+Article Reference: Figure 1, Moore (2017)
+Colab Reference : Steps 7, 12, 15
+---------------------------------------------------------------------------
+      
+      Run Step 7 (descriptive stats), Step 12 (pivot table),
+      and Step 15 (summary report).
+      
+      (a) Moore (2017) Figure 1 defines 6 steps of the D3M framework:
+          Collect, Organise, Analyse, Summarise, Synthesize, Decide.
+          Match each Colab step below to ONE D3M step and justify:
+          - Step 2 (load data)
+          - Step 7 (descriptive stats)
+          - Step 12 (pivot table)
+          - Step 15 (summary report)                             [2 marks]
+      
+      (b) The article warns that D3M can make executives "too metric
+          driven" and suppress innovation. Looking at the Step 15
+          output, identify one recommendation that is purely
+          data-driven and one that would require human judgement
+          beyond what the numbers show.                          [2 marks]
+      
+      (c) D3M is described as cyclical. After the Step 15 output,
+          write one new research question NBIRC should ask to
+          restart the D3M cycle.                                 [1 mark]
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q5. [5 Marks]
+Principles of Effective Graphics
+Article Reference: Table 3, Moore (2017)
+Colab Reference : Steps 8 and 9
+---------------------------------------------------------------------------
+    
+    Run Step 8 (bar chart — tool usage) and
+    Step 9 (horizontal bar — D3M by industry).
+    
+    (a) Moore (2017) Table 3 lists 9 principles of effective graphics.
+        Identify 3 principles that Step 8 chart FOLLOWS and state
+        which specific design feature in the code applies each
+        principle.                                             [3 marks]
+    
+    (b) Step 9 draws a red dashed line at score 5.0. Which principle
+        from Moore (2017) Table 3 does this line apply?
+        Which industries in the chart fall below this threshold?
+                                                               [1 mark]
+    
+    (c) The article says "visual design is not focused on creating
+        pretty pictures but on providing information that has
+        relevancy and purpose." Does the Step 9 chart satisfy this?
+        What one element would you add to make it more purposeful
+        for an executive board meeting?                        [1 mark]
+    
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q6. [5 Marks]
+Cognitive Fit Theory
+Article Reference: Cognitive Fit Theory section, Moore (2017)
+Colab Reference : Steps 10, 12, 14
+---------------------------------------------------------------------------
+      
+      Run Step 10 (scatter plot), Step 12 (pivot table),
+      and Step 14 (heatmap).
+      
+      (a) Moore (2017) defines two CFT task types:
+          Symbolic (exact granular values) and
+          Spatial (holistic relational patterns).
+          Classify each output below as Symbolic or Spatial and
+          justify with reference to the article:
+          - Step 10 scatter plot
+          - Step 12 pivot table
+          - Step 14 heatmap                                      [3 marks]
+      
+      (b) A CFO asks: "What is the exact average D3M score for the
+          Banking industry?" Which Step output best serves this
+          task per CFT and why?                                  [1 mark]
+      
+      (c) A COO asks: "Which variables are most related to each other
+          overall?" Which Step output serves this Spatial task
+          and why?                                               [1 mark]
+      
+      
+      
+      
+
+
+
+
+
+---------------------------------------------------------------------------
+Q7. [5 Marks]
+Cynefin Framework
+Article Reference: Figure 2, Moore (2017)
+Colab Reference : Step 11
+---------------------------------------------------------------------------
+      
+      Run Step 11 (Cynefin pie chart).
+      
+      (a) The article states "executive strategic decisions typically
+          fall within the complex domain." Does the pie chart
+          from Step 11 support this claim? Report the exact
+          percentage of Complex domain respondents from the chart
+          and compare with what Moore (2017) predicts.          [2 marks]
+      
+      (b) The Cynefin Complex domain requires "Probe-Sense-Respond."
+          Map these 3 actions to 3 specific Colab steps in this lab.
+          Which step best represents each action?               [2 marks]
+      
+      (c) The Cynefin Chaos domain requires "Act-Sense-Respond."
+          From the pie chart, what percentage of organizations
+          operate in the Chaos domain? What does Moore (2017)
+          recommend for decision-making in this domain?         [1 mark]
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q8. [5 Marks]
+Trust Theory and Data Visualization Confidence
+Article Reference: Trust Theory section, RQ2 findings, Moore (2017)
+Colab Reference : Step 10
+---------------------------------------------------------------------------
+      
+      Run Step 10 (scatter plot — data quality vs decision confidence).
+      
+      (a) The article links data quality directly to executive
+          confidence through Trust Theory. Look at the three color
+          groups in the scatter plot (Low/Medium/High trust).
+          Describe the pattern of each trust group in the chart.
+          Does the trend line support Moore's (2017) Trust Theory
+          argument? Explain.                                    [2 marks]
+      
+      (b) Moore (2017) under RQ2 identifies 5 factors that affect
+          executive confidence beyond the visualization itself.
+          List all 5 factors from the article. For each one,
+          suggest which column in the MIS522 dataset best
+          measures or represents that factor.                   [2 marks]
+      
+      (c) The article mentions "tolerance limits can assist the
+          executive in identifying where thresholds have been
+          surpassed." If you added a horizontal line at
+          decision_confidence = 6 on the Step 10 scatter plot,
+          write the one-line matplotlib code to add it and
+          explain what an executive would learn from it.        [1 mark]
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q9. [5 Marks]
+RQ3 — What Elements Must Data Analysts Consider
+Article Reference: RQ3 Findings section, Moore (2017)
+Colab Reference : Steps 13 and 15
+---------------------------------------------------------------------------
+      
+      Run Step 13 (viz tool performance profile) and
+      Step 15 (summary report).
+      
+      (a) Moore (2017) RQ3 findings state that the presenter must
+          have: organizational ranking, ability to answer questions,
+          confidence and maturity, knowledge of the subject, and
+          ability to create a "WOW factor."
+          Which of these qualities cannot be measured by any column
+          in the MIS522 dataset? What does this tell us about the
+          limits of quantitative data for evaluating visualization
+          effectiveness?                                        [2 marks]
+      
+      (b) Step 13 shows which viz tool produces the highest
+          Avg_D3M score and Pct_Effective rate. The article says
+          analysts must use "the right technology to convey the
+          message." Based on the Step 13 output, which tool should
+          NBIRC recommend to Nepali organizations for executive
+          decision-making and why?                              [2 marks]
+      
+      (c) The article argues that "collaboration brings individuals
+          together and the power of knowledgeable individuals can
+          enhance the final decision." Write a one-line pandas
+          code using df_clean to find the average collaboration_score
+          for organizations using Power BI vs organizations
+          using No Tool.                                        [1 mark]
+      
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+Q10. [5 Marks — SYNTHESIS QUESTION]
+Full Article Integration
+Article Reference: All sections, Moore (2017)
+Colab Reference : All steps
+---------------------------------------------------------------------------
+      
+      (a) Using exactly 4 numeric values from any Colab step outputs,
+          write a 150-word executive summary for the NBIRC board.
+          Your summary must reference D3M Framework, Trust Theory,
+          and Cognitive Fit Theory from Moore (2017) by name and
+          explain what the data reveals about data visualization
+          readiness in Nepali organizations.                    [3 marks]
+      
+      (b) The article's conclusion asks: "Can data visualization
+          still be effective in non-data-driven environments?"
+          Run Step 13 and find organizations using "No Tool."
+          What is their average d3m_adoption_score and
+          pct_decisions_datadriven? Does this support or challenge
+          Moore's question?                                     [1 mark]
+      
+      (c) Moore (2017) calls for future research into "intangible
+          and psychological factors that could affect technology
+          adoption." Looking at the MIS522 dataset columns, which
+          3 columns come closest to measuring intangible factors?
+          What important intangible factor from the article is
+          NOT measured by any column and should be added in
+          a future survey?                                      [1 mark]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
