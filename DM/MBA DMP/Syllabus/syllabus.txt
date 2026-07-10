@@ -2,20 +2,20 @@
 DIGITAL MARKETING PRACTICUM
 ============================================================
 
-Pokhara University
+    Pokhara University
 Faculty of Management Studies
 
-Course Code        : MKT 562
-Course Title       : Digital Marketing Practicum
-Nature             : Practical
-Credit Hours       : 1.0
-Full Marks         : 100
-Pass Marks         : 60
-Level              : Master
-Program            : MBA / MBA (Global Business)
-Year               : I
-Trimester          : II
-Total Hours        : 12
+        Course Code        : MKT 562
+        Course Title       : Digital Marketing Practicum
+        Nature             : Practical
+        Credit Hours       : 1.0        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        Full Marks         : 100
+        Pass Marks         : 60
+        Level              : Master
+        Program            : MBA / MBA (Global Business)
+        Year               : I
+        Trimester          : II
+        Total Hours        : 12
 
 
 
@@ -58,16 +58,16 @@ while mastering cutting-edge marketing techniques.
 
 . The general objectives of this course are:
 
-. To help students understand the digital marketing strategies
-for business.
-
-. To develop skills in students to use advanced tools to make
-data driven marketing decisions.
-
-. To develop students’ competencies in synthesizing and applying
-the full spectrum of digital marketing concepts, tools, and
-strategies learned throughout the practicum to develop a
-cohesive and data-driven marketing project.
+        . To help students understand the digital marketing strategies
+        for business.
+        
+        . To develop skills in students to use advanced tools to make
+        data driven marketing decisions.
+        
+        . To develop students’ competencies in synthesizing and applying
+        the full spectrum of digital marketing concepts, tools, and
+        strategies learned throughout the practicum to develop a
+        cohesive and data-driven marketing project.
 
 
 
@@ -210,9 +210,6 @@ coaching.
 ============================================================
 5. EVALUATION SYSTEM AND STUDENTS’ RESPONSIBILITIES
 ===================================================
-
-
-
 
     ============================================================
     5.1 EVALUATION SYSTEM
