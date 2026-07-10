@@ -1,0 +1,268 @@
+============================================================
+DIGITAL MARKETING PRACTICUM
+============================================================
+
+Pokhara University
+Faculty of Management Studies
+
+Course Code        : MKT 562
+Course Title       : Digital Marketing Practicum
+Nature             : Practical
+Credit Hours       : 1.0
+Full Marks         : 100
+Pass Marks         : 60
+Level              : Master
+Program            : MBA / MBA (Global Business)
+Year               : I
+Trimester          : II
+Total Hours        : 12
+
+
+
+
+============================================================
+1. COURSE DESCRIPTION
+============================================================
+
+. Digital Marketing Practicum is an applied, hands-on course
+designed to give students realworld experience in planning,
+executing, and analysing digital marketing campaigns.
+
+. Through practical projects and industry-standard tools,
+students will apply data driven marketing decisions and
+explore a range of marketing automation tools.
+
+. The course emphasizes a results-driven approach, allowing
+students to work with actual clients or simulated business
+environments to develop and implement digital marketing plans.
+
+. Students will also learn how to track and measure campaign
+performance using metrics like conversions, ROI, and
+engagement.
+
+. By the end of the course, students will be equipped with the
+skills and knowledge needed to succeed in a fast-evolving
+digital marketing landscape.
+
+. This course is ideal for students looking to gain practical
+experience and build a portfolio of digital marketing projects
+while mastering cutting-edge marketing techniques.
+
+
+
+
+
+============================================================
+2. GENERAL OBJECTIVES
+============================================================
+
+. The general objectives of this course are:
+
+. To help students understand the digital marketing strategies
+for business.
+
+. To develop skills in students to use advanced tools to make
+data driven marketing decisions.
+
+. To develop students’ competencies in synthesizing and applying
+the full spectrum of digital marketing concepts, tools, and
+strategies learned throughout the practicum to develop a
+cohesive and data-driven marketing project.
+
+
+
+
+============================================================
+3. CONTENTS IN DETAIL
+============================================================
+
+. The trimester system regulations of Pokhara University for
+master's level programs under the Faculty of Management
+Studies (FMS) grant autonomy to faculty members in developing
+course details and preparing teaching plans.
+
+. Faculty members are empowered to adapt and modify course
+content to align with market needs and contextual demands,
+provided that the core objectives and major components of the
+course remain intact.
+
+. The suggested course contents are as follows:
+
+
+
+
+
+============================================================
+MODULE 1: ADVANCED DIGITAL MARKETING STRATEGIES
+(3 HOURS)
+============================================================
+
+. This module will integrate digital marketing within the
+overall business strategy, supplemented by successful case
+studies, and gain a thorough understanding of how to define a
+target audience and buyer persona effectively through
+practical application of proven methods.
+
+    Lab Activity:
+    ---------------------
+        . Develop a comprehensive digital marketing strategy for a
+        hypothetical or real-world business, including SWOT analysis,
+        target audience definition, and campaign objectives.
+
+
+
+
+
+
+============================================================
+MODULE 2: DATA-DRIVEN MARKETING
+(3 HOURS)
+============================================================
+
+. This module will apply data to drive marketing decisions using
+advanced tools such as Google Analytics and SEMrush, mastering
+attribution modeling and ROI calculations to maximize the
+effectiveness of your campaigns.
+      
+      Lab Activities:
+      ---------------------
+          . Conduct in-depth analysis using provided datasets with tools
+          such as Google Analytics.
+          
+          . Design and implement a data-driven marketing campaign based
+          on analytical findings.
+
+
+
+
+
+
+
+
+
+============================================================
+MODULE 3: DIGITAL MARKETING AUTOMATION AND TOOLS
+(3 HOURS)
+============================================================
+
+. This module will explore a range of marketing automation tools,
+including HubSpot and Marketo, to understand their
+functionalities and benefits.
+
+. Learn how to set up and manage automated marketing campaigns,
+with a focus on enhancing personalization and segmentation to
+better meet customer needs.
+
+      Lab Activities:
+      ---------------------
+            . Gain hands-on experience with marketing automation platforms
+            (HubSpot, Marketo, or similar).
+            
+            . Develop automated email campaigns and lead nurturing
+            workflows.
+
+
+
+
+
+
+============================================================
+MODULE 4: CAPSTONE PROJECT AND PRESENTATION
+(3 HOURS)
+============================================================
+
+. This module will apply the learned skills in either a
+real-world scenario or a simulated environment to implement,
+analyze, and present a digital marketing campaign.
+      
+      Lab Activities:
+      ---------------------
+            . Implement a digital marketing campaign for a real-world client
+            or a simulated business.
+            
+            . Perform data analysis and report on the campaign's performance.
+            
+            . Present the campaign results and strategic recommendations.
+      
+      
+      
+      
+          Note:
+          
+                . The figures in the parentheses indicate the approximate
+                teaching hours for the respective units.
+
+
+
+
+
+============================================================
+4. METHODS OF INSTRUCTION
+============================================================
+
+. Interactive sessions, workshops, simulation exercises, role
+plays, real case analysis, selfassessments, feedback and
+coaching.
+
+
+
+
+============================================================
+5. EVALUATION SYSTEM AND STUDENTS’ RESPONSIBILITIES
+===================================================
+
+
+
+
+    ============================================================
+    5.1 EVALUATION SYSTEM
+    =============================================================
+    
+        . Both internal and external evaluations will be based on
+        session’s attendance and participation and the evaluation of
+        faculty on assessments, role playing exercises, case study
+        analysis, simulation exercises and project works.
+        
+        . The faculty will provide final grades of the students.
+        
+        . Thus, there will be no trimester end examination and all
+        evaluations will be conducted continuously throughout the
+        semester.
+        
+        
+    
+    
+    
+    
+    ============================================================
+    5.2 STUDENTS’ RESPONSIBILITIES
+    ============================================================
+    
+          . Each student must secure at least 60 percent marks in the
+          evaluation with 80 percent attendance in the class/sessions to
+          pass the course.
+          
+          . Students are advised to attend all the sessions and complete
+          all the given works within the specified time period.
+          
+          . If a student does not attend the sessions, it is his/her sole
+          responsibility to cover the topic(s) taught during the period.
+          
+          . If a student fails to deliver on the evaluation components,
+          there won’t be any provision for a re-consideration.
+          
+      
+      
+
+
+
+
+============================================================
+6. SUGGESTED TEXT BOOKS AND REFERENCES
+============================================================
+
+. The instructors are free to choose the tools available and
+achieve the objective of Digital Marketing Practicum for
+Master level.
+
+============================================================
