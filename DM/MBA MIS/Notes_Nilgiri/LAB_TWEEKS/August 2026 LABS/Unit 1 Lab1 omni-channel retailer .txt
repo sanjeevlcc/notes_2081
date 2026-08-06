@@ -83,12 +83,15 @@
 
 
 
+
  YOUR ROLE
- ---------
+ ---------                 TARKARI KINNE > SAFA GARNE > CUT GARNE > COOK GARNE > TASTE GARNE > SERVE
  You are the MIS Analyst. Management cannot make any decision until
  somebody produces a trustworthy dataset. Your job in Unit I is to
  audit, clean, enrich and summarise this data, then hand over a
  cleaned file plus a report of what you found.
+
+
 
  THE TWO RAW TABLES
  ------------------
@@ -107,6 +110,10 @@
     payment_method     eSewa / Khalti / COD / Card / Bank  (NULLS)
     delivery_days      days to deliver    (NULLS - defect)
 
+
+
+
+
   TABLE 2 : customers_raw      (approx 935 rows x 8 columns)
   ..........................................................
     customer_id        primary key
@@ -118,12 +125,18 @@
     join_date          date customer registered
     loyalty_member     Yes / No
 
+
+
+
+
  WHY TWO TABLES AND NOT ONE
  --------------------------
  Real MIS work almost never gives you one flat file. Joining a
  transaction table to a master table is the single most common
  operation in any information system, and it is where referential
  integrity problems surface. Doing this properly is worth marks.
+
+
 
 
 
@@ -137,12 +150,14 @@
    1.2   Click  File  >  New notebook
    1.3   Rename it:  MIS522_Unit1_YourName
    1.4   Paste the code below into the first cell
-   1.5   Press  Shift + Enter
+   1.5   Press{RUN / EXECUTE] :  Shift + Enter
+
 
  Nothing needs to be installed. Colab already ships with every
  library used in this workbook.
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------- COPY_S
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -152,6 +167,10 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_absolute_error
+------------------------------------------------------------------------------- COPY_E
+
+
+------------------------------------------------------------------------------- COPY_S
 
 sns.set_theme(style="whitegrid")
 plt.rcParams["figure.figsize"] = (10, 5)
@@ -161,7 +180,7 @@ pd.set_option("display.max_columns", 40)
 rng = np.random.default_rng(42)      # fixed seed = reproducible results
 
 print("All libraries loaded successfully.")
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------- COPY_E
 
  WHAT EACH LIBRARY DOES
  ----------------------
@@ -173,6 +192,9 @@ print("All libraries loaded successfully.")
 
 
 
+
+
+
 ===============================================================================
  PART 2 : GENERATE THE RAW DATASET
 ===============================================================================
@@ -181,7 +203,9 @@ print("All libraries loaded successfully.")
  one so that the defects are known in advance and you can prove your
  cleaning actually worked.
 
+
  IMPORTANT
+ ------------
  The quantity column is NOT random. It is generated from a real
  economic demand relationship:
 
@@ -195,7 +219,9 @@ print("All libraries loaded successfully.")
  In PART 18 you will run a multiple regression and recover these
  numbers from the data. That is the point of the exercise.
 
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_S
+
 # ---------- TABLE 2 : CUSTOMER MASTER ----------
 NC = 900
 cities = {"Bagmati":["Kathmandu","Lalitpur","Bhaktapur","Hetauda"],
@@ -223,8 +249,19 @@ for i in range(1, NC + 1):
                             pd.Timedelta(days=int(rng.integers(0,1400)))
                             ).strftime("%Y-%m-%d"),
         "loyalty_member" : rng.choice(["Yes","No"], p=[.42,.58])})
-cust_raw = pd.DataFrame(cust)
 
+
+cust_raw = pd.DataFrame(cust)
+------------------------------------------------------------------------------- COPY_E
+
+
+-------------------------------------------------------------------------------
+cust_raw
+-------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------- COPY_S
 
 # ---------- TABLE 1 : SALES TRANSACTIONS ----------
 cats = {"Electronics":["Smartphone","Laptop","Earbuds","Power Bank"],
@@ -327,13 +364,33 @@ cust_raw.loc[ix,"province"] = cust_raw.loc[ix,"province"].str.upper()
 
 print("RAW SALES     :", sales_raw.shape)
 print("RAW CUSTOMERS :", cust_raw.shape)
+
+
 sales_raw.head(10)
+
+------------------------------------------------------------------------------- COPY_E
+
+
+
 -------------------------------------------------------------------------------
+sales_raw
+-------------------------------------------------------------------------------
+
+
 
  EXPECTED OUTPUT
  ---------------
         RAW SALES     : (6180, 11)
         RAW CUSTOMERS : (935, 8)
+
+
+        < DATA MATTRA AYEKO HOOO !!!! THATS IT !!!! VEGITABLE KINEKO >
+
+        < ABA CLEAN AND CUT GARNE >
+
+
+
+
 
 
 
@@ -342,10 +399,12 @@ sales_raw.head(10)
 ===============================================================================
 
  PURPOSE
+ ---------
  Before touching anything, measure the damage. You cannot claim your
  cleaning worked unless you recorded the starting position.
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------- COPY_S
+
 def audit(data, name):
     print("=" * 62)
     print(f"AUDIT : {name}")
@@ -378,7 +437,8 @@ print("Negative quantity rows :", (sales_raw.quantity < 0).sum())
 print("Age above 90           :", (cust_raw.age > 90).sum())
 print("Age below 15           :", (cust_raw.age < 15).sum())
 print("Max unit_price found   :", sales_raw.unit_price.max())
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
 
  EXPECTED OUTPUT (record these in your report)
  ---------------------------------------------
@@ -389,6 +449,7 @@ print("Max unit_price found   :", sales_raw.unit_price.max())
         Age below 15           : 9
         Max unit_price found   : 9,500,000     <- laptop typed x100
 
+
  INTERPRETATION
  --------------
  The audit tells you the data cannot be used as delivered. A total of
@@ -398,11 +459,13 @@ print("Max unit_price found   :", sales_raw.unit_price.max())
 
 
 
+
 ===============================================================================
  PART 4 : CLEANING STEP 1 - REMOVE DUPLICATES
 ===============================================================================
 
  CONCEPT
+ -----------
  A duplicate in a transaction table means one sale counted twice, which
  inflates revenue. A duplicate in a master table means one customer
  counted twice, which deflates average spend per customer.
@@ -414,30 +477,47 @@ print("Max unit_price found   :", sales_raw.unit_price.max())
                    customer_id is a primary key and must be unique
                    even if some other column differs
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------- COPY_S
+
 log = []
 s = sales_raw.copy()
 c = cust_raw.copy()
+
+
+
 
 before = len(s)
 s = s.drop_duplicates()
 log.append(f"Sales      : removed {before-len(s)} fully duplicate rows")
 
+
+
+
 before = len(c)
 c = c.drop_duplicates(subset="customer_id", keep="first")
 log.append(f"Customers  : removed {before-len(c)} duplicate customer IDs")
 
+
+
 print("\n".join(log))
+
 print(f"\nSales now     : {s.shape}")
+
 print(f"Customers now : {c.shape}")
+
 print(f"customer_id unique? {c.customer_id.is_unique}")
--------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------- COPY_E
 
  EXPECTED OUTPUT
  ---------------
         Sales      : removed 98 fully duplicate rows
         Customers  : removed 35 duplicate customer IDs
         customer_id unique? True
+
+
+
 
  NOTE FOR YOUR REPORT
  --------------------
@@ -449,13 +529,17 @@ print(f"customer_id unique? {c.customer_id.is_unique}")
 
 
 
+
+
+
 ===============================================================================
  PART 5 : CLEANING STEP 2 - STANDARDISE TEXT AND DATES
 ===============================================================================
 
  CONCEPT
+ ---------
  "ELECTRONICS", "  electronics  " and "Electronics" are three different
- strings to a computer but one category to a human. Until they are
+  strings to a computer but one category to a human. Until they are
  unified, every group-by and every pivot table will be wrong.
 
     .str.strip()   removes leading and trailing spaces
@@ -464,7 +548,8 @@ print(f"customer_id unique? {c.customer_id.is_unique}")
  For dates, format="mixed" with dayfirst=True lets pandas handle both
  "2024-03-15" and "15/03/2024" in the same column.
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------- COPY_S
+
 print("BEFORE :", sorted(s.category.dropna().unique()))
 
 s["category"] = s["category"].str.strip().str.title()
@@ -478,12 +563,21 @@ s["order_date"] = pd.to_datetime(s["order_date"], format="mixed",
                                  dayfirst=True, errors="coerce")
 c["join_date"]  = pd.to_datetime(c["join_date"], errors="coerce")
 
+
+
 print("AFTER  :", sorted(s.category.unique()))
+
 print("Gender :", c.gender.dropna().unique().tolist())
+
 print("Province:", sorted(c.province.unique()))
+
 print(f"\nDate range : {s.order_date.min().date()}  to  {s.order_date.max().date()}")
+
 print(f"Unparseable dates : {s.order_date.isna().sum()}")
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
+
+
 
  EXPECTED OUTPUT
  ---------------
@@ -491,6 +585,8 @@ print(f"Unparseable dates : {s.order_date.isna().sum()}")
         AFTER  : ['Apparel','Beauty','Electronics','Groceries','Home']
         Gender : ['Male','Female']
         Unparseable dates : 0
+
+
 
  INTERPRETATION
  --------------
@@ -501,44 +597,77 @@ print(f"Unparseable dates : {s.order_date.isna().sum()}")
 
 
 
+
+
+
+
 ===============================================================================
  PART 6 : CLEANING STEP 3 - HANDLE INVALID VALUES
 ===============================================================================
 
  CONCEPT
+ ------------
  Missing and invalid are not the same thing.
 
     MISSING   the value was never recorded         -> impute it
     INVALID   a value exists but cannot be true    -> delete or NaN it
 
+                        Impute means 
+                                to fill in missing data with 
+                                an estimated value instead of 
+                                leaving it blank
+
+                        NaN stands for Not a Number.
+                                It is a standard computer programming 
+                                and data science term used to represent 
+                                missing, undefined, or unrepresentable
+                                values (like trying to divide a number by zero).
+
  A quantity of -2 is not a return in this system; the schema has no
  returns table, so it is a keying error. An age of 999 is a placeholder
  somebody typed to skip a required field.
 
+
+
  DECISION RULE USED HERE
+ ------------------------------
     negative quantity  -> DROP the row (the sale amount is unknowable)
     impossible age     -> CONVERT TO NaN, then impute in PART 7
                           (we still want to keep that customer's orders)
 
--------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------- COPY_S
+
 before = len(s)
 s = s[s["quantity"].isna() | (s["quantity"] > 0)]
 log.append(f"Dropped {before-len(s)} rows with negative quantity")
+
 
 bad_age = ((c.age < 15) | (c.age > 90)).sum()
 c.loc[(c.age < 15) | (c.age > 90), "age"] = np.nan
 log.append(f"Converted {bad_age} impossible ages to NaN")
 
+
+
 print(f"Rows with negative quantity dropped : {before-len(s)}")
+
 print(f"Impossible ages converted to NaN    : {bad_age}")
+
 print(f"Sales rows remaining                : {len(s):,}")
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
+
+
+
 
  EXPECTED OUTPUT
  ---------------
         Rows with negative quantity dropped : 55
         Impossible ages converted to NaN    : 27
         Sales rows remaining                : 6,027
+
+
 
  WHY DIFFERENT TREATMENT
  -----------------------
@@ -550,29 +679,34 @@ print(f"Sales rows remaining                : {len(s):,}")
 
 
 
+
 ===============================================================================
  PART 7 : CLEANING STEP 4 - HANDLE MISSING VALUES
 ===============================================================================
 
  CONCEPT - CHOOSING AN IMPUTATION STRATEGY
 
-  COLUMN            STRATEGY              WHY
-  ---------------   -------------------   ----------------------------------
-  quantity          median                skewed, median resists outliers
-  unit_price        median BY PRODUCT     a Laptop must not get the median
-                                          price of the whole catalogue
-  delivery_days     median                skewed
-  payment_method    mode                  categorical, use most frequent
-  age               median                mildly skewed
-  segment           "Unknown" category    do NOT guess a business segment,
-                                          make the gap visible instead
-  gender            "Unknown" category    same reasoning
+          COLUMN            STRATEGY              WHY
+          ---------------   -------------------   ----------------------------------
+          quantity          median                skewed, median resists outliers
+          unit_price        median BY PRODUCT     a Laptop must not get the median
+                                                  price of the whole catalogue
+          delivery_days     median                skewed
+          payment_method    mode                  categorical, use most frequent
+          age               median                mildly skewed
+          segment           "Unknown" category    do NOT guess a business segment,
+                                                  make the gap visible instead
+          gender            "Unknown" category    same reasoning
+        
+
+
 
  The unit_price rule is the important one. A blanket median would price
  a missing laptop at NPR 2,800. Grouping by product first keeps every
  imputed value inside its own product's price range.
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------- COPY_S
+
 s["quantity"]       = s["quantity"].fillna(s["quantity"].median())
 s["unit_price"]     = s.groupby("product")["unit_price"].transform(
                           lambda x: x.fillna(x.median()))
@@ -587,16 +721,24 @@ s["quantity"]      = s["quantity"].astype(int)
 s["delivery_days"] = s["delivery_days"].astype(int)
 c["age"]           = c["age"].astype(int)
 
+
+
 print("Remaining missing in sales     :", int(s.isnull().sum().sum()))
+
 print("Remaining missing in customers :", int(c.isnull().sum().sum()))
+
 print("\nSegment distribution after imputation:")
+
 print(c.segment.value_counts())
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
 
  EXPECTED OUTPUT
  ---------------
         Remaining missing in sales     : 0
         Remaining missing in customers : 0
+
+
 
  INTERPRETATION
  --------------
@@ -609,9 +751,13 @@ print(c.segment.value_counts())
 
 
 
+
+
+
 ===============================================================================
  PART 8 : CLEANING STEP 5 - OUTLIER TREATMENT
 ===============================================================================
+
 
  CONCEPT - WHY THE STANDARD IQR RULE FAILS HERE
 
@@ -619,24 +765,39 @@ print(c.segment.value_counts())
 
         upper limit = Q3 + 1.5 x IQR
 
+
+        https://cdn.analyticsvidhya.com/wp-content/uploads/2024/09/12311IQR.webp
+
+        https://cdn.educba.com/academy/wp-content/uploads/2019/05/Outliers-Formula.jpg
+
+
+
  Applied to unit_price in this dataset that limit lands near NPR 13,900.
  It would delete every laptop (95,000) and every smartphone (45,000) -
  hundreds of perfectly valid rows - while a genuine typing error of
  9,500,000 sits far above and also gets deleted. You lose real revenue
  data to remove a handful of errors.
 
+
  BETTER RULE FOR THIS SCENARIO
+ ---------------------------------
  Compare each price against the median price OF THAT SAME PRODUCT.
  A Laptop is only an outlier if it costs 10x what a Laptop normally
  costs. This targets keying errors precisely and protects genuine
  high-value products.
 
--------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------- COPY_S
+
 # --- Show why IQR is the wrong tool here ---
 q1, q3 = s.unit_price.quantile([.25, .75])
 iqr_limit = q3 + 1.5 * (q3 - q1)
 print(f"IQR upper limit          : NPR {iqr_limit:,.0f}")
 print(f"Valid rows IQR would kill: {(s.unit_price > iqr_limit).sum():,}")
+
+
 
 # --- The rule we actually apply ---
 med  = s.groupby("product")["unit_price"].transform("median")
@@ -644,11 +805,17 @@ mask = s["unit_price"] > 10 * med
 print(f"\nPer-product rule removes : {int(mask.sum())} rows")
 print("Prices being removed     :", sorted(s.loc[mask,"unit_price"].unique())[:5])
 
+
+
 s = s[~mask]
 log.append(f"Removed {int(mask.sum())} price-entry errors (per-product rule)")
 print(f"\nSales rows remaining     : {len(s):,}")
 print(f"Max unit_price now       : NPR {s.unit_price.max():,.0f}")
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
+
+
+
 
  EXPECTED OUTPUT
  ---------------
@@ -656,6 +823,9 @@ print(f"Max unit_price now       : NPR {s.unit_price.max():,.0f}")
         Valid rows IQR would kill: 1,164        <- unacceptable
         Per-product rule removes : 22 rows      <- exactly the injected errors
         Max unit_price now       : NPR 95,000
+
+
+
 
  THIS IS A HIGH-MARK PARAGRAPH
  -----------------------------
@@ -666,18 +836,28 @@ print(f"Max unit_price now       : NPR {s.unit_price.max():,.0f}")
 
 
 
+
+
 ===============================================================================
  PART 9 : MERGE THE TWO TABLES
 ===============================================================================
 
  CONCEPT
+ ------------
  A LEFT JOIN keeps every sales row and attaches customer attributes
  where a match exists. Always check afterwards for orphan records -
  sales referencing a customer_id that does not exist in the master.
  That is a referential integrity failure and it is common after a
  system migration.
 
--------------------------------------------------------------------------------
+
+----------
+sales_raw
+cust_raw
+----------
+
+------------------------------------------------------------------------------- COPY_S
+
 df = s.merge(c, on="customer_id", how="left")
 
 orphans = df.province.isna().sum()
@@ -689,13 +869,47 @@ if orphans:
     df = df[df.province.notna()]
 
 log.append(f"Merged sales + customers -> {df.shape[0]:,} rows")
+
 print(f"\nColumns now available: {list(df.columns)}")
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
+
+
+-------
+df
+df.info()
+print(df.isna().sum())
+-------
+
+ #   Column          Non-Null Count  Dtype         
+---  ------          --------------  -----         
+ 0   order_id        6005 non-null   object        
+ 1   order_date      6005 non-null   datetime64[ns]
+ 2   customer_id     6005 non-null   object        
+ 3   category        6005 non-null   object        
+ 4   product         6005 non-null   object        
+ 5   quantity        6005 non-null   int64         
+ 6   unit_price      6005 non-null   float64       
+ 7   discount_pct    6005 non-null   float64       
+ 8   channel         6005 non-null   object        
+ 9   payment_method  6005 non-null   object        
+ 10  delivery_days   6005 non-null   int64         
+ 11  gender          6005 non-null   object        
+ 12  age             6005 non-null   int64         
+ 13  city            6005 non-null   object        
+ 14  province        6005 non-null   object        
+ 15  segment         6005 non-null   object        
+ 16  join_date       6005 non-null   datetime64[ns]
+ 17  loyalty_member  6005 non-null   object   
+
+
 
  EXPECTED OUTPUT
  ---------------
         Merged dataset shape : (6005, 18)
         Orphan sales records : 0
+
+
 
  INTERPRETATION
  --------------
@@ -705,16 +919,37 @@ print(f"\nColumns now available: {list(df.columns)}")
 
 
 
+
+
+
+
 ===============================================================================
  PART 10 : FEATURE ENGINEERING
 ===============================================================================
 
  CONCEPT
+ ------------
  Feature engineering means creating NEW columns from existing ones so
  that the analysis can answer business questions the raw data cannot.
  The raw table has no revenue column at all - it has to be derived.
 
+
+
+-------------
+list(df.columns)
+-------------
+
+        order_id            order_date          customer_id         category            
+        product             quantity            unit_price          discount_pct        
+        channel             payment_method      delivery_days       gender              
+        age                 city                province            segment             
+        join_date           loyalty_member      
+
+
+
+
  EIGHTEEN FEATURES CREATED, IN FIVE FAMILIES
+ ---------------------------------------------------
 
   1. MONETARY
         gross_amount      quantity x unit_price
@@ -741,7 +976,10 @@ print(f"\nColumns now available: {list(df.columns)}")
   5. OPERATIONS
         delivery_speed    Fast (1-2d) / Normal (3-5d) / Slow (6d+)
 
--------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------- COPY_S
+
 # ---- 1. MONETARY ----
 df["gross_amount"]    = df.quantity * df.unit_price
 df["discount_amount"] = (df.gross_amount * df.discount_pct / 100).round(2)
@@ -784,13 +1022,18 @@ print(f"\nColumns: 18 raw -> {df.shape[1]} after engineering")
 print(f"Total revenue : NPR {df.revenue.sum()/1e6:,.1f} million")
 print(f"Revenue skew  : raw {df.revenue.skew():.2f}  |  log {df.log_revenue.skew():.2f}")
 df[["revenue","tenure_days","age_group","price_band","is_festival"]].head()
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
+
 
  EXPECTED OUTPUT
  ---------------
         VALIDATION: orders dated BEFORE the customer's join_date : 250
         Columns: 18 raw -> 36 after engineering
         Revenue skew  : raw 5.46  |  log 0.23
+
+
+
 
  *** THE MOST IMPORTANT FINDING IN UNIT I ***
  -------------------------------------------
@@ -817,34 +1060,140 @@ df[["revenue","tenure_days","age_group","price_band","is_festival"]].head()
 
 
 
+
+------------- BEFORE
+list(df.columns)
+-------------
+
+        order_id            order_date          customer_id         category            
+        product             quantity            unit_price          discount_pct        
+        channel             payment_method      delivery_days       gender              
+        age                 city                province            segment             
+        join_date           loyalty_member      
+
+
+
+------------- AFTER FE
+list(df.columns)
+df.info()
+-------------
+
+        
+        ['order_id',
+         'order_date',
+         'customer_id',
+         'category',
+         'product',
+         'quantity',
+         'unit_price',
+         'discount_pct',
+         'channel',
+         'payment_method',
+         'delivery_days',
+         'gender',
+         'age',
+         'city',
+         'province',
+         'segment',
+         'join_date',
+         'loyalty_member',
+        
+        
+         'gross_amount',
+         'discount_amount',
+         'revenue',
+         'log_revenue',
+         'year',
+         'month',
+         'month_num',
+         'quarter',
+         'day_name',
+         'is_weekend',
+         'is_festival',
+         'tenure_days',
+         'age_group',
+         'cust_order_count',
+         'is_repeat',
+         'price_band',
+         'is_discounted',
+         'delivery_speed']
+
+
+
+
+
+
+
+********************** high-impact engineered features.***********************************
+Prompt 1: 
+
+To find hidden teen behavioral features"I have a telecom dataset with features like age, gender, order_date, product (night packs, SIM cards), quantity, and discount_pct. Individually, these features have a very low correlation to customer churn. Act as a data scientist and suggest 5 new engineered interaction features (combinations of 2 or 3 weak variables) that would have a very high correlation to churn for a teen romance audience. Explain the behavioral logic behind each."
+
+
+
+Prompt 2: 
+
+To discover "The Couple Effect" using network data"In a SIM card sales dataset, a single teen's drop in midnight usage has a low correlation to churn. However, teen romance talk usually involves a pair of users. If I can link callers, what network-based feature engineering can I do? Suggest 3 combined variables looking at 'linked pairs' that would create a high-correlation trigger for churn prediction."
+
+
+
+Prompt 3: 
+
+To identify price-sensitivity vs. promo-hopping"Teens are highly price-sensitive but have low brand loyalty. In my sales data, discount_pct and payment_method have weak correlations to long-term loyalty on their own. Show me how to combine discount_pct, order_frequency, and channel (digital vs retail SIM purchase) into a single engineered variable that highly correlates with a 'Promo Hopper' who is about to churn."
+
+
+
+Prompt 4: 
+
+Generic template for any new dataset"I am building a predictive model for [Insert your Goal, e.g., Sales Forecasting]. My individual variables are [X, Y, Z], but they all show a very low linear correlation to my target variable. What non-linear combinations, ratios, or conditional flags (IF/THEN features) can I engineer from these 3 variables to create a new feature with a high correlation effect?"
+
+********************** high-impact engineered features.***********************************
+
+
+
+
+
+
+
+
+
 ===============================================================================
  PART 11 : NORMALISATION
 ===============================================================================
 
  CONCEPT - WHY NORMALISE
+ --------------------------
  unit_price ranges from 220 to 95,000. age ranges from 18 to 72. Any
  algorithm that measures distance (clustering, KNN) or compares
  coefficients would be dominated by unit_price purely because its
  numbers are bigger, not because it matters more.
 
+
+
+
  THREE TECHNIQUES
 
-  MIN-MAX SCALING          x' = (x - min) / (max - min)
-     Result range          0 to 1
-     Use when              you need a bounded range, e.g. neural nets
-     Weakness              a single outlier squashes everything else
+          MIN-MAX SCALING          x' = (x - min) / (max - min)
+             Result range          0 to 1
+             Use when              you need a bounded range, e.g. neural nets
+             Weakness              a single outlier squashes everything else
 
-  Z-SCORE STANDARDISATION  x' = (x - mean) / std
-     Result                mean 0, standard deviation 1
-     Use when              data is roughly normal; the default for PCA
-     Weakness              not bounded, outliers remain visible
 
-  LOG TRANSFORM            x' = log(1 + x)
-     Result                compresses the long right tail
-     Use when              data is heavily right-skewed, as revenue is
-     Weakness              only valid for non-negative values
+          Z-SCORE STANDARDISATION  x' = (x - mean) / std
+             Result                mean 0, standard deviation 1
+             Use when              data is roughly normal; the default for PCA
+             Weakness              not bounded, outliers remain visible
 
--------------------------------------------------------------------------------
+
+          LOG TRANSFORM            x' = log(1 + x)
+             Result                compresses the long right tail
+             Use when              data is heavily right-skewed, as revenue is
+             Weakness              only valid for non-negative values
+
+
+
+------------------------------------------------------------------------------- COPY_S
+
 num_cols = ["quantity","unit_price","revenue","delivery_days","age","tenure_days"]
 
 mm = pd.DataFrame(MinMaxScaler().fit_transform(df[num_cols]),
@@ -865,12 +1214,16 @@ print(pd.DataFrame({
     "raw"    : df[num_cols].iloc[0],
     "minmax" : mm.iloc[0].values.round(4),
     "zscore" : zz.iloc[0].values.round(4)}))
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
+
 
  EXPECTED OUTPUT
  ---------------
         MIN-MAX : min row all 0.0, max row all 1.0
         Z-SCORE : mean row all -0.0, std row all 1.0
+
+
 
  INTERPRETATION
  --------------
@@ -881,11 +1234,16 @@ print(pd.DataFrame({
 
 
 
+
+
+
 ===============================================================================
  PART 12 : DESCRIPTIVE STATISTICS  (mean, median, mode)
 ===============================================================================
 
  SYLLABUS REQUIREMENT 1.3 - basic descriptive statistics.
+
+
 
  The three measures of central tendency answer different questions:
 
@@ -893,11 +1251,17 @@ print(pd.DataFrame({
     MEDIAN   the middle value       - resistant to extreme values
     MODE     the most frequent      - the only one valid for text columns
 
+
+
  THE DECISION RULE
+ -------------------
  If mean and median differ substantially, the distribution is skewed and
  the MEDIAN is the honest number to quote to management.
 
--------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------- COPY_S
+
 print("=" * 74)
 print("NUMERIC SUMMARY")
 print("=" * 74)
@@ -916,6 +1280,9 @@ for col in ["revenue","quantity","unit_price","age","delivery_days"]:
     print(f"{col:<16}{mn:>12,.1f}{md:>12,.1f}{mo:>12,.1f}{sk:>9.2f}  {verdict}")
 
 print("\n" + "=" * 74)
+
+
+
 print("MODE OF CATEGORICAL COLUMNS")
 print("=" * 74)
 for col in ["category","province","payment_method","channel","segment",
@@ -923,7 +1290,10 @@ for col in ["category","province","payment_method","channel","segment",
     m = df[col].mode()[0]
     pct = (df[col] == m).mean() * 100
     print(f"{col:<16} {str(m):<20} ({pct:.1f}% of all orders)")
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
+
+
 
  EXPECTED OUTPUT
  ---------------
@@ -937,6 +1307,9 @@ for col in ["category","province","payment_method","channel","segment",
     province         Bagmati            (33% of all orders)
     payment_method   Cash on Delivery   (34% of all orders)
     channel          In-Store           (45% of all orders)
+
+
+
 
  INTERPRETATION - WRITE THIS UP
  ------------------------------
@@ -961,6 +1334,9 @@ for col in ["category","province","payment_method","channel","segment",
 
 
 
+
+
+
 ===============================================================================
  PART 13 : PIVOT TABLES
 ===============================================================================
@@ -973,21 +1349,39 @@ for col in ["category","province","payment_method","channel","segment",
     columns   the column grouping             (Excel: Columns box)
     aggfunc   sum / mean / count              (Excel: Summarize by)
 
--------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------- COPY_S
+
 print("PIVOT 1 : Total revenue by Province x Category  (NPR millions)")
 p1 = pd.pivot_table(df, values="revenue", index="province", columns="category",
                     aggfunc="sum", margins=True, margins_name="TOTAL")
 print((p1/1e6).round(2))
+
+
+
+
+
 
 print("\n\nPIVOT 2 : Revenue by Segment x Channel  (sum and average)")
 p2 = pd.pivot_table(df, values="revenue", index="segment", columns="channel",
                     aggfunc=["sum","mean"]).round(0)
 print(p2)
 
+
+
+
+
+
 print("\n\nPIVOT 3 : Average order value by Age Group x Price Band")
 p3 = pd.pivot_table(df, values="revenue", index="age_group",
                     columns="price_band", aggfunc="mean", observed=True).round(0)
 print(p3)
+
+
+
+
+
 
 print("\n\nPIVOT 4 : Order count by Category x Festival period")
 p4 = pd.pivot_table(df, values="order_id", index="category",
@@ -997,6 +1391,10 @@ p4["Festival uplift %"] = ((p4["Festival months"]/3) /
                            (p4["Normal months"]/9) * 100 - 100).round(1)
 print(p4)
 
+
+
+
+
 print("\n\nPIVOT 5 : Discount effectiveness")
 p5 = df.groupby("is_discounted").agg(
         orders      = ("order_id","count"),
@@ -1004,7 +1402,8 @@ p5 = df.groupby("is_discounted").agg(
         avg_revenue = ("revenue","mean")).round(2)
 p5.index = ["No discount","Discounted"]
 print(p5)
--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------- COPY_E
 
  EXPECTED OUTPUT - PIVOT 1  (NPR millions)
  -----------------------------------------
@@ -1018,6 +1417,10 @@ print(p5)
     Karnali            0.10    0.01         0.74       0.05  0.06     0.95
     TOTAL              4.83    1.14        39.94       1.91  5.24    53.05
 
+
+
+
+
  INTERPRETATION - THE CENTRAL PARADOX OF THIS DATASET
  ----------------------------------------------------
  Groceries is the MOST FREQUENT category (34% of all orders) but earns
@@ -1025,17 +1428,31 @@ print(p5)
  Electronics generates NPR 39.94m, which is 75% of total revenue, from
  only 20% of orders.
 
+
  The two questions "what do we sell most often?" and "what makes us
  money?" have completely different answers. A dashboard that reports
  order counts would point management in exactly the wrong direction.
 
+
  Geographic concentration: Bagmati alone contributes NPR 19.71m (37%),
  while Karnali contributes NPR 0.95m (1.8%). A 20-to-1 ratio.
 
+
+
+
  STRATEGIC RECOMMENDATION
+ -----------------------------
  Protect Electronics margin above all else; treat Groceries as a
  footfall driver rather than a profit centre; and evaluate whether the
  cost of serving Karnali is justified by NPR 0.95m of annual revenue.
+
+
+
+
+
+
+
+
 
 
 
@@ -1044,16 +1461,23 @@ print(p5)
 ===============================================================================
 
  PURPOSE
+ -----------------
  These three charts are the visual evidence that your cleaning worked.
  Put them at the FRONT of your report.
 
+
+
+
 -------------------------------------------------------------------------------
+
 fig, ax = plt.subplots(1, 3, figsize=(17, 4.5))
 
 # A1 - missing value map
 sns.heatmap(sales_raw.isnull(), cbar=False, yticklabels=False,
             cmap="viridis", ax=ax[0])
 ax[0].set_title("A1  Missing value map (raw sales)", fontweight="bold")
+
+
 
 # A2 - before vs after
 qa = pd.DataFrame({"stage":["Raw","Cleaned"],
@@ -1069,15 +1493,22 @@ for i, (r, n) in enumerate(zip(qa.rows, qa.nulls)):
     ax[1].text(i-.2, r, f"{r:,}", ha="center", va="bottom", fontsize=9)
     ax[1].text(i+.2, n, f"{n:,}", ha="center", va="bottom", fontsize=9)
 
+
+
+
 # A3 - missing by column
 mv = sales_raw.isnull().sum().sort_values(ascending=False).head(6)
 ax[2].barh(mv.index, mv.values, color="#eb6834")
 ax[2].set_title("A3  Missing values by column", fontweight="bold")
 
+
+
 plt.tight_layout()
 plt.savefig("fig_A_data_quality.png", dpi=150, bbox_inches="tight")
 plt.show()
+
 -------------------------------------------------------------------------------
+
 
  INTERPRETATION
  --------------
@@ -1098,11 +1529,15 @@ plt.show()
 
 
 
+
+
+
 ===============================================================================
  PART 15 : VISUALISATION SET B - DISTRIBUTIONS
 ===============================================================================
 
 -------------------------------------------------------------------------------
+
 fig, ax = plt.subplots(2, 3, figsize=(17, 9))
 
 sns.histplot(df.revenue, bins=50, kde=True, ax=ax[0,0], color="#2a78d6")
@@ -1132,7 +1567,10 @@ ax[1,2].set_title("B6  Quantity by price band", fontweight="bold")
 plt.tight_layout()
 plt.savefig("fig_B_distributions.png", dpi=150, bbox_inches="tight")
 plt.show()
+
 -------------------------------------------------------------------------------
+
+
 
  INTERPRETATION
  --------------
@@ -1161,11 +1599,17 @@ plt.show()
 
 
 
+
+
+
+
+
 ===============================================================================
  PART 16 : VISUALISATION SET C - BUSINESS INSIGHT
 ===============================================================================
 
 -------------------------------------------------------------------------------
+
 fig, ax = plt.subplots(2, 3, figsize=(17, 9))
 
 s1 = df.groupby("province").revenue.sum().sort_values() / 1e6
@@ -1232,11 +1676,17 @@ plt.show()
 
 
 
+
+
+
 ===============================================================================
  PART 17 : VISUALISATION SET D - EFFECT OF NORMALISATION
 ===============================================================================
 
+
+
 -------------------------------------------------------------------------------
+
 fig, ax = plt.subplots(1, 3, figsize=(16, 4))
 
 raw    = df.unit_price
@@ -1252,6 +1702,7 @@ for a, (t, d, col) in zip(ax, [("Raw (NPR 220 - 95,000)", raw,    "#2a78d6"),
 plt.tight_layout()
 plt.savefig("fig_D_normalisation.png", dpi=150, bbox_inches="tight")
 plt.show()
+
 -------------------------------------------------------------------------------
 
  INTERPRETATION
@@ -1267,6 +1718,13 @@ plt.show()
 
 
 
+
+
+
+
+
+
+
 ===============================================================================
  PART 18 : MULTIPLE LINEAR REGRESSION - DEMAND MODEL
 ===============================================================================
@@ -1274,15 +1732,28 @@ plt.show()
  BUSINESS QUESTION
  What actually drives the number of units a customer buys?
 
+
+
  MODEL
      quantity = a + b1(log price) + b2(discount) + b3(festival)
                   + b4(loyalty) + b5(weekend) + b6(age)
 
+
+
+
+
  WHY log(unit_price) AND NOT unit_price
+
  Price ranges from 220 to 95,000, and the effect is proportional rather
  than absolute - a NPR 100 rise matters enormously on a Tea Pack and not
  at all on a Laptop. Taking logs makes the coefficient an ELASTICITY:
  the percentage change in quantity for a one percent change in price.
+
+
+
+
+
+
 
  *** CRITICAL WARNING - DATA LEAKAGE ***
  Do NOT try to predict revenue from quantity and unit_price. Revenue was
@@ -1291,13 +1762,23 @@ plt.show()
  have handed it the answer. This mistake is common and it is heavily
  penalised. Always ask whether your target was derived from your inputs.
 
+
+
+
  NOTE ON weekend AND age
  These two are included deliberately as PLACEBO variables. Nothing in
  the data generating process links them to quantity. A trustworthy model
  must return coefficients near zero for both. If it does not, the model
  is fitting noise.
 
+
+
+
+
+
+
 -------------------------------------------------------------------------------
+
 reg = pd.DataFrame({
     "log_price"    : np.log(df.unit_price),
     "discount_pct" : df.discount_pct,
@@ -1362,6 +1843,7 @@ ax[2].set_title("Coefficient size", fontweight="bold")
 plt.tight_layout()
 plt.savefig("fig_E_regression.png", dpi=150, bbox_inches="tight")
 plt.show()
+
 -------------------------------------------------------------------------------
 
  EXPECTED OUTPUT
@@ -1377,6 +1859,9 @@ plt.show()
     Training R2 : 0.8164
     Test R2     : 0.8002
     Test MAE    : 0.7876 units
+
+
+
 
  INTERPRETATION - THIS IS THE STRONGEST SECTION OF YOUR REPORT
  ------------------------------------------------------------
@@ -1419,6 +1904,7 @@ plt.show()
 
 
 
+
 ===============================================================================
  PART 19 : EXPORT THE DELIVERABLE
 ===============================================================================
@@ -1452,6 +1938,9 @@ for f in ["cleaned_sales_dataset.csv", "cleaned_normalised_dataset.csv",
           "fig_D_normalisation.png", "fig_E_regression.png"]:
     files.download(f)
 -------------------------------------------------------------------------------
+
+
+
 
 
 
@@ -1538,6 +2027,8 @@ for f in ["cleaned_sales_dataset.csv", "cleaned_normalised_dataset.csv",
       increase volume.
 
 
+
+
 ===============================================================================
  QUICK REFERENCE - CLEANING CHECKLIST
 ===============================================================================
@@ -1554,6 +2045,8 @@ for f in ["cleaned_sales_dataset.csv", "cleaned_normalised_dataset.csv",
    [ ]  Engineer features, then VALIDATE them (they expose new defects)
    [ ]  Check for data leakage before any modelling
    [ ]  Export the cleaned file and log every decision
+
+
 
 
 ===============================================================================
@@ -1588,3 +2081,22 @@ for f in ["cleaned_sales_dataset.csv", "cleaned_normalised_dataset.csv",
 ===============================================================================
                           END OF UNIT I WORKBOOK
 ===============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
