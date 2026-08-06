@@ -59,6 +59,14 @@
  Kathmandu, operating across all seven provinces of Nepal through
  physical stores, a website and a mobile application.
 
+        Omnichannel is a business strategy providing a seamless, 
+                connected customer experience across multiple touchpoints, 
+                including online websites, mobile apps, social media, 
+                and physical stores
+
+
+
+
  THE PROBLEM
  -----------
  The company recently migrated from three separate systems into a
@@ -72,6 +80,8 @@
  tables and they are full of defects: the same order appears twice,
  province names are typed in different cases, some prices were entered
  with the paisa places shifted, and a number of fields are simply blank.
+
+
 
  YOUR ROLE
  ---------
