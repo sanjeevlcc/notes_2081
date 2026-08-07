@@ -86,7 +86,8 @@
 
  YOUR ROLE
  ---------                 TARKARI KINNE > SAFA GARNE > CUT GARNE > COOK GARNE > TASTE GARNE > SERVE
- You are the MIS Analyst. Management cannot make any decision until
+ 
+You are the MIS Analyst. Management cannot make any decision until
  somebody produces a trustworthy dataset. Your job in Unit I is to
  audit, clean, enrich and summarise this data, then hand over a
  cleaned file plus a report of what you found.
@@ -323,7 +324,22 @@ for i in range(N):
 sales_raw = pd.DataFrame(rows)
 
 
-# ---------- INJECT REALISTIC DEFECTS ----------
+
+
+-------------------------------------------------------------------------------
+sales_raw 
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------COPY_S
+
+# ---------- INJECT REALISTIC DEFECTS ---------- DATA LAI BIGRNE 
+
 # 1. duplicate rows (double-posted orders)
 sales_raw = pd.concat([sales_raw, sales_raw.sample(180, random_state=1)],
                       ignore_index=True)
