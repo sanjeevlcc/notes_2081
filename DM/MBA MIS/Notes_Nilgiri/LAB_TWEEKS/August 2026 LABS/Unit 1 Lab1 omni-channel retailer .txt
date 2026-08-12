@@ -168,6 +168,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_absolute_error
+
 ------------------------------------------------------------------------------- COPY_E
 
 
@@ -181,6 +182,7 @@ pd.set_option("display.max_columns", 40)
 rng = np.random.default_rng(42)      # fixed seed = reproducible results
 
 print("All libraries loaded successfully.")
+
 ------------------------------------------------------------------------------- COPY_E
 
  WHAT EACH LIBRARY DOES
@@ -221,6 +223,9 @@ print("All libraries loaded successfully.")
  numbers from the data. That is the point of the exercise.
 
 
+
+
+
 ------------------------------------------------------------------------------- COPY_S
 
 # ---------- TABLE 2 : CUSTOMER MASTER ----------
@@ -253,12 +258,25 @@ for i in range(1, NC + 1):
 
 
 cust_raw = pd.DataFrame(cust)
+
 ------------------------------------------------------------------------------- COPY_E
 
 
--------------------------------------------------------------------------------
+-------------------------------------------------------------------------------COPY_S
 cust_raw
--------------------------------------------------------------------------------
+-------------------------------------------------------------------------------COPY_E
+
+
+
+------------------------
+New interactive Sheet  >>>> New sheet in New tab >>> Excel File
+------------------------
+
+https://docs.google.com/spreadsheets/d/1XOja793kNLrEqMOAHhUdMg2MY6Z9k38nuAw5HWylDPI/edit?gid=0#gid=0
+
+
+
+
 
 
 
@@ -323,12 +341,18 @@ for i in range(N):
         "delivery_days" : int(rng.integers(1, 9))})
 sales_raw = pd.DataFrame(rows)
 
+------------------------------------------------------------------------------- COPY_E
 
 
 
 -------------------------------------------------------------------------------
 sales_raw 
 -------------------------------------------------------------------------------
+
+
+------------------------
+New interactive Sheet  >>>> New sheet in New tab >>> Excel File
+------------------------
 
 
 
@@ -388,9 +412,17 @@ sales_raw.head(10)
 
 
 
--------------------------------------------------------------------------------
+-----------------------------------------------------------------BIGREKO DATA 
 sales_raw
 -------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------BIGREKO DATA
+cust_raw
+-------------------------------------------------------------------------------
+
+
+
 
 
 
@@ -410,16 +442,33 @@ sales_raw
 
 
 
+
+
+
+
+
+
+
+
 ===============================================================================
  PART 3 : DATA QUALITY AUDIT
 ===============================================================================
+
 
  PURPOSE
  ---------
  Before touching anything, measure the damage. You cannot claim your
  cleaning worked unless you recorded the starting position.
 
+
+
 ------------------------------------------------------------------------------- COPY_S
+
+#DATA QUALITY AUDIT
+#Before touching anything, measure the damage. You cannot claim your
+#cleaning worked unless you recorded the starting position.
+
+
 
 def audit(data, name):
     print("=" * 62)
@@ -454,7 +503,14 @@ print("Age above 90           :", (cust_raw.age > 90).sum())
 print("Age below 15           :", (cust_raw.age < 15).sum())
 print("Max unit_price found   :", sales_raw.unit_price.max())
 
+
 ------------------------------------------------------------------------------- COPY_E
+
+
+
+
+
+
 
  EXPECTED OUTPUT (record these in your report)
  ---------------------------------------------
@@ -466,12 +522,21 @@ print("Max unit_price found   :", sales_raw.unit_price.max())
         Max unit_price found   : 9,500,000     <- laptop typed x100
 
 
+
+
  INTERPRETATION
  --------------
  The audit tells you the data cannot be used as delivered. A total of
  882 missing values across the two tables, 113 duplicate records, and
  82 impossible entries. Any report built on this file would be wrong,
  and nobody downstream would know.
+
+
+
+
+
+
+
 
 
 
@@ -494,6 +559,14 @@ print("Max unit_price found   :", sales_raw.unit_price.max())
                    even if some other column differs
 
 ------------------------------------------------------------------------------- COPY_S
+
+#CLEANING STEP 1 - REMOVE DUPLICATES
+''' 
+  A duplicate in a transaction table means one sale counted twice, which
+ inflates revenue. A duplicate in a master table means one customer
+ counted twice, which deflates average spend per customer.
+'''
+
 
 log = []
 s = sales_raw.copy()
@@ -548,6 +621,9 @@ print(f"customer_id unique? {c.customer_id.is_unique}")
 
 
 
+
+
+
 ===============================================================================
  PART 5 : CLEANING STEP 2 - STANDARDISE TEXT AND DATES
 ===============================================================================
@@ -565,6 +641,15 @@ print(f"customer_id unique? {c.customer_id.is_unique}")
  "2024-03-15" and "15/03/2024" in the same column.
 
 ------------------------------------------------------------------------------- COPY_S
+
+# CLEANING STEP 2 - STANDARDISE TEXT AND DATES
+'''
+ "ELECTRONICS", "  electronics  " and "Electronics" are three different
+  strings to a computer but one category to a human. Until they are
+ unified, every group-by and every pivot table will be wrong.
+'''
+
+
 
 print("BEFORE :", sorted(s.category.dropna().unique()))
 
@@ -617,6 +702,8 @@ print(f"Unparseable dates : {s.order_date.isna().sum()}")
 
 
 
+
+
 ===============================================================================
  PART 6 : CLEANING STEP 3 - HANDLE INVALID VALUES
 ===============================================================================
@@ -654,6 +741,18 @@ print(f"Unparseable dates : {s.order_date.isna().sum()}")
 
 
 ------------------------------------------------------------------------------- COPY_S
+
+# CLEANING STEP 3 - HANDLE INVALID VALUES
+'''
+
+ Missing and invalid are not the same thing.
+
+    MISSING   the value was never recorded         -> impute it
+    INVALID   a value exists but cannot be true    -> delete or NaN it
+
+'''
+
+
 
 before = len(s)
 s = s[s["quantity"].isna() | (s["quantity"] > 0)]
@@ -720,6 +819,8 @@ print(f"Sales rows remaining                : {len(s):,}")
  The unit_price rule is the important one. A blanket median would price
  a missing laptop at NPR 2,800. Grouping by product first keeps every
  imputed value inside its own product's price range.
+
+
 
 ------------------------------------------------------------------------------- COPY_S
 
@@ -795,6 +896,9 @@ print(c.segment.value_counts())
  data to remove a handful of errors.
 
 
+
+
+
  BETTER RULE FOR THIS SCENARIO
  ---------------------------------
  Compare each price against the median price OF THAT SAME PRODUCT.
@@ -806,6 +910,8 @@ print(c.segment.value_counts())
 
 
 ------------------------------------------------------------------------------- COPY_S
+
+#   CLEANING STEP 5 - OUTLIER TREATMENT
 
 # --- Show why IQR is the wrong tool here ---
 q1, q3 = s.unit_price.quantile([.25, .75])
@@ -849,6 +955,10 @@ print(f"Max unit_price now       : NPR {s.unit_price.max():,.0f}")
  20% of revenue. Showing the comparison, and justifying why you chose a
  domain-specific rule instead, demonstrates the analytical judgement the
  course is actually assessing.
+
+
+
+
 
 
 
@@ -1140,7 +1250,8 @@ df.info()
 
 
 
-********************** high-impact engineered features.***********************************
+********************** high-impact engineered features.*********************************** YOUR HOME WORK
+
 Prompt 1: 
 
 To find hidden teen behavioral features"I have a telecom dataset with features like age, gender, order_date, product (night packs, SIM cards), quantity, and discount_pct. Individually, these features have a very low correlation to customer churn. Act as a data scientist and suggest 5 new engineered interaction features (combinations of 2 or 3 weak variables) that would have a very high correlation to churn for a teen romance audience. Explain the behavioral logic behind each."
@@ -1472,76 +1583,58 @@ print(p5)
 
 
 
+
+
+
+
+
+
+
+
+
+******************************************************************************
+******************************************************************************
+******************************************************************************
+                                        VISUALISATION
+******************************************************************************
+******************************************************************************
+******************************************************************************
+
+
+
+
+
+###############################################################################
+###############################################################################
+##                                                                           ##
+##           G R O U P   3  :  B U S I N E S S   I N S I G H T               ##
+##                        Charts V14 to V24                                  ##
+##                                                                           ##
+###############################################################################
+###############################################################################
+
+
+
+
+
+
+
 ===============================================================================
- PART 14 : VISUALISATION SET A - DATA QUALITY
+ V14 : REVENUE BY PROVINCE
 ===============================================================================
-
- PURPOSE
- -----------------
- These three charts are the visual evidence that your cleaning worked.
- Put them at the FRONT of your report.
-
-
-
-
 -------------------------------------------------------------------------------
 
-fig, ax = plt.subplots(1, 3, figsize=(17, 4.5))
-
-# A1 - missing value map
-sns.heatmap(sales_raw.isnull(), cbar=False, yticklabels=False,
-            cmap="viridis", ax=ax[0])
-ax[0].set_title("A1  Missing value map (raw sales)", fontweight="bold")
-
-
-
-# A2 - before vs after
-qa = pd.DataFrame({"stage":["Raw","Cleaned"],
-                   "rows":[len(sales_raw), len(df)],
-                   "nulls":[int(sales_raw.isnull().sum().sum()),
-                            int(df.isnull().sum().sum())]})
-x = np.arange(2)
-ax[1].bar(x-.2, qa.rows,  .4, label="Rows",  color="#2a78d6")
-ax[1].bar(x+.2, qa.nulls, .4, label="Nulls", color="#eb6834")
-ax[1].set_xticks(x); ax[1].set_xticklabels(qa.stage)
-ax[1].legend(); ax[1].set_title("A2  Before vs after cleaning", fontweight="bold")
-for i, (r, n) in enumerate(zip(qa.rows, qa.nulls)):
-    ax[1].text(i-.2, r, f"{r:,}", ha="center", va="bottom", fontsize=9)
-    ax[1].text(i+.2, n, f"{n:,}", ha="center", va="bottom", fontsize=9)
-
-
-
-
-# A3 - missing by column
-mv = sales_raw.isnull().sum().sort_values(ascending=False).head(6)
-ax[2].barh(mv.index, mv.values, color="#eb6834")
-ax[2].set_title("A3  Missing values by column", fontweight="bold")
-
-
-
-plt.tight_layout()
-plt.savefig("fig_A_data_quality.png", dpi=150, bbox_inches="tight")
+(df.groupby("province").revenue.sum().sort_values()/1e6).plot(
+    kind="barh", color="#2a78d6")
+plt.xlabel("Revenue (NPR millions)")
+plt.title("V14  Revenue by province")
 plt.show()
 
 -------------------------------------------------------------------------------
-
-
  INTERPRETATION
- --------------
- A1  The vertical yellow stripes show missingness is concentrated in
-     four columns and is scattered randomly down the rows. Random
-     scattering means the data is Missing Completely At Random, which
-     is the condition under which median imputation is statistically
-     safe. Had the stripes formed blocks, it would indicate a systematic
-     export failure and imputation would introduce bias.
-
- A2  Rows fall from 6,180 to 6,005 (a 2.8% loss) while nulls fall from
-     717 to zero. Losing under 3% of records to gain complete data is
-     an excellent trade and you should say so explicitly.
-
- A3  delivery_days and quantity carry the heaviest missingness, both
-     fields entered manually at dispatch. This points to a process fix:
-     make those fields mandatory in the POS interface.
+ Bagmati NPR 19.71m against Karnali NPR 0.95m - a ratio of 20 to 1.
+ Distribution strategy and stock allocation should follow this
+ concentration, not treat the seven provinces equally.
 
 
 
@@ -1549,69 +1642,22 @@ plt.show()
 
 
 ===============================================================================
- PART 15 : VISUALISATION SET B - DISTRIBUTIONS
+ V15 : MONTHLY REVENUE TREND
 ===============================================================================
-
 -------------------------------------------------------------------------------
-
-fig, ax = plt.subplots(2, 3, figsize=(17, 9))
-
-sns.histplot(df.revenue, bins=50, kde=True, ax=ax[0,0], color="#2a78d6")
-ax[0,0].set_title(f"B1  Revenue - raw  (skew {df.revenue.skew():.2f})",
-                  fontweight="bold")
-
-sns.histplot(df.log_revenue, bins=50, kde=True, ax=ax[0,1], color="#1baf7a")
-ax[0,1].set_title(f"B2  Revenue - log  (skew {df.log_revenue.skew():.2f})",
-                  fontweight="bold")
-
-sns.boxplot(data=df, x="category", y="revenue", ax=ax[0,2])
-ax[0,2].set_yscale("log")
-ax[0,2].set_title("B3  Revenue by category (log scale)", fontweight="bold")
-ax[0,2].tick_params(axis="x", rotation=25)
-
-sns.histplot(df.age, bins=30, kde=True, ax=ax[1,0], color="#8b5cf6")
-ax[1,0].axvline(df.age.mean(),   color="red",   ls="--", label="Mean")
-ax[1,0].axvline(df.age.median(), color="black", ls=":",  label="Median")
-ax[1,0].legend(); ax[1,0].set_title("B4  Customer age", fontweight="bold")
-
-sns.countplot(data=df, x="quantity", ax=ax[1,1], color="#eb6834")
-ax[1,1].set_title("B5  Units per order", fontweight="bold")
-
-sns.boxplot(data=df, x="price_band", y="quantity", ax=ax[1,2])
-ax[1,2].set_title("B6  Quantity by price band", fontweight="bold")
-
-plt.tight_layout()
-plt.savefig("fig_B_distributions.png", dpi=150, bbox_inches="tight")
+m = df.groupby("month").revenue.sum()/1e6
+plt.plot(range(len(m)), m.values, marker="o", ms=4, color="#2a78d6")
+plt.fill_between(range(len(m)), m.values, alpha=.15)
+plt.xticks(range(0, len(m), 3), m.index[::3], rotation=45)
+plt.ylabel("Revenue (NPR m)")
+plt.title("V15  Monthly revenue trend")
 plt.show()
-
 -------------------------------------------------------------------------------
-
-
-
  INTERPRETATION
- --------------
- B1  A textbook right-skewed distribution. A long thin tail of
-     high-value electronics orders drags the mean far above the median.
-     Skew of 5.46 is severe.
-
- B2  The same data after log transformation is near-symmetric (skew
-     0.23). This is the justification for using log_revenue in any
-     model that assumes normally distributed errors.
-
- B3  Note the log y-axis. Electronics sits an entire order of magnitude
-     above Groceries. The boxes barely overlap, meaning category is a
-     genuinely strong predictor of order value.
-
- B4  Mean (35.6) and median (35.0) almost coincide and the curve is
-     symmetric - age is normally distributed. Contrast this with B1 and
-     you have a clear illustration of when the mean is trustworthy and
-     when it is not.
-
- B6  *** THE KEY ANALYTICAL CHART ***
-     Quantity falls steadily as price band rises: Budget items sell
-     around 9 units per order, Luxury items around 1 to 2. This is the
-     law of demand visible directly in your own data, and it is the
-     relationship that PART 18 will quantify with regression.
+ Clear repeating peaks in September to November across BOTH years.
+ This is the Dashain and Tihar festival season. Inventory purchasing
+ and working capital must be timed to it. A secondary bump appears
+ in April for Nepali New Year.
 
 
 
@@ -1621,116 +1667,759 @@ plt.show()
 
 
 ===============================================================================
- PART 16 : VISUALISATION SET C - BUSINESS INSIGHT
+ V16 : REVENUE SHARE BY CATEGORY
 ===============================================================================
-
 -------------------------------------------------------------------------------
+df.groupby("category").revenue.sum().plot(
+    kind="pie", autopct="%1.1f%%", ylabel="", startangle=90)
+plt.title("V16  Revenue share by category")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Electronics takes roughly 75 percent of all revenue.
+ High reward, but also high CONCENTRATION RISK - a single supplier
+ failure in electronics would threaten three quarters of the business.
+ Flag this as a risk in your recommendations.
 
-fig, ax = plt.subplots(2, 3, figsize=(17, 9))
 
-s1 = df.groupby("province").revenue.sum().sort_values() / 1e6
-ax[0,0].barh(s1.index, s1.values, color="#2a78d6")
-ax[0,0].set_title("C1  Revenue by province (NPR m)", fontweight="bold")
 
-m = df.groupby("month").revenue.sum() / 1e6
-ax[0,1].plot(range(len(m)), m.values, marker="o", ms=4, color="#2a78d6")
-ax[0,1].fill_between(range(len(m)), m.values, alpha=.15)
-ax[0,1].set_xticks(range(0, len(m), 3))
-ax[0,1].set_xticklabels(m.index[::3], rotation=45, fontsize=8)
-ax[0,1].set_title("C2  Monthly revenue trend", fontweight="bold")
 
-cc = df.groupby("category").revenue.sum()
-ax[0,2].pie(cc.values, labels=cc.index, autopct="%1.1f%%", startangle=90)
-ax[0,2].set_title("C3  Revenue share by category", fontweight="bold")
 
-ct = pd.crosstab(df.age_group, df.category, normalize="index") * 100
-ct.plot(kind="bar", stacked=True, ax=ax[1,0], legend=False)
-ax[1,0].set_title("C4  Category mix by age group (%)", fontweight="bold")
-ax[1,0].tick_params(axis="x", rotation=0)
 
-sns.barplot(data=df, x="channel", y="revenue", hue="segment",
-            errorbar=None, ax=ax[1,1])
-ax[1,1].set_title("C5  Avg revenue: channel x segment", fontweight="bold")
 
+
+
+===============================================================================
+ V17 : TOP 10 PRODUCTS
+===============================================================================
+-------------------------------------------------------------------------------
+(df.groupby("product").revenue.sum().nlargest(10).sort_values()/1e6).plot(
+    kind="barh", color="#1baf7a")
+plt.xlabel("Revenue (NPR millions)")
+plt.title("V17  Top 10 products by revenue")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Laptops and smartphones dominate despite selling in LOW unit volume.
+ Price, not popularity, drives this ranking. Compare with a chart of
+ order COUNT and the ordering would reverse completely.
+
+
+
+
+
+
+===============================================================================
+ V18 : PAYMENT METHOD
+===============================================================================
+-------------------------------------------------------------------------------
+df.payment_method.value_counts().plot(kind="bar", color="#eb6834")
+plt.xticks(rotation=30, ha="right")
+plt.ylabel("Number of orders")
+plt.title("V18  Payment method usage")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Cash on Delivery leads at about 34 percent despite two digital wallets
+ being offered. Direct working-capital implication: cash collection lags
+ the sale, so revenue recognition and actual cash flow diverge. Digital
+ payment incentives would improve the cash conversion cycle.
+
+
+
+
+
+
+
+
+
+
+===============================================================================
+ V19 : CHANNEL BY SEGMENT
+===============================================================================
+-------------------------------------------------------------------------------
+sns.barplot(data=df, x="channel", y="revenue", hue="segment", errorbar=None)
+plt.ylabel("Average revenue (NPR)")
+plt.title("V19  Average revenue: channel x segment")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Bars are almost flat across channels within each segment, confirming
+ V13. Notice the "Unknown" segment runs LOWEST of all. Customers whose
+ registration was incomplete are also lower-value customers. This is an
+ argument for making the segment field mandatory at point of sale.
+
+
+
+
+
+
+
+
+===============================================================================
+ V20 : PROVINCE BY CATEGORY HEATMAP
+===============================================================================
+-------------------------------------------------------------------------------
+sns.heatmap(df.pivot_table(values="revenue", index="province",
+                           columns="category", aggfunc="sum")/1e6,
+            annot=True, fmt=".2f", cmap="YlGnBu")
+plt.title("V20  Revenue by province x category (NPR millions)")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ The Electronics column dominates every single row.
+ The Bagmati x Electronics cell alone is NPR 15.15m, which is
+ 29 percent of TOTAL company revenue concentrated in one cell of the
+ grid. That single cell is the most important number in the business.
+
+
+
+
+
+
+
+===============================================================================
+ V21 : FESTIVAL EFFECT ON QUANTITY
+===============================================================================
+-------------------------------------------------------------------------------
+sns.barplot(data=df, x="category", y="quantity", hue="is_festival", errorbar=None)
+plt.xticks(rotation=25)
+plt.legend(title="Period", labels=["Normal","Festival Sep-Nov"])
+plt.title("V21  Units per order: festival vs normal")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Average quantity rises from 6.58 to 6.97 during festival months.
+ IMPORTANT: the festival effect works on TWO dimensions at once.
+ V15 shows more ORDERS are placed; V21 shows each order is also BIGGER.
+ The combined effect on revenue is therefore multiplicative, not additive.
+
+
+
+
+
+
+
+
+
+
+===============================================================================
+ V22 : DAY OF WEEK PATTERN
+===============================================================================
+-------------------------------------------------------------------------------
+order = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+df.groupby("day_name").revenue.mean().reindex(order).plot(
+    kind="bar", color="#2a78d6")
+plt.xticks(rotation=30)
+plt.ylabel("Average revenue (NPR)")
+plt.title("V22  Average revenue by day of week")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Range runs from NPR 26,892 on Tuesday to NPR 32,602 on Friday - a
+ spread of only 21 percent with no coherent pattern. Day of week is
+ NOISE in this dataset. Chart V37 confirms this formally: the
+ is_weekend coefficient comes out at -0.004, effectively zero.
+
+
+
+
+
+
+
+
+===============================================================================
+ V23 : DELIVERY PERFORMANCE BY SEGMENT
+===============================================================================
+-------------------------------------------------------------------------------
+sns.boxplot(data=df, x="segment", y="delivery_days")
+plt.title("V23  Delivery days by customer segment")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Medians are essentially identical across all segments:
+ Corporate 4.50, Wholesale 4.51, Retail 4.54 days.
+ Corporate customers receive NO priority service despite typically
+ having contractual service expectations. This is a service
+ differentiation gap and a concrete operational recommendation.
+
+
+
+
+
+
+===============================================================================
+ V24 : CATEGORY MIX BY AGE GROUP
+===============================================================================
+-------------------------------------------------------------------------------
+(pd.crosstab(df.age_group, df.category, normalize="index")*100).plot(
+    kind="bar", stacked=True)
+plt.legend(bbox_to_anchor=(1.02,1), loc="upper left")
+plt.xticks(rotation=0)
+plt.ylabel("Percent of orders")
+plt.title("V24  Category mix by age group")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Broadly stable across age groups, with ONE exception: the 60+ group
+ shows Electronics at 29.7 percent versus about 19 percent for every
+ other group.
+ CAUTION: 60+ is the smallest group in the sample, so this difference
+ may not be statistically reliable. Investigate with a significance
+ test before acting on it. Noting this caveat demonstrates analytical
+ maturity.
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+###############################################################################
+##                                                                           ##
+##            G R O U P   4  :  R E L A T I O N S H I P S                    ##
+##                        Charts V25 to V30                                  ##
+##                                                                           ##
+###############################################################################
+###############################################################################
+
+
+
+===============================================================================
+ V25 : CORRELATION MATRIX
+===============================================================================
+-------------------------------------------------------------------------------
 num = ["quantity","unit_price","revenue","discount_pct",
        "delivery_days","age","tenure_days"]
-sns.heatmap(df[num].corr(), annot=True, fmt=".2f", cmap="vlag",
-            center=0, ax=ax[1,2])
-ax[1,2].set_title("C6  Correlation matrix", fontweight="bold")
-
-plt.tight_layout()
-plt.savefig("fig_C_business.png", dpi=150, bbox_inches="tight")
+sns.heatmap(df[num].corr(), annot=True, fmt=".2f", cmap="vlag", center=0)
+plt.title("V25  Correlation matrix")
 plt.show()
 -------------------------------------------------------------------------------
-
  INTERPRETATION
- --------------
- C1  Bagmati NPR 19.71m against Karnali NPR 0.95m - a 20-to-1 gap.
-     Distribution strategy should follow this, not treat provinces equally.
-
- C2  Clear repeating peaks in September to November across both years.
-     This is the Dashain and Tihar festival season. Inventory planning
-     and working capital must be timed to it. A secondary bump appears
-     in April for Nepali New Year.
-
- C3  Electronics takes roughly 75% of revenue share. High reward, but
-     also high concentration risk - a single supplier problem in
-     electronics would threaten three quarters of the business.
-
- C4  Category preference is broadly stable across age groups, with one
-     exception: the 60+ group shows a noticeably higher Electronics
-     share (29.7% versus about 19% for other groups). Worth investigating
-     before acting - the 60+ sample is the smallest, so the difference
-     may not be statistically reliable.
-
- C6  READ THIS CAREFULLY. quantity and unit_price show a strong NEGATIVE
-     correlation, which is the law of demand. revenue correlates strongly
-     with unit_price and gross_amount by construction - that is
-     arithmetic, not insight. tenure_days and age show near-zero
-     correlation with everything, so neither is useful for prediction.
-     PART 18 confirms this formally.
-
+ Read this carefully, there are three separate lessons in one chart:
+   1. quantity x unit_price is strongly NEGATIVE - the law of demand.
+      This is the real, meaningful relationship.
+   2. revenue x unit_price is high BY CONSTRUCTION, because revenue was
+      calculated from unit_price. This is arithmetic, not insight, and
+      quoting it as a finding would be a mistake.
+   3. age and tenure_days correlate with essentially nothing. Neither
+      is useful for prediction, which V37 confirms.
 
 
 
 
 
 ===============================================================================
- PART 17 : VISUALISATION SET D - EFFECT OF NORMALISATION
+ V26 : PRICE VERSUS QUANTITY SCATTER
 ===============================================================================
-
-
-
 -------------------------------------------------------------------------------
+plt.scatter(df.unit_price, df.quantity, s=8, alpha=.3, color="#2a78d6")
+plt.xscale("log")
+plt.xlabel("Unit price NPR (log scale)")
+plt.ylabel("Quantity")
+plt.title("V26  Price vs quantity")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ A clear downward-sloping band. The LOG x-axis is what makes the
+ relationship appear linear - on a normal axis it would be a curve.
+ That is precisely why the regression model uses log(price) rather
+ than raw price.
 
-fig, ax = plt.subplots(1, 3, figsize=(16, 4))
 
-raw    = df.unit_price
-minmax = (raw - raw.min()) / (raw.max() - raw.min())
-zscore = (raw - raw.mean()) / raw.std()
 
-for a, (t, d, col) in zip(ax, [("Raw (NPR 220 - 95,000)", raw,    "#2a78d6"),
-                               ("Min-Max (0 to 1)",       minmax, "#1baf7a"),
-                               ("Z-score (mean 0, sd 1)", zscore, "#eb6834")]):
+
+
+===============================================================================
+ V27 : FITTED DEMAND CURVE   *** KEY CHART ***
+===============================================================================
+-------------------------------------------------------------------------------
+sns.regplot(x=np.log(df.unit_price), y=df.quantity,
+            scatter_kws={"s":8,"alpha":.2}, line_kws={"color":"red","lw":2})
+plt.xlabel("log(unit price)")
+plt.ylabel("Quantity")
+plt.title("V27  Fitted demand curve")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ The red line IS the price elasticity of demand. Its slope of about
+ -1.3 means demand is ELASTIC: a 1 percent price rise reduces quantity
+ by more than 1 percent, so TOTAL REVENUE FALLS.
+ Business conclusion: raising prices will not raise revenue for this
+ retailer. This is the single most actionable finding in Unit I.
+
+
+
+
+
+===============================================================================
+ V28 : DISCOUNT EFFECT
+===============================================================================
+-------------------------------------------------------------------------------
+sns.regplot(data=df, x="discount_pct", y="quantity",
+            x_estimator=np.mean, color="#1baf7a")
+plt.title("V28  Discount effect (binned means)")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ A clear upward slope. The argument x_estimator=np.mean collapses each
+ discount level down to its average with a confidence interval, which
+ cuts through 6,000 points of noise and makes the trend visible.
+ Discounting genuinely lifts volume - but the margin sacrificed must be
+ weighed against the volume gained before recommending it.
+
+
+
+
+
+===============================================================================
+ V29 : SEASONALITY CURVE
+===============================================================================
+-------------------------------------------------------------------------------
+sns.lineplot(data=df.groupby("month_num").revenue.mean().reset_index(),
+             x="month_num", y="revenue", marker="o")
+plt.axvspan(9, 11, alpha=.15, color="orange", label="Dashain / Tihar")
+plt.legend()
+plt.xticks(range(1,13))
+plt.xlabel("Month number")
+plt.title("V29  Seasonality by month of year")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ The shaded band marks the festival window. Averaging across both years
+ removes the growth trend and isolates the pure seasonal pattern.
+ April shows a secondary bump for Nepali New Year.
+
+
+
+
+
+===============================================================================
+ V30 : LOYALTY PROGRAMME EFFECT
+===============================================================================
+-------------------------------------------------------------------------------
+sns.barplot(data=df, x="loyalty_member", y="quantity", errorbar="ci",
+            hue="loyalty_member", palette="Set2", legend=False)
+plt.ylabel("Average units per order")
+plt.title("V30  Quantity by loyalty status")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Members average 6.97 units against 6.50 for non-members.
+ Critically, the ERROR BARS DO NOT OVERLAP, which means the difference
+ is statistically real and not sampling noise. Always use errorbar="ci"
+ when comparing two groups - a bar chart without error bars cannot tell
+ you whether a difference is meaningful.
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+###############################################################################
+##                                                                           ##
+##           G R O U P   5  :  N O R M A L I S A T I O N                     ##
+##                        Charts V31 to V34                                  ##
+##                                                                           ##
+###############################################################################
+###############################################################################
+
+
+===============================================================================
+ V31 to V33 : RAW vs MIN-MAX vs Z-SCORE   *** KEY CHART ***
+===============================================================================
+-------------------------------------------------------------------------------
+raw = df.unit_price
+fig, ax = plt.subplots(1, 3, figsize=(15,4))
+panels = [("V31 Raw (220 - 95,000)", raw, "#2a78d6"),
+          ("V32 Min-Max (0 to 1)",   (raw-raw.min())/(raw.max()-raw.min()), "#1baf7a"),
+          ("V33 Z-score (mean 0)",   (raw-raw.mean())/raw.std(), "#eb6834")]
+for a, (t, d, col) in zip(ax, panels):
     sns.histplot(d, bins=40, ax=a, color=col)
-    a.set_title(f"D  {t}", fontweight="bold")
-
+    a.set_title(t)
 plt.tight_layout()
-plt.savefig("fig_D_normalisation.png", dpi=150, bbox_inches="tight")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ ALL THREE HISTOGRAMS HAVE EXACTLY THE SAME SHAPE. Only the numbers on
+ the x-axis change.
+
+ This is the single most misunderstood point about normalisation:
+        SCALING  rescales the axis.  It does NOT reshape the data.
+        SKEWNESS IS COMPLETELY UNCHANGED by min-max or z-score.
+
+ If your goal is to FIX skewness, you need the LOG transform from V7,
+ not a scaler. Students confuse these two constantly. Stating the
+ distinction explicitly in your report demonstrates real understanding
+ and is worth marks.
+
+ WHICH TO USE FOR THIS DATASET
+ Z-score is the better default here, because revenue and unit_price
+ contain genuine high-value outliers (laptops) that min-max would
+ compress into a narrow band near zero, destroying the distinction
+ between budget and mid-range items.
+
+
+===============================================================================
+ V34 : PAIRPLOT
+===============================================================================
+-------------------------------------------------------------------------------
+sns.pairplot(df[["quantity","unit_price","revenue","age"]].sample(500,
+                                                        random_state=1),
+             plot_kws={"s":15,"alpha":.5})
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Sampled down to 500 rows for speed - a pairplot on 6,000 points is slow
+ and unreadable. The quantity vs unit_price panel shows the demand
+ curve; every panel in the age row shows a flat shapeless cloud,
+ confirming age predicts nothing.
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+###############################################################################
+##                                                                           ##
+##             G R O U P   2  :  MISSING and DUPLOCATES                      ##
+##                         Charts V1 to V6                                   ##
+##                                                                           ##
+###############################################################################
+###############################################################################
+
+
+## NOT IMP / DO AS ON WISH 
+
+
+
+===============================================================================
+ V1 : MISSING VALUE MAP
+===============================================================================
+-------------------------------------------------------------------------------
+
+plt.figure(figsize=(10,5))
+sns.heatmap(sales_raw.isnull(), cbar=False, yticklabels=False, cmap="viridis")
+plt.title("V1  Missing value map - raw sales")
 plt.show()
 
 -------------------------------------------------------------------------------
-
  INTERPRETATION
- --------------
- All three histograms have identical SHAPE - only the x-axis numbers
- change. This is the single most important thing to understand about
- normalisation: it rescales, it does not reshape. Skewness is unchanged
- by min-max or z-score.
+ Yellow stripes appear in 4 columns and scatter randomly down the rows.
+ Random scatter means the data is Missing Completely At Random (MCAR),
+ which is the statistical condition that makes median imputation safe.
+ If the yellow formed solid BLOCKS instead, that would indicate a
+ systematic export failure and imputation would introduce bias.
 
- If your goal is to FIX skewness, you need the log transform from B2,
- not a scaler. Students routinely confuse the two. Making this
- distinction explicitly in your report demonstrates real understanding.
+
+===============================================================================
+ V2 : MISSING VALUES BY COLUMN
+===============================================================================
+-------------------------------------------------------------------------------
+mv = sales_raw.isnull().sum().sort_values(ascending=False).head(6)
+plt.barh(mv.index, mv.values, color="#eb6834")
+plt.title("V2  Missing values by column")
+plt.xlabel("Count of missing")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ quantity (260) and unit_price (190) lead the list. Both are keyed
+ manually at dispatch. The remedy is a PROCESS fix - make these fields
+ mandatory in the POS interface - not a data fix.
+
+
+===============================================================================
+ V3 : BEFORE VERSUS AFTER CLEANING
+===============================================================================
+-------------------------------------------------------------------------------
+qa = pd.DataFrame({"Raw"  :[len(sales_raw), int(sales_raw.isnull().sum().sum())],
+                   "Clean":[len(df),        int(df.isnull().sum().sum())]},
+                  index=["Rows","Nulls"])
+qa.plot(kind="bar", color=["#eb6834","#1baf7a"])
+plt.title("V3  Before vs after cleaning")
+plt.xticks(rotation=0)
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Rows fall 6,180 -> 6,005, a loss of only 2.8 percent. Nulls fall
+ 717 -> 0, a reduction of 100 percent. Losing under 3 percent of records
+ to gain fully complete data is an excellent trade. Say so explicitly in
+ your report - the examiner wants the justification, not just the chart.
+
+
+===============================================================================
+ V4 : DUPLICATE SHARE
+===============================================================================
+-------------------------------------------------------------------------------
+d = sales_raw.duplicated().sum()
+plt.pie([len(sales_raw)-d, d], labels=["Unique","Duplicate"],
+        autopct="%1.1f%%", colors=["#2a78d6","#eb6834"], explode=(0,.1))
+plt.title("V4  Duplicate records in raw sales")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ 98 duplicates = 1.6 percent of all rows. A small share, but every one
+ double-counts a sale and inflates reported revenue. Note that the
+ CUSTOMER table needed a different rule: de-duplicating on customer_id
+ caught 35 records, whereas a plain drop_duplicates() found only 15.
+ The extra 20 were the same person registered in both the POS and the
+ web system with slightly different details.
+
+
+===============================================================================
+ V5 : COLUMN COMPLETENESS
+===============================================================================
+-------------------------------------------------------------------------------
+(sales_raw.notna().mean()*100).sort_values().plot(kind="barh", color="#1baf7a")
+plt.axvline(95, color="red", ls="--", label="95% threshold")
+plt.legend()
+plt.title("V5  Completeness % by column")
+plt.xlabel("Percent complete")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Every column clears the 95 percent line, so every column is worth
+ keeping and imputing. Standard practice is to DROP a column that falls
+ below roughly 95 percent complete rather than impute it, because
+ imputing more than 1 value in 20 starts to invent the dataset.
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+###############################################################################
+##                                                                           ##
+##             G R O U P   2  :  D I S T R I B U T I O N S                   ##
+##                         Charts V6 to V13                                  ##
+##                                                                           ##
+###############################################################################
+###############################################################################
+
+
+===============================================================================
+ V6 : REVENUE DISTRIBUTION - RAW
+===============================================================================
+-------------------------------------------------------------------------------
+sns.histplot(df.revenue, bins=50, kde=True, color="#2a78d6")
+plt.title(f"V6  Revenue raw  (skew {df.revenue.skew():.2f})")
+plt.xlabel("Revenue (NPR)")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ A textbook right-skewed distribution, skew = 5.46. A long thin tail of
+ high-value electronics orders drags the MEAN far above the MEDIAN.
+ Mean NPR 28,620 versus median NPR 16,380.
+
+
+
+
+
+
+
+===============================================================================
+ V7 : REVENUE DISTRIBUTION - LOG TRANSFORMED
+===============================================================================
+-------------------------------------------------------------------------------
+sns.histplot(df.log_revenue, bins=50, kde=True, color="#1baf7a")
+plt.title(f"V7  Log revenue  (skew {df.log_revenue.skew():.2f})")
+plt.xlabel("log(1 + revenue)")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ The same data after log transformation has skew 0.23 - effectively
+ symmetric. THIS is what fixes skewness. Compare with V31 to V33, where
+ you will see that min-max and z-score scaling do NOT fix skew at all.
+
+
+
+
+
+
+
+
+===============================================================================
+ V8 : CUSTOMER AGE WITH MEAN AND MEDIAN MARKED
+===============================================================================
+-------------------------------------------------------------------------------
+sns.histplot(df.age, bins=30, kde=True, color="#8b5cf6")
+plt.axvline(df.age.mean(),   color="red",   ls="--", label=f"Mean {df.age.mean():.1f}")
+plt.axvline(df.age.median(), color="black", ls=":",  label=f"Median {df.age.median():.0f}")
+plt.legend()
+plt.title("V8  Customer age distribution")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Mean 35.6 and median 35.0 almost coincide, and the curve is symmetric.
+ Age is normally distributed, so the mean IS trustworthy here.
+ Place V6 and V8 side by side in your report - together they show
+ exactly when to quote the mean and when to quote the median.
+
+
+
+
+
+
+===============================================================================
+ V9 : UNITS PER ORDER
+===============================================================================
+-------------------------------------------------------------------------------
+sns.countplot(data=df, x="quantity", color="#eb6834")
+plt.title("V9  Units per order")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Peaks around 7 units and is roughly symmetric (skew -0.33). The hard
+ ceiling at 12 is a design constraint of the dataset and it slightly
+ truncates the largest festival orders. Mention this as a limitation.
+
+
+
+
+
+
+===============================================================================
+ V10 : UNIT PRICE ON A LOG SCALE
+===============================================================================
+-------------------------------------------------------------------------------
+sns.histplot(df.unit_price, bins=40, log_scale=True, color="#2a78d6")
+plt.title("V10  Unit price distribution (log x-axis)")
+plt.xlabel("Unit price NPR, log scale")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Clearly MULTI-MODAL - three separate price clusters corresponding to
+ groceries, apparel/home, and electronics. This natural clustering is
+ the justification for creating the price_band feature rather than
+ treating price as one continuous variable.
+
+
+
+
+
+
+
+===============================================================================
+ V11 : REVENUE BY CATEGORY
+===============================================================================
+-------------------------------------------------------------------------------
+sns.boxplot(data=df, x="category", y="revenue")
+plt.yscale("log")
+plt.xticks(rotation=25)
+plt.title("V11  Revenue by category (log scale)")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ Note the LOG y-axis. Electronics sits a full order of magnitude above
+ Groceries and the boxes barely overlap. Category is therefore a strong
+ predictor of order value. Without the log scale, the Groceries box
+ would be an invisible flat line at the bottom.
+
+
+
+
+
+
+
+===============================================================================
+ V12 : QUANTITY BY PRICE BAND   *** KEY CHART ***
+===============================================================================
+-------------------------------------------------------------------------------
+sns.violinplot(data=df, x="price_band", y="quantity",
+               hue="price_band", palette="viridis", legend=False)
+plt.title("V12  Quantity by price band")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ THE LAW OF DEMAND, VISIBLE DIRECTLY IN YOUR OWN DATA.
+ Budget items move about 9 units per order; Luxury items about 1 to 2.
+ A violin plot is used rather than a boxplot because it shows the full
+ shape of each distribution, not just the quartiles.
+ Chart V27 quantifies this relationship as a number.
+
+
+
+
+
+
+
+
+===============================================================================
+ V13 : REVENUE DENSITY BY CHANNEL
+===============================================================================
+-------------------------------------------------------------------------------
+sns.kdeplot(data=df, x="log_revenue", hue="channel", fill=True, alpha=.3)
+plt.title("V13  Revenue density by sales channel")
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ All three curves lie almost exactly on top of one another.
+ Average revenue: In-Store 28,979 | Mobile App 28,661 | Website 28,041.
+ Channel does NOT drive order value. This is a valuable NEGATIVE
+ finding: reporting that a variable has no effect is as legitimate as
+ reporting one that does, and it stops management investing in a
+ channel-based pricing strategy that could not work.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1917,6 +2606,205 @@ plt.show()
     being capped at 12 units, which truncates the largest festival
     orders. Acknowledging a known weakness in your own model is a mark
     of good analysis, not a confession of failure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+###############################################################################
+##                                                                           ##
+##       G R O U P   6  :  R E G R E S S I O N   D I A G N O S T I C S       ##
+##                        Charts V35 to V40                                  ##
+##                                                                           ##
+###############################################################################
+###############################################################################
+
+ *** CRITICAL WARNING - DATA LEAKAGE ***
+ Do NOT try to predict REVENUE from quantity and unit_price. Revenue was
+ CALCULATED as quantity x unit_price x (1 - discount). Such a model
+ returns R2 = 1.00 and is completely worthless because you handed it the
+ answer. This mistake is common and heavily penalised.
+ We predict QUANTITY instead, which is a genuine unknown.
+
+ NOTE ON THE TWO PLACEBO VARIABLES
+ is_weekend and age are included DELIBERATELY. Nothing in the data links
+ them to quantity. A trustworthy model must return coefficients near
+ zero for both. If it does not, the model is fitting noise.
+
+
+===============================================================================
+ V35 to V38 : FOUR-PANEL REGRESSION DIAGNOSTIC
+===============================================================================
+-------------------------------------------------------------------------------
+reg = pd.DataFrame({
+    "log_price"   : np.log(df.unit_price),
+    "discount_pct": df.discount_pct,
+    "is_festival" : df.is_festival,
+    "loyalty"     : (df.loyalty_member=="Yes").astype(int),
+    "is_weekend"  : df.is_weekend,
+    "age"         : df.age})
+
+X_train, X_test, y_train, y_test = train_test_split(
+    reg, df.quantity, test_size=.25, random_state=42)
+
+mo = LinearRegression().fit(X_train, y_train)
+pr = mo.predict(X_test)
+
+print(pd.DataFrame({"feature": reg.columns,
+                    "coefficient": mo.coef_.round(4)}).to_string(index=False))
+print("Intercept :", round(mo.intercept_, 4))
+print("Train R2  :", round(mo.score(X_train, y_train), 4))
+print("Test  R2  :", round(r2_score(y_test, pr), 4))
+
+fig, ax = plt.subplots(2, 2, figsize=(13,9))
+
+ax[0,0].scatter(y_test, pr, s=10, alpha=.4, color="#2a78d6")
+lims = [y_test.min()-.5, y_test.max()+.5]
+ax[0,0].plot(lims, lims, "--", color="black")
+ax[0,0].set_xlabel("Actual"); ax[0,0].set_ylabel("Predicted")
+ax[0,0].set_title(f"V35  Actual vs Predicted (R2 = {r2_score(y_test,pr):.3f})")
+
+ax[0,1].scatter(pr, y_test-pr, s=10, alpha=.4, color="#1baf7a")
+ax[0,1].axhline(0, color="red", ls="--")
+ax[0,1].set_xlabel("Predicted"); ax[0,1].set_ylabel("Residual")
+ax[0,1].set_title("V36  Residual plot")
+
+cf = pd.Series(mo.coef_, index=reg.columns).sort_values()
+ax[1,0].barh(cf.index, cf.values,
+             color=["#eb6834" if v<0 else "#2a78d6" for v in cf.values])
+ax[1,0].axvline(0, color="black")
+ax[1,0].set_title("V37  Coefficient size")
+
+sns.histplot(y_test-pr, bins=40, kde=True, ax=ax[1,1], color="#8b5cf6")
+ax[1,1].set_title("V38  Residual distribution")
+
+plt.tight_layout()
+plt.show()
+-------------------------------------------------------------------------------
+
+ EXPECTED OUTPUT
+        feature        coefficient      TRUE VALUE
+        log_price          -1.2829        -1.350
+        discount_pct        0.0540         0.055
+        is_festival         0.3377         0.600
+        loyalty             0.3884         0.450
+        is_weekend         -0.0043         0.000
+        age                 0.0020         0.000
+        Train R2 : 0.8164
+        Test  R2 : 0.8002
+
+ INTERPRETATION - THIS IS THE STRONGEST SECTION OF YOUR REPORT
+
+ V35  Dots hug the 45-degree diagonal. The model tracks reality well.
+
+ V36  Residuals scatter randomly around the zero line with NO curve and
+      NO funnel shape. A curve would mean the relationship is not
+      linear; a funnel would mean the variance is not constant. Neither
+      appears, so a linear model is the correct choice.
+
+ V37  THE PLACEBO TEST PASSED. is_weekend (-0.004) and age (0.002) are
+      effectively ZERO, exactly as they should be. The model correctly
+      identified that these two variables have no effect. Reporting a
+      variable correctly found to have NO effect is as valuable as
+      reporting one that does.
+
+ V38  Residuals are bell-shaped and centred on zero, satisfying the
+      normality assumption of linear regression.
+
+ THE MODEL RECOVERED THE TRUTH
+ This dataset was built with known coefficients and the regression
+ found them from the cleaned data alone. Price elasticity -1.28 against
+ a true -1.35; discount effect 0.054 against a true 0.055. This is a
+ VALIDATION OF THE ENTIRE CLEANING PIPELINE. Had the cleaning been
+ careless, these estimates would be badly biased.
+
+ NO OVERFITTING
+ Train R2 0.816 and test R2 0.800 are close together. A large gap
+ between them would signal the model had merely memorised the training
+ data.
+
+ HONEST LIMITATION TO STATE
+ The estimated festival effect (0.34) is noticeably below its true
+ value (0.60). This is attenuation caused by the quantity variable
+ being capped at 12 units, which truncates the largest festival orders.
+ Acknowledging a known weakness in your own model is a mark of good
+ analysis, not a confession of failure.
+
+
+
+
+===============================================================================
+ V39 and V40 : TREND SMOOTHING AND CUMULATIVE GROWTH
+===============================================================================
+-------------------------------------------------------------------------------
+fig, ax = plt.subplots(1, 2, figsize=(14,4))
+
+m = df.groupby("month").revenue.sum()/1e6
+ax[0].plot(m.values, alpha=.4, label="Actual monthly")
+ax[0].plot(m.rolling(3).mean().values, lw=2.5, color="red",
+           label="3-month moving average")
+ax[0].legend()
+ax[0].set_ylabel("NPR m")
+ax[0].set_title("V39  Trend versus noise")
+
+cum = df.sort_values("order_date").revenue.cumsum()/1e6
+ax[1].plot(cum.values, color="#1baf7a")
+ax[1].set_ylabel("Cumulative NPR m")
+ax[1].set_title("V40  Cumulative revenue")
+
+plt.tight_layout()
+plt.show()
+-------------------------------------------------------------------------------
+ INTERPRETATION
+ V39  The moving average strips out month-to-month noise and exposes
+      the underlying growth trend. Use the red line when presenting to
+      management; the raw blue line invites over-reaction to a single
+      bad month.
+
+ V40  The cumulative curve steepens visibly at each festival season.
+      A cumulative chart is the clearest way to show that growth is
+      genuine and sustained rather than one lucky quarter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
