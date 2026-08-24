@@ -817,28 +817,28 @@ Simple diagram:
        +---------------+
               |
            Spindle
-
-
-TRACK:
-    Circular path on disk.
-
-
-SECTOR:
-    Subdivision of a track.
-
-
-PLATTER:
-    Circular magnetic storage surface.
-
-
-READ/WRITE HEAD:
-    Reads and writes data.
-
-
-SPINDLE:
-    Rotates the platters.
-
-
+              
+              
+              TRACK:
+                  Circular path on disk.
+              
+              
+              SECTOR:
+                  Subdivision of a track.
+              
+              
+              PLATTER:
+                  Circular magnetic storage surface.
+              
+              
+              READ/WRITE HEAD:
+                  Reads and writes data.
+              
+              
+              SPINDLE:
+                  Rotates the platters.
+              
+              
 
 
 
@@ -851,24 +851,24 @@ with the CPU.
 
 It stores frequently/recently used data and instructions.
 
-
-CPU
- |
- v
-CACHE
- |
- v
-RAM
+                     
+                     CPU
+                      |
+                      v
+                     CACHE
+                      |
+                      v
+                     RAM
 
 
 Without cache:
 
-CPU -> RAM
-
-
-With cache:
-
-CPU -> Cache -> RAM
+       CPU -> RAM
+       
+       
+       With cache:
+       
+       CPU -> Cache -> RAM
 
 
 
@@ -886,25 +886,25 @@ frequently used information.
 
 Example:
 
-CPU repeatedly needs:
-
-    X = 100
-
-
-First access:
-
-RAM -> Cache
+       CPU repeatedly needs:
+       
+           X = 100
 
 
-Later accesses:
-
-CPU -> Cache
-
-
-Therefore:
-
-Access becomes faster.
-
+       First access:
+       
+              RAM -> Cache
+       
+       
+       Later accesses:
+       
+              CPU -> Cache
+       
+       
+       Therefore:
+       
+              Access becomes faster.
+       
 
 ======================================================================
 CACHE LEVELS
@@ -919,29 +919,31 @@ Common levels:
 
 Generally:
 
-L1:
-    Smallest and fastest
+       L1:
+           Smallest and fastest
+       
+       
+       L2:
+           Larger, usually slower than L1
+       
+       
+       L3:
+           Larger, usually slower than L2
 
 
-L2:
-    Larger, usually slower than L1
 
 
-L3:
-    Larger, usually slower than L2
-
-
-Basic:
-
-CPU
- |
- +--> L1 Cache
-       |
-       +--> L2 Cache
-             |
-             +--> L3 Cache
-                   |
-                   +--> RAM
+       Basic:
+       
+              CPU
+               |
+               +--> L1 Cache
+                     |
+                     +--> L2 Cache
+                           |
+                           +--> L3 Cache
+                                 |
+                                 +--> RAM
 
 
 
@@ -964,9 +966,9 @@ Recently used data/instructions are likely to be used again.
 
 Example:
 
-Loop repeatedly uses:
-
-    X
+       Loop repeatedly uses:
+       
+           X
 
 
 SPATIAL LOCALITY:
@@ -976,42 +978,46 @@ Nearby memory locations are likely to be used soon.
 
 Example:
 
-If CPU accesses:
+       If CPU accesses:
+       
+           Array[10]
+       
+       It may soon access:
+       
+           Array[11]
+           Array[12]
 
-    Array[10]
 
-It may soon access:
-
-    Array[11]
-    Array[12]
 
 
 ======================================================================
 IMPORTANT COMPARISON
 ======================================================================
+       
+       REGISTER:
+           Fastest
+           Very small
+           Inside CPU
+       
+       
+       CACHE:
+           Very fast
+           Small
+           Between CPU and RAM
+       
+       
+       RAM:
+           Larger
+           Slower than cache
+           Volatile
+       
+       
+       SSD/HDD:
+           Very large
+           Slower than RAM
+           Non-volatile
 
-REGISTER:
-    Fastest
-    Very small
-    Inside CPU
 
-
-CACHE:
-    Very fast
-    Small
-    Between CPU and RAM
-
-
-RAM:
-    Larger
-    Slower than cache
-    Volatile
-
-
-SSD/HDD:
-    Very large
-    Slower than RAM
-    Non-volatile
 
 
 ======================================================================
@@ -1049,6 +1055,9 @@ BOTTOM:
     Cheaper
 
 
+
+
+
 ======================================================================
 IMPORTANT DIFFERENCES
 ======================================================================
@@ -1056,63 +1065,63 @@ IMPORTANT DIFFERENCES
 --------------------------------------------------
 RAM vs ROM
 --------------------------------------------------
-
-RAM:
-    Volatile
-    Read/Write
-    Temporary
-
-
-ROM:
-    Non-volatile
-    Mainly read
-    Firmware/storage
+       
+       RAM:
+           Volatile
+           Read/Write
+           Temporary
+       
+       
+       ROM:
+           Non-volatile
+           Mainly read
+           Firmware/storage
 
 
 --------------------------------------------------
 SRAM vs DRAM
 --------------------------------------------------
-
-SRAM:
-    Fast
-    No refresh
-    Expensive
-    Cache
-
-
-DRAM:
-    Slower
-    Requires refresh
-    Cheaper
-    Main memory
+       
+       SRAM:
+           Fast
+           No refresh
+           Expensive
+           Cache
+       
+       
+       DRAM:
+           Slower
+           Requires refresh
+           Cheaper
+           Main memory
 
 
 --------------------------------------------------
 ISOLATED I/O vs MEMORY-MAPPED I/O
 --------------------------------------------------
-
-ISOLATED:
-    Separate I/O address space
-    Special I/O instructions
-
-
-MEMORY-MAPPED:
-    I/O shares memory address space
-    Normal memory instructions
+       
+       ISOLATED:
+           Separate I/O address space
+           Special I/O instructions
+       
+       
+       MEMORY-MAPPED:
+           I/O shares memory address space
+           Normal memory instructions
 
 
 --------------------------------------------------
 CPU TRANSFER vs DMA
 --------------------------------------------------
-
-CPU I/O:
-    CPU handles data transfer
-
-
-DMA:
-    DMA controller transfers data
-    CPU involvement is reduced
-
+       
+       CPU I/O:
+           CPU handles data transfer
+       
+       
+       DMA:
+           DMA controller transfers data
+           CPU involvement is reduced
+       
 
 
 
