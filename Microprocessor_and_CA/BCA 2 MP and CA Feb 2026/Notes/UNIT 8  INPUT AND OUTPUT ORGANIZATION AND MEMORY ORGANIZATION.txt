@@ -28,6 +28,8 @@ Examples:
         Hard Disk, SSD, USB Drive
 
 
+
+
 Basic I/O:
 
         CPU
@@ -37,6 +39,11 @@ Basic I/O:
          |
          v
     Peripheral Device
+
+
+
+
+
 
 
 ======================================================================
@@ -57,19 +64,30 @@ Main functions:
 
 Example:
 
-CPU -> I/O Interface -> Keyboard
-
-Keyboard -> I/O Interface -> CPU
+              CPU -> I/O Interface -> Keyboard
+              
+              Keyboard -> I/O Interface -> CPU
 
 
 MEMORY TRICK:
 
-I/O Interface = BRIDGE between CPU and peripheral.
+              I/O Interface = BRIDGE between CPU and peripheral.
+
+
+
+
+
+
 
 
 ======================================================================
 8.1.2 I/O BUS
 ======================================================================
+
+
+https://res.cloudinary.com/witspry/image/upload/witscad/public/content/courses/computer-architecture/system-bus.png
+
+
 
 I/O Bus is a communication path used to transfer information between
 CPU, memory and I/O devices.
@@ -83,7 +101,9 @@ Carries:
 
 Simple:
 
-CPU <------ I/O BUS ------> I/O Devices
+       CPU <------ I/O BUS ------> I/O Devices
+
+
 
 
 ======================================================================
@@ -100,28 +120,32 @@ Main parts/functions:
     3. Control Register
 
 
-DATA REGISTER:
-    Stores data being transferred.
+       DATA REGISTER:
+           Stores data being transferred.
+       
+       STATUS REGISTER:
+           Indicates device status.
+       
+       CONTROL REGISTER:
+           Stores control information.
 
-STATUS REGISTER:
-    Indicates device status.
 
-CONTROL REGISTER:
-    Stores control information.
 
 
 Example:
 
-Keyboard:
+       Keyboard:
+       
+       Data Register:
+           Stores pressed key/data.
+       
+       Status Register:
+           Indicates whether data is available.
+       
+       Control Register:
+           Controls operation.
 
-Data Register:
-    Stores pressed key/data.
 
-Status Register:
-    Indicates whether data is available.
-
-Control Register:
-    Controls operation.
 
 
 ======================================================================
@@ -148,17 +172,23 @@ Example:
 
 Simple:
 
-Memory Address Space
-        +
-I/O Address Space
-        =
-SEPARATE
+       Memory Address Space
+               +
+       I/O Address Space
+               =
+       SEPARATE
+
+
 
 
 Advantages:
 
     - Separate memory and I/O address spaces
     - Does not consume normal memory addresses
+
+
+
+
 
 
 ======================================================================
@@ -175,21 +205,24 @@ CPU uses normal memory instructions to access I/O.
 
 
 Example:
-
-Memory:
-    0000 - 7FFF
-
-I/O:
-    8000 - 80FF
-
-
-Address 8000 may represent an I/O device register.
+       
+       Memory:
+           0000 - 7FFF
+       
+       I/O:
+           8000 - 80FF
+       
+       
+       Address 8000 may represent an I/O device register.
 
 
 Advantages:
 
     - Same instructions can access memory and I/O
     - Large instruction set flexibility
+
+
+
 
 
 ======================================================================
@@ -212,11 +245,15 @@ MEMORY-MAPPED I/O:
 
 MEMORY TRICK:
 
-ISOLATED:
-    I/O is ISOLATED from memory.
+       ISOLATED:
+           I/O is ISOLATED from memory.
+       
+       MEMORY-MAPPED:
+           I/O is MAPPED into memory.
 
-MEMORY-MAPPED:
-    I/O is MAPPED into memory.
+
+
+
 
 
 ======================================================================
@@ -229,13 +266,15 @@ of a program so that CPU can handle an urgent event.
 
 Example:
 
-CPU is working.
+       CPU is working.
+       
+       Keyboard key is pressed.
+       
+       Keyboard sends:
+       
+           INTERRUPT
 
-Keyboard key is pressed.
 
-Keyboard sends:
-
-    INTERRUPT
 
 CPU:
 
@@ -245,23 +284,28 @@ CPU:
     4. Returns to previous task
 
 
+
+
 Simple:
 
-Normal Program
-      |
-      v
-   INTERRUPT
-      |
-      v
-     ISR
-      |
-      v
-Return to Program
+       Normal Program
+             |
+             v
+          INTERRUPT
+             |
+             v
+            ISR
+             |
+             v
+       Return to Program
+
 
 
 ISR:
 
-Interrupt Service Routine
+       Interrupt Service Routine
+
+
 
 
 ======================================================================
@@ -279,42 +323,55 @@ CPU may continuously check:
 
 With interrupt:
 
-Device tells CPU:
+       Device tells CPU:
+       
+           "I need attention!"
+       
+       
+       Therefore:
+       
+       Interrupt = Device alerts CPU.
 
-    "I need attention!"
 
 
-Therefore:
-
-Interrupt = Device alerts CPU.
 
 
 ======================================================================
 8.2 DIRECT MEMORY ACCESS (DMA)
 ======================================================================
 
+
+https://vcmos.com/wp-content/uploads/2024/01/DMA-Transfer.png
+
+https://www.geeksforgeeks.org/computer-organization-architecture/direct-memory-access-dma-controller-in-computer-architecture/
+
+
+
+
 DMA = Direct Memory Access
 
 
 Definition:
 ------------
-DMA is a technique that allows an I/O device to transfer data
-directly to/from main memory with minimal CPU involvement.
+       DMA is a technique that allows an I/O device to transfer data
+       directly to/from main memory with minimal CPU involvement.
 
 
 Normal:
-
-I/O -> CPU -> Memory
-
-
-DMA:
-
-I/O ------------> Memory
-       DMA
+       
+       I/O -> CPU -> Memory
+       
+       
+       DMA:
+       
+       I/O ------------> Memory
+              DMA
 
 
 CPU mainly initializes the DMA transfer and is not required to
 handle every individual byte/word.
+
+
 
 
 ======================================================================
@@ -342,29 +399,33 @@ Basic:
         Memory       I/O
 
 
+
+
 ======================================================================
 8.2.2 DMA PROCEDURE
 ======================================================================
 
 Basic DMA steps:
+              
+              1. CPU initializes DMA controller.
+              
+              2. CPU provides:
+                     - Starting memory address
+                     - Number of bytes/words
+                     - Direction of transfer
+              
+              3. DMA controller requests control of the bus.
+              
+              4. CPU grants bus control.
+              
+              5. DMA transfers data directly between:
+                     I/O device <-> Memory
+              
+              6. DMA updates address/count.
+              
+              7. After completion, DMA informs CPU, usually by interrupt.
 
-1. CPU initializes DMA controller.
 
-2. CPU provides:
-       - Starting memory address
-       - Number of bytes/words
-       - Direction of transfer
-
-3. DMA controller requests control of the bus.
-
-4. CPU grants bus control.
-
-5. DMA transfers data directly between:
-       I/O device <-> Memory
-
-6. DMA updates address/count.
-
-7. After completion, DMA informs CPU, usually by interrupt.
 
 
 ======================================================================
@@ -376,27 +437,30 @@ Suppose:
 Hard Disk -> 1000 bytes -> RAM
 
 
-Without DMA:
+       Without DMA:
+       
+              Disk -> CPU -> RAM
+              
+              CPU handles many transfers.
+       
+       
+       With DMA:
+       
+              Disk -> DMA Controller -> RAM
 
-Disk -> CPU -> RAM
-
-CPU handles many transfers.
 
 
-With DMA:
+       CPU:
+       
+           Starts DMA
+               |
+               v
+           Does other work
+               |
+               v
+           Receives completion interrupt
+       
 
-Disk -> DMA Controller -> RAM
-
-
-CPU:
-
-    Starts DMA
-        |
-        v
-    Does other work
-        |
-        v
-    Receives completion interrupt
 
 
 MAIN ADVANTAGE:
@@ -404,9 +468,20 @@ MAIN ADVANTAGE:
 DMA reduces CPU involvement and improves data-transfer efficiency.
 
 
+
+
+
 ======================================================================
 8.3 HIERARCHY OF MEMORY SYSTEM
 ======================================================================
+
+https://cdn1.byjus.com/wp-content/uploads/2022/04/word-image115.png
+
+
+https://media.geeksforgeeks.org/wp-content/uploads/20250111112435920586/Memory-Hierarchy-Design.webp
+
+
+
 
 Memory hierarchy arranges storage according to:
 
@@ -417,64 +492,75 @@ Memory hierarchy arranges storage according to:
 
 General hierarchy:
 
-        FASTEST
-           |
-           v
-       Registers
-           |
-         Cache
-           |
-          RAM
-           |
-      SSD / HDD
-           |
-     Backup/Archive
-           |
-           v
-        SLOWEST
+               FASTEST
+                  |
+                  v
+              Registers
+                  |
+                Cache
+                  |
+                 RAM
+                  |
+             SSD / HDD
+                  |
+            Backup/Archive
+                  |
+                  v
+               SLOWEST
 
 
-As we move DOWN:
-
-    Speed decreases
-    Capacity increases
-    Cost per bit generally decreases
 
 
-As we move UP:
+       As we move DOWN:
+       
+           Speed decreases
+           Capacity increases
+           Cost per bit generally decreases
+       
+       
+       
+       
+       As we move UP:
+       
+           Speed increases
+           Capacity decreases
+           Cost per bit generally increases
 
-    Speed increases
-    Capacity decreases
-    Cost per bit generally increases
+
+
+
+
 
 
 ======================================================================
 MEMORY HIERARCHY MEMORY TRICK
 ======================================================================
+              
+              TOP:
+              
+                  FAST
+                  SMALL
+                  EXPENSIVE
+              
+              
+              BOTTOM:
+              
+                  SLOW
+                  LARGE
+                  CHEAPER
+              
+              
+              Think:
+              
+                  REGISTER
+                     ↓
+                  CACHE
+                     ↓
+                  RAM
+                     ↓
+                  SSD/HDD
 
-TOP:
 
-    FAST
-    SMALL
-    EXPENSIVE
-
-
-BOTTOM:
-
-    SLOW
-    LARGE
-    CHEAPER
-
-
-Think:
-
-    REGISTER
-       ↓
-    CACHE
-       ↓
-    RAM
-       ↓
-    SSD/HDD
 
 
 ======================================================================
@@ -487,6 +573,9 @@ Main examples:
 
     RAM
     ROM
+
+
+
 
 
 ======================================================================
@@ -517,6 +606,9 @@ Types:
     2. DRAM
 
 
+
+
+
 ======================================================================
 8.4.2 ROM
 ======================================================================
@@ -538,34 +630,40 @@ Types include:
     EEPROM
 
 
+
+
 ======================================================================
 RAM vs ROM
 ======================================================================
+              
+              RAM:
+              
+                  Read/Write
+                  Volatile
+                  Temporary storage
+                  Faster in typical use
+              
+              
+              ROM:
+              
+                  Mostly read
+                  Non-volatile
+                  Stores firmware/instructions
+                  Retains data without power
 
-RAM:
-
-    Read/Write
-    Volatile
-    Temporary storage
-    Faster in typical use
-
-
-ROM:
-
-    Mostly read
-    Non-volatile
-    Stores firmware/instructions
-    Retains data without power
+       
+       MEMORY TRICK:
+       
+       RAM:
+           Running programs
+       
+       
+       ROM:
+           Retained programs
 
 
-MEMORY TRICK:
-
-RAM:
-    Running programs
 
 
-ROM:
-    Retained programs
 
 
 ======================================================================
@@ -578,11 +676,11 @@ different memory devices or memory regions.
 
 Example:
 
-Address Range       Device
---------------------------------
-0000 - 0FFF         ROM
-1000 - 7FFF         RAM
-8000 - 80FF         I/O
+       Address Range       Device
+       --------------------------------
+       0000 - 0FFF         ROM
+       1000 - 7FFF         RAM
+       8000 - 80FF         I/O
 
 
 It tells us:
@@ -599,39 +697,43 @@ chip/device should respond to a particular address.
 
 
 Example:
+       
+       CPU generates:
+       
+       Address = 8000
+       
+       
+       Address decoder determines:
+       
+           "This address belongs to RAM chip 2."
+       
+       
+       Then:
+       
+              RAM chip 2 = SELECTED
+       
+       
+       Simple:
+              
+              CPU Address
+                   |
+                   v
+              Address Decoder
+                   |
+                   +----> RAM 1
+                   |
+                   +----> RAM 2
+                   |
+                   +----> ROM
 
-CPU generates:
 
-Address = 8000
-
-
-Address decoder determines:
-
-    "This address belongs to RAM chip 2."
-
-
-Then:
-
-RAM chip 2 = SELECTED
-
-
-Simple:
-
-CPU Address
-     |
-     v
-Address Decoder
-     |
-     +----> RAM 1
-     |
-     +----> RAM 2
-     |
-     +----> ROM
 
 
 MEMORY TRICK:
 
 Address decoding = FIND THE CORRECT MEMORY CHIP.
+
+
 
 
 ======================================================================
@@ -651,6 +753,8 @@ Characteristics:
     - Expensive
     - Lower density
     - Commonly used for cache memory
+
+
 
 
 ======================================================================
@@ -680,6 +784,8 @@ MEMORY TRICK:
 SRAM = SPEED
 
 DRAM = DENSITY
+
+
 
 
 ======================================================================
@@ -733,6 +839,9 @@ SPINDLE:
     Rotates the platters.
 
 
+
+
+
 ======================================================================
 8.4.7 CACHE MEMORY
 ======================================================================
@@ -760,6 +869,9 @@ CPU -> RAM
 With cache:
 
 CPU -> Cache -> RAM
+
+
+
 
 
 ======================================================================
@@ -830,6 +942,9 @@ CPU
              +--> L3 Cache
                    |
                    +--> RAM
+
+
+
 
 
 ======================================================================
@@ -999,6 +1114,26 @@ DMA:
     CPU involvement is reduced
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ======================================================================
 SHORT EXAM QUESTIONS
 ======================================================================
@@ -1042,141 +1177,4 @@ Q18. What is cache memory?
 Q19. What is temporal locality?
 
 Q20. What is spatial locality?
-
-
-======================================================================
-VERY SHORT EXAM CHEAT SHEET
-======================================================================
-
-PERIPHERAL:
-    External device used for I/O.
-
-I/O INTERFACE:
-    Bridge between CPU and device.
-
-I/O BUS:
-    Communication path for I/O.
-
-ISOLATED I/O:
-    Separate I/O address space.
-
-MEMORY-MAPPED I/O:
-    I/O shares memory address space.
-
-INTERRUPT:
-    Device signal requesting CPU attention.
-
-DMA:
-    Direct transfer between I/O and memory.
-
-DMA ADVANTAGE:
-    Less CPU involvement.
-
-
-MEMORY HIERARCHY:
-
-    Register
-       ↓
-    Cache
-       ↓
-    RAM
-       ↓
-    SSD/HDD
-
-
-RAM:
-    Volatile + Read/Write
-
-
-ROM:
-    Non-volatile
-
-
-ADDRESS MAP:
-    Shows address allocation.
-
-
-ADDRESS DECODING:
-    Selects correct memory device.
-
-
-SRAM:
-    Fast + No refresh + Cache
-
-
-DRAM:
-    Refresh + Main memory
-
-
-MAGNETIC DISK:
-
-    Platter
-    Track
-    Sector
-    Head
-    Spindle
-
-
-CACHE:
-    Small + Fast + Near CPU
-
-
-TEMPORAL LOCALITY:
-    Use it again.
-
-
-SPATIAL LOCALITY:
-    Use nearby data.
-
-
-======================================================================
-ONE-MINUTE REVISION
-======================================================================
-
-I/O:
-    CPU <-> I/O Interface <-> Device
-
-Interrupt:
-    "CPU, I need attention!"
-
-DMA:
-    "I/O can transfer directly with memory."
-
-Memory hierarchy:
-    "Higher = faster and smaller."
-
-RAM:
-    "Temporary working memory."
-
-ROM:
-    "Retains information without power."
-
-Address decoding:
-    "Which memory chip should respond?"
-
-Cache:
-    "Keep frequently/recently used data close to CPU."
-
-SRAM:
-    "Fast cache memory."
-
-DRAM:
-    "Dense main memory."
-
-Magnetic disk:
-    "Platters + tracks + sectors + heads."
-
-======================================================================
-                         END OF UNIT 8
-======================================================================
-
-
-
-
-
-
-
-
-
-
 
