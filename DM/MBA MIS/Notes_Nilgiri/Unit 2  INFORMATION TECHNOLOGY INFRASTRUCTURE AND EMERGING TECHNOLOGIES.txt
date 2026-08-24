@@ -1,0 +1,1296 @@
+==================================================================
+UNIT II: INFORMATION TECHNOLOGY INFRASTRUCTURE AND EMERGING TECHNOLOGIES
+==================================================================
+Duration: 5 Hours
+
+Topics:
+2.1 Hardware and Software Components
+2.2 Database Management Systems
+2.3 Networking and Telecommunications
+2.4 New and Emerging Technologies
+    - Cloud Computing
+    - Sensor Networks
+    - SNS
+    - Blockchain
+    - IoT
+    - etc.
+
+
+==================================================================
+2.1 HARDWARE AND SOFTWARE COMPONENTS
+==================================================================
+
+A. HARDWARE
+------------------------------------------------------------------
+Hardware refers to the physical parts of a computer or IT system
+that we can see and touch.
+
+Examples:
+    - Keyboard
+    - Mouse
+    - Monitor
+    - CPU
+    - RAM
+    - Hard Disk / SSD
+    - Printer
+    - Network Card
+    - Router
+
+
+MAIN COMPONENTS OF COMPUTER HARDWARE
+------------------------------------------------------------------
+
+1. INPUT DEVICES
+   Used to enter data into a computer.
+
+   Examples:
+   - Keyboard
+   - Mouse
+   - Scanner
+   - Microphone
+   - Webcam
+
+   Example:
+   When we type "HELLO" using a keyboard, the keyboard sends
+   the input to the computer.
+
+
+2. PROCESSING DEVICES
+   Used to process data and execute instructions.
+
+   Main device:
+   - CPU (Central Processing Unit)
+
+   CPU contains:
+   - ALU (Arithmetic Logic Unit)
+   - CU (Control Unit)
+   - Registers
+
+   Example:
+   10 + 20 = 30
+
+   ALU performs the arithmetic operation.
+
+
+3. MEMORY
+   Memory stores data and instructions.
+
+   Types:
+
+   a. RAM
+      - Temporary memory
+      - Volatile
+      - Data is lost when power is turned off
+
+      Example:
+      Microsoft Word uses RAM while you are working on a document.
+
+   b. ROM
+      - Permanent/non-volatile memory
+      - Stores important startup instructions
+
+   c. Cache Memory
+      - Very fast memory
+      - Located close to/within the CPU
+      - Stores frequently used data and instructions
+
+
+4. STORAGE DEVICES
+   Used for permanent storage.
+
+   Examples:
+   - HDD
+   - SSD
+   - USB Flash Drive
+   - Memory Card
+   - CD/DVD
+
+   Example:
+   A student's "Exam_Result.xlsx" file can be stored on an SSD.
+
+
+5. OUTPUT DEVICES
+   Used to display processed information.
+
+   Examples:
+   - Monitor
+   - Printer
+   - Speaker
+   - Projector
+
+   Example:
+   After calculating student marks, the result is displayed
+   on the monitor.
+
+
+------------------------------------------------------------------
+B. SOFTWARE
+------------------------------------------------------------------
+
+Software is a collection of programs/instructions that tells
+computer hardware what to do.
+
+Examples:
+    - Windows
+    - Linux
+    - MS Word
+    - Excel
+    - Google Chrome
+    - MySQL
+    - Python
+
+
+TYPES OF SOFTWARE
+------------------------------------------------------------------
+
+1. SYSTEM SOFTWARE
+
+   System software controls and manages computer hardware.
+
+   Examples:
+   - Windows
+   - Linux
+   - macOS
+   - Device Drivers
+   - Operating Systems
+
+   Example:
+   Windows manages CPU, RAM, keyboard, mouse and other devices.
+
+
+2. APPLICATION SOFTWARE
+
+   Application software is designed to perform specific
+   user-oriented tasks.
+
+   Examples:
+   - MS Word -> Document writing
+   - MS Excel -> Spreadsheet and calculations
+   - Photoshop -> Image editing
+   - Chrome -> Web browsing
+   - VLC -> Media playing
+
+   Example:
+   A teacher uses MS Excel to calculate students' marks.
+
+
+3. UTILITY SOFTWARE
+
+   Utility software helps maintain, protect and manage
+   computer systems.
+
+   Examples:
+   - Antivirus
+   - Disk Cleanup
+   - Backup Software
+   - File Compression Software
+
+   Example:
+   Antivirus software scans a computer for malware.
+
+
+------------------------------------------------------------------
+HARDWARE VS SOFTWARE
+------------------------------------------------------------------
+
+Hardware:
+    - Physical component
+    - Can be touched
+    - Examples: CPU, keyboard, RAM
+
+Software:
+    - Set of programs/instructions
+    - Cannot be physically touched
+    - Examples: Windows, Excel, Chrome
+
+
+SIMPLE EXAMPLE
+------------------------------------------------------------------
+
+Computer System = Hardware + Software
+
+Example:
+
+Hardware:
+    Keyboard + CPU + RAM + SSD + Monitor
+
+Software:
+    Windows + MS Excel
+
+Process:
+    User enters marks
+          ↓
+    Keyboard
+          ↓
+    CPU processes data
+          ↓
+    RAM temporarily stores data
+          ↓
+    Excel performs calculation
+          ↓
+    Monitor displays result
+
+
+
+
+
+
+
+
+
+==================================================================
+2.2 DATABASE MANAGEMENT SYSTEMS (DBMS)
+==================================================================
+
+DEFINITION
+------------------------------------------------------------------
+
+A Database Management System (DBMS) is software used to create,
+store, organize, manage, retrieve and manipulate data in a database.
+
+Examples:
+    - MySQL
+    - PostgreSQL
+    - Oracle Database
+    - Microsoft SQL Server
+    - MongoDB
+
+
+DATABASE
+------------------------------------------------------------------
+
+A database is an organized collection of related data.
+
+Example:
+
+STUDENT DATABASE
+
+Student_ID    Name       Age    Program
+------------------------------------------------
+101           Ram        20     BCA
+102           Sita       21     BCA
+103           Hari       20     BCSIT
+
+
+WHY DO WE NEED DBMS?
+------------------------------------------------------------------
+
+Without DBMS:
+    - Data may become duplicated
+    - Difficult to search
+    - Difficult to update
+    - Difficult to maintain security
+    - Difficult to manage large amounts of data
+
+With DBMS:
+    - Easy data storage
+    - Easy data retrieval
+    - Data security
+    - Data consistency
+    - Backup and recovery
+    - Multiple users can access data
+
+
+MAIN FUNCTIONS OF DBMS
+------------------------------------------------------------------
+
+1. Data Storage
+2. Data Retrieval
+3. Data Manipulation
+4. Data Security
+5. Backup and Recovery
+6. Data Sharing
+7. Data Integrity
+
+
+EXAMPLE OF DBMS
+------------------------------------------------------------------
+
+Suppose a college has:
+
+    5,000 Students
+    100 Teachers
+    50 Courses
+    10,000 Exam Records
+
+A DBMS can store and manage all these records.
+
+Example query:
+
+    Find all students studying BCA.
+
+The DBMS searches the database and returns the required records.
+
+
+BASIC DATABASE TERMS
+------------------------------------------------------------------
+
+1. TABLE
+   Stores data in rows and columns.
+
+2. ROW / RECORD
+   Represents one complete data entry.
+
+3. COLUMN / FIELD
+   Represents one attribute.
+
+4. PRIMARY KEY
+   Uniquely identifies each record.
+
+Example:
+
+Student_ID = Primary Key
+
+
+5. FOREIGN KEY
+   Connects one table with another table.
+
+
+SIMPLE RELATIONSHIP EXAMPLE
+------------------------------------------------------------------
+
+STUDENT TABLE
+
+Student_ID    Name       Course_ID
+-----------------------------------
+101           Ram        C01
+102           Sita       C02
+103           Hari       C01
+
+
+COURSE TABLE
+
+Course_ID     Course_Name
+--------------------------
+C01           BCA
+C02           BCSIT
+
+
+Here:
+
+Student_ID = Primary Key in STUDENT table
+
+Course_ID = Primary Key in COURSE table
+
+Course_ID in STUDENT table = Foreign Key
+
+
+SQL EXAMPLE
+------------------------------------------------------------------
+
+To display all students:
+
+SELECT * FROM Student;
+
+
+To find BCA students:
+
+SELECT * FROM Student
+WHERE Course_ID = 'C01';
+
+
+To add a student:
+
+INSERT INTO Student
+VALUES (104, 'Gita', 'C01');
+
+
+==================================================================
+2.3 NETWORKING AND TELECOMMUNICATIONS
+==================================================================
+
+A. COMPUTER NETWORK
+------------------------------------------------------------------
+
+A computer network is a group of interconnected computers/devices
+that communicate and share resources.
+
+Example:
+
+Computer A -------- Router -------- Computer B
+                         |
+                       Printer
+
+
+PURPOSES OF NETWORKING
+------------------------------------------------------------------
+
+1. Resource Sharing
+2. File Sharing
+3. Communication
+4. Internet Access
+5. Data Sharing
+6. Centralized Management
+7. Remote Access
+
+
+TYPES OF NETWORK
+------------------------------------------------------------------
+
+1. PAN
+   Personal Area Network
+
+   Small network around one person.
+
+   Example:
+   Mobile phone connected to Bluetooth earphones.
+
+
+2. LAN
+   Local Area Network
+
+   Network within a small geographical area.
+
+   Example:
+   Computer network inside a college laboratory.
+
+
+3. MAN
+   Metropolitan Area Network
+
+   Covers a city or large campus area.
+
+   Example:
+   Network connecting different branches within a city.
+
+
+4. WAN
+   Wide Area Network
+
+   Covers large geographical areas.
+
+   Example:
+   The Internet.
+
+
+NETWORK DEVICES
+------------------------------------------------------------------
+
+1. HUB
+   Connects multiple devices in a network.
+
+2. SWITCH
+   Connects devices in a LAN and forwards data to the
+   appropriate device.
+
+3. ROUTER
+   Connects different networks and forwards packets.
+
+4. MODEM
+   Converts signals for communication between a local network
+   and an Internet service.
+
+5. ACCESS POINT
+   Provides wireless network access.
+
+6. NETWORK INTERFACE CARD (NIC)
+   Allows a computer/device to connect to a network.
+
+
+NETWORK TOPOLOGIES
+------------------------------------------------------------------
+
+1. BUS TOPOLOGY
+   All devices share one main communication cable.
+
+2. STAR TOPOLOGY
+   All devices connect to a central device.
+
+       Computer
+           |
+           |
+    Computer--Switch--Computer
+           |
+           |
+       Computer
+
+3. RING TOPOLOGY
+   Devices are connected in a circular structure.
+
+4. MESH TOPOLOGY
+   Devices have multiple connections with each other.
+
+5. TREE TOPOLOGY
+   Combination of hierarchical structures.
+
+
+TELECOMMUNICATION
+------------------------------------------------------------------
+
+Telecommunication means transmission of information over a
+distance using electronic communication systems.
+
+Information can include:
+    - Voice
+    - Text
+    - Video
+    - Images
+    - Data
+
+
+EXAMPLES
+------------------------------------------------------------------
+
+- Mobile phone calls
+- SMS
+- Email
+- Video conferencing
+- Internet communication
+- VoIP
+
+
+NETWORKING + TELECOMMUNICATION EXAMPLE
+------------------------------------------------------------------
+
+A student uses Zoom/Google Meet:
+
+Laptop
+   ↓
+Wi-Fi Router
+   ↓
+Internet
+   ↓
+ISP
+   ↓
+Remote Server
+   ↓
+Teacher's Laptop
+
+This allows real-time communication between student and teacher.
+
+
+==================================================================
+2.4 INTRODUCTION TO NEW AND EMERGING TECHNOLOGIES
+==================================================================
+
+Emerging technologies are new or rapidly developing technologies
+that have the potential to significantly change business,
+education, communication and society.
+
+Examples:
+    - Cloud Computing
+    - IoT
+    - Sensor Networks
+    - Social Networking Services (SNS)
+    - Blockchain
+    - Artificial Intelligence
+    - Machine Learning
+    - Big Data
+    - Edge Computing
+    - 5G
+
+
+==================================================================
+A. CLOUD COMPUTING
+==================================================================
+
+DEFINITION
+------------------------------------------------------------------
+
+Cloud computing is the delivery of computing resources such as
+servers, storage, databases, networking and software over the
+Internet.
+
+Simple meaning:
+
+Instead of storing and processing everything on your own computer,
+you can use computing resources through the Internet.
+
+
+EXAMPLES
+------------------------------------------------------------------
+
+- Google Drive
+- OneDrive
+- Dropbox
+- AWS
+- Microsoft Azure
+- Google Cloud
+
+
+EXAMPLE
+------------------------------------------------------------------
+
+Suppose your laptop has only 128 GB storage.
+
+Instead of storing a 50 GB collection of files locally,
+you can store them in cloud storage.
+
+Laptop
+   ↓
+Internet
+   ↓
+Cloud Storage
+   ↓
+Your Files
+
+
+ADVANTAGES
+------------------------------------------------------------------
+
+1. Access from anywhere
+2. Scalable
+3. Lower hardware requirements
+4. Backup
+5. Resource sharing
+6. Flexible pricing
+
+
+TYPES OF CLOUD
+------------------------------------------------------------------
+
+1. PUBLIC CLOUD
+   Cloud resources are provided to many users.
+
+2. PRIVATE CLOUD
+   Cloud infrastructure is dedicated to one organization.
+
+3. HYBRID CLOUD
+   Combination of public and private cloud.
+
+
+CLOUD SERVICE MODELS
+------------------------------------------------------------------
+
+1. IaaS
+   Infrastructure as a Service
+
+   Provides:
+   - Virtual machines
+   - Storage
+   - Networking
+
+2. PaaS
+   Platform as a Service
+
+   Provides:
+   - Development platform
+   - Runtime environment
+   - Development tools
+
+3. SaaS
+   Software as a Service
+
+   Provides ready-to-use software.
+
+   Example:
+   Google Docs / Microsoft 365
+
+
+==================================================================
+B. SENSOR NETWORKS
+==================================================================
+
+A sensor network consists of multiple sensors that collect data
+from the physical environment and communicate that data.
+
+Sensors can measure:
+    - Temperature
+    - Humidity
+    - Pressure
+    - Light
+    - Motion
+    - Sound
+
+
+EXAMPLE
+------------------------------------------------------------------
+
+Agricultural Sensor Network:
+
+Temperature Sensor
+        |
+Humidity Sensor
+        |
+Soil Moisture Sensor
+        |
+        ↓
+   Sensor Network
+        |
+        ↓
+   Gateway/Internet
+        |
+        ↓
+     Cloud
+        |
+        ↓
+     Farmer
+
+
+APPLICATIONS
+------------------------------------------------------------------
+
+- Smart agriculture
+- Weather monitoring
+- Healthcare
+- Smart homes
+- Industrial monitoring
+- Environmental monitoring
+
+
+==================================================================
+C. SNS - SOCIAL NETWORKING SERVICES
+==================================================================
+
+SNS stands for Social Networking Service.
+
+It is an online platform that allows users to create profiles,
+communicate, share information and interact with other users.
+
+Examples:
+    - Facebook
+    - Instagram
+    - LinkedIn
+    - X
+    - TikTok
+
+
+COMMON FEATURES
+------------------------------------------------------------------
+
+1. User Profiles
+2. Friends/Followers
+3. Posts
+4. Comments
+5. Likes/Reactions
+6. Messaging
+7. Media Sharing
+
+
+EXAMPLE
+------------------------------------------------------------------
+
+A college creates a Facebook page.
+
+College
+   ↓
+Posts Notice
+   ↓
+Students See Post
+   ↓
+Students Comment/Share
+   ↓
+Information reaches many students
+
+
+USES OF SNS
+------------------------------------------------------------------
+
+- Communication
+- Marketing
+- Education
+- Networking
+- News sharing
+- Brand promotion
+- Community building
+
+
+==================================================================
+D. BLOCKCHAIN
+==================================================================
+
+DEFINITION
+------------------------------------------------------------------
+
+Blockchain is a distributed digital ledger technology that stores
+records in blocks linked together using cryptographic techniques.
+
+Simple idea:
+
+Data → Block → Block → Block → Block
+
+
+IMPORTANT FEATURES
+------------------------------------------------------------------
+
+1. Decentralization
+2. Transparency
+3. Security
+4. Immutability
+5. Distributed Ledger
+
+
+HOW BLOCKCHAIN WORKS
+------------------------------------------------------------------
+
+Step 1:
+A transaction is created.
+
+Step 2:
+Transaction is verified by the network.
+
+Step 3:
+Verified transactions are grouped into a block.
+
+Step 4:
+The block is added to the blockchain.
+
+Step 5:
+The record becomes part of the distributed ledger.
+
+
+EXAMPLE
+------------------------------------------------------------------
+
+Person A sends digital currency to Person B.
+
+A
+ ↓
+Transaction
+ ↓
+Network Verification
+ ↓
+Block
+ ↓
+Blockchain
+ ↓
+B
+
+
+APPLICATIONS
+------------------------------------------------------------------
+
+- Cryptocurrency
+- Supply chain management
+- Digital identity
+- Banking
+- Smart contracts
+- Healthcare records
+- Voting systems
+
+
+==================================================================
+E. INTERNET OF THINGS (IoT)
+==================================================================
+
+DEFINITION
+------------------------------------------------------------------
+
+IoT stands for Internet of Things.
+
+IoT is a system in which physical devices are connected to the
+Internet so that they can collect, exchange and sometimes act
+on data.
+
+Simple formula:
+
+IoT = Physical Device + Sensor + Internet + Data + Action
+
+
+EXAMPLES
+------------------------------------------------------------------
+
+- Smart watch
+- Smart TV
+- Smart refrigerator
+- Smart bulb
+- Smart security camera
+- Smart agriculture system
+- Smart home
+
+
+EXAMPLE: SMART HOME
+------------------------------------------------------------------
+
+Temperature Sensor
+        ↓
+     Internet
+        ↓
+     Cloud/App
+        ↓
+   User's Mobile
+        ↓
+   Air Conditioner
+
+If temperature becomes too high:
+
+Sensor detects temperature
+        ↓
+System processes data
+        ↓
+AC can be switched ON automatically
+
+
+IoT COMPONENTS
+------------------------------------------------------------------
+
+1. Sensors
+   Collect data.
+
+2. Devices
+   Physical objects.
+
+3. Connectivity
+   Wi-Fi, Bluetooth, 4G/5G, etc.
+
+4. Data Processing
+   Processes collected data.
+
+5. Application
+   Allows users to view/control the system.
+
+
+IoT APPLICATIONS
+------------------------------------------------------------------
+
+1. Smart Home
+2. Smart City
+3. Smart Agriculture
+4. Healthcare
+5. Transportation
+6. Manufacturing
+7. Security
+8. Energy Management
+
+
+==================================================================
+F. ARTIFICIAL INTELLIGENCE (AI)
+==================================================================
+
+AI refers to the ability of computer systems to perform tasks
+that normally require human intelligence.
+
+Examples:
+    - Speech recognition
+    - Image recognition
+    - Chatbots
+    - Recommendation systems
+    - Decision support
+
+
+EXAMPLE
+------------------------------------------------------------------
+
+Netflix/YouTube recommendation:
+
+User watches videos
+        ↓
+System analyzes behavior
+        ↓
+AI/ML model
+        ↓
+Recommended videos
+
+
+==================================================================
+G. BIG DATA
+==================================================================
+
+Big Data refers to extremely large and complex datasets that
+traditional data-processing methods may struggle to handle.
+
+Common characteristics:
+
+5 Vs of Big Data:
+
+1. Volume
+   Large amount of data.
+
+2. Velocity
+   Data is generated rapidly.
+
+3. Variety
+   Different types of data.
+
+4. Veracity
+   Reliability/quality of data.
+
+5. Value
+   Useful information obtained from data.
+
+
+EXAMPLE
+------------------------------------------------------------------
+
+Facebook/Instagram generates:
+
+    Photos
+    Videos
+    Messages
+    Comments
+    Likes
+    User activity
+
+This creates huge amounts of data.
+
+
+==================================================================
+H. 5G TECHNOLOGY
+==================================================================
+
+5G is the fifth generation of mobile communication technology.
+
+Major features:
+
+    - High speed
+    - Low latency
+    - High device connectivity
+    - Supports IoT applications
+
+
+EXAMPLE
+------------------------------------------------------------------
+
+Smart City:
+
+Thousands of IoT sensors
+        ↓
+      5G
+        ↓
+Central System
+        ↓
+Traffic / Security / Environment Monitoring
+
+
+==================================================================
+COMPARISON OF EMERGING TECHNOLOGIES
+==================================================================
+
+Technology       Main Purpose             Example
+------------------------------------------------------------------
+Cloud            Internet-based computing Google Drive
+IoT              Connected devices        Smart Home
+Blockchain       Secure distributed data  Cryptocurrency
+Sensor Network   Environmental data       Smart Agriculture
+SNS              Social interaction       Facebook
+AI               Intelligent decisions    Chatbot
+Big Data         Large-scale data         Social media analytics
+5G               Fast connectivity        Smart City
+
+
+==================================================================
+IMPORTANT DIFFERENCES FOR EXAMS
+==================================================================
+
+1. INTERNET vs IoT
+------------------------------------------------------------------
+
+Internet:
+    Connects computers and people.
+
+IoT:
+    Connects physical objects/devices to the Internet.
+
+Example:
+    Internet -> Person uses Facebook.
+    IoT      -> Smart watch sends health/activity data.
+
+
+2. DATABASE vs DBMS
+------------------------------------------------------------------
+
+Database:
+    Collection of organized data.
+
+DBMS:
+    Software used to create and manage databases.
+
+Example:
+    Student records = Database
+    MySQL = DBMS
+
+
+3. HARDWARE vs SOFTWARE
+------------------------------------------------------------------
+
+Hardware:
+    Physical components.
+
+Software:
+    Programs/instructions.
+
+
+4. LAN vs WAN
+------------------------------------------------------------------
+
+LAN:
+    Small geographical area.
+
+WAN:
+    Large geographical area.
+
+Example:
+    College lab = LAN
+    Internet = WAN
+
+
+5. CLOUD vs LOCAL STORAGE
+------------------------------------------------------------------
+
+Cloud Storage:
+    Data stored on remote servers and accessed through Internet.
+
+Local Storage:
+    Data stored on local device such as HDD/SSD.
+
+
+==================================================================
+SHORT EXAM DEFINITIONS
+==================================================================
+
+Hardware:
+Physical components of a computer system.
+
+Software:
+A collection of programs/instructions used to operate a computer.
+
+DBMS:
+Software used to create, manage and manipulate databases.
+
+Network:
+A group of interconnected devices that communicate and share
+resources.
+
+LAN:
+A network covering a small geographical area.
+
+WAN:
+A network covering a large geographical area.
+
+Cloud Computing:
+Delivery of computing resources over the Internet.
+
+IoT:
+A system of interconnected physical devices that collect and
+exchange data over a network.
+
+Blockchain:
+A distributed digital ledger that records transactions in
+linked blocks.
+
+Sensor Network:
+A network of sensors used to collect and communicate environmental
+or physical data.
+
+SNS:
+An online service that enables users to communicate and share
+information.
+
+AI:
+Technology that enables machines to perform tasks requiring
+human-like intelligence.
+
+Big Data:
+Very large and complex datasets requiring advanced methods for
+processing and analysis.
+
+5G:
+The fifth generation of mobile communication technology.
+
+
+==================================================================
+POSSIBLE SHORT QUESTIONS
+==================================================================
+
+1. What is hardware?
+2. What is software?
+3. Differentiate hardware and software.
+4. What is DBMS?
+5. Give four examples of DBMS.
+6. What is a primary key?
+7. What is a computer network?
+8. Define LAN and WAN.
+9. What is a router?
+10. What is telecommunication?
+11. Define cloud computing.
+12. What is IoT?
+13. What is a sensor network?
+14. What is SNS?
+15. What is blockchain?
+16. Write any four features of blockchain.
+17. What is AI?
+18. What is Big Data?
+19. What is 5G?
+20. Write any four applications of IoT.
+
+
+==================================================================
+POSSIBLE LONG QUESTIONS
+==================================================================
+
+1. Explain the major hardware and software components of an
+   information technology infrastructure with examples.
+
+2. What is DBMS? Explain its functions, advantages and examples.
+
+3. Explain different types of computer networks with suitable
+   examples.
+
+4. Explain networking devices such as hub, switch, router,
+   modem and access point.
+
+5. What is cloud computing? Explain its types and service models.
+
+6. Explain IoT, its components, working mechanism and applications.
+
+7. What is blockchain? Explain its major features and working
+   process.
+
+8. Explain sensor networks and their applications.
+
+9. Explain SNS and discuss its applications in business and
+   communication.
+
+10. Explain emerging technologies such as Cloud Computing, IoT,
+    Blockchain, AI, Big Data and 5G.
+
+
+==================================================================
+ONE-LINE MEMORY TRICKS
+==================================================================
+
+Hardware = Things you can TOUCH
+
+Software = Programs you can RUN
+
+DBMS = Manage DATA
+
+Network = CONNECT devices
+
+Cloud = COMPUTING through Internet
+
+IoT = THINGS + INTERNET
+
+Sensor Network = SENSORS + COMMUNICATION
+
+SNS = PEOPLE + SOCIAL CONNECTION
+
+Blockchain = BLOCKS + SECURE LEDGER
+
+AI = MACHINES + INTELLIGENCE
+
+Big Data = HUGE + COMPLEX DATA
+
+5G = FAST + LOW LATENCY + MANY DEVICES
+
+
+==================================================================
+UNIT II QUICK REVISION
+==================================================================
+
+2.1 Hardware & Software
+    ↓
+    Physical devices + Programs
+
+2.2 DBMS
+    ↓
+    Store + Manage + Retrieve Data
+
+2.3 Networking
+    ↓
+    Connect + Communicate + Share Resources
+
+2.4 Emerging Technologies
+    ↓
+    Cloud
+    Sensor Networks
+    SNS
+    Blockchain
+    IoT
+    AI
+    Big Data
+    5G
+
+==================================================================
+END OF UNIT II
+==================================================================
