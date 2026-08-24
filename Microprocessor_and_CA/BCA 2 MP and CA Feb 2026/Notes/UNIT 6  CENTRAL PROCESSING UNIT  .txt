@@ -1,0 +1,1047 @@
+
+
+======================================================================
+                    UNIT 6: CENTRAL PROCESSING UNIT
+======================================================================
+
+Lecture Hours: 6 Hours
+
+
+======================================================================
+6.1 GENERAL REGISTER ORGANIZATION
+======================================================================
+
+REGISTER:
+    A small and high-speed storage location inside the CPU.
+
+Registers store:
+
+    - Data
+    - Addresses
+    - Instructions
+    - Intermediate results
+
+
+GENERAL REGISTER ORGANIZATION:
+    Arrangement of CPU registers, ALU and buses used to transfer
+    and process data.
+
+
+Basic structure:
+
+       R0
+       R1
+       R2
+       R3
+        |
+        v
+   +----------+
+   |   BUS    |
+   +----+-----+
+        |
+        v
+      +-----+
+      | ALU |
+      +-----+
+        |
+        v
+      Result
+
+
+Example:
+
+    R1 = 5
+    R2 = 3
+
+Operation:
+
+    R3 <- R1 + R2
+
+Result:
+
+    R3 = 8
+
+
+======================================================================
+REGISTER TRANSFER
+======================================================================
+
+Register transfer means moving data from one register to another.
+
+
+Example:
+
+    R2 <- R1
+
+
+Meaning:
+
+    Copy the contents of R1 into R2.
+
+
+If:
+
+    R1 = 1010
+
+Then:
+
+    R2 <- R1
+
+Therefore:
+
+    R2 = 1010
+
+
+IMPORTANT:
+
+    R1 is NOT destroyed.
+    The contents are copied to R2.
+
+
+======================================================================
+ARITHMETIC OPERATION USING REGISTERS
+======================================================================
+
+Example:
+
+    R3 <- R1 + R2
+
+
+Suppose:
+
+    R1 = 10
+    R2 = 5
+
+
+Then:
+
+    R3 = 10 + 5
+
+    R3 = 15
+
+
+======================================================================
+6.1.1 STACK ORGANIZATION
+======================================================================
+
+STACK:
+    A memory organization in which data is accessed using
+    LIFO principle.
+
+
+LIFO:
+
+    Last In, First Out
+
+
+Example:
+
+    Push A
+    Push B
+    Push C
+
+
+Stack:
+
+       C  <- Top
+       B
+       A
+
+
+POP operation:
+
+    C comes out first.
+
+
+======================================================================
+STACK OPERATIONS
+======================================================================
+
+PUSH:
+    Adds an item to the top of the stack.
+
+
+POP:
+    Removes an item from the top of the stack.
+
+
+Example:
+
+    PUSH 10
+    PUSH 20
+    PUSH 30
+
+
+Stack:
+
+       30  <- TOP
+       20
+       10
+
+
+POP:
+
+    30 is removed.
+
+
+Now:
+
+       20  <- TOP
+       10
+
+
+======================================================================
+STACK POINTER (SP)
+======================================================================
+
+Stack Pointer (SP) is a register that points to the top of the
+stack.
+
+
+Example:
+
+       +------+
+       |  30  |  <- SP
+       +------+
+       |  20  |
+       +------+
+       |  10  |
+       +------+
+
+
+If 30 is popped:
+
+       +------+
+       |  20  |  <- SP
+       +------+
+       |  10  |
+       +------+
+
+
+======================================================================
+STACK EXAMPLE: EXPRESSION
+======================================================================
+
+Expression:
+
+    A + B
+
+
+Using stack:
+
+    PUSH A
+    PUSH B
+    ADD
+
+
+ADD takes the top two operands and places the result back on stack.
+
+
+Example:
+
+    A = 5
+    B = 3
+
+
+PUSH 5
+
+Stack:
+    5
+
+
+PUSH 3
+
+Stack:
+    3
+    5
+
+
+ADD:
+
+    5 + 3 = 8
+
+
+Stack:
+
+    8
+
+
+======================================================================
+ADVANTAGES OF STACK ORGANIZATION
+======================================================================
+
+    - Simple instruction format
+    - Useful for expression evaluation
+    - Instructions can be short
+    - Easy implementation of nested operations
+
+
+DISADVANTAGES:
+
+    - More memory access may be required
+    - Random access to operands is difficult
+
+
+======================================================================
+6.2 INSTRUCTION FORMATS
+======================================================================
+
+Instruction format specifies the arrangement of:
+
+    - Opcode
+    - Operand/address fields
+
+
+GENERAL:
+
+    +----------+-----------------------+
+    |  OPCODE  |      OPERANDS         |
+    +----------+-----------------------+
+
+
+OPCODE:
+    Specifies the operation.
+
+Examples:
+
+    ADD
+    SUB
+    LOAD
+    STORE
+
+
+OPERAND:
+    Specifies data, register or memory location used by
+    the instruction.
+
+
+======================================================================
+TYPES OF INSTRUCTION FORMATS
+======================================================================
+
+    1. 3-Address Instruction
+    2. 2-Address Instruction
+    3. 1-Address Instruction
+    4. 0-Address Instruction
+
+
+======================================================================
+6.2.1 THREE-ADDRESS INSTRUCTION
+======================================================================
+
+Three-address instruction contains:
+
+    Opcode + 3 operands
+
+
+Example:
+
+    ADD R1, R2, R3
+
+
+Meaning:
+
+    R1 <- R2 + R3
+
+
+Suppose:
+
+    R2 = 10
+    R3 = 5
+
+
+Then:
+
+    R1 = 15
+
+
+Format:
+
+    +------+----+----+----+
+    | ADD  | R1 | R2 | R3 |
+    +------+----+----+----+
+
+
+ADVANTAGE:
+
+    Does not destroy source operands.
+
+
+DISADVANTAGE:
+
+    Instruction is longer.
+
+
+======================================================================
+6.2.2 TWO-ADDRESS INSTRUCTION
+======================================================================
+
+Contains:
+
+    Opcode + 2 operands
+
+
+Example:
+
+    ADD R1, R2
+
+
+Meaning:
+
+    R1 <- R1 + R2
+
+
+Suppose:
+
+    R1 = 10
+    R2 = 5
+
+
+After:
+
+    ADD R1, R2
+
+
+R1 = 15
+
+
+R2 = 5
+
+
+IMPORTANT:
+
+    One operand usually acts as both source and destination.
+
+
+Format:
+
+    +------+----+----+
+    | ADD  | R1 | R2 |
+    +------+----+----+
+
+
+======================================================================
+6.2.3 ONE-ADDRESS INSTRUCTION
+======================================================================
+
+Contains:
+
+    Opcode + 1 address
+
+
+Usually uses an ACCUMULATOR (AC).
+
+
+Example:
+
+    LOAD A
+    ADD B
+    STORE C
+
+
+Suppose:
+
+    A = 10
+    B = 5
+
+
+Execution:
+
+    LOAD A
+        AC = 10
+
+    ADD B
+        AC = AC + B
+        AC = 15
+
+    STORE C
+        C = 15
+
+
+Therefore:
+
+    C = A + B
+
+
+MEMORY TRICK:
+
+    1-address instruction usually uses ACCUMULATOR.
+
+
+======================================================================
+6.2.4 ZERO-ADDRESS INSTRUCTION
+======================================================================
+
+Contains:
+
+    Opcode only
+
+
+Operands are automatically taken from the STACK.
+
+
+Example:
+
+    PUSH A
+    PUSH B
+    ADD
+    POP C
+
+
+Suppose:
+
+    A = 10
+    B = 5
+
+
+Stack:
+
+    PUSH A
+        10
+
+    PUSH B
+        5
+        10
+
+    ADD
+        15
+
+    POP C
+        C = 15
+
+
+Therefore:
+
+    C = A + B
+
+
+MEMORY TRICK:
+
+    0-address = STACK MACHINE
+
+
+======================================================================
+COMPARISON OF INSTRUCTION FORMATS
+======================================================================
+
+3-ADDRESS:
+
+    ADD R1, R2, R3
+
+    R1 <- R2 + R3
+
+
+2-ADDRESS:
+
+    ADD R1, R2
+
+    R1 <- R1 + R2
+
+
+1-ADDRESS:
+
+    ADD B
+
+    AC <- AC + B
+
+
+0-ADDRESS:
+
+    ADD
+
+    Top two stack values are added.
+
+
+======================================================================
+SAME OPERATION USING ALL FORMATS
+======================================================================
+
+Goal:
+
+    C = A + B
+
+
+--------------------------------------------------
+3-ADDRESS
+--------------------------------------------------
+
+    ADD C, A, B
+
+
+Meaning:
+
+    C = A + B
+
+
+--------------------------------------------------
+2-ADDRESS
+--------------------------------------------------
+
+    MOV C, A
+    ADD C, B
+
+
+Meaning:
+
+    C = A
+    C = C + B
+
+
+--------------------------------------------------
+1-ADDRESS
+--------------------------------------------------
+
+    LOAD A
+    ADD B
+    STORE C
+
+
+Meaning:
+
+    AC = A
+    AC = AC + B
+    C = AC
+
+
+--------------------------------------------------
+0-ADDRESS
+--------------------------------------------------
+
+    PUSH A
+    PUSH B
+    ADD
+    POP C
+
+
+Meaning:
+
+    Stack performs A + B
+    Result goes to C
+
+
+======================================================================
+6.3 RISC AND CISC ARCHITECTURE
+======================================================================
+
+
+RISC:
+
+    Reduced Instruction Set Computer
+
+
+CISC:
+
+    Complex Instruction Set Computer
+
+
+These are two different approaches to CPU instruction-set design.
+
+
+======================================================================
+6.3.1 RISC ARCHITECTURE
+======================================================================
+
+RISC uses a relatively small and simple set of instructions.
+
+
+Main characteristics:
+
+    - Simple instructions
+    - Usually fixed-length instructions
+    - Large number of general-purpose registers
+    - Load/Store architecture
+    - Many instructions execute efficiently
+    - Easier pipelining
+    - Complex operations may require multiple instructions
+
+
+Example idea:
+
+To add values from memory:
+
+    LOAD R1, A
+    LOAD R2, B
+    ADD R3, R1, R2
+    STORE C, R3
+
+
+RISC breaks complex work into simple instructions.
+
+
+MEMORY TRICK:
+
+    RISC = SIMPLE + MANY INSTRUCTIONS
+
+
+======================================================================
+6.3.2 CISC ARCHITECTURE
+======================================================================
+
+CISC uses a large and more complex instruction set.
+
+
+Main characteristics:
+
+    - Large instruction set
+    - Many addressing modes
+    - Instructions may have variable length
+    - Some instructions perform complex operations
+    - Instructions may require multiple internal steps
+    - Hardware/control design can be more complex
+
+
+Example idea:
+
+A single instruction may perform a relatively complex memory-to-memory
+or multi-step operation, depending on the architecture.
+
+
+MEMORY TRICK:
+
+    CISC = COMPLEX INSTRUCTIONS
+
+
+======================================================================
+RISC vs CISC
+======================================================================
+
+RISC:
+
+    Reduced instruction set
+    Simple instructions
+    Usually fixed-length
+    More registers
+    Load/Store architecture
+    Easier pipelining
+    Complex task may need more instructions
+
+
+CISC:
+
+    Large instruction set
+    Complex instructions
+    Often variable-length
+    Generally fewer registers in traditional designs
+    Many addressing modes
+    More complex instruction decoding
+    Complex task may require fewer instructions
+
+
+======================================================================
+RISC vs CISC TABLE
+======================================================================
+
+Feature             RISC              CISC
+---------------------------------------------------------------
+Instruction set     Small             Large
+Instruction type    Simple            Complex
+Instruction length  Usually fixed     Often variable
+Registers           Generally many    Traditionally fewer
+Addressing modes    Fewer             More
+Memory access       Load/Store        More flexible
+Pipelining          Easier            More complex
+Code size           Often larger      Often smaller
+Control unit        Simpler           More complex
+Execution           Often efficient   May require more cycles
+
+
+IMPORTANT:
+
+Modern processors can combine ideas from both RISC and CISC, so the
+simple textbook distinction is not absolute.
+
+
+======================================================================
+RISC EXAMPLE
+======================================================================
+
+Suppose:
+
+    A = 10
+    B = 20
+
+Need:
+
+    C = A + B
+
+
+RISC-style approach:
+
+    LOAD R1, A
+    LOAD R2, B
+    ADD R3, R1, R2
+    STORE C, R3
+
+
+Several simple instructions are used.
+
+
+======================================================================
+CISC EXAMPLE
+======================================================================
+
+A CISC architecture may provide a more complex instruction capable
+of performing a larger amount of work in one instruction.
+
+
+General idea:
+
+    Complex Instruction
+          |
+          v
+    Multiple internal operations
+          |
+          v
+        Result
+
+
+IMPORTANT:
+
+The exact instruction depends on the particular CISC processor.
+
+
+======================================================================
+WHY RISC IS CALLED "REDUCED"?
+======================================================================
+
+Because the instruction set is designed around a relatively small
+number of simple operations.
+
+
+REDUCED DOES NOT MEAN:
+
+    "Less powerful."
+
+
+It means:
+
+    "Simpler instruction set."
+
+
+======================================================================
+WHY CISC IS CALLED "COMPLEX"?
+======================================================================
+
+Because it provides many instructions, addressing modes and
+instructions capable of performing relatively complex operations.
+
+
+COMPLEX DOES NOT MEAN:
+
+    "Always slower."
+
+
+Actual performance depends on the processor implementation,
+compiler, workload and other factors.
+
+
+======================================================================
+IMPORTANT DIFFERENCES
+======================================================================
+
+RISC:
+
+    SIMPLE INSTRUCTIONS
+    FEWER INSTRUCTIONS TYPES
+    MANY REGISTERS
+    LOAD/STORE
+    EASY PIPELINING
+
+
+CISC:
+
+    COMPLEX INSTRUCTIONS
+    MANY INSTRUCTION TYPES
+    MANY ADDRESSING MODES
+    COMPLEX DECODING
+    VARIABLE-LENGTH INSTRUCTIONS ARE COMMON
+
+
+======================================================================
+SHORT EXAM QUESTIONS
+======================================================================
+
+Q1. What is a CPU?
+
+Q2. What is a register?
+
+Q3. What is general register organization?
+
+Q4. What is stack organization?
+
+Q5. What is LIFO?
+
+Q6. What is PUSH operation?
+
+Q7. What is POP operation?
+
+Q8. What is Stack Pointer?
+
+Q9. What is an instruction format?
+
+Q10. What is an opcode?
+
+Q11. What is a 3-address instruction?
+
+Q12. What is a 2-address instruction?
+
+Q13. What is a 1-address instruction?
+
+Q14. What is a 0-address instruction?
+
+Q15. What is RISC?
+
+Q16. What is CISC?
+
+Q17. Write the characteristics of RISC.
+
+Q18. Write the characteristics of CISC.
+
+Q19. Differentiate between RISC and CISC.
+
+Q20. Why is an accumulator used in 1-address instructions?
+
+
+======================================================================
+LONG EXAM QUESTIONS
+======================================================================
+
+Q1. Explain general register organization with a suitable diagram.
+
+Q2. Explain stack organization with PUSH and POP operations.
+
+Q3. Explain 3-address, 2-address, 1-address and 0-address
+    instruction formats with examples.
+
+Q4. Explain how C = A + B can be implemented using different
+    instruction formats.
+
+Q5. Define RISC and explain its characteristics.
+
+Q6. Define CISC and explain its characteristics.
+
+Q7. Differentiate between RISC and CISC architecture.
+
+Q8. Explain stack organization and its applications.
+
+
+======================================================================
+ONE-MINUTE REVISION
+======================================================================
+
+REGISTER:
+    Fast storage inside CPU.
+
+
+STACK:
+    LIFO organization.
+
+
+PUSH:
+    Add data to stack.
+
+
+POP:
+    Remove data from stack.
+
+
+STACK POINTER:
+    Points to top of stack.
+
+
+3-ADDRESS:
+    ADD R1, R2, R3
+    R1 = R2 + R3
+
+
+2-ADDRESS:
+    ADD R1, R2
+    R1 = R1 + R2
+
+
+1-ADDRESS:
+    ADD B
+    AC = AC + B
+
+
+0-ADDRESS:
+    ADD
+    Uses stack operands.
+
+
+RISC:
+    Reduced + Simple instructions.
+
+
+CISC:
+    Complex + Large instruction set.
+
+
+======================================================================
+SUPER QUICK MEMORY TRICKS
+======================================================================
+
+INSTRUCTION FORMAT:
+
+    3 ADDRESS -> THREE OPERANDS
+
+    2 ADDRESS -> TWO OPERANDS
+
+    1 ADDRESS -> ACCUMULATOR
+
+    0 ADDRESS -> STACK
+
+
+STACK:
+
+    PUSH = PUT IN
+
+    POP = TAKE OUT
+
+    LIFO = LAST IN, FIRST OUT
+
+
+RISC:
+
+    R = REDUCED
+    I = INSTRUCTION
+    S = SIMPLE
+    C = COMPUTER
+
+
+CISC:
+
+    C = COMPLEX
+    I = INSTRUCTION
+    S = SET
+    C = COMPUTER
+
+
+RISC:
+    Simple instructions + Load/Store
+
+
+CISC:
+    Complex instructions + Many addressing modes
+
+
+======================================================================
+IMPORTANT EXAM DIFFERENCE
+======================================================================
+
+             RISC              CISC
+             ----              ----
+             Simple            Complex
+             Small set         Large set
+             Fixed length*     Variable length*
+             Many registers    Traditionally fewer
+             Load/Store         Flexible memory operations
+             Easier pipeline    More complex decoding
+
+
+*These are common textbook characteristics, not absolute rules.
+
+
+======================================================================
+                     END OF UNIT 6
+======================================================================
