@@ -1,0 +1,1985 @@
+
+
+======================================================================
+                 UNIT 1: INTRODUCTION TO MICROPROCESSOR
+======================================================================
+
+Lecture Hours: 3 Hours
+
+
+======================================================================
+1.1 DEFINITION OF MICROPROCESSOR
+======================================================================
+
+Definition:
+------------
+    A MICROPROCESSOR is a programmable electronic device that performs
+    arithmetic, logical, control and data-processing operations according
+    to instructions given to it.
+
+
+
+In simple words:
+
+    MICROPROCESSOR = CPU implemented on a single integrated circuit (IC).
+
+
+
+
+It receives:
+
+        INPUT / DATA
+             |
+             v
+      +---------------+
+      | MICROPROCESSOR|
+      +---------------+
+             |
+             v
+       PROCESSING
+             |
+             v
+           OUTPUT
+
+
+
+
+Example:
+
+    Suppose we want:
+    
+        20 + 30
+    
+    The microprocessor:
+    
+        1. Takes the values 20 and 30
+        2. Stores them in registers
+        3. Sends them to ALU
+        4. ALU performs addition
+        5. Stores the result
+        6. Sends the result where required
+
+
+      20 + 30 = 50
+
+
+
+
+
+
+======================================================================
+MICROPROCESSOR vs MICROCOMPUTER
+======================================================================
+
+
+https://www.google.com/search?sca_esv=a09e9029f56312c0&sxsrf=APpeQnsR4wEQw0WYniA7NlaHhrxuHrad1g:1787538527837&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832cSpkWkfSwsmpNIrD_OQ-UdFAe4qAwsQWVbrtprjzBSpD5WmxHV9GQVdPkL5dutr9a05lPz7TUuzqnB5wIjnKo1sRwwtBkehv8WuQNg0LQWqZ6jKWRWdCveV6m8DBa4HK-PnI2_cBiN4zk_m-rWshP2KOsjerBgMq934J96x2Oqm3vS2_Q&q=MICROPROCESSOR+vs+MICROCOMPUTER&sa=X&ved=2ahUKEwin8OT3m7iWAxWd1jgGHU6VLkMQtKgLegQIFBAB&biw=749&bih=614&dpr=1.38#sv=CAMSURoyKhBlLU1qSnFxS0xyVDdDMHdNMg5NakpxcUtMclQ3QzB3TToOcmhXOXhCTHVvajJpQU0gBCoXCgFzEhBlLU1qSnFxS0xyVDdDMHdNGAEwARgHINuuypgNSggQARgBIAEoAQ
+
+
+MICROPROCESSOR:
+    CPU on a single IC.
+
+MICROCOMPUTER:
+    Complete small computer system containing:
+        - Microprocessor
+        - Memory
+        - Input/Output devices
+        - Other supporting components
+
+
+
+Example:
+
+    Microprocessor:
+        Intel 8086
+    
+    Microcomputer:
+        A computer system built using a microprocessor,
+        memory, keyboard, display, etc.
+    
+
+
+
+======================================================================
+BASIC BLOCK DIAGRAM OF MICROPROCESSOR
+======================================================================
+
+                 +-----------------------+
+                 |     MICROPROCESSOR    |
+                 |                       |
+                 |  +-----------------+  |
+                 |  |   REGISTERS     |  |
+                 |  +-----------------+  |
+                 |           |           |
+                 |  +-----------------+  |
+                 |  |      ALU        |  |
+                 |  +-----------------+  |
+                 |           |           |
+                 |  +-----------------+  |
+                 |  |  CONTROL UNIT   |  |
+                 |  +-----------------+  |
+                 |           |           |
+                 +-----------|-----------+
+                             |
+                    SYSTEM BUS
+                             |
+          +------------------+------------------+
+          |                  |                  |
+          v                  v                  v
+       MEMORY              INPUT              OUTPUT
+
+
+
+
+
+======================================================================
+1.2 COMPONENTS OF MICROPROCESSOR
+======================================================================
+
+The major components are:
+
+    1. Registers
+    2. ALU
+    3. Control Unit
+    4. Timing / Clock Unit
+    5. Bus Interface / System Bus connections
+
+
+Simple idea:
+            
+            Registers
+                ↓
+            Store data temporarily
+            
+            ALU
+                ↓
+            Performs calculations and logic
+            
+            Control Unit
+                ↓
+            Controls operations
+            
+            Timing
+                ↓
+            Synchronizes operations
+
+
+
+
+
+
+
+
+
+======================================================================
+1.2.1 REGISTERS
+======================================================================
+
+Definition:
+------------
+A register is a small and very fast storage location inside the
+microprocessor.
+
+Registers temporarily store:
+
+    - Data
+    - Instructions
+    - Addresses
+    - Intermediate results
+
+
+
+
+
+      WHY REGISTERS?
+      --------------------
+              Because CPU needs very fast access to information.
+              
+              Generally:
+              
+                  Register > Cache > RAM > Storage
+              
+              in terms of access speed.
+
+
+
+======================================================================
+COMMON TYPES OF REGISTERS
+======================================================================
+
+1. GENERAL PURPOSE REGISTER
+---------------------------
+Used to store temporary data.
+
+Example:
+      
+          R1 = 25
+          R2 = 30
+      
+      
+      Operation:
+      
+          R3 <- R1 + R2
+      
+      Result:
+      
+          R3 = 55
+
+
+
+
+
+--------------------------------------------------
+
+2. ACCUMULATOR
+--------------
+
+Accumulator stores intermediate arithmetic and logical results.
+
+Example:
+
+    AC = 10
+
+    AC <- AC + 5
+
+    AC = 15
+
+
+--------------------------------------------------
+
+3. PROGRAM COUNTER (PC)
+-----------------------
+
+Stores the address of the NEXT instruction.
+
+Example:
+
+PC = 2000
+
+Meaning:
+
+The next instruction is at memory address 2000.
+
+
+After fetching the instruction:
+
+PC may become:
+
+PC = 2001
+
+
+
+
+
+--------------------------------------------------
+
+4. INSTRUCTION REGISTER (IR)
+----------------------------
+
+Stores the CURRENT instruction being executed.
+
+Example:
+
+IR = ADD R1, R2
+
+Meaning:
+
+The processor is processing the ADD instruction.
+
+
+
+
+
+
+
+--------------------------------------------------
+
+5. MEMORY ADDRESS REGISTER (MAR)
+---------------------------------
+
+Stores the address of the memory location
+that the processor wants to access.
+
+Example:
+
+MAR = 5000
+
+Meaning:
+
+CPU wants to access memory location 5000.
+
+
+
+
+
+--------------------------------------------------
+
+6. MEMORY DATA REGISTER (MDR)
+-----------------------------
+
+Stores data being transferred between CPU and memory.
+
+Example:
+
+MDR = 75
+
+The value 75 may be:
+
+    Memory -> CPU
+
+or
+
+    CPU -> Memory
+
+
+
+
+
+
+
+
+======================================================================
+REGISTER QUICK MEMORY TRICK
+======================================================================
+
+PC
+    = WHERE is the NEXT instruction?
+
+IR
+    = WHAT instruction is currently executing?
+
+MAR
+    = WHERE in MEMORY?
+
+MDR
+    = WHAT DATA?
+
+AC
+    = INTERMEDIATE RESULT
+
+
+
+
+
+
+
+
+
+======================================================================
+REGISTER EXAMPLE
+======================================================================
+
+Suppose:
+
+PC = 100
+
+Memory[100] = ADD R1, R2
+
+
+STEP 1:
+
+MAR <- PC
+
+Therefore:
+
+MAR = 100
+
+
+STEP 2:
+
+MDR <- Memory[MAR]
+
+MDR = ADD R1, R2
+
+
+STEP 3:
+
+IR <- MDR
+
+IR = ADD R1, R2
+
+
+STEP 4:
+
+PC <- PC + 1
+
+PC = 101
+
+
+Now the instruction is ready for execution.
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+1.2.2 ALU
+======================================================================
+
+ALU = ARITHMETIC LOGIC UNIT
+
+
+Definition:
+------------
+
+ALU is the part of the microprocessor that performs:
+
+    - Arithmetic operations
+    - Logical operations
+
+
+ARITHMETIC OPERATIONS:
+----------------------
+
+    Addition
+    Subtraction
+    Increment
+    Decrement
+
+
+LOGICAL OPERATIONS:
+-------------------
+
+    AND
+    OR
+    XOR
+    NOT
+    Comparison
+
+
+======================================================================
+ALU EXAMPLE
+======================================================================
+
+Suppose:
+
+R1 = 20
+R2 = 10
+
+Instruction:
+
+ADD R1, R2
+
+
+ALU performs:
+
+20 + 10 = 30
+
+
+Result:
+
+R1 = 30
+
+
+Another example:
+
+R1 = 1010
+R2 = 1100
+
+AND operation:
+
+    1010
+AND 1100
+--------
+    1000
+
+Result = 1000
+
+
+
+
+
+
+
+
+======================================================================
+ALU SIMPLE DIAGRAM
+======================================================================
+
+            R1 = 20
+               |
+               v
+          +---------+
+          |         |
+          |   ALU   | -----> Result = 30
+          |         |
+          +---------+
+               ^
+               |
+            R2 = 10
+
+
+
+
+
+
+
+
+
+======================================================================
+1.2.3 CONTROL UNIT
+======================================================================
+
+Definition:
+------------
+
+The CONTROL UNIT controls and coordinates all operations of the
+microprocessor.
+
+It tells other components:
+
+    WHAT to do
+    WHEN to do
+    HOW to do
+
+
+Simple example:
+
+Instruction:
+
+ADD R1, R2
+
+
+Control Unit generates control signals so that:
+
+    R1 -> ALU
+    R2 -> ALU
+    ALU -> ADD
+    Result -> Register
+
+
+The Control Unit itself does not normally perform the arithmetic.
+
+The ALU performs the arithmetic.
+
+The Control Unit CONTROLS the operation.
+
+
+
+
+
+
+
+
+
+======================================================================
+CONTROL UNIT EXAMPLE
+======================================================================
+
+Instruction:
+
+LOAD R1, 500
+
+
+Control Unit coordinates:
+
+    1. Send address 500 to memory
+    2. Read data from memory
+    3. Transfer data to CPU
+    4. Store data in R1
+
+
+Therefore:
+
+Control Unit = COORDINATOR
+
+
+
+
+
+
+
+======================================================================
+ALU vs CONTROL UNIT
+======================================================================
+
+ALU:
+    Performs calculations and logical operations.
+
+Control Unit:
+    Controls and coordinates operations.
+
+
+Example:
+
+Instruction:
+
+R1 + R2
+
+
+ALU:
+    Performs R1 + R2
+
+Control Unit:
+    Tells ALU to perform ADD.
+
+
+MEMORY TRICK:
+
+ALU = DO
+
+CONTROL UNIT = TELL
+
+
+
+
+
+
+
+======================================================================
+1.2.4 TIMING
+======================================================================
+
+Definition:
+------------
+
+Timing refers to the synchronization of operations inside the
+microprocessor using clock signals.
+
+The microprocessor works according to CLOCK PULSES.
+
+
+Example:
+
+       Clock:
+       _   _   _   _   _
+      | | | | | | | | | |
+      |_| |_| |_| |_| |_|
+
+
+Each clock pulse provides a timing reference.
+
+
+======================================================================
+WHY IS TIMING IMPORTANT?
+======================================================================
+
+Different components must work at the correct time.
+
+For example:
+
+    1. Fetch instruction
+    2. Decode instruction
+    3. Execute instruction
+    4. Store result
+
+
+If operations occur at the wrong time:
+
+    Data may be lost
+    Wrong instruction may execute
+    Wrong component may receive data
+
+
+Therefore:
+
+TIMING = SYNCHRONIZATION
+
+
+
+
+
+
+
+======================================================================
+EXAMPLE OF TIMING
+======================================================================
+
+Suppose instruction:
+
+ADD R1, R2
+
+
+Possible sequence:
+
+T1:
+    Fetch instruction
+
+T2:
+    Decode instruction
+
+T3:
+    Read R1
+
+T4:
+    Read R2
+
+T5:
+    ALU performs addition
+
+T6:
+    Store result
+
+
+So:
+
+T1 -> T2 -> T3 -> T4 -> T5 -> T6
+
+
+
+
+
+
+======================================================================
+CLOCK AND INSTRUCTION
+======================================================================
+
+Clock frequency is measured in:
+
+    Hz
+    kHz
+    MHz
+    GHz
+
+
+Example:
+
+1 GHz
+
+means:
+
+1,000,000,000 clock cycles per second.
+
+
+IMPORTANT:
+
+Higher clock speed does NOT automatically mean the entire CPU is
+faster because performance also depends on:
+
+    - Architecture
+    - Number of instructions
+    - CPI
+    - Cache
+    - Memory
+    - Pipeline
+    - Other factors
+
+
+
+
+
+
+
+
+======================================================================
+1.3 SYSTEM BUS
+======================================================================
+
+Definition:
+------------
+
+A SYSTEM BUS is a group of communication lines used to transfer
+information between:
+
+    CPU
+    Memory
+    Input devices
+    Output devices
+
+
+The system bus mainly consists of:
+
+    1. Address Bus
+    2. Data Bus
+    3. Control Bus
+
+
+                    SYSTEM BUS
+                        |
+          +-------------+-------------+
+          |             |             |
+          v             v             v
+     ADDRESS BUS    DATA BUS     CONTROL BUS
+
+
+======================================================================
+1.3.1 ADDRESS BUS
+======================================================================
+
+Definition:
+------------
+
+Address bus carries the ADDRESS of the memory or I/O location
+that the CPU wants to access.
+
+
+Direction:
+
+CPU -------------> Memory / I/O
+
+Usually:
+
+    UNIDIRECTIONAL
+
+
+Example:
+
+CPU wants to read memory location:
+
+5000
+
+
+CPU puts:
+
+Address = 5000
+
+on the address bus.
+
+
+Memory receives:
+
+5000
+
+
+and identifies the required location.
+
+
+======================================================================
+ADDRESS BUS WIDTH
+======================================================================
+
+If address bus has N lines:
+
+Number of possible addresses:
+
+        2^N
+
+
+Example:
+
+8-bit address bus:
+
+    2^8
+    = 256 addresses
+
+
+Example:
+
+16-bit address bus:
+
+    2^16
+    = 65,536 addresses
+
+
+Example:
+
+20-bit address bus:
+
+    2^20
+    = 1,048,576 addresses
+
+
+Therefore:
+
+More address lines
+        ↓
+More addressable memory
+
+
+======================================================================
+1.3.2 DATA BUS
+======================================================================
+
+Definition:
+------------
+
+Data bus carries ACTUAL DATA between CPU, memory and I/O devices.
+
+
+Usually:
+
+    BIDIRECTIONAL
+
+
+Example:
+
+CPU reads:
+
+Memory[5000] = 75
+
+
+Data travels:
+
+Memory ---------> CPU
+
+through the DATA BUS.
+
+
+For writing:
+
+CPU ---------> Memory
+
+
+======================================================================
+DATA BUS WIDTH
+======================================================================
+
+Data bus width determines how many bits can be transferred
+at one time.
+
+
+Example:
+
+8-bit data bus:
+
+    Can transfer 8 bits at once.
+
+
+Example:
+
+16-bit data bus:
+
+    Can transfer 16 bits at once.
+
+
+Example:
+
+32-bit data bus:
+
+    Can transfer 32 bits at once.
+
+
+Example:
+
+Suppose:
+
+Data = 10101100
+
+An 8-bit data bus can transfer the entire value in one transfer.
+
+
+======================================================================
+1.3.3 CONTROL BUS
+======================================================================
+
+Definition:
+------------
+
+Control bus carries CONTROL SIGNALS used to manage and coordinate
+operations of the computer system.
+
+
+Examples of control signals:
+
+    READ
+    WRITE
+    INTERRUPT
+    CLOCK
+    RESET
+    BUS REQUEST
+    BUS ACKNOWLEDGE
+
+
+Unlike data bus, the control bus does not carry normal data values.
+
+
+======================================================================
+READ OPERATION EXAMPLE
+======================================================================
+
+Suppose:
+
+CPU wants to READ memory address 5000.
+
+
+STEP 1:
+-------
+CPU puts:
+
+Address = 5000
+
+on:
+
+ADDRESS BUS
+
+
+STEP 2:
+-------
+CPU sends:
+
+READ signal
+
+through:
+
+CONTROL BUS
+
+
+STEP 3:
+-------
+Memory finds:
+
+Memory[5000]
+
+
+STEP 4:
+-------
+Data is transferred to CPU through:
+
+DATA BUS
+
+
+Example:
+
+Memory[5000] = 75
+
+
+Therefore:
+
+Address Bus:
+    5000
+
+Control Bus:
+    READ
+
+Data Bus:
+    75
+
+
+======================================================================
+WRITE OPERATION EXAMPLE
+======================================================================
+
+Suppose CPU wants to store:
+
+75
+
+into memory location:
+
+5000
+
+
+STEP 1:
+-------
+Address Bus:
+
+5000
+
+
+STEP 2:
+-------
+Data Bus:
+
+75
+
+
+STEP 3:
+-------
+Control Bus:
+
+WRITE
+
+
+Therefore:
+
+CPU
+ |
+ |--- Address Bus ---> 5000
+ |
+ |--- Data Bus ------> 75
+ |
+ |--- Control Bus ---> WRITE
+ |
+ v
+Memory
+
+
+Result:
+
+Memory[5000] = 75
+
+
+======================================================================
+ADDRESS BUS vs DATA BUS vs CONTROL BUS
+======================================================================
+
+ADDRESS BUS:
+    Carries address.
+
+DATA BUS:
+    Carries actual data.
+
+CONTROL BUS:
+    Carries control signals.
+
+
+MEMORY TRICK:
+
+ADDRESS = WHERE?
+
+DATA = WHAT?
+
+CONTROL = HOW / WHEN?
+
+
+Example:
+
+CPU wants to read value 75 from location 5000.
+
+
+Address Bus:
+    5000
+    = WHERE?
+
+
+Data Bus:
+    75
+    = WHAT?
+
+
+Control Bus:
+    READ
+    = WHAT OPERATION?
+
+
+======================================================================
+1.4 MICROPROCESSOR APPLICATIONS
+======================================================================
+
+Microprocessors are used in many systems.
+
+
+Major applications:
+
+    1. Personal Computers
+    2. Laptops
+    3. Smartphones
+    4. Industrial machines
+    5. Embedded systems
+    6. Medical equipment
+    7. Automobiles
+    8. Robots
+    9. Communication systems
+    10. Consumer electronics
+
+
+======================================================================
+1. PERSONAL COMPUTER
+======================================================================
+
+Microprocessor performs:
+
+    - Calculations
+    - Program execution
+    - Data processing
+    - System control
+
+
+Example:
+
+Running:
+
+    MS Word
+    Browser
+    Calculator
+    Programming software
+
+
+======================================================================
+2. AUTOMOBILE
+======================================================================
+
+Microprocessors/controllers can be used for:
+
+    - Engine control
+    - Sensor processing
+    - Dashboard systems
+    - Safety systems
+    - Vehicle control
+
+
+======================================================================
+3. INDUSTRIAL SYSTEM
+======================================================================
+
+Used for:
+
+    - Machine control
+    - Temperature monitoring
+    - Automation
+    - Production systems
+
+
+Example:
+
+Temperature sensor:
+
+    Temperature = 80°C
+
+Processor checks:
+
+    IF temperature > limit
+
+Then:
+
+    Turn ON cooling system.
+
+
+======================================================================
+4. MEDICAL EQUIPMENT
+======================================================================
+
+Used in:
+
+    - Patient monitoring
+    - Medical instruments
+    - Diagnostic equipment
+    - Digital measurement systems
+
+
+======================================================================
+5. EMBEDDED SYSTEM
+======================================================================
+
+Microprocessor-based systems can be found in:
+
+    - Washing machines
+    - Microwave ovens
+    - Printers
+    - Smart devices
+    - Security systems
+
+
+======================================================================
+1.5 EVOLUTION / REVISION OF MICROPROCESSORS
+======================================================================
+
+Microprocessors have evolved from simple 4-bit processors to
+modern multi-core 64-bit processors.
+
+
+A simplified historical progression:
+
+    4-bit
+      |
+      v
+    8-bit
+      |
+      v
+    16-bit
+      |
+      v
+    32-bit
+      |
+      v
+    64-bit
+
+
+======================================================================
+4-BIT MICROPROCESSOR
+======================================================================
+
+Early microprocessors used 4-bit architecture.
+
+Example:
+
+Intel 4004
+
+
+Features:
+
+    - 4-bit processing
+    - Very limited memory
+    - Used in early electronic systems
+
+
+======================================================================
+8-BIT MICROPROCESSOR
+======================================================================
+
+Example:
+
+Intel 8085
+
+
+Features:
+
+    - 8-bit data processing
+    - Greater capability than early 4-bit processors
+    - Used extensively for learning and embedded applications
+
+
+Example:
+
+8-bit data:
+
+10101100
+
+
+The processor can process 8-bit data directly.
+
+
+======================================================================
+16-BIT MICROPROCESSOR
+======================================================================
+
+Example:
+
+Intel 8086
+
+
+Features:
+
+    - 16-bit architecture
+    - Larger memory addressing capability
+    - More powerful than 8-bit processors
+
+
+Important for study:
+
+8086 is a 16-bit microprocessor.
+
+
+======================================================================
+32-BIT MICROPROCESSOR
+======================================================================
+
+32-bit processors can process 32-bit data/address information
+depending on architecture.
+
+
+Advantages:
+
+    - Larger address space
+    - More processing capability
+    - Better performance than many older 16-bit processors
+
+
+======================================================================
+64-BIT PROCESSOR
+======================================================================
+
+Modern computers commonly use 64-bit processors.
+
+Advantages include:
+
+    - Large address space
+    - Processing of 64-bit data
+    - Support for modern operating systems
+    - High-performance applications
+
+
+======================================================================
+MICROPROCESSOR EVOLUTION QUICK TABLE
+======================================================================
+
+Generation        Example              Data Width
+-------------------------------------------------
+4-bit              Intel 4004            4-bit
+8-bit              Intel 8085            8-bit
+16-bit             Intel 8086            16-bit
+32-bit             Modern x86 systems    32-bit
+64-bit             Modern x86-64         64-bit
+
+
+NOTE:
+-----
+The evolution is not simply "more bits = always faster."
+
+Modern performance also depends on:
+
+    - Clock speed
+    - Number of cores
+    - Cache
+    - Pipeline
+    - Instruction set
+    - Manufacturing technology
+    - Memory system
+    - Architecture
+
+
+======================================================================
+IMPORTANT EXAMPLE: HOW CPU READS DATA FROM MEMORY
+======================================================================
+
+Suppose:
+
+Memory location = 1000
+
+Data stored there = 55
+
+
+CPU wants to READ 55.
+
+
+STEP 1:
+-------
+CPU sends:
+
+1000
+
+through:
+
+ADDRESS BUS
+
+
+STEP 2:
+-------
+CPU sends:
+
+READ
+
+through:
+
+CONTROL BUS
+
+
+STEP 3:
+-------
+Memory finds:
+
+Memory[1000] = 55
+
+
+STEP 4:
+-------
+Memory sends:
+
+55
+
+through:
+
+DATA BUS
+
+
+Final:
+
+CPU receives 55.
+
+
+Diagram:
+
+                 ADDRESS BUS
+CPU ------------------------------> Memory
+       1000
+
+                 CONTROL BUS
+CPU ------------------------------> Memory
+       READ
+
+                 DATA BUS
+CPU <------------------------------ Memory
+       55
+
+
+======================================================================
+IMPORTANT EXAMPLE: CPU WRITES DATA TO MEMORY
+======================================================================
+
+CPU wants:
+
+Memory[2000] = 100
+
+
+ADDRESS BUS:
+
+2000
+
+
+DATA BUS:
+
+100
+
+
+CONTROL BUS:
+
+WRITE
+
+
+Therefore:
+
+Memory[2000] = 100
+
+
+======================================================================
+IMPORTANT CONCEPT: BUS WIDTH
+======================================================================
+
+Suppose:
+
+Address bus = 16 bits
+
+Maximum number of unique addresses:
+
+2^16
+
+= 65,536
+
+
+Suppose each address represents 1 byte.
+
+Maximum addressable memory:
+
+65,536 bytes
+
+= 64 KB
+
+
+Therefore:
+
+16-bit address bus -> 64 KB address space
+
+under this simple byte-addressable assumption.
+
+
+======================================================================
+EXAM IMPORTANT DIFFERENCES
+======================================================================
+
+--------------------------------------------------
+MICROPROCESSOR vs MICROCONTROLLER
+--------------------------------------------------
+
+MICROPROCESSOR:
+
+    Mainly CPU on a chip.
+    Requires external memory and peripherals.
+    Used in general-purpose computing.
+
+
+MICROCONTROLLER:
+
+    CPU + Memory + I/O + peripherals
+    integrated into one chip.
+    Common in embedded systems.
+
+
+--------------------------------------------------
+ALU vs CONTROL UNIT
+--------------------------------------------------
+
+ALU:
+
+    Performs arithmetic and logical operations.
+
+
+CONTROL UNIT:
+
+    Controls and coordinates operations.
+
+
+--------------------------------------------------
+ADDRESS BUS vs DATA BUS
+--------------------------------------------------
+
+ADDRESS BUS:
+
+    Carries address.
+    Usually unidirectional.
+
+
+DATA BUS:
+
+    Carries data.
+    Usually bidirectional.
+
+
+--------------------------------------------------
+DATA BUS vs CONTROL BUS
+--------------------------------------------------
+
+DATA BUS:
+
+    Carries actual data.
+
+
+CONTROL BUS:
+
+    Carries control signals.
+
+
+======================================================================
+VERY IMPORTANT FORMULAS
+======================================================================
+
+1. NUMBER OF ADDRESSES
+
+If address bus = N bits:
+
+        Number of addresses = 2^N
+
+
+Example:
+
+N = 8
+
+2^8 = 256
+
+
+N = 16
+
+2^16 = 65,536
+
+
+N = 20
+
+2^20 = 1,048,576
+
+
+--------------------------------------------------
+
+2. ADDRESSABLE MEMORY
+
+If:
+
+    Address bus = N bits
+    Each address = 1 byte
+
+Then:
+
+    Maximum memory = 2^N bytes
+
+
+Example:
+
+16-bit address bus:
+
+2^16 bytes
+
+= 65,536 bytes
+
+= 64 KB
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+EXAM PRACTICE
+======================================================================
+
+SHORT QUESTIONS
+---------------
+
+Q1. Define microprocessor.
+
+Q2. What is ALU?
+
+Q3. What is a register?
+
+Q4. What is the function of the Control Unit?
+
+Q5. What is Program Counter?
+
+Q6. What is Instruction Register?
+
+Q7. What is MAR?
+
+Q8. What is MDR?
+
+Q9. What is system bus?
+
+Q10. What is address bus?
+
+Q11. What is data bus?
+
+Q12. What is control bus?
+
+Q13. What is the difference between address bus and data bus?
+
+Q14. What is the function of ALU?
+
+Q15. What is the role of clock/timing?
+
+Q16. Give four applications of microprocessors.
+
+Q17. What is an 8-bit microprocessor?
+
+Q18. Name an example of a 16-bit microprocessor.
+
+Q19. What is Intel 8086?
+
+Q20. What is meant by microprocessor evolution?
+
+
+======================================================================
+LONG QUESTIONS
+======================================================================
+
+Q1. Define microprocessor and explain its major components with
+    a neat diagram.
+
+Q2. Explain registers in a microprocessor. Describe PC, IR, MAR,
+    MDR and accumulator.
+
+Q3. Explain ALU and Control Unit. Differentiate between their
+    functions.
+
+Q4. What is a system bus? Explain address bus, data bus and
+    control bus with examples.
+
+Q5. Explain the read operation between CPU and memory using
+    address, data and control buses.
+
+Q6. Explain the write operation between CPU and memory.
+
+Q7. Explain the applications of microprocessors in different
+    fields.
+
+Q8. Explain the evolution of microprocessors from 4-bit to
+    modern 64-bit processors.
+
+Q9. If a processor has a 16-bit address bus, calculate the
+    number of possible addresses and maximum addressable memory
+    assuming byte-addressable memory.
+
+Q10. Draw and explain the basic block diagram of a microprocessor.
+
+
+======================================================================
+NUMERICAL PRACTICE
+======================================================================
+
+Q1.
+A processor has an 8-bit address bus.
+
+Find the number of possible addresses.
+
+Solution:
+
+Number of addresses = 2^8
+
+                   = 256
+
+Answer:
+
+256 addresses
+
+
+--------------------------------------------------
+
+Q2.
+A processor has a 16-bit address bus.
+
+Find the number of addresses.
+
+Solution:
+
+2^16 = 65,536
+
+Answer:
+
+65,536 addresses
+
+
+--------------------------------------------------
+
+Q3.
+A processor has a 20-bit address bus.
+
+Find the address space assuming 1 byte per address.
+
+Solution:
+
+2^20 bytes
+
+= 1,048,576 bytes
+
+= 1 MB
+
+
+Answer:
+
+1 MB
+
+
+--------------------------------------------------
+
+Q4.
+An 8-bit data bus is used.
+
+How many bits can be transferred in one bus transfer?
+
+Answer:
+
+8 bits
+
+
+--------------------------------------------------
+
+Q5.
+A 32-bit data bus is used.
+
+How many bits can be transferred at one time?
+
+Answer:
+
+32 bits
+
+
+======================================================================
+SCENARIO-BASED EXAMPLE
+======================================================================
+
+Question:
+
+CPU wants to store the value 25 in memory location 1000.
+
+What happens?
+
+
+Answer:
+
+STEP 1:
+CPU places:
+
+1000
+
+on ADDRESS BUS.
+
+
+STEP 2:
+CPU places:
+
+25
+
+on DATA BUS.
+
+
+STEP 3:
+CPU sends:
+
+WRITE
+
+signal on CONTROL BUS.
+
+
+STEP 4:
+Memory stores:
+
+Memory[1000] = 25
+
+
+Therefore:
+
+ADDRESS BUS = 1000
+DATA BUS    = 25
+CONTROL BUS = WRITE
+
+
+======================================================================
+ANOTHER SCENARIO
+======================================================================
+
+Question:
+
+CPU wants to read data from memory location 2000.
+
+Memory[2000] = 50
+
+
+What happens?
+
+
+Answer:
+
+ADDRESS BUS:
+    2000
+
+
+CONTROL BUS:
+    READ
+
+
+DATA BUS:
+    50
+
+
+Therefore:
+
+CPU receives 50.
+
+
+======================================================================
+EXAM QUICK CHEAT CODE
+======================================================================
+
+MICROPROCESSOR
+    = CPU on a chip
+
+REGISTERS
+    = Fast temporary storage
+
+ALU
+    = Arithmetic + Logic
+
+CONTROL UNIT
+    = Controls operations
+
+TIMING
+    = Synchronizes operations
+
+SYSTEM BUS
+    = Communication path
+
+
+ADDRESS BUS
+    = WHERE?
+
+DATA BUS
+    = WHAT?
+
+CONTROL BUS
+    = WHAT OPERATION?
+
+
+PC
+    = Next instruction address
+
+IR
+    = Current instruction
+
+MAR
+    = Memory address
+
+MDR
+    = Memory data
+
+AC
+    = Intermediate result
+
+
+4-bit
+    = Intel 4004
+
+8-bit
+    = Intel 8085
+
+16-bit
+    = Intel 8086
+
+32-bit
+    = 32-bit processors
+
+64-bit
+    = Modern 64-bit processors
+
+
+ADDRESS FORMULA:
+
+N address lines
+
+        2^N addresses
+
+
+
+
+
+
+
+
+
