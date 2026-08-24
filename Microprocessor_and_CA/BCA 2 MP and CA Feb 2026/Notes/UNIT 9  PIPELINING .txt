@@ -1,0 +1,1361 @@
+======================================================================
+                         UNIT 9: PIPELINING
+======================================================================
+
+Lecture Hours: 4 Hours
+
+
+======================================================================
+9.1 CONCEPT OF PIPELINING
+======================================================================
+
+PIPELINING:
+    Pipelining is a technique of dividing a task into several stages
+    so that different stages can work on different tasks at the same
+    time.
+
+Simple idea:
+
+    Without Pipeline:
+
+    Instruction 1 -> Complete
+    Instruction 2 -> Complete
+    Instruction 3 -> Complete
+
+
+    With Pipeline:
+
+    Instruction 1 -> Stage 1 -> Stage 2 -> Stage 3
+    Instruction 2          -> Stage 1 -> Stage 2 -> Stage 3
+    Instruction 3                   -> Stage 1 -> Stage 2 -> Stage 3
+
+
+MAIN IDEA:
+
+    Multiple instructions are processed simultaneously,
+    but each instruction is in a different stage.
+
+
+======================================================================
+SIMPLE PIPELINE EXAMPLE
+======================================================================
+
+Suppose there are 4 stages:
+
+    S1 = Fetch
+    S2 = Decode
+    S3 = Execute
+    S4 = Write
+
+
+Without pipeline:
+
+    I1: S1 -> S2 -> S3 -> S4
+    I2: S1 -> S2 -> S3 -> S4
+    I3: S1 -> S2 -> S3 -> S4
+
+
+With pipeline:
+
+    Time ->   1    2    3    4    5    6
+
+    I1        S1   S2   S3   S4
+    I2             S1   S2   S3   S4
+    I3                  S1   S2   S3   S4
+
+
+After the pipeline is full:
+
+    One instruction may complete every clock cycle.
+
+
+======================================================================
+ADVANTAGES OF PIPELINING
+======================================================================
+
+    1. Increases instruction throughput.
+    2. Improves CPU performance.
+    3. Allows overlapping of instruction execution.
+    4. Makes better use of CPU hardware.
+
+
+IMPORTANT:
+
+    Pipelining mainly increases THROUGHPUT.
+
+It does NOT necessarily reduce the execution time of one individual
+instruction.
+
+
+======================================================================
+PIPELINE STAGES
+======================================================================
+
+Common instruction pipeline stages:
+
+    IF  = Instruction Fetch
+    ID  = Instruction Decode
+    EX  = Execute
+    MEM = Memory Access
+    WB  = Write Back
+
+
+Simple:
+
+    IF -> ID -> EX -> MEM -> WB
+
+
+======================================================================
+PIPELINE TIMING EXAMPLE
+======================================================================
+
+4-stage pipeline:
+
+    S1 = Fetch
+    S2 = Decode
+    S3 = Execute
+    S4 = Write
+
+
+Instruction:
+
+    I1, I2, I3
+
+
+Timing:
+
+    Cycle     1    2    3    4    5    6
+
+    I1        S1   S2   S3   S4
+    I2             S1   S2   S3   S4
+    I3                  S1   S2   S3   S4
+
+
+Without pipeline:
+
+    I1 = 4 cycles
+    I2 = 4 cycles
+    I3 = 4 cycles
+
+    Total = 12 cycles
+
+
+With pipeline:
+
+    Total = 4 + (3 - 1)
+
+           = 6 cycles
+
+
+For ideal equal stages:
+
+    Total cycles = k + (n - 1)
+
+Where:
+
+    k = number of pipeline stages
+    n = number of instructions
+
+
+======================================================================
+9.1.1 FLYNN'S CLASSIFICATION
+======================================================================
+
+Flynn's classification categorizes computer architectures according
+to the number of:
+
+    Instruction Streams
+    Data Streams
+
+
+There are FOUR categories:
+
+    1. SISD
+    2. SIMD
+    3. MISD
+    4. MIMD
+
+
+MEMORY TRICK:
+
+    S = Single
+    M = Multiple
+
+    I = Instruction
+    D = Data
+
+
+======================================================================
+1. SISD
+======================================================================
+
+SISD:
+
+    Single Instruction
+    Single Data
+
+
+One instruction stream operates on one data stream.
+
+
+Example:
+
+    Traditional single-core sequential computer.
+
+
+Simple:
+
+    Instruction
+         |
+         v
+       CPU
+         |
+         v
+       Data
+
+
+MEMORY TRICK:
+
+    SISD = ONE instruction + ONE data
+
+
+======================================================================
+2. SIMD
+======================================================================
+
+SIMD:
+
+    Single Instruction
+    Multiple Data
+
+
+One instruction operates on multiple data items simultaneously.
+
+
+Example:
+
+    Vector processing
+    GPU-style parallel operations
+    Multimedia/SIMD CPU instructions
+
+
+Example:
+
+    ADD A1 + B1
+    ADD A2 + B2
+    ADD A3 + B3
+    ADD A4 + B4
+
+
+One ADD instruction:
+
+    operates on many data values.
+
+
+Simple:
+
+             Data 1
+               |
+             Data 2
+               |
+    Instruction ---> Data 3
+               |
+             Data 4
+
+
+MEMORY TRICK:
+
+    SIMD = ONE instruction + MANY data
+
+
+======================================================================
+3. MISD
+======================================================================
+
+MISD:
+
+    Multiple Instruction
+    Single Data
+
+
+Multiple instructions operate on the same data stream.
+
+
+This architecture is rare in general-purpose computers.
+
+
+Example:
+
+    Some fault-tolerant or specialized systems may use
+    MISD-like organization.
+
+
+MEMORY TRICK:
+
+    MISD = MANY instructions + ONE data
+
+
+======================================================================
+4. MIMD
+======================================================================
+
+MIMD:
+
+    Multiple Instruction
+    Multiple Data
+
+
+Multiple processors/cores execute different instructions on
+different data.
+
+
+Examples:
+
+    Multi-core processors
+    Multiprocessor systems
+    Distributed systems
+
+
+Simple:
+
+    Instruction 1 -> Data 1
+    Instruction 2 -> Data 2
+    Instruction 3 -> Data 3
+
+
+MEMORY TRICK:
+
+    MIMD = MANY instructions + MANY data
+
+
+======================================================================
+FLYNN'S CLASSIFICATION SUMMARY
+======================================================================
+
+    SISD
+        Single Instruction
+        Single Data
+
+    SIMD
+        Single Instruction
+        Multiple Data
+
+    MISD
+        Multiple Instruction
+        Single Data
+
+    MIMD
+        Multiple Instruction
+        Multiple Data
+
+
+======================================================================
+9.2 ARITHMETIC PIPELINE
+======================================================================
+
+Arithmetic pipeline divides an arithmetic operation into
+multiple stages.
+
+
+It is useful when performing operations on many numerical values.
+
+
+Example:
+
+    Floating-point addition/subtraction
+
+
+General floating-point number:
+
+    Sign | Exponent | Mantissa
+
+
+======================================================================
+9.2.1 PIPELINE FOR FLOATING-POINT ADDITION
+======================================================================
+
+Floating-point addition generally involves:
+
+    1. Compare exponents
+    2. Align mantissas
+    3. Add mantissas
+    4. Normalize result
+
+
+Pipeline:
+
+    Stage 1:
+        Compare exponents
+
+
+    Stage 2:
+        Align mantissas
+
+
+    Stage 3:
+        Add mantissas
+
+
+    Stage 4:
+        Normalize result
+
+
+Simple:
+
+    Compare
+       |
+       v
+    Align
+       |
+       v
+     Add
+       |
+       v
+   Normalize
+
+
+======================================================================
+EXAMPLE: FLOATING-POINT ADDITION
+======================================================================
+
+Suppose:
+
+    X = 1.10 x 2^3
+
+    Y = 1.01 x 2^2
+
+
+Step 1:
+    Compare exponents.
+
+    3 and 2
+
+
+Step 2:
+    Make exponents equal.
+
+    Y:
+
+    1.01 x 2^2
+
+    becomes approximately:
+
+    0.101 x 2^3
+
+
+Step 3:
+    Add mantissas:
+
+       1.100
+     + 0.101
+     -------
+       10.001
+
+
+Step 4:
+    Normalize:
+
+    10.001 x 2^3
+
+    = 1.0001 x 2^4
+
+
+Therefore:
+
+    Result = 1.0001 x 2^4
+
+
+IMPORTANT:
+
+    The exact normalization process depends on the floating-point
+    representation being used.
+
+
+======================================================================
+9.2.2 PIPELINE FOR FLOATING-POINT SUBTRACTION
+======================================================================
+
+Floating-point subtraction uses similar stages:
+
+    1. Compare exponents
+    2. Align mantissas
+    3. Subtract mantissas
+    4. Normalize result
+
+
+Pipeline:
+
+    Compare
+       |
+       v
+    Align
+       |
+       v
+   Subtract
+       |
+       v
+   Normalize
+
+
+Example:
+
+    X = 1.10 x 2^3
+    Y = 1.01 x 2^2
+
+
+Align:
+
+    Y = 0.101 x 2^3
+
+
+Subtract:
+
+       1.100
+     - 0.101
+     -------
+       0.111
+
+
+Result:
+
+    0.111 x 2^3
+
+
+Normalize if required.
+
+
+======================================================================
+ADDITION vs SUBTRACTION PIPELINE
+======================================================================
+
+ADDITION:
+
+    Compare
+      ↓
+    Align
+      ↓
+     Add
+      ↓
+    Normalize
+
+
+SUBTRACTION:
+
+    Compare
+      ↓
+    Align
+      ↓
+   Subtract
+      ↓
+    Normalize
+
+
+======================================================================
+9.3 INSTRUCTION PIPELINE
+======================================================================
+
+Instruction pipeline divides instruction execution into several
+stages.
+
+
+Common stages:
+
+    1. Fetch
+    2. Decode
+    3. Execute
+    4. Write
+
+
+======================================================================
+9.3.1 FOUR-SEGMENT INSTRUCTION PIPELINE
+======================================================================
+
+A simple four-segment pipeline can be:
+
+    Segment 1 = Fetch instruction
+    Segment 2 = Decode instruction
+    Segment 3 = Execute instruction
+    Segment 4 = Write result
+
+
+Diagram:
+
+    +-------+    +--------+    +---------+    +-------+
+    | Fetch | -> | Decode | -> | Execute | -> | Write |
+    +-------+    +--------+    +---------+    +-------+
+
+
+======================================================================
+FOUR-SEGMENT PIPELINE EXAMPLE
+======================================================================
+
+Instructions:
+
+    I1
+    I2
+    I3
+
+
+Timing:
+
+    Cycle      1       2       3       4       5       6
+
+    I1        Fetch   Decode   Execute  Write
+
+    I2                Fetch    Decode   Execute  Write
+
+    I3                         Fetch    Decode   Execute  Write
+
+
+Therefore:
+
+    Multiple instructions are processed at the same time.
+
+
+======================================================================
+PIPELINE SPEEDUP
+======================================================================
+
+Suppose:
+
+    4 stages
+    Each stage = 1 clock cycle
+    4 instructions
+
+
+Without pipeline:
+
+    4 x 4 = 16 cycles
+
+
+With pipeline:
+
+    k + (n - 1)
+
+    = 4 + (4 - 1)
+
+    = 7 cycles
+
+
+Therefore:
+
+    Pipeline = 7 cycles
+    Non-pipeline = 16 cycles
+
+
+Ideal speedup:
+
+    Speedup = Non-pipeline time / Pipeline time
+
+            = 16 / 7
+
+            ≈ 2.29
+
+
+For a large number of instructions, ideal speedup approaches the
+number of pipeline stages, assuming balanced stages and no stalls.
+
+
+======================================================================
+9.4 DATA DEPENDENCY
+======================================================================
+
+Data dependency occurs when one instruction depends on the result
+produced by another instruction.
+
+
+Example:
+
+    I1: R1 <- R2 + R3
+
+    I2: R4 <- R1 + R5
+
+
+I2 needs R1.
+
+But R1 is produced by I1.
+
+
+Therefore:
+
+    I2 depends on I1.
+
+
+======================================================================
+TYPES OF DATA DEPENDENCY
+======================================================================
+
+Three common types:
+
+    1. RAW
+    2. WAR
+    3. WAW
+
+
+--------------------------------------------------
+1. RAW
+--------------------------------------------------
+
+RAW = Read After Write
+
+
+Example:
+
+    I1: R1 <- R2 + R3
+
+    I2: R4 <- R1 + R5
+
+
+I2 reads R1 after I1 writes R1.
+
+
+RAW is a true data dependency.
+
+
+MEMORY TRICK:
+
+    RAW = Read after Write
+
+
+--------------------------------------------------
+2. WAR
+--------------------------------------------------
+
+WAR = Write After Read
+
+
+Example:
+
+    I1: Read R1
+
+    I2: Write R1
+
+
+I2 must not write R1 before I1 reads it.
+
+
+MEMORY TRICK:
+
+    WAR = Write after Read
+
+
+--------------------------------------------------
+3. WAW
+--------------------------------------------------
+
+WAW = Write After Write
+
+
+Example:
+
+    I1: Write R1
+
+    I2: Write R1
+
+
+The order of writes must be maintained.
+
+
+MEMORY TRICK:
+
+    WAW = Write after Write
+
+
+======================================================================
+9.4.1 HANDLING OF BRANCH INSTRUCTION
+======================================================================
+
+A branch instruction changes the normal sequence of program
+execution.
+
+
+Example:
+
+    I1
+    I2
+    BRANCH
+    I3
+    I4
+
+
+If branch is taken:
+
+    I3 and I4 may not be executed.
+
+
+Problem:
+
+    CPU may already have fetched I3 and I4 before knowing whether
+    the branch will be taken.
+
+
+This can cause pipeline stalls or wrong-path instructions.
+
+
+======================================================================
+BRANCH HANDLING METHODS
+======================================================================
+
+Common methods:
+
+    1. Stall pipeline
+    2. Flush pipeline
+    3. Branch prediction
+    4. Delayed branching
+
+
+--------------------------------------------------
+1. PIPELINE STALL
+--------------------------------------------------
+
+Temporarily stop the pipeline until branch decision is known.
+
+
+--------------------------------------------------
+2. PIPELINE FLUSH
+--------------------------------------------------
+
+Remove incorrectly fetched instructions from the pipeline.
+
+
+--------------------------------------------------
+3. BRANCH PREDICTION
+--------------------------------------------------
+
+CPU predicts whether branch will be:
+
+    Taken
+    or
+    Not Taken
+
+
+If prediction is correct:
+
+    Performance improves.
+
+
+If prediction is wrong:
+
+    Pipeline must be corrected/flushed.
+
+
+--------------------------------------------------
+4. DELAYED BRANCH
+--------------------------------------------------
+
+An instruction immediately after the branch may be executed before
+the branch takes effect, depending on the architecture.
+
+
+======================================================================
+9.4.2 PIPELINE HAZARDS
+======================================================================
+
+Pipeline hazard is a condition that prevents the next instruction
+from executing in the intended clock cycle.
+
+
+Three major hazards:
+
+    1. Structural Hazard
+    2. Data Hazard
+    3. Control Hazard
+
+
+======================================================================
+1. STRUCTURAL HAZARD
+======================================================================
+
+Occurs when two instructions require the same hardware resource
+at the same time.
+
+
+Example:
+
+    Two instructions need the same memory unit simultaneously.
+
+
+Solution:
+
+    - Add hardware resources
+    - Stall pipeline
+
+
+MEMORY TRICK:
+
+    Structural = HARDWARE CONFLICT
+
+
+======================================================================
+2. DATA HAZARD
+======================================================================
+
+Occurs when instructions depend on data produced/modified by
+another instruction.
+
+
+Example:
+
+    I1: R1 <- R2 + R3
+    I2: R4 <- R1 + R5
+
+
+I2 depends on R1 from I1.
+
+
+Solutions:
+
+    - Forwarding
+    - Stalling
+    - Instruction scheduling
+
+
+MEMORY TRICK:
+
+    Data hazard = DATA DEPENDENCY
+
+
+======================================================================
+3. CONTROL HAZARD
+======================================================================
+
+Occurs because of branch/jump instructions.
+
+
+Example:
+
+    BEQ LABEL
+
+
+CPU does not immediately know which instruction should be fetched
+next.
+
+
+Solutions:
+
+    - Branch prediction
+    - Pipeline flushing
+    - Delayed branching
+    - Stalling
+
+
+MEMORY TRICK:
+
+    Control hazard = BRANCH PROBLEM
+
+
+======================================================================
+9.4.3 INSTRUCTION HAZARDS
+======================================================================
+
+Instruction hazards are problems that occur when overlapping
+instructions interfere with correct execution.
+
+
+Main categories:
+
+    Structural Hazard
+    Data Hazard
+    Control Hazard
+
+
+Quick:
+
+    Structural -> Hardware conflict
+
+    Data       -> Data dependency
+
+    Control    -> Branch/jump
+
+
+======================================================================
+FORWARDING
+======================================================================
+
+Forwarding is a technique in which the result of one instruction
+is directly supplied to a later instruction without waiting for
+the result to be written back to the register file.
+
+
+Example:
+
+    I1: R1 <- R2 + R3
+
+    I2: R4 <- R1 + R5
+
+
+Instead of waiting for R1 to be written and then read:
+
+    ALU result of I1
+          |
+          v
+    directly to I2
+
+
+This reduces pipeline stalls.
+
+
+======================================================================
+PIPELINE STALL
+======================================================================
+
+A stall is a temporary delay inserted into the pipeline.
+
+
+Example:
+
+    Cycle:     1   2   3   4   5
+
+    I1         F   D   E   W
+
+    I2             F   D   -   E
+
+
+The "-" represents a stall/bubble.
+
+
+======================================================================
+PIPELINE BUBBLE
+======================================================================
+
+A bubble is an empty cycle inserted into the pipeline because
+an instruction cannot proceed safely.
+
+
+Simple:
+
+    Instruction
+        |
+        v
+    [Stage]
+        |
+      BUBBLE
+        |
+        v
+    [Next Stage]
+
+
+======================================================================
+IMPORTANT DIFFERENCES
+======================================================================
+
+PIPELINING vs PARALLEL PROCESSING
+---------------------------------
+
+PIPELINING:
+
+    Different stages of multiple instructions overlap.
+
+
+PARALLEL PROCESSING:
+
+    Multiple processors/units may perform separate tasks
+    simultaneously.
+
+
+======================================================================
+DATA HAZARD vs CONTROL HAZARD
+======================================================================
+
+DATA HAZARD:
+
+    Caused by dependency between instructions.
+
+
+Example:
+
+    I1 produces R1
+    I2 needs R1
+
+
+CONTROL HAZARD:
+
+    Caused by branch/jump.
+
+
+Example:
+
+    BEQ LABEL
+
+
+======================================================================
+PIPELINE HAZARD SUMMARY
+======================================================================
+
+STRUCTURAL:
+    Same hardware required.
+
+
+DATA:
+    Data dependency.
+
+
+CONTROL:
+    Branch/jump dependency.
+
+
+MEMORY TRICK:
+
+    S-D-C
+
+    S = Structural
+    D = Data
+    C = Control
+
+
+======================================================================
+VERY IMPORTANT FORMULAS
+======================================================================
+
+For ideal pipeline:
+
+    Total cycles = k + (n - 1)
+
+
+Where:
+
+    k = number of pipeline stages
+    n = number of instructions
+
+
+Speedup:
+
+    Speedup =
+    Non-pipelined execution time
+    --------------------------------
+    Pipelined execution time
+
+
+Ideal maximum speedup approximately:
+
+    Number of pipeline stages
+
+
+For example:
+
+    5-stage pipeline
+
+    Ideal speedup approaches:
+
+    5
+
+
+======================================================================
+SHORT EXAM QUESTIONS
+======================================================================
+
+Q1. What is pipelining?
+
+Q2. What is the main advantage of pipelining?
+
+Q3. What is pipeline throughput?
+
+Q4. What is Flynn's classification?
+
+Q5. What is SISD?
+
+Q6. What is SIMD?
+
+Q7. What is MISD?
+
+Q8. What is MIMD?
+
+Q9. What is an arithmetic pipeline?
+
+Q10. Write the stages of floating-point addition pipeline.
+
+Q11. What is an instruction pipeline?
+
+Q12. Explain four-segment instruction pipeline.
+
+Q13. What is data dependency?
+
+Q14. What is RAW dependency?
+
+Q15. What is WAR dependency?
+
+Q16. What is WAW dependency?
+
+Q17. What is a pipeline hazard?
+
+Q18. What is structural hazard?
+
+Q19. What is data hazard?
+
+Q20. What is control hazard?
+
+Q21. What is branch prediction?
+
+Q22. What is pipeline stall?
+
+Q23. What is pipeline flushing?
+
+Q24. What is forwarding?
+
+
+======================================================================
+LONG EXAM QUESTIONS
+======================================================================
+
+Q1. Define pipelining and explain its advantages with a suitable
+    timing diagram.
+
+Q2. Explain Flynn's classification with examples.
+
+Q3. Explain the arithmetic pipeline for floating-point addition.
+
+Q4. Explain the arithmetic pipeline for floating-point subtraction.
+
+Q5. Explain the four-segment instruction pipeline with a timing
+    diagram.
+
+Q6. What is data dependency? Explain RAW, WAR and WAW dependencies.
+
+Q7. Explain pipeline hazards and their types.
+
+Q8. Explain how branch instructions affect pipeline performance.
+
+Q9. Explain different methods of handling branch instructions.
+
+Q10. Explain forwarding and pipeline stalling with examples.
+
+
+======================================================================
+ONE-MINUTE REVISION
+======================================================================
+
+PIPELINING:
+    Overlap different stages of multiple instructions.
+
+
+MAIN BENEFIT:
+    Increased throughput.
+
+
+FLYNN:
+
+    SISD = Single Instruction + Single Data
+
+    SIMD = Single Instruction + Multiple Data
+
+    MISD = Multiple Instruction + Single Data
+
+    MIMD = Multiple Instruction + Multiple Data
+
+
+ARITHMETIC PIPELINE:
+
+    Compare
+       ↓
+    Align
+       ↓
+    Add/Subtract
+       ↓
+    Normalize
+
+
+INSTRUCTION PIPELINE:
+
+    Fetch
+      ↓
+    Decode
+      ↓
+    Execute
+      ↓
+    Write
+
+
+DATA DEPENDENCY:
+
+    One instruction depends on another instruction's data.
+
+
+RAW:
+    Read After Write
+
+
+WAR:
+    Write After Read
+
+
+WAW:
+    Write After Write
+
+
+PIPELINE HAZARDS:
+
+    Structural = Hardware conflict
+
+    Data = Data dependency
+
+    Control = Branch/jump
+
+
+BRANCH HANDLING:
+
+    Stall
+    Flush
+    Prediction
+    Delayed Branch
+
+
+FORWARDING:
+
+    Send result directly to dependent stage.
+
+
+======================================================================
+SUPER QUICK MEMORY TRICKS
+======================================================================
+
+PIPELINE:
+
+    "ONE TASK = MANY STAGES"
+
+
+FLYNN:
+
+    SISD = 1 + 1
+    SIMD = 1 + MANY
+    MISD = MANY + 1
+    MIMD = MANY + MANY
+
+
+FLOATING POINT:
+
+    COMPARE -> ALIGN -> CALCULATE -> NORMALIZE
+
+
+HAZARDS:
+
+    S = STRUCTURAL = SAME HARDWARE
+
+    D = DATA = DEPENDENCY
+
+    C = CONTROL = BRANCH
+
+
+DEPENDENCY:
+
+    RAW = Read After Write
+
+    WAR = Write After Read
+
+    WAW = Write After Write
+
+
+BRANCH:
+
+    PREDICT -> IF WRONG -> FLUSH
+
+
+PIPELINE:
+
+    k stages + n instructions
+
+    Total cycles = k + n - 1
+
+
+======================================================================
+                     END OF UNIT 9
+======================================================================
