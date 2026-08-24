@@ -1,0 +1,1968 @@
+======================================================================
+                     UNIT 7: COMPUTER ARITHMETIC
+======================================================================
+
+Lecture Hours: 3 Hours
+
+
+======================================================================
+7.1 ADDITION AND SUBTRACTION
+======================================================================
+
+Computer arithmetic deals with performing mathematical operations
+using binary numbers.
+
+Main topics:
+
+    1. Addition with Signed Magnitude Data
+    2. Subtraction with Signed Magnitude Data
+    3. 2's Complement Data
+    4. Booth Multiplication
+
+
+IMPORTANT NUMBER REPRESENTATIONS:
+
+    Unsigned
+    Signed Magnitude
+    1's Complement
+    2's Complement
+
+
+For this unit, focus mainly on:
+
+    SIGNED MAGNITUDE
+    2'S COMPLEMENT
+    BOOTH MULTIPLICATION
+
+
+======================================================================
+7.1.1 SIGNED MAGNITUDE REPRESENTATION
+======================================================================
+
+In signed magnitude representation:
+
+    MSB = SIGN BIT
+    Remaining bits = MAGNITUDE
+
+
+SIGN BIT:
+
+    0 = Positive
+    1 = Negative
+
+
+Example using 8 bits:
+
++25
+
+25 in binary:
+
+25 = 00011001
+
+Signed magnitude:
+
++25 = 00011001
+
+
+For -25:
+
+Magnitude of 25:
+
+00011001
+
+Change sign bit to 1:
+
+-25 = 10011001
+
+
+Therefore:
+
++25 = 00011001
+-25 = 10011001
+
+
+======================================================================
+SIGN-MAGNITUDE FORMAT
+======================================================================
+
+8-bit number:
+
++--------+-----------------------+
+| Sign   |       Magnitude       |
++--------+-----------------------+
+|  1 bit |       7 bits          |
++--------+-----------------------+
+
+
+Example:
+
+01011010
+
+    |
+    +---- Sign = 0
+    |
+    +---- Magnitude = 1011010
+
+
+Since sign = 0:
+
+Number is POSITIVE.
+
+
+Example:
+
+11011010
+
+    |
+    +---- Sign = 1
+    |
+    +---- Magnitude = 1011010
+
+
+Since sign = 1:
+
+Number is NEGATIVE.
+
+
+======================================================================
+RANGE OF SIGNED MAGNITUDE
+======================================================================
+
+For N bits:
+
+One bit is used for sign.
+
+Remaining:
+
+N - 1 bits
+
+are used for magnitude.
+
+
+Range:
+
+-(2^(N-1) - 1) to +(2^(N-1) - 1)
+
+
+For 8 bits:
+
+Range:
+
+-127 to +127
+
+
+IMPORTANT:
+
+Signed magnitude has TWO representations of zero:
+
++0 = 00000000
+
+-0 = 10000000
+
+
+This is one disadvantage of signed magnitude.
+
+
+======================================================================
+7.1.2 ADDITION WITH SIGNED MAGNITUDE DATA
+======================================================================
+
+When adding signed-magnitude numbers, we cannot simply add all
+bits like unsigned numbers.
+
+We must first check the SIGN of the two numbers.
+
+
+There are TWO major cases:
+
+CASE 1:
+Same signs
+
+    Add magnitudes
+    Keep the common sign
+
+
+CASE 2:
+Different signs
+
+    Subtract smaller magnitude from larger magnitude
+    Keep the sign of the number with larger magnitude
+
+
+======================================================================
+CASE 1: BOTH NUMBERS POSITIVE
+======================================================================
+
+Example:
+
++5 + +3
+
+
+5 = 0101
+3 = 0011
+
+
+Add:
+
+   0101
+ + 0011
+ -------
+   1000
+
+
+Result:
+
++8
+
+
+In 8-bit signed magnitude:
+
++5 = 00000101
++3 = 00000011
+
+   00000101
+ + 00000011
+ -----------
+   00001000
+
+
+Answer:
+
++8
+
+
+======================================================================
+CASE 2: BOTH NUMBERS NEGATIVE
+======================================================================
+
+Example:
+
+-5 + -3
+
+
+Magnitude:
+
+5 = 0101
+3 = 0011
+
+
+Add magnitudes:
+
+   0101
+ + 0011
+ -------
+   1000
+
+
+Common sign = 1
+
+
+Therefore:
+
+-8
+
+
+8-bit representation:
+
+-5 = 10000101
+-3 = 10000011
+
+Result:
+
+10001000
+
+= -8
+
+
+IMPORTANT:
+
+Same signs:
+
+    ADD magnitudes
+    Keep same sign
+
+
+======================================================================
+CASE 3: POSITIVE + NEGATIVE
+======================================================================
+
+Example:
+
++7 + (-3)
+
+
+Magnitude:
+
+7 = 0111
+3 = 0011
+
+
+Signs are different.
+
+Therefore:
+
+Subtract smaller magnitude from larger magnitude.
+
+    0111
+  - 0011
+  -------
+    0100
+
+
+Larger magnitude = 7
+
+Sign of larger magnitude = Positive
+
+
+Answer:
+
++4
+
+
+Therefore:
+
++7 + (-3) = +4
+
+
+======================================================================
+CASE 4: NEGATIVE + POSITIVE
+======================================================================
+
+Example:
+
+-7 + (+3)
+
+
+Magnitude:
+
+7 = 0111
+3 = 0011
+
+
+Different signs.
+
+Subtract:
+
+    0111
+  - 0011
+  -------
+    0100
+
+
+Larger magnitude = 7
+
+Sign belongs to -7.
+
+Therefore:
+
+Answer = -4
+
+
+-7 + 3 = -4
+
+
+======================================================================
+SIGNED MAGNITUDE ADDITION RULE
+======================================================================
+
+              SAME SIGN?
+                 |
+          +------+------+
+          |             |
+         YES            NO
+          |             |
+          v             v
+      ADD MAGNITUDE   SUBTRACT
+          |             |
+          v             v
+    Keep same sign   Keep sign of
+                     larger magnitude
+
+
+======================================================================
+IMPORTANT EXAMPLES
+======================================================================
+
+Example 1:
+
++12 + +5
+
+= +17
+
+
+Example 2:
+
+-12 + -5
+
+= -17
+
+
+Example 3:
+
++12 + -5
+
+= +7
+
+
+Example 4:
+
+-12 + +5
+
+= -7
+
+
+======================================================================
+OVERFLOW IN SIGNED MAGNITUDE
+======================================================================
+
+Overflow occurs when the result is outside the range that can be
+represented using the available number of bits.
+
+
+Example using 8-bit signed magnitude:
+
+Maximum positive number:
+
++127
+
+
+If:
+
++100 + +50
+
+= +150
+
+
+But 8-bit signed magnitude can represent only:
+
+-127 to +127
+
+
+Therefore:
+
++150 cannot be represented.
+
+OVERFLOW occurs.
+
+
+======================================================================
+7.1.3 SUBTRACTION WITH SIGNED MAGNITUDE DATA
+======================================================================
+
+Subtraction can be treated as:
+
+A - B = A + (-B)
+
+
+In signed magnitude arithmetic:
+
+    Change the sign of B
+    Then perform signed addition.
+
+
+Example:
+
++7 - +3
+
+
+Change sign of +3:
+
++7 + (-3)
+
+
+Different signs:
+
+Subtract magnitudes:
+
+7 - 3 = 4
+
+
+Answer:
+
++4
+
+
+======================================================================
+EXAMPLE: POSITIVE - POSITIVE
+======================================================================
+
++10 - +6
+
+
+Change sign:
+
++10 + (-6)
+
+
+Magnitude:
+
+10 - 6 = 4
+
+
+Larger magnitude = 10
+
+Sign = positive
+
+
+Answer:
+
++4
+
+
+======================================================================
+EXAMPLE: POSITIVE - NEGATIVE
+======================================================================
+
++10 - (-6)
+
+
+Change sign of -6:
+
++10 + (+6)
+
+
+Same signs:
+
+Add magnitudes:
+
+10 + 6 = 16
+
+
+Answer:
+
++16
+
+
+======================================================================
+EXAMPLE: NEGATIVE - POSITIVE
+======================================================================
+
+-10 - (+6)
+
+
+Change sign of +6:
+
+-10 + (-6)
+
+
+Same signs:
+
+10 + 6 = 16
+
+
+Keep negative sign.
+
+
+Answer:
+
+-16
+
+
+======================================================================
+EXAMPLE: NEGATIVE - NEGATIVE
+======================================================================
+
+-10 - (-6)
+
+
+Change sign of -6:
+
+-10 + (+6)
+
+
+Different signs.
+
+Subtract:
+
+10 - 6 = 4
+
+
+Larger magnitude = 10
+
+Sign = negative
+
+
+Answer:
+
+-4
+
+
+======================================================================
+7.1.4 2'S COMPLEMENT REPRESENTATION
+======================================================================
+
+2's complement is one of the most commonly used methods for
+representing signed binary numbers.
+
+
+In 2's complement:
+
+    MSB = Sign indicator
+
+    0 = Positive
+
+    1 = Negative
+
+
+For a positive number:
+
+Write normal binary.
+
+
+For a negative number:
+
+    1. Write positive binary
+    2. Find 1's complement
+    3. Add 1
+
+
+======================================================================
+HOW TO FIND 2'S COMPLEMENT
+======================================================================
+
+Example:
+
+Find 2's complement of:
+
+00000101
+
+
+STEP 1:
+-------
+Original:
+
+00000101
+
+
+STEP 2:
+-------
+Invert every bit:
+
+11111010
+
+
+This is 1's complement.
+
+
+STEP 3:
+-------
+Add 1:
+
+   11111010
+ + 00000001
+ -----------
+   11111011
+
+
+Therefore:
+
+2's complement = 11111011
+
+
+So:
+
++5 = 00000101
+
+-5 = 11111011
+
+
+======================================================================
+ANOTHER EXAMPLE
+======================================================================
+
+Find 2's complement of:
+
+00001010
+
+
+This represents:
+
++10
+
+
+STEP 1: Invert bits
+
+11110101
+
+
+STEP 2: Add 1
+
+11110101
++      1
+--------
+11110110
+
+
+Therefore:
+
+-10 = 11110110
+
+
+======================================================================
+2'S COMPLEMENT RANGE
+======================================================================
+
+For N bits:
+
+Range:
+
+-2^(N-1) to +[2^(N-1) - 1]
+
+
+For 8 bits:
+
+-128 to +127
+
+
+Therefore:
+
+Minimum = -128
+
+Maximum = +127
+
+
+IMPORTANT:
+
+Unlike signed magnitude, 2's complement has only ONE zero.
+
+
++0:
+
+00000000
+
+
+-0 does NOT have a separate representation.
+
+
+======================================================================
+7.1.5 ADDITION USING 2'S COMPLEMENT
+======================================================================
+
+The biggest advantage of 2's complement is that:
+
+    Addition and subtraction can be performed using the
+    same binary addition hardware.
+
+
+RULE:
+
+1. Write both numbers using same number of bits.
+2. Represent negative number in 2's complement.
+3. Add the binary numbers.
+4. Ignore the final carry if generated.
+5. Check for overflow.
+
+
+======================================================================
+EXAMPLE: +5 + +3
+======================================================================
+
++5:
+
+00000101
+
+
++3:
+
+00000011
+
+
+Add:
+
+   00000101
+ + 00000011
+ -----------
+   00001000
+
+
+Answer:
+
+00001000 = +8
+
+
+======================================================================
+EXAMPLE: +5 + (-3)
+======================================================================
+
+First represent -3.
+
++3:
+
+00000011
+
+
+Invert:
+
+11111100
+
+
+Add 1:
+
+11111101
+
+
+Therefore:
+
+-3 = 11111101
+
+
+Now:
+
++5 = 00000101
+-3 = 11111101
+
+
+Add:
+
+   00000101
+ + 11111101
+ -----------
+ 100000010
+
+
+There is an extra carry.
+
+
+Ignore final carry:
+
+00000010
+
+
+Answer:
+
++2
+
+
+Therefore:
+
++5 + (-3) = +2
+
+
+======================================================================
+EXAMPLE: -5 + +3
+======================================================================
+
+-5:
+
++5 = 00000101
+
+Invert:
+
+11111010
+
+Add 1:
+
+11111011
+
+
+Therefore:
+
+-5 = 11111011
+
+
++3:
+
+00000011
+
+
+Add:
+
+   11111011
+ + 00000011
+ -----------
+   11111110
+
+
+Result:
+
+11111110
+
+
+Since MSB = 1, result is negative.
+
+
+Find magnitude:
+
+Invert:
+
+00000001
+
+
+Add 1:
+
+00000010
+
+
+Magnitude = 2
+
+
+Answer:
+
+-2
+
+
+Therefore:
+
+-5 + 3 = -2
+
+
+======================================================================
+7.1.6 SUBTRACTION USING 2'S COMPLEMENT
+======================================================================
+
+Important rule:
+
+A - B
+
+can be performed as:
+
+A + 2's complement of B
+
+
+Therefore:
+
+A - B = A + (-B)
+
+
+======================================================================
+EXAMPLE: 7 - 3
+======================================================================
+
+Step 1:
+
++7:
+
+00000111
+
+
+Step 2:
+
++3:
+
+00000011
+
+
+Find 2's complement of 3.
+
+Invert:
+
+11111100
+
+
+Add 1:
+
+11111101
+
+
+Therefore:
+
+-3 = 11111101
+
+
+Step 3:
+
+Add:
+
+   00000111
+ + 11111101
+ -----------
+ 100000100
+
+
+Ignore final carry:
+
+00000100
+
+
+Answer:
+
++4
+
+
+Therefore:
+
+7 - 3 = 4
+
+
+======================================================================
+EXAMPLE: 5 - 8
+======================================================================
+
+5:
+
+00000101
+
+
+8:
+
+00001000
+
+
+Find 2's complement of 8:
+
+Invert:
+
+11110111
+
+
+Add 1:
+
+11111000
+
+
+Now add:
+
+   00000101
+ + 11111000
+ -----------
+   11111101
+
+
+Result:
+
+11111101
+
+
+MSB = 1
+
+Therefore result is negative.
+
+
+Find magnitude:
+
+Invert:
+
+00000010
+
+
+Add 1:
+
+00000011
+
+
+Magnitude = 3
+
+
+Answer:
+
+-3
+
+
+Therefore:
+
+5 - 8 = -3
+
+
+======================================================================
+SIGNED MAGNITUDE vs 2'S COMPLEMENT
+======================================================================
+
+SIGNED MAGNITUDE:
+
+    MSB = sign
+    Remaining bits = magnitude
+
+Negative number:
+    Change sign bit.
+
+
+2'S COMPLEMENT:
+
+    Negative number:
+        Invert bits + 1
+
+
+Example for -5:
+
+Signed Magnitude:
+
+10000101
+
+
+2's Complement:
+
+11111011
+
+
+Range for 8 bits:
+
+Signed Magnitude:
+    -127 to +127
+
+
+2's Complement:
+    -128 to +127
+
+
+Zero:
+
+Signed Magnitude:
+    +0 and -0
+
+
+2's Complement:
+    Only one zero
+
+
+======================================================================
+WHY 2'S COMPLEMENT IS PREFERRED
+======================================================================
+
+Advantages:
+
+    1. Only one representation of zero.
+    2. Addition and subtraction use same hardware.
+    3. Easier arithmetic implementation.
+    4. Overflow detection is easier.
+    5. Widely used in modern computers.
+
+
+======================================================================
+7.1.7 BOOTH MULTIPLICATION
+======================================================================
+
+Booth's Algorithm is a binary multiplication algorithm used for
+multiplying signed binary numbers represented in 2's complement.
+
+
+It is especially useful when multiplying signed numbers.
+
+
+Basic idea:
+
+Booth's algorithm examines:
+
+    Q0 and Q-1
+
+
+where:
+
+Q0 = least significant bit of multiplier
+
+Q-1 = an extra bit initially set to 0.
+
+
+Based on the pair:
+
+Q0 Q-1
+
+
+we perform:
+
+    00 -> No operation
+    11 -> No operation
+    01 -> A = A + M
+    10 -> A = A - M
+
+
+Then perform:
+
+    Arithmetic Right Shift
+
+
+Repeat for the number of bits.
+
+
+======================================================================
+BOOTH ALGORITHM REGISTERS
+======================================================================
+
+M  = Multiplicand
+
+Q  = Multiplier
+
+A  = Accumulator
+
+Q-1 = Extra bit
+
+
+Initial:
+
+A = 0000
+
+Q = Multiplier
+
+M = Multiplicand
+
+Q-1 = 0
+
+
+Counter = Number of bits
+
+
+======================================================================
+BOOTH RULE TABLE
+======================================================================
+
+Q0   Q-1       Operation
+-------------------------
+0     0        No operation
+0     1        A = A + M
+1     0        A = A - M
+1     1        No operation
+
+
+MEMORY TRICK:
+
+01 -> ADD
+
+10 -> SUBTRACT
+
+00 -> NOTHING
+
+11 -> NOTHING
+
+
+======================================================================
+BOOTH MULTIPLICATION EXAMPLE
+======================================================================
+
+Multiply:
+
+(+3) x (+2)
+
+
+Use 4-bit representation.
+
+
+M = +3
+
+3 = 0011
+
+
+Q = +2
+
+2 = 0010
+
+
+Initial:
+
+A   = 0000
+Q   = 0010
+Q-1 = 0
+
+Count = 4
+
+
+--------------------------------------------------
+STEP 1
+--------------------------------------------------
+
+Q0 = 0
+Q-1 = 0
+
+Pair:
+
+00
+
+Therefore:
+
+NO OPERATION
+
+
+Now perform arithmetic right shift on:
+
+A Q Q-1
+
+
+Before shift:
+
+A   Q    Q-1
+0000 0010 0
+
+
+After shift:
+
+A   Q    Q-1
+0000 0001 0
+
+
+Count = 1
+
+
+--------------------------------------------------
+STEP 2
+--------------------------------------------------
+
+Q0 = 1
+Q-1 = 0
+
+Pair:
+
+10
+
+
+Therefore:
+
+A = A - M
+
+
+A = 0000 - 0011
+
+
+A = 1101
+
+
+Now arithmetic right shift:
+
+
+Before:
+
+A   Q    Q-1
+
+1101 0001 0
+
+
+After:
+
+1110 1000 1
+
+
+Count = 2
+
+
+--------------------------------------------------
+STEP 3
+--------------------------------------------------
+
+Q0 = 0
+Q-1 = 1
+
+Pair:
+
+01
+
+
+Therefore:
+
+A = A + M
+
+
+A = 1110 + 0011
+
+    1110
+  + 0011
+  -------
+   0001
+
+
+Ignore carry beyond 4 bits.
+
+
+A = 0001
+
+
+Now arithmetic right shift:
+
+Before:
+
+0001 1000 1
+
+
+After:
+
+0000 1100 0
+
+
+Count = 3
+
+
+--------------------------------------------------
+STEP 4
+--------------------------------------------------
+
+Q0 = 0
+Q-1 = 0
+
+Pair:
+
+00
+
+
+No operation.
+
+
+Arithmetic right shift:
+
+Before:
+
+0000 1100 0
+
+
+After:
+
+0000 0110 0
+
+
+Count = 4
+
+
+STOP.
+
+
+Final product:
+
+A Q
+
+0000 0110
+
+
+Binary:
+
+00000110
+
+
+Decimal:
+
+6
+
+
+Therefore:
+
+3 x 2 = 6
+
+
+======================================================================
+IMPORTANT NOTE ABOUT ARITHMETIC RIGHT SHIFT
+======================================================================
+
+In arithmetic right shift:
+
+    Sign bit is preserved.
+
+
+Example:
+
+1100
+
+
+Arithmetic right shift:
+
+1110
+
+
+Notice:
+
+Original MSB = 1
+
+New MSB = 1
+
+
+Another example:
+
+0100
+
+
+Arithmetic right shift:
+
+0010
+
+
+Original MSB = 0
+
+New MSB = 0
+
+
+======================================================================
+BOOTH ALGORITHM STEP SUMMARY
+======================================================================
+
+STEP 1:
+-------
+Initialize:
+
+A = 0
+
+Q = Multiplier
+
+M = Multiplicand
+
+Q-1 = 0
+
+
+STEP 2:
+-------
+Check:
+
+Q0 Q-1
+
+
+STEP 3:
+-------
+Apply:
+
+00 -> Nothing
+
+01 -> A = A + M
+
+10 -> A = A - M
+
+11 -> Nothing
+
+
+STEP 4:
+-------
+Arithmetic right shift:
+
+A, Q, Q-1
+
+
+STEP 5:
+-------
+Decrease counter.
+
+
+STEP 6:
+-------
+Repeat until counter = 0.
+
+
+STEP 7:
+-------
+Final product:
+
+A Q
+
+
+======================================================================
+BOOTH ALGORITHM QUICK EXAMPLE
+======================================================================
+
+Suppose:
+
+M = 0011
+Q = 0010
+
+Then:
+
+A = 0000
+Q = 0010
+Q-1 = 0
+
+
+Check Q0 Q-1:
+
+00
+    -> Nothing
+
+
+Shift
+
+
+Next:
+
+10
+    -> A = A - M
+
+
+Shift
+
+
+Next:
+
+01
+    -> A = A + M
+
+
+Shift
+
+
+Next:
+
+00
+    -> Nothing
+
+
+Shift
+
+
+Final:
+
+AQ = 00000110
+
+
+= 6
+
+
+======================================================================
+IMPORTANT TERMS
+======================================================================
+
+MULTIPLICAND:
+    Number being multiplied.
+
+
+MULTIPLIER:
+    Number by which another number is multiplied.
+
+
+PRODUCT:
+    Result of multiplication.
+
+
+Example:
+
+5 x 3 = 15
+
+5 = Multiplicand
+3 = Multiplier
+15 = Product
+
+
+======================================================================
+BOOTH MULTIPLICATION: EXAM FORMAT
+======================================================================
+
+If asked:
+
+"Explain Booth's algorithm."
+
+
+Write:
+
+1. Initialize A = 0.
+2. Load multiplier into Q.
+3. Load multiplicand into M.
+4. Set Q-1 = 0.
+5. Examine Q0 and Q-1.
+6. Apply Booth's rule.
+7. Perform arithmetic right shift.
+8. Repeat for n bits.
+9. Final product is AQ.
+
+
+Booth table:
+
+Q0 Q-1       Operation
+----------------------
+0   0        No operation
+0   1        A = A + M
+1   0        A = A - M
+1   1        No operation
+
+
+======================================================================
+COMMON EXAM MISTAKES
+======================================================================
+
+1. CONFUSING SIGNED MAGNITUDE WITH 2'S COMPLEMENT
+
+Signed magnitude:
+
+-5 = 10000101
+
+
+2's complement:
+
+-5 = 11111011
+
+
+--------------------------------------------------
+
+2. FORGETTING TO ADD 1
+
+2's complement:
+
+Invert bits
+    +
+Add 1
+
+
+--------------------------------------------------
+
+3. NOT IGNORING FINAL CARRY
+
+In normal 2's complement addition, an extra carry beyond the
+fixed bit width is discarded.
+
+
+--------------------------------------------------
+
+4. CONFUSING BOOTH 01 AND 10
+
+Remember:
+
+01 -> ADD
+
+10 -> SUBTRACT
+
+
+--------------------------------------------------
+
+5. FORGETTING ARITHMETIC SHIFT
+
+Booth uses:
+
+ARITHMETIC RIGHT SHIFT
+
+not ordinary logical right shift.
+
+
+======================================================================
+EXAM PRACTICE QUESTIONS
+======================================================================
+
+SHORT QUESTIONS
+---------------
+
+Q1. What is computer arithmetic?
+
+Q2. What is signed magnitude representation?
+
+Q3. What is a sign bit?
+
+Q4. Represent +25 and -25 using 8-bit signed magnitude.
+
+Q5. What is 2's complement?
+
+Q6. How do you find the 2's complement of a binary number?
+
+Q7. What is the range of an 8-bit 2's complement number?
+
+Q8. What is the advantage of 2's complement?
+
+Q9. What is Booth's algorithm?
+
+Q10. What are the registers used in Booth multiplication?
+
+Q11. What is Q-1 in Booth's algorithm?
+
+Q12. State the Booth decision table.
+
+Q13. What is arithmetic right shift?
+
+Q14. What is overflow?
+
+Q15. Differentiate signed magnitude and 2's complement.
+
+
+======================================================================
+NUMERICAL PRACTICE
+======================================================================
+
+Q1. Represent +18 and -18 using 8-bit signed magnitude.
+
+Q2. Perform:
+
+    +7 + +5
+
+using signed magnitude.
+
+
+Q3. Perform:
+
+    +7 + (-5)
+
+using signed magnitude.
+
+
+Q4. Perform:
+
+    -7 + (+5)
+
+using signed magnitude.
+
+
+Q5. Find the 2's complement of:
+
+    00001101
+
+
+Q6. Find the 2's complement of:
+
+    00101010
+
+
+Q7. Perform using 2's complement:
+
+    8 + 5
+
+
+Q8. Perform using 2's complement:
+
+    8 + (-5)
+
+
+Q9. Perform using 2's complement:
+
+    5 - 8
+
+
+Q10. Perform Booth multiplication:
+
+    3 x 2
+
+
+Q11. Perform Booth multiplication:
+
+    (-3) x 2
+
+
+Q12. Perform Booth multiplication:
+
+    3 x (-2)
+
+
+======================================================================
+PRACTICE ANSWERS
+======================================================================
+
+Q1:
+
++18:
+
+00010010
+
+
+-18 signed magnitude:
+
+10010010
+
+
+--------------------------------------------------
+
+Q5:
+
+00001101
+
+Invert:
+
+11110010
+
+Add 1:
+
+11110011
+
+
+Answer:
+
+11110011
+
+
+--------------------------------------------------
+
+Q7:
+
+8 + 5 = 13
+
+8:
+
+00001000
+
+5:
+
+00000101
+
+Result:
+
+00001101
+
+
+--------------------------------------------------
+
+Q8:
+
+8 + (-5) = 3
+
+Result:
+
+00000011
+
+
+--------------------------------------------------
+
+Q9:
+
+5 - 8 = -3
+
+Result in 8-bit 2's complement:
+
+11111101
+
+
+--------------------------------------------------
+
+Q10:
+
+3 x 2 = 6
+
+Binary:
+
+00000110
+
+
+======================================================================
+VERY IMPORTANT FORMULAS / RULES
+======================================================================
+
+SIGNED MAGNITUDE:
+
+MSB = Sign
+
+0 -> Positive
+1 -> Negative
+
+
+2'S COMPLEMENT:
+
+Negative number:
+
+1. Invert bits
+2. Add 1
+
+
+2'S COMPLEMENT ADDITION:
+
+A + B
+
+Add normally.
+
+Discard final carry.
+
+
+2'S COMPLEMENT SUBTRACTION:
+
+A - B
+
+= A + 2's complement(B)
+
+
+BOOTH:
+
+00 -> No operation
+
+01 -> ADD M
+
+10 -> SUBTRACT M
+
+11 -> No operation
+
+
+After every Booth operation:
+
+Arithmetic Right Shift
+
+
+Final Booth product:
+
+A Q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
