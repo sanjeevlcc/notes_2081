@@ -395,6 +395,20 @@ INSERT INTO Student
 VALUES (104, 'Gita', 'C01');
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ==================================================================
 2.3 NETWORKING AND TELECOMMUNICATIONS
 ==================================================================
@@ -407,22 +421,26 @@ that communicate and share resources.
 
 Example:
 
-Computer A -------- Router -------- Computer B
-                         |
-                       Printer
+    Computer A -------- Router -------- Computer B
+                             |
+                           Printer
+
+
+
+
 
 
 PURPOSES OF NETWORKING
 ------------------------------------------------------------------
 
-1. Resource Sharing
-2. File Sharing
-3. Communication
-4. Internet Access
-5. Data Sharing
-6. Centralized Management
-7. Remote Access
-
+    1. Resource Sharing
+    2. File Sharing
+    3. Communication
+    4. Internet Access
+    5. Data Sharing
+    6. Centralized Management
+    7. Remote Access
+    
 
 TYPES OF NETWORK
 ------------------------------------------------------------------
@@ -433,7 +451,7 @@ TYPES OF NETWORK
    Small network around one person.
 
    Example:
-   Mobile phone connected to Bluetooth earphones.
+       Mobile phone connected to Bluetooth earphones.
 
 
 2. LAN
@@ -442,7 +460,7 @@ TYPES OF NETWORK
    Network within a small geographical area.
 
    Example:
-   Computer network inside a college laboratory.
+       Computer network inside a college laboratory.
 
 
 3. MAN
@@ -451,7 +469,7 @@ TYPES OF NETWORK
    Covers a city or large campus area.
 
    Example:
-   Network connecting different branches within a city.
+       Network connecting different branches within a city.
 
 
 4. WAN
@@ -460,7 +478,12 @@ TYPES OF NETWORK
    Covers large geographical areas.
 
    Example:
-   The Internet.
+       The Internet.
+
+
+
+
+
 
 
 NETWORK DEVICES
@@ -487,8 +510,11 @@ NETWORK DEVICES
    Allows a computer/device to connect to a network.
 
 
+
+
+
 NETWORK TOPOLOGIES
-------------------------------------------------------------------
+------------------------------------------------------------------ 
 
 1. BUS TOPOLOGY
    All devices share one main communication cable.
@@ -496,13 +522,13 @@ NETWORK TOPOLOGIES
 2. STAR TOPOLOGY
    All devices connect to a central device.
 
-       Computer
+       Computer1
            |
            |
     Computer--Switch--Computer
            |
            |
-       Computer
+       Computer2
 
 3. RING TOPOLOGY
    Devices are connected in a circular structure.
@@ -514,7 +540,14 @@ NETWORK TOPOLOGIES
    Combination of hierarchical structures.
 
 
-TELECOMMUNICATION
+
+
+
+
+
+
+------------------------------------------------------------------
+TELECOMMUNICATION            .... tele = FAR 
 ------------------------------------------------------------------
 
 Telecommunication means transmission of information over a
@@ -531,12 +564,14 @@ Information can include:
 EXAMPLES
 ------------------------------------------------------------------
 
-- Mobile phone calls
-- SMS
-- Email
-- Video conferencing
-- Internet communication
-- VoIP
+            - Mobile phone calls
+            - SMS
+            - Email
+            - Video conferencing
+            - Internet communication
+            - VoIP
+
+
 
 
 NETWORKING + TELECOMMUNICATION EXAMPLE
@@ -544,19 +579,22 @@ NETWORKING + TELECOMMUNICATION EXAMPLE
 
 A student uses Zoom/Google Meet:
 
-Laptop
-   ↓
-Wi-Fi Router
-   ↓
-Internet
-   ↓
-ISP
-   ↓
-Remote Server
-   ↓
-Teacher's Laptop
+            Laptop
+               ↓
+            Wi-Fi Router
+               ↓
+            Internet
+               ↓
+              ISP
+               ↓
+            Remote Server
+               ↓
+            Teacher's Laptop
 
 This allows real-time communication between student and teacher.
+
+
+
 
 
 ==================================================================
@@ -569,7 +607,7 @@ education, communication and society.
 
 Examples:
     - Cloud Computing
-    - IoT
+    - IoT                    
     - Sensor Networks
     - Social Networking Services (SNS)
     - Blockchain
