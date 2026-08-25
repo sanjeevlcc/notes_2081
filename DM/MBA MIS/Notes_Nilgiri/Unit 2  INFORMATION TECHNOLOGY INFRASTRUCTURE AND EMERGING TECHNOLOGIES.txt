@@ -1080,255 +1080,38 @@ Central System
 Traffic / Security / Environment Monitoring
 
 
+
+
+
+
+
+
+
+
+
 ==================================================================
 COMPARISON OF EMERGING TECHNOLOGIES
 ==================================================================
 
-Technology       Main Purpose             Example
-------------------------------------------------------------------
-Cloud            Internet-based computing Google Drive
-IoT              Connected devices        Smart Home
-Blockchain       Secure distributed data  Cryptocurrency
-Sensor Network   Environmental data       Smart Agriculture
-SNS              Social interaction       Facebook
-AI               Intelligent decisions    Chatbot
-Big Data         Large-scale data         Social media analytics
-5G               Fast connectivity        Smart City
+        Technology       Main Purpose             Example
+        ------------------------------------------------------------------
+        Cloud            Internet-based computing Google Drive
+        IoT              Connected devices        Smart Home
+        Blockchain       Secure distributed data  Cryptocurrency
+        Sensor Network   Environmental data       Smart Agriculture
+        SNS              Social interaction       Facebook
+        AI               Intelligent decisions    Chatbot
+        Big Data         Large-scale data         Social media analytics
+        5G               Fast connectivity        Smart City
+        
 
 
-==================================================================
-IMPORTANT DIFFERENCES FOR EXAMS
-==================================================================
 
-1. INTERNET vs IoT
-------------------------------------------------------------------
 
-Internet:
-    Connects computers and people.
 
-IoT:
-    Connects physical objects/devices to the Internet.
 
-Example:
-    Internet -> Person uses Facebook.
-    IoT      -> Smart watch sends health/activity data.
 
 
-2. DATABASE vs DBMS
-------------------------------------------------------------------
 
-Database:
-    Collection of organized data.
 
-DBMS:
-    Software used to create and manage databases.
 
-Example:
-    Student records = Database
-    MySQL = DBMS
-
-
-3. HARDWARE vs SOFTWARE
-------------------------------------------------------------------
-
-Hardware:
-    Physical components.
-
-Software:
-    Programs/instructions.
-
-
-4. LAN vs WAN
-------------------------------------------------------------------
-
-LAN:
-    Small geographical area.
-
-WAN:
-    Large geographical area.
-
-Example:
-    College lab = LAN
-    Internet = WAN
-
-
-5. CLOUD vs LOCAL STORAGE
-------------------------------------------------------------------
-
-Cloud Storage:
-    Data stored on remote servers and accessed through Internet.
-
-Local Storage:
-    Data stored on local device such as HDD/SSD.
-
-
-==================================================================
-SHORT EXAM DEFINITIONS
-==================================================================
-
-Hardware:
-Physical components of a computer system.
-
-Software:
-A collection of programs/instructions used to operate a computer.
-
-DBMS:
-Software used to create, manage and manipulate databases.
-
-Network:
-A group of interconnected devices that communicate and share
-resources.
-
-LAN:
-A network covering a small geographical area.
-
-WAN:
-A network covering a large geographical area.
-
-Cloud Computing:
-Delivery of computing resources over the Internet.
-
-IoT:
-A system of interconnected physical devices that collect and
-exchange data over a network.
-
-Blockchain:
-A distributed digital ledger that records transactions in
-linked blocks.
-
-Sensor Network:
-A network of sensors used to collect and communicate environmental
-or physical data.
-
-SNS:
-An online service that enables users to communicate and share
-information.
-
-AI:
-Technology that enables machines to perform tasks requiring
-human-like intelligence.
-
-Big Data:
-Very large and complex datasets requiring advanced methods for
-processing and analysis.
-
-5G:
-The fifth generation of mobile communication technology.
-
-
-==================================================================
-POSSIBLE SHORT QUESTIONS
-==================================================================
-
-1. What is hardware?
-2. What is software?
-3. Differentiate hardware and software.
-4. What is DBMS?
-5. Give four examples of DBMS.
-6. What is a primary key?
-7. What is a computer network?
-8. Define LAN and WAN.
-9. What is a router?
-10. What is telecommunication?
-11. Define cloud computing.
-12. What is IoT?
-13. What is a sensor network?
-14. What is SNS?
-15. What is blockchain?
-16. Write any four features of blockchain.
-17. What is AI?
-18. What is Big Data?
-19. What is 5G?
-20. Write any four applications of IoT.
-
-
-==================================================================
-POSSIBLE LONG QUESTIONS
-==================================================================
-
-1. Explain the major hardware and software components of an
-   information technology infrastructure with examples.
-
-2. What is DBMS? Explain its functions, advantages and examples.
-
-3. Explain different types of computer networks with suitable
-   examples.
-
-4. Explain networking devices such as hub, switch, router,
-   modem and access point.
-
-5. What is cloud computing? Explain its types and service models.
-
-6. Explain IoT, its components, working mechanism and applications.
-
-7. What is blockchain? Explain its major features and working
-   process.
-
-8. Explain sensor networks and their applications.
-
-9. Explain SNS and discuss its applications in business and
-   communication.
-
-10. Explain emerging technologies such as Cloud Computing, IoT,
-    Blockchain, AI, Big Data and 5G.
-
-
-==================================================================
-ONE-LINE MEMORY TRICKS
-==================================================================
-
-Hardware = Things you can TOUCH
-
-Software = Programs you can RUN
-
-DBMS = Manage DATA
-
-Network = CONNECT devices
-
-Cloud = COMPUTING through Internet
-
-IoT = THINGS + INTERNET
-
-Sensor Network = SENSORS + COMMUNICATION
-
-SNS = PEOPLE + SOCIAL CONNECTION
-
-Blockchain = BLOCKS + SECURE LEDGER
-
-AI = MACHINES + INTELLIGENCE
-
-Big Data = HUGE + COMPLEX DATA
-
-5G = FAST + LOW LATENCY + MANY DEVICES
-
-
-==================================================================
-UNIT II QUICK REVISION
-==================================================================
-
-2.1 Hardware & Software
-    ↓
-    Physical devices + Programs
-
-2.2 DBMS
-    ↓
-    Store + Manage + Retrieve Data
-
-2.3 Networking
-    ↓
-    Connect + Communicate + Share Resources
-
-2.4 Emerging Technologies
-    ↓
-    Cloud
-    Sensor Networks
-    SNS
-    Blockchain
-    IoT
-    AI
-    Big Data
-    5G
-
-==================================================================
-END OF UNIT II
-==================================================================
