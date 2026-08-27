@@ -2,11 +2,16 @@
               UNIT 4: BASIC COMPUTER ARCHITECTURE AND DESIGN
 ======================================================================
 
+
 Lecture Hours: 6 Hours
 
 ======================================================================
 4.1 STORED PROGRAM ORGANIZATION
 ======================================================================
+
+
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNQn0NUODDM_fRIGKa2_Sj9WAoEKLjtm658PczFrwY18z5hoBwEPNX8EA&s=10
+
 
 Definition:
 ------------
@@ -19,34 +24,35 @@ Definition:
     This concept is mainly associated with the VON NEUMANN ARCHITECTURE.
 
 
-
-Basic Structure:
-
-        +----------------------+
-        |      INPUT UNIT      |
-        +----------+-----------+
-                   |
-                   v
-        +----------------------+
-        |      MAIN MEMORY     |
-        |----------------------|
-        | Instructions         |
-        | Data                 |
-        +----------+-----------+
-                   |
-                   v
-        +----------------------+
-        |         CPU          |
-        |----------------------|
-        | Registers            |
-        | ALU                 |
-        | Control Unit         |
-        +----------+-----------+
-                   |
-                   v
-        +----------------------+
-        |     OUTPUT UNIT      |
-        +----------------------+
+      
+      Basic Structure:
+      -----------------
+              +----------------------+
+              |      INPUT UNIT      |
+              +----------+-----------+
+                         |
+                         v
+              +----------------------+
+              |      MAIN MEMORY     |
+              |----------------------|
+              | Instructions         |
+              | Data                 |
+              +----------+-----------+
+                         |
+                         v
+              +----------------------+
+              |         CPU          |
+              |----------------------|
+              | Registers            |
+              | ALU                 |
+              | Control Unit         |
+              +----------+-----------+
+                         |
+                         v
+              +----------------------+
+              |     OUTPUT UNIT      |
+              +----------------------+
+      
 
 
 
@@ -65,24 +71,26 @@ IMPORTANT:
           - Data
 
 
+
+
 EXAMPLE:
 --------
 Suppose memory contains:
       
       Address       Content
       -------       -------
-      100           LOAD R1, 200
-      101           ADD  R1, R2
-      102           STORE R1, 300
-      200           50
-      300           ?
+      1000           LOAD R1, 200
+      1001           ADD  R1, R2
+      1002           STORE R1, 300
+      2000           50
+      3000           ?
 
 
 
     
     The CPU:
-        1. Fetches instruction from address 100
-        2. Decodes LOAD R1, 200
+        1. Fetches instruction from address 1000
+        2. Decodes LOAD R1, 2000
         3. Loads value 50 into R1
         4. Executes ADD R1, R2
         5. Stores the result at address 300
@@ -91,9 +99,17 @@ Suppose memory contains:
 
 
 
+
 ======================================================================
 4.1.1 COMPUTER REGISTERS
 ======================================================================
+
+
+https://a.fsdn.com/con/app/proj/gnusim8085/screenshots/82280.jpg/max/max/1
+
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIeSMDb2viYFmrcbQLyT0PqXcQFulFAZlXpjSiIvabRQ&s=10
+
+
 
 Definition:
 ------------
@@ -182,6 +198,8 @@ COMMON REGISTERS:
     AC = 30
 
 
+
+
 6. General Purpose Registers
 ----------------------------
 Used to store temporary data and intermediate results.
@@ -194,15 +212,15 @@ Examples:
 
 
 
-
-QUICK MEMORY TRICK:
--------------------
-
-    PC  -> WHERE is the next instruction?
-    IR  -> WHAT instruction is executing?
-    MAR -> WHERE in memory?
-    MDR -> WHAT data?
-    AC  -> RESULT
+      
+      QUICK MEMORY TRICK:
+      -------------------
+      
+          PC  -> WHERE is the next instruction?
+          IR  -> WHAT instruction is executing?
+          MAR -> WHERE in memory?
+          MDR -> WHAT data?
+          AC  -> RESULT
 
 
 
@@ -251,6 +269,9 @@ Now CPU executes the instruction in IR.
 
 
 
+
+
+
 ======================================================================
 4.1.2 COMMON BUS SYSTEM
 ======================================================================
@@ -290,47 +311,52 @@ register, a COMMON BUS is used.
 
 EXAMPLE:
 --------
+    Suppose:
+    
+        R1 = 25
+        R2 = 10
+            
+            We want:
+            
+                R3 <- R1
+            
+            Operation:
+            
+                R1 -> BUS -> R3
+            
+            After operation:
+            
+                R3 = 25
 
-Suppose:
 
-    R1 = 25
-    R2 = 10
+
+
+
+
+  Another example:
+  -----------------
+        R3 <- R1 + R2
         
-        We want:
+              First:
+              
+                  R1 -> ALU
+                  R2 -> ALU
+              
+              ALU performs:
+              
+                  25 + 10 = 35
+              
+              Then:
+              
+                  ALU result -> BUS -> R3
+              
+              Therefore:
+              
+                  R3 = 35
         
-            R3 <- R1
-        
-        Operation:
-        
-            R1 -> BUS -> R3
-        
-        After operation:
-        
-            R3 = 25
 
 
 
-
-Another example:
-
-R3 <- R1 + R2
-
-      First:
-      
-          R1 -> ALU
-          R2 -> ALU
-      
-      ALU performs:
-      
-          25 + 10 = 35
-      
-      Then:
-      
-          ALU result -> BUS -> R3
-      
-      Therefore:
-      
-          R3 = 35
 
 
 
@@ -401,6 +427,10 @@ Example:
 
 
 
+
+
+
+
 ======================================================================
 4.1.4 CONTROL INSTRUCTION CYCLE
 ======================================================================
@@ -431,7 +461,10 @@ Example:
           T2: IR <- MDR
               PC <- PC + 1
           
-    
+
+
+
+
     --------------------------------------------------
     2. DECODE CYCLE
     --------------------------------------------------
@@ -448,7 +481,9 @@ Example:
         Source = R1
         Source = R2
         
-        
+
+
+
     --------------------------------------------------
     3. EXECUTE CYCLE
     --------------------------------------------------
@@ -469,7 +504,10 @@ Example:
             R1 = 20 + 15
             R1 = 35
             
-        
+
+
+
+
     --------------------------------------------------
     4. INTERRUPT CYCLE
     --------------------------------------------------
@@ -489,18 +527,21 @@ Example:
 
 
 
+
+
+
 ======================================================================
 COMPLETE INSTRUCTION CYCLE EXAMPLE
 ======================================================================
 
 Instruction:
-
+--------------
 ADD R1, R2
 
-Assume:
-
-    R1 = 20
-    R2 = 30
+      Assume:
+      
+          R1 = 20
+          R2 = 30
 
 
 
@@ -560,6 +601,8 @@ One instruction may require MANY micro-operations.
           R3 <- R1 + R2
           R1 <- R1 AND R2
           R2 <- R2 << 1
+
+
 
 
 
@@ -876,6 +919,8 @@ NOT A = 0101
 
 
 
+
+
 ======================================================================
 4.2.3 SHIFT MICRO-OPERATIONS
 ======================================================================
@@ -941,17 +986,18 @@ A. LOGICAL SHIFT
         
         Example:
         
-        0011 = 3
+            0011 = 3
+            
+            0011 << 1
+            
+            0110 = 6
+            
+            Therefore:
+            
+            3 x 2 = 6
         
-        0011 << 1
-        
-        0110 = 6
-        
-        Therefore:
-        
-        3 x 2 = 6
-        
-        
+
+
         --------------------------------------------------
         LOGICAL RIGHT SHIFT
         --------------------------------------------------
@@ -977,16 +1023,18 @@ A. LOGICAL SHIFT
         
         Example:
         
-        1100 = 12
-        
-        1100 >> 1
-        
-        0110 = 6
-        
-        Therefore:
-        
-        12 / 2 = 6
-        
+            1100 = 12
+            
+            1100 >> 1
+            
+            0110 = 6
+            
+            Therefore:
+            
+            12 / 2 = 6
+          
+
+
 
 ======================================================================
 B. CIRCULAR SHIFT
@@ -1058,6 +1106,8 @@ B. CIRCULAR SHIFT
       1101
 
 
+
+
 ======================================================================
 LOGICAL SHIFT vs CIRCULAR SHIFT
 ======================================================================
@@ -1098,6 +1148,9 @@ Circular:
     last position gets the removed bit 1
 
 
+
+
+
 ======================================================================
 4.2.4 INCREMENT OPERATION
 ======================================================================
@@ -1111,29 +1164,29 @@ R1 <- R1 + 1
 
 Example:
 
-R1 = 0111
+      R1 = 0111
+      
+      R1 <- R1 + 1
+      
+           0111
+         + 0001
+         ------
+           1000
+      
+      Therefore:
+      
+      R1 = 1000
 
-R1 <- R1 + 1
+          
+          Decimal:
+          
+          7 + 1 = 8
 
-     0111
-   + 0001
-   ------
-     1000
-
-Therefore:
-
-R1 = 1000
-
-
-Decimal:
-
-7 + 1 = 8
-
-
-IMPORTANT:
------------
-Increment is an arithmetic micro-operation.
-
+    
+    IMPORTANT:
+    -----------
+    Increment is an arithmetic micro-operation.
+    
 
 
 
@@ -1149,29 +1202,33 @@ R1 <- R1 - 1
 
 
 Example:
+        
+        R1 = 1000
+        
+        R1 <- R1 - 1
+        
+             1000
+           - 0001
+           ------
+             0111
+        
+        Therefore:
+        
+        R1 = 0111
+        
+        
+        Decimal:
+        
+        8 - 1 = 7
+        
+              
+              IMPORTANT:
+              -----------
+              Decrement is an arithmetic micro-operation.
+      
 
-R1 = 1000
-
-R1 <- R1 - 1
-
-     1000
-   - 0001
-   ------
-     0111
-
-Therefore:
-
-R1 = 0111
 
 
-Decimal:
-
-8 - 1 = 7
-
-
-IMPORTANT:
------------
-Decrement is an arithmetic micro-operation.
 
 
 ======================================================================
@@ -1190,17 +1247,17 @@ Find:
 
 R3 <- R1 AND R2
 
-
-Solution:
-
-    1010
-AND 0011
---------
-    0010
-
-Answer:
-
-R3 = 0010
+    
+    Solution:
+    
+        1010
+    AND 0011
+    --------
+        0010
+    
+    Answer:
+    
+    R3 = 0010
 
 
 --------------------------------------------------
@@ -1219,15 +1276,15 @@ R3 <- R1 OR R2
 
 
 Solution:
-
-    1010
-OR  0011
---------
-    1011
-
-Answer:
-
-R3 = 1011
+      
+          1010
+      OR  0011
+      --------
+          1011
+      
+      Answer:
+      
+      R3 = 1011
 
 
 --------------------------------------------------
@@ -1246,16 +1303,16 @@ R3 <- R1 XOR R2
 
 
 Solution:
-
-    1010
-XOR 0011
---------
-    1001
-
-Answer:
-
-R3 = 1001
-
+        
+            1010
+        XOR 0011
+        --------
+            1001
+        
+        Answer:
+        
+        R3 = 1001
+        
 
 --------------------------------------------------
 
@@ -1272,12 +1329,12 @@ R1 <- R1 + 1
 
 
 Solution:
-
-0101 + 0001 = 0110
-
-Answer:
-
-R1 = 0110
+      
+      0101 + 0001 = 0110
+      
+      Answer:
+      
+      R1 = 0110
 
 
 --------------------------------------------------
@@ -1293,7 +1350,7 @@ Perform logical left shift.
 
 Solution:
 
-1010 << 1 = 0100
+      1010 << 1 = 0100
 
 
 --------------------------------------------------
@@ -1309,7 +1366,7 @@ Perform logical right shift.
 
 Solution:
 
-1010 >> 1 = 0101
+    1010 >> 1 = 0101
 
 
 --------------------------------------------------
@@ -1325,7 +1382,7 @@ Perform circular left shift.
 
 Solution:
 
-1011 -> 0111
+  1011 -> 0111
 
 
 --------------------------------------------------
@@ -1339,9 +1396,14 @@ R1 = 1011
 
 Perform circular right shift.
 
-Solution:
+    Solution:
+    
+    1011 -> 1101
 
-1011 -> 1101
+
+
+
+
 
 
 ======================================================================
@@ -1384,6 +1446,12 @@ The arrow "<-" means:
 "gets the value of"
 
 
+
+
+
+
+
+
 ======================================================================
 COMBINED MICRO-OPERATION EXAMPLE
 ======================================================================
@@ -1423,6 +1491,12 @@ R3 <- 1000
 Final:
 
 R3 = 1000 = 8
+
+
+
+
+
+
 
 
 ======================================================================
