@@ -14,8 +14,13 @@ MICROPROGRAMMED CONTROL UNIT:
     microinstructions stored in control memory.
 
 
-BASIC FLOW:
+http://files.codingninjas.in/article_images/introduction-to-microprogrammed-control-unit-1-1676113014.webp
 
+
+
+
+BASIC FLOW:
+------------
     Machine Instruction
             |
             v
@@ -34,13 +39,20 @@ BASIC FLOW:
       Micro-operations
 
 
-MAIN COMPONENTS:
 
+
+
+MAIN COMPONENTS:
+--------------------
     1. Control Memory
     2. Control Address Register
     3. Microinstruction Register
     4. Address Sequencing Logic
     5. Control Signal Generator
+
+
+
+
 
 
 ======================================================================
@@ -66,10 +78,19 @@ Example:
     011           PC + 1
 
 
-MEMORY TRICK:
 
+
+
+MEMORY TRICK:
+--------------
     Main Memory  = PROGRAM + DATA
     Control Memory = MICROINSTRUCTIONS
+
+
+
+
+
+
 
 
 ======================================================================
@@ -91,12 +112,19 @@ Simple:
     Next Microinstruction
 
 
-SOURCES OF NEXT ADDRESS:
 
+
+
+
+SOURCES OF NEXT ADDRESS:
+----------------------------
     1. Sequential address
     2. Branch address
     3. Opcode mapping
     4. Conditional address
+
+
+
 
 
 --------------------------------------------------
@@ -109,6 +137,8 @@ Next address = Current address + 1
 Example:
 
     100 -> 101 -> 102 -> 103
+
+
 
 
 --------------------------------------------------
@@ -126,6 +156,9 @@ Example:
 Used when a branch condition is satisfied.
 
 
+
+
+
 --------------------------------------------------
 3. OPCODE MAPPING
 --------------------------------------------------
@@ -141,56 +174,76 @@ Example:
     STORE -> Address 300
 
 
-======================================================================
-ADDRESS SEQUENCING EXAMPLE
-======================================================================
-
-Control Memory:
-
-    Address       Microinstruction
-    --------------------------------
-    100           MAR <- PC
-    101           MDR <- M[MAR]
-    102           IR <- MDR
-    103           PC <- PC + 1
-    104           Decode
 
 
-Normal execution:
+          
+          ======================================================================
+          ADDRESS SEQUENCING EXAMPLE
+          ======================================================================
+          
+          Control Memory:
+          
+              Address       Microinstruction
+              --------------------------------
+              100           MAR <- PC
+              101           MDR <- M[MAR]
+              102           IR <- MDR
+              103           PC <- PC + 1
+              104           Decode
+          
+          
+          Normal execution:
+          
+              100 -> 101 -> 102 -> 103 -> 104
+          
+          
+          Therefore:
+          
+              Address sequencing determines "WHERE TO GO NEXT."
 
-    100 -> 101 -> 102 -> 103 -> 104
 
 
-Therefore:
 
-    Address sequencing determines "WHERE TO GO NEXT."
+
+
 
 
 ======================================================================
 5.1.3 MICRO-OPERATION
 ======================================================================
 
+https://media.geeksforgeeks.org/wp-content/uploads/20250916114642702916/1.webp
+
+
+
 A micro-operation is a basic operation performed on data stored
 in registers.
 
+      
+      Examples:
+      -------------
+          R1 <- R2
+      
+          R3 <- R1 + R2
+      
+          R1 <- R1 AND R2
+      
+          R2 <- R2 << 1
 
-Examples:
 
-    R1 <- R2
 
-    R3 <- R1 + R2
-
-    R1 <- R1 AND R2
-
-    R2 <- R2 << 1
 
 
 TYPES:
-
+----------
     1. Register Transfer
     2. Arithmetic
     3. Logic
     4. Shift
+
+
+
+
 
 
 EXAMPLE:
@@ -198,22 +251,34 @@ EXAMPLE:
     ADD R1, R2
 
 
-Possible micro-operations:
+    Possible micro-operations:
+    
+        R3 <- R1
+        R4 <- R2
+        R5 <- R3 + R4
+        R1 <- R5
+    
+    
+    
+    
+    MEMORY TRICK:
+    
+        Micro-operation = SMALL CPU OPERATION
 
-    R3 <- R1
-    R4 <- R2
-    R5 <- R3 + R4
-    R1 <- R5
 
 
-MEMORY TRICK:
 
-    Micro-operation = SMALL CPU OPERATION
+
 
 
 ======================================================================
 5.1.4 MICROINSTRUCTION
 ======================================================================
+
+
+https://media.geeksforgeeks.org/wp-content/uploads/20200421142426/seq.png
+
+
 
 A microinstruction is a control word that specifies one or more
 micro-operations/control signals.
@@ -223,17 +288,20 @@ Example:
 
     R1out, R2in, ADD
 
-
-This may mean:
-
-    R1 -> Bus
-    Bus -> R2
-    ALU performs ADD
+      
+      This may mean:
+      
+          R1 -> Bus
+          Bus -> R2
+          ALU performs ADD
 
 
 MICROINSTRUCTION:
 
     One control step.
+
+
+
 
 
 ======================================================================
@@ -250,17 +318,21 @@ Basic format:
     | Control Field  | Condition Field| Address Field  |
     +----------------+----------------+----------------+
 
+        
+        CONTROL FIELD:
+            Specifies control signals/micro-operations.
+        
+        
+        CONDITION FIELD:
+            Specifies condition to be checked.
+        
+        
+        ADDRESS FIELD:
+            Specifies or helps determine the next address.
+        
 
-CONTROL FIELD:
-    Specifies control signals/micro-operations.
 
 
-CONDITION FIELD:
-    Specifies condition to be checked.
-
-
-ADDRESS FIELD:
-    Specifies or helps determine the next address.
 
 
 Example:
@@ -270,6 +342,12 @@ Example:
     +----------+-----------+--------------+
     | 101010   |    01     |    001100    |
     +----------+-----------+--------------+
+
+
+
+
+
+
 
 
 ======================================================================
@@ -305,6 +383,10 @@ Microprogram:
 
 
 All these microinstructions together form a MICROPROGRAM.
+
+
+
+
 
 
 ======================================================================
@@ -355,6 +437,9 @@ Binary microprograms can be stored directly in control memory.
 IMPORTANT:
 
 The exact binary format depends on the processor's hardware design.
+
+
+
 
 
 ======================================================================
@@ -497,6 +582,29 @@ The binary codes above are only an example.
 Actual binary encoding depends on the hardware design.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ======================================================================
 IMPORTANT TERMS
 ======================================================================
@@ -536,140 +644,64 @@ BINARY MICROPROGRAM:
 ======================================================================
 SHORT EXAM QUESTIONS
 ======================================================================
+          
+          Q1. What is a microprogrammed control unit?
+          
+          Q2. What is control memory?
+          
+          Q3. What is address sequencing?
+          
+          Q4. What is a micro-operation?
+          
+          Q5. What is a microinstruction?
+          
+          Q6. What is a microprogram?
+          
+          Q7. What is a symbolic microprogram?
+          
+          Q8. What is a binary microprogram?
+          
+          Q9. What is microinstruction format?
+          
+          Q10. What is the function of control memory?
+          
+          Q11. What is opcode mapping?
+          
+          Q12. What is sequential address sequencing?
+          
+          Q13. Differentiate micro-operation and microinstruction.
+          
+          Q14. Differentiate microinstruction and microprogram.
+          
+          Q15. Differentiate symbolic and binary microprogram.
+          
 
-Q1. What is a microprogrammed control unit?
 
-Q2. What is control memory?
 
-Q3. What is address sequencing?
 
-Q4. What is a micro-operation?
-
-Q5. What is a microinstruction?
-
-Q6. What is a microprogram?
-
-Q7. What is a symbolic microprogram?
-
-Q8. What is a binary microprogram?
-
-Q9. What is microinstruction format?
-
-Q10. What is the function of control memory?
-
-Q11. What is opcode mapping?
-
-Q12. What is sequential address sequencing?
-
-Q13. Differentiate micro-operation and microinstruction.
-
-Q14. Differentiate microinstruction and microprogram.
-
-Q15. Differentiate symbolic and binary microprogram.
 
 
 ======================================================================
 LONG EXAM QUESTIONS
 ======================================================================
-
-Q1. Explain the hardware organization of a microprogrammed
-    control unit with a neat diagram.
-
-Q2. Explain control memory and its functions.
-
-Q3. Explain address sequencing with suitable examples.
-
-Q4. Define micro-operation and explain its types.
-
-Q5. Define microinstruction and explain its format.
-
-Q6. What is a microprogram? Explain symbolic and binary
-    microprograms.
-
-Q7. Differentiate between machine instruction, microinstruction
-    and microprogram.
-
-Q8. Explain the complete process of executing a machine instruction
-    using a microprogrammed control unit.
-
-
-======================================================================
-ONE-MINUTE REVISION
-======================================================================
-
-MICROPROGRAMMED CONTROL UNIT:
-    Control unit using microinstructions stored in control memory.
-
-
-CONTROL MEMORY:
-    Stores microinstructions.
-
-
-ADDRESS SEQUENCING:
-    Finds the NEXT microinstruction.
-
-
-MICRO-OPERATION:
-    Small/basic CPU operation.
-
-
-MICROINSTRUCTION:
-    One control step.
-
-
-MICROPROGRAM:
-    Sequence of control steps.
-
-
-SYMBOLIC:
-    Human-readable.
-
-
-BINARY:
-    0s and 1s.
-
-
-MICROINSTRUCTION FORMAT:
-
-    Control Field
-          +
-    Condition Field
-          +
-    Address Field
-
-
-======================================================================
-SUPER QUICK MEMORY TRICK
-======================================================================
-
-CONTROL MEMORY
-    = WHERE microinstructions are stored
-
-
-ADDRESS SEQUENCING
-    = WHERE to go next
-
-
-MICRO-OPERATION
-    = SMALL operation
-
-
-MICROINSTRUCTION
-    = ONE control step
-
-
-MICROPROGRAM
-    = MANY control steps
-
-
-SYMBOLIC
-    = EASY FOR HUMAN
-
-
-BINARY
-    = 0 AND 1
-
-
-======================================================================
-                         END OF UNIT 5
-======================================================================
+          
+          Q1. Explain the hardware organization of a microprogrammed
+              control unit with a neat diagram.
+          
+          Q2. Explain control memory and its functions.
+          
+          Q3. Explain address sequencing with suitable examples.
+          
+          Q4. Define micro-operation and explain its types.
+          
+          Q5. Define microinstruction and explain its format.
+          
+          Q6. What is a microprogram? Explain symbolic and binary
+              microprograms.
+          
+          Q7. Differentiate between machine instruction, microinstruction
+              and microprogram.
+          
+          Q8. Explain the complete process of executing a machine instruction
+              using a microprogrammed control unit.
+          
