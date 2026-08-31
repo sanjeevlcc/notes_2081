@@ -1,0 +1,1370 @@
+======================================================================
+              UNIT IV: E-BUSINESS AND E-COMMERCE
+======================================================================
+
+Lecture Hours: 3 Hours
+
+
+======================================================================
+4.1 E-BUSINESS MODELS AND STRATEGIES
+======================================================================
+
+E-BUSINESS:
+    E-business means using the Internet and digital technologies
+    to perform and manage business activities.
+
+    It includes:
+        - Buying and selling
+        - Online marketing
+        - Customer service
+        - Online banking
+        - Supply chain management
+        - Electronic communication
+
+
+E-COMMERCE:
+    E-commerce is mainly concerned with buying and selling
+    products or services electronically.
+
+IMPORTANT:
+
+    E-commerce = Online buying + selling
+
+    E-business = E-commerce + Other digital business activities
+
+
+
+
+
+EXAMPLE:
+
+    A customer purchases a mobile phone from an online store.
+
+        Searching product
+              ↓
+        Add to cart
+              ↓
+        Online payment
+              ↓
+        Order processing
+              ↓
+        Delivery
+
+
+This is E-COMMERCE.
+
+
+
+If the same company also uses digital systems for:
+
+    - Inventory management
+    - Employee management
+    - Supplier management
+    - Customer support
+    - Online marketing
+
+Then it is part of E-BUSINESS.
+
+
+
+
+======================================================================
+E-BUSINESS MODEL
+======================================================================
+
+An E-business model describes HOW a business creates value,
+delivers products/services and earns revenue using digital
+technologies.
+
+
+Simple formula:
+
+    E-BUSINESS MODEL
+
+        =
+    Customer
+        +
+    Product/Service
+        +
+    Digital Platform
+        +
+    Revenue
+
+
+======================================================================
+MAJOR E-BUSINESS / E-COMMERCE MODELS
+======================================================================
+
+1. B2C
+2. B2B
+3. C2C
+4. C2B
+5. B2G
+6. G2C
+
+
+======================================================================
+1. B2C — BUSINESS TO CONSUMER
+======================================================================
+
+Business sells products/services directly to individual customers.
+
+
+Example:
+
+    Online shop -> Customer
+
+
+Examples:
+
+    Customer buys shoes from an online store.
+
+
+Flow:
+
+    BUSINESS
+       |
+       v
+    WEBSITE / APP
+       |
+       v
+    CUSTOMER
+
+
+Advantages:
+
+    - Large customer reach
+    - 24/7 availability
+    - Easy online payment
+    - Personalized marketing
+
+
+======================================================================
+2. B2B — BUSINESS TO BUSINESS
+======================================================================
+
+One business sells products/services to another business.
+
+
+Example:
+
+    Manufacturer -> Wholesaler
+
+
+Another example:
+
+    A company purchases cloud services from a technology provider.
+
+
+Flow:
+
+    BUSINESS A
+         |
+         v
+    ONLINE PLATFORM
+         |
+         v
+    BUSINESS B
+
+
+Characteristics:
+
+    - Large transactions
+    - Long-term relationships
+    - Bulk purchasing
+    - Negotiated prices
+
+
+======================================================================
+3. C2C — CONSUMER TO CONSUMER
+======================================================================
+
+One consumer sells products/services to another consumer using
+an online platform.
+
+
+Example:
+
+    Person A sells a used laptop to Person B through an
+    online marketplace.
+
+
+Flow:
+
+    Consumer A
+        |
+        v
+    Online Platform
+        |
+        v
+    Consumer B
+
+
+======================================================================
+4. C2B — CONSUMER TO BUSINESS
+======================================================================
+
+Individual consumers provide products/services to businesses.
+
+
+Examples:
+
+    - Freelancer provides service to a company
+    - Photographer sells photographs to a company
+    - Influencer promotes a company's product
+
+
+Flow:
+
+    CONSUMER
+       |
+       v
+    SERVICE / PRODUCT
+       |
+       v
+    BUSINESS
+
+
+======================================================================
+5. B2G — BUSINESS TO GOVERNMENT
+======================================================================
+
+Businesses provide products/services to government organizations
+through digital systems.
+
+
+Example:
+
+    Software company
+          |
+          v
+    Government organization
+
+
+Examples:
+
+    - Government software contracts
+    - Online procurement
+    - IT services
+
+
+======================================================================
+6. G2C — GOVERNMENT TO CITIZEN
+======================================================================
+
+Government provides digital services to citizens.
+
+
+Examples:
+
+    - Online tax payment
+    - Online license application
+    - Online government forms
+    - Digital public services
+
+
+======================================================================
+E-BUSINESS MODEL SUMMARY
+======================================================================
+
+B2C:
+    Business -> Consumer
+
+B2B:
+    Business -> Business
+
+C2C:
+    Consumer -> Consumer
+
+C2B:
+    Consumer -> Business
+
+B2G:
+    Business -> Government
+
+G2C:
+    Government -> Citizen
+
+
+MEMORY TRICK:
+
+    B = Business
+    C = Consumer
+    G = Government
+
+    FIRST LETTER = SELLER / PROVIDER
+    SECOND LETTER = BUYER / RECEIVER
+
+
+======================================================================
+E-BUSINESS STRATEGIES
+======================================================================
+
+An E-business strategy is a plan for using digital technologies
+to achieve business objectives.
+
+
+IMPORTANT STRATEGIES:
+
+    1. Online presence
+    2. Digital marketing
+    3. Customer personalization
+    4. Mobile commerce
+    5. Social media strategy
+    6. Data-driven decision making
+    7. Customer relationship management
+    8. Omnichannel strategy
+    9. Security and trust
+    10. Continuous innovation
+
+
+--------------------------------------------------
+1. ONLINE PRESENCE
+--------------------------------------------------
+
+Business creates:
+
+    - Website
+    - Mobile application
+    - Social media pages
+
+
+Purpose:
+
+    To reach customers online.
+
+
+--------------------------------------------------
+2. DIGITAL MARKETING
+--------------------------------------------------
+
+Use digital channels to promote products.
+
+
+Examples:
+
+    - Search engines
+    - Social media
+    - Email
+    - Online advertisements
+    - Content marketing
+
+
+--------------------------------------------------
+3. PERSONALIZATION
+--------------------------------------------------
+
+Business provides recommendations based on customer behavior.
+
+
+Example:
+
+    Customer frequently searches for laptops.
+
+    System recommends:
+
+        "You may also like these laptops."
+
+
+--------------------------------------------------
+4. MOBILE COMMERCE
+--------------------------------------------------
+
+Buying and selling through mobile devices.
+
+
+Example:
+
+    Customer purchases food using a mobile application.
+
+
+--------------------------------------------------
+5. SOCIAL MEDIA STRATEGY
+--------------------------------------------------
+
+Businesses use social media for:
+
+    - Advertising
+    - Customer engagement
+    - Brand awareness
+    - Feedback
+    - Customer support
+
+
+--------------------------------------------------
+6. DATA-DRIVEN STRATEGY
+--------------------------------------------------
+
+Business uses customer and sales data to make decisions.
+
+
+Example:
+
+    Sales data shows:
+
+    Product A = high demand
+    Product B = low demand
+
+    Business increases stock of Product A.
+
+
+======================================================================
+4.2 E-COMMERCE PLATFORMS AND TECHNOLOGIES
+======================================================================
+
+E-COMMERCE PLATFORM:
+    A software system that allows businesses to sell products or
+    services online.
+
+
+A typical platform provides:
+
+    - Product catalog
+    - Shopping cart
+    - Customer accounts
+    - Payment processing
+    - Order management
+    - Inventory management
+    - Delivery tracking
+
+
+======================================================================
+BASIC E-COMMERCE ARCHITECTURE
+======================================================================
+
+                 CUSTOMER
+                    |
+                    v
+             Website / App
+                    |
+                    v
+          E-Commerce Platform
+             /      |       \
+            /       |        \
+       Product    Payment    Order
+       Database   Gateway    System
+                         |
+                         v
+                    Delivery
+
+
+======================================================================
+IMPORTANT E-COMMERCE TECHNOLOGIES
+======================================================================
+
+1. Web technologies
+2. Mobile technologies
+3. Database systems
+4. Cloud computing
+5. Payment gateways
+6. APIs
+7. AI and Machine Learning
+8. Cybersecurity
+9. Big Data
+10. Blockchain
+
+
+======================================================================
+1. WEB TECHNOLOGIES
+======================================================================
+
+Websites use technologies such as:
+
+    HTML
+    CSS
+    JavaScript
+    Web servers
+    Databases
+
+
+Example:
+
+    Customer opens an online shopping website.
+
+    Browser -> Web Server -> Database
+
+    Database sends product information back to website.
+
+
+======================================================================
+2. MOBILE TECHNOLOGY
+======================================================================
+
+Mobile apps allow customers to:
+
+    - Search products
+    - Place orders
+    - Make payments
+    - Track delivery
+
+
+Example:
+
+    Food delivery application.
+
+
+======================================================================
+3. DATABASE
+======================================================================
+
+Database stores:
+
+    - Customer information
+    - Product information
+    - Orders
+    - Payments
+    - Inventory
+
+
+Example:
+
+    Customer:
+
+        ID = 101
+        Name = Ram
+
+    Order:
+
+        Order ID = O1001
+        Product = Laptop
+        Price = Rs. 70,000
+
+
+======================================================================
+4. CLOUD COMPUTING
+======================================================================
+
+Cloud computing provides computing resources through the Internet.
+
+
+E-commerce companies can use cloud services for:
+
+    - Storage
+    - Servers
+    - Databases
+    - Backup
+    - Scalability
+
+
+Example:
+
+    During a festival sale:
+
+    Normal traffic = 10,000 users
+
+    Festival traffic = 100,000 users
+
+    Cloud infrastructure can scale resources according to demand.
+
+
+======================================================================
+5. PAYMENT GATEWAY
+======================================================================
+
+A payment gateway securely processes online payments.
+
+
+Basic flow:
+
+    Customer
+       |
+       v
+    Checkout
+       |
+       v
+    Payment Gateway
+       |
+       v
+    Bank / Wallet
+       |
+       v
+    Payment Confirmation
+
+
+Examples of payment methods:
+
+    - Debit/Credit Card
+    - Mobile Wallet
+    - Internet Banking
+    - QR Payment
+
+
+======================================================================
+6. API
+======================================================================
+
+API = Application Programming Interface
+
+
+API allows different software systems to communicate with each
+other.
+
+
+Example:
+
+    E-commerce website
+           |
+           | API
+           v
+    Payment Service
+
+
+The website sends payment information through an API and receives
+the payment status.
+
+
+======================================================================
+7. AI AND MACHINE LEARNING
+======================================================================
+
+AI can be used for:
+
+    - Product recommendation
+    - Chatbots
+    - Fraud detection
+    - Demand prediction
+    - Personalized advertising
+    - Customer behavior analysis
+
+
+Example:
+
+    Customer buys a mobile phone.
+
+    AI recommends:
+
+        Mobile cover
+        Screen protector
+        Earphones
+
+
+======================================================================
+8. CYBERSECURITY
+======================================================================
+
+Cybersecurity protects:
+
+    - Customer information
+    - Payment information
+    - Passwords
+    - Business systems
+
+
+Common technologies:
+
+    - Encryption
+    - Authentication
+    - Firewalls
+    - Multi-factor authentication
+    - Secure connections
+
+
+======================================================================
+9. BIG DATA
+======================================================================
+
+Big Data means very large and complex datasets that can be
+analyzed to identify useful patterns.
+
+
+E-commerce companies analyze:
+
+    - Customer clicks
+    - Purchases
+    - Search history
+    - Reviews
+    - Product views
+
+
+Example:
+
+    1 million customers search for smartphones.
+
+    Business analyzes this data to predict future demand.
+
+
+======================================================================
+10. BLOCKCHAIN
+======================================================================
+
+Blockchain is a distributed digital ledger that records
+transactions in a secure and tamper-resistant manner.
+
+
+Possible applications:
+
+    - Supply chain tracking
+    - Product authenticity
+    - Digital payments
+    - Smart contracts
+
+
+======================================================================
+4.3 IMPACT OF E-COMMERCE ON TRADITIONAL BUSINESS MODELS
+======================================================================
+
+E-commerce has significantly changed how traditional businesses
+operate.
+
+
+TRADITIONAL BUSINESS:
+
+    Physical Store
+          |
+          v
+    Local Customers
+          |
+          v
+    Cash/Card Payment
+
+
+E-COMMERCE:
+
+    Website / App
+          |
+          v
+    Global Customers
+          |
+          v
+    Online Payment
+          |
+          v
+    Home Delivery
+
+
+======================================================================
+MAJOR IMPACTS
+======================================================================
+
+1. Wider Market Reach
+2. 24/7 Business
+3. Lower Operating Costs
+4. Increased Competition
+5. Customer Convenience
+6. Personalization
+7. Faster Transactions
+8. New Business Models
+9. Changes in Supply Chain
+10. Data-driven decisions
+
+
+--------------------------------------------------
+1. WIDER MARKET REACH
+--------------------------------------------------
+
+Traditional business:
+
+    Mostly local customers.
+
+
+E-commerce:
+
+    Can reach national and international customers.
+
+
+Example:
+
+    A small Nepali handicraft business can sell products to
+    customers outside Nepal through an online platform.
+
+
+--------------------------------------------------
+2. 24/7 BUSINESS
+--------------------------------------------------
+
+Physical stores have opening and closing hours.
+
+Online stores can accept orders:
+
+    24 hours
+    7 days a week
+
+
+--------------------------------------------------
+3. LOWER OPERATING COST
+--------------------------------------------------
+
+Online businesses may reduce costs related to:
+
+    - Physical stores
+    - Rent
+    - Large showroom
+    - Some staffing requirements
+
+
+However:
+
+    Technology, logistics, payment and marketing costs still exist.
+
+
+--------------------------------------------------
+4. INCREASED COMPETITION
+--------------------------------------------------
+
+Customers can easily compare:
+
+    - Price
+    - Quality
+    - Reviews
+    - Features
+    - Delivery
+
+
+Therefore businesses face greater competition.
+
+
+--------------------------------------------------
+5. CUSTOMER CONVENIENCE
+--------------------------------------------------
+
+Customers can:
+
+    - Shop from home
+    - Compare products
+    - Order anytime
+    - Track delivery
+    - Pay digitally
+
+
+--------------------------------------------------
+6. PERSONALIZATION
+--------------------------------------------------
+
+Traditional stores:
+
+    Same offers may be shown to many customers.
+
+
+E-commerce:
+
+    Offers can be personalized based on customer behavior.
+
+
+--------------------------------------------------
+7. FASTER TRANSACTIONS
+--------------------------------------------------
+
+Online:
+
+    Search -> Select -> Pay -> Order
+
+
+The complete purchase process can happen within minutes.
+
+
+--------------------------------------------------
+8. NEW BUSINESS MODELS
+--------------------------------------------------
+
+E-commerce has enabled:
+
+    - Subscription services
+    - Online marketplaces
+    - Digital products
+    - On-demand services
+    - Platform businesses
+
+
+======================================================================
+POSITIVE AND NEGATIVE IMPACT
+======================================================================
+
+POSITIVE:
+
+    + Global reach
+    + 24/7 availability
+    + Customer convenience
+    + Lower physical-store costs
+    + Easy price comparison
+    + Personalized services
+    + Faster transactions
+    + Better data collection
+
+
+NEGATIVE:
+
+    - Cybersecurity risks
+    - Privacy concerns
+    - High competition
+    - Delivery problems
+    - Dependence on Internet
+    - Digital fraud
+    - Reduced need for some physical stores
+    - Return/refund challenges
+
+
+======================================================================
+TRADITIONAL BUSINESS vs E-COMMERCE
+======================================================================
+
+Feature             Traditional       E-Commerce
+---------------------------------------------------------------
+Location            Physical store    Online
+Time                Limited hours     24/7
+Market              Mostly local      Global
+Payment             Cash/Card         Digital/Online
+Customer reach      Limited           Wider
+Data collection     Limited           Extensive
+Product comparison  Difficult         Easy
+Delivery            Customer visits   Home delivery
+Marketing           Offline           Digital
+Operating cost      Often higher      Can be lower
+
+
+======================================================================
+4.4 FUTURE TECHNOLOGIES IN E-BUSINESS AND E-COMMERCE
+======================================================================
+
+Future e-business will increasingly depend on advanced digital
+technologies.
+
+
+IMPORTANT FUTURE TECHNOLOGIES:
+
+    1. Artificial Intelligence
+    2. Machine Learning
+    3. Generative AI
+    4. Internet of Things (IoT)
+    5. Augmented Reality (AR)
+    6. Virtual Reality (VR)
+    7. Blockchain
+    8. Big Data Analytics
+    9. Cloud Computing
+    10. Robotics and Automation
+    11. Voice Commerce
+    12. Digital Payments
+
+
+======================================================================
+1. ARTIFICIAL INTELLIGENCE
+======================================================================
+
+AI can automate decision-making and customer interaction.
+
+
+Applications:
+
+    - Chatbots
+    - Product recommendations
+    - Fraud detection
+    - Customer support
+    - Demand forecasting
+
+
+Example:
+
+    Customer asks:
+
+        "Which laptop is good for programming?"
+
+    AI chatbot provides suitable recommendations.
+
+
+======================================================================
+2. GENERATIVE AI
+======================================================================
+
+Generative AI can create:
+
+    - Product descriptions
+    - Advertisements
+    - Marketing content
+    - Images
+    - Customer responses
+
+
+Example:
+
+    Business provides product information.
+
+    Generative AI creates:
+
+    "High-performance laptop with 16 GB RAM and
+     fast SSD storage, suitable for programming..."
+
+
+======================================================================
+3. INTERNET OF THINGS (IoT)
+======================================================================
+
+IoT connects physical devices to the Internet.
+
+
+E-commerce applications:
+
+    - Smart inventory
+    - Warehouse monitoring
+    - Delivery tracking
+    - Smart shelves
+    - Automated ordering
+
+
+Example:
+
+    Warehouse sensor detects:
+
+    Product stock < Minimum level
+
+    System automatically creates a restocking request.
+
+
+======================================================================
+4. AUGMENTED REALITY (AR)
+======================================================================
+
+AR adds digital information to the real-world environment.
+
+
+Example:
+
+    Customer wants to buy furniture.
+
+    AR application shows:
+
+        "How will this sofa look in my room?"
+
+
+Customer can view the product virtually before purchasing.
+
+
+======================================================================
+5. VIRTUAL REALITY (VR)
+======================================================================
+
+VR creates an immersive virtual environment.
+
+
+Possible e-commerce application:
+
+    Customer enters a virtual store using a VR device.
+
+
+Example:
+
+    Virtual showroom:
+
+        Customer -> VR headset -> Virtual Store -> Product
+
+
+======================================================================
+6. BLOCKCHAIN
+======================================================================
+
+Blockchain may be used for:
+
+    - Secure transactions
+    - Supply chain transparency
+    - Product authenticity
+    - Smart contracts
+
+
+Example:
+
+    Customer buys an expensive product.
+
+    Blockchain records product movement:
+
+    Manufacturer
+         ↓
+    Distributor
+         ↓
+    Retailer
+         ↓
+    Customer
+
+
+This can help verify product history.
+
+
+======================================================================
+7. BIG DATA ANALYTICS
+======================================================================
+
+Businesses will analyze huge amounts of customer data to predict:
+
+    - Demand
+    - Customer preferences
+    - Buying patterns
+    - Product trends
+
+
+Example:
+
+    Data shows that umbrella sales increase during rainy periods.
+
+    Business increases inventory before the rainy season.
+
+
+======================================================================
+8. CLOUD COMPUTING
+======================================================================
+
+Future e-commerce systems will increasingly use cloud infrastructure
+for:
+
+    - Storage
+    - Computing
+    - AI
+    - Databases
+    - Backup
+    - Scalability
+
+
+======================================================================
+9. ROBOTICS AND AUTOMATION
+======================================================================
+
+Robots can be used in:
+
+    - Warehouses
+    - Packaging
+    - Sorting
+    - Delivery
+
+
+Example:
+
+    Warehouse robot:
+
+    Receive order
+        ↓
+    Find product
+        ↓
+    Pick product
+        ↓
+    Move to packaging
+
+
+======================================================================
+10. VOICE COMMERCE
+======================================================================
+
+Voice commerce allows customers to search or purchase products
+using voice commands.
+
+
+Example:
+
+    Customer:
+
+        "Order a wireless mouse."
+
+
+Voice assistant:
+
+        Searches -> Confirms -> Places order
+
+
+======================================================================
+11. DIGITAL PAYMENTS
+======================================================================
+
+Future payments may increasingly use:
+
+    - Mobile wallets
+    - QR codes
+    - Contactless payments
+    - Biometric authentication
+    - Digital currencies
+
+
+======================================================================
+COMPLETE FUTURE E-COMMERCE EXAMPLE
+======================================================================
+
+Suppose a customer wants to buy a laptop.
+
+
+STEP 1:
+    AI recommends laptops based on customer requirements.
+
+
+STEP 2:
+    AR shows how the laptop/product setup may look in the
+    customer's environment.
+
+
+STEP 3:
+    Customer places order through mobile application.
+
+
+STEP 4:
+    Payment gateway processes payment.
+
+
+STEP 5:
+    Cloud system processes the order.
+
+
+STEP 6:
+    IoT sensors update inventory.
+
+
+STEP 7:
+    Warehouse robot picks the product.
+
+
+STEP 8:
+    Delivery system tracks shipment.
+
+
+STEP 9:
+    Customer receives product.
+
+
+STEP 10:
+    AI analyzes customer feedback and future preferences.
+
+
+======================================================================
+IMPORTANT TERMS
+======================================================================
+
+E-BUSINESS:
+    Use of digital technology for broad business activities.
+
+
+E-COMMERCE:
+    Buying and selling through electronic networks.
+
+
+B2C:
+    Business to Consumer.
+
+
+B2B:
+    Business to Business.
+
+
+C2C:
+    Consumer to Consumer.
+
+
+C2B:
+    Consumer to Business.
+
+
+PAYMENT GATEWAY:
+    System that processes online payments.
+
+
+API:
+    Allows software systems to communicate.
+
+
+CLOUD:
+    Internet-based computing resources.
+
+
+AI:
+    Machine-based intelligence.
+
+
+IoT:
+    Internet-connected physical devices.
+
+
+BLOCKCHAIN:
+    Distributed digital ledger.
+
+
+BIG DATA:
+    Large and complex datasets used for analysis.
+
+
+AR:
+    Digital information over the real world.
+
+
+VR:
+    Immersive virtual environment.
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+SHORT EXAM QUESTIONS
+======================================================================
+
+Q1. Define E-business.
+
+Q2. Define E-commerce.
+
+Q3. Differentiate between E-business and E-commerce.
+
+Q4. What is an E-business model?
+
+Q5. What is B2C? Give an example.
+
+Q6. What is B2B? Give an example.
+
+Q7. What is C2C?
+
+Q8. What is C2B?
+
+Q9. What is an E-commerce platform?
+
+Q10. What is a payment gateway?
+
+Q11. What is an API?
+
+Q12. What is the role of cloud computing in E-commerce?
+
+Q13. What is the impact of E-commerce on traditional business?
+
+Q14. What is mobile commerce?
+
+Q15. What is personalization in E-commerce?
+
+Q16. What is AI in E-commerce?
+
+Q17. What is IoT?
+
+Q18. How can blockchain be used in E-commerce?
+
+Q19. What is AR in E-commerce?
+
+Q20. What is voice commerce?
+
+
+
+
+
+
+
+
+
+======================================================================
+LONG EXAM QUESTIONS
+======================================================================
+
+Q1. Define E-business and explain major E-business models with
+    suitable examples.
+
+Q2. Explain B2B, B2C, C2C and C2B E-commerce models with examples.
+
+Q3. Explain major E-commerce platforms and technologies.
+
+Q4. Explain the role of cloud computing, AI, databases and payment
+    gateways in E-commerce.
+
+Q5. Explain the impact of E-commerce on traditional business models.
+
+Q6. Discuss the advantages and disadvantages of E-commerce.
+
+Q7. Explain future technologies in E-business and E-commerce.
+
+Q8. Explain how AI, IoT, AR, blockchain and big data can transform
+    E-commerce.
+
+Q9. Compare traditional business and E-commerce business models.
+
+Q10. Explain the complete process of an online purchase from product
+     selection to delivery.
