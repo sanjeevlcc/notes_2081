@@ -91,6 +91,7 @@ Simple formula:
     Revenue
 
 
+
 ======================================================================
 MAJOR E-BUSINESS / E-COMMERCE MODELS
 ======================================================================
@@ -266,24 +267,27 @@ Examples:
 ======================================================================
 E-BUSINESS MODEL SUMMARY
 ======================================================================
+      
+      B2C:
+          Business -> Consumer
+      
+      B2B:
+          Business -> Business
+      
+      C2C:
+          Consumer -> Consumer
+      
+      C2B:
+          Consumer -> Business
+      
+      B2G:
+          Business -> Government
+      
+      G2C:
+          Government -> Citizen
+      
 
-B2C:
-    Business -> Consumer
 
-B2B:
-    Business -> Business
-
-C2C:
-    Consumer -> Consumer
-
-C2B:
-    Consumer -> Business
-
-B2G:
-    Business -> Government
-
-G2C:
-    Government -> Citizen
 
 
 MEMORY TRICK:
@@ -291,9 +295,12 @@ MEMORY TRICK:
     B = Business
     C = Consumer
     G = Government
+      
+          FIRST LETTER = SELLER / PROVIDER
+          SECOND LETTER = BUYER / RECEIVER
 
-    FIRST LETTER = SELLER / PROVIDER
-    SECOND LETTER = BUYER / RECEIVER
+
+
 
 
 ======================================================================
@@ -428,6 +435,9 @@ A typical platform provides:
     - Delivery tracking
 
 
+
+
+
 ======================================================================
 BASIC E-COMMERCE ARCHITECTURE
 ======================================================================
@@ -448,6 +458,9 @@ BASIC E-COMMERCE ARCHITECTURE
                     Delivery
 
 
+
+
+
 ======================================================================
 IMPORTANT E-COMMERCE TECHNOLOGIES
 ======================================================================
@@ -463,240 +476,248 @@ IMPORTANT E-COMMERCE TECHNOLOGIES
 9. Big Data
 10. Blockchain
 
+      
+      ======================================================================
+      1. WEB TECHNOLOGIES
+      ======================================================================
+      
+      Websites use technologies such as:
+      
+          HTML
+          CSS
+          JavaScript
+          Web servers
+          Databases
+      
+      
+      Example:
+      
+          Customer opens an online shopping website.
+      
+          Browser -> Web Server -> Database
+      
+          Database sends product information back to website.
+      
+      
+      ======================================================================
+      2. MOBILE TECHNOLOGY
+      ======================================================================
+      
+      Mobile apps allow customers to:
+      
+          - Search products
+          - Place orders
+          - Make payments
+          - Track delivery
+      
+      
+      Example:
+      
+          Food delivery application.
+      
+      
+      ======================================================================
+      3. DATABASE
+      ======================================================================
+      
+      Database stores:
+      
+          - Customer information
+          - Product information
+          - Orders
+          - Payments
+          - Inventory
+      
+      
+      Example:
+      
+          Customer:
+      
+              ID = 101
+              Name = Ram
+      
+          Order:
+      
+              Order ID = O1001
+              Product = Laptop
+              Price = Rs. 70,000
+      
+      
+      ======================================================================
+      4. CLOUD COMPUTING
+      ======================================================================
+      
+      Cloud computing provides computing resources through the Internet.
+      
+      
+      E-commerce companies can use cloud services for:
+      
+          - Storage
+          - Servers
+          - Databases
+          - Backup
+          - Scalability
+      
+      
+      Example:
+      
+          During a festival sale:
+      
+          Normal traffic = 10,000 users
+      
+          Festival traffic = 100,000 users
+      
+          Cloud infrastructure can scale resources according to demand.
+      
+      
+      ======================================================================
+      5. PAYMENT GATEWAY
+      ======================================================================
+      
+      A payment gateway securely processes online payments.
+      
+      
+      Basic flow:
+      
+          Customer
+             |
+             v
+          Checkout
+             |
+             v
+          Payment Gateway
+             |
+             v
+          Bank / Wallet
+             |
+             v
+          Payment Confirmation
+      
+      
+      Examples of payment methods:
+      
+          - Debit/Credit Card
+          - Mobile Wallet
+          - Internet Banking
+          - QR Payment
+      
+      
+      ======================================================================
+      6. API
+      ======================================================================
+      
+      API = Application Programming Interface
+      
+      
+      API allows different software systems to communicate with each
+      other.
+      
+      
+      Example:
+      
+          E-commerce website
+                 |
+                 | API
+                 v
+          Payment Service
+      
+      
+      The website sends payment information through an API and receives
+      the payment status.
+      
+      
+      ======================================================================
+      7. AI AND MACHINE LEARNING
+      ======================================================================
+      
+      AI can be used for:
+      
+          - Product recommendation
+          - Chatbots
+          - Fraud detection
+          - Demand prediction
+          - Personalized advertising
+          - Customer behavior analysis
+      
+      
+      Example:
+      
+          Customer buys a mobile phone.
+      
+          AI recommends:
+      
+              Mobile cover
+              Screen protector
+              Earphones
+      
+      
+      ======================================================================
+      8. CYBERSECURITY
+      ======================================================================
+      
+      Cybersecurity protects:
+      
+          - Customer information
+          - Payment information
+          - Passwords
+          - Business systems
+      
+      
+      Common technologies:
+      
+          - Encryption
+          - Authentication
+          - Firewalls
+          - Multi-factor authentication
+          - Secure connections
+      
+      
+      ======================================================================
+      9. BIG DATA
+      ======================================================================
+      
+      Big Data means very large and complex datasets that can be
+      analyzed to identify useful patterns.
+      
+      
+      E-commerce companies analyze:
+      
+          - Customer clicks
+          - Purchases
+          - Search history
+          - Reviews
+          - Product views
+      
+      
+      Example:
+      
+          1 million customers search for smartphones.
+      
+          Business analyzes this data to predict future demand.
+      
+      
+      ======================================================================
+      10. BLOCKCHAIN
+      ======================================================================
+      
+      Blockchain is a distributed digital ledger that records
+      transactions in a secure and tamper-resistant manner.
+      
+      
+      Possible applications:
+      
+          - Supply chain tracking
+          - Product authenticity
+          - Digital payments
+          - Smart contracts
+      
 
-======================================================================
-1. WEB TECHNOLOGIES
-======================================================================
 
-Websites use technologies such as:
 
-    HTML
-    CSS
-    JavaScript
-    Web servers
-    Databases
 
 
-Example:
 
-    Customer opens an online shopping website.
 
-    Browser -> Web Server -> Database
-
-    Database sends product information back to website.
-
-
-======================================================================
-2. MOBILE TECHNOLOGY
-======================================================================
-
-Mobile apps allow customers to:
-
-    - Search products
-    - Place orders
-    - Make payments
-    - Track delivery
-
-
-Example:
-
-    Food delivery application.
-
-
-======================================================================
-3. DATABASE
-======================================================================
-
-Database stores:
-
-    - Customer information
-    - Product information
-    - Orders
-    - Payments
-    - Inventory
-
-
-Example:
-
-    Customer:
-
-        ID = 101
-        Name = Ram
-
-    Order:
-
-        Order ID = O1001
-        Product = Laptop
-        Price = Rs. 70,000
-
-
-======================================================================
-4. CLOUD COMPUTING
-======================================================================
-
-Cloud computing provides computing resources through the Internet.
-
-
-E-commerce companies can use cloud services for:
-
-    - Storage
-    - Servers
-    - Databases
-    - Backup
-    - Scalability
-
-
-Example:
-
-    During a festival sale:
-
-    Normal traffic = 10,000 users
-
-    Festival traffic = 100,000 users
-
-    Cloud infrastructure can scale resources according to demand.
-
-
-======================================================================
-5. PAYMENT GATEWAY
-======================================================================
-
-A payment gateway securely processes online payments.
-
-
-Basic flow:
-
-    Customer
-       |
-       v
-    Checkout
-       |
-       v
-    Payment Gateway
-       |
-       v
-    Bank / Wallet
-       |
-       v
-    Payment Confirmation
-
-
-Examples of payment methods:
-
-    - Debit/Credit Card
-    - Mobile Wallet
-    - Internet Banking
-    - QR Payment
-
-
-======================================================================
-6. API
-======================================================================
-
-API = Application Programming Interface
-
-
-API allows different software systems to communicate with each
-other.
-
-
-Example:
-
-    E-commerce website
-           |
-           | API
-           v
-    Payment Service
-
-
-The website sends payment information through an API and receives
-the payment status.
-
-
-======================================================================
-7. AI AND MACHINE LEARNING
-======================================================================
-
-AI can be used for:
-
-    - Product recommendation
-    - Chatbots
-    - Fraud detection
-    - Demand prediction
-    - Personalized advertising
-    - Customer behavior analysis
-
-
-Example:
-
-    Customer buys a mobile phone.
-
-    AI recommends:
-
-        Mobile cover
-        Screen protector
-        Earphones
-
-
-======================================================================
-8. CYBERSECURITY
-======================================================================
-
-Cybersecurity protects:
-
-    - Customer information
-    - Payment information
-    - Passwords
-    - Business systems
-
-
-Common technologies:
-
-    - Encryption
-    - Authentication
-    - Firewalls
-    - Multi-factor authentication
-    - Secure connections
-
-
-======================================================================
-9. BIG DATA
-======================================================================
-
-Big Data means very large and complex datasets that can be
-analyzed to identify useful patterns.
-
-
-E-commerce companies analyze:
-
-    - Customer clicks
-    - Purchases
-    - Search history
-    - Reviews
-    - Product views
-
-
-Example:
-
-    1 million customers search for smartphones.
-
-    Business analyzes this data to predict future demand.
-
-
-======================================================================
-10. BLOCKCHAIN
-======================================================================
-
-Blockchain is a distributed digital ledger that records
-transactions in a secure and tamper-resistant manner.
-
-
-Possible applications:
-
-    - Supply chain tracking
-    - Product authenticity
-    - Digital payments
-    - Smart contracts
 
 
 ======================================================================
@@ -708,7 +729,7 @@ operate.
 
 
 TRADITIONAL BUSINESS:
-
+---------------------------
     Physical Store
           |
           v
@@ -718,8 +739,11 @@ TRADITIONAL BUSINESS:
     Cash/Card Payment
 
 
-E-COMMERCE:
 
+
+
+E-COMMERCE:
+---------------------------
     Website / App
           |
           v
@@ -730,6 +754,7 @@ E-COMMERCE:
           |
           v
     Home Delivery
+
 
 
 ======================================================================
@@ -746,6 +771,8 @@ MAJOR IMPACTS
 8. New Business Models
 9. Changes in Supply Chain
 10. Data-driven decisions
+
+
 
 
 --------------------------------------------------
@@ -780,6 +807,7 @@ Online stores can accept orders:
     7 days a week
 
 
+
 --------------------------------------------------
 3. LOWER OPERATING COST
 --------------------------------------------------
@@ -797,6 +825,8 @@ However:
     Technology, logistics, payment and marketing costs still exist.
 
 
+
+
 --------------------------------------------------
 4. INCREASED COMPETITION
 --------------------------------------------------
@@ -811,6 +841,7 @@ Customers can easily compare:
 
 
 Therefore businesses face greater competition.
+
 
 
 --------------------------------------------------
@@ -865,6 +896,8 @@ E-commerce has enabled:
     - Platform businesses
 
 
+
+
 ======================================================================
 POSITIVE AND NEGATIVE IMPACT
 ======================================================================
@@ -893,6 +926,12 @@ NEGATIVE:
     - Return/refund challenges
 
 
+
+
+
+
+
+
 ======================================================================
 TRADITIONAL BUSINESS vs E-COMMERCE
 ======================================================================
@@ -909,6 +948,16 @@ Product comparison  Difficult         Easy
 Delivery            Customer visits   Home delivery
 Marketing           Offline           Digital
 Operating cost      Often higher      Can be lower
+
+
+
+
+
+
+
+
+
+
 
 
 ======================================================================
