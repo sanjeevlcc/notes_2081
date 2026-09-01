@@ -1,0 +1,749 @@
+============================================================
+EXCEL STUDENT RESULT ANALYSIS PRACTICE
+BASIC → INTERMEDIATE → ADVANCED
+============================================================
+
+DATASET STRUCTURE
+------------------------------------------------------------
+
+A  = S.N.
+B  = Name
+C  = Sub 1
+D  = Sub 2
+E  = Sub 3
+F  = Sub 4
+G  = Sub 5
+H  = Total
+I  = Percent
+J  = Result
+K  = Pass / Fail
+
+
+============================================================
+PHASE 1: BASIC EXCEL
+============================================================
+
+1. TOTAL MARKS
+------------------------------------------------------------
+Cell H2:
+
+=SUM(C2:G2)
+
+Drag down to H11.
+
+
+2. PERCENTAGE
+------------------------------------------------------------
+Cell I2:
+
+=H2/500*100
+
+OR
+
+=H2/5
+
+Drag down.
+
+
+3. RESULT / DIVISION
+------------------------------------------------------------
+Cell J2:
+
+=IF(I2>=80,"Distinction",IF(I2>=60,"First Division",IF(I2>=50,"Second Division",IF(I2>=40,"Pass","Fail"))))
+
+Drag down.
+
+
+4. PASS / FAIL
+------------------------------------------------------------
+Cell K2:
+
+=IF(I2>=40,"Pass","Fail")
+
+Drag down.
+
+
+5. AVERAGE / MEAN
+------------------------------------------------------------
+
+Sub 1:
+
+=AVERAGE(C2:C11)
+
+Sub 2:
+
+=AVERAGE(D2:D11)
+
+All subjects:
+
+=AVERAGE(C2:G11)
+
+Total Average:
+
+=AVERAGE(H2:H11)
+
+
+6. MAXIMUM
+------------------------------------------------------------
+
+Highest Sub 1:
+
+=MAX(C2:C11)
+
+Highest Total:
+
+=MAX(H2:H11)
+
+
+7. MINIMUM
+------------------------------------------------------------
+
+Lowest Sub 1:
+
+=MIN(C2:C11)
+
+Lowest Total:
+
+=MIN(H2:H11)
+
+
+8. MEDIAN
+------------------------------------------------------------
+
+Median Sub 1:
+
+=MEDIAN(C2:C11)
+
+Median Total:
+
+=MEDIAN(H2:H11)
+
+
+9. MODE
+------------------------------------------------------------
+
+=MODE.SNGL(H2:H11)
+
+
+10. CENTRAL TENDENCY
+------------------------------------------------------------
+
+MEAN:
+
+=AVERAGE(H2:H11)
+
+MEDIAN:
+
+=MEDIAN(H2:H11)
+
+MODE:
+
+=MODE.SNGL(H2:H11)
+
+
+
+
+
+
+
+============================================================
+PHASE 2: INTERMEDIATE EXCEL
+============================================================
+
+ADD THESE NEW COLUMNS:
+
+L = Average
+M = Highest Subject
+N = Lowest Subject
+O = Grade
+P = Rank
+Q = Attendance
+R = Study Hours
+S = Scholarship
+T = Remarks
+
+
+11. STUDENT AVERAGE
+------------------------------------------------------------
+
+L2:
+
+=AVERAGE(C2:G2)
+
+
+12. HIGHEST SUBJECT MARK
+------------------------------------------------------------
+
+M2:
+
+=MAX(C2:G2)
+
+
+13. LOWEST SUBJECT MARK
+------------------------------------------------------------
+
+N2:
+
+=MIN(C2:G2)
+
+
+14. GRADE
+------------------------------------------------------------
+
+O2:
+
+=IF(I2>=80,"A+",IF(I2>=70,"A",IF(I2>=60,"B+",IF(I2>=50,"B",IF(I2>=40,"C","F")))))
+
+
+15. RANK
+------------------------------------------------------------
+
+P2:
+
+=RANK.EQ(H2,$H$2:$H$11,0)
+
+
+16. RANDOM ATTENDANCE
+------------------------------------------------------------
+
+Q2:
+
+=RANDBETWEEN(60,100)
+
+
+17. RANDOM STUDY HOURS
+------------------------------------------------------------
+
+R2:
+
+=RANDBETWEEN(1,8)
+
+
+Decimal study hours:
+
+=RANDBETWEEN(10,80)/10
+
+
+18. SCHOLARSHIP
+------------------------------------------------------------
+
+Condition:
+
+Percentage >= 80
+AND
+Attendance >= 75
+
+S2:
+
+=IF(AND(I2>=80,Q2>=75),"Yes","No")
+
+
+19. REMARKS
+------------------------------------------------------------
+
+T2:
+
+=IF(I2>=80,"Excellent",IF(I2>=60,"Good",IF(I2>=40,"Average","Needs Improvement")))
+
+
+20. COUNT STUDENTS
+------------------------------------------------------------
+
+=COUNT(A2:A11)
+
+
+21. COUNT PASS STUDENTS
+------------------------------------------------------------
+
+=COUNTIF(K2:K11,"Pass")
+
+
+22. COUNT FAIL STUDENTS
+------------------------------------------------------------
+
+=COUNTIF(K2:K11,"Fail")
+
+
+23. COUNT DISTINCTION STUDENTS
+------------------------------------------------------------
+
+=COUNTIF(J2:J11,"Distinction")
+
+
+24. COUNTIFS
+------------------------------------------------------------
+
+Pass + Attendance >=75:
+
+=COUNTIFS(K2:K11,"Pass",Q2:Q11,">=75")
+
+
+Percentage >=80 AND Attendance >=80:
+
+=COUNTIFS(I2:I11,">=80",Q2:Q11,">=80")
+
+
+25. SUMIF
+------------------------------------------------------------
+
+Total marks of Pass students:
+
+=SUMIF(K2:K11,"Pass",H2:H11)
+
+
+26. AVERAGEIF
+------------------------------------------------------------
+
+Average percentage of Pass students:
+
+=AVERAGEIF(K2:K11,"Pass",I2:I11)
+
+
+27. STANDARD DEVIATION
+------------------------------------------------------------
+
+Sample SD:
+
+=STDEV.S(H2:H11)
+
+Population SD:
+
+=STDEV.P(H2:H11)
+
+
+28. VARIANCE
+------------------------------------------------------------
+
+=VAR.S(H2:H11)
+
+OR
+
+=VAR.P(H2:H11)
+
+
+
+29. CONDITIONAL FORMATTING
+------------------------------------------------------------
+
+Select:
+
+C2:G11
+
+Then:
+
+Home
+→ Conditional Formatting
+→ Color Scales
+
+Also highlight marks below 40:
+
+Home
+→ Conditional Formatting
+→ Highlight Cell Rules
+→ Less Than
+→ 40
+
+
+
+30. DATA VALIDATION
+------------------------------------------------------------
+
+Add:
+
+U = Gender
+
+Select U2:U11
+
+Data
+→ Data Validation
+→ List
+
+Enter:
+
+Male,Female
+
+
+
+
+
+
+
+
+============================================================
+PHASE 3: ADVANCED EXCEL
+============================================================
+
+ADD MORE ATTRIBUTES:
+
+U = Gender
+V = Age
+W = Faculty
+X = Semester
+Y = Support Required
+
+
+31. SUBJECT PERFORMANCE SUMMARY
+------------------------------------------------------------
+
+Create:
+
+Subject | Average | Maximum | Minimum | SD
+
+Sub 1
+Sub 2
+Sub 3
+Sub 4
+Sub 5
+
+
+Sub 1 Average:
+
+=AVERAGE(C2:C11)
+
+Sub 1 Maximum:
+
+=MAX(C2:C11)
+
+Sub 1 Minimum:
+
+=MIN(C2:C11)
+
+Sub 1 SD:
+
+=STDEV.S(C2:C11)
+
+
+32. CORRELATION
+------------------------------------------------------------
+
+Study Hours vs Percentage:
+
+=CORREL(R2:R11,I2:I11)
+
+
+Attendance vs Percentage:
+
+=CORREL(Q2:Q11,I2:I11)
+
+
+Interpretation:
+
++1 = Perfect Positive Relationship
+0  = No Linear Relationship
+-1 = Perfect Negative Relationship
+
+
+
+33. RANDOM AGE
+------------------------------------------------------------
+
+V2:
+
+=RANDBETWEEN(18,25)
+
+
+34. RANDOM MARKS
+------------------------------------------------------------
+
+=RANDBETWEEN(20,100)
+
+
+35. RANDOM ATTENDANCE
+------------------------------------------------------------
+
+=RANDBETWEEN(50,100)
+
+
+36. RANDOM NAME
+------------------------------------------------------------
+
+=INDEX({"Ram","Sita","Hari","Gita","Shyam","Laxmi","Krishna","Radha","Bishal","Mina"},RANDBETWEEN(1,10))
+
+
+37. XLOOKUP
+------------------------------------------------------------
+
+Create a separate table:
+
+Grade       Description
+A+          Outstanding
+A           Excellent
+B+          Very Good
+B           Good
+C           Satisfactory
+F           Fail
+
+Formula:
+
+=XLOOKUP(O2,$W$2:$W$7,$X$2:$X$7)
+
+
+38. FILTER
+------------------------------------------------------------
+
+Show only Pass students:
+
+=FILTER(A2:T11,K2:K11="Pass")
+
+
+Show only Distinction students:
+
+=FILTER(A2:T11,J2:J11="Distinction")
+
+
+39. SORT
+------------------------------------------------------------
+
+Sort according to Total Marks:
+
+=SORT(A2:T11,8,-1)
+
+
+40. UNIQUE
+------------------------------------------------------------
+
+Find unique faculties:
+
+=UNIQUE(W2:W11)
+
+
+41. IF + AND
+------------------------------------------------------------
+
+Scholarship:
+
+=IF(AND(I2>=80,Q2>=75),"Scholarship","No Scholarship")
+
+
+42. IF + OR
+------------------------------------------------------------
+
+Academic support:
+
+=IF(OR(I2<50,Q2<60),"Needs Support","Normal")
+
+
+
+
+
+
+============================================================
+DASHBOARD PRACTICE
+============================================================
+
+Create a separate sheet named:
+
+DASHBOARD
+
+
+43. TOTAL STUDENTS
+------------------------------------------------------------
+
+=COUNTA(B2:B11)
+
+
+44. AVERAGE PERCENTAGE
+------------------------------------------------------------
+
+=AVERAGE(I2:I11)
+
+
+45. HIGHEST PERCENTAGE
+------------------------------------------------------------
+
+=MAX(I2:I11)
+
+
+46. LOWEST PERCENTAGE
+------------------------------------------------------------
+
+=MIN(I2:I11)
+
+
+47. PASS STUDENTS
+------------------------------------------------------------
+
+=COUNTIF(K2:K11,"Pass")
+
+
+48. FAIL STUDENTS
+------------------------------------------------------------
+
+=COUNTIF(K2:K11,"Fail")
+
+
+49. DISTINCTION STUDENTS
+------------------------------------------------------------
+
+=COUNTIF(J2:J11,"Distinction")
+
+
+============================================================
+CHARTS TO CREATE
+============================================================
+
+1. Student vs Total Marks
+   → Column Chart
+
+2. Student vs Percentage
+   → Bar Chart
+
+3. Result Distribution
+   → Pie Chart
+
+4. Subject Average
+   → Column Chart
+
+5. Attendance vs Percentage
+   → Scatter Plot
+
+6. Study Hours vs Percentage
+   → Scatter Plot
+
+
+============================================================
+EXCEL LEARNING ROADMAP
+============================================================
+
+PHASE 1 - BASIC
+----------------
+
+SUM
+AVERAGE
+MAX
+MIN
+MEDIAN
+MODE
+COUNT
+Basic IF
+
+
+PHASE 2 - INTERMEDIATE
+----------------------
+
+IF
+AND
+OR
+COUNTIF
+COUNTIFS
+SUMIF
+AVERAGEIF
+RANK.EQ
+RANDBETWEEN
+STDEV.S
+STDEV.P
+VAR.S
+Conditional Formatting
+Data Validation
+
+
+PHASE 3 - ADVANCED
+------------------
+
+CORREL
+XLOOKUP
+FILTER
+SORT
+UNIQUE
+PivotTable
+Charts
+Dashboard
+Conditional Analysis
+
+
+============================================================
+FINAL DATASET STRUCTURE
+============================================================
+
+A  = S.N.
+B  = Name
+C  = Sub 1
+D  = Sub 2
+E  = Sub 3
+F  = Sub 4
+G  = Sub 5
+H  = Total
+I  = Percent
+J  = Result
+K  = Pass/Fail
+L  = Average
+M  = Highest Subject
+N  = Lowest Subject
+O  = Grade
+P  = Rank
+Q  = Attendance
+R  = Study Hours
+S  = Scholarship
+T  = Remarks
+U  = Gender
+V  = Age
+W  = Faculty
+X  = Semester
+Y  = Support Required
+
+
+============================================================
+PRACTICE QUESTIONS
+============================================================
+
+1. Find the total marks of every student.
+
+2. Calculate percentage.
+
+3. Find the highest total mark.
+
+4. Find the lowest total mark.
+
+5. Calculate mean.
+
+6. Calculate median.
+
+7. Calculate mode.
+
+8. Calculate standard deviation.
+
+9. Calculate variance.
+
+10. Find the number of Pass students.
+
+11. Find the number of Fail students.
+
+12. Find the number of Distinction students.
+
+13. Rank all students.
+
+14. Assign grades using IF.
+
+15. Generate random attendance.
+
+16. Generate random study hours.
+
+17. Identify scholarship students.
+
+18. Find the average percentage of Pass students.
+
+19. Find the average marks of each subject.
+
+20. Find the highest mark in each subject.
+
+21. Find the lowest mark in each subject.
+
+22. Find the relationship between attendance and percentage.
+
+23. Find the relationship between study hours and percentage.
+
+24. Filter only Pass students.
+
+25. Filter only Distinction students.
+
+26. Sort students according to total marks.
+
+27. Find unique faculties.
+
+28. Create conditional formatting.
+
+29. Create PivotTable.
+
+30. Create an Excel Dashboard.
+
+============================================================
