@@ -1,0 +1,477 @@
+============================================================
+        MYSQL IN DOCKER + REMOTE CONNECTION
+                 UBUNTU PRACTICAL
+============================================================
+
+
+============================================================
+STEP 1: CHECK DOCKER
+============================================================
+
+docker --version
+
+
+CHECK DOCKER SERVICE:
+
+sudo systemctl status docker
+
+
+IF DOCKER IS NOT RUNNING:
+
+sudo systemctl start docker
+
+
+OPTIONAL:
+
+sudo systemctl enable docker
+
+
+============================================================
+STEP 2: DOWNLOAD MYSQL IMAGE
+============================================================
+
+docker pull mysql:8.4
+
+
+CHECK IMAGE:
+
+docker images
+
+
+============================================================
+STEP 3: CREATE MYSQL CONTAINER
+============================================================
+
+docker run --name mymysql \
+  -e MYSQL_ROOT_PASSWORD=root1234 \
+  -e MYSQL_DATABASE=collegeDB \
+  -e MYSQL_USER=studentuser \
+  -e MYSQL_PASSWORD=student123 \
+  -p 3306:3306 \
+  -v mysql_data:/var/lib/mysql \
+  -d mysql:8.4
+
+
+EXPLANATION:
+
+--name mymysql
+    Container name
+
+MYSQL_ROOT_PASSWORD=root1234
+    Root password
+
+MYSQL_DATABASE=collegeDB
+    Automatically creates collegeDB
+
+MYSQL_USER=studentuser
+    Creates a normal MySQL user
+
+MYSQL_PASSWORD=student123
+    Password for studentuser
+
+-p 3306:3306
+    Makes MySQL available outside Docker
+
+-v mysql_data:/var/lib/mysql
+    Stores database data permanently
+
+-d
+    Runs container in background
+
+
+============================================================
+STEP 4: CHECK MYSQL CONTAINER
+============================================================
+
+docker ps
+
+
+EXPECTED:
+
+CONTAINER ID    IMAGE       PORTS
+xxxxxx          mysql:8.4   0.0.0.0:3306->3306/tcp
+
+
+============================================================
+STEP 5: CHECK MYSQL LOGS
+============================================================
+
+docker logs mymysql
+
+
+FOLLOW LOGS:
+
+docker logs -f mymysql
+
+
+WAIT UNTIL MYSQL IS READY.
+
+
+============================================================
+STEP 6: CONNECT FROM UBUNTU TERMINAL
+============================================================
+
+OPTION A: CONNECT USING MYSQL INSIDE CONTAINER
+
+docker exec -it mymysql mysql \
+  -u root \
+  -p
+
+
+ENTER PASSWORD:
+
+root1234
+
+
+============================================================
+STEP 7: CHECK DATABASES
+============================================================
+
+SHOW DATABASES;
+
+
+SELECT DATABASE:
+
+USE collegeDB;
+
+
+CHECK CURRENT DATABASE:
+
+SELECT DATABASE();
+
+
+============================================================
+STEP 8: CREATE TEST TABLE
+============================================================
+
+CREATE TABLE students (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    name VARCHAR(100),
+
+    age INT,
+
+    faculty VARCHAR(100),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+
+============================================================
+STEP 9: INSERT TEST DATA
+============================================================
+
+INSERT INTO students (name, age, faculty)
+VALUES
+
+('Ram', 20, 'BCA'),
+
+('Sita', 21, 'BBA'),
+
+('Hari', 22, 'BIT');
+
+
+============================================================
+STEP 10: DISPLAY DATA
+============================================================
+
+SELECT * FROM students;
+
+
+============================================================
+REMOTE CONNECTION
+============================================================
+
+
+============================================================
+METHOD 1: CONNECT FROM ANOTHER UBUNTU MACHINE
+============================================================
+
+INSTALL MYSQL CLIENT:
+
+sudo apt update
+
+sudo apt install mysql-client
+
+
+CONNECT:
+
+mysql -h SERVER_IP \
+      -P 3306 \
+      -u studentuser \
+      -p
+
+
+EXAMPLE:
+
+mysql -h 192.168.1.100 \
+      -P 3306 \
+      -u studentuser \
+      -p
+
+
+ENTER PASSWORD:
+
+student123
+
+
+============================================================
+METHOD 2: FIND YOUR UBUNTU IP ADDRESS
+============================================================
+
+hostname -I
+
+
+OR:
+
+ip addr
+
+
+EXAMPLE OUTPUT:
+
+192.168.1.100
+
+
+THEN REMOTE COMPUTER CONNECTS TO:
+
+192.168.1.100:3306
+
+
+============================================================
+STEP 11: CHECK UBUNTU FIREWALL
+============================================================
+
+CHECK UFW:
+
+sudo ufw status
+
+
+ALLOW MYSQL PORT:
+
+sudo ufw allow 3306/tcp
+
+
+CHECK:
+
+sudo ufw status
+
+
+============================================================
+STEP 12: CONNECT USING MYSQL WORKBENCH
+============================================================
+
+FROM ANOTHER COMPUTER:
+
+Connection Name:
+My Ubuntu Docker MySQL
+
+Hostname:
+192.168.1.100
+
+Port:
+3306
+
+Username:
+studentuser
+
+Password:
+student123
+
+
+TEST CONNECTION.
+
+
+============================================================
+IMPORTANT SECURITY NOTE
+============================================================
+
+DO NOT OPEN PORT 3306 DIRECTLY TO THE PUBLIC INTERNET.
+
+THIS IS OK FOR:
+
+- Local network
+- Home network
+- Laboratory
+- Testing
+- Learning
+
+
+FOR INTERNET / PUBLIC SERVER:
+
+Use one or more of:
+
+- Firewall IP restrictions
+- VPN
+- SSH Tunnel
+- TLS/SSL
+- Strong passwords
+- Non-root database users
+
+
+============================================================
+CHECK MYSQL USERS
+============================================================
+
+LOGIN AS ROOT:
+
+docker exec -it mymysql mysql -u root -p
+
+
+THEN:
+
+SELECT user, host
+FROM mysql.user;
+
+
+============================================================
+CREATE A REMOTE USER MANUALLY
+============================================================
+
+CREATE USER 'remoteuser'
+@'%'
+IDENTIFIED BY 'RemotePass123!';
+
+
+GRANT PRIVILEGES:
+
+GRANT ALL PRIVILEGES
+ON collegeDB.*
+TO 'remoteuser'
+@'%';
+
+
+APPLY:
+
+FLUSH PRIVILEGES;
+
+
+============================================================
+CONNECT USING REMOTE USER
+============================================================
+
+mysql -h SERVER_IP \
+      -P 3306 \
+      -u remoteuser \
+      -p
+
+
+============================================================
+CHECK MYSQL PORT FROM UBUNTU
+============================================================
+
+sudo ss -tulpn | grep 3306
+
+
+OR:
+
+sudo netstat -tulpn | grep 3306
+
+
+============================================================
+TEST PORT FROM REMOTE MACHINE
+============================================================
+
+nc -zv SERVER_IP 3306
+
+
+EXAMPLE:
+
+nc -zv 192.168.1.100 3306
+
+
+SUCCESS SHOULD SHOW:
+
+Connection to 192.168.1.100 3306 succeeded
+
+
+============================================================
+STOP MYSQL
+============================================================
+
+docker stop mymysql
+
+
+START MYSQL AGAIN:
+
+docker start mymysql
+
+
+RESTART:
+
+docker restart mymysql
+
+
+============================================================
+REMOVE CONTAINER
+============================================================
+
+docker stop mymysql
+
+docker rm mymysql
+
+
+NOTE:
+
+Because we used:
+
+-v mysql_data:/var/lib/mysql
+
+Your database data remains stored in Docker volume.
+
+
+============================================================
+CHECK VOLUMES
+============================================================
+
+docker volume ls
+
+
+============================================================
+COMPLETE ARCHITECTURE
+============================================================
+
+
+REMOTE COMPUTER
+
+MySQL Workbench
+DBeaver
+Ubuntu Terminal
+
+        |
+        |
+        | TCP Port 3306
+        |
+        v
+
++----------------------------------+
+|         UBUNTU SERVER            |
+|                                  |
+|   Docker                         |
+|   +--------------------------+   |
+|   | MySQL Container          |   |
+|   |                          |   |
+|   | mymysql                  |   |
+|   |                          |   |
+|   | MySQL :3306              |   |
+|   +--------------------------+   |
+|                                  |
++----------------------------------+
+
+
+============================================================
+RECOMMENDED COMMAND
+============================================================
+
+docker run --name mymysql \
+  -e MYSQL_ROOT_PASSWORD=root1234 \
+  -e MYSQL_DATABASE=collegeDB \
+  -e MYSQL_USER=studentuser \
+  -e MYSQL_PASSWORD=student123 \
+  -p 3306:3306 \
+  -v mysql_data:/var/lib/mysql \
+  -d mysql:8.4
+
+
+============================================================
