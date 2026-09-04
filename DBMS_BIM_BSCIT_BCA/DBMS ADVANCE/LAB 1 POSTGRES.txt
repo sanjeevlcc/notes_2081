@@ -33,7 +33,7 @@ so in essence, when you interact with PostgreSQL, you are using SQL commands.
 		\d table_name
 
 	Create a new database:
-	CREATE DATABASE new_database;
+		CREATE DATABASE new_database;
 
 	Create a new table:
 		CREATE TABLE table_name (
@@ -59,6 +59,11 @@ so in essence, when you interact with PostgreSQL, you are using SQL commands.
 	Delete data from a table:
 		DELETE FROM table_name 
 		WHERE some_column = some_value;
+
+
+
+
+
 
 
 These commands are just a basic introduction; 
@@ -92,27 +97,77 @@ in a relational database environment.
 
 ***************************************************************************
 
+
+
+
+
+
+
+
+
+
+
 ========= USING docker or used TUNED APP for postgres ==============
 
 ------------------------DOCKER------------------------------
 step 1: Login with credentials in ... https://killercoda.com/
 step 2: Choose scnerio CKA or Playground
+
 step 3: [SQL-lunch]   docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mysql
-	[SQL-execute] docker exec -ti mydb1 bash
-				OR
-		      docker exec -ti mydb1 mysql -u root -p1234
+
+	    [SQL-execute] docker exec -ti mydb1 bash
+								OR
+		      	      docker exec -ti mydb1 mysql -u root -p1234
 
 
 
 
-step 4: [POSTGRES-syntax] docker run --name my_postgres_container -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
-			  docker exec -it my_postgres_container psql -U postgres
+step 4: 
+
+	[POSTGRES-syntax] docker run --name my_postgres_container -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+
+			         docker exec -it my_postgres_container psql -U postgres
+
+
 
 	[POSTGRES-lunch]   docker run --name pgDBapp -e POSTGRES_PASSWORD=pg1234 -p 5432:5432 -d postgres
+
 	[POSTGRES-execute] docker exec -ti pgDBapp psql -U postgres
-				OR
-			   docker exec -ti pgDBapp bash            
-                           psql -U postgres
+				 					OR
+			  		   docker exec -ti pgDBapp bash            
+                       psql -U postgres
+
+
+
+
+--------------------------------------
+docker run --name pgDBapp \
+  -e POSTGRES_PASSWORD=pg1234 \
+  -p 5432:5432 \
+  -d postgres
+--------------------------------------
+
+docker run --name pgDBapp \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=pg1234 \
+  -e POSTGRES_DB=mydatabase \
+  -p 5432:5432 \
+  -d postgres
+--------------------------------------
+docker exec -it pgDBapp psql -U postgres
+
+docker exec -it pgDBapp psql -U postgres -d mydatabase
+--------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 ***************************************************************************
 
@@ -188,6 +243,9 @@ lab11=# \dt
 
 
 
+
+
+
  insert some sample data into the employee table:
 -------------------------------------
 
@@ -207,6 +265,7 @@ INSERT 0 4
 DIPSLPAY DATA 
 -------------------------------------
 lab11=# select * from employee;
+
  employee_id | first_name | last_name |      job_title       
 -------------+------------+-----------+----------------------
            1 | Sarala     | Shrestha  | Tea Master
@@ -257,6 +316,13 @@ lab11=# select * from employee;
           13 | Sunita     | Tamang    | Traditional Dance Instructor
           14 | Nabin      | Bista     | Himalayan Honey Farmer
 (14 rows
+
+
+
+
+
+
+
 
 
 QUERY 1: Retrieve employees with the job title 'Tea Master' or 'Traditional Handicraft Artisan':
@@ -334,16 +400,22 @@ lab11=# SELECT * FROM employee WHERE job_title LIKE '%Master%';
 
 
 
-*******************************
-EXAMPLE 2
-now create a user= manish , and 
-3 tables with primary key 
-and some foreign key relations 
-of hospital management system
-
-*******************************
 
 
+
+
+**************************************************************
+**************************************************************
+**************************************************************
+		EXAMPLE 2
+				now create a user= manish , and 
+				3 tables with primary key 
+				and some foreign key relations 
+				of hospital management system
+
+**************************************************************
+**************************************************************
+**************************************************************
 
 
 Create User manish:
@@ -371,6 +443,12 @@ Did not find any relations.
 
 
 
+
+
+
+
+
+-------------------------------------
 Connect via docker command 
 -------------------------------------
 
@@ -385,6 +463,9 @@ Password:
 
 
 
+
+
+
 list databases
 -------------------------------------
 hospital_management=> \l
@@ -392,6 +473,10 @@ hospital_management=> \l
         Name         |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | ICU Locale | ICU Rules |   Access privileges   
 ---------------------+----------+----------+-----------------+------------+------------+------------+-----------+-----------------------
  hospital_management | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |            |           |
+
+
+
+
 
 
 
@@ -411,6 +496,9 @@ CREATE TABLE
 
 
 
+
+
+
 postgres=# CREATE TABLE doctors (
     doctor_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
@@ -418,6 +506,9 @@ postgres=# CREATE TABLE doctors (
     specialization VARCHAR(100) NOT NULL
 );
 CREATE TABLE
+
+
+
 
 
 
@@ -435,6 +526,9 @@ postgres=# CREATE TABLE appointments (
 
 
 
+
+
+
 Display tables 
 -------------------------------------
 
@@ -442,6 +536,8 @@ postgres-# \dt
  public | appointments | table | postgres
  public | doctors      | table | postgres
  public | patients     | table | postgres
+
+
 
 
 
@@ -673,6 +769,13 @@ GROUP BY
 
 
 
+
+
+
+
+
+
+
 *******************************
 EXAMPLE 3
 
@@ -777,10 +880,18 @@ You can also use other utilities like dropuser, dropdb, and etc.
 
 
 
+
+
+
+
+
+
+
+
 *******************************
 EXAMPLE 
 
-Installing PostgreSQL 10.6
+		Installing PostgreSQL 10.6
 *******************************
 
 
