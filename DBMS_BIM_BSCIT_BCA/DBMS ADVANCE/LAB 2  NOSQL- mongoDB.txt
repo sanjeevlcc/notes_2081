@@ -6,18 +6,18 @@ NoSQL
 
 
 
-NoSQL, which stands for "not only SQL," 
-is a term used to describe a category of 
-database systems that do not strictly adhere
-to the traditional relational database management 
-system (RDBMS) model. 
-
-
-
-Unlike traditional SQL databases, NoSQL databases
-are designed to handle various types of 
-unstructured, semi-structured, or structured data.
-
+		NoSQL, which stands for "not only SQL," 
+		is a term used to describe a category of 
+		database systems that do not strictly adhere
+		to the traditional relational database management 
+		system (RDBMS) model. 
+		
+		
+		
+		Unlike traditional SQL databases, NoSQL databases
+		are designed to handle various types of 
+		unstructured, semi-structured, or structured data.
+		
 
 
 
@@ -30,37 +30,37 @@ Key characteristics of NoSQL databases include:
 
 Schema flexibility: 
 -------------------
-NoSQL databases allow you to store and manage data without a fixed schema. 
-This flexibility is particularly useful when dealing with dynamic or evolving 
-data structures.
+	NoSQL databases allow you to store and manage data without a fixed schema. 
+	This flexibility is particularly useful when dealing with dynamic or evolving 
+	data structures.
 
 
 Horizontal scalability: 
 ------------------------
-NoSQL databases are often designed to scale horizontally, meaning they can 
-efficiently handle a growing amount of data by adding more nodes to a distributed 
-system.
+	NoSQL databases are often designed to scale horizontally, meaning they can 
+	efficiently handle a growing amount of data by adding more nodes to a distributed 
+	system.
 
 
 Support for different data models: 
 ----------------------------------
-NoSQL databases support various data models, such as key-value pairs, 
-document-oriented (like MongoDB), column-family stores, and graph databases. 
-Each type is optimized for specific types of queries and data structures.
+	NoSQL databases support various data models, such as key-value pairs, 
+	document-oriented (like MongoDB), column-family stores, and graph databases. 
+	Each type is optimized for specific types of queries and data structures.
 
 
 High performance:
 ------------------
-Many NoSQL databases are optimized for specific use cases, providing high 
-performance and low-latency access to data.
+	Many NoSQL databases are optimized for specific use cases, providing high 
+	performance and low-latency access to data.
 
 
 Distributed architecture: 
 -------------------------
-NoSQL databases are often designed to be distributed across multiple servers 
-or nodes, allowing them to handle large volumes of data and provide fault 
-tolerance.
-
+	NoSQL databases are often designed to be distributed across multiple servers 
+	or nodes, allowing them to handle large volumes of data and provide fault 
+	tolerance.
+	
 
 
 
@@ -74,23 +74,23 @@ Common types of NoSQL databases include:
 
 Document-oriented databases: 
 ----------------------------
-Store and retrieve data in the form of documents (e.g., MongoDB).
+	Store and retrieve data in the form of documents (e.g., MongoDB).
 
 
 Key-value stores: 
 -------------------
-Use a simple key-value pair for data storage (e.g., Redis, Cassandra).
+	Use a simple key-value pair for data storage (e.g., Redis, Cassandra).
 
 
 Column-family stores: 
 ---------------------
-Organize data into columns instead of rows (e.g., Apache Cassandra, HBase).
+	Organize data into columns instead of rows (e.g., Apache Cassandra, HBase).
 
 
 
 Graph databases: 
 ------------------
-Optimize for storing and querying graph-like data structures (e.g., Neo4j).
+	Optimize for storing and querying graph-like data structures (e.g., Neo4j).
 
 
 
@@ -114,7 +114,7 @@ databases depends on the specific needs and characteristics of the project
 
 *******************************
 NoSQL - MongoDB
-*******************************
+*******************************		https://www.mongodb.com/
 
 MongoDB is a popular open-source NoSQL database management
 system that falls under the category of document-oriented databases. 
@@ -402,16 +402,19 @@ step 3: [SQL-lunch]   docker run --name mydb1 -e MYSQL_ROOT_PASSWORD=1234 -d mys
 
 
 
-step 4: [MongoDB-syntax] docker run -d -p 27017:27017 --name my-mongo-container -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=your_mongo_password mongo
+step 4: 
 
-			 docker exec -it my-mongo-container mongosh -u admin -p your_mongo_password --authenticationDatabase admin
+[MongoDB-syntax]      docker run -d -p 27017:27017 --name my-mongo-container -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=your_mongo_password mongo
+
+			 		   docker exec -it my-mongo-container mongosh -u admin -p your_mongo_password --authenticationDatabase admin
 
 
-	[MongoDB-lunch]   docker run -d -p 27017:27017 --name my-mongo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin1234 mongo
-	[MongoDB-execute] docker exec -it my-mongo  mongosh -u "admin" -p admin1234 --authenticationDatabase admin
-				OR
-			   docker exec -it my-mongo bash  
-			   mongosh -u "admin" -p admin1234 --authenticationDatabase admin            
+
+	[MongoDB-lunch]   	docker run -d -p 27017:27017 --name my-mongo -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin1234 mongo
+	[MongoDB-execute]	docker exec -it my-mongo  mongosh -u "admin" -p admin1234 --authenticationDatabase admin
+												OR
+			  		 docker exec -it my-mongo bash  
+			   		 mongosh -u "admin" -p admin1234 --authenticationDatabase admin            
                            
 
 [MongoDB-running Logs]	   docker logs -f  my-mongo
@@ -466,6 +469,9 @@ librarydb> db.books.insertMany([
 Display the Data:
 -------------------------------------
 librarydb> db.books.find()
+
+
+
 [
   {
     _id: ObjectId('65afd16131b1a9aa6a6d7c9a'),
@@ -498,8 +504,12 @@ librarydb> db.books.find()
 Insert Unmanaged Data into a Collection:
 -------------------------------------
 librarydb> db.books.insertMany([
-... {title: "sanjeev thapa" , address: "palpa", degree: "be", mob: "9815489555"}
-... ])
+ {title: "sanjeev thapa" , address: "palpa", degree: "be", mob: "9815489555"}
+ ])
+
+
+
+
 {
   acknowledged: true,
   insertedIds: { '0': ObjectId('65afd26931b1a9aa6a6d7c9d') }
@@ -519,6 +529,9 @@ Display the Data:
 -------------------------------------
 
 librarydb> db.books.find()
+
+
+
 [
   {
     _id: ObjectId('65afd16131b1a9aa6a6d7c9a'),
@@ -572,7 +585,1081 @@ librarydb> db.books.find()
 
 
 
+*********************************************************************
+*********************************************************************
+*********************************************************************
 
+============================================================
+                MONGODB PRACTICAL PRACTICE
+        DATABASE + STRUCTURED + UNSTRUCTURED DATA
+============================================================
+
+
+============================================================
+1. WHAT IS MONGODB?
+============================================================
+
+MongoDB is a NoSQL database.
+
+MongoDB stores data in:
+
+Database
+   |
+   |---- Collection
+            |
+            |---- Documents
+                    |
+                    |---- Fields
+
+Example:
+
+UniversityDB
+   |
+   |---- students
+   |        |
+   |        |---- { name: "Ram", age: 20 }
+   |
+   |---- products
+   |
+   |---- logs
+
+
+SQL VS MONGODB
+------------------------------------------------------------
+
+SQL                     MongoDB
+------------------------------------------------------------
+Database                Database
+Table                   Collection
+Row                     Document
+Column                  Field
+Primary Key             _id
+JOIN                    $lookup
+SQL Query               MongoDB Query
+
+
+============================================================
+2. CHECK AVAILABLE DATABASES
+============================================================
+
+SHOW DATABASES:
+
+show dbs
+
+
+CHECK CURRENT DATABASE:
+
+db
+
+
+============================================================
+3. CREATE DATABASE
+============================================================
+
+USE UniversityDB:
+
+use UniversityDB
+
+
+NOTE:
+
+MongoDB actually creates the database when you first insert data.
+
+
+CHECK CURRENT DATABASE:
+
+db
+
+
+============================================================
+4. CREATE STRUCTURED DATA COLLECTION
+============================================================
+
+We will create a collection called:
+
+students
+
+
+STRUCTURED DATA MEANS:
+
+All documents follow approximately the same structure.
+
+Example:
+
+{
+   name,
+   age,
+   gender,
+   faculty,
+   semester,
+   cgpa
+}
+
+
+INSERT 10 STUDENT RECORDS
+============================================================
+
+db.students.insertMany([
+
+{
+name: "Ram Sharma",
+age: 20,
+gender: "Male",
+faculty: "BCA",
+semester: 3,
+cgpa: 3.45
+},
+
+{
+name: "Sita Thapa",
+age: 21,
+gender: "Female",
+faculty: "BCA",
+semester: 3,
+cgpa: 3.78
+},
+
+{
+name: "Hari KC",
+age: 22,
+gender: "Male",
+faculty: "BBA",
+semester: 4,
+cgpa: 3.20
+},
+
+{
+name: "Gita Gurung",
+age: 20,
+gender: "Female",
+faculty: "BCA",
+semester: 2,
+cgpa: 3.60
+},
+
+{
+name: "Ramesh Rai",
+age: 23,
+gender: "Male",
+faculty: "BIT",
+semester: 5,
+cgpa: 3.10
+},
+
+{
+name: "Anita Shrestha",
+age: 21,
+gender: "Female",
+faculty: "BBA",
+semester: 4,
+cgpa: 3.85
+},
+
+{
+name: "Bikash Lama",
+age: 22,
+gender: "Male",
+faculty: "BIT",
+semester: 5,
+cgpa: 3.40
+},
+
+{
+name: "Puja Karki",
+age: 20,
+gender: "Female",
+faculty: "BCA",
+semester: 2,
+cgpa: 3.55
+},
+
+{
+name: "Suman Tamang",
+age: 24,
+gender: "Male",
+faculty: "BBA",
+semester: 6,
+cgpa: 2.95
+},
+
+{
+name: "Nisha Pandey",
+age: 21,
+gender: "Female",
+faculty: "BCA",
+semester: 3,
+cgpa: 3.90
+}
+
+])
+
+
+============================================================
+5. DISPLAY STRUCTURED DATA
+============================================================
+
+DISPLAY ALL:
+
+db.students.find()
+
+
+DISPLAY IN READABLE FORMAT:
+
+db.students.find().pretty()
+
+
+COUNT DOCUMENTS:
+
+db.students.countDocuments()
+
+
+OUTPUT:
+
+Total students = 10
+
+
+============================================================
+6. CREATE UNSTRUCTURED / FLEXIBLE DATA
+============================================================
+
+MongoDB is flexible.
+
+Documents do NOT need to have exactly the same fields.
+
+Create collection:
+
+userActivities
+
+
+INSERT 15 DIFFERENT DOCUMENTS
+============================================================
+
+db.userActivities.insertMany([
+
+{
+type: "login",
+user: "Ram",
+time: new Date()
+},
+
+{
+type: "search",
+user: "Sita",
+keyword: "MongoDB tutorial"
+},
+
+{
+type: "purchase",
+customer: "Hari",
+product: "Laptop",
+price: 85000
+},
+
+{
+type: "feedback",
+user: "Gita",
+message: "Good service",
+rating: 5
+},
+
+{
+type: "error",
+system: "Website",
+errorMessage: "Page not found"
+},
+
+{
+type: "video",
+user: "Ramesh",
+title: "MongoDB Basics",
+duration: 120
+},
+
+{
+type: "location",
+user: "Anita",
+city: "Kathmandu",
+country: "Nepal"
+},
+
+{
+type: "upload",
+user: "Bikash",
+fileName: "assignment.pdf",
+fileSize: "2MB"
+},
+
+{
+type: "comment",
+user: "Puja",
+postId: 101,
+comment: "Very useful!"
+},
+
+{
+type: "login",
+user: "Suman",
+device: "Mobile",
+browser: "Chrome"
+},
+
+{
+type: "payment",
+user: "Nisha",
+amount: 5000,
+method: "eSewa"
+},
+
+{
+type: "logout",
+user: "Ram",
+time: new Date()
+},
+
+{
+type: "notification",
+user: "Sita",
+message: "New assignment uploaded"
+},
+
+{
+type: "download",
+user: "Hari",
+file: "mongodb_notes.pdf"
+},
+
+{
+type: "support",
+user: "Gita",
+issue: "Password reset",
+status: "Open"
+}
+
+])
+
+
+============================================================
+7. DISPLAY UNSTRUCTURED DATA
+============================================================
+
+db.userActivities.find()
+
+
+COUNT DOCUMENTS:
+
+db.userActivities.countDocuments()
+
+
+CHECK DIFFERENT DOCUMENT STRUCTURES:
+
+db.userActivities.find().limit(5)
+
+
+============================================================
+8. CREATE MORE COMPLEX MONGODB DATA
+============================================================
+
+MongoDB supports:
+
+1. Nested Documents
+2. Arrays
+3. Different Data Types
+
+
+CREATE COLLECTION:
+
+courses
+
+
+INSERT DATA:
+
+db.courses.insertMany([
+
+{
+course: "Database Systems",
+
+teacher: {
+name: "Sanjeev Thapa",
+department: "IT"
+},
+
+students: [
+"Ram",
+"Sita",
+"Hari"
+],
+
+credits: 3
+},
+
+{
+course: "Programming",
+
+teacher: {
+name: "John Smith",
+department: "Computer Science"
+},
+
+students: [
+"Gita",
+"Anita",
+"Bikash"
+],
+
+credits: 4
+},
+
+{
+course: "Networking",
+
+teacher: {
+name: "Ram Gurung",
+department: "IT"
+},
+
+students: [
+"Puja",
+"Suman",
+"Nisha"
+],
+
+credits: 3
+}
+
+])
+
+
+DISPLAY:
+
+db.courses.find().pretty()
+
+
+============================================================
+9. BASIC FIND QUERIES
+============================================================
+
+FIND ALL STUDENTS:
+
+db.students.find()
+
+
+FIND ONE STUDENT:
+
+db.students.findOne()
+
+
+FIND STUDENT NAMED RAM:
+
+db.students.find(
+{ name: "Ram Sharma" }
+)
+
+
+FIND BCA STUDENTS:
+
+db.students.find(
+{ faculty: "BCA" }
+)
+
+
+============================================================
+10. COMPARISON QUERIES
+============================================================
+
+CGPA GREATER THAN 3.5:
+
+db.students.find(
+{ cgpa: { $gt: 3.5 } }
+)
+
+
+CGPA GREATER THAN OR EQUAL TO 3.5:
+
+db.students.find(
+{ cgpa: { $gte: 3.5 } }
+)
+
+
+AGE LESS THAN 22:
+
+db.students.find(
+{ age: { $lt: 22 } }
+)
+
+
+AGE BETWEEN 20 AND 22:
+
+db.students.find(
+{
+age: {
+$gte: 20,
+$lte: 22
+}
+}
+)
+
+
+============================================================
+11. LOGICAL OPERATORS
+============================================================
+
+AND CONDITION:
+
+Find BCA students with CGPA greater than 3.5
+
+db.students.find(
+
+{
+faculty: "BCA",
+cgpa: { $gt: 3.5 }
+}
+
+)
+
+
+OR CONDITION:
+
+db.students.find(
+
+{
+$or: [
+{ faculty: "BCA" },
+{ faculty: "BIT" }
+]
+}
+
+)
+
+
+============================================================
+12. SORTING DATA
+============================================================
+
+CGPA ASCENDING:
+
+db.students.find().sort(
+{ cgpa: 1 }
+)
+
+
+CGPA DESCENDING:
+
+db.students.find().sort(
+{ cgpa: -1 }
+)
+
+
+AGE DESCENDING:
+
+db.students.find().sort(
+{ age: -1 }
+)
+
+
+============================================================
+13. LIMIT DATA
+============================================================
+
+DISPLAY FIRST 5:
+
+db.students.find().limit(5)
+
+
+TOP 3 STUDENTS:
+
+db.students.find()
+.sort({ cgpa: -1 })
+.limit(3)
+
+
+============================================================
+14. SELECT SPECIFIC FIELDS
+============================================================
+
+DISPLAY ONLY NAME AND CGPA:
+
+db.students.find(
+
+{},
+
+{
+name: 1,
+cgpa: 1,
+_id: 0
+}
+
+)
+
+
+============================================================
+15. UPDATE DATA
+============================================================
+
+UPDATE ONE STUDENT:
+
+db.students.updateOne(
+
+{ name: "Ram Sharma" },
+
+{
+$set: {
+cgpa: 3.70
+}
+}
+
+)
+
+
+CHECK:
+
+db.students.find(
+{ name: "Ram Sharma" }
+)
+
+
+============================================================
+16. UPDATE MANY
+============================================================
+
+ADD 0.10 BONUS TO ALL BCA STUDENTS:
+
+db.students.updateMany(
+
+{ faculty: "BCA" },
+
+{
+$inc: {
+cgpa: 0.10
+}
+}
+
+)
+
+
+============================================================
+17. ADD NEW FIELD
+============================================================
+
+ADD STATUS FIELD:
+
+db.students.updateMany(
+
+{},
+
+{
+$set: {
+status: "Active"
+}
+}
+
+)
+
+
+NOW CHECK:
+
+db.students.find()
+
+
+============================================================
+18. DELETE DATA
+============================================================
+
+DELETE ONE STUDENT:
+
+db.students.deleteOne(
+
+{ name: "Suman Tamang" }
+
+)
+
+
+DELETE MULTIPLE:
+
+db.students.deleteMany(
+
+{ faculty: "BIT" }
+
+)
+
+
+CAREFUL:
+
+DELETE ALL DOCUMENTS:
+
+db.students.deleteMany({})
+
+
+============================================================
+19. CHECK COLLECTIONS
+============================================================
+
+SHOW COLLECTIONS:
+
+show collections
+
+
+============================================================
+20. DATABASE STATISTICS
+============================================================
+
+CHECK DATABASE STATS:
+
+db.stats()
+
+
+CHECK COLLECTION STATS:
+
+db.students.stats()
+
+
+============================================================
+21. CREATE INDEX
+============================================================
+
+CREATE INDEX ON NAME:
+
+db.students.createIndex(
+{ name: 1 }
+)
+
+
+VIEW INDEXES:
+
+db.students.getIndexes()
+
+
+WHY INDEX?
+
+WITHOUT INDEX:
+
+Search may check many documents.
+
+WITH INDEX:
+
+MongoDB can find data faster.
+
+
+============================================================
+22. AGGREGATION
+============================================================
+
+AVERAGE CGPA:
+
+db.students.aggregate([
+
+{
+$group: {
+_id: null,
+averageCGPA: {
+$avg: "$cgpa"
+}
+}
+}
+
+])
+
+
+MAXIMUM CGPA:
+
+db.students.aggregate([
+
+{
+$group: {
+_id: null,
+maxCGPA: {
+$max: "$cgpa"
+}
+}
+}
+
+])
+
+
+MINIMUM CGPA:
+
+db.students.aggregate([
+
+{
+$group: {
+_id: null,
+minCGPA: {
+$min: "$cgpa"
+}
+}
+}
+
+])
+
+
+COUNT STUDENTS BY FACULTY:
+
+db.students.aggregate([
+
+{
+$group: {
+
+_id: "$faculty",
+
+totalStudents: {
+$sum: 1
+}
+
+}
+}
+
+])
+
+
+============================================================
+23. CHECK NESTED DATA
+============================================================
+
+FIND TEACHER FROM IT DEPARTMENT:
+
+db.courses.find(
+
+{
+"teacher.department": "IT"
+}
+
+)
+
+
+FIND COURSE WITH STUDENT RAM:
+
+db.courses.find(
+
+{
+students: "Ram"
+}
+
+)
+
+
+============================================================
+24. CHECK DATA TYPES
+============================================================
+
+MongoDB SUPPORTS:
+
+String
+Number
+Boolean
+Date
+Array
+Object
+Null
+ObjectId
+
+
+EXAMPLE:
+
+{
+name: "Ram",
+
+age: 20,
+
+isStudent: true,
+
+date: new Date(),
+
+subjects: [
+"DBMS",
+"Programming"
+],
+
+address: {
+city: "Kathmandu",
+country: "Nepal"
+}
+}
+
+
+============================================================
+25. CHECK DATABASE SIZE
+============================================================
+
+db.stats()
+
+
+IMPORTANT VALUES:
+
+dataSize
+storageSize
+collections
+objects
+
+
+============================================================
+26. USE EXPLAIN FOR QUERY PERFORMANCE
+============================================================
+
+db.students.find(
+{ name: "Ram Sharma" }
+).explain("executionStats")
+
+
+CHECK:
+
+executionTimeMillis
+
+totalDocsExamined
+
+totalKeysExamined
+
+
+THIS IS IMPORTANT FOR:
+
+Query Optimization
+Performance Analysis
+Index Checking
+
+
+============================================================
+27. DROP COLLECTION
+============================================================
+
+db.courses.drop()
+
+
+============================================================
+28. DROP DATABASE
+============================================================
+
+USE CAREFULLY:
+
+db.dropDatabase()
+
+
+============================================================
+MONGODB PRACTICE CHECKLIST
+============================================================
+
+DATABASE:
+
+[ ] Create Database
+[ ] Switch Database
+[ ] Check Database
+
+
+COLLECTION:
+
+[ ] Create Collection
+[ ] Insert Documents
+[ ] Display Documents
+[ ] Count Documents
+
+
+CRUD:
+
+[ ] CREATE
+[ ] READ
+[ ] UPDATE
+[ ] DELETE
+
+
+QUERIES:
+
+[ ] find()
+[ ] findOne()
+[ ] $gt
+[ ] $gte
+[ ] $lt
+[ ] $lte
+[ ] $and
+[ ] $or
+
+
+DATA PROCESSING:
+
+[ ] sort()
+[ ] limit()
+[ ] projection
+[ ] aggregation
+
+
+ADVANCED:
+
+[ ] Nested Documents
+[ ] Arrays
+[ ] Indexes
+[ ] explain()
+[ ] Database Statistics
+[ ] Collection Statistics
+
+
+============================================================
+SUGGESTED NEXT MONGODB PRACTICE
+============================================================
+
+PHASE 1 - BASIC
+------------------------------------------------------------
+
+Database
+Collections
+Documents
+CRUD
+Find Queries
+
+
+PHASE 2 - INTERMEDIATE
+------------------------------------------------------------
+
+Operators
+Sorting
+Limit
+Projection
+Nested Documents
+Arrays
+Indexes
+
+
+PHASE 3 - ADVANCED
+------------------------------------------------------------
+
+Aggregation Pipeline
+$match
+$group
+$project
+$sort
+$lookup
+Indexes
+Query Optimization
+explain()
+Database Design
+
+
+============================================================
+FINAL MONGODB LEARNING STRUCTURE
+============================================================
+
+                 MONGODB
+                    |
+        ------------------------
+        |                      |
+     DATABASE              DATABASE
+        |
+   COLLECTIONS
+        |
+  ----------------
+  |              |
+STUDENTS    USER ACTIVITIES
+  |              |
+Structured      Flexible /
+Data            Unstructured
+  |
+Documents
+  |
+Fields
+
+
+============================================================
+
+
+
+*********************************************************************
+*********************************************************************
+*********************************************************************
 
 
 
