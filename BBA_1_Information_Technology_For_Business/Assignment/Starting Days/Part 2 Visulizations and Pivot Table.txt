@@ -1,0 +1,1463 @@
+
+
+
+======================================================================
+EXCEL PRACTICE: PIVOT TABLES + VISUALIZATION
+======================================================================
+
+DATASET:
+A = S.N.
+B = Name
+C = Sub 1
+D = Sub 2
+E = Sub 3
+F = Sub 4
+G = Sub 5
+H = Total
+I = Percent
+J = Result
+K = Pass / Fail
+L = Average
+M = Highest Subject
+N = Lowest Subject
+O = Grade
+P = Rank
+Q = Attendance
+R = Study Hours
+S = Scholarship
+T = Remarks
+U = Gender
+V = Age
+W = Faculty
+X = Semester
+Y = Support Required
+
+IMPORTANT:
+If your data has 9 students:
+Use A1:Y10
+
+If you have added a 10th student:
+Use A1:Y11
+
+
+
+
+======================================================================
+PART 1: PREPARE THE DATA
+======================================================================
+
+STEP 1: SELECT DATA
+
+1. Open your Excel file.
+2. Select the complete dataset.
+3. Include the headings.
+4. Press:
+
+CTRL + T
+
+5. Tick:
+
+"My table has headers"
+
+6. Click OK.
+
+Your data is now an Excel Table.
+
+Optional:
+Go to Table Design → Table Name
+
+Change the name to:
+
+StudentData
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 2: BASIC VISUALIZATION
+======================================================================
+
+CHART 1: STUDENT VS TOTAL MARKS
+---------------------------------------------------------------------
+
+PURPOSE:
+Compare the total marks obtained by students.
+
+STEP 1:
+Select:
+
+Name column + Total column
+
+Example:
+
+B1:B10
+and
+H1:H10
+
+STEP 2:
+
+Insert
+→ Column Chart
+→ Clustered Column
+
+STEP 3:
+
+Change chart title to:
+
+"Student Total Marks"
+
+STEP 4:
+
+Add:
+
+Chart Design
+→ Add Chart Element
+→ Data Labels
+→ Outside End
+
+
+EXERCISE:
+Look at the chart and answer:
+
+1. Who has the highest total marks?
+2. Who has the lowest total marks?
+3. Which students are above 300?
+4. Which students are below 200?
+
+
+
+
+
+
+
+
+
+======================================================================
+CHART 2: STUDENT VS PERCENTAGE
+======================================================================
+
+STEP 1:
+
+Select:
+
+Name + Percent
+
+STEP 2:
+
+Insert
+→ Bar Chart
+→ Clustered Bar
+
+STEP 3:
+
+Chart title:
+
+"Student Percentage"
+
+STEP 4:
+
+Add Data Labels.
+
+
+EXERCISE:
+
+1. Which student has the highest percentage?
+2. Which student has the lowest percentage?
+3. How many students have percentage >= 60?
+4. How many students have percentage < 40?
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+CHART 3: SUBJECT-WISE AVERAGE
+======================================================================
+
+First create a small summary table.
+
+For example:
+
+       A             B
+1      Subject      Average
+2      Sub 1
+3      Sub 2
+4      Sub 3
+5      Sub 4
+6      Sub 5
+
+
+FORMULAS:
+
+B2:
+
+=AVERAGE(C2:C10)
+
+B3:
+
+=AVERAGE(D2:D10)
+
+B4:
+
+=AVERAGE(E2:E10)
+
+B5:
+
+=AVERAGE(F2:F10)
+
+B6:
+
+=AVERAGE(G2:G10)
+
+
+STEP 1:
+
+Select:
+
+A1:B6
+
+STEP 2:
+
+Insert
+→ Column Chart
+
+STEP 3:
+
+Title:
+
+"Average Marks by Subject"
+
+
+EXERCISE:
+
+1. Which subject has the highest average?
+2. Which subject has the lowest average?
+3. What is the difference between highest and lowest average?
+4. Which subject needs more attention?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+CHART 4: PASS VS FAIL
+======================================================================
+
+Create:
+
+       D             E
+1      Result        Count
+2      Pass
+3      Fail
+
+
+E2:
+
+=COUNTIF(K2:K10,"Pass")
+
+E3:
+
+=COUNTIF(K2:K10,"Fail")
+
+
+STEP 1:
+
+Select D1:E3
+
+STEP 2:
+
+Insert
+→ Pie Chart
+
+STEP 3:
+
+Title:
+
+"Pass vs Fail Distribution"
+
+
+EXERCISE:
+
+1. How many students passed?
+2. How many failed?
+3. What percentage of students passed?
+
+
+Formula:
+
+=COUNTIF(K2:K10,"Pass")/COUNTA(B2:B10)*100
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+CHART 5: ATTENDANCE VS PERCENTAGE
+======================================================================
+
+PURPOSE:
+Study the relationship between attendance and academic performance.
+
+STEP 1:
+
+Select:
+
+Attendance
+and
+Percent
+
+Q1:Q10
+I1:I10
+
+STEP 2:
+
+Insert
+→ Scatter
+→ Scatter with only Markers
+
+STEP 3:
+
+Chart title:
+
+"Attendance vs Percentage"
+
+STEP 4:
+
+Add Trendline:
+
+Right Click Data Points
+→ Add Trendline
+→ Linear
+
+Tick:
+
+"Display R-squared value on chart"
+
+
+CORRELATION FORMULA:
+
+=CORREL(Q2:Q10,I2:I10)
+
+
+INTERPRETATION:
+
+Close to +1
+→ strong positive relationship
+
+Close to 0
+→ weak/no linear relationship
+
+Close to -1
+→ strong negative relationship
+
+
+EXERCISE:
+
+1. Does higher attendance appear related to higher marks?
+2. What is the correlation value?
+3. Is the relationship strong or weak?
+4. What does the trendline show?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+CHART 6: STUDY HOURS VS PERCENTAGE
+======================================================================
+
+STEP 1:
+
+Select:
+
+Study Hours
+and
+Percent
+
+R1:R10
+I1:I10
+
+STEP 2:
+
+Insert
+→ Scatter Chart
+
+STEP 3:
+
+Add Linear Trendline.
+
+STEP 4:
+
+Add R-squared value.
+
+CORRELATION:
+
+=CORREL(R2:R10,I2:I10)
+
+
+CHART TITLE:
+
+"Study Hours vs Percentage"
+
+
+EXERCISE:
+
+1. Do students studying more hours generally have higher percentages?
+2. What is the correlation?
+3. Which student has the highest study hours?
+4. Does that student also have a high percentage?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 3: PIVOT TABLE
+======================================================================
+
+PIVOT TABLE 1: RESULT SUMMARY
+======================================================================
+
+PURPOSE:
+Quickly summarize Pass and Fail students.
+
+STEP 1:
+
+Click anywhere inside StudentData.
+
+STEP 2:
+
+Go to:
+
+Insert
+→ PivotTable
+
+STEP 3:
+
+Select:
+
+From Table/Range
+
+STEP 4:
+
+Choose:
+
+New Worksheet
+
+STEP 5:
+
+Click OK.
+
+
+PIVOT FIELDS:
+
+Drag:
+
+Result
+→ Rows
+
+Name
+→ Values
+
+
+You should get something similar to:
+
+Result              Count of Name
+----------------------------------
+Distinction         ...
+First Division      ...
+Second Division     ...
+Pass                ...
+Fail                ...
+
+
+IMPORTANT:
+
+If Excel gives "Sum of Name":
+
+Click the field
+→ Value Field Settings
+→ Count
+
+
+EXERCISE:
+
+1. How many students are in each result category?
+2. Which result category contains the most students?
+3. How many students are in the Fail category?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PIVOT TABLE 2: GRADE DISTRIBUTION
+======================================================================
+
+STEP 1:
+
+Insert
+→ PivotTable
+
+STEP 2:
+
+Drag:
+
+Grade
+→ Rows
+
+Name
+→ Values
+
+STEP 3:
+
+Make sure Name is:
+
+Count of Name
+
+
+RESULT:
+
+Grade       Number of Students
+-------------------------------
+A+
+A
+B+
+B
+C
+F
+
+
+EXERCISE:
+
+1. How many A+ students are there?
+2. How many B students are there?
+3. How many F students are there?
+4. What is the total number of students?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PIVOT TABLE 3: AVERAGE PERCENTAGE BY GENDER
+======================================================================
+
+NOTE:
+This requires the Gender column to contain data.
+
+STEP 1:
+
+Insert
+→ PivotTable
+
+STEP 2:
+
+Drag:
+
+Gender
+→ Rows
+
+Percent
+→ Values
+
+STEP 3:
+
+Change:
+
+Sum of Percent
+
+TO:
+
+Average of Percent
+
+
+You should get:
+
+Gender       Average Percentage
+--------------------------------
+Male         ...
+Female       ...
+
+
+EXERCISE:
+
+1. What is the average percentage for each gender?
+2. How many students are in each gender category?
+3. Add Gender to Values as Count and compare the group sizes.
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PIVOT TABLE 4: FACULTY-WISE PERFORMANCE
+======================================================================
+
+NOTE:
+This requires Faculty data.
+
+STEP 1:
+
+Insert
+→ PivotTable
+
+FIELDS:
+
+Faculty
+→ Rows
+
+Percent
+→ Values
+
+STEP 2:
+
+Change Percent to:
+
+Average
+
+STEP 3:
+
+Add:
+
+Name
+→ Values
+
+Change it to:
+
+Count
+
+
+RESULT:
+
+Faculty       Students      Average %
+-------------------------------------
+BCA              ...          ...
+BCSIT            ...          ...
+...
+
+
+EXERCISE:
+
+1. Which faculty has the highest average percentage?
+2. How many students are in each faculty?
+3. Compare student count with average percentage.
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PIVOT TABLE 5: SCHOLARSHIP ANALYSIS
+======================================================================
+
+FIELDS:
+
+Scholarship
+→ Rows
+
+Name
+→ Values
+
+Percent
+→ Values
+
+
+Change Percent:
+
+Sum
+→ Average
+
+
+RESULT:
+
+Scholarship     Students     Average %
+---------------------------------------
+Yes                ...          ...
+No                 ...          ...
+
+
+EXERCISE:
+
+1. How many students receive scholarships?
+2. What is their average percentage?
+3. How many students do not receive scholarships?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PIVOT TABLE 6: SUPPORT REQUIRED
+======================================================================
+
+FIELDS:
+
+Support Required
+→ Rows
+
+Name
+→ Values
+
+Percent
+→ Values
+
+
+Change Percent to:
+
+Average
+
+
+RESULT:
+
+Support Required      Students    Average %
+---------------------------------------------
+Needs Support             ...         ...
+Normal                    ...         ...
+
+
+EXERCISE:
+
+1. How many students need academic support?
+2. What is their average percentage?
+3. What percentage of all students require support?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 4: PIVOT CHART
+======================================================================
+
+Create a PivotTable:
+
+Grade → Rows
+Name → Values
+
+Then:
+
+Click PivotTable
+→ PivotTable Analyze
+→ PivotChart
+
+Choose:
+
+Column Chart
+
+
+TITLE:
+
+"Student Grade Distribution"
+
+
+EXERCISE:
+
+Create another PivotChart for:
+
+Result vs Number of Students
+
+and another for:
+
+Faculty vs Average Percentage
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 5: SLICERS
+======================================================================
+
+Slicers make the PivotTable interactive.
+
+STEP 1:
+
+Click your PivotTable.
+
+STEP 2:
+
+Go to:
+
+PivotTable Analyze
+→ Insert Slicer
+
+STEP 3:
+
+Select:
+
+Gender
+Faculty
+Semester
+Grade
+Result
+
+
+STEP 4:
+
+Click OK.
+
+
+Now click:
+
+Female
+
+The PivotTable will show only female students.
+
+Click:
+
+A+
+
+The PivotTable will show only A+ students.
+
+
+EXERCISE:
+
+Try these filters:
+
+1. Female + Pass
+2. Male + Pass
+3. Grade A+
+4. Grade F
+5. Semester II
+6. Students needing support
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 6: PIVOT TABLE WITH MULTIPLE LEVELS
+======================================================================
+
+Create a PivotTable.
+
+Drag:
+
+Faculty
+→ Rows
+
+Grade
+→ Rows
+
+Name
+→ Values
+
+
+You will get:
+
+Faculty
+   A+
+   A
+   B+
+   B
+   C
+   F
+
+
+This gives a two-level analysis.
+
+
+EXERCISE:
+
+1. How many A+ students are in each faculty?
+2. How many F students are in each faculty?
+3. Which faculty has the greatest number of students?
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 7: CONDITIONAL FORMATTING
+======================================================================
+
+SELECT:
+
+I2:I10
+
+Then:
+
+Home
+→ Conditional Formatting
+→ Color Scales
+
+
+For low percentages:
+
+Conditional Formatting
+→ Highlight Cell Rules
+→ Less Than
+
+Enter:
+
+40
+
+
+For high percentages:
+
+Greater Than
+
+Enter:
+
+80
+
+
+EXERCISE:
+
+Highlight:
+
+1. Percentage >= 80
+2. Percentage < 40
+3. Attendance < 75
+4. Study Hours > 5
+5. Total Marks > 400
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 8: TOP 5 STUDENTS
+======================================================================
+
+Use:
+
+=SORT(A2:T10,8,-1)
+
+
+This sorts the dataset according to:
+
+Column 8 = Total
+
+
+For the top 5:
+
+=TAKE(SORT(A2:T10,8,-1),5)
+
+
+If TAKE is not available, use:
+
+=SORT(A2:T10,8,-1)
+
+and manually examine the first 5 records.
+
+
+EXERCISE:
+
+Find:
+
+1. Top 1 student
+2. Top 3 students
+3. Top 5 students
+4. Bottom 3 students
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 9: TOP STUDENT FORMULAS
+======================================================================
+
+HIGHEST TOTAL:
+
+=MAX(H2:H10)
+
+
+STUDENT WITH HIGHEST TOTAL:
+
+=INDEX(B2:B10,MATCH(MAX(H2:H10),H2:H10,0))
+
+
+HIGHEST PERCENTAGE:
+
+=MAX(I2:I10)
+
+
+STUDENT WITH HIGHEST PERCENTAGE:
+
+=INDEX(B2:B10,MATCH(MAX(I2:I10),I2:I10,0))
+
+
+EXERCISE:
+
+Find the:
+
+1. Highest total
+2. Student with highest total
+3. Lowest total
+4. Student with lowest total
+5. Highest percentage
+6. Student with highest percentage
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+PART 10: MINI DASHBOARD
+======================================================================
+
+Create a new worksheet:
+
+DASHBOARD
+
+
+Create these KPI boxes:
+
+-----------------------------------------
+TOTAL STUDENTS
+=COUNTA(B2:B10)
+
+AVERAGE %
+=AVERAGE(I2:I10)
+
+HIGHEST %
+=MAX(I2:I10)
+
+LOWEST %
+=MIN(I2:I10)
+
+PASS STUDENTS
+=COUNTIF(K2:K10,"Pass")
+
+FAIL STUDENTS
+=COUNTIF(K2:K10,"Fail")
+-----------------------------------------
+
+
+Then place these charts:
+
+1. Student vs Total Marks
+2. Student vs Percentage
+3. Pass vs Fail
+4. Subject Average
+5. Attendance vs Percentage
+6. Study Hours vs Percentage
+
+
+Add slicers:
+
+Gender
+Faculty
+Semester
+Grade
+Result
+
+
+Dashboard structure:
+
+==================================================
+              STUDENT PERFORMANCE DASHBOARD
+==================================================
+
+ TOTAL       AVERAGE %      HIGHEST %      PASS
+ STUDENTS
+
+--------------------------------------------------
+
+ [Student vs Total Marks Chart]
+
+--------------------------------------------------
+
+ [Subject Average]     [Pass vs Fail]
+
+--------------------------------------------------
+
+ [Attendance vs %]     [Study Hours vs %]
+
+--------------------------------------------------
+
+ [SLICERS]
+
+ Gender | Faculty | Semester | Grade | Result
+
+==================================================
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+FINAL EXERCISES
+======================================================================
+
+EXERCISE 1
+Create a PivotTable showing:
+
+Grade + Number of Students + Average Percentage.
+
+
+EXERCISE 2
+Create a PivotTable showing:
+
+Result + Student Count + Average Total.
+
+
+EXERCISE 3
+Create a PivotTable showing:
+
+Faculty + Student Count + Average Percentage.
+
+
+EXERCISE 4
+Create a PivotTable showing:
+
+Gender + Student Count + Average Percentage.
+
+
+EXERCISE 5
+Create a PivotTable showing:
+
+Scholarship + Student Count + Average Percentage.
+
+
+EXERCISE 6
+Create a PivotTable showing:
+
+Support Required + Student Count + Average Percentage.
+
+
+EXERCISE 7
+Create a PivotTable:
+
+Faculty
+→ Grade
+→ Count of Students
+
+
+EXERCISE 8
+Create a scatter chart:
+
+Attendance vs Percentage
+
+Add:
+
+Trendline
+R-squared
+
+
+EXERCISE 9
+Create a scatter chart:
+
+Study Hours vs Percentage
+
+Add:
+
+Trendline
+R-squared
+
+
+EXERCISE 10
+Create a dashboard containing:
+
+• Total Students
+• Average Percentage
+• Highest Percentage
+• Lowest Percentage
+• Pass Count
+• Fail Count
+• Grade Distribution
+• Subject Average
+• Attendance vs Percentage
+• Study Hours vs Percentage
+• At least 3 slicers
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+CHALLENGE EXERCISES
+======================================================================
+
+CHALLENGE 1:
+Find students who satisfy BOTH:
+
+Percentage >= 60
+AND
+Attendance >= 75
+
+
+Formula:
+
+=FILTER(A2:Y10,(I2:I10>=60)*(Q2:Q10>=75))
+
+
+CHALLENGE 2:
+Find students who need support because:
+
+Percentage < 50
+OR
+Attendance < 60
+
+
+Formula:
+
+=FILTER(A2:Y10,(I2:I10<50)+(Q2:Q10<60))
+
+
+CHALLENGE 3:
+Find students with:
+
+Percentage >= 80
+AND
+Study Hours >= 5
+
+
+Formula:
+
+=FILTER(A2:Y10,(I2:I10>=80)*(R2:R10>=5))
+
+
+CHALLENGE 4:
+Find the correlation between:
+
+Attendance and Percentage
+
+=CORREL(Q2:Q10,I2:I10)
+
+
+CHALLENGE 5:
+Find the correlation between:
+
+Study Hours and Percentage
+
+=CORREL(R2:R10,I2:I10)
+
+
+CHALLENGE 6:
+Create a PivotTable that answers:
+
+"How does academic performance differ by Faculty,
+Gender and Grade?"
+
+
+Use:
+
+Rows:
+Faculty
+
+Columns:
+Grade
+
+Values:
+Count of Name
+
+Then add:
+
+Average of Percent
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+FINAL PRACTICAL TASK
+======================================================================
+
+Imagine you are an Excel Data Analyst.
+
+Using this student dataset:
+
+STEP 1:
+Clean and format the data.
+
+STEP 2:
+Create calculated columns.
+
+STEP 3:
+Create a PivotTable for Grade.
+
+STEP 4:
+Create a PivotTable for Result.
+
+STEP 5:
+Create a PivotTable for Faculty.
+
+STEP 6:
+Create a PivotTable for Scholarship.
+
+STEP 7:
+Create a PivotTable for Support Required.
+
+STEP 8:
+Create 5 charts.
+
+STEP 9:
+Add slicers.
+
+STEP 10:
+Create a Dashboard.
+
+STEP 11:
+Answer these questions:
+
+1. What is the average class percentage?
+2. Who is the highest-performing student?
+3. Who is the lowest-performing student?
+4. How many students passed?
+5. How many students failed?
+6. Which subject has the highest average?
+7. Which subject has the lowest average?
+8. Is attendance related to percentage?
+9. Is study time related to percentage?
+10. How many students need academic support?
+
+======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+...
