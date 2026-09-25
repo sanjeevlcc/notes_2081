@@ -1,0 +1,170 @@
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{tutorial}
+\author{Sanjeev Thapa 22}
+\date{September 2026}
+
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\section{Text Formatting}
+\subsection{text format}
+To make a text \textbf{bold I and here}, use the command. \\
+To make a text \textit{italic is this},use this \\
+To make text italic \emph{hello i am italic} \\
+to make underline make \underline{is this me } \\
+To write in typewriter front in \texttt{typewriter font is like this}
+
+\subsection{font size}
+{\tiny hello people} \\
+hello people2 \\
+
+{\scriptsize scriptsize}\\
+{\footnotesize footnote size}\\
+{\small small text}\\
+{\normalsize Normal Size}\\
+{\large large}\\
+{\Large Large}\\
+{\Huge huge}\\
+{\huge huge}\\
+
+\subsection{Text alignment}
+\begin{flushleft}
+Pneumonia is an inflammatory condition of the lung primarily affecting the small air sacs known as alveoli.[3][13] Symptoms typically include some combination of productive or dry cough, chest pain, fever, and difficulty breathing.[14] The severity of the condition is variable.[14]
+\end{flushleft}
+
+\begin{flushright}
+ Pneumonia is usually caused by infection with viruses or bacteria, and less commonly by other microorganisms.[a] Identifying the responsible pathogen can be difficult. Diagnosis is often based on symptoms and physical examination.[7] Chest X-rays, blood tests, and culture of the sputum may help confirm the diagnosis.[7] The disease may be classified by where it was acquired, such as community- or hospital-acquired or healthcare-associated pneumonia.[17]
+\end{flushright}
+
+\begin{center}
+Risk factors for pneumonia include cystic fibrosis, chronic obstructive pulmonary disease (COPD), sickle cell disease, asthma, diabetes, heart failure, a history of smoking, a poor ability to cough (such as following a stroke), and immunodeficiency.[5][18]
+
+Vaccines to prevent certain types of pneumonia (such as those caused by Streptococcus pneumoniae bacteria, influenza viruses, or SARS-CoV-2) are available.[9] Other methods of prevention include hand washing to prevent infection, prompt treatment of worsening respiratory symptoms, and not smoking.
+\end{center}
+
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+
+\section{Literature Review}
+\end{document}
