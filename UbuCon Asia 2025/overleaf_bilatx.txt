@@ -5,6 +5,255 @@
 ******************************************************************************************************
 ******************************************************************************************************
 
+Sanjeev Thapa
+CCT
+Faculty of Information and Technology
+9865093594
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+LaTeX
+------------
+
+  LaTeX (pronounced “LAY-tek” or “LAH-tek”)  
+  
+  Document preparation and typesetting system used to create professional-quality documents.
+  
+  Unlike Microsoft Word, where you usually format a document visually by clicking buttons.
+  
+  LaTeX uses commands/code to describe how the document should be formatted.
+
+
+
+For example, in LaTeX:
+----------------------------
+           \documentclass{article}
+           
+           \begin{document}
+           
+              Hello World!
+           
+           \end{document}
+
+
+
+
+      --------------------------------------------------------
+      --------------------------------------------------------
+        LaTeX is a markup-based document preparation system mainly 
+        used for creating scientific, technical, mathematical, academic, 
+        and professional documents.
+      --------------------------------------------------------
+      --------------------------------------------------------
+      
+
+
+
+
+Why is LaTeX used?
+--------------------------    https://mappingignorance.org/app/uploads/2015/04/word_vs_latex_1_eng.png
+
+LaTeX is especially useful when a document contains:
+
+              Mathematical equations
+              Scientific formulas
+              Tables
+              References and citations
+              Figures and diagrams
+              Large reports
+              Research papers
+              Theses and dissertations
+              Books
+              Technical documentation
+
+
+
+
+
+
+
+    For example, a mathematical equation such as:
+              E=mc2
+    
+    can be written in LaTeX as:
+               
+               \[
+               E = mc^2
+               \]
+               
+
+
+
+
+Today
+--------------------
+LaTeX is widely used in:
+
+         Universities
+         Research institutions
+         Scientific publishing
+         Engineering
+         Computer science
+         Mathematics
+         Physics
+         Economics
+         Academia
+
+
+
+
+
+
+
+
+
+LaTeX vs Microsoft Word
+-------------------------------
+
+
+------------------------------------------------------------------------------------------
+| Feature                | Microsoft Word                 | LaTeX                       |
+| ---------------------- | ------------------------------ | --------------------------- |
+| Editing method         | GUI / WYSIWYG                  | Commands / markup           |
+| Learning               | Easier initially               | Requires learning commands  |
+| Mathematical equations | Good                           | Excellent                   |
+| Large documents        | Can become difficult to manage | Very suitable               |
+| Automatic numbering    | Available                      | Excellent                   |
+| References             | Available                      | Very powerful               |
+| Bibliography           | Available                      | Excellent with BibTeX/Biber |
+| Formatting consistency | Manual + styles                | Highly consistent           |
+| Academic papers        | Good                           | Very popular                |
+| Thesis                 | Good                           | Excellent                   |
+| Programming/code       | Possible                       | Excellent with packages     |
+| Collaboration          | Easy with Word/online tools    | Good with Git/Overleaf      |
+| PDF quality            | Good                           | Excellent                   |
+| File format            | `.docx`                        | `.tex`                      |
+
+
+
+
+
+
+
+
+Power of LaTeX to overcome
+---------------------------------
+
+1 Consistent formatting
+
+         Suppose your document has:
+         
+         20 chapters
+         100 sections
+         200 figures
+         50 tables
+
+
+2 Automatic numbering
+
+       LaTeX can automatically number:
+       
+                Chapters
+                Sections
+                Figures
+                Tables
+                Equations
+
+3 Automatic Table of Contents
+
+
+4 References and bibliography
+      
+      LaTeX has powerful reference-management systems such as:
+      
+            BibTeX
+            Biber
+            BibLaTeX
+      
+                   Example:
+                   
+                      \cite{knuth1984}
+
+
+
+5 ..... and much more
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+******************************************************************************************************
+
 
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
