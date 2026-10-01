@@ -1,1 +1,1382 @@
-sa
+
+
+==========================================================
+UNIT 1: INTRODUCTION TO LINUX AND CLI COMMANDS
+==========================================================
+
+
+
+
+
+
+
+============================================================
+1.1 INTRODUCTION TO OPEN-SOURCE SOFTWARE
+============================================================
+
+1.1.1 What is Open-Source Software?
+---------------------------------------------
+Open-source software is software whose source code is made available under a 
+license that permits users to study, use, modify, and redistribute it according 
+to the license terms.
+
+
+
+Examples:
+      1. Linux - Operating system kernel
+      2. Ubuntu - Linux distribution
+      3. Mozilla Firefox - Web browser
+      4. LibreOffice - Office productivity software
+      5. MySQL - Relational database management system
+      6. Apache HTTP Server - Web server
+      7. Python - Programming language
+
+Features:
+      - Source code can be inspected under the applicable license.
+      - Users may modify and redistribute it as the license permits.
+      - Development often involves a community of contributors.
+      - Many open-source applications are available without a purchase fee.
+      - The source code can be reviewed, but openness alone does not guarantee security.
+
+Advantages:
+      1. Often reduces software licensing costs.
+      2. Allows customization and flexibility.
+      3. Encourages collaboration and community development.
+      4. Can reduce dependence on a single vendor.
+      5. Useful for education, research, servers, and software development.
+
+Disadvantages:
+      1. Some software requires technical knowledge.
+      2. Professional support may involve additional costs.
+      3. Hardware or commercial application compatibility may vary.
+      4. Documentation and support quality can differ.
+      5. Users may need to troubleshoot issues themselves.
+
+Open-Source vs Proprietary Software:
+      - Open-source: source code is available under a license; modification and redistribution may be permitted.
+      - Proprietary: source code is generally not public; modification and redistribution are usually restricted.
+      - Examples of open-source software: Linux, LibreOffice.
+      - Examples of proprietary software: Microsoft Windows, Microsoft Office.
+
+
+
+Example:
+    A university can install Ubuntu on laboratory computers and use it for 
+    programming, networking, and system administration exercises.
+
+
+
+
+
+
+
+
+
+============================================================
+1.2 UNIX SYSTEM ARCHITECTURE, LINUX DIFFERENCES,
+    USING A LINUX SYSTEM, COMMAND SYNTAX
+============================================================
+
+1.2.1 What is Unix?
+----------------------
+Unix is a multiuser, multitasking operating system originally developed at AT&T Bell
+Laboratories in the 1970s. It is known for portability, a hierarchical filesystem, command-line 
+tools, and support for multiple users.
+
+
+
+Examples:
+      - IBM AIX
+      - Oracle Solaris
+      - HP-UX
+      - BSD Unix variants
+
+
+
+1.2.2 What is Linux?
+----------------------
+Linux is an open-source, Unix-like operating system built around the 
+Linux kernel, initially released by Linus Torvalds in 1991.
+
+Linux is used in:
+- Web servers
+- Cloud computing
+- Supercomputers
+- Desktop computers
+- Network devices
+- Embedded systems
+- Cybersecurity laboratories
+
+Examples of Linux distributions:
+- Ubuntu - desktop, education, and servers
+- Debian - stable servers and general computing
+- Fedora - developers and newer technologies
+- Red Hat Enterprise Linux - enterprise servers
+- Kali Linux - security testing and cybersecurity education
+- Linux Mint - desktop computing
+- Rocky Linux - enterprise-compatible server environments
+
+1.2.3 Unix vs Linux
+
+Unix:
+- Originated at Bell Labs.
+- Has commercial and open Unix variants.
+- Examples include AIX and Solaris.
+- Used in enterprise and specialized environments.
+
+Linux:
+- Developed initially by Linus Torvalds.
+- Linux kernel is open source.
+- Available in many distributions.
+- Used on desktops, servers, cloud systems, and embedded devices.
+
+Linux is Unix-like, but Linux and Unix are not simply interchangeable names.
+
+1.2.4 Linux System Architecture
+
+Main layers and components:
+
+1. Hardware
+   Physical components such as CPU, RAM, disks, keyboard, and network devices.
+
+2. Kernel
+   The core of the operating system. It manages processes, memory, devices,
+   filesystems, and networking.
+
+3. System libraries
+   Provide functions that applications use to access operating-system services.
+
+4. Shell and user interface
+   The shell interprets commands. Examples include Bash, Zsh, and Fish.
+   Graphical desktop environments provide another way to interact with Linux.
+
+5. Utilities and applications
+   Utilities include ls, cp, grep, and ps. Applications include browsers,
+   editors, databases, and other programs.
+
+Simplified architecture:
+    User / Applications
+            |
+    Shell / User Interface
+            |
+    System Libraries and Utilities
+            |
+    Linux Kernel
+            |
+    Hardware
+
+1.2.5 What is CLI?
+
+CLI means Command-Line Interface. It allows a user to interact with the
+operating system by typing commands in a terminal.
+
+Example:
+    pwd
+
+Illustrative output:
+    /home/student
+
+This displays the current working directory.
+
+1.2.6 What is a Shell?
+
+A shell is a command interpreter that accepts commands and runs programs
+or shell instructions.
+
+Common shells:
+- Bash - Bourne Again Shell
+- Sh - Bourne Shell
+- Zsh - Z Shell
+- Fish - Friendly Interactive Shell
+- Ksh - Korn Shell
+
+Useful commands:
+    echo $SHELL
+    whoami
+    uname -a
+    cat /etc/os-release
+
+1.2.7 Linux Command Syntax
+
+General syntax:
+    command [options] [arguments]
+
+- Command: program or instruction to execute.
+- Options: modify the command's behavior.
+- Arguments: files, directories, or values on which it operates.
+
+Example:
+    ls -l /home
+
+Explanation:
+- ls lists files and directories.
+- -l requests a detailed listing.
+- /home is the directory being listed.
+
+Another example:
+    mkdir -p /home/student/linux/practice
+
+Here, mkdir creates directories and -p creates parent directories as needed.
+
+Command-line concepts:
+- Linux commands are generally case-sensitive.
+- Spaces separate command arguments.
+- --help often displays help.
+- man displays a manual page.
+- sudo runs an authorized command with elevated privileges.
+- Tab can autocomplete commands and paths.
+- The Up-arrow recalls previous commands.
+
+Examples:
+    ls --help
+    man ls
+    sudo apt update
+
+============================================================
+1.3 FILE MANAGEMENT
+============================================================
+
+File management includes creating, viewing, copying, moving, renaming,
+deleting, and organizing files and directories.
+
+Linux uses a hierarchical filesystem beginning at the root directory (/).
+
+1.3.1 Common File and Directory Commands
+
+    pwd       Display current directory
+    ls        List files and directories
+    ls -l     Detailed listing
+    ls -a     Include hidden files
+    cd        Change directory
+    mkdir     Create directory
+    rmdir     Remove empty directory
+    touch     Create an empty file or update its timestamp
+    cp        Copy files
+    mv        Move or rename files
+    rm        Remove files
+    cat       Display or concatenate file contents
+    less      View a file page by page
+    file      Identify file type
+    stat      Display file metadata
+
+1.3.2 Create Files and Directories
+
+    pwd
+    mkdir LinuxLab
+    cd LinuxLab
+    touch student.txt
+    touch marks.txt
+    touch notes.txt
+    ls -l
+
+Illustrative listing:
+    student.txt
+    marks.txt
+    notes.txt
+
+1.3.3 Write and Read Files
+
+Write text to a file:
+    echo "Welcome to Linux" > student.txt
+
+Append text:
+    echo "System Administration" >> student.txt
+
+Display contents:
+    cat student.txt
+
+The > operator creates or overwrites a file.
+The >> operator appends without overwriting existing content.
+
+Edit a file with Nano:
+    nano student.txt
+
+Nano shortcuts:
+- Ctrl+O - save
+- Enter - confirm filename
+- Ctrl+X - exit
+
+1.3.4 Copy, Move, and Rename
+
+Copy a file:
+    cp student.txt student_backup.txt
+
+Copy a directory and its contents:
+    cp -r LinuxLab LinuxLab_backup
+
+Move a file:
+    mv student.txt /home/student/
+
+Rename a file:
+    mv marks.txt results.txt
+
+1.3.5 Delete Files and Directories
+
+Delete a file:
+    rm notes.txt
+
+Remove an empty directory:
+    rmdir LinuxLab
+
+Remove a directory and its contents:
+    rm -r LinuxLab_backup
+
+WARNING:
+Use rm -r and especially rm -rf carefully. They can permanently delete
+files and directories. Check the path before executing a removal command.
+
+1.3.6 File Permissions
+
+Linux permissions control who can read, write, or execute files and directories.
+
+Permission categories:
+- u - user/owner
+- g - group
+- o - others
+
+Permission types:
+- r - read (numeric value 4)
+- w - write (numeric value 2)
+- x - execute (numeric value 1)
+
+Example:
+    ls -l student.txt
+
+Illustrative output:
+    -rw-r--r-- 1 student student 25 Oct 1 10:00 student.txt
+
+Interpretation:
+- rw- - owner can read and write
+- r-- - group can read
+- r-- - others can read
+
+Set permissions:
+    chmod 755 script.sh
+    chmod 644 student.txt
+
+For 755:
+- Owner: 7 = read + write + execute
+- Group: 5 = read + execute
+- Others: 5 = read + execute
+
+For 644:
+- Owner: read + write
+- Group: read
+- Others: read
+
+Change ownership (with appropriate privileges):
+    sudo chown student:student student.txt
+
+1.3.7 Absolute and Relative Paths
+
+Absolute path:
+A complete path beginning from /.
+Example:
+    /home/student/LinuxLab/student.txt
+
+Relative path:
+A path expressed relative to the current directory.
+Example, from /home/student:
+    LinuxLab/student.txt
+
+Path symbols:
+    /    root directory
+    ~    current user's home directory
+    .    current directory
+    ..   parent directory
+    -    previous working directory when used with cd
+
+Examples:
+    cd ~
+    cd ..
+    cd -
+
+============================================================
+1.4 SHELL COMMANDS
+============================================================
+
+Shell commands are instructions entered in a shell to interact with Linux,
+manage files, inspect system information, and automate tasks.
+
+1.4.1 System Information Commands
+
+    whoami       Display current username
+    who          Show logged-in users
+    date         Display date and time
+    cal          Display a calendar, if installed
+    hostname     Display system hostname
+    uname -r     Display kernel version
+    uptime       Show running time and system load
+    free -h      Display memory usage
+    df -h        Display filesystem disk usage
+    du -sh       Display directory size
+    clear        Clear terminal screen
+    history      Show command history
+
+Examples:
+    whoami
+    hostname
+    date
+    uname -r
+    uptime
+    free -h
+    df -h
+
+1.4.2 Input and Output Redirection
+
+    >     Redirect output and overwrite destination
+    >>    Append output
+    <     Read input from a file
+    2>    Redirect standard error
+    &>    Redirect standard output and error in Bash
+
+Examples:
+
+Save directory listing:
+    ls -l > files.txt
+
+Append date:
+    date >> files.txt
+
+Save error output:
+    ls /invalid_directory 2> error.txt
+
+Read input from a file:
+    sort < names.txt
+
+1.4.3 Pipes
+
+A pipe (|) passes output from one command as input to another.
+
+Examples:
+    ls -l | less
+    ls -1 | wc -l
+    ps aux | grep ssh
+    cat names.txt | sort
+
+1.4.4 Wildcards
+
+    *       Any number of characters
+    ?       Exactly one character
+    [abc]   Any one listed character
+    [0-9]   Any one digit
+
+Examples:
+    ls *.txt
+    ls report*
+    ls file?.txt
+    ls file[0-9].txt
+
+1.4.5 Environment Variables
+
+Environment variables store information used by the shell and applications.
+
+Examples:
+    echo $HOME
+    echo $SHELL
+    echo $PATH
+
+Create a temporary shell variable:
+    COURSE="Linux Administration"
+    echo $COURSE
+
+Export it to child processes:
+    export COURSE="Linux Administration"
+
+1.4.6 Getting Help
+
+    ls --help
+    man ls
+    info ls
+    apropos network
+    which ls
+    type cd
+    type ls
+
+- --help commonly displays command help.
+- man opens a command's manual page.
+- apropos searches manual-page descriptions.
+- which locates an executable in the PATH.
+- type identifies how the shell interprets a command.
+
+============================================================
+1.5 TEXT PROCESSING
+============================================================
+
+Text processing means searching, filtering, extracting, modifying, and
+analyzing text using Linux commands. It is useful for configuration files,
+logs, reports, and user records.
+
+1.5.1 Common Text Processing Commands
+
+    cat     Display or concatenate files
+    head    Display beginning of a file
+    tail    Display end of a file
+    less    View large files interactively
+    wc      Count lines, words, and bytes
+    sort    Sort lines
+    uniq    Remove or count adjacent duplicates
+    cut     Extract selected fields or characters
+    grep    Search for matching text
+    sed     Stream editor for filtering and substitution
+    awk     Pattern scanning and text processing
+    tr      Translate or delete characters
+    tee     Send output to a file and standard output
+
+1.5.2 Create a Sample Student File
+
+    cat > students.txt <<EOF
+    Ram 80
+    Sita 90
+    Hari 75
+    Gita 85
+    Mina 95
+    EOF
+
+Display it:
+    cat students.txt
+
+Append a record:
+    echo "Rita 88" >> students.txt
+
+1.5.3 head and tail
+
+Display first five lines:
+    head -n 5 students.txt
+
+Display last three lines:
+    tail -n 3 students.txt
+
+Follow a log as it changes:
+    tail -f /var/log/syslog
+
+Note: Log filenames vary across distributions. Some systems use journalctl.
+
+1.5.4 wc
+
+Count lines:
+    wc -l students.txt
+
+Count words:
+    wc -w students.txt
+
+Count bytes:
+    wc -c students.txt
+
+Count characters:
+    wc -m students.txt
+
+1.5.5 grep
+
+grep searches for lines matching a pattern.
+
+Syntax:
+    grep [options] "pattern" filename
+
+Examples:
+    grep "Ram" students.txt
+    grep -i "ram" students.txt
+    grep -n "Sita" students.txt
+    grep -r "localhost" /etc
+    grep -c "Ram" students.txt
+    grep -v "Ram" students.txt
+
+- -i - case-insensitive search
+- -n - show matching line numbers
+- -r - search recursively
+- -c - count matching lines
+- -v - show non-matching lines
+
+1.5.6 cut
+
+Create a CSV file:
+    cat > students.csv <<EOF
+    Name,Age,Marks
+    Ram,20,80
+    Sita,21,90
+    Hari,22,75
+    EOF
+
+Extract first column:
+    cut -d ',' -f 1 students.csv
+
+Extract name and marks:
+    cut -d ',' -f 1,3 students.csv
+
+Here, -d specifies the delimiter and -f selects field numbers.
+
+1.5.7 sort and uniq
+
+Sort records alphabetically:
+    sort students.txt
+
+Sort by second field numerically:
+    sort -k2,2n students.txt
+
+Create repeated names:
+    printf "Ram
+Sita
+Ram
+Hari
+Sita
+" > names.txt
+
+Sort and remove adjacent duplicates:
+    sort names.txt | uniq
+
+Count repeated names:
+    sort names.txt | uniq -c
+
+Note: uniq detects adjacent duplicate lines, so sort is commonly used first.
+
+1.5.8 sed
+
+sed is a stream editor used for substitution, deletion, and filtering.
+
+Replace first occurrence of Ram on each line:
+    sed 's/Ram/Ramesh/' students.txt
+
+Replace all occurrences on each line:
+    sed 's/Ram/Ramesh/g' students.txt
+
+Display lines 1 through 3:
+    sed -n '1,3p' students.txt
+
+Delete line 3 from output:
+    sed '3d' students.txt
+
+Save modified output:
+    sed 's/Ram/Ramesh/g' students.txt > updated.txt
+
+1.5.9 awk
+
+awk is a text-processing language used to extract fields, calculate values,
+filter records, and generate reports.
+
+Basic syntax:
+    awk 'pattern { action }' filename
+
+Print first field:
+    awk '{print $1}' students.txt
+
+Print first and second fields:
+    awk '{print $1, $2}' students.txt
+
+Display students scoring at least 80:
+    awk '$2 >= 80 {print $1, $2}' students.txt
+
+Calculate average:
+    awk '{sum += $2; count++} END {print "Average:", sum/count}' students.txt
+
+Read CSV fields using comma delimiter:
+    awk -F ',' '{print $1, $3}' students.csv
+
+Practical analysis:
+    # Students scoring 80 or more
+    awk '$2 >= 80 {print $1, $2}' students.txt
+
+    # Sort marks from lowest to highest
+    sort -k2,2n students.txt
+
+    # Calculate average marks
+    awk '{sum += $2; n++} END {print sum/n}' students.txt
+
+    # Find highest mark
+    sort -k2,2nr students.txt | head -n 1
+
+For the five records Ram 80, Sita 90, Hari 75, Gita 85, Mina 95:
+- Average = 85
+- Highest mark = 95
+- Highest-scoring student = Mina
+
+============================================================
+1.6 JOB CONTROL
+============================================================
+
+Job control allows users to start, stop, suspend, resume, and manage
+processes running in the foreground or background.
+
+A process is an instance of a running program. Linux assigns each process
+a unique Process ID (PID).
+
+1.6.1 Foreground and Background Processes
+
+Foreground:
+Runs in the terminal and normally occupies it until completion or interruption.
+
+Example:
+    ping google.com
+
+Press Ctrl+C to interrupt the foreground process.
+
+Background:
+Runs without continuously occupying the terminal.
+
+Example:
+    ping google.com &
+
+1.6.2 Common Job Control Commands
+
+    jobs      List jobs in the current shell
+    bg        Resume a suspended job in the background
+    fg        Bring a job to the foreground
+    Ctrl+Z    Suspend the foreground job
+    Ctrl+C    Interrupt the foreground process
+    kill      Send a signal to a process
+    nohup     Run a command immune to hangup signals
+    wait      Wait for background jobs to finish
+
+1.6.3 Job Control Example
+
+Start a process:
+    ping 8.8.8.8
+
+Press Ctrl+Z to suspend it.
+
+List jobs:
+    jobs
+
+Illustrative output:
+    [1]+ Stopped ping 8.8.8.8
+
+Resume in background:
+    bg %1
+
+Bring it to foreground:
+    fg %1
+
+Press Ctrl+C to stop it.
+
+1.6.4 Process Management with ps
+
+Display processes for current terminal:
+    ps
+
+Display all processes:
+    ps aux
+
+Display process tree:
+    ps -ef --forest
+
+Find a process:
+    ps aux | grep ssh
+
+1.6.5 top and htop
+
+Run real-time process monitor:
+    top
+
+Useful keys in top:
+- P - sort by CPU usage
+- M - sort by memory usage
+- k - send a signal to a process
+- q - quit
+
+htop provides an interactive process monitor, if installed:
+    htop
+
+Install on Ubuntu:
+    sudo apt install htop
+
+1.6.6 kill, pgrep, and pkill
+
+Send the default termination signal to a PID:
+    kill 1234
+
+Forcefully terminate a process:
+    kill -9 1234
+
+Find process IDs:
+    pgrep -a ssh
+
+Send termination signal by process name:
+    pkill -TERM process_name
+
+Check matching processes before signaling them to avoid affecting
+unintended programs.
+
+1.6.7 nohup
+
+nohup allows a process to continue after a terminal session ends,
+subject to system and process-management policies.
+
+Example:
+    nohup python3 script.py > output.log 2>&1 &
+
+Explanation:
+- nohup - ignores hangup signals
+- python3 script.py - runs the script
+- > output.log - redirects standard output
+- 2>&1 - redirects standard error to the same destination
+- & - runs in the background
+
+Check the process:
+    ps aux | grep script.py
+
+Example background backup:
+    tar -czf backup.tar.gz /home/student &
+
+List jobs:
+    jobs
+
+============================================================
+1.7 FILESYSTEM CONCEPTS
+============================================================
+
+A filesystem is a method used by an operating system to organize, store,
+retrieve, and manage files on storage devices.
+
+Linux uses a hierarchical directory structure starting at the root (/).
+
+1.7.1 Linux Filesystem Hierarchy
+
+    /          Root of the directory hierarchy
+    /bin       Essential user commands (may link to /usr/bin)
+    /boot      Boot files and kernel images
+    /dev       Device files
+    /etc       System configuration files
+    /home      Regular users' home directories
+    /lib       Essential shared libraries (may link to /usr/lib)
+    /media     Removable media mount points
+    /mnt       Common temporary mount point
+    /opt       Optional application software
+    /proc      Virtual process and kernel information
+    /root      Root user's home directory
+    /run       Runtime system data
+    /sbin      System administration commands (may link to /usr/sbin)
+    /srv       Data served by system services
+    /tmp       Temporary files
+    /usr       User applications and shared resources
+    /var       Variable data, such as logs and caches
+
+1.7.2 Common Linux Filesystems
+
+    ext4    Common Linux journaling filesystem
+    ext3    Older Linux journaling filesystem
+    ext2    Older Linux filesystem without journaling
+    XFS     High-performance journaling filesystem
+    Btrfs   Copy-on-write filesystem with snapshots and other features
+    FAT32   Widely compatible filesystem
+    NTFS    Common Windows filesystem
+    Swap    Disk space used as virtual memory
+
+1.7.3 Linux File Types
+
+    -    Regular file
+    d    Directory
+    l    Symbolic link
+    c    Character device
+    b    Block device
+    p    Named pipe
+    s    Socket
+
+Display file types:
+    ls -l
+
+Identify a file:
+    file student.txt
+
+1.7.4 Mounting and Unmounting
+
+Mounting makes a filesystem available at a directory called a mount point.
+
+Display filesystem space:
+    df -h
+
+Display block devices and mount points:
+    lsblk
+
+Display mounted filesystems:
+    findmnt
+
+Example mount command (device and mount point must be verified):
+    sudo mount /dev/sdb1 /mnt
+
+Unmount:
+    sudo umount /mnt
+
+WARNING:
+The device /dev/sdb1 is only an example. Verify the correct device with
+lsblk before mounting or formatting. Formatting can destroy data.
+
+1.7.5 Disk Space and Inodes
+
+An inode stores filesystem metadata such as ownership, permissions, size,
+and references to data blocks.
+
+Check disk space:
+    df -h
+
+Check inode utilization:
+    df -i
+
+Check directory size:
+    du -sh /home/student
+
+Display disk partitions:
+    lsblk
+
+Display filesystem details:
+    findmnt -o TARGET,SOURCE,FSTYPE,OPTIONS
+
+A filesystem can run out of inodes even when disk space remains available,
+especially when it contains a very large number of small files.
+
+1.7.6 Hard Links and Symbolic Links
+
+Hard link:
+Another directory entry referring to the same underlying file data and inode.
+
+    ln original.txt hardlink.txt
+
+Symbolic link:
+A separate filesystem object storing a pathname to another file or directory.
+
+    ln -s original.txt symlink.txt
+
+Display inode information:
+    ls -li
+
+The original file and hard link normally have the same inode number.
+A symbolic link has its own inode.
+
+============================================================
+1.8 PACKAGE MANAGEMENT
+============================================================
+
+Package management is the process of installing, updating, configuring,
+and removing software packages in Linux.
+
+A package manager automates software installation, dependency resolution,
+upgrades, and removal.
+
+1.8.1 What is a Package?
+
+A software package is a collection of files and metadata used to distribute
+and install an application.
+
+It may contain:
+- Application executables
+- Configuration files
+- Libraries and dependencies
+- Installation scripts
+- Package metadata and version information
+
+1.8.2 Common Linux Package Managers
+
+    APT       Debian and Ubuntu       .deb
+    DPKG      Debian and Ubuntu       .deb
+    DNF       Fedora and newer RHEL-based systems   .rpm
+    YUM       Older RHEL-based systems              .rpm
+    RPM       Fedora and RHEL-based systems         .rpm
+    Pacman    Arch Linux             .pkg.tar.*
+    Zypper    openSUSE               .rpm
+
+1.8.3 APT Package Management (Ubuntu/Debian)
+
+Update package index:
+    sudo apt update
+
+Upgrade installed packages:
+    sudo apt upgrade
+
+Install a package:
+    sudo apt install nginx
+
+Remove a package:
+    sudo apt remove nginx
+
+Purge a package and package-managed configuration:
+    sudo apt purge nginx
+
+Search for a package:
+    apt search apache2
+
+Display package information:
+    apt show nginx
+
+Remove unused dependencies:
+    sudo apt autoremove
+
+List installed packages:
+    apt list --installed
+
+Find which package owns an installed file:
+    dpkg -S /usr/bin/ls
+
+1.8.4 DNF Package Management
+
+Install:
+    sudo dnf install nginx
+
+Upgrade:
+    sudo dnf upgrade
+
+Search:
+    dnf search nginx
+
+Display information:
+    dnf info nginx
+
+Remove:
+    sudo dnf remove nginx
+
+List installed packages:
+    dnf list installed
+
+1.8.5 Installing a Local DEB Package
+
+Using APT:
+    sudo apt install ./package.deb
+
+Using DPKG:
+    sudo dpkg -i package.deb
+
+Attempt to resolve missing dependencies:
+    sudo apt --fix-broken install
+
+1.8.6 Repository vs Manual Installation
+
+Repository installation:
+- Uses configured software repositories.
+- Package manager handles dependencies.
+- Updates are generally integrated into package management.
+- Example: sudo apt install nginx
+
+Manual installation:
+- Uses downloaded packages or source code.
+- Dependencies may require manual handling.
+- Updates may need separate handling.
+
+1.8.7 Example: Install and Start Apache on Ubuntu
+
+Update package index:
+    sudo apt update
+
+Install Apache:
+    sudo apt install apache2
+
+Check service status:
+    systemctl status apache2
+
+Start the service:
+    sudo systemctl start apache2
+
+Enable it at boot:
+    sudo systemctl enable apache2
+
+Test locally:
+    curl http://localhost
+
+============================================================
+PRACTICAL WORKS
+============================================================
+
+PRACTICAL 1: CREATE AND MANAGE FILES AND DIRECTORIES
+
+Objective:
+Practice directory navigation, file creation, copying, moving, renaming,
+deleting, permissions, and archiving.
+
+Step 1: Create a working directory
+    mkdir -p ~/Linux_Practical/Unit1
+    cd ~/Linux_Practical/Unit1
+    pwd
+
+Step 2: Create directories
+    mkdir Documents
+    mkdir Reports
+    mkdir Scripts
+    mkdir Backup
+
+Step 3: Create files
+    touch Documents/student.txt
+    touch Reports/marks.txt
+    touch Scripts/test.sh
+
+Step 4: Write content
+    echo "Linux System Administration" > Documents/student.txt
+    echo "Ram 80" > Reports/marks.txt
+    echo "Sita 90" >> Reports/marks.txt
+    echo "Hari 75" >> Reports/marks.txt
+
+Step 5: Display files
+    ls -l
+    ls -R
+    cat Documents/student.txt
+    cat Reports/marks.txt
+
+Step 6: Copy and rename
+    cp Documents/student.txt Backup/
+    mv Backup/student.txt Backup/student_backup.txt
+
+Step 7: Change permissions
+    chmod 644 Documents/student.txt
+    chmod 755 Scripts/test.sh
+    ls -l
+
+Step 8: Find files
+    find . -type f
+    find . -name "*.txt"
+
+Step 9: Check directory usage
+    du -sh .
+
+Step 10: Create a compressed archive
+    cd ~/Linux_Practical
+    tar -czf Unit1_Backup.tar.gz Unit1
+
+Verify archive:
+    tar -tzf Unit1_Backup.tar.gz
+
+Expected structure:
+    Linux_Practical/
+    +-- Unit1/
+        +-- Documents/
+        |   +-- student.txt
+        +-- Reports/
+        |   +-- marks.txt
+        +-- Scripts/
+        |   +-- test.sh
+        +-- Backup/
+            +-- student_backup.txt
+
+PRACTICAL 2: TEXT PROCESSING WITH grep, awk, sed
+
+Objective:
+Practice searching, filtering, extracting, modifying, and analyzing text.
+
+Step 1: Create student records
+    cd ~/Linux_Practical/Unit1
+
+    cat > students.txt <<EOF
+    Ram 80
+    Sita 90
+    Hari 75
+    Gita 85
+    Mina 95
+    Rita 60
+    EOF
+
+Step 2: Display records
+    cat students.txt
+
+Step 3: Search for Ram
+    grep "Ram" students.txt
+
+Step 4: Display students scoring at least 80
+    awk '$2 >= 80 {print $1, $2}' students.txt
+
+Step 5: Replace Ram with Ramesh
+    sed 's/Ram/Ramesh/' students.txt
+
+Step 6: Sort marks descending
+    sort -k2,2nr students.txt
+
+Step 7: Count records
+    wc -l students.txt
+
+Step 8: Calculate average
+    awk '{sum += $2; count++} END {print "Average Marks:", sum/count}' students.txt
+
+Step 9: Find highest-scoring student
+    sort -k2,2nr students.txt | head -n 1
+
+Step 10: Save filtered results
+    awk '$2 >= 80 {print $1, $2}' students.txt > passed_students.txt
+    cat passed_students.txt
+
+Expected results:
+- Total students: 6
+- Average marks: approximately 80.83
+- Highest mark: 95
+- Highest-scoring student: Mina
+- Students scoring 80 or above: Ram, Sita, Gita, Mina
+
+PRACTICAL 3: PROCESS MANAGEMENT AND JOB CONTROL
+
+Objective:
+Identify, monitor, suspend, resume, and terminate Linux processes.
+
+Step 1: Display processes
+    ps
+
+Step 2: Display all processes
+    ps aux
+
+Step 3: Display process tree
+    ps -ef --forest
+
+Step 4: Monitor system
+    top
+
+Press q to exit.
+
+Step 5: Start a background process
+    sleep 300 &
+
+Step 6: Display current shell jobs
+    jobs
+
+Step 7: Find process ID
+    pgrep -a sleep
+
+Step 8: Start a foreground process
+    sleep 300
+
+Press Ctrl+Z to suspend it.
+
+Step 9: Resume in background
+    bg
+
+Step 10: Bring to foreground
+    fg
+
+Press Ctrl+C to stop it.
+
+Step 11: Start and terminate a background process
+    sleep 300 &
+    jobs
+
+Use the actual job number shown:
+    kill %1
+
+Step 12: Check uptime and memory
+    uptime
+    free -h
+
+============================================================
+UNIT 1: PRACTICE EXERCISES
+============================================================
+
+EXERCISE 1: BASIC LINUX COMMANDS
+
+1. Display your current working directory.
+2. Display the current username and hostname.
+3. List all files, including hidden files.
+4. Display the Linux kernel version.
+
+EXERCISE 2: FILE MANAGEMENT
+
+1. Create a directory named Linux_Assignment.
+2. Create five text files inside it.
+3. Copy two files into a Backup directory.
+4. Rename one file and delete another.
+5. Set the permissions of a text file to 640.
+
+EXERCISE 3: TEXT PROCESSING
+
+1. Create a file containing 10 student records and their marks.
+2. Use grep to search for a particular student.
+3. Use awk to display students scoring above 70.
+4. Use sed to replace a student's name.
+5. Calculate average marks using awk.
+6. Sort student records by marks in descending order.
+
+EXERCISE 4: JOB CONTROL AND PROCESS MANAGEMENT
+
+1. Display all running processes using ps.
+2. Monitor system processes using top.
+3. Start a sleep command in the background.
+4. Suspend and resume a foreground process.
+5. Find and terminate a process using its PID.
+
+EXERCISE 5: FILESYSTEM AND PACKAGE MANAGEMENT
+
+1. Display available disk space using df -h.
+2. Display disk partitions using lsblk.
+3. Check the size of your practical directory.
+4. Update the APT package index on Ubuntu.
+5. Search for and display information about the curl package.
+
+============================================================
+IMPORTANT EXAM QUESTIONS
+============================================================
+
+SHORT-ANSWER QUESTIONS
+
+1. Define open-source software and give four examples.
+2. What is Linux? Explain any four features.
+3. Differentiate between Unix and Linux.
+4. What is a Linux kernel?
+5. Define shell and CLI.
+6. Write the general syntax of a Linux command with an example.
+7. What is the difference between absolute and relative paths?
+8. Explain the purpose of pwd, ls, cd, and mkdir.
+9. What is the difference between > and >>?
+10. Define Linux file permissions. Explain r, w, and x.
+11. What is the difference between grep, sed, and awk?
+12. What is a process? Define PID.
+13. Differentiate between foreground and background processes.
+14. What is the purpose of jobs, bg, and fg?
+15. What is a Linux filesystem? Give examples of Linux filesystems.
+16. Differentiate between hard links and symbolic links.
+17. What is mounting in Linux?
+18. What is package management? Give examples of Linux package managers.
+19. Differentiate between apt update and apt upgrade.
+20. Explain the purpose of /etc, /home, /var, and /tmp.
+
+LONG-ANSWER QUESTIONS
+
+1. Explain open-source software, its characteristics, advantages, and
+   disadvantages with suitable examples.
+
+2. Explain Linux system architecture with a neat diagram and describe
+   the functions of its major components.
+
+3. Explain Linux command syntax and demonstrate common file and directory
+   management commands with examples.
+
+4. Explain Linux file permissions and ownership. Demonstrate chmod and
+   chown with suitable examples.
+
+5. Describe text-processing commands grep, awk, and sed with appropriate
+   practical examples.
+
+6. Explain Linux job control and process management using ps, top, jobs,
+   bg, fg, and kill.
+
+7. Explain the Linux filesystem hierarchy and the functions of its
+   major directories.
+
+8. Explain mounting, filesystem types, disk usage, and inode management
+   in Linux.
+
+9. Explain Linux package management and demonstrate software installation,
+   updating, searching, and removal using APT.
+
+10. Describe how to create, organize, search, process, and back up files
+    using Linux CLI commands.
+
+============================================================
+UNIT 1: QUICK REVISION
+============================================================
+
+Open-source software:
+Source code, licensing, modification, redistribution.
+
+Linux architecture:
+Hardware, kernel, libraries, shell, utilities, applications.
+
+File management:
+pwd, ls, cd, mkdir, touch, cp, mv, rm.
+
+Shell commands:
+whoami, uname, history, echo, pipes, redirection.
+
+Text processing:
+grep, awk, sed, cut, sort, wc.
+
+Job control:
+jobs, bg, fg, &, Ctrl+Z, kill.
+
+Filesystem:
+ /, /home, /etc, /var, df, du, lsblk.
+
+Package management:
+apt, dpkg, dnf, rpm.
+
+STUDY TIP:
+Practice each command in an Ubuntu virtual machine or Linux terminal.
+Understand the output and complete the practical exercises to prepare
+for both theory and practical examinations.
