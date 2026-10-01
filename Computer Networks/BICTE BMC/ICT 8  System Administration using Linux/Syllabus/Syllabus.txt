@@ -1,0 +1,309 @@
+
+====================================================
+COURSE TITLE: SYSTEM ADMINISTRATION USING LINUX
+====================================================
+
+
+
+Course No.: ICT. Ed. 486
+Nature of course: Theoretical + Practical
+Level: Bachelor
+Credit Hour: 3 hours (1.5T+1.5P)
+Program: BICTE
+Teaching Hour: 48 hours (24+24)
+Semester: Eight
+
+
+
+
+
+
+
+
+1. COURSE DESCRIPTION
+
+This course provides students with the skills to install, configure, and troubleshoot computer networks and 
+system administration using Linux. The course covers server/client installation and configuration, IP, DHCP, 
+Name Server, DNS, Web server, file, print, and mail server configuration and troubleshooting.
+
+
+
+
+
+
+
+
+2. GENERAL OBJECTIVES
+
+The general objectives of this course are:
+• To provide knowledge in system administration and computer networks, including components, features, and architecture.
+• To explore network standards, protocols, and access methods for network system implementation.
+• To develop skills in the installation, configuration, and management of network services.
+• To describe actions for enforcing network-level security.
+
+
+
+
+
+
+
+
+
+3. COURSE OUTLINES
+
+
+
+
+
+
+
+UNIT 1: INTRODUCTION TO LINUX AND CLI COMMANDS
+====================================================
+Teaching Hours: 5 Theory + 5 Practical
+
+Specific Objectives:
+• Understand the foundational principles and advantages of open-source software and its role in modern computing.
+• Gain proficiency in navigating Unix and Linux systems, including command syntax, file management, and shell commands.
+• Develop skills in text processing and job control for efficient system administration and task automation.
+• Learn filesystem concepts and package management to effectively manage system resources and software installations.
+
+Contents:
+1.1 Introduction to Open-Source Software
+1.2 Unix System Architecture, Linux Differences, Using a Linux System, Command Syntax
+1.3 File Management
+1.4 Shell Commands
+1.5 Text Processing
+1.6 Job Control
+1.7 Filesystem Concepts
+1.8 Package Management
+
+
+
+
+Practical Works:
+• Create and manage files and directories using CLI commands.
+• Practice text processing with commands like grep, awk, sed.
+• Manage processes using ps, top, and job control commands.
+
+
+
+
+
+
+
+
+
+
+
+UNIT 2: INSTALLATION, BOOT PROCESS AND USER ADMINISTRATION
+====================================================
+Teaching Hours: 5 Theory + 5 Practical
+
+Specific Objectives:
+• Perform Linux installation, manage the boot sequence, and configure kernel and boot loaders.
+• Manage user accounts, groups, password policies, and authentication settings.
+• Configure file permissions and access control lists for secure resource management.
+
+Contents:
+2.1 Linux Installation, Network-Based Installation, Boot Sequence, Kernel Initialization, Boot Loaders, Kernel Modules
+2.2 User Account Management, Group Administration, Password Policies, Authentication Configuration, File Permissions, Access Control Lists
+
+Practical Works:
+• Install Linux on a virtual machine and configure boot loader settings.
+• Create, modify, and delete user accounts and groups.
+• Set file and directory permissions and configure ACLs.
+
+
+
+
+
+
+
+
+
+
+
+
+UNIT 3: DISK QUOTAS, STORAGE MANAGEMENT, AND NETWORK CONFIGURATION
+=============================================================================
+Teaching Hours: 5 Theory + 5 Practical
+
+Specific Objectives:
+• Configure and manage disk quotas to control user storage usage.
+• Implement RAID levels for data redundancy and performance optimization.
+• Create and manage logical volumes for flexible storage allocation.
+• Configure and manage IPv4 and IPv6 addressing and routing.
+• Diagnose and resolve network connectivity issues using troubleshooting tools.
+
+Contents:
+3.1 Quotas, RAID Implementation, Logical Volumes, Disk and Inode limits.
+3.2 IPv4 and IPv6 Addresses, IP Configuration, Network Troubleshooting
+
+Practical Works:
+• Configure and manage disk quotas for users.
+• Implement RAID 1 using mdadm.
+• Configure static and dynamic IP addresses and troubleshoot network connectivity.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UNIT 4: NETWORK SERVICES AND FILE SHARING
+====================================================
+Teaching Hours: 5 Theory + 5 Practical
+
+Specific Objectives:
+• Configure DNS and DHCP servers.
+• Demonstrate hostname resolution.
+• Set up and manage FTP, NFS, and Samba servers.
+• Apply best practices for secure file sharing and directory access.
+
+Contents:
+4.1 DNS and DHCP Configuration, Hostname Resolution, DNS Queries, Implementing Servers
+4.2 FTP, NFS, Samba Server Configuration, Directory Access
+
+Practical Works:
+• Configure a DNS server and resolve domain names.
+• Set up and manage a DHCP server.
+• Configure and share directories using Samba and NFS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UNIT 5: WEB, EMAIL, DATABASE SERVICES, AND NETWORK SECURITY
+=====================================================================
+Teaching Hours: 4 Theory + 4 Practical
+
+Specific Objectives:
+• Configure Apache, MySQL, Postfix, and Dovecot for seamless operations.
+• Troubleshoot and resolve issues in servers and networks.
+• Secure systems using SSL/TLS, SSH, and firewalls.
+• Implement ACLs and anti-spam measures for security.
+
+Contents:
+5.1 Apache, HTTPD, Email Operations (SMTP, Postfix, Dovecot)
+5.2 MySQL Administration.
+5.3 Cryptography, SSH, Firewall Configuration, ACLs
+
+Practical Works:
+• Set up a basic Apache web server and host a sample website.
+• Configure an email server using Postfix and Dovecot.
+• Secure a Linux server using SSH keys, configure a firewall with iptables or firewalld.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. INSTRUCTIONAL TECHNIQUES
+====================================================
+The instructional techniques for this course are divided into two groups. First group consists of general 
+instructional techniques applicable to most of the units. The second group consists of specific instructional 
+techniques applicable to particular units.
+
+4.1 General Techniques
+
+Reading materials will be provided to students in each unit. Lecture, Discussion, use of multimedia 
+projector, brain storming are used in all units.
+
+4.2 Specific Instructional Techniques
+
+Demonstration is an essential instructional technique for all units in this course during teaching learning process. 
+Specifically, demonstration with practical works will be specific instructional technique in this course.
+
+
+
+
+
+
+
+
+
+
+
+5. EVALUATION
+====================================================
+Internal Assessment: 40 Points
+External Practical Exam/Viva: 20 Points
+Semester Examination: 40 Points
+Total Marks: 100 Points
+
+Note: Students must pass separately in internal assessment, external practical exam and semester examination.
+
+5.1 Internal Evaluation (40 Points)
+
+Internal evaluation will be conducted by subject teacher based on following criteria:
+
+1) Class Attendance: 5 points
+2) Learning activities and class performance: 5 points
+3) First assignment (written assignment): 10 points
+4) Second assignment (Case Study/project work with presentation): 10 points
+5) Terminal Examination: 10 Points
+
+Total: 40 points
+
+5.2 Semester Examination (40 Points)
+
+Examination Division, Dean office will conduct final examination at the end of semester.
+
+1) Objective question (Multiple choice 10 questions x 1 mark): 10 Points
+2) Subjective answer questions (6 questions x 5 marks): 30 Points
+
+Total: 40 points
+
+5.3 External Practical Exam/Viva (20 Points)
+
+Examination Division, Dean Office will conduct final practical examination at the end of semester.
+
+
+
+
+
+
+
+
+
+6. RECOMMENDED BOOKS AND REFERENCES MATERIALS
+====================================================
+Recommended Books:
+• Negus, C. (2020). Linux Bible (10th ed.). Wiley.
+
+Reference Materials:
+• Negus, C. (2025). Linux Bible (11th ed.). Wiley.
+• Nemeth, E., Snyder, G., Hein, T. R., Whaley, B., & Mackin, D. (2021). UNIX and Linux system administration handbook (5th ed.). Addison-Wesley.
+• Fox, R. (2021). Linux with Operating System Concepts (2nd ed.). CRC Press.
+• Wale Soyinka, W. (2020). Linux Administration: A Beginners Guide (8th ed.). McGraw Hill.
+• Limoncelli, T. A., Hogan, C.J., & Chalup, S. R. (2017). The practice of system and network administration (3rd ed.). Addison-Wesley.
+• Rankin, K., & Hill, B. M. (2013). The official Ubuntu server book (3rd ed.). Pearson.
+• Smith, R.W. (2002). Advanced Linux Networking (1st ed.). Addison-Wesley Professional.
+• Frisch, Æ. (2002), Essential System Administration: Tools and Techniques for Linux and Unix Administration, 3rd Edition, O'Reilly.
