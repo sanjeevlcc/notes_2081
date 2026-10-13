@@ -117,22 +117,99 @@ Course Details
 
 Course Support and Other Resources
 ===============================================================
+Discussion Forum
+---------------------------------------
+        You can use the Cloud & Containers Training Forum [https://forum.linuxfoundation.org/categories/cloud-containers-training/ ]to connect with other learners 
+        and ask course/learning path-related questions.
+        
+        When creating a new discussion, include the course number or learning path 
+        name in the title. For example:
+        
+                LFDxxx – Lab 2.1 Issue
+                LFSxxx – Question About Containers
+                LFELxxxx - Question About Kubernetes Troubleshooting
+                
+        
+        Use the forum to:
+        ---------------------------
+                Introduce yourself to other learners.
+                Ask questions about course/learning path content, lab exercises, tools, and technologies.
+                Report content or lab issues.
+                Share tips, solutions, and learning resources.
+                Review previous discussions and solutions.
+                Share resources and ideas related to the topics covered in the course.
+                Stay informed about course updates and announcements (check the forum regularly!).
+                Tips for getting help:
+                Search existing discussions before creating a new post. Your question may have already been answered.
+                Include relevant details, such as the course number, lab exercise number, error messages, and the steps you have already taken to troubleshoot the issue.
+                Be as specific as possible to help moderators and fellow learners provide accurate assistance.
+
+
+
+
+
+
+
+
+
+
+
+Customer support - questions about enrollment, your LF Account, etc.
+========================================================================
+For questions related to enrollment, purchases, subscriptions, accounts, certificates, digital badges, or other administrative matters, please contact Linux Foundation Education Customer Support via the Support system.
+
+
+
+Keep in mind:
+        Customer Support is available Monday through Friday (closed on weekends and holidays).
+        Response times may vary depending on volume and complexity, and it may take several business days to receive a reply.
+
+
+
+
+Important:
+            The team that monitors the discussion forum does not have access to the Customer Support system and cannot view, update, escalate, or provide status information about support tickets. 
+            If you have submitted a support request, please communicate directly with the Customer Support Team via the Support system, where you can also track your request's status through to resolution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Copyright and usage information
+----------------------------------------
+Copyright 2020-2024, The Linux Foundation.
+
+This course is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC-BY-SA-4.0), except for content from other sources where a different license is otherwise noted.
+
+
+
+
+
+
+
 
 
 Meet Your Instructor: Chris Pokorni
 ===============================================================
 
+Meet Your Instructor: Chris Pokorni
+-----------------------------------------------
+Chris Pokorni is the founder of NQB8 Cloud Tech Consulting and an independent 
+instructor for The Linux Foundation. Chris holds both CKA and CKAD certificates
+and teaches Kubernetes courses for Administrators and Application Developers. 
 
-
-===============================================================
-
-
-
-
-
-
-
-
+As a consultant for small and global enterprises alike, Chris led workshops 
+and designed HA Middleware/ESB, Datacenter Monitoring and Hybrid Cloud Architecture solutions.
 
 
 
@@ -144,21 +221,11 @@ Meet Your Instructor: Chris Pokorni
 
 
 
-
-
-
-
-
-
-
-****************************************************************************
-****************************************************************************
 ****************************************************************************
 ****************************************************************************
 The Linux Foundation
 ****************************************************************************
 ****************************************************************************
-****************************************************************************
-****************************************************************************
+
 
 
