@@ -106,7 +106,7 @@ The Legacy Monolith
 
 
 The Modern Microservice
---------------------
+-------------------------
         
         Pebbles, as opposed to the 1000-ton boulder, are much easier to handle. They are carved out of the monolith, 
         separated from one another, becoming distributed components each described by a set of specific characteristics. 
@@ -142,16 +142,140 @@ The Modern Microservice
 
 
 
-ccc
+Refactoring
 --------------------
 
+                Newer, more modern enterprises possess the knowledge and technology to build cloud native applications
+                that power their business.
+                
+                Unfortunately, that is not the case for established enterprises running on legacy monolithic applications. 
+                Some have tried to run monoliths as microservices, and as one would expect, it did not work very well. The 
+                lessons learned were that a monolithic size multi-process application cannot run as a microservice and that 
+                other options had to be explored. The next natural step in the path of the monolith to microservices transition 
+                was refactoring. However, migrating a decades-old application to the cloud through refactoring poses serious 
+                challenges and the enterprise faces the refactoring approach dilemma: a "Big-bang" approach or an incremental
+                refactoring.
+                
+                A so-called "Big-bang" approach focuses all efforts with the refactoring of the monolith, postponing the 
+                development and implementation of any new features - essentially delaying progress and possibly, in the process, 
+                even breaking the core of the business, the monolith.
+                
+                An incremental refactoring approach guarantees that new features are developed and implemented as modern 
+                microservices which are able to communicate with the monolith through APIs, without appending to the monolith's code. 
+                In the meantime, features are refactored out of the monolith which slowly fades away while all, or most its 
+                functionality is modernized into microservices. This incremental approach offers a gradual transition from a 
+                legacy monolith to modern microservices architecture and allows for phased migration of application features
+                into the cloud.
+                
+                Once an enterprise chooses the refactoring path, there are other considerations in the process. Which business
+                components to separate from the monolith to become distributed microservices, how to decouple the databases 
+                from the application to separate data complexity from application logic, and how to test the new 
+                microservices and their dependencies, are just a few of the decisions an enterprise is faced with during 
+                refactoring.
+                
+                The refactoring phase slowly transforms the monolith into a cloud-native application which takes full advantage 
+                of cloud features, by coding in new programming languages and applying modern architectural patterns. Through 
+                refactoring, a legacy monolith application receives a second chance at life - to live on as a modular system 
+                adapted to fully integrate with today's fast-paced cloud automation tools and services.
 
 
 
 
 
-ccc
+
+
+
+Challenges
 --------------------
+
+                The refactoring path from a monolith to microservices is not smooth and without challenges. Not all monoliths 
+                are perfect candidates for refactoring, while some may not even "survive" such a modernization phase. When 
+                deciding whether a monolith is a possible candidate for refactoring, there are many possible issues to consider.
+                
+                When considering a legacy Mainframe based system, written in older programming languages - Cobol or Assembler, it
+                may be more economical to just re-build it from the ground up as a cloud native application. A poorly designed
+                legacy application should be re-designed and re-built from scratch following modern architectural patterns for 
+                microservices and even containers. Applications tightly coupled with data stores are also poor candidates for refactoring.
+                
+                Once the monolith survived the refactoring phase, the next challenge is to design mechanisms or find suitable 
+                tools to keep alive all the decoupled modules to ensure application resiliency as a whole.
+                
+                Choosing runtimes may be another challenge. If deploying many modules on a single physical or virtual server, chances
+                are that different libraries and runtime environments may conflict with one another, causing errors and failures. This
+                forces deployments of single modules per servers in order to separate their dependencies - not an economical way of 
+                resource management, and no real segregation of libraries and runtimes, as each server also has an underlying Operating
+                System running with its libraries, thus consuming server resources - at times the OS consuming more resources than 
+                the application module itself.
+                
+                Eventually a solution emerged to tackle these refactoring challenges. Application containers came along providing 
+                encapsulated lightweight runtime environments for application modules. Containers promised consistent software environments
+                for developers, testers, all the way from Development to Production. Wide support of containers ensured application 
+                portability from physical bare-metal to Virtual Machines, but this time with multiple applications deployed on the very
+                same server, each running in their own execution environments isolated from one another, thus avoiding conflicts, errors,
+                and failures. Other features of containerized application environments are higher server utilization, individual module
+                scalability, flexibility, interoperability and easy integration with automation tools.
+                
+
+
+
+
+
+
+
+
+Success Stories
+--------------------
+        
+        Although a challenging process, moving from monoliths to microservices is a rewarding journey especially 
+        once a business starts to see growth and success delivered by a refactored application system. Below we 
+        are listing only a handful of the success stories of companies which rose to the challenge to modernize
+        their monolith business applications. A detailed list of success stories is available at the
+        Kubernetes website: 
+        
+                        Kubernetes User Case Studies[ https://kubernetes.io/case-studies/ ] .
+        
+        
+        
+        Case Studies
+        --------------------
+        
+                        Close AppDirect
+                        --------------------
+                        AppDirect - an end-to-end commerce platform provider, started from a complex monolith application 
+                        and through refactoring was able to retain limited functionality monoliths receiving very few 
+                        commits, but all new features implemented as containerized microservices.
+                        
+                        
+                        
+                        
+                        Close box
+                        --------------------
+                        box - a cloud storage solutions provider, started from a complex monolith architecture and through
+                        refactoring was able to decompose it into microservices.
+                        
+                        
+                        Close Crowdfire
+                        --------------------
+                        Crowdfire - a content management solutions provider, successfully broke down their initial monolith
+                        into microservices.
+                        
+                        
+                        Close GolfNow
+                        --------------------
+                        GolfNow - a technology and services provider, decided to break their monoliths apart into 
+                        containerized microservices.
+                        
+                        
+                        
+                        
+                        Close Pinterest
+                        --------------------
+                        Pinterest - a social media services provider, started the refactoring process by first migrating
+                        their monolith API.
+        
+        
+        
+        
 
 
 
