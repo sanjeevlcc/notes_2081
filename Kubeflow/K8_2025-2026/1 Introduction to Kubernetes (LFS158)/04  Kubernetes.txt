@@ -307,6 +307,31 @@ Kubernetes Users
 --------------------
 
 
+In less than a decade since its debut Kubernetes has become the platform of choice
+for many enterprises of various sizes to run their workloads. It is a solution for
+workload management in banking, education, finance and investments, gaming, information
+technology, media and streaming, online retail, ridesharing, telecommunications, nuclear
+research, and many other industries. There are numerous user case studies and success
+stories on the Kubernetes website:
+
+                BlackRock
+                Booking.com
+                Box
+                CapitalOne
+                Huawei
+                IBM
+                ING
+                Nokia
+                OpenAI
+                Pearson
+                Spotify
+                Wikimedia
+                And many more.
+
+
+
+
+
 
 
 
@@ -315,7 +340,68 @@ Kubernetes Users
 
 Cloud Native Computing Foundation (CNCF)
 -----------------------------------------
-
+        
+        The Cloud Native Computing Foundation (CNCF) is one of the largest sub-projects
+        hosted by the Linux Foundation. CNCF aims to accelerate the adoption of containers,
+        microservices, and cloud native applications.
+        
+        
+        CNCF hosts a multitude of projects, with more to be added in the future. CNCF
+        provides resources to each of the projects, but, at the same time, each project
+        continues to operate independently under its pre-existing governance structure and
+        with its existing maintainers. Projects within CNCF are categorized based on their
+        maturity levels: Sandbox, Incubating, and Graduated. At the time of this writing,
+        over a dozen projects had reached Graduated status with many more Incubating and
+        in the Sandbox.
+        
+        
+                
+                Popular graduated projects (as of March 2024):
+                -----------------------------------------
+                                Kubernetes container orchestrator                        https://kubernetes.io/
+                                Argo workflow engine for Kubernetes                      https://argoproj.github.io/
+                                etcd distributed key-value store                         https://etcd.io/
+                                CoreDNS DNS server                                       https://coredns.io/
+                                containerd container runtime                             https://containerd.io/
+                                CRI-O container runtime                                  https://cri-o.io/
+                                Envoy cloud native proxy                                 https://www.envoyproxy.io/                      
+                                Fluentd for unified logging                                   https://www.fluentd.org/
+                                Flux continuous delivery for Kubernetes                       https://fluxcd.io/
+                                Harbor registry                                               https://goharbor.io/
+                                Helm package management for Kubernetes                        https://helm.sh/
+                                Linkerd service mesh for Kubernetes                           https://linkerd.io/
+                                Open Policy Agent policy engine                               https://www.openpolicyagent.org/
+                                Prometheus monitoring system and time series DB               https://prometheus.io/
+                                Rook cloud native storage orchestrator for Kubernetes         https://rook.io/
+                
+                
+                
+                Key incubating projects:
+                -----------------------------------------
+                                Buildpacks.io builds application images                          https://buildpacks.io/
+                                Contour ingress controller for Kubernetes                        https://projectcontour.io/
+                                gRPC for remote procedure call (RPC)                             https://grpc.io/
+                                CNI for Linux containers networking                              https://www.cni.dev/
+                                Knative serverless containers in Kubernetes                      https://knative.dev/
+                                KubeVirt Kubernetes based Virtual Machine manager                https://kubevirt.io/
+                                Notary for data security                                         https://github.com/notaryproject/notary
+                                And many more.                                                https://www.cncf.io/projects/
+        
+        
+        
+        There are many dynamic projects in the CNCF Sandbox [ https://www.cncf.io/sandbox-projects/   ]  geared towards 
+        metrics, monitoring, identity, scripting, serverless, nodeless, edge,
+        expecting to achieve Incubating and possibly Graduated status. While 
+        many active projects are preparing for takeoff, others are being archived  [   https://www.cncf.io/archived-projects/ ]
+        once they become less active and no longer in demand. The first projects
+        to be archived are the rkt  [ https://github.com/rkt/rkt ]  container runtime, the distributed OpenTracing   [   https://www.cncf.io/projects/opentracing/  ], 
+        Brigade  [   https://brigade.sh/   ]   event driven automation tool, and Service Mesh Interface.  [   https://www.cncf.io/projects/service-mesh-interface-smi/    ]
+        
+        The projects under CNCF cover the entire lifecycle of a cloud native 
+        application, from its execution using container runtimes, to its 
+        monitoring and logging. This is very important to meet the goals 
+        of CNCF.
+        
 
 
 
@@ -325,6 +411,36 @@ Cloud Native Computing Foundation (CNCF)
 
 CNCF and Kubernetes
 ---------------------------
+
+For Kubernetes, the Cloud Native Computing Foundation:
+
+                Provides a neutral home for the Kubernetes trademark and 
+                enforces proper usage.
+                
+                Provides license scanning of core and vendor code.
+                
+                Offers legal guidance on patent and copyright issues.
+                
+                Creates and maintains open source learning curriculum, training, and 
+                certification for Kubernetes and cloud native associates (KCNA), 
+                Kubernetes administrators (CKA), Kubernetes application developers (CKAD),
+                Kubernetes security specialists (CKS), and more.
+                
+                Manages a software conformance working group.        [    https://lists.cncf.io/g/cncf-k8s-conformance   ]
+                
+                Actively markets Kubernetes.
+                
+                Supports ad hoc activities.
+                
+                Sponsors conferences and meetup events.
+                
+
+
+curriculum,                 https://github.com/cncf/curriculum
+training,                   https://www.cncf.io/training/courses/
+certification               https://www.cncf.io/training/certification/
+
+
 
 
 
@@ -336,6 +452,60 @@ CNCF and Kubernetes
 ===============================================================
 Knowledge Check
 ===============================================================
+
+Congratulations on completing Chapter 4 - "Kubernetes". Take this quiz to 
+check your understanding of the concepts you've learned about so far.
+
+
+
+What is Kubernetes licensed under?
+
+        a.
+        GPLv2
+        b.
+        MIT
+        c.
+        Apache License, Version 2.0
+        d.
+        None of the above
+        
+
+
+
+
+
+
+In which programming language is Kubernetes written?
+
+                a.
+                Python
+                b.
+                C++
+                c.
+                Java
+                d.
+                Go
+
+
+
+
+
+
+
+
+Which of the following are features of Kubernetes? 
+Select all answers that apply.
+
+        a.Self-healing
+        b.TSDB management
+        c.Secrets and configuration management
+        d.Horizontal scaling
+
+
+
+
+
+
 
 
 
