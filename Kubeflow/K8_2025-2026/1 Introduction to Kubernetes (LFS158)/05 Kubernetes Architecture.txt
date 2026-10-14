@@ -741,7 +741,7 @@ Challenges
                           Container Network Interface (CNI) Core Plugins
 
 
-
+                ************************************************************
                   Container Network Interface (CNI)       https://www.cni.dev/
                   CNI plugins.                            https://github.com/containernetworking/cni#3rd-party-plugins
 
@@ -752,7 +752,7 @@ Challenges
                   Calico, and             https://www.tigera.io/project-calico/
                   Cilium                  https://cilium.io/
 
-
+                ************************************************************
 
 
                   The container runtime offloads the IP assignment 
