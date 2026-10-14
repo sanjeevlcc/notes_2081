@@ -1,0 +1,231 @@
+
+***************************************************************
+    1  echo
+    2  echo hello
+    3  uptime
+    4  echo -n hello
+    5  cd
+    6  pwd
+    7  set
+    8  type echo
+    9  type mv
+   10  useradd michel
+   11  passwd michel 
+   12  su - michel 
+   13  ls
+   14  cd /home/
+   15  ls
+   16  cd ubuntu/
+   17  ls
+   18  mkdir Asia
+   19  mkdir Europe Africa America
+   20  ls
+   21  cd Asia/
+   22  pwd
+   23  mkdir China India
+   24  ls
+   25  cd China/
+   26  ls
+   27  cd ..
+   28  ls
+   29  cd India/
+   30  mkdir Mumbai
+   31  ls
+   32  cd ..
+   33  ls
+   34  mkdir China/Bexing
+   35  ls
+   36  ls -R
+   37  tree
+   38  apt install tree
+   39  tree
+   40  cd ..
+   41  ls
+   42  tree
+   43  pwd
+   44  pushd /etc/
+   45  ls
+   46  popd 
+   47  ls
+   48  sudo useradd -m michel
+   49  uderdel michel
+   50  sudo useradd -m ram
+   51  passwd ram
+   52  su - ram
+   53  ls
+   54  tree
+   55  mkdir Europe/UK
+   56  mkdir Europe/Morocco
+   57  mkdir Europe/UK/London
+   58  mkdir Africa/Egypt/Cairo
+   59  mkdir Africa/Egypt
+   60  mkdir Africa/Egypt/Cair
+   61  mkdir America/USA
+   62  touch  Asia/India/Mumbai/City.txt
+   63  touch Europe/UK/London/toll.txt
+   64  tree
+   65  touch Europe/UK/London/toll.txt
+   66  tree
+   67  mv Europe/UK/London/toll.txt Africa/
+   68  tree
+   69  44
+   70  pushd /var/log/
+   71  ls
+   72  popd
+   73  ls
+   74  tree
+   75  cp Asia/India/Mumbai/City.txt America/USA/
+   76  tree
+   77  cat Asia/India/Mumbai/City.txt 
+   78  cat >Asia/India/Mumbai/City.txt 
+   79  cat Asia/India/Mumbai/City.txt 
+   80  cat >> Asia/India/Mumbai/City.txt 
+   81  cat Asia/India/Mumbai/City.txt 
+   82  more Asia/India/Mumbai/City.txt 
+   83  less Asia/India/Mumbai/City.txt 
+   84  more Asia/India/Mumbai/City.txt 
+   85  ls
+   86  ls -l
+   87  ls -R
+   88  tree
+   89  ls -l
+   90  ls -a
+   91  touch Asia/.max.txt
+   92  ls
+   93  tree
+   94  ls -a
+   95  tree -a
+   96  ls -lt
+   97  ls -ltr
+   98  ls -r
+   99  ls -lr
+  100  tree
+  101  ls
+  102  whtis makdir
+  103  whatis  makdir
+  104  whatis  mkdir
+  105  man mkdir
+  106  mkdir --help
+  107  apropos mkdir
+  108  apropos modprob
+  109  modprob
+  110  whatis modprob
+  111  whatis modprobe
+  112  whatis modprobe.d
+  113  whatis 
+
+
+***************************************************************
+
+
+
+***************************************************************
+
+***************************************************************
+
+
+
+
+
+
+
+
+  
+
+
+
+
+***************************************************************
+
+***************************************************************
+
+
+
+
+
+
+
+
+  
+
+
+
+
+***************************************************************
+
+***************************************************************
+
+
+
+
+
+
+
+
+  
+
+
+
+
+***************************************************************
+
+***************************************************************
+
+
+
+
+
+
+
+
+  
+
+
+
+
+***************************************************************
+
+***************************************************************
+
+
+
+
+
+
+
+
+  
+
+
+
+
+***************************************************************
+
+***************************************************************
+
+
+
+
+
+
+
+
+  
+
+
+
+
+***************************************************************
+
+***************************************************************
+
+
+
+
+
+
+
+
+  
+
+
