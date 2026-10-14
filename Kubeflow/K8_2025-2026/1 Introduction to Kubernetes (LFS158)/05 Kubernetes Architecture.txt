@@ -365,7 +365,7 @@ Worker Node Overview
 
 
 Worker Node Components
---------------------
+----------------------------
 
 A worker node has the following components: 
               container runtime, 
@@ -383,230 +383,257 @@ A worker node has the following components:
 
 Components
 --------------
-
-      Close Container runtime
-      ----------------------------
-            Although Kubernetes is described as a "container orchestration engine", 
-            it lacks the capability to directly handle and run containers. In order
-            to manage a container's lifecycle, Kubernetes requires a container 
-            runtime on the node where a Pod and its containers are to be 
-            scheduled. A runtime is required on each node of a Kubernetes 
-            cluster, both control plane and worker. The recommendation is to run 
-            the Kubernetes control plane components as containers, hence the 
-            necessity of a runtime on the control plane nodes. Kubernetes supports
-            several container runtimes:
-                  
-                  CRI-O
-                  ------------
-                      A lightweight container runtime for Kubernetes, 
-                      supporting quay.io and Docker Hub image registries.
-                  
-                  
-                  containerd
-                  ------------
-                      A simple, robust, and portable container runtime.
-                  
-                  
-                  Docker Engine
-                  ------------
-                      A popular and complex container platform which
-                      uses containerd as a container runtime.
-                  
-                  
-                  Mirantis Container Runtime
-                  ------------------------
-                      Formerly known as the Docker Enterprise Edition.
-            
-            
-      
-      
-      
-      
-      
-      Node agent - kubelet
-      ------------------------
-            The kubelet is an agent running on each node, control
-            plane and workers, and it communicates with the control
-            plane. It receives Pod definitions, primarily from the
-            API Server, and interacts with the container runtime on
-            the node to run containers associated with the Pod. It 
-            also monitors the health and resources of Pods running 
-            containers.
-            
-            The kubelet connects to container runtimes through a 
-            plugin based interface - the Container Runtime Interface (CRI). 
-            The CRI consists of protocol buffers, gRPC API, libraries,
-            and additional specifications and tools. In order to 
-            connect to interchangeable container runtimes, kubelet 
-            uses a CRI shim, an application which provides a clear 
-            abstraction layer between kubelet and the container runtime.
-            
-               [IMG]   
+    
+           Container runtime
+          ----------------------------
+                Although Kubernetes is described as a "container orchestration engine", 
+                it lacks the capability to directly handle and run containers. In order
+                to manage a container's lifecycle, Kubernetes requires a container 
+                runtime on the node where a Pod and its containers are to be 
+                scheduled. A runtime is required on each node of a Kubernetes 
+                cluster, both control plane and worker. The recommendation   [ https://kubernetes.io/docs/setup/    ]  is to run 
+                the Kubernetes control plane components as containers, hence the 
+                necessity of a runtime on the control plane nodes. Kubernetes supports
+                several container runtimes:
+                      
+                          CRI-O
+                          ------------
+                              A lightweight container runtime for Kubernetes, 
+                              supporting quay.io and Docker Hub image registries.
         
-                  Container Runtime Interface
-                  
-                  Container Runtime Interface
-                  (Retrieved from blog.kubernetes.io)
-      
-       
-      
-            As shown above, the kubelet acting as grpc client connects 
-            to the CRI shim acting as grpc server to perform container 
-            and image operations. 
-            
-            The CRI implements two services: 
-                  ImageService and RuntimeService. 
-            
-            The ImageService is responsible for all the image-related 
-            operations, while the RuntimeService is responsible for 
-            all the Pod and container-related operations.
-      
-      
-      
-      
-      kubelet - CRI shims
-      ------------------------
-      
-      Originally the kubelet agent supported only a couple of 
-      container runtimes, first the Docker Engine followed by 
-      rkt, through a unique interface model integrated directly
-      in the kubelet source code. However, this approach was
-      not intended to last forever even though it was especially
-      beneficial for Docker. In time, Kubernetes started 
-      migrating towards a standardized approach to container
-      runtime integration by introducing the CRI. Kubernetes 
-      adopted a decoupled and flexible method to integrate with 
-      various container runtimes without the need to recompile 
-      its source code. Any container runtime that implements 
-      the CRI could be used by Kubernetes to manage containers.
-      
-      
-      Shims are Container Runtime Interface (CRI) implementations,
-      interfaces or adapters, specific to each container runtime 
-      supported by Kubernetes. 
-      
-      Below we present some examples of CRI shims:
-      
-      cri-containerd
-      ------------
-          cri-containerd allows containers to be directly 
-          created and managed with containerd at kubelet's request:
-      
-       
-          [FIG]   
+                              quay.io            https://quay.io/     
+                              Docker Hub         https://hub.docker.com/repositories/huma11994
+        
+        
+                          containerd
+                          ----------------      https://containerd.io/
+                              A simple, robust, and portable container runtime.
+                          
+                          
+                          Docker Engine
+                          ------------------    https://www.docker.com/
+                              A popular and complex container platform which
+                              uses containerd as a container runtime.
+                          
+                          
+                          Mirantis Container Runtime
+                          -----------------------------    https://www.mirantis.com/software/mirantis-container-runtime/
+                              Formerly known as the Docker Enterprise Edition.
+                    
+                    
           
-          cri-containerd
           
-          cri-containerd
-          (Retrieved from blog.kubernetes.io)
+          
+          
+          
+          Node agent - kubelet
+          ------------------------------        https://github.com/kubernetes/community/blob/main/contributors/devel/sig-node/container-runtime-interface.md
+    
+    
+                The kubelet is an agent running on each node, control
+                plane and workers, and it communicates with the control
+                plane. It receives Pod definitions, primarily from the
+                API Server, and interacts with the container runtime on
+                the node to run containers associated with the Pod. It 
+                also monitors the health and resources of Pods running 
+                containers.
+                
+                The kubelet connects to container runtimes through a 
+                plugin based interface - the Container Runtime Interface (CRI). 
+                The CRI consists of protocol buffers, gRPC API, libraries,
+                and additional specifications and tools. In order to 
+                connect to interchangeable container runtimes, kubelet 
+                uses a CRI shim, an application which provides a clear 
+                abstraction layer between kubelet and the container runtime.
+    
+    
+    
+                   [IMG]   https://github.com/sanjeevlcc/notes_2081/blob/main/Kubeflow/K8_2025-2026/1%20Introduction%20to%20Kubernetes%20(LFS158)/Images/6%20Container%20Runtime%20Interface.png
+            
+                            Container Runtime Interface
+                            
+                            Container Runtime Interface
+                            (Retrieved from blog.kubernetes.io)
+                
+    
+    
+          
+                As shown above, the kubelet acting as grpc client connects 
+                to the CRI shim acting as grpc server to perform container 
+                and image operations. 
+                
+                The CRI implements two services: 
+                      ImageService 
+                      and RuntimeService. 
+                
+                The ImageService is responsible for all the image-related 
+                operations, while the RuntimeService is responsible for 
+                all the Pod and container-related operations.
+          
+          
+          
+          
+          kubelet - CRI shims
+          ------------------------
+          
+                  Originally the kubelet agent supported only a couple of 
+                  container runtimes, first the Docker Engine followed by 
+                  rkt, through a unique interface model integrated directly
+                  in the kubelet source code. However, this approach was
+                  not intended to last forever even though it was especially
+                  beneficial for Docker. In time, Kubernetes started 
+                  migrating towards a standardized approach to container
+                  runtime integration by introducing the CRI. Kubernetes 
+                  adopted a decoupled and flexible method to integrate with 
+                  various container runtimes without the need to recompile 
+                  its source code. Any container runtime that implements 
+                  the CRI could be used by Kubernetes to manage containers.
+                  
+                  
+                  Shims are Container Runtime Interface (CRI) implementations,
+                  interfaces or adapters, specific to each container runtime 
+                  supported by Kubernetes. 
+                  
+                  Below we present some examples of CRI shims:
+    
+                    
+                    
+                          cri-containerd
+                          --------------------
+                              cri-containerd allows containers to be directly 
+                              created and managed with containerd at kubelet's request:
+                          
+                           
+                              [FIG]   https://github.com/sanjeevlcc/notes_2081/blob/main/Kubeflow/K8_2025-2026/1%20Introduction%20to%20Kubernetes%20(LFS158)/Images/7%20%20%20cri-containerd.png
+                                          
+                                          cri-containerd
+                                          
+                                          cri-containerd
+                                          (Retrieved from blog.kubernetes.io)
+                          
+                           
+                          
+                          CRI-O
+                          ------------
+                                CRI-O enables the use of any Open Container Initiative (OCI)
+                                compatible runtime with Kubernetes, such as runC:
+                                
+                                 [IMG]            https://github.com/sanjeevlcc/notes_2081/blob/main/Kubeflow/K8_2025-2026/1%20Introduction%20to%20Kubernetes%20(LFS158)/Images/8%20CRI-O.png
+                                
+                                            CRI-O
+                                            
+                                            CRI-O
+                                            (Retrieved from cri-o.io)
+                                      
+                           
+
+
+
+
+                          dockershim and cri-dockerd
+                          ------------------------------------
+                                  Before Kubernetes release v1.24 the dockershim allowed
+                                  containers to be created and managed by invoking the Docker
+                                  Engine and its internal runtime containerd. Due to Docker 
+                                  Engine's popularity, this shim has been the default 
+                                  interface used by kubelet. However, starting with Kubernetes
+                                  release v1.24, the dockershim is no longer being maintained 
+                                  by the Kubernetes project, its specific code is removed from
+                                  kubelet source code, thus will no longer be supported by the
+                                  kubelet node agent of Kubernetes. 
+                      
+                                  As a result, Docker, Inc.,
+                                  and Mirantis have agreed to introduce and maintain a replacement 
+                                  adapter, cri-dockerd that would ensure that the Docker Engine 
+                                  will continue to be a container runtime option for Kubernetes, 
+                                  in addition to the Mirantis Container Runtime (MCR). The 
+                                  introduction of cri-dockerd also ensures that both Docker 
+                                  Engine and MCR follow the same standardized integration
+                                  method as the CRI-compatible runtimes.
+                                  
+                    
+                                  [IMG]        https://github.com/sanjeevlcc/notes_2081/blob/main/Kubeflow/K8_2025-2026/1%20Introduction%20to%20Kubernetes%20(LFS158)/Images/9%20dockershim%20to%20cri-dockerd.png
+                                  
+                                                    dockershim to cri-dockerd
+                                                    
+                                                    dockershim to cri-dockerd
+                                                    (Retrieved from GitHub)
+                          
+                           
+                                    
+                                    Additional details about the deprecation process
+                                    of the dockershim can be found on the Updated: Dockershim 
+                                    Removal FAQ page.      [    https://kubernetes.io/blog/2022/02/17/dockershim-faq/  ]
+                              
+                              
+                    
+                    
+    
+    
       
-       
+      Proxy - kube-proxy
+      ------------------------
+            The kube-proxy is the network agent which runs on each 
+            node, control plane and workers, responsible for dynamic 
+            updates and maintenance of all networking rules on the 
+            node. It abstracts the details of Pods networking and 
+            forwards connection requests to the containers in the Pods.
+            
+            
+            The kube-proxy is responsible for TCP, UDP, and SCTP 
+            stream forwarding or random forwarding across a set of 
+            Pod backends of an application, and it implements 
+            forwarding rules defined by users through Service API 
+            objects.
+            
+            
+            The kube-proxy node agent operates in conjunction with
+            the iptables of the node. Iptables is a firewall utility
+            created for the Linux OS that can be managed by users 
+            through a CLI utility of the same name. The iptables 
+            utility is available for and pre-installed on many 
+            Linux distributions.
       
-      CRI-O
+      
+      
+      
+      
+      Add-ons
       ------------
-            CRI-O enables the use of any Open Container Initiative (OCI)
-            compatible runtime with Kubernetes, such as runC:
-            
-             
-            
-            CRI-O
-            
-            CRI-O
-            (Retrieved from cri-o.io)
-      
-       
-      
-      dockershim and cri-dockerd
-      ------------------------------------
-              Before Kubernetes release v1.24 the dockershim allowed
-              containers to be created and managed by invoking the Docker
-              Engine and its internal runtime containerd. Due to Docker 
-              Engine's popularity, this shim has been the default 
-              interface used by kubelet. However, starting with Kubernetes
-              release v1.24, the dockershim is no longer being maintained 
-              by the Kubernetes project, its specific code is removed from
-              kubelet source code, thus will no longer be supported by the
-              kubelet node agent of Kubernetes. As a result, Docker, Inc.,
-              and Mirantis have agreed to introduce and maintain a replacement 
-              adapter, cri-dockerd that would ensure that the Docker Engine 
-              will continue to be a container runtime option for Kubernetes, 
-              in addition to the Mirantis Container Runtime (MCR). The 
-              introduction of cri-dockerd also ensures that both Docker 
-              Engine and MCR follow the same standardized integration
-              method as the CRI-compatible runtimes.
+      Add-ons are cluster features and functionality not yet 
+      available in Kubernetes, therefore implemented through 
+      3rd-party plugins and services.
               
-               
+              DNS
+                    Cluster DNS is a DNS server required to assign DNS
+                    records to Kubernetes objects and resources.
               
-              dockershim to cri-dockerd
+              Dashboard
+                    A general purpose web-based user interface for 
+                    cluster management.
               
-              dockershim to cri-dockerd
-              (Retrieved from GitHub)
+              Monitoring
+                    Collects cluster-level container metrics and saves 
+                    them to a central data store.
+              
+              Logging
+                    Collects cluster-level container logs and saves them 
+                    to a central log store for analysis.
+              
+              Device Plugins
+                      For system hardware resources, such as GPU, FPGA, 
+                      high-performance NIC, to be advertised by the node
+                      to application pods.
       
-       
-      
-      Additional details about the deprecation process
-      of the dockershim can be found on the Updated: Dockershim 
-      Removal FAQ page.      [    https://kubernetes.io/blog/2022/02/17/dockershim-faq/  ]
+  
+  
+  
+  
 
 
 
 
 
-
-
-Proxy - kube-proxy
-------------------------
-      The kube-proxy is the network agent which runs on each 
-      node, control plane and workers, responsible for dynamic 
-      updates and maintenance of all networking rules on the 
-      node. It abstracts the details of Pods networking and 
-      forwards connection requests to the containers in the Pods.
-      
-      
-      The kube-proxy is responsible for TCP, UDP, and SCTP 
-      stream forwarding or random forwarding across a set of 
-      Pod backends of an application, and it implements 
-      forwarding rules defined by users through Service API 
-      objects.
-      
-      
-      The kube-proxy node agent operates in conjunction with
-      the iptables of the node. Iptables is a firewall utility
-      created for the Linux OS that can be managed by users 
-      through a CLI utility of the same name. The iptables 
-      utility is available for and pre-installed on many 
-      Linux distributions.
-
-
-
-
-
-Add-ons
-------------
-Add-ons are cluster features and functionality not yet 
-available in Kubernetes, therefore implemented through 
-3rd-party plugins and services.
-        
-        DNS
-              Cluster DNS is a DNS server required to assign DNS
-              records to Kubernetes objects and resources.
-        
-        Dashboard
-              A general purpose web-based user interface for 
-              cluster management.
-        
-        Monitoring
-              Collects cluster-level container metrics and saves 
-              them to a central data store.
-        
-        Logging
-              Collects cluster-level container logs and saves them 
-              to a central log store for analysis.
-        
-        Device Plugins
-                For system hardware resources, such as GPU, FPGA, 
-                high-performance NIC, to be advertised by the node
-                to application pods.
 
 
 
@@ -618,7 +645,149 @@ available in Kubernetes, therefore implemented through
 
 
 Networking Challenges
---------------------
+--------------------------
+
+
+Decoupled microservices based applications rely heavily on
+networking in order to mimic the tight-coupling once available
+in the monolithic era. Networking, in general, is not the easiest
+to understand and implement. Kubernetes is no exception - as a 
+containerized microservices orchestrator it needs to address a
+few distinct networking challenges:
+
+                -- Container-to-Container communication inside Pods
+                
+                -- Pod-to-Pod communication on the same node and 
+                   across cluster nodes
+                
+                -- Service-to-Pod communication within the same 
+                   namespace and across cluster namespaces
+                
+                -- External-to-Service communication for clients to 
+                   access applications in a cluster
+                
+All these networking challenges must be addressed by
+a Kubernetes cluster and its plugins.
+
+
+
+Challenges
+--------------
+          
+          Container-to-Container communication inside Pods
+          --------------------------------------------------------
+                    Making use of the underlying host operating system's 
+                    kernel virtualization features, a container runtime 
+                    creates an isolated network space for each container 
+                    it starts. On Linux, this isolated network space is 
+                    referred to as a network namespace. A network namespace
+                    can be shared across containers, or with the host 
+                    operating system.
+                    
+                    
+                    When a grouping of containers defined by a Pod is 
+                    started, a special infrastructure Pause container 
+                    is initialized by the Container Runtime for the sole
+                    purpose of creating a network namespace for the Pod. 
+                    All additional containers, created through user 
+                    requests, running inside the Pod will share the Pause
+                    container's network namespace so that they can all 
+                    talk to each other via localhost.
+          
+          
+          
+          
+          
+          Pod-to-Pod communication across nodes
+          ----------------------------------------------
+                  In a Kubernetes cluster Pods, groups of containers, are
+                  scheduled on nodes in a nearly unpredictable fashion. 
+                  Regardless of their host node, Pods are expected to be 
+                  able to communicate with all other Pods in the cluster, 
+                  all this without the implementation of Network Address 
+                  Translation (NAT). This is a fundamental requirement of 
+                  any networking implementation in Kubernetes.
+                  
+                  
+                  The Kubernetes network model aims to reduce complexity, 
+                  and it treats Pods as VMs on a network, where each VM is
+                  equipped with a network interface - thus each Pod receiving
+                  a unique IP address. This model is called "IP-per-Pod" and
+                  ensures Pod-to-Pod communication, just as VMs are able to
+                  communicate with each other on the same network.
+                  
+                  
+                  Let's not forget about containers though. They share the Pod's
+                  network namespace and must coordinate ports assignment inside 
+                  the Pod just as applications would on a VM, all while being 
+                  able to communicate with each other on localhost - inside the Pod. 
+                  However, containers are integrated with the overall Kubernetes 
+                  networking model through the use of the Container Network Interface (CNI)
+                  supported by CNI plugins. CNI is a set of specifications 
+                  and libraries which allow plugins to configure the networking
+                  for containers. While there are a few core plugins, most CNI
+                  plugins are 3rd-party Software Defined Networking (SDN) 
+                  solutions implementing the Kubernetes networking model. 
+                  In addition to addressing the fundamental requirement of 
+                  the networking model, some networking solutions offer support
+                  for Network Policies. Flannel, Weave, Calico, and Cilium are 
+                  only a few of the SDN solutions available for Kubernetes clusters.
+
+
+                  [IMG]   https://github.com/sanjeevlcc/notes_2081/blob/main/Kubeflow/K8_2025-2026/1%20Introduction%20to%20Kubernetes%20(LFS158)/Images/10%20Container%20Network%20Interface%20(CNI)%20Core%20Plugins.png
+                  
+                          Container Network Interface (CNI) Core Plugins
+                          
+                          Container Network Interface (CNI) Core Plugins
+
+
+
+                  Container Network Interface (CNI)       https://www.cni.dev/
+                  CNI plugins.                            https://github.com/containernetworking/cni#3rd-party-plugins
+
+                 core plugins                    https://github.com/containernetworking/plugins#plugins
+
+                  Flannel,                https://github.com/flannel-io/flannel
+                  Weave,                  https://www.weave.works/oss/net/
+                  Calico, and             https://www.tigera.io/project-calico/
+                  Cilium                  https://cilium.io/
+
+
+
+
+                  The container runtime offloads the IP assignment 
+                  to CNI, which connects to the underlying configured 
+                  plugin, such as Bridge or MACvlan, to get the IP 
+                  address. Once the IP address is given by the 
+                  respective plugin, CNI forwards it back to the requested 
+                  container runtime.
+                  
+                  For more details, you can explore the Kubernetes documentation.   
+
+                    https://kubernetes.io/docs/concepts/cluster-administration/networking/
+                  
+          
+          
+
+
+
+
+          External-to-Pod communication
+          ----------------------------------------------
+                  A successfully deployed containerized application
+                  running in Pods inside a Kubernetes cluster may 
+                  require accessibility from the outside world. Kubernetes
+                  enables external accessibility through Services, complex 
+                  encapsulations of network routing rule definitions 
+                  stored in iptables on cluster nodes and implemented by
+                  kube-proxy agents. By exposing services to the external
+                  world with the aid of kube-proxy, applications become 
+                  accessible from outside the cluster over a virtual IP 
+                  address and a dedicated port number.
+                  
+          
+
+
 
 
 
