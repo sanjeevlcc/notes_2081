@@ -336,7 +336,7 @@ Components
 
 
 Worker Node Overview
---------------------
+-------------------- 
 
         A worker node provides a running environment for client 
         applications. These applications are microservices running
