@@ -1,0 +1,846 @@
+
+
+
+
+===================================================================
+https://12factor.net/
+===================================================================
+
+
+
+
+
+===================================================================
+https://en.wikipedia.org/wiki/Heroku
+===================================================================
+
+
+
+
+
+
+
+
+
+===================================================================
+https://12factor.net/
+===================================================================
+
+Introduction
+----------------
+      In the modern era, software is commonly delivered as a service: called 
+      web apps, or software-as-a-service. The twelve-factor app is a methodology
+      for building software-as-a-service apps that:
+      
+            - Use declarative formats for setup automation, to minimize time and cost
+              for new developers joining the project;
+            
+            - Have a clean contract with the underlying operating system, offering 
+              maximum portability between execution environments;
+            
+            - Are suitable for deployment on modern cloud platforms, obviating the
+             need for servers and systems administration;
+            
+            - Minimize divergence between development and production, enabling 
+              continuous deployment for maximum agility;
+            
+            - And can scale up without significant changes to tooling, architecture,
+              or development practices.
+      
+      The twelve-factor methodology can be applied to apps written in any 
+      programming language, and which use any combination of backing 
+      services (database, queue, memory cache, etc).
+
+
+
+
+The Twelve Factors
+------------------------
+          I. Codebase
+          -----------------
+          One codebase tracked in revision control, many deploys
+          
+          
+          II. Dependencies
+          -----------------
+          Explicitly declare and isolate dependencies
+          
+          
+          III. Config
+          -----------------
+          Store config in the environment
+          
+          
+          IV. Backing services
+          -----------------
+          Treat backing services as attached resources
+          
+          
+          V. Build, release, run
+          -----------------
+          Strictly separate build and run stages
+          
+          
+          VI. Processes
+          -----------------
+          Execute the app as one or more stateless processes
+          
+          
+          VII. Port binding
+          -----------------
+          Export services via port binding
+          
+          
+          VIII. Concurrency
+          -----------------
+          Scale out via the process model
+          
+          
+          IX. Disposability
+          -----------------
+          Maximize robustness with fast startup and graceful shutdown
+          
+          
+          X. Dev/prod parity
+          -----------------
+          Keep development, staging, and production as similar as possible
+          
+          
+          XI. Logs
+          -----------------
+          Treat logs as event streams
+          
+          
+          XII. Admin processes
+          -----------------
+          Run admin/management tasks as one-off processes
+
+
+
+
+
+===================================================================
+https://en.wikipedia.org/wiki/Heroku
+===================================================================
+
+        Heroku is a cloud platform as a service (PaaS) supporting several
+        programming languages. As one of the first cloud platforms, Heroku has
+        been in development since June 2007, when it supported only the Ruby 
+        programming language, but now also supports Java, Node.js, Scala, 
+        Clojure, Python, PHP, and Go.
+        
+        For this reason, Heroku is said to
+        be a polyglot platform as it has features for a developer to build,
+        run and scale applications in a similar manner across most of
+        these languages. Heroku was acquired by Salesforce in 2010 
+        for $212 million.[4]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================================
+KodeKloud ---- 12-Factor App
+===================================================================
+
+
+
+Introduction
+---------------
+      
+      
+      This lesson covers the 12-Factor App methodology for building scalable
+      and manageable cloud-native applications.
+      
+      Welcome to this lesson on the 12-Factor App methodology—a set of best
+      practices for building scalable, resilient, and manageable cloud-native
+      applications. My name is Mumshad Mannambeth, and I’ll be your guide as we
+      explore the core principles essential for modern software development.
+      
+      
+      In today’s software landscape, designing applications that can effortlessly
+      scale and adapt is crucial. The 12-Factor methodology outlines clear guidelines
+      for developers, architects, and DevOps engineers who aim to create high-performance
+      applications in the cloud.
+      
+      In this lesson, we will delve into each of the 12 factors, explaining the 
+      concepts behind them with a narrative approach and demonstrating real-world
+      scenarios to illustrate their importance and implementation.
+      
+      Whether you’re a developer, architect, or DevOps engineer, this lesson
+      is designed to equip you with the essential knowledge and tools to build 
+      modern, cloud-native applications.
+      
+      A person in a KodeKloud shirt standing beside a stylized diagram representing
+      cloud-native architecture.
+      
+      If you’re ready to dive in and explore these principles further, let’s get
+      started on building applications that are not only efficient but also future-proof.
+
+
+
+
+
+
+
+
+===================================================================
+Why 12 Factor app
+===================================================================
+      
+      The article discusses the Twelve-Factor App methodology for building 
+      scalable, resilient, and maintainable applications in modern cloud 
+      environments.
+      
+      Imagine having a brilliant idea and building an application to share 
+      that vision with the world. In the past, launching an application
+      involved overcoming numerous obstacles such as long waiting periods
+      for a dedicated server. Once acquired, that server was permanently
+      tied to your application, and scaling meant adding more resources 
+      to that single machine. Often, session data was stored locally, meaning 
+      that if the server failed, user progress was lost, and users had to
+      restart from scratch.
+      
+      Fast forward to today. High-growth SaaS startups can see user numbers
+      rise from zero to millions in mere months. The speed of innovation 
+      now hinges on how quickly you can write, test, and deploy your code.
+      Thanks to modern cloud platforms, provisioning and hosting resources 
+      can take minutes—or even seconds. With Platform-as-a-Service (PaaS) 
+      and serverless technologies, you simply write your code, push it, 
+      and see it live. These platforms boast uptimes of 99.999%, making 
+      downtime for maintenance, patching, or scaling nearly unacceptable.
+      For optimal performance and reliability, your application must be 
+      architected to decouple from the underlying infrastructure. 
+      
+      This means designing for portability and seamless operation across 
+      various environments—be it on-premises, Google Cloud Platform (GCP), 
+      Amazon Web Services (AWS), or Microsoft Azure—without necessitating
+      changes to your source code.
+      In earlier architectures, scaling was achieved by vertically 
+      enhancing a server, an approach that often required taking the
+      application offline for upgrades. Modern applications, however, 
+      scale horizontally by adding more servers and spinning up additional
+      instances. To succeed in today’s fast-paced cloud environments, your
+      application needs to be consistent across development, testing, and 
+      production while remaining easily scalable.
+      
+      A decade ago, engineers at Heroku distilled a set of guiding 
+      principles for building modern applications, known today as the 12-Factor App.
+      These twelve principles provide a blueprint for creating scalable, resilient, 
+      and maintainable applications. For additional details, refer to the 12factor.net website.
+      
+
+
+
+
+
+
+
+
+
+
+===================================================================
+Codebase
+===================================================================
+
+    This article explores the 12-Factor App methodology with a simple 
+    example using Python and Flask to guide scalable application 
+    development.
+    
+    In this article, we will explore the 12-Factor App methodology
+    while demonstrating a simple example built with Python and the
+    Flask web framework. These principles are designed to guide the 
+    development of scalable, resilient, and maintainable applications.
+    
+    
+    The 12 factors are as follows:
+                Have one codebase.
+                Explicitly declare and isolate dependencies.
+                Store configuration in the environment.
+                Treat backing services as attached resources.
+                Strictly separate build and run stages.
+                Execute the app as one or more stateless processes.
+                Export services via port binding.
+                Scale out via the process model.
+                Maximize robustness with fast startup and graceful shutdown.
+                Keep development, staging, and production as similar as possible.
+                Treat logs as event streams.
+                Run admin or management tasks as one-off processes.
+           
+                
+                
+                ​
+    A Simple Flask Example
+        
+        We begin with a basic Flask application that displays a 
+        simple message when accessed via a browser. The entry 
+        point for our Flask app is the app.py file, which is 
+        responsible for handling all incoming and outgoing requests.
+        
+        Below is the code for our simple Flask app:
+        
+        
+                  from flask import Flask
+                  
+                  app = Flask(__name__)
+                  
+                  @app.route('/')
+                  def welcomeToKodeKloud():
+                      return "Welcome to KODEKLOUD!"
+                  
+                  if __name__ == "__main__":
+                      app.run(host="0.0.0.0", debug=True)
+                  
+    
+    
+    
+    
+    When you run this application and navigate to its URL in 
+    your browser, the homepage will display the
+    message “Welcome to KODEKLOUD!”.
+    At this stage, the code is stored only on your 
+    local machine.
+    ​
+    
+    
+    
+    
+    
+    The First Factor: One Codebase
+    --------------------------------
+    The first principle of the 12-Factor App methodology 
+    insists on maintaining a single codebase per application.
+    This approach is essential as your user base expands and 
+    new features are added, especially when multiple developers 
+    are involved. Each developer works on their own local 
+    environment while committing changes to a central repository.
+    
+    Without a proper version control system, concurrent modifications
+    by different developers could lead to conflicts. This is where
+    Git becomes invaluable. Git enables concurrent contributions 
+    to the same codebase by facilitating operations like pulling 
+    the latest changes with the git pull command, making local 
+    updates, and pushing new commits using git push.
+    
+    The central repository is typically hosted on a cloud platform.
+    For example, GitHub is a popular platform for hosting Git 
+    repositories, while GitLab and Bitbucket offer similar solutions.
+    
+    The image shows a central folder icon connected to four laptops,
+    each with a person, representing a shared network or 
+    collaborative workspace.
+    ​
+    
+    
+    Managing Multiple Applications
+    --------------------------------
+    Consider starting with an initial web application. Over time, 
+    you might expand your system by adding services such as order
+    processing or delivery functionalities. In the past, it was 
+    common to maintain a single codebase for all related applications. 
+    However, once multiple services are deployed, the architecture 
+    becomes distributed, and sharing one codebase across multiple 
+    applications violates the 12-Factor App principles. Each application
+    should reside in its own codebase.
+    The image highlights that sharing code among multiple apps violates
+    the twelve-factor app principles, with icons and a list of services 
+    showing recent updates.
+    
+    
+    Within a single codebase, you can still deploy multiple instances 
+    of your application across various environments (such as
+    development, staging, and production). This strategy ensures 
+    that while each application maintains its isolated codebase, 
+    you can manage multiple deployments seamlessly.
+    The image depicts a deployment pipeline diagram with stages 
+    labeled "dev," "staging," and "prod," connected to a central
+    icon representing a web application.
+    
+    
+    This structure not only keeps your development process organized 
+    but also promotes consistency across different environments, 
+    allowing for smoother transitions between development, testing,
+    and production stages.
+    ​
+    
+    
+    Summary
+    
+          By following the principles outlined in the 12-Factor
+          App methodology, you ensure that every aspect of your 
+          application—from a single codebase to distinct deployments
+          across environments—is optimized for scalability and maintainability. 
+          Leveraging tools like Git further enhances collaborative development,
+          helping you manage changes effectively as your application grows.
+
+
+
+
+
+
+
+===================================================================
+Dependencies
+===================================================================
+
+      
+      This article explores declaring and isolating dependencies in the 
+      12-Factor App methodology using Flask and discusses best practices
+      for managing them.
+      
+      
+      In this article, we explore the second rule of the 12-Factor App 
+      methodology: explicitly declaring and isolating dependencies. To 
+      illustrate this concept, we use the popular Python web framework, 
+      Flask.
+      
+      
+              Before writing any application code, you must install Flask in
+              your local development environment. For example:
+              
+                        $ pip install flask
+              
+              
+              
+              
+              Below is a simple Flask application (app.py):
+              
+                      from flask import Flask
+                      
+                      app = Flask(__name__)
+                      
+                      @app.route('/')
+                      def welcomeToKodeKloud():
+                          return "Welcome to KODEKLOUD!"
+                      
+                      if __name__ == "__main__":
+                          app.run(host="0.0.0.0", debug=True)
+                      
+              
+              
+                  
+              As your application grows, you may need to integrate additional 
+              third-party libraries. The 12-Factor App approach dictates that 
+              you must not rely on the implicit presence of system-wide 
+              packages. In other words, you cannot assume that dependencies
+              like Flask will already be installed on the system where your 
+              application executes. They must be explicitly declared and 
+              isolated.
+              
+              
+              A common Python practice is to list dependencies in a file named
+              requirements.txt. This file should include both package names 
+              and specific version numbers. For example:
+              
+                          flask==2.0.0
+              
+                          
+              Specifying version numbers is crucial to ensure consistency
+              across various environments such as development, staging, and 
+              production. Installing the dependencies is as simple as running:
+              
+                        $ pip install -r requirements.txt
+              
+              
+              
+              This command ensures that every dependency listed in 
+              requirements.txt—including the specified version of Flask—is 
+              installed uniformly.
+              
+              
+                            When developing multiple applications on a single machine, 
+                            use isolated environments to avoid dependency conflicts.
+                            Virtual environments ensure each application manages its
+                            own version of every dependency.
+              
+              
+              Python’s virtual environments solve version conflicts 
+              by isolating dependencies for each application. This 
+              isolation is imperative when one app requires one version 
+              of Flask while another requires a different version.
+              
+              
+      
+      The image illustrates Python virtual environments (venv) with
+      two Flask versions: 2.0.0 and 1.9.0, each represented by
+      different icons.
+      
+      
+      
+      Combining the use of requirements.txt with virtual environments 
+      guarantees that your explicit dependency packages are consistent
+      across development, staging, and production.
+      
+      
+      In some cases, your application might depend on system-level 
+      tools (such as the curl command) that fall outside Python’s
+      dependency management. In these instances, leveraging a 
+      platform like Docker can be highly effective. Docker 
+      containers offer a self-contained environment that ensures
+      all necessary tools and configurations are present.
+      
+      
+      Below is an example Dockerfile that packages the Flask application
+      along with its dependencies into a Docker container:
+      
+      
+                      FROM python:3.10-alpine
+                      
+                      WORKDIR /kodekloud-twelve-factor-app
+                      
+                      COPY requirements.txt /kodekloud-twelve-factor-app
+                      
+                      RUN pip install -r requirements.txt --no-cache-dir
+                      
+                      COPY . /kodekloud-twelve-factor-app
+                      
+                      CMD python app.py
+      
+      
+      
+      This Dockerfile accomplishes the following steps:
+      
+                    Creates a Docker image based on the Python 3.10 Alpine base image.
+                    Sets the working directory to /kodekloud-twelve-factor-app.
+                    Copies the requirements.txt file into the working directory.
+                    Installs the dependencies specified in requirements.txt, without caching.
+                    Copies the remaining application code into the image.
+                    Defines the command to run the application.
+      
+      
+      
+      After building the Docker image with the appropriate Docker build 
+      command, you can run your application using the Docker run command.
+      
+      
+      If you’re new to Docker, be sure to check out our free Docker 
+      Training Course for the Absolute Beginner on KodeKloud. This 
+      interactive course offers hands-on labs and an immersive learning 
+      environment where you can practice with real systems and servers.
+      
+      
+      
+      Happy coding!
+
+
+
+
+
+
+===================================================================
+Concurrency
+===================================================================
+
+          This article explores concurrency as a key concept in application 
+          design, focusing on horizontal scaling and its benefits for
+          handling increased load.
+          
+          
+          In this lesson, we explore the critical concept of 
+          concurrency, which is the eighth factor in the 12 Factor 
+          App methodology.
+          
+          
+          Up to now, we have containerized our application and
+          executed it as a Docker container, running a single process 
+          capable of serving multiple users concurrently. While this
+          setup works well under moderate demand, it has limitations 
+          under increased load.
+          
+          
+                            Scaling strategies come in two flavors: vertical and 
+                            horizontal. Vertical scaling adds more resources to a single 
+                            server, but this approach can lead to downtime and has inherent
+                            resource limits.
+          
+          
+          
+          Modern deployment strategies favor horizontal scaling, where
+          additional servers are provisioned rapidly to run multiple
+          instances of the application simultaneously. A load balancer
+          then distributes incoming user requests across these 
+          instances, ensuring smooth performance even during peak demand.
+          
+          
+          For horizontal scaling to be effective, your application 
+          must be designed as an independent, stateless service. In 
+          line with the 12 Factor App principles, processes are 
+          treated as first-class citizens. Instead of scaling up
+          a single instance with more resources, the application 
+          should scale out by running multiple instances concurrently.
+          
+          
+                          Avoids the single point of failure inherent in vertical scaling.
+                          Improves fault tolerance and overall system reliability.
+                          Facilitates easier deployment and maintenance of application instances.
+          
+          
+          
+          In the next lesson, we will delve deeper into how these
+          principles impact application processes and discuss 
+          practical strategies for designing applications that 
+          can scale horizontally.
+          
+          
+          For more information, explore:
+                          Kubernetes Basics
+                          Kubernetes Documentation
+                          Docker Hub
+                          Terraform Registry
+                          
+
+
+
+
+
+
+
+===================================================================
+Processes
+===================================================================
+      
+      This article explores the design of stateless processes in the 
+      12 Factor App methodology for scaling applications and 
+      maintaining consistency.
+      
+      
+      In this article, we explore the design of stateless processes
+      as defined in the 12 Factor App methodology. A stateless
+      process shares nothing, a principle that is critical for 
+      scaling applications and maintaining consistency when multiple
+      processes are running concurrently.
+      
+      
+      
+      Suppose we want to implement a new feature that displays
+      the visitor count on our website. Each time a visitor accesses
+      the page, the application should update and display the total 
+      visit count. Initially, we modify our code to include a global
+      variable that tracks the number of visits, incrementing it with
+      every incoming request:
+      
+      
+      
+      
+                            from flask import Flask
+                            app = Flask(__name__)
+                            visitCount = 0
+                            
+                            @app.route('/')
+                            def welcomeToKodeKloud():
+                                global visitCount
+                                visitCount += 1
+                                return "Welcome to KODEKLOUD! Visitor Count: " + str(visitCount)
+                            
+                            if __name__ == "__main__":
+                                app.run(host="0.0.0.0", debug=True)
+                            
+      
+      
+      
+          
+      This solution works perfectly when running a single process
+      because the visit count is stored within that process’s memory.
+      However, when multiple instances are deployed, each process
+      maintains its own independent version of the variable. 
+      Consequently, visitors might see different counts depending
+      on which process handles their request.
+      
+      
+      
+      
+      
+      A similar challenge arises with session-specific data. For
+      instance, when a user logs in, session details (like user 
+      location and session expiration) are stored in the server’s 
+      memory. If subsequent requests are routed to a different
+      process, the session information may be missing and the user 
+      might be inadvertently logged out.
+      
+      
+      
+                        Even though load balancers can use session-aware 
+                        mechanisms (sticky sessions) to direct a user to
+                        the same process, this approach is unreliable. 
+                        In case of a process failure, any locally
+                        stored data is lost.
+                        
+      
+      
+      The image illustrates a sticky session concept with 
+      three containers showing different visit counts, indicating 
+      session persistence for a user across server instances.
+      
+      
+      
+      This scenario emphasizes a core principle of the 12-Factor methodology:
+      processes must be stateless and share nothing. Relying on sticky
+      sessions contradicts this principle. Instead, all state information
+      should be stored in external backing services, allowing all processes
+      to access uniform data regardless of which instance handles a 
+      given request.
+      
+      
+      The image discusses the twelve-factor app methodology, emphasizing
+      stateless, share-nothing processes and advising against using 
+      sticky sessions.
+      
+      
+      A typical solution is to use an external service, such as a
+      database or caching system like Redis, for persistent state 
+      or session data. To implement this approach, we modify our 
+      application so that the visit count is maintained in a Redis
+      database rather than in the process’s memory:
+      
+      
+      
+                    
+                    from flask import Flask
+                    from redis import Redis
+                    
+                    app = Flask(__name__)
+                    redisDb = Redis(host='redis-db', port=6380)
+                    
+                    @app.route('/')
+                    def welcomeToKodeKloud():
+                        redisDb.incr('visitorCount')
+                        visitCount = str(redisDb.get('visitorCount'), 'utf-8')
+                        return "Welcome to KODEKLOUD! Visitor Count: " + visitCount
+                    
+                    if __name__ == "__main__":
+                        app.run(host="0.0.0.0", debug=True)
+                    
+      
+      
+      
+      
+      
+          
+      With this updated implementation, the application scales 
+      seamlessly. Multiple instances can operate concurrently,
+      all accessing the same consistent state through the centralized
+      Redis database. This design adheres to the 12-Factor principle
+      of statelessness and ensures your application remains robust 
+      and scalable in dynamic environments.
+      
+      
+
+
+
+
+
+
+===================================================================
+xxx
+===================================================================
+
+
+
+
+
+      
+
+
+
+
+
+
+
+===================================================================
+xxx
+===================================================================
+
+
+
+
+
+      
+
+
+
+
+
+
+
+===================================================================
+xxx
+===================================================================
+
+
+
+
+
+      
+
+
+
+
+
+
+
+===================================================================
+xxx
+===================================================================
+
+
+
+
+
+      
+
+
+
+
+
+
+
+===================================================================
+xxx
+===================================================================
+
+
+
+
+
+      
+
+
+
+
+
+
+
+===================================================================
+xxx
+===================================================================
+
+
+
+
+
+      
+
+
+
