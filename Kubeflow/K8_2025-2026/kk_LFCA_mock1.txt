@@ -9,11 +9,19 @@ Question 1 of 17
 
 Weight: 8/102
 
-In the /opt/findme/ directory you will find 10,000 files. You need to filter out specific files
+In the /opt/findme/ directory you will find 10,000 
+files. You need to filter out specific files
 
-Find all files that have the executable permission bit enabled for the user that owns them. Redirect the output of the find command to the /opt/foundthem.txt file.
-Find all files that have the SETUID permission enabled and delete them.
-Find any file that is larger than 1KB and copy it to the /opt/ directory
+Find all files that have the executable permission bit 
+enabled for the user that owns them. Redirect the output 
+of the find command to the /opt/foundthem.txt file.
+
+Find all files that have the SETUID permission enabled
+and delete them.
+
+Find any file that is larger than 1KB and copy it 
+to the /opt/ directory
+
 
 Found files with executable permission?
 
@@ -66,16 +74,23 @@ QUESTION 02: BASH SCRIPT AND SYSTEM-WIDE CRON
 =====================================================================
 
 
+
 Question 2 of 17
 
 Weight: 6/102
 Perform the following two tasks:
 
-Create a bash script that recursively copies the /var/www/ directory into the /opt/www-backup/ directory
+Create a bash script that recursively copies 
+the /var/www/ directory into the /opt/www-backup/ directory
 
-Save your script at /opt/script.sh. Remember, the script file you create also has to be executable.
+Save your script at /opt/script.sh. Remember, the script
+file you create also has to be executable.
 
-Make sure that your script /opt/script.sh automatically runs every day at 4AM. More specifically, create a cron job that runs that script every day at 4AM. Put this in the system-wide cron table (not root's local cron table) and make sure the script executes under the root user.
+Make sure that your script /opt/script.sh automatically
+runs every day at 4AM. More specifically, create a cron 
+job that runs that script every day at 4AM. Put this in
+the system-wide cron table (not root's local cron table) and
+make sure the script executes under the root user.
 
 
 Is the /opt/script.sh script executable?
@@ -120,9 +135,35 @@ Script configured correctly? YES
 System-wide cron updated? YES
 
 
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 03: USER RESOURCE LIMITS
 =====================================================================
+
+
+Question 3 of 17
+
+Weight: 3/102
+Enforce some limits on two users:
+
+Set a limit on the user called john so that he can open no more than 30 processes. This should be a hard limit.
+
+For the user called jane make sure she can create files not larger than 1024 kilobytes. Make this a soft limit.
+
+
+Is hard limit created for john?
+
+Is soft limit created for jane?
+
+
 
 TASK:
 1. JOHN: Maximum 30 processes (HARD).
@@ -144,9 +185,56 @@ John hard limit created? YES
 Jane soft limit created? YES
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 04: USER MANAGEMENT AND GROUPS
 =====================================================================
+
+
+Question 4 of 17
+
+Weight: 6/102
+Create a new user on this system called mary
+
+Set her password to 1234.
+Leave the full name and other personal details empty.
+Set her default shell to /bin/dash.
+Make sure she can execute sudo commands by adding her to the secondary group called sudo.
+At this point Mary's primary group is mary. And her secondary group is sudo. Change her primary group to developers. Without affecting her secondary group.
+
+Is the user mary created?
+
+Is mary default shell is /bin/dash?
+
+Is mary part of sudo group?
+
+Is mary's primary group developers?
+
+
+
+
+
+
+
+
+
+
 
 TASK:
 1. Create user mary.
@@ -183,9 +271,46 @@ Mary belongs to sudo group? YES
 Primary group developers? YES
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 05: KERNEL RUNTIME PARAMETERS (SYSCTL)
 =====================================================================
+
+
+
+**Weight: 6/102**
+
+Modify the following **kernel runtime parameter**:
+
+1. `vm.swappiness` set it to a value of `10`. This should be a persistent change, added to a file so that `vm.swappiness` is set to `10` every time the **system boots up**. However, after you create the proper file, **also set this runtime parameter to 10 for this session as well**. Otherwise said, the file will set the parameter to 10 the next time the system boots up, but we want to set it to 10 even for this current, active session, instead of waiting until the next boot until that takes effect.
+
+
+
+svg
+
+Is the vm.swappiness set to 10 for current session?
+
+svg
+
+Is the vm.swappiness set to 10 every time the system boots up?
+
+
+
+
 
 TASK:
 Set vm.swappiness = 10.
@@ -212,6 +337,31 @@ Persistent after reboot? YES
 QUESTION 06: FSTAB AND READ-ONLY MOUNTING
 =====================================================================
 
+
+
+
+Question 6 of 17
+
+Weight: 8/102
+You have an xfs filesystem on /dev/vdd1. Also, there's an ext4 filesystem on /dev/vdd2.
+
+Edit the correct file in /etc/ so that /dev/vdd1 is automatically mounted into the /backups directory every time the system boots up. Default mount options should be used.
+
+/dev/vdd2 is already mounted in /mnt/. But there is a problem. Sensitive data exists on this ext4 filesystem and you want to make sure that it's not accidentally modified. To solve this problem, remount /dev/vdd2 into the /mnt directory, but this time, with the read-only mount option. It does not matter what the other mount options are. Just make sure this mount point is read-only so that users cannot change contents on this filesystem.
+
+
+Does /dev/vdd1 mounts automatically?
+
+Is /dev/vdd2 mounted as Read-Only?
+
+
+
+
+
+
+
+
+
 TASK:
 1. /dev/vdd1 = XFS, mount at /backups automatically.
 2. /dev/vdd2 = EXT4, remount /mnt as read-only.
@@ -237,9 +387,41 @@ vdd1 automatically mounted? YES
 vdd2 mounted read-only? YES
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 07: LOGICAL VOLUME MANAGER (LVM)
 =====================================================================
+
+
+Question 7 of 17
+
+Weight: 7/102
+Use the Logical Volume Manager to perform the following tasks:
+
+Add /dev/vde and /dev/vdf as Physical Volumes to LVM.
+Create a Volume Group on these two physical volumes. Call the volume volume1.
+On the Volume Group called volume1 create a new Logical Volume. Call this Logical Volume website_files. Set the size of the Logical Volume to 1.5GB.
+
+Is /dev/vde and /dev/vdf initialized as PV?
+
+Is Volume Group created?
+
+Is website_files logical volume created?
+
+
+
 
 TASK:
 1. Initialize /dev/vde and /dev/vdf as PV.
@@ -269,31 +451,59 @@ Volume group created? YES
 Logical volume created? YES
 
 
+
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 08: GIT REPOSITORY MANAGEMENT
 =====================================================================
+
+
+
+
+
+Question 8 of 17
+
+Weight: 7/102
+In your home directory you will find a subdirectory called kode. Git tools are pre-installed. Switch to the kode subdirectory and perform the following tasks:
+
+Initialize this subdirectory as an empty Git repository.
+Associate this local Git repository with the remote repository found at https://github.com/kodekloudhub/git-for-beginners-course.git. Add this as a remote repository and call it (alias it as) origin.
+Download all the latest changes from the master branch from that remote repository into your local repository.
+
+Is the kode repo associated with remote repo?
+
+Is local repo and remote repo in sync?
+
+
+
 
 TASK:
 1. Initialize ~/kode as Git repository.
 2. Add remote repository named origin.
 3. Download latest changes from master.
 
+
+
+
 COMMANDS:
 
-# Enter directory
-cd ~/kode
-
-# Initialize Git
+## 1. Initialize the subdirectory as an empty Git repository
 git init
 
-# Add remote
+# 2. Associate the local repository with the remote repository and alias it as origin
 git remote add origin https://github.com/kodekloudhub/git-for-beginners-course.git
 
-# Fetch latest master
-git fetch origin master
+# 3. Download all the latest changes from the master branch into your local repository
+git pull origin master
 
-# Synchronize local master branch
-git checkout -B master origin/master
 
 # Verify
 git remote -v
@@ -305,9 +515,40 @@ Remote repository associated? YES
 Local master synchronized with remote? YES
 
 
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 09: DOCKER CONTAINER MANAGEMENT
 =====================================================================
+
+
+Question 9 of 17
+
+Weight: 10/102
+A Docker container is running on node01. Perform the following tasks:
+
+Stop and remove the container that is currently running, since it's not configured correctly.
+In your home directory you will find a subdirectory called kode_web. It contains all the necessary build instructions for Docker. Use that directory to build a new Docker image. Call this image kodekloudwebserv.
+Finally, launch a container based on the kodekloudwebserv image. In your command, make sure that all connections incoming to port 8081 on the host are redirected to port 80 of the container. Call this container webserver2.
+
+Credentials to access node01:
+Name: bob
+Password: caleston123
+
+Is webserver1 removed?
+
+Is the kodekloudwebserv built?
+
+Is webserver2 running?
+
+
 
 TASK:
 1. SSH into node01.
@@ -352,9 +593,33 @@ Image built? YES
 webserver2 running? YES
 
 
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 10: NFS SERVER CONFIGURATION
 =====================================================================
+
+
+**Question 10 of 17**
+
+**Weight: 3/102**
+
+**NFS server and client tools** are installed on `caleston-lp10` system. Instruct the NFS server to share the **/home** directory in **read-only** mode with IP addresses in the **10.0.0.0/24** CIDR range.
+
+
+
+svg
+
+Is /home shared with 10.0.0.0/24 ip address?
+
+
 
 TASK:
 Share /home with network 10.0.0.0/24.
@@ -380,9 +645,36 @@ ANSWERS:
 Read-only sharing enabled? YES
 
 
+
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 11: PROCESS IDENTIFICATION AND PID
 =====================================================================
+
+
+Question 11 of 17
+
+Weight: 6/102
+Find the application that is accepting incoming connections on port 80. Make note of the exact name of that application. You will need it later on.
+
+As you investigated what application is accepting incoming connections to port 80, you might have noticed that two or more PIDs are associated with that. Basically, the application has forked multiple processes to do its job. Figure out which PID is associated with the master process.
+
+With both of these things noted, create the following file: /opt/process.txt.
+
+On the first line add the name of the application associated with port 80, in all lowercase letters.
+On the second line add the PID number associated with the master process.
+
+Is the application name stored in /opt/process.txt?
+
+
 
 TASK:
 1. Identify application listening on port 80.
@@ -419,9 +711,41 @@ Use the actual application name and master PID.
 Do not enter MASTER_PID literally.
 
 
+
+
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 12: NETWORK CONFIGURATION
 =====================================================================
+
+
+Question 12 of 17
+
+Weight: 7/102
+Explore your network settings and perform the following tasks:
+
+There is currently one network interface which does not have any IPv4 address associated with it. Temporarily assign it the following IPv4 address: 10.5.0.1/24. This should not be a permanent change (no need to edit configuration files).
+
+What is the default route for this system? Create a file, and add a single line where you save the IP address for the gateway used by this default route (i.e., requests are routed to what IP address?). Save the address in this file: /opt/gateway.txt.
+
+For the final task, find out what is the IP address of the main DNS resolver configured for this system. Create the file /opt/dns.txt and add a single line to it with that IP address.
+
+
+Is ip address configured?
+
+Is default route ip address stored in /opt/gateway.txt?
+
+Is the ip address of DNS resolver stored in /opt/dns.txt?
+
+
+
 
 TASK:
 1. Find interface without IPv4.
@@ -467,6 +791,35 @@ DNS resolver saved? YES
 =====================================================================
 QUESTION 13: DISK PARTITIONING AND FILESYSTEMS
 =====================================================================
+
+
+
+Weight: 6/102
+There is a another virtual machine with name node01 is available for you. Perform this task on node01. You can access the node by ssh
+
+username: bob
+Host- node01
+Password- caleston123 
+
+You can identify the disk because it is currently unpartitioned, not mounted anywhere, and is 2 GB in size.
+Disk /dev/vde is unpartitioned, not mounted anywhere, and is 2 GB in size.
+
+Create two partitions of equal size on this disk: 500M each. Ignore about remaining 1GB partition.
+Create an ext4 filesystem on the first partition.
+Create an xfs filesystem on the second partition.
+Create two directories: /part1 and /part2.
+Manually mount the ext4 filesystem in the /part1 directory. Manually mount the xfs filesystem in the /part2 directory.
+Also, configure the system to automatically mount these the same way, every time the operating system boots up.
+
+Is the volume mounted on /part1?
+
+Is the volume mounted on /part2?
+
+Is it configured to automatically mount the /vde1?
+
+Is it configured to automatically mount the /vde2?
+
+
 
 TASK:
 On node01:
@@ -535,9 +888,39 @@ Volume mounted on /part2? YES
 /dev/vde2 persistent? YES
 
 
+
+
+
+
+
+
+
+
 =====================================================================
 QUESTION 14: SWAP FILE CONFIGURATION
 =====================================================================
+
+
+Question 14 of 17
+
+Weight: 4/102
+Configure the system to use /swfile as a swap file on node01.
+
+First, create /swfile. Make the size of this file exactly 1024 MB.
+Then take all the necessary steps to temporarily mount this as swap. (So that it's immediately used as swap for this current boot session).
+But also make sure to configure the system to also use this as swap every time it will boot up in the future.
+
+Credentials to access node01:
+Name: bob
+Password: caleston123
+
+Is /swfile created with size 1024 MB?
+
+Is /swfile temporarily mount as swap?
+
+Is the changes persistent after reboot?
+
+
 
 TASK:
 On node01:
@@ -574,9 +957,32 @@ Swap enabled now? YES
 Persistent after reboot? YES
 
 
+
+
+
 =====================================================================
 QUESTION 15: DISK I/O PROCESS ANALYSIS
 =====================================================================
+
+Question 15 of 17
+
+Weight: 6/102
+On node01two processes are overusing our storage device. One is executing a lot of I/O operations per second (small data transfers, but a very large number of such transfers). Otherwise said, the process has a high tps/IOPS. The other process is reading very large volumes of data.
+
+Identify the process with the high tps. What partition is it using? Create the file /opt/devname.txtand write the device name of that partition inside that file. For example, if it's using /dev/vde5, you would simply write /dev/vde5 on a single line in that file. Note that there might be some abstractions behind this, and we're not interested in device mapper names, but rather, the real device the mapper is using.
+
+Identify the process with the high read transfer rate/second. Create the file /opt/highread.pid and write the PID number of that process in that file. For example, if the PID is 3886 you just write 3886 in that file (only the number, on a single line).
+
+
+Credentials to access node01:
+Name: bob
+Password: caleston123
+
+Is the device name stored in /opt/devname.txt?
+
+Is the PID number stored in /opt/highread.pid?
+
+
 
 TASK:
 On node01:
@@ -632,6 +1038,27 @@ Do not guess these values.
 QUESTION 16: JOURNALCTL LOG ANALYSIS
 =====================================================================
 
+
+Question 16 of 17
+
+Weight: 5/102
+Perform the following log analysis tasks on caleston-lp10:
+
+Use journalctl to collect all log entries with priority error or higher (err, crit, alert, emerg). Save the complete output to /opt/journal-errors.txt.
+
+From /opt/journal-errors.txt, count how many lines contain the word "error" (case-insensitive). Write just the number to /opt/error-count.txt.
+
+Use journalctl to extract all logs from the ssh service since the last system boot. Save the output to /opt/ssh.log.
+
+
+Does /opt/journal-errors.txt contain error-level journal entries?
+
+Does /opt/error-count.txt contain the correct error count?
+
+Does /opt/ssh.log contain ssh service logs from the last boot?
+
+
+
 TASK:
 On caleston-lp10:
 1. Collect error priority and higher logs.
@@ -672,6 +1099,22 @@ Use the correct SSH service name.
 =====================================================================
 QUESTION 17: SSH X11 FORWARDING CONFIGURATION
 =====================================================================
+
+
+
+Question 17 of 17
+
+Weight: 4/102
+On caleston-lp10 change the configuration for the SSH daemon. Disable X11 forwarding globally. Then, make an exception for just one user called bob. For that user alone enable X11 forwarding.
+
+
+Do not restart the SSH service after making the changes.
+
+Is X11 forwarding globally disabled?
+
+Is X11 forwarding enabled for bob?
+
+
 
 TASK:
 On caleston-lp10:
