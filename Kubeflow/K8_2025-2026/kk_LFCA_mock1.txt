@@ -1,0 +1,836 @@
+
+
+
+
+=====================================================================
+QUESTION 01: FIND FILES AND FILTER PERMISSIONS
+=====================================================================
+Question 1 of 17
+
+Weight: 8/102
+
+In the /opt/findme/ directory you will find 10,000 files. You need to filter out specific files
+
+Find all files that have the executable permission bit enabled for the user that owns them. Redirect the output of the find command to the /opt/foundthem.txt file.
+Find all files that have the SETUID permission enabled and delete them.
+Find any file that is larger than 1KB and copy it to the /opt/ directory
+
+Found files with executable permission?
+
+Deleted files with SETUID permission?
+
+Is the file larger than 1KB moved to /opt?
+
+
+
+TASK:
+1. Find files with owner executable permission.
+2. Delete files with SETUID permission.
+3. Copy files larger than 1KB to /opt/.
+
+COMMANDS:
+
+# Find owner-executable files
+find /opt/findme/ -type f -perm -u=x > /opt/foundthem.txt
+
+# Delete SETUID files
+find /opt/findme/ -type f -perm -4000 -delete
+
+# Copy files larger than 1KB
+find /opt/findme/ -type f -size +1k -exec cp -t /opt/ {} +
+
+# Verify
+cat /opt/foundthem.txt
+find /opt/findme/ -type f -perm -4000
+ls -lh /opt/
+
+ANSWERS:
+Found executable files? YES
+SETUID files deleted? YES
+Files larger than 1KB copied? YES
+
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================
+QUESTION 02: BASH SCRIPT AND SYSTEM-WIDE CRON
+=====================================================================
+
+
+Question 2 of 17
+
+Weight: 6/102
+Perform the following two tasks:
+
+Create a bash script that recursively copies the /var/www/ directory into the /opt/www-backup/ directory
+
+Save your script at /opt/script.sh. Remember, the script file you create also has to be executable.
+
+Make sure that your script /opt/script.sh automatically runs every day at 4AM. More specifically, create a cron job that runs that script every day at 4AM. Put this in the system-wide cron table (not root's local cron table) and make sure the script executes under the root user.
+
+
+Is the /opt/script.sh script executable?
+
+Is the script configured right?
+
+Is system-wide cron table updated?
+
+
+
+
+
+TASK:
+1. Create /opt/script.sh.
+2. Recursively copy /var/www/ to /opt/www-backup/.
+3. Make script executable.
+4. Run every day at 4 AM as root.
+5. Use system-wide cron table.
+
+COMMANDS:
+
+# Create script
+cat > /opt/script.sh <<'EOF'
+#!/bin/bash
+cp -a /var/www /opt/www-backup
+EOF
+
+# Make executable
+chmod +x /opt/script.sh
+
+# Add system-wide cron job
+echo "0 4 * * * root /opt/script.sh" >> /etc/crontab
+
+# Verify
+ls -l /opt/script.sh
+cat /opt/script.sh
+cat /etc/crontab
+
+ANSWERS:
+Script executable? YES
+Script configured correctly? YES
+System-wide cron updated? YES
+
+
+=====================================================================
+QUESTION 03: USER RESOURCE LIMITS
+=====================================================================
+
+TASK:
+1. JOHN: Maximum 30 processes (HARD).
+2. JANE: Maximum file size 1024 KB (SOFT).
+
+COMMANDS:
+
+# John hard process limit
+echo "john hard nproc 30" >> /etc/security/limits.conf
+
+# Jane soft file size limit
+echo "jane soft fsize 1024" >> /etc/security/limits.conf
+
+# Verify
+tail -n 5 /etc/security/limits.conf
+
+ANSWERS:
+John hard limit created? YES
+Jane soft limit created? YES
+
+
+=====================================================================
+QUESTION 04: USER MANAGEMENT AND GROUPS
+=====================================================================
+
+TASK:
+1. Create user mary.
+2. Password = 1234.
+3. Shell = /bin/dash.
+4. Secondary group = sudo.
+5. Primary group = developers.
+
+COMMANDS:
+
+# Create user
+useradd -m -s /bin/dash mary
+
+# Set password
+echo "mary:1234" | chpasswd
+
+# Add secondary group
+usermod -aG sudo mary
+
+# Create developers group if missing
+groupadd -f developers
+
+# Change primary group
+usermod -g developers mary
+
+# Verify
+id mary
+getent passwd mary
+
+ANSWERS:
+Mary created? YES
+Default shell /bin/dash? YES
+Mary belongs to sudo group? YES
+Primary group developers? YES
+
+
+=====================================================================
+QUESTION 05: KERNEL RUNTIME PARAMETERS (SYSCTL)
+=====================================================================
+
+TASK:
+Set vm.swappiness = 10.
+Make the setting persistent and apply immediately.
+
+COMMANDS:
+
+# Persistent configuration
+echo "vm.swappiness = 10" > /etc/sysctl.d/99-swappiness.conf
+
+# Apply immediately
+sysctl -w vm.swappiness=10
+
+# Verify
+sysctl vm.swappiness
+cat /etc/sysctl.d/99-swappiness.conf
+
+ANSWERS:
+Current session set to 10? YES
+Persistent after reboot? YES
+
+
+=====================================================================
+QUESTION 06: FSTAB AND READ-ONLY MOUNTING
+=====================================================================
+
+TASK:
+1. /dev/vdd1 = XFS, mount at /backups automatically.
+2. /dev/vdd2 = EXT4, remount /mnt as read-only.
+
+COMMANDS:
+
+# Create mount point
+mkdir -p /backups
+
+# Configure automatic mounting
+echo "/dev/vdd1 /backups xfs defaults 0 0" >> /etc/fstab
+
+# Remount as read-only
+mount -o remount,ro /mnt
+
+# Verify
+mount -a
+findmnt /backups
+findmnt -no OPTIONS /mnt
+
+ANSWERS:
+vdd1 automatically mounted? YES
+vdd2 mounted read-only? YES
+
+
+=====================================================================
+QUESTION 07: LOGICAL VOLUME MANAGER (LVM)
+=====================================================================
+
+TASK:
+1. Initialize /dev/vde and /dev/vdf as PV.
+2. Create VG named volume1.
+3. Create LV named website_files.
+4. LV size = 1.5GB.
+
+COMMANDS:
+
+# Create Physical Volumes
+pvcreate /dev/vde /dev/vdf
+
+# Create Volume Group
+vgcreate volume1 /dev/vde /dev/vdf
+
+# Create Logical Volume
+lvcreate -L 1.5G -n website_files volume1
+
+# Verify
+pvs
+vgs
+lvs
+
+ANSWERS:
+Physical volumes initialized? YES
+Volume group created? YES
+Logical volume created? YES
+
+
+=====================================================================
+QUESTION 08: GIT REPOSITORY MANAGEMENT
+=====================================================================
+
+TASK:
+1. Initialize ~/kode as Git repository.
+2. Add remote repository named origin.
+3. Download latest changes from master.
+
+COMMANDS:
+
+# Enter directory
+cd ~/kode
+
+# Initialize Git
+git init
+
+# Add remote
+git remote add origin https://github.com/kodekloudhub/git-for-beginners-course.git
+
+# Fetch latest master
+git fetch origin master
+
+# Synchronize local master branch
+git checkout -B master origin/master
+
+# Verify
+git remote -v
+git branch -a
+git status
+
+ANSWERS:
+Remote repository associated? YES
+Local master synchronized with remote? YES
+
+
+=====================================================================
+QUESTION 09: DOCKER CONTAINER MANAGEMENT
+=====================================================================
+
+TASK:
+1. SSH into node01.
+2. Stop and remove webserver1.
+3. Build image kodekloudwebserv.
+4. Run container webserver2.
+5. Map host port 8081 to container port 80.
+
+COMMANDS:
+
+# Connect to node01
+ssh bob@node01
+
+# Password: caleston123
+
+# Stop container
+docker stop webserver1
+
+# Remove container
+docker rm webserver1
+
+# Enter build directory
+cd ~/kode_web
+
+# Build image
+docker build -t kodekloudwebserv .
+
+# Run container
+docker run -d \
+--name webserver2 \
+-p 8081:80 \
+kodekloudwebserv
+
+# Verify
+docker ps -a
+docker images
+docker port webserver2
+
+ANSWERS:
+webserver1 removed? YES
+Image built? YES
+webserver2 running? YES
+
+
+=====================================================================
+QUESTION 10: NFS SERVER CONFIGURATION
+=====================================================================
+
+TASK:
+Share /home with network 10.0.0.0/24.
+Use READ-ONLY permissions.
+
+COMMANDS:
+
+# Configure NFS export
+echo "/home 10.0.0.0/24(ro,sync,no_subtree_check)" >> /etc/exports
+
+# Apply exports
+exportfs -ra
+
+# Enable NFS server
+systemctl enable --now nfs-server
+
+# Verify
+exportfs -v
+showmount -e localhost
+
+ANSWERS:
+ /home shared with 10.0.0.0/24? YES
+Read-only sharing enabled? YES
+
+
+=====================================================================
+QUESTION 11: PROCESS IDENTIFICATION AND PID
+=====================================================================
+
+TASK:
+1. Identify application listening on port 80.
+2. Identify its master process PID.
+3. Save application name and PID in /opt/process.txt.
+
+COMMANDS:
+
+# Find application listening on port 80
+ss -lntp | grep ':80 '
+
+# Alternative
+lsof -i :80
+
+# Find processes
+ps -ef | grep -E 'nginx|apache2|httpd'
+
+# View process tree
+pstree -p
+
+# If application is NGINX, replace MASTER_PID
+echo "nginx" > /opt/process.txt
+echo "MASTER_PID" >> /opt/process.txt
+
+# Verify
+cat /opt/process.txt
+
+ANSWERS:
+Application name stored? YES
+Master PID stored? YES
+
+NOTE:
+Use the actual application name and master PID.
+Do not enter MASTER_PID literally.
+
+
+=====================================================================
+QUESTION 12: NETWORK CONFIGURATION
+=====================================================================
+
+TASK:
+1. Find interface without IPv4.
+2. Assign 10.5.0.1/24 temporarily.
+3. Save default gateway in /opt/gateway.txt.
+4. Save DNS resolver in /opt/dns.txt.
+
+COMMANDS:
+
+# Identify interfaces
+ip -br addr
+
+# Assign temporary IP
+# Replace eth1 with actual interface
+ip addr add 10.5.0.1/24 dev eth1
+
+# Enable interface
+ip link set eth1 up
+
+# Find default gateway
+ip route
+
+# Save default gateway
+ip route | awk '/^default/ {print $3; exit}' > /opt/gateway.txt
+
+# Find DNS resolver
+cat /etc/resolv.conf
+
+# Save first DNS resolver
+awk '/^nameserver/ {print $2; exit}' /etc/resolv.conf > /opt/dns.txt
+
+# Verify
+ip addr
+cat /opt/gateway.txt
+cat /opt/dns.txt
+
+ANSWERS:
+IP configured? YES
+Gateway saved? YES
+DNS resolver saved? YES
+
+
+=====================================================================
+QUESTION 13: DISK PARTITIONING AND FILESYSTEMS
+=====================================================================
+
+TASK:
+On node01:
+1. Disk = /dev/vde (2GB).
+2. Create two partitions of 500MB each.
+3. First partition = EXT4.
+4. Second partition = XFS.
+5. Mount at /part1 and /part2.
+6. Configure persistent mounting.
+
+COMMANDS:
+
+# SSH into node01
+ssh bob@node01
+
+# Open fdisk
+sudo fdisk /dev/vde
+
+# Inside fdisk enter:
+n
+p
+1
+<Enter>
++500M
+
+n
+p
+2
+<Enter>
++500M
+
+w
+
+# Refresh partition table
+sudo partprobe /dev/vde
+
+# Create filesystems
+sudo mkfs.ext4 /dev/vde1
+sudo mkfs.xfs /dev/vde2
+
+# Create directories
+sudo mkdir -p /part1 /part2
+
+# Mount partitions
+sudo mount /dev/vde1 /part1
+sudo mount /dev/vde2 /part2
+
+# Get UUIDs
+UUID1=$(sudo blkid -s UUID -o value /dev/vde1)
+UUID2=$(sudo blkid -s UUID -o value /dev/vde2)
+
+# Persistent mounting
+echo "UUID=$UUID1 /part1 ext4 defaults 0 2" | sudo tee -a /etc/fstab
+
+echo "UUID=$UUID2 /part2 xfs defaults 0 0" | sudo tee -a /etc/fstab
+
+# Verify
+sudo mount -a
+lsblk -f
+df -hT
+
+ANSWERS:
+Volume mounted on /part1? YES
+Volume mounted on /part2? YES
+/dev/vde1 persistent? YES
+/dev/vde2 persistent? YES
+
+
+=====================================================================
+QUESTION 14: SWAP FILE CONFIGURATION
+=====================================================================
+
+TASK:
+On node01:
+1. Create /swfile of exactly 1024MB.
+2. Enable swap immediately.
+3. Enable swap permanently.
+
+COMMANDS:
+
+# Create swap file
+sudo fallocate -l 1024M /swfile
+
+# Set permissions
+sudo chmod 600 /swfile
+
+# Format as swap
+sudo mkswap /swfile
+
+# Enable immediately
+sudo swapon /swfile
+
+# Persistent configuration
+echo "/swfile none swap sw 0 0" | sudo tee -a /etc/fstab
+
+# Verify
+ls -lh /swfile
+sudo swapon --show
+free -h
+cat /etc/fstab
+
+ANSWERS:
+1024MB swap file created? YES
+Swap enabled now? YES
+Persistent after reboot? YES
+
+
+=====================================================================
+QUESTION 15: DISK I/O PROCESS ANALYSIS
+=====================================================================
+
+TASK:
+On node01:
+1. Identify process with high TPS/IOPS.
+2. Identify its actual underlying partition.
+3. Save device name in /opt/devname.txt.
+4. Identify process with highest read transfer rate.
+5. Save its PID in /opt/highread.pid.
+
+COMMANDS:
+
+# SSH into node01
+ssh bob@node01
+
+# Install iotop if missing (Debian/Ubuntu)
+sudo apt install iotop -y
+
+# Monitor disk I/O
+sudo iotop -oPa
+
+# Alternative monitoring
+sudo iostat -dx 1
+
+# Find process details
+sudo lsof -p PID
+
+# Find filesystem containing accessed file
+findmnt -T /path/to/file
+
+# Resolve device mapper to physical devices
+lsblk -s
+
+# Save actual partition name
+echo "/dev/DEVICE" | sudo tee /opt/devname.txt
+
+# Save high-read process PID
+echo "READ_PID" | sudo tee /opt/highread.pid
+
+# Verify
+cat /opt/devname.txt
+cat /opt/highread.pid
+
+ANSWERS:
+Device name saved? YES
+High-read PID saved? YES
+
+NOTE:
+Replace DEVICE and READ_PID with actual values.
+Do not guess these values.
+
+
+=====================================================================
+QUESTION 16: JOURNALCTL LOG ANALYSIS
+=====================================================================
+
+TASK:
+On caleston-lp10:
+1. Collect error priority and higher logs.
+2. Save output in /opt/journal-errors.txt.
+3. Count lines containing error (case-insensitive).
+4. Save count in /opt/error-count.txt.
+5. Collect SSH logs since last boot.
+6. Save output in /opt/ssh.log.
+
+COMMANDS:
+
+# Collect error-level logs
+journalctl -p err..emerg > /opt/journal-errors.txt
+
+# Count lines containing error
+grep -ic "error" /opt/journal-errors.txt > /opt/error-count.txt
+
+# Collect SSH service logs since boot
+journalctl -u ssh.service -b > /opt/ssh.log
+
+# If service name is sshd
+journalctl -u sshd.service -b > /opt/ssh.log
+
+# Verify
+cat /opt/error-count.txt
+head /opt/journal-errors.txt
+head /opt/ssh.log
+
+ANSWERS:
+Error logs collected? YES
+Error count saved? YES
+SSH logs collected? YES
+
+NOTE:
+Use the correct SSH service name.
+
+
+=====================================================================
+QUESTION 17: SSH X11 FORWARDING CONFIGURATION
+=====================================================================
+
+TASK:
+On caleston-lp10:
+1. Disable X11 forwarding globally.
+2. Enable X11 forwarding only for bob.
+3. Do not restart SSH service.
+
+COMMANDS:
+
+# Edit SSH configuration
+nano /etc/ssh/sshd_config
+
+# Global configuration
+X11Forwarding no
+
+# At the bottom of the file
+Match User bob
+    X11Forwarding yes
+
+# Test SSH configuration
+sshd -t
+
+# Check global configuration
+sshd -T -C user=root | grep x11forwarding
+
+# Check bob configuration
+sshd -T -C user=bob | grep x11forwarding
+
+EXPECTED OUTPUT:
+
+x11forwarding no
+x11forwarding yes
+
+ANSWERS:
+X11 forwarding globally disabled? YES
+X11 forwarding enabled for bob? YES
+
+IMPORTANT:
+Do not restart or reload SSH service.
+Changes take effect for new SSH connections after configuration is reloaded.
+Since the task explicitly prohibits reload/restart, leave the service untouched.
+
+
+=====================================================================
+END OF LFCS MOCK TEST
+TOTAL QUESTIONS: 17
+=====================================================================
+
+IMPORTANT LFCS EXAM COMMAND REMINDERS:
+
+# FILE MANAGEMENT
+find
+cp
+mv
+rm
+chmod
+chown
+stat
+
+# USERS AND GROUPS
+useradd
+usermod
+userdel
+groupadd
+passwd
+id
+groups
+
+# PROCESS MANAGEMENT
+ps
+top
+pgrep
+pkill
+kill
+nice
+renice
+pstree
+
+# DISK MANAGEMENT
+lsblk
+blkid
+fdisk
+parted
+mkfs
+mount
+umount
+findmnt
+df
+du
+
+# LVM
+pvcreate
+pvs
+vgcreate
+vgs
+lvcreate
+lvs
+lvextend
+resize2fs
+xfs_growfs
+
+# SWAP
+mkswap
+swapon
+swapoff
+free
+
+# NETWORK
+ip addr
+ip route
+ip link
+ss
+ping
+dig
+nmcli
+resolvectl
+
+# SERVICES
+systemctl
+journalctl
+service
+
+# SCHEDULING
+crontab
+/etc/crontab
+/etc/cron.d/
+
+# KERNEL PARAMETERS
+sysctl
+/etc/sysctl.conf
+/etc/sysctl.d/
+
+# SSH
+ssh
+scp
+sshd
+sshd -t
+sshd -T
+
+# GIT
+git init
+git clone
+git remote
+git fetch
+git pull
+git push
+git status
+
+# DOCKER
+docker images
+docker ps -a
+docker run
+docker stop
+docker rm
+docker build
+docker exec
+docker inspect
+docker logs
+
+=====================================================================
+END OF NOTES
+=====================================================================
