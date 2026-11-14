@@ -52,10 +52,17 @@ Disadvantages:
       4. Documentation and support quality can differ.
       5. Users may need to troubleshoot issues themselves.
 
+
+
 Open-Source vs Proprietary Software:
-      - Open-source: source code is available under a license; modification and redistribution may be permitted.
-      - Proprietary: source code is generally not public; modification and redistribution are usually restricted.
+      - Open-source: source code is available under a 
+                     license; modification and redistribution may be permitted.
+
+      - Proprietary: source code is generally not public; 
+                      modification and redistribution are usually restricted.
+
       - Examples of open-source software: Linux, LibreOffice.
+
       - Examples of proprietary software: Microsoft Windows, Microsoft Office.
 
 
@@ -316,7 +323,7 @@ Linux uses a hierarchical filesystem beginning at the root directory (/).
 
 
 1.3.2 Create Files and Directories
-
+--------------------------------------------
     pwd
     mkdir LinuxLab
     cd LinuxLab
@@ -495,6 +502,9 @@ manage files, inspect system information, and automate tasks.
     clear        Clear terminal screen
     history      Show command history
 
+
+
+
 Examples:
     whoami
     hostname
@@ -503,6 +513,12 @@ Examples:
     uptime
     free -h
     df -h
+
+
+
+
+
+
 
 1.4.2 Input and Output Redirection
 --------------------------------------------
@@ -531,6 +547,9 @@ Examples:
           sort < names.txt
 
 
+
+
+
 1.4.3 Pipes
 ----------------------
 A pipe (|) passes output from one command as input to another.
@@ -540,6 +559,9 @@ Examples:
     ls -1 | wc -l
     ps aux | grep ssh
     cat names.txt | sort
+
+
+
 
 
 
@@ -759,21 +781,21 @@ Note: uniq detects adjacent duplicate lines, so sort is commonly used first.
 1.5.8 sed
 ----------------------
 sed is a stream editor used for substitution, deletion, and filtering.
-
-Replace first occurrence of Ram on each line:
-    sed 's/Ram/Ramesh/' students.txt
-
-Replace all occurrences on each line:
-    sed 's/Ram/Ramesh/g' students.txt
-
-Display lines 1 through 3:
-    sed -n '1,3p' students.txt
-
-Delete line 3 from output:
-    sed '3d' students.txt
-
-Save modified output:
-    sed 's/Ram/Ramesh/g' students.txt > updated.txt
+      
+      Replace first occurrence of Ram on each line:
+          sed 's/Ram/Ramesh/' students.txt
+      
+      Replace all occurrences on each line:
+          sed 's/Ram/Ramesh/g' students.txt
+      
+      Display lines 1 through 3:
+          sed -n '1,3p' students.txt
+      
+      Delete line 3 from output:
+          sed '3d' students.txt
+      
+      Save modified output:
+          sed 's/Ram/Ramesh/g' students.txt > updated.txt
 
 
 
@@ -842,25 +864,33 @@ processes running in the foreground or background.
 A process is an instance of a running program. Linux assigns each process
 a unique Process ID (PID).
 
+
+
+
 1.6.1 Foreground and Background Processes
+--------------------------------------------
+      Foreground:
+      ----------
+      Runs in the terminal and normally occupies it until completion or interruption.
+      
+      Example:
+          ping google.com
+      
+      Press Ctrl+C to interrupt the foreground process.
+      
+      
+      
+      
+      
+      Background:
+      --------------
+      Runs without continuously occupying the terminal.
+      
+      Example:
+          ping google.com &
+      
 
-Foreground:
-Runs in the terminal and normally occupies it until completion or interruption.
 
-Example:
-    ping google.com
-
-Press Ctrl+C to interrupt the foreground process.
-
-
-
-
-
-Background:
-Runs without continuously occupying the terminal.
-
-Example:
-    ping google.com &
 
 
 
@@ -877,6 +907,9 @@ Example:
     nohup     Run a command immune to hangup signals
     wait      Wait for background jobs to finish
 
+
+
+
 1.6.3 Job Control Example
 ----------------------
 Start a process:
@@ -884,17 +917,29 @@ Start a process:
 
 Press Ctrl+Z to suspend it.
 
+
+
+
 List jobs:
     jobs
+
+
+
 
 Illustrative output:
     [1]+ Stopped ping 8.8.8.8
 
+
+
 Resume in background:
     bg %1
 
+
+
 Bring it to foreground:
     fg %1
+
+
 
 Press Ctrl+C to stop it.
 
