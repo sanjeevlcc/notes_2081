@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit I - Open Source MCQ Assessment</title>
+<style>
+:root{--ink:#172033;--muted:#667085;--line:#d9e0ea;--paper:#f5f7fb;--blue:#2457c5;--green:#16803c;--red:#c62828;--amber:#9a6700}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#132b55,#2457c5);color:white;padding:28px 18px}
+.wrap{max-width:980px;margin:auto;padding:0 16px}
+h1{font-size:clamp(1.5rem,4vw,2.2rem);margin:0 0 6px}
+header p{margin:0;color:#e5edff}
+main{padding:22px 0 48px}
+.panel,.question,.result{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:0 3px 14px #1720330a}
+.panel h2,.result h2{margin:0 0 12px;font-size:1.15rem}
+.formgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+label{display:block;font-weight:650;font-size:.9rem;margin-bottom:5px}
+input{width:100%;padding:11px 12px;border:1px solid #b8c2d1;border-radius:9px;font:inherit}
+.note{font-size:.88rem;color:var(--muted);margin:8px 0 0}
+.progressline{height:10px;background:#e9edf4;border-radius:20px;overflow:hidden;margin:10px 0}
+.progressbar{height:100%;width:0;background:#2457c5;transition:width .2s}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+button{border:0;border-radius:9px;padding:10px 15px;font:inherit;font-weight:650;cursor:pointer}
+.primary{background:var(--blue);color:white}
+.secondary{background:#edf2ff;color:#173d91}
+.finish{background:#172033;color:white}
+button:disabled{opacity:.45;cursor:not-allowed}
+.qtop{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.qnum{font-weight:750;color:#2457c5}
+.weight{font-size:.82rem;color:var(--muted);background:#f0f3f8;padding:3px 9px;border-radius:20px}
+.question h3{font-size:1.04rem;margin:10px 0 13px}
+.options{display:grid;gap:8px}
+.option{width:100%;text-align:left;background:#f8faff;border:1px solid #d8e0ed;color:var(--ink);font-weight:500;display:flex;gap:10px;align-items:flex-start}
+.option:hover:not(:disabled){border-color:#7898df;background:#f1f5ff}
+.option .letter{font-weight:750;color:#53627a;min-width:22px}
+.option.correct{background:#e5f6e9;border:2px solid var(--green);color:#105c2b}
+.option.wrong{background:#ffebeb;border:2px solid var(--red);color:#8d1717}
+.option.muted{opacity:.65}
+.feedback{font-weight:700;margin:10px 0 0}
+.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}
+.qactions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hint{display:none;background:#fff8e5;border-left:4px solid #e0a000;padding:10px 12px;margin-top:10px;border-radius:6px;color:#634900}
+.explanation{display:none;background:#f0f5ff;border-left:4px solid #5278c9;padding:10px 12px;margin-top:10px;border-radius:6px}
+.result{display:none;border:2px solid #2457c5}
+.scorebig{font-size:2rem;font-weight:850;margin:4px 0}
+.pass{color:var(--green)}.fail{color:var(--red)}
+.summarygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{background:#f4f6fa;padding:12px;border-radius:10px}
+.stat strong{display:block;font-size:1.25rem}
+.answerlist{padding-left:22px}
+.answerlist li{margin:6px 0}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:16px}
+@media(max-width:650px){.formgrid{grid-template-columns:1fr}.summarygrid{grid-template-columns:1fr 1fr}.panel,.question,.result{padding:14px}}
+@media print{body{background:white}.no-print,header p{display:none!important}.panel,.question,.result{box-shadow:none;break-inside:avoid}.hint,.explanation{display:block!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Unit I: Introduction to Open Source</h1>
+    <p>MCQ-based assessment · 40 questions · 100 marks · Pass mark: 60%</p>
+  </div>
+</header>
+<main class="wrap">
+  <section class="panel">
+    <h2>Student and assessment details</h2>
+    <div class="formgrid">
+      <div><label for="studentName">Student name</label><input id="studentName" type="text" placeholder="Enter student's full name" autocomplete="name"></div>
+      <div><label for="weight">Weight per question</label><input id="weight" type="number" value="2.5" min="0.1" max="100" step="0.1" readonly></div>
+      <div><label for="passPercent">Pass percentage</label><input id="passPercent" type="number" value="60" readonly></div>
+    </div>
+    <p class="note">Each question carries 2.5 marks. Total = 40 × 2.5 = 100 marks. A score of 60/100 (60%) is required to pass. Select one option for each question. Your first selection is checked immediately; use “Show hint” for a clue. The complete answer key and explanations appear after submission.</p>
+  </section>
+
+  <section class="panel no-print">
+    <div class="toolbar">
+      <div><strong id="progressText">Answered: 0 / 40</strong><div class="progressline"><div class="progressbar" id="progressBar"></div></div></div>
+      <button class="secondary" id="topSubmit" type="button">Submit assessment</button>
+    </div>
+    <p class="note">You may change an answer before submission. Only the final selected option is scored.</p>
+  </section>
+
+  <div id="questions"></div>
+
+  <section class="panel no-print">
+    <div class="toolbar">
+      <div><strong>Ready to finish?</strong><div class="note">Submit to calculate the result and reveal all correct answers.</div></div>
+      <button class="finish" id="bottomSubmit" type="button">Submit and view result</button>
+    </div>
+  </section>
+
+  <section class="result" id="result" aria-live="polite">
+    <h2>Assessment result</h2>
+    <div id="studentResult"></div>
+    <div class="scorebig" id="scoreBig"></div>
+    <div id="statusText"></div>
+    <div class="summarygrid">
+      <div class="stat"><strong id="correctCount">0</strong><span>Correct</span></div>
+      <div class="stat"><strong id="wrongCount">0</strong><span>Incorrect / unanswered</span></div>
+      <div class="stat"><strong id="percentage">0%</strong><span>Percentage</span></div>
+    </div>
+    <p id="resultMessage"></p>
+    <div class="qactions no-print">
+      <button class="primary" id="printBtn" type="button">Print result</button>
+      <button class="secondary" id="restartBtn" type="button">Start again</button>
+    </div>
+    <h3>Answer key and explanations</h3>
+    <ol class="answerlist" id="answerKey"></ol>
+  </section>
+</main>
+<footer>Open Source Operating System course · Unit I only · Self-contained assessment page</footer>
+
+<!-- jQuery is loaded from its official CDN; all quiz data, styling and quiz logic are embedded in this one HTML file. -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+(function(){
+"use strict";
+const questions = [
+{q:"A college wants to publish a small learning-management application. It makes the source code available and allows others to inspect, modify and redistribute it under stated terms. Which idea does this best demonstrate?",o:["Proprietary licensing","Open source software","Shareware","Hardware virtualization"],a:1,h:"Think about access to the source code and the freedoms granted to users.",e:"Open source software makes source code available under a license that permits use, study, modification and redistribution."},
+{q:"A developer can read a program's source code but the license prohibits modifying or sharing modified copies. Is source availability alone enough to make it open source?",o:["Yes, always","No, permissions in the license also matter","Yes, if the program is free of cost","Only if it runs on Linux"],a:1,h:"Open source is about rights and license conditions, not simply seeing the code.",e:"No. A program is not open source merely because its code can be viewed. The license must grant the freedoms required by the Open Source Definition."},
+{q:"Which statement best describes the central purpose of the Open Source Definition?",o:["To require all software to be free of charge","To define criteria for licenses that qualify as open source","To make every project use Linux","To prohibit commercial use"],a:1,h:"It is a set of license criteria, not a pricing rule.",e:"The Open Source Definition provides criteria for evaluating whether a software license qualifies as open source."},
+{q:"A company uses an open source library in a paid product. Which statement is generally correct?",o:["Commercial use is always forbidden","Open source software cannot be sold","Commercial use can be permitted, depending on the license","The company must make all its hardware open source"],a:2,h:"Open source describes licensing freedoms; it does not automatically mean non-commercial.",e:"Many open source licenses permit commercial use. The user must comply with the specific license terms."},
+{q:"Which is a key open source principle?",o:["Only the original author may inspect the code","Users are prohibited from redistributing copies","Users may study and modify the source under the license","The software must be developed by a government"],a:2,h:"Consider what a user is allowed to do with the source.",e:"The ability to study, modify and redistribute software under the license is central to open source."},
+{q:"The Open Source Initiative (OSI) was established primarily to:",o:["Promote and define open source software and licenses","Create the Windows operating system","Replace all programming languages","Manage internet domain names"],a:0,h:"OSI is an organization associated with the open source movement.",e:"The Open Source Initiative promotes open source and maintains the Open Source Definition and a list of approved licenses."},
+{q:"Which pair is most closely associated with founding the Open Source Initiative in 1998?",o:["Linus Torvalds and Dennis Ritchie","Eric S. Raymond and Bruce Perens","Bill Gates and Steve Jobs","Richard Stallman and Ken Thompson"],a:1,h:"The pair helped formalize the term and launch OSI.",e:"Eric S. Raymond and Bruce Perens were central to the launch of the Open Source Initiative in 1998."},
+{q:"Why was the term “open source” promoted in the late 1990s?",o:["To emphasize practical development and business benefits of source availability","To make source code secret","To ban collaborative software development","To rename the internet"],a:0,h:"The phrase was intended to communicate a practical, business-friendly framing.",e:"The term helped present collaborative source-code development in a way that emphasized practical benefits such as quality, transparency and innovation."},
+{q:"Which person is most strongly associated with the GNU Project and the free software movement?",o:["Richard Stallman","Tim Berners-Lee","James Gosling","Bjarne Stroustrup"],a:0,h:"He launched GNU in 1983 and founded the Free Software Foundation.",e:"Richard Stallman announced the GNU Project in 1983 and later founded the Free Software Foundation."},
+{q:"The Free Software Foundation (FSF) was founded in:",o:["1971","1985","1998","2005"],a:1,h:"It was founded in the mid-1980s.",e:"The Free Software Foundation was founded in 1985 to support the free software movement and GNU project."},
+{q:"Which statement correctly distinguishes the free software movement from the open source movement?",o:["They refer to completely unrelated software types","Free software emphasizes user freedoms; open source often emphasizes practical benefits of source access","Open source rejects licenses","Free software must always be paid software"],a:1,h:"The distinction is mainly one of philosophy and emphasis.",e:"Both movements support many of the same software freedoms, but the free software movement emphasizes ethical user freedoms while open source commonly emphasizes practical development and quality benefits."},
+{q:"A school chooses software because it can study the code, adapt it for local language needs and share improvements. Which benefit is most directly illustrated?",o:["Vendor lock-in","Adaptability and user control","Mandatory subscription","Closed development"],a:1,h:"The school can tailor the program rather than depend entirely on a vendor.",e:"Open source enables users to adapt software to local requirements and retain greater control."},
+{q:"Which of the following is NOT one of the four essential freedoms commonly described by the free software movement?",o:["Run the program for any purpose","Study and change the program","Redistribute copies","Prevent all other users from accessing the program"],a:3,h:"The freedoms expand user rights; they do not give one user control over everyone else.",e:"The four freedoms concern running, studying, redistributing and distributing modified versions of software."},
+{q:"A software project requires that a modified version be distributed with its source code under the same license. This is an example of:",o:["Copyleft","Trade secret protection","Hardware certification","Digital watermarking"],a:0,h:"This licensing approach aims to preserve freedoms in derivative versions.",e:"Copyleft uses copyright law to require that redistributed derivative works preserve specified freedoms, often under the same license."},
+{q:"Which organization maintains the Open Source Definition and approves licenses as OSI-approved?",o:["World Wide Web Consortium","Open Source Initiative","Internet Assigned Numbers Authority","International Organization for Standardization only"],a:1,h:"Look for the organization abbreviated OSI.",e:"The Open Source Initiative reviews and approves licenses against the Open Source Definition."},
+{q:"A team agrees to publish code, discuss changes publicly, review contributions and release improvements frequently. These practices are best described as:",o:["Closed-source procurement","Collaborative open source development methodology","A database normalization method","A hardware manufacturing process"],a:1,h:"The scenario describes a transparent, community-based workflow.",e:"Open source methodologies commonly involve public collaboration, peer review, issue tracking, shared repositories and iterative releases."},
+{q:"Which tool is commonly used to track source-code changes and coordinate collaborative development?",o:["Git","A spreadsheet calculator only","A printer driver","BIOS setup"],a:0,h:"It is a distributed version-control system.",e:"Git is a distributed version-control system widely used to manage source-code history and collaboration."},
+{q:"In an open source project, a pull request or merge request is commonly used to:",o:["Request review and integration of proposed code changes","Purchase a software license","Format a hard disk","Assign an IP address"],a:0,h:"It proposes changes for maintainers to review before integration.",e:"A pull/merge request lets contributors propose changes and receive discussion, review and approval before merging."},
+{q:"Why are open standards important in an open source ecosystem?",o:["They guarantee that one vendor controls all implementations","They support interoperability and reduce dependence on proprietary formats","They prevent software from communicating","They require every system to use the same brand"],a:1,h:"Think about systems exchanging data and working together.",e:"Open standards support interoperability, portability and implementation by different vendors or communities."},
+{q:"A public agency publishes a documented, openly implementable data format. Different vendors can build compatible systems. This is an example of:",o:["Vendor lock-in","Interoperability through an open standard","A closed binary interface","A software patent"],a:1,h:"The key is that multiple independent systems can work together.",e:"An open standard allows different implementations to exchange information or interoperate."},
+{q:"Which practice best supports transparency in an open source project?",o:["Keeping all decisions private","Publishing issue discussions, design decisions and code review","Deleting all change history","Allowing only anonymous binary downloads"],a:1,h:"Transparency means project work and decisions can be inspected.",e:"Public issue trackers, mailing lists, documentation and code reviews make development more transparent."},
+{q:"A project accepts contributions from many developers but uses a documented review process and a maintainer to approve releases. This shows that open source:",o:["Means there can be no project leadership","Can combine open participation with project governance","Requires every contributor to have equal release authority","Has no quality-control process"],a:1,h:"Open collaboration does not mean absence of rules or maintainers.",e:"Successful projects often use governance roles, contribution guidelines, maintainers and review processes."},
+{q:"Which license is a well-known permissive license with a short, simple set of conditions?",o:["GNU GPL","MIT License","GNU AGPL only","A proprietary end-user license"],a:1,h:"It is commonly used in small libraries and web projects.",e:"The MIT License is permissive and generally requires preservation of copyright and license notices."},
+{q:"A developer wants a permissive license that requires retaining its copyright notice and disclaimer. Which is a suitable example?",o:["MIT License","GNU GPLv3","GNU AGPLv3","A non-commercial-only license"],a:0,h:"This license is known for being concise and permissive.",e:"The MIT License permits broad reuse, subject to conditions including retaining the copyright and permission notice."},
+{q:"Which statement best describes the BSD family of licenses?",o:["They are generally permissive licenses","They prohibit commercial use","They require every derivative to use the GPL","They are operating-system installation tools"],a:0,h:"BSD licenses are often grouped with MIT as permissive licenses.",e:"BSD licenses generally allow redistribution and reuse, including in proprietary products, subject to license conditions."},
+{q:"A company modifies software licensed under the GNU GPL and distributes the modified version. What is generally required?",o:["It may hide all corresponding source code","It must comply with GPL obligations, including providing corresponding source under the GPL when required","It must pay the FSF a fee for every copy","It must stop commercial activity"],a:1,h:"The GPL is a copyleft license with source-sharing obligations on distribution.",e:"When distributing covered modified GPL software, the distributor must meet the GPL's conditions, including making corresponding source available under the GPL."},
+{q:"What is the main purpose of the GNU Lesser General Public License (LGPL)?",o:["To prohibit libraries from being reused","To allow certain linking/use of libraries by applications under defined conditions while preserving library freedoms","To license computer hardware","To replace all copyright law"],a:1,h:"It is commonly used for libraries where broader linking compatibility is desired.",e:"The LGPL is designed for certain software libraries and allows applications to link to them under specified conditions, while modifications to the LGPL-covered library remain subject to its terms."},
+{q:"Which comparison is most accurate?",o:["MIT is generally permissive; GPL is copyleft","MIT and GPL both prohibit redistribution","GPL is a hardware license; MIT is a patent","LGPL is the same as a public-domain dedication"],a:0,h:"One generally allows broad relicensing; the other preserves copyleft obligations.",e:"MIT is permissive, while GPL is a strong copyleft license requiring covered derivative distributions to preserve GPL terms."},
+{q:"A startup wants to include a small open source component in a commercial product without generally having to license the entire combined product under the same license. Which license family may be more suitable, subject to compliance?",o:["Permissive licenses such as MIT or BSD","GPL in every situation","A license that forbids commercial use","No license at all"],a:0,h:"Permissive licenses usually impose fewer downstream licensing requirements.",e:"MIT and many BSD licenses are permissive and often suit reuse in proprietary products, provided their notices and other conditions are followed."},
+{q:"A team chooses GPL for a project because it wants redistributed modified versions to preserve the same software freedoms. Which licensing idea motivates this choice?",o:["Copyleft","Closed-source secrecy","Per-seat pricing","Hardware abstraction"],a:0,h:"It is the reciprocal licensing approach.",e:"Copyleft aims to ensure that downstream redistribution of covered works preserves the specified freedoms."},
+{q:"Which license is generally associated with the Apache Software Foundation and includes an explicit patent license grant?",o:["Apache License 2.0","MIT License only","GNU GPL version 1 only","A proprietary freeware license"],a:0,h:"The version 2.0 text includes patent-related provisions.",e:"Apache License 2.0 is a permissive license with express patent license and termination provisions, along with notice and attribution requirements."},
+{q:"A developer copies code from a repository but removes its copyright and license notice. What is the best assessment?",o:["This is always acceptable for open source","This may violate the license conditions","Notices are never required","The code automatically becomes public domain"],a:1,h:"Permissive licenses also have conditions; they are not condition-free.",e:"Many open source licenses require preservation of copyright, license or attribution notices. Users must follow the specific license."},
+{q:"Why should an organization review open source license obligations before distributing a product?",o:["To understand notices, source-sharing and other compliance duties","Because all open source code is unsafe","To ensure the product cannot be sold","Because open source software has no copyright"],a:0,h:"The license determines the permissions and obligations attached to reuse and distribution.",e:"License review helps an organization meet attribution, notice, source-code, patent and redistribution obligations."},
+{q:"A public school has a limited software budget and wants to avoid recurring license fees. Which open source advantage is most relevant?",o:["Potentially lower licensing costs","Guaranteed zero support cost","No need for maintenance","Automatic immunity from cyberattacks"],a:0,h:"Open source can reduce or avoid proprietary license fees, but other costs may remain.",e:"Open source may lower licensing costs, although implementation, hosting, support, training and maintenance can still cost money."},
+{q:"A municipality needs to translate an application into Nepali and add local forms. Which open source advantage is most relevant?",o:["Customization and localization","Mandatory vendor control","No access to source code","Fixed user interface"],a:0,h:"The organization can adapt the software to local needs.",e:"Access to source code and modification rights can support localization and customization."},
+{q:"A company can move from one service provider to another because it uses an open data format and software that can be self-hosted. Which benefit does this illustrate?",o:["Reduced vendor lock-in","Higher dependence on a single vendor","Closed standards","License expiration"],a:0,h:"The organization has more choice and portability.",e:"Open standards and deployable open source software can reduce dependence on a single supplier."},
+{q:"A security researcher can inspect the source code, report a flaw and propose a fix. What potential benefit does this illustrate?",o:["Community review and transparency can support security improvement","Open source code cannot contain vulnerabilities","Security is guaranteed by public code","Only the original vendor can fix software"],a:0,h:"Public inspection can help identify problems, although it does not guarantee security.",e:"Open review can help discover and fix vulnerabilities, but security still depends on design, maintenance, configuration and timely updates."},
+{q:"A university wants students to learn how software works by reading and changing real program code. Which open source benefit is most relevant?",o:["Educational value and learning by doing","Restriction on code inspection","Vendor-only training","Mandatory paid certification"],a:0,h:"Students can examine and experiment with the implementation.",e:"Open source supports education by allowing learners to study, modify and experiment with real source code."},
+{q:"A hospital plans to deploy open source software. Which statement is the most responsible?",o:["No testing is needed because the source is open","Evaluate security, support, maintenance, compliance and suitability before deployment","Open source is always unsupported","The license removes all privacy obligations"],a:1,h:"Open source is not a substitute for normal procurement and risk assessment.",e:"Organizations should evaluate software quality, security, support options, maintenance activity, licensing, privacy and operational fit."},
+{q:"A business uses an open source database but pays a specialist company for installation, training and support. Is this consistent with open source?",o:["No, open source services must be free","Yes, services and support can be sold","No, commercial organizations cannot use open source","Yes, but only if source code is hidden"],a:1,h:"Software freedom does not prohibit paid services.",e:"Open source permits commercial activity. Organizations can sell hosting, consulting, support, training and customization."},
+{q:"A project publishes its source code but has no documentation, inactive maintainers and unresolved security issues. What should a user conclude?",o:["It must be adopted because it is open source","Open source status alone does not guarantee quality or sustainability","It cannot have any bugs","It is automatically OSI-approved"],a:1,h:"License openness and project health are different questions.",e:"Open source licensing does not automatically guarantee usability, documentation, security, active maintenance or long-term sustainability."},
+{q:"A government department wants to share improvements with other public institutions and avoid each institution rebuilding the same solution. Which benefit is most relevant?",o:["Collaboration and reuse","Exclusive ownership by one vendor","Prohibition on redistribution","Increased duplication"],a:0,h:"Shared improvements can be reused by other organizations.",e:"Open source encourages collaboration, reuse and shared development, which can reduce duplicated effort."},
+{q:"Which scenario best combines open source philosophy, standards and practical advantages?",o:["A vendor hides its format and blocks exports","A city publishes code under an OSI-approved license, uses open data formats and accepts community contributions","A school installs unlicensed software and removes all notices","A company prevents users from inspecting source code"],a:1,h:"Look for open licensing, interoperability and collaborative improvement together.",e:"The city scenario combines an open license, open standards and transparent collaboration, supporting reuse, interoperability and local adaptation."}
+];
+
+let submitted=false;
+const letters=["A","B","C","D"];
+function render(){
+  const $host=$("#questions");
+  questions.forEach((item,i)=>{
+    const $card=$(`<section class="question" id="q${i}"></section>`);
+    $card.append(`<div class="qtop"><span class="qnum">Question ${i+1} of 40</span><span class="weight">2.5 marks</span></div>`);
+    $card.append($("<h3></h3>").text(item.q));
+    const $opts=$('<div class="options"></div>');
+    item.o.forEach((opt,j)=>{
+      const $btn=$('<button type="button" class="option"></button>').attr({"data-q":i,"data-opt":j});
+      $btn.append($('<span class="letter"></span>').text(letters[j]+"."));
+      $btn.append($('<span></span>').text(opt));
+      $opts.append($btn);
+    });
+    $card.append($opts);
+    $card.append(`<div class="feedback" id="feedback${i}" aria-live="polite"></div>`);
+    const $actions=$('<div class="qactions no-print"></div>');
+    $actions.append($('<button type="button" class="secondary hintBtn">Show hint</button>').attr("data-q",i));
+    $actions.append($('<button type="button" class="secondary explainBtn" disabled>Show explanation after submission</button>'));
+    $card.append($actions);
+    $card.append($('<div class="hint"></div>').text("Hint: "+item.h));
+    $card.append($('<div class="explanation"></div>').text("Explanation: "+item.e));
+    $host.append($card);
+  });
+}
+function updateProgress(){
+ const count=questions.filter((q,i)=>$(`#q${i}`).data("chosen")!==undefined).length;
+ $("#progressText").text(`Answered: ${count} / 40`);
+ $("#progressBar").css("width",(count/40*100)+"%");
+}
+function selectOption(i,j){
+ if(submitted)return;
+ const $card=$("#q"+i);
+ $card.data("chosen",j);
+ $card.find(".option").each(function(){
+   const k=Number($(this).attr("data-opt"));
+   $(this).removeClass("correct wrong muted");
+   if(k===questions[i].a) $(this).addClass("correct");
+   else if(k===j) $(this).addClass("wrong");
+   else $(this).addClass("muted");
+ });
+ const right=j===questions[i].a;
+ $("#feedback"+i).removeClass("good bad").addClass(right?"good":"bad")
+   .text(right?"Correct! +2.5 marks":"Incorrect. The correct option is highlighted in green.");
+ updateProgress();
+}
+function submit(){
+ if(submitted)return;
+ const name=$("#studentName").val().trim();
+ if(!name){alert("Please enter the student's name before submitting.");$("#studentName").focus();return;}
+ submitted=true;
+ let correct=0;
+ questions.forEach((q,i)=>{
+   const $card=$("#q"+i), chosen=$card.data("chosen");
+   if(chosen===q.a)correct++;
+   $card.find(".option").prop("disabled",true).removeClass("muted");
+   $card.find(".option").each(function(){
+     const k=Number($(this).attr("data-opt"));
+     $(this).toggleClass("correct",k===q.a);
+     if(chosen!==undefined && chosen===k && chosen!==q.a)$(this).addClass("wrong");
+   });
+   if(chosen===undefined)$("#feedback"+i).removeClass("good").addClass("bad").text("Not answered. Correct answer: "+letters[q.a]+".");
+   $card.find(".hintBtn").prop("disabled",true);
+   $card.find(".explainBtn").prop("disabled",false).text("Show explanation");
+   $card.find(".explanation").show();
+ });
+ const score=correct*2.5, percent=score;
+ const passed=percent>=60;
+ $("#studentResult").html("<strong>Student:</strong> "+$("<div>").text(name).html());
+ $("#scoreBig").text(score.toFixed(1)+" / 100");
+ $("#statusText").html(passed?'<strong class="pass">PASS</strong> — You achieved at least 60%.':'<strong class="fail">NOT PASSED</strong> — At least 60/100 is required.');
+ $("#correctCount").text(correct);
+ $("#wrongCount").text(40-correct);
+ $("#percentage").text(percent.toFixed(1)+"%");
+ $("#resultMessage").text(`Pass mark: 60/100. Questions carry 2.5 marks each. ${passed?"Well done!":"Review the explanations and try again."}`);
+ const $key=$("#answerKey").empty();
+ questions.forEach((q,i)=>{
+   const $li=$("<li></li>");
+   $li.append($("<strong></strong>").text(`${letters[q.a]}. ${q.o[q.a]} — `));
+   $li.append(document.createTextNode(q.e));
+   $key.append($li);
+ });
+ $("#result").show();
+ $("#topSubmit,#bottomSubmit").prop("disabled",true);
+ $("html,body").animate({scrollTop:$("#result").offset().top-12},350);
+}
+render();
+$(document).on("click",".option",function(){
+ selectOption(Number($(this).attr("data-q")),Number($(this).attr("data-opt")));
+});
+$(document).on("click",".hintBtn",function(){
+ const $card=$("#q"+$(this).attr("data-q"));
+ $card.find(".hint").slideToggle(120);
+ $(this).text($card.find(".hint").is(":visible")?"Hide hint":"Show hint");
+});
+$(document).on("click",".explainBtn",function(){
+ const $exp=$(this).closest(".question").find(".explanation");
+ $exp.slideToggle(120);
+ $(this).text($exp.is(":visible")?"Hide explanation":"Show explanation");
+});
+$("#topSubmit,#bottomSubmit").on("click",submit);
+$("#printBtn").on("click",()=>window.print());
+$("#restartBtn").on("click",()=>window.location.reload());
+})();
+</script>
+</body>
+</html>
