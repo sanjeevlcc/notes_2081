@@ -18,12 +18,7 @@ After completing this unit, students should be able to:
 5. Identify and compare Apache, BSD, GPL, LGPL and MIT licences.
 6. Explain why open-source technologies are used and evaluate their advantages and limitations.
 
----|---:|
-| 1 | Meaning, principles, source code and examples | 45 min |
-| 2 | History, OSI, free software vs open source | 50 min |
-| 3 | Standards, community methodology and licences | 75 min |
-| 4 | Need, benefits, risks, company cases and discussion | 70 min |
-| **Total** | | **240 min** |
+
 
 ---
 
