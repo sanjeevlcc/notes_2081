@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux System Administration - 50 MCQ Challenge</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #64748b;
+      --line: #dbe3ee;
+      --panel: #ffffff;
+      --page: #f3f6fb;
+      --blue: #2457c5;
+      --blue-dark: #183f98;
+      --green: #16834a;
+      --green-bg: #e6f7ed;
+      --red: #c62828;
+      --red-bg: #fff0f0;
+      --hint-bg: #fff8df;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      line-height: 1.5;
+    }
+    header {
+      color: white;
+      background: linear-gradient(120deg, #10234d, #2457c5);
+      padding: 28px 18px 24px;
+    }
+    .header-inner, main { max-width: 980px; margin: auto; }
+    h1 { margin: 0 0 7px; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+    header p { margin: 0; color: #dce8ff; }
+    main { padding: 20px 15px 50px; }
+    .scenario, .toolbar, .question-card, .results, .review {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(20, 40, 80, .05);
+    }
+    .scenario { padding: 16px 18px; margin-bottom: 16px; }
+    .scenario h2 { margin: 0 0 6px; font-size: 1.08rem; }
+    .scenario p { margin: 0; color: #475569; }
+    .toolbar {
+      padding: 13px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .progress-wrap { flex: 1 1 220px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: .9rem; margin-bottom: 6px; }
+    .progress-track { height: 9px; background: #e7edf6; border-radius: 20px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0; background: var(--blue); transition: width .2s; }
+    .score-live { font-weight: bold; white-space: nowrap; }
+    .question-card { padding: 19px; margin-bottom: 15px; scroll-margin-top: 95px; }
+    .q-top { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+    .q-number {
+      background: #eaf0ff; color: var(--blue-dark);
+      font-size: .82rem; font-weight: bold; border-radius: 7px; padding: 4px 9px;
+    }
+    .topic { color: var(--muted); font-size: .82rem; }
+    .question { font-size: 1.05rem; font-weight: 700; margin: 0 0 14px; }
+    .options { display: grid; gap: 9px; }
+    .option {
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      border-radius: 9px;
+      padding: 11px 13px;
+      text-align: left;
+      font-size: .96rem;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background .15s, border .15s;
+    }
+    .option:hover:not(:disabled) { border-color: var(--blue); background: #f5f8ff; }
+    .option:disabled { cursor: default; opacity: 1; }
+    .option.correct {
+      border: 2px solid var(--green);
+      background: var(--green-bg);
+      color: #075b30;
+      font-weight: 700;
+    }
+    .option.wrong {
+      border: 2px solid var(--red);
+      background: var(--red-bg);
+      color: #9d1717;
+      font-weight: 700;
+    }
+    .option.show-correct {
+      border: 2px solid var(--green);
+      background: var(--green-bg);
+      color: #075b30;
+    }
+    .feedback { margin: 11px 0 0; font-weight: bold; }
+    .feedback.good { color: var(--green); }
+    .feedback.bad { color: var(--red); }
+    .hint {
+      display: none;
+      background: var(--hint-bg);
+      border-left: 4px solid #e0a500;
+      border-radius: 6px;
+      padding: 9px 12px;
+      margin-top: 11px;
+      color: #624b00;
+    }
+    .explanation {
+      display: none;
+      background: #eff6ff;
+      border-left: 4px solid var(--blue);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-top: 10px;
+      color: #1e3a8a;
+    }
+    .q-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .small-btn, .main-btn {
+      border: 0; border-radius: 8px; padding: 9px 13px; cursor: pointer;
+      font-weight: 700; font-size: .9rem;
+    }
+    .small-btn { background: #edf2f8; color: #334155; }
+    .small-btn:hover { background: #e0e8f3; }
+    .main-btn { background: var(--blue); color: white; padding: 11px 17px; }
+    .main-btn:hover { background: var(--blue-dark); }
+    .main-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+    .results { display: none; padding: 22px; margin-top: 22px; }
+    .results h2 { margin-top: 0; }
+    .result-number { font-size: 2.3rem; font-weight: 800; color: var(--blue); }
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+    .result-stat { background: #f4f7fb; border-radius: 9px; padding: 12px; text-align: center; }
+    .result-stat strong { display: block; font-size: 1.3rem; }
+    .review { padding: 18px; margin-top: 15px; }
+    .review h3 { margin-top: 0; }
+    .review-item { border-top: 1px solid var(--line); padding: 10px 0; }
+    .review-item p { margin: 4px 0; }
+    .muted { color: var(--muted); font-size: .9rem; }
+    .footer-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    @media (max-width: 600px) {
+      .toolbar { position: static; }
+      .result-grid { grid-template-columns: 1fr; }
+      .question-card { padding: 15px; }
+    }
+    @media print {
+      body { background: white; }
+      header { background: white; color: black; padding: 10px 0; }
+      header p { color: #333; }
+      .toolbar, .q-actions, .footer-actions { display: none !important; }
+      .question-card, .scenario, .results, .review { box-shadow: none; break-inside: avoid; }
+      .hint, .explanation { display: block !important; }
+      .results { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>Linux System Administration</h1>
+    <p>50-question MCQ challenge · Unit 1 and Unit 2 · Learn by doing</p>
+  </div>
+</header>
+
+<main>
+  <section class="scenario">
+    <h2>Assumed scenario: You are the junior Linux administrator</h2>
+    <p>A college is preparing a Linux server for its ICT department. You must understand Linux commands, inspect logs and processes, install software, check the boot process, create users and groups, and secure shared project files. Answer the questions as if you are working on this college server.</p>
+  </section>
+
+  <section class="toolbar" aria-label="Quiz progress">
+    <div class="progress-wrap">
+      <div class="progress-label"><span id="progressText">0 of 50 answered</span><span id="percentText">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="score-live" id="liveScore">Score: 0</div>
+    <button class="small-btn" id="resetTop" type="button">Reset quiz</button>
+  </section>
+
+  <div id="quiz"></div>
+
+  <div class="footer-actions">
+    <button class="main-btn" id="finishBtn" type="button">Finish quiz and show answer key</button>
+    <button class="small-btn" id="printBtn" type="button">Print questions / results</button>
+  </div>
+
+  <section class="results" id="results" aria-live="polite">
+    <h2>Quiz results</h2>
+    <div class="result-number" id="finalScore">0 / 50</div>
+    <p id="resultMessage"></p>
+    <div class="result-grid">
+      <div class="result-stat"><strong id="correctCount">0</strong><span>Correct</span></div>
+      <div class="result-stat"><strong id="wrongCount">0</strong><span>Incorrect</span></div>
+      <div class="result-stat"><strong id="unansweredCount">0</strong><span>Unanswered</span></div>
+    </div>
+    <p class="muted">The answer review below shows the correct answer and explanation for every question.</p>
+    <div id="answerReview"></div>
+    <div class="footer-actions">
+      <button class="main-btn" id="tryAgainBtn" type="button">Try again</button>
+      <button class="small-btn" id="printResultsBtn" type="button">Print answer key</button>
+    </div>
+  </section>
+</main>
+
+<script>
+$(function () {
+  const questions = [
+    {topic:"Open source",q:"A college wants to inspect, modify, and redistribute software under its licence. Which software model supports this?",options:["Closed-source software only","Open-source software","Firmware only","Trialware"],a:1,hint:"Think about software whose source code is available under a licence that permits reuse and modification.",exp:"Open-source software makes source code available under a licence that permits use, study, modification, and redistribution subject to its terms."},
+    {topic:"Linux basics",q:"Which statement best describes Linux technically?",options:["A desktop application","A database server","The operating-system kernel","A programming language"],a:2,hint:"It is the core that manages CPU, memory, devices, and other system resources.",exp:"Linux is technically the kernel. A Linux distribution combines the kernel with utilities, libraries, package tools, and applications."},
+    {topic:"Architecture",q:"Which component manages process scheduling and memory?",options:["Kernel","Text editor","Web browser","Shell prompt"],a:0,hint:"It is the central component between hardware and user programs.",exp:"The kernel manages system resources including CPU scheduling, memory, devices, and filesystems."},
+    {topic:"Command syntax",q:"In `ls -l /etc`, what is `/etc`?",options:["The command","An option","An argument","A shell variable"],a:2,hint:"It tells `ls` which location to list.",exp:"`/etc` is the argument (target directory). `ls` is the command and `-l` is an option."},
+    {topic:"Navigation",q:"Which command displays the current working directory?",options:["pwd","whoami","mkdir","uname"],a:0,hint:"Its name expands to 'print working directory'.",exp:"`pwd` prints the absolute path of the current working directory."},
+    {topic:"Navigation",q:"Which command moves to the parent directory?",options:["cd /","cd ~","cd ..","cd -"],a:2,hint:"Two dots represent the parent directory.",exp:"`cd ..` moves one level up to the parent directory."},
+    {topic:"File management",q:"Which command creates an empty file named `report.txt` if it does not exist?",options:["mkdir report.txt","touch report.txt","rm report.txt","grep report.txt"],a:1,hint:"This command can also update a file's timestamps.",exp:"`touch report.txt` creates an empty file if needed, or updates its timestamps if it already exists."},
+    {topic:"File management",q:"Which command copies `a.txt` to `backup.txt`?",options:["mv a.txt backup.txt","cp a.txt backup.txt","rm a.txt backup.txt","cat a.txt backup.txt"],a:1,hint:"Use the command whose name means copy.",exp:"`cp` copies files. `mv` moves or renames them."},
+    {topic:"File management",q:"Which command appends a line to `notes.txt` without replacing existing content?",options:["echo 'New' > notes.txt","echo 'New' >> notes.txt","cat > notes.txt","rm notes.txt"],a:1,hint:"Use the double greater-than operator.",exp:"`>>` appends standard output to a file. A single `>` overwrites the file."},
+    {topic:"File management",q:"Which command lists hidden files as well as ordinary files?",options:["ls -a","ls -R","pwd -a","touch -a"],a:0,hint:"Hidden filenames on Linux commonly begin with a dot.",exp:"`ls -a` includes hidden entries such as `.bashrc`."},
+    {topic:"Shell",q:"What does the pipe symbol `|` do?",options:["Deletes the previous command","Sends one command's standard output to another command's standard input","Saves output in a file automatically","Runs a command as root"],a:1,hint:"It connects two commands together.",exp:"A pipe passes the left command's standard output to the right command's standard input."},
+    {topic:"Shell",q:"Which command redirects error messages to `errors.txt`?",options:["command > errors.txt","command 2> errors.txt","command >> errors.txt","command | errors.txt"],a:1,hint:"Standard error has file descriptor number 2.",exp:"`2>` redirects standard error (file descriptor 2) to a file."},
+    {topic:"Text processing",q:"Which command searches a log for lines containing the word `ERROR`?",options:["grep","chmod","jobs","mount"],a:0,hint:"It is a pattern-searching tool.",exp:"`grep 'ERROR' server.log` prints lines matching the pattern."},
+    {topic:"Text processing",q:"In `awk '{print $3}' file`, what does `$3` represent?",options:["The third file","The third field/column","Exit status 3","Three matching files"],a:1,hint:"Awk divides each input record into fields.",exp:"`$3` is the third field in the current input record."},
+    {topic:"Text processing",q:"Which command substitutes `old` with `new` in displayed output?",options:["sed 's/old/new/g' file","grep old new file","chmod old new","sort old new"],a:0,hint:"It uses the substitution expression beginning with `s/`.",exp:"`sed 's/old/new/g' file` substitutes every occurrence on each line in the output; it does not edit the original file without in-place mode."},
+    {topic:"Text processing",q:"What is the purpose of `sort file | uniq -c`?",options:["Deletes duplicate files","Counts adjacent repeated lines after sorting","Changes file ownership","Counts running processes"],a:1,hint:"Sorting places identical lines next to each other before `uniq` counts them.",exp:"`sort` groups identical lines together; `uniq -c` displays each distinct line with its count."},
+    {topic:"Processes",q:"Which command displays a live interactive process monitor?",options:["top","touch","cut","pwd"],a:0,hint:"It is often used to inspect CPU and memory usage in real time.",exp:"`top` provides a live view of processes and resource usage. Press `q` to quit."},
+    {topic:"Processes",q:"What is a PID?",options:["Package installation directory","Process ID","Permission index","Primary interface device"],a:1,hint:"Every process is assigned a numeric identifier.",exp:"PID means Process ID, the numeric identifier assigned to a process."},
+    {topic:"Job control",q:"What does adding `&` to the end of a shell command usually do?",options:["Runs it in the background","Deletes the command","Makes it a kernel module","Runs it as another user"],a:0,hint:"The shell prompt returns without waiting for the command to finish.",exp:"A trailing `&` starts the command as a background job managed by the shell."},
+    {topic:"Job control",q:"Which command brings a suspended/background shell job into the foreground?",options:["bg","fg","jobs","killall"],a:1,hint:"Its name means foreground.",exp:"`fg` brings a shell job to the foreground. Use `fg %1` to specify job 1."},
+    {topic:"Filesystem",q:"Which directory normally stores system-wide configuration files?",options:["/etc","/home","/tmp","/media"],a:0,hint:"Network, service, and many application configuration files are commonly stored here.",exp:"`/etc` contains system-wide configuration files."},
+    {topic:"Filesystem",q:"Which command reports free and used space on mounted filesystems?",options:["du -sh","df -h","lsmod","id"],a:1,hint:"Think 'disk free'.",exp:"`df -h` displays filesystem capacity and available space in human-readable units."},
+    {topic:"Filesystem",q:"Which command reports the total size of a directory?",options:["du -sh directory","df -h directory only","ps aux","uname -a"],a:0,hint:"Think 'disk usage'.",exp:"`du -sh directory` summarizes the directory's disk usage."},
+    {topic:"Filesystem",q:"Which command lists block devices such as disks and partitions?",options:["lsblk","grep","who","chage"],a:0,hint:"Its name combines 'list' and 'block'.",exp:"`lsblk` lists block devices; `lsblk -f` also displays filesystem details."},
+    {topic:"Package management",q:"Which package manager is commonly used on Ubuntu?",options:["APT","DNF only","Pacman","Zypper"],a:0,hint:"The command often used to install packages is `apt install`.",exp:"Ubuntu and Debian commonly use APT for package management."},
+    {topic:"Package management",q:"On Ubuntu, what does `sudo apt update` do?",options:["Immediately upgrades every package","Refreshes package repository metadata","Deletes old user accounts","Changes the kernel bootloader"],a:1,hint:"It refreshes the information APT uses about available packages.",exp:"`apt update` downloads package index information. `apt upgrade` performs package upgrades."},
+    {topic:"Installation",q:"What is an ISO image commonly used for?",options:["Linux installation media","Changing file permissions","Creating a user group","Monitoring processes"],a:0,hint:"A bootable installer can be attached to a virtual machine as virtual optical media.",exp:"A Linux ISO is commonly used as installation or live media."},
+    {topic:"Network installation",q:"Which service commonly provides IP configuration to a PXE client?",options:["DHCP","grep","NTP only","cron"],a:0,hint:"It dynamically assigns network configuration to clients.",exp:"DHCP provides IP configuration and can also provide network boot information in a PXE environment."},
+    {topic:"Boot process",q:"What is the first firmware stage in a typical computer boot process?",options:["BIOS/UEFI","awk","systemd service","User shell"],a:0,hint:"It runs immediately after the computer is powered on.",exp:"BIOS or UEFI firmware initializes hardware and selects a boot device."},
+    {topic:"Boot process",q:"What is the role of GRUB in a typical Linux system?",options:["Manage user passwords","Load the selected kernel and provide boot choices","Edit text files","Install packages"],a:1,hint:"It is a bootloader.",exp:"GRUB is a bootloader that can present boot entries and load the selected Linux kernel."},
+    {topic:"Boot process",q:"What is initramfs used for during boot?",options:["A temporary early userspace environment to help access the real root filesystem","A user password database","A package repository","A graphical text editor"],a:0,hint:"It helps the kernel prepare to mount the real root filesystem.",exp:"initramfs provides an early userspace environment with tools and drivers needed during early boot."},
+    {topic:"Boot process",q:"On many modern Linux distributions, which system manager commonly runs as PID 1?",options:["systemd","grep","GRUB shell","bash history"],a:0,hint:"It starts and manages services and targets.",exp:"On many Linux distributions, systemd is the init system and service manager and commonly runs as PID 1."},
+    {topic:"Kernel modules",q:"Which command lists currently loaded kernel modules?",options:["lsmod","lsuser","modlist","systemctl users"],a:0,hint:"Its name means list modules.",exp:"`lsmod` displays the currently loaded kernel modules."},
+    {topic:"Kernel modules",q:"Which command displays information about a kernel module?",options:["modinfo","chmod","chage","mountinfo"],a:0,hint:"The command name combines 'module' and 'information'.",exp:"`modinfo MODULE_NAME` displays module metadata such as description, author, and dependencies."},
+    {topic:"Users",q:"Which file stores basic local user account information?",options:["/etc/passwd","/etc/group","/etc/hosts","/var/log/syslog"],a:0,hint:"It contains account fields such as username, UID, home directory, and shell.",exp:"`/etc/passwd` stores basic local account information. Password hashes are normally stored separately in `/etc/shadow`."},
+    {topic:"Users",q:"Which command creates a user and their home directory?",options:["useradd -m username","groupdel username","chmod username","grep username"],a:0,hint:"The `-m` option creates the home directory.",exp:"`sudo useradd -m username` creates a user and a home directory."},
+    {topic:"Users",q:"Which command interactively sets or changes a user's password?",options:["passwd username","chown username","usermod -G username","getfacl username"],a:0,hint:"It is named after the account credential it manages.",exp:"`sudo passwd username` sets or changes that user's password interactively."},
+    {topic:"Groups",q:"Which command creates a group named `developers`?",options:["groupadd developers","useradd developers","chmod developers","mkpasswd developers"],a:0,hint:"The command name combines 'group' and 'add'.",exp:"`sudo groupadd developers` creates the group."},
+    {topic:"Groups",q:"Why is `usermod -aG developers ram` commonly used?",options:["It appends the supplementary group without replacing existing supplementary groups","It deletes all groups","It changes Ram's password","It locks the account"],a:0,hint:"The `-a` option means append when used with `-G`.",exp:"`-aG` appends the named supplementary group. Omitting `-a` with `-G` can replace the existing supplementary group list."},
+    {topic:"Password policy",q:"Which command displays password aging information for a user?",options:["chage -l username","ls -l username","top username","df -h username"],a:0,hint:"It displays account aging details such as minimum and maximum password age.",exp:"`chage -l username` lists password aging information."},
+    {topic:"Account security",q:"Which command locks a user's password authentication?",options:["passwd -l username","passwd -u username","chmod 777 username","useradd -m username"],a:0,hint:"The option letter means lock.",exp:"`sudo passwd -l username` locks the user's password. Account access may also depend on other authentication methods and policies."},
+    {topic:"Permissions",q:"What does permission `755` mean?",options:["Owner rwx, group r-x, others r-x","Owner rw-, group rw-, others ---","Everyone has no access","Owner r--, group ---, others rwx"],a:0,hint:"The digits represent 4 for read, 2 for write, and 1 for execute.",exp:"7 = rwx, 5 = r-x, and 5 = r-x. Thus 755 gives the owner full access and group/others read and execute."},
+    {topic:"Permissions",q:"What does the execute (`x`) permission on a directory allow?",options:["Traverse/access entries by name","Change the file owner","Read every file's content automatically","Format the disk"],a:0,hint:"It lets a user pass through the directory path.",exp:"Execute permission on a directory allows traversal/search. Reading directory entries also requires read permission."},
+    {topic:"Ownership",q:"Which command changes a file's owner to `ram`?",options:["chown ram file.txt","chmod ram file.txt","grep ram file.txt","chage ram file.txt"],a:0,hint:"The command name means change owner.",exp:"`sudo chown ram file.txt` changes the file's owner to ram."},
+    {topic:"Special permissions",q:"What is the common effect of SGID on a shared directory?",options:["New items commonly inherit the directory's group","Every user becomes root","Files become executable automatically","The directory becomes read-only"],a:0,hint:"It helps team members create files with a shared group.",exp:"The SGID bit on a directory commonly causes new files and subdirectories to inherit the directory's group."},
+    {topic:"ACL",q:"Why would an administrator use an ACL?",options:["To grant a specific named user access without changing the main group membership","To replace the Linux kernel","To install software","To reboot the computer"],a:0,hint:"Traditional owner/group/other permissions may not express every sharing requirement.",exp:"ACLs allow additional named-user and named-group permissions beyond the traditional owner/group/other entries."},
+    {topic:"ACL",q:"Which command displays a file's ACL entries?",options:["getfacl file","setfacl file","lsmod file","chage file"],a:0,hint:"The command begins with 'get'.",exp:"`getfacl file` displays the file's access control list."},
+    {topic:"ACL",q:"Which command grants user `sita` read access to `brief.txt` using an ACL?",options:["setfacl -m u:sita:r-- brief.txt","chmod 777 sita brief.txt","groupadd sita brief.txt","chage -r sita brief.txt"],a:0,hint:"Use `setfacl`, modify (`-m`), and a named user entry (`u:`).",exp:"`setfacl -m u:sita:r-- brief.txt` adds a named-user ACL entry granting read access, subject to the ACL mask and other access controls."},
+    {topic:"Security scenario",q:"The project directory should be writable by its owner and developers group, but inaccessible to others. Which mode is a suitable choice when SGID group inheritance is also wanted?",options:["2770","777","644","400"],a:0,hint:"The leading 2 sets SGID; the final three digits give owner/group/other permissions.",exp:"2770 sets SGID and grants rwx to owner and group, with no permissions for others."},
+    {topic:"Verification",q:"After changing user permissions, which approach best verifies the result?",options:["Check with `ls -l`/`getfacl` and test access as the intended user","Assume the command worked","Restart the computer every time","Delete the user's home directory"],a:0,hint:"Inspect the actual permissions and test the intended access.",exp:"Verify ownership and mode bits with `ls -l`, ACLs with `getfacl`, and test access using an appropriate user identity."}
+  ];
+
+  let answered = {};
+  let hintsShown = {};
+  let finished = false;
+
+  function renderQuiz() {
+    const $quiz = $("#quiz").empty();
+    questions.forEach((item, i) => {
+      const letters = ["A", "B", "C", "D"];
+      const $card = $(`
+        <section class="question-card" id="question-${i}">
+          <div class="q-top">
+            <span class="q-number">QUESTION ${i + 1}</span>
+            <span class="topic"></span>
+          </div>
+          <p class="question"></p>
+          <div class="options"></div>
+          <div class="feedback" aria-live="polite"></div>
+          <div class="hint"></div>
+          <div class="explanation"></div>
+          <div class="q-actions">
+            <button class="small-btn hint-btn" type="button">Show hint</button>
+            <button class="small-btn answer-btn" type="button">Show answer</button>
+          </div>
+        </section>`);
+      $card.find(".topic").text(item.topic);
+      $card.find(".question").text(item.q);
+      item.options.forEach((option, j) => {
+        const $button = $('<button type="button" class="option"></button>');
+        $button.text(letters[j] + ". " + option);
+        $button.attr("data-question", i).attr("data-option", j);
+        $card.find(".options").append($button);
+      });
+      $card.find(".hint").text("Hint: " + item.hint);
+      $card.find(".explanation").text("Correct answer: " + letters[item.a] + ". " + item.options[item.a] + " — " + item.exp);
+      $quiz.append($card);
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const count = Object.keys(answered).length;
+    const correct = Object.values(answered).filter(x => x.correct).length;
+    const pct = Math.round(count / questions.length * 100);
+    $("#progressText").text(count + " of " + questions.length + " answered");
+    $("#percentText").text(pct + "%");
+    $("#progressFill").css("width", pct + "%");
+    $("#liveScore").text("Score: " + correct);
+  }
+
+  function revealAnswer(index) {
+    const item = questions[index];
+    const $card = $("#question-" + index);
+    $card.find(".option").each(function (j) {
+      $(this).prop("disabled", true);
+      if (j === item.a) $(this).addClass("show-correct");
+    });
+    $card.find(".explanation").show();
+  }
+
+  $("#quiz").on("click", ".option", function () {
+    const index = Number($(this).attr("data-question"));
+    const choice = Number($(this).attr("data-option"));
+    if (answered[index] || finished) return;
+    const item = questions[index];
+    const correct = choice === item.a;
+    answered[index] = { choice, correct };
+    const $card = $("#question-" + index);
+    $card.find(".option").each(function (j) {
+      $(this).prop("disabled", true);
+      if (j === item.a) $(this).addClass("correct");
+      if (j === choice && !correct) $(this).addClass("wrong");
+    });
+    $card.find(".feedback")
+      .addClass(correct ? "good" : "bad")
+      .text(correct ? "✓ Correct! Well done." : "✗ Incorrect. The correct option is highlighted in green.");
+    $card.find(".explanation").show();
+    updateProgress();
+  });
+
+  $("#quiz").on("click", ".hint-btn", function () {
+    const index = $(this).closest(".question-card").index();
+    hintsShown[index] = true;
+    const $hint = $(this).closest(".question-card").find(".hint");
+    $hint.slideToggle(120);
+    $(this).text($hint.is(":visible") ? "Hide hint" : "Show hint");
+  });
+
+  $("#quiz").on("click", ".answer-btn", function () {
+    const index = $(this).closest(".question-card").index();
+    revealAnswer(index);
+    $(this).text("Answer shown");
+    $(this).prop("disabled", true);
+  });
+
+  function finishQuiz() {
+    if (finished) {
+      $("#results").show();
+      return;
+    }
+    finished = true;
+    let correct = 0;
+    let wrong = 0;
+    let unanswered = 0;
+    const $review = $("#answerReview").empty();
+
+    questions.forEach((item, i) => {
+      const record = answered[i];
+      if (!record) unanswered++;
+      else if (record.correct) correct++;
+      else wrong++;
+
+      revealAnswer(i);
+      const letters = ["A", "B", "C", "D"];
+      const userText = record ? letters[record.choice] + ". " + item.options[record.choice] : "Not answered";
+      const status = !record ? "Not answered" : (record.correct ? "Correct" : "Incorrect");
+      const $entry = $('<div class="review-item"></div>');
+      $("<strong></strong>").text("Q" + (i + 1) + ". " + status).appendTo($entry);
+      $("<p></p>").text("Your answer: " + userText).appendTo($entry);
+      $("<p></p>").text("Correct answer: " + letters[item.a] + ". " + item.options[item.a]).appendTo($entry);
+      $("<p class='muted'></p>").text(item.exp).appendTo($entry);
+      $review.append($entry);
+    });
+
+    $("#finalScore").text(correct + " / " + questions.length);
+    $("#correctCount").text(correct);
+    $("#wrongCount").text(wrong);
+    $("#unansweredCount").text(unanswered);
+    const percent = Math.round(correct / questions.length * 100);
+    let message = percent >= 80 ? "Excellent work! You have a strong understanding of these topics." :
+                  percent >= 60 ? "Good effort. Review the explanations for questions you missed." :
+                  "Keep practising. Revisit the notes and repeat the quiz to improve.";
+    $("#resultMessage").text("You scored " + percent + "%. " + message);
+    $("#results").slideDown(180);
+    $("#finishBtn").prop("disabled", true).text("Quiz completed");
+    updateProgress();
+    $("html, body").animate({scrollTop: $("#results").offset().top - 15}, 300);
+  }
+
+  function resetQuiz() {
+    answered = {};
+    hintsShown = {};
+    finished = false;
+    $("#results").hide();
+    $("#finishBtn").prop("disabled", false).text("Finish quiz and show answer key");
+    renderQuiz();
+    $("html, body").animate({scrollTop: 0}, 250);
+  }
+
+  $("#finishBtn").on("click", finishQuiz);
+  $("#resetTop, #tryAgainBtn").on("click", resetQuiz);
+  $("#printBtn, #printResultsBtn").on("click", function () { window.print(); });
+
+  renderQuiz();
+});
+</script>
+</body>
+</html>
