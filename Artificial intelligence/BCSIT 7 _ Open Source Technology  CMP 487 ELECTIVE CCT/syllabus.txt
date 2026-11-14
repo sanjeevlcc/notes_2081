@@ -3,6 +3,9 @@
                  FACULTY OF MANAGEMENT STUDIES
 ======================================================================
 
+
+
+
 COURSE DETAILS
 ======================================================================
 
@@ -16,6 +19,10 @@ Credit Hours            : 3.0
 Total Teaching Hours    : 48
 Full Marks              : 100
 Pass Marks              : 45
+
+
+
+
 
 ======================================================================
 1. COURSE DESCRIPTION
@@ -36,6 +43,11 @@ It covers:
 Emphasis is given on practical hands-on experience with popular
 open-source platforms and tools.
 
+
+
+
+
+
 ======================================================================
 2. GENERAL OBJECTIVES
 ======================================================================
@@ -55,9 +67,12 @@ open-source platforms and tools.
    in real-world scenarios.
 
 
+
+
 ======================================================================
 3. DETAILS OF CONTENT
 ======================================================================
+
 
 
 ======================================================================
@@ -66,7 +81,7 @@ TOTAL HOURS: 4
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Define open-source software and explain its core principles.
 
 2. Describe the history of open source and the role of OSI.
@@ -80,8 +95,12 @@ SPECIFIC OBJECTIVES:
 6. Discuss the need, benefits, and advantages of open-source
    technologies in various contexts.
 
-CONTENTS:
 
+
+
+
+CONTENTS:
+-----------------------------
 1.1  Open-source definition and principles
 
 1.2  History of Open Source Initiative (OSI)
@@ -101,13 +120,18 @@ CONTENTS:
 1.6  Need and advantages of open-source technologies
 
 
+
+
+
+
+
 ======================================================================
 UNIT II: OPEN SOURCE OPERATING SYSTEM: LINUX
 TOTAL HOURS: 6
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Understand Linux history and its relation to Unix.
 
 2. Compare Linux with Unix and Windows.
@@ -120,8 +144,11 @@ SPECIFIC OBJECTIVES:
 
 6. Install Linux in virtual machines and containers.
 
-CONTENTS:
 
+
+
+CONTENTS:
+-----------------------------
 2.1  Historical development of Linux and Unix
 
 2.2  Comparison among Linux, Unix, and Windows operating systems
@@ -137,13 +164,21 @@ CONTENTS:
 2.7  Virtual machine and container installation
 
 
+
+
+
+
+
+
+
+
 ======================================================================
 UNIT III: FILES, DIRECTORIES AND BASIC COMMANDS IN LINUX
 TOTAL HOURS: 4
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Understand Linux file structure and standard directories.
 
 2. Use basic commands for file and directory management.
@@ -153,8 +188,14 @@ SPECIFIC OBJECTIVES:
 4. Execute essential Linux utility commands for system information
    and text processing.
 
-CONTENTS:
 
+
+
+
+
+
+CONTENTS:
+-----------------------------
 3.1  Linux standard directories
 
 3.2  File structure and hierarchy
@@ -192,13 +233,20 @@ CONTENTS:
      j. grep
 
 
+
+
+
+
+
+
+
 ======================================================================
 UNIT IV: SYSTEM ADMINISTRATION BASICS
 TOTAL HOURS: 9
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Understand Linux boot process and kernel basics.
 
 2. Manage processes and background tasks.
@@ -211,8 +259,12 @@ SPECIFIC OBJECTIVES:
 
 6. Install and remove software packages efficiently.
 
-CONTENTS:
 
+
+
+
+CONTENTS:
+-----------------------------
 4.1  Understanding boot process and related system files
 
 4.2  Linux Kernel fundamentals
@@ -251,13 +303,21 @@ CONTENTS:
      c. yum
 
 
+
+
+
+
+
+
+
+
 ======================================================================
 UNIT V: NETWORK CONFIGURATION BASICS
 TOTAL HOURS: 10
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Configure network interfaces and IP addressing.
 
 2. Set up and manage network services and servers.
@@ -268,8 +328,13 @@ SPECIFIC OBJECTIVES:
 
 5. Troubleshoot network issues and analyze logs.
 
-CONTENTS:
 
+
+
+
+
+CONTENTS:
+-----------------------------
 5.1  Adding/removing network interfaces
 
 5.2  IP addressing basics
@@ -308,13 +373,23 @@ CONTENTS:
 5.9  Troubleshooting and log file analysis
 
 
+
+
+
+
+
+
+
+
+
+
 ======================================================================
 UNIT VI: FUNDAMENTALS OF SHELL PROGRAMMING
 TOTAL HOURS: 4
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Understand basics of shell programming.
 
 2. Differentiate between types of Linux shells.
@@ -324,8 +399,13 @@ SPECIFIC OBJECTIVES:
 
 4. Use system shell commands and environment variables effectively.
 
-CONTENTS:
 
+
+
+
+
+CONTENTS:
+-----------------------------
 6.1  Basics of shell programming
 
 6.2  Various types of shell available in Linux
@@ -343,13 +423,20 @@ CONTENTS:
 6.6  System shell and environment variables
 
 
+
+
+
+
+
+
+
 ======================================================================
 UNIT VII: DATABASE ADMINISTRATION
 TOTAL HOURS: 4
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Understand open-source database fundamentals.
 
 2. Execute basic SQL commands (DDL, DML, DCL).
@@ -360,8 +447,11 @@ SPECIFIC OBJECTIVES:
 
 5. Use XAMPP and phpMyAdmin for web/database integration.
 
-CONTENTS:
 
+
+
+CONTENTS:
+-----------------------------
 7.1  Fundamentals of open-source databases:
 
      a. MySQL
@@ -385,13 +475,20 @@ CONTENTS:
      b. phpMyAdmin
 
 
+
+
+
+
+
+
+
 ======================================================================
 UNIT VIII: OPEN SOURCE WEB PROGRAMMING
 TOTAL HOURS: 7
 ======================================================================
 
 SPECIFIC OBJECTIVES:
-
+-----------------------------
 1. Understand basics of PHP web programming.
 
 2. Use PHP syntax, variables, operators, and control structures.
@@ -404,8 +501,14 @@ SPECIFIC OBJECTIVES:
 
 6. Connect and program databases using PHP.
 
-CONTENTS:
 
+
+
+
+
+
+CONTENTS:
+-----------------------------
 8.1  Basics of web programming using PHP:
 
      a. HTML POST method
@@ -421,6 +524,16 @@ CONTENTS:
 8.5  Hosting web server and document root management
 
 8.6  Programming databases in PHP
+
+
+
+
+
+
+
+
+
+
 
 
 ======================================================================
@@ -440,28 +553,41 @@ UNIT VIII    : Open Source Web Programming                 7 Hours
 TOTAL                                                    48 HOURS
 ----------------------------------------------------------------------
 
+
+
+
+
 NOTE:
 The figures in parentheses indicate the approximate teaching hours
 for the respective units.
+
+
+
+
+
 
 
 ======================================================================
 4. PRACTICAL ACTIVITIES
 ======================================================================
 
-1. Installing and configuring Linux OS.
+    1. Installing and configuring Linux OS.
+    
+    2. Basic shell scripting exercises.
+    
+    3. Setting up Apache/Nginx and MySQL/PostgreSQL.
+    
+    4. Developing a small project using open-source IDEs.
+    
+    5. Version control exercises with Git and GitHub.
+    
+    6. Deploying a basic website with WordPress or similar CMS.
+    
+    7. Using open-source collaboration tools.
 
-2. Basic shell scripting exercises.
 
-3. Setting up Apache/Nginx and MySQL/PostgreSQL.
 
-4. Developing a small project using open-source IDEs.
 
-5. Version control exercises with Git and GitHub.
-
-6. Deploying a basic website with WordPress or similar CMS.
-
-7. Using open-source collaboration tools.
 
 
 ======================================================================
@@ -487,63 +613,79 @@ for the respective units.
 INTERNAL EVALUATION
 ======================================================================
 
-A. THEORY EVALUATION
-----------------------------------------------------------------------
-
-1. Attendance and Class Participation       : 10%
-2. Assignments                               : 20%
-3. Presentations / Quizzes                   : 10%
-4. Internal Assessment                       : 60%
-
-   TOTAL THEORY INTERNAL                     : 30 MARKS
-
-
-B. PRACTICAL EVALUATION
-----------------------------------------------------------------------
-
-1. Attendance and Class Participation       : 10%
-2. Lab Report / Project Report               : 20%
-3. Practical Exam / Project Work             : 40%
-4. Viva                                      : 30%
-
-   TOTAL PRACTICAL INTERNAL                  : 20 MARKS
-
+        A. THEORY EVALUATION
+        ----------------------------------------------------------------------
+        
+        1. Attendance and Class Participation       : 10%
+        2. Assignments                               : 20%
+        3. Presentations / Quizzes                   : 10%
+        4. Internal Assessment                       : 60%
+        
+           TOTAL THEORY INTERNAL                     : 30 MARKS
+        
+        
+        B. PRACTICAL EVALUATION
+        ----------------------------------------------------------------------
+        
+        1. Attendance and Class Participation       : 10%
+        2. Lab Report / Project Report               : 20%
+        3. Practical Exam / Project Work             : 40%
+        4. Viva                                      : 30%
+        
+           TOTAL PRACTICAL INTERNAL                  : 20 MARKS
+        
 
 EXTERNAL EVALUATION
 ======================================================================
 
-1. Semester End Examination (Theory)         : 50 MARKS
+      1. Semester End Examination (Theory)         : 50 MARKS
+      
+      2. TOTAL INTERNAL EVALUATION                 : 50 MARKS
+      
+      ----------------------------------------------------------------------
+      FULL MARKS                                  : 100
+      INTERNAL                                    : 50
+      EXTERNAL                                    : 50
+      ----------------------------------------------------------------------
+      
 
-2. TOTAL INTERNAL EVALUATION                 : 50 MARKS
 
-----------------------------------------------------------------------
-FULL MARKS                                  : 100
-INTERNAL                                    : 50
-EXTERNAL                                    : 50
-----------------------------------------------------------------------
+
+
+
+
 
 
 ----------------------------------------------------------------------
 6.2 STUDENTS' RESPONSIBILITIES
 ----------------------------------------------------------------------
 
-1. Each student must secure at least 45% marks separately in
-   internal assessment and practical evaluation.
+      1. Each student must secure at least 45% marks separately in
+         internal assessment and practical evaluation.
+      
+      2. Students must maintain at least 80% attendance in the class
+         to appear in the semester-end examination.
+      
+      3. Students failing to meet the required criteria will be given
+         NOT QUALIFIED (NQ) status.
+      
+      4. Students are advised to attend all classes, formal examinations,
+         tests, etc.
+      
+      5. Students must complete all assignments within the specified
+         time period.
+      
+      6. Students are required to complete all requirements defined
+         for the completion of the course.
+      
 
-2. Students must maintain at least 80% attendance in the class
-   to appear in the semester-end examination.
 
-3. Students failing to meet the required criteria will be given
-   NOT QUALIFIED (NQ) status.
 
-4. Students are advised to attend all classes, formal examinations,
-   tests, etc.
 
-5. Students must complete all assignments within the specified
-   time period.
 
-6. Students are required to complete all requirements defined
-   for the completion of the course.
+
+
+
 
 
 ======================================================================
@@ -561,20 +703,20 @@ TEXTBOOK
 ----------------------------------------------------------------------
 REFERENCES
 ----------------------------------------------------------------------
-
-1. Negus, Christopher.
-   "Linux Bible."
-
-2. Raymond, Eric S.
-   "The Cathedral & the Bazaar."
-
-3. Official documentation of:
-
-   a. Linux
-   b. Apache
-   c. MySQL
-   d. WordPress
-   e. Git
+      
+      1. Negus, Christopher.
+         "Linux Bible."
+      
+      2. Raymond, Eric S.
+         "The Cathedral & the Bazaar."
+      
+      3. Official documentation of:
+      
+         a. Linux
+         b. Apache
+         c. MySQL
+         d. WordPress
+         e. Git
 
 
 ======================================================================
