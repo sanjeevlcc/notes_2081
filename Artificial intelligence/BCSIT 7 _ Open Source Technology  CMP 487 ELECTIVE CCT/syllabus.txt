@@ -1,0 +1,590 @@
+====================================================================== PAGE 233
+                 POKHARA UNIVERSITY
+                 FACULTY OF MANAGEMENT STUDIES
+======================================================================
+
+COURSE DETAILS
+======================================================================
+
+Course Code             : CMP 487
+Course Title            : Open Source Technology
+Program                 : BCSIT
+Level                   : Bachelor
+Concentration Area      : Computing
+Nature of Course        : Theory and Practical
+Credit Hours            : 3.0
+Total Teaching Hours    : 48
+Full Marks              : 100
+Pass Marks              : 45
+
+======================================================================
+1. COURSE DESCRIPTION
+======================================================================
+
+This course introduces students to the principles, tools, and
+applications of open-source technologies.
+
+It covers:
+
+    1. Open-source operating systems
+    2. Software development
+    3. Web technologies
+    4. Databases
+    5. Cloud services
+    6. Collaboration tools
+
+Emphasis is given on practical hands-on experience with popular
+open-source platforms and tools.
+
+======================================================================
+2. GENERAL OBJECTIVES
+======================================================================
+
+1. Understand the philosophy and principles of open-source software.
+
+2. Install, configure, and use open-source operating systems
+   and applications.
+
+3. Develop and manage open-source software projects.
+
+4. Utilize open-source databases, web servers, and development tools.
+
+5. Collaborate using version control systems like Git and GitHub.
+
+6. Evaluate the benefits and limitations of open-source solutions
+   in real-world scenarios.
+
+
+======================================================================
+3. DETAILS OF CONTENT
+======================================================================
+
+
+======================================================================
+UNIT I: INTRODUCTION TO OPEN SOURCE
+TOTAL HOURS: 4
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Define open-source software and explain its core principles.
+
+2. Describe the history of open source and the role of OSI.
+
+3. Differentiate between free software and open-source software.
+
+4. Explain open-source standards, methodologies, and philosophy.
+
+5. Identify and describe key open-source licenses.
+
+6. Discuss the need, benefits, and advantages of open-source
+   technologies in various contexts.
+
+CONTENTS:
+
+1.1  Open-source definition and principles
+
+1.2  History of Open Source Initiative (OSI)
+
+1.3  Open-source standards, methodologies, and philosophy
+
+1.4  Free software and open-source system
+
+1.5  Open-source licensing system:
+
+     a. Apache License
+     b. BSD License
+     c. GNU General Public License (GPL)
+     d. GNU Lesser General Public License (LGPL)
+     e. MIT License
+
+1.6  Need and advantages of open-source technologies
+
+
+======================================================================
+UNIT II: OPEN SOURCE OPERATING SYSTEM: LINUX
+TOTAL HOURS: 6
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Understand Linux history and its relation to Unix.
+
+2. Compare Linux with Unix and Windows.
+
+3. Identify Linux features, advantages, and variants.
+
+4. Explain Linux architecture basics.
+
+5. Perform Linux installation, disk partitioning, and LVM setup.
+
+6. Install Linux in virtual machines and containers.
+
+CONTENTS:
+
+2.1  Historical development of Linux and Unix
+
+2.2  Comparison among Linux, Unix, and Windows operating systems
+
+2.3  Features and advantages of Linux
+
+2.4  Variants of Linux OS
+
+2.5  Overview of Linux architecture
+
+2.6  Linux installation, disk partitioning, and Logical Volume Manager
+
+2.7  Virtual machine and container installation
+
+
+======================================================================
+UNIT III: FILES, DIRECTORIES AND BASIC COMMANDS IN LINUX
+TOTAL HOURS: 4
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Understand Linux file structure and standard directories.
+
+2. Use basic commands for file and directory management.
+
+3. Manage file permissions and ownership.
+
+4. Execute essential Linux utility commands for system information
+   and text processing.
+
+CONTENTS:
+
+3.1  Linux standard directories
+
+3.2  File structure and hierarchy
+
+3.3  Commands for files and directory handling:
+
+     a. cd
+     b. ls
+     c. cp
+     d. rm
+     e. mkdir
+     f. rmdir
+     g. pwd
+     h. file
+     i. more
+     j. less
+     k. cat
+
+3.4  File permission, changing permission and ownership:
+
+     a. chmod
+     b. chown
+
+3.5  Basic Linux utility commands:
+
+     a. touch
+     b. pwd
+     c. finger
+     d. passwd
+     e. date
+     f. head
+     g. tail
+     h. cut
+     i. sort
+     j. grep
+
+
+======================================================================
+UNIT IV: SYSTEM ADMINISTRATION BASICS
+TOTAL HOURS: 9
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Understand Linux boot process and kernel basics.
+
+2. Manage processes and background tasks.
+
+3. Edit files using Vi editor.
+
+4. Manage users, groups, and superuser privileges.
+
+5. Monitor disk usage and manage partitions.
+
+6. Install and remove software packages efficiently.
+
+CONTENTS:
+
+4.1  Understanding boot process and related system files
+
+4.2  Linux Kernel fundamentals
+
+4.3  Background processing
+
+4.4  Process commands:
+
+     a. kill
+     b. ps
+     c. who
+     d. top
+
+4.5  Creating and editing files with Vi editor
+
+4.6  Managing user accounts:
+
+     a. Adding users
+     b. Deleting users
+     c. Modifying users
+
+4.7  Becoming superuser
+
+4.8  Creating and managing groups
+
+4.9  Disk partition and sizes:
+
+     a. df
+     b. du
+     c. dd
+
+4.10 Installing and removing packages:
+
+     a. RPM
+     b. apt-get
+     c. yum
+
+
+======================================================================
+UNIT V: NETWORK CONFIGURATION BASICS
+TOTAL HOURS: 10
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Configure network interfaces and IP addressing.
+
+2. Set up and manage network services and servers.
+
+3. Monitor and control service daemons.
+
+4. Schedule tasks and transfer files remotely.
+
+5. Troubleshoot network issues and analyze logs.
+
+CONTENTS:
+
+5.1  Adding/removing network interfaces
+
+5.2  IP addressing basics
+
+5.3  Setting IPv4 and IPv6 static addressing
+
+5.4  Configuring and running servers:
+
+     a. DHCP Server
+     b. DNS Server
+     c. Squid Proxy Server
+     d. Apache HTTP Server
+     e. Samba Server
+
+5.5  Service monitoring commands:
+
+     a. uname
+     b. hostname
+     c. dnsip
+     d. nslookup
+     e. dig
+
+5.6  Creating, starting, stopping, and restarting service daemons
+
+5.7  Cron job:
+
+     a. at
+     b. anacron
+
+5.8  Remote file transfer:
+
+     a. ssh
+     b. scp
+     c. ftp
+
+5.9  Troubleshooting and log file analysis
+
+
+======================================================================
+UNIT VI: FUNDAMENTALS OF SHELL PROGRAMMING
+TOTAL HOURS: 4
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Understand basics of shell programming.
+
+2. Differentiate between types of Linux shells.
+
+3. Write simple Bash scripts using conditions, loops, and case
+   statements.
+
+4. Use system shell commands and environment variables effectively.
+
+CONTENTS:
+
+6.1  Basics of shell programming
+
+6.2  Various types of shell available in Linux
+
+6.3  Comparisons between various shells
+
+6.4  Shell programming in Bash
+
+6.5  Statements:
+
+     a. Conditional statements
+     b. Looping statements
+     c. Case statements
+
+6.6  System shell and environment variables
+
+
+======================================================================
+UNIT VII: DATABASE ADMINISTRATION
+TOTAL HOURS: 4
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Understand open-source database fundamentals.
+
+2. Execute basic SQL commands (DDL, DML, DCL).
+
+3. Create and manage databases and tables.
+
+4. Set user privileges for database security.
+
+5. Use XAMPP and phpMyAdmin for web/database integration.
+
+CONTENTS:
+
+7.1  Fundamentals of open-source databases:
+
+     a. MySQL
+     b. MariaDB
+     c. PostgreSQL
+     d. MongoDB
+
+7.2  SQL commands:
+
+     a. DDL (Data Definition Language)
+     b. DML (Data Manipulation Language)
+     c. DCL (Data Control Language)
+
+7.3  Creating databases and tables in MariaDB
+
+7.4  User privilege setting on database and tables
+
+7.5  Running integrated web/database system:
+
+     a. XAMPP
+     b. phpMyAdmin
+
+
+======================================================================
+UNIT VIII: OPEN SOURCE WEB PROGRAMMING
+TOTAL HOURS: 7
+======================================================================
+
+SPECIFIC OBJECTIVES:
+
+1. Understand basics of PHP web programming.
+
+2. Use PHP syntax, variables, operators, and control structures.
+
+3. Create and use PHP functions.
+
+4. Implement authentication and session management.
+
+5. Host web applications and manage document roots.
+
+6. Connect and program databases using PHP.
+
+CONTENTS:
+
+8.1  Basics of web programming using PHP:
+
+     a. HTML POST method
+     b. HTML GET method
+
+8.2  Syntax, variables, operators, and flow control structures
+     in PHP
+
+8.3  Built-in and user-defined PHP functions
+
+8.4  Authentication and session management
+
+8.5  Hosting web server and document root management
+
+8.6  Programming databases in PHP
+
+
+======================================================================
+TOTAL TEACHING HOURS
+======================================================================
+
+UNIT I       : Introduction to Open Source                 4 Hours
+UNIT II      : Open Source Operating System: Linux         6 Hours
+UNIT III     : Files, Directories and Basic Commands       4 Hours
+UNIT IV      : System Administration Basics                9 Hours
+UNIT V       : Network Configuration Basics               10 Hours
+UNIT VI      : Fundamentals of Shell Programming           4 Hours
+UNIT VII     : Database Administration                     4 Hours
+UNIT VIII    : Open Source Web Programming                 7 Hours
+
+----------------------------------------------------------------------
+TOTAL                                                    48 HOURS
+----------------------------------------------------------------------
+
+NOTE:
+The figures in parentheses indicate the approximate teaching hours
+for the respective units.
+
+
+======================================================================
+4. PRACTICAL ACTIVITIES
+======================================================================
+
+1. Installing and configuring Linux OS.
+
+2. Basic shell scripting exercises.
+
+3. Setting up Apache/Nginx and MySQL/PostgreSQL.
+
+4. Developing a small project using open-source IDEs.
+
+5. Version control exercises with Git and GitHub.
+
+6. Deploying a basic website with WordPress or similar CMS.
+
+7. Using open-source collaboration tools.
+
+
+======================================================================
+5. METHODS OF INSTRUCTION
+======================================================================
+
+1. Lecture
+2. Demonstration
+3. Hands-on Lab
+4. Project-based Learning
+5. Group Discussion
+
+
+======================================================================
+6. EVALUATION SYSTEM AND STUDENTS' RESPONSIBILITIES
+======================================================================
+
+
+----------------------------------------------------------------------
+6.1 EVALUATION SYSTEM
+----------------------------------------------------------------------
+
+INTERNAL EVALUATION
+======================================================================
+
+A. THEORY EVALUATION
+----------------------------------------------------------------------
+
+1. Attendance and Class Participation       : 10%
+2. Assignments                               : 20%
+3. Presentations / Quizzes                   : 10%
+4. Internal Assessment                       : 60%
+
+   TOTAL THEORY INTERNAL                     : 30 MARKS
+
+
+B. PRACTICAL EVALUATION
+----------------------------------------------------------------------
+
+1. Attendance and Class Participation       : 10%
+2. Lab Report / Project Report               : 20%
+3. Practical Exam / Project Work             : 40%
+4. Viva                                      : 30%
+
+   TOTAL PRACTICAL INTERNAL                  : 20 MARKS
+
+
+EXTERNAL EVALUATION
+======================================================================
+
+1. Semester End Examination (Theory)         : 50 MARKS
+
+2. TOTAL INTERNAL EVALUATION                 : 50 MARKS
+
+----------------------------------------------------------------------
+FULL MARKS                                  : 100
+INTERNAL                                    : 50
+EXTERNAL                                    : 50
+----------------------------------------------------------------------
+
+
+----------------------------------------------------------------------
+6.2 STUDENTS' RESPONSIBILITIES
+----------------------------------------------------------------------
+
+1. Each student must secure at least 45% marks separately in
+   internal assessment and practical evaluation.
+
+2. Students must maintain at least 80% attendance in the class
+   to appear in the semester-end examination.
+
+3. Students failing to meet the required criteria will be given
+   NOT QUALIFIED (NQ) status.
+
+4. Students are advised to attend all classes, formal examinations,
+   tests, etc.
+
+5. Students must complete all assignments within the specified
+   time period.
+
+6. Students are required to complete all requirements defined
+   for the completion of the course.
+
+
+======================================================================
+7. PRESCRIBED BOOKS AND REFERENCES
+======================================================================
+
+----------------------------------------------------------------------
+TEXTBOOK
+----------------------------------------------------------------------
+
+1. Woods, Dan, and Guliani, Gautam.
+   "Open Source for the Enterprise."
+
+
+----------------------------------------------------------------------
+REFERENCES
+----------------------------------------------------------------------
+
+1. Negus, Christopher.
+   "Linux Bible."
+
+2. Raymond, Eric S.
+   "The Cathedral & the Bazaar."
+
+3. Official documentation of:
+
+   a. Linux
+   b. Apache
+   c. MySQL
+   d. WordPress
+   e. Git
+
+
+======================================================================
+                  END OF SYLLABUS
+======================================================================
+
+COURSE CODE  : CMP 487
+COURSE TITLE : OPEN SOURCE TECHNOLOGY
+UNIVERSITY   : POKHARA UNIVERSITY
+PROGRAM      : BCSIT
+TOTAL HOURS  : 48
+CREDIT HOURS : 3
+======================================================================
