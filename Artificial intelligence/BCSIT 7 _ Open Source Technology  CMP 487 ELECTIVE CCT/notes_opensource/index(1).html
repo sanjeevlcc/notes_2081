@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit II: Linux MCQ Assessment</title>
+<style>
+:root{--navy:#14213d;--blue:#2563eb;--green:#15803d;--greenbg:#dcfce7;--red:#b91c1c;--redbg:#fee2e2;--gray:#64748b;--line:#dbe3ee;--bg:#f4f7fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:16px/1.55 Arial,sans-serif;color:#172033}
+header{background:linear-gradient(120deg,#14213d,#1d4ed8);color:white;padding:28px 18px}.wrap{max-width:1000px;margin:auto;padding:0 16px}
+header h1{margin:0 0 5px;font-size:clamp(22px,4vw,32px)}header p{margin:0;color:#dbeafe}
+main{padding:22px 0 50px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 4px 16px #0f172a0a}
+h2{font-size:21px;margin:0 0 12px;color:var(--navy)}.muted{color:var(--gray);font-size:14px}
+label{display:block;font-weight:700;margin:0 0 7px}input[type=text]{width:100%;max-width:440px;padding:12px;border:1px solid #bac7d8;border-radius:8px;font-size:16px}
+button{border:0;border-radius:8px;padding:11px 16px;font-weight:700;cursor:pointer;font-size:15px}.primary{background:var(--blue);color:white}.secondary{background:#e8eef8;color:#1e293b}.success{background:var(--green);color:white}button:disabled{opacity:.45;cursor:not-allowed}
+.topline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}.progress{height:10px;background:#e8edf5;border-radius:20px;overflow:hidden;margin:12px 0}.bar{height:100%;width:0;background:#2563eb;transition:width .2s}
+.qtitle{font-size:19px;font-weight:700;margin:8px 0 16px}.option{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:9px;margin:9px 0;cursor:pointer;background:white}
+.option:hover{border-color:#93b4f5;background:#f8fbff}.option input{margin-top:5px;accent-color:#2563eb}.option.correct{background:var(--greenbg);border:2px solid #22a05a;color:#14532d}.option.wrong{background:var(--redbg);border:2px solid #dc5555;color:#7f1d1d}
+.feedback{padding:12px;border-radius:9px;margin:12px 0;font-weight:700}.feedback.good{background:var(--greenbg);color:#14532d}.feedback.bad{background:var(--redbg);color:#7f1d1d}
+.hintbox{background:#f1f5f9;border-left:4px solid #64748b;padding:12px;margin:12px 0;border-radius:5px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.hidden{display:none!important}
+.pill{display:inline-block;padding:4px 9px;border-radius:20px;background:#eaf1ff;color:#1d4ed8;font-size:13px;font-weight:700}
+.result-score{font-size:42px;font-weight:800;color:var(--navy)}.pass{color:var(--green)}.fail{color:var(--red)}
+.review-item{border-top:1px solid var(--line);padding:14px 0}.review-item p{margin:5px 0}.small{font-size:13px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.stat{background:#f8fafc;padding:13px;border-radius:9px;border:1px solid var(--line)}
+footer{text-align:center;color:var(--gray);font-size:13px;padding:10px}
+@media print{header{background:#14213d!important}button,#setup,.actions{display:none!important}body{background:white}.panel{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Unit II: Open Source Operating System — Linux</h1>
+<p>40-question multiple-choice assessment • Total: 100 marks • Pass mark: 60%</p>
+</div></header>
+<main class="wrap">
+<section id="setup" class="panel">
+<h2>Student information</h2>
+<p class="muted">Enter the student's name and begin. Each question carries 2.5 marks (40 × 2.5 = 100).</p>
+<label for="studentName">Student name</label>
+<input id="studentName" type="text" placeholder="Enter full name" autocomplete="name">
+<div class="actions"><button id="startBtn" class="primary">Start assessment</button></div>
+<p class="muted small">Coverage: Linux and Unix history, Linux vs Unix vs Windows, Linux features and distributions, architecture, installation, partitions, LVM, virtual machines and containers.</p>
+</section>
+
+<section id="quiz" class="panel hidden">
+<div class="topline"><div><span class="pill" id="studentLabel"></span> <span class="pill">2.5 marks per question</span></div><strong id="progressText">Question 1 of 40</strong></div>
+<div class="progress"><div class="bar" id="progressBar"></div></div>
+<div class="topline"><span class="muted" id="topicLabel"></span><span class="muted">Weight: 2.5 marks</span></div>
+<div class="qtitle" id="questionText"></div><div id="options"></div>
+<div id="feedback" aria-live="polite"></div><div id="hintBox" class="hintbox hidden"></div>
+<div class="actions">
+<button id="hintBtn" class="secondary" disabled>Show hint (after answering)</button>
+<button id="nextBtn" class="primary" disabled>Next question</button>
+<button id="finishBtn" class="success hidden">Finish assessment</button>
+</div>
+<p class="muted small">Select one answer. Correct answers turn green; incorrect selections turn red and the correct answer is highlighted green. After answering, click “Show hint” for a clue. The full answer key and explanations appear at the end.</p>
+</section>
+
+<section id="results" class="panel hidden">
+<h2>Assessment result</h2><p id="resultStudent"></p>
+<div class="grid">
+<div class="stat"><div class="muted">Score</div><div class="result-score" id="scoreText">0/100</div></div>
+<div class="stat"><div class="muted">Correct answers</div><strong id="correctText">0 of 40</strong></div>
+<div class="stat"><div class="muted">Result</div><strong id="statusText"></strong></div>
+<div class="stat"><div class="muted">Pass requirement</div><strong>60 / 100 (60%)</strong></div>
+</div>
+<p id="resultMessage"></p>
+<div class="actions"><button id="reviewBtn" class="primary">Show answer key and explanations</button><button id="printBtn" class="secondary">Print result</button><button id="restartBtn" class="secondary">Restart</button></div>
+<div id="answerReview" class="hidden"></div>
+</section>
+</main>
+<footer>Linux • Unit II practice assessment</footer>
+
+<!-- jQuery is loaded from its CDN; quiz data and application logic are in this single HTML file. -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function(){
+const questions=[
+{t:"2.1 Linux history and Unix relationship",q:"Which operating system family strongly influenced the design and philosophy of Linux?",o:["UNIX","MS-DOS","CP/M","Windows NT"],a:0,h:"Linux is Unix-like, although it was developed independently.",e:"Linux was designed as a Unix-like operating system. It follows many Unix concepts but is not simply a licensed version of traditional UNIX."},
+{t:"2.1 Linux history and Unix relationship",q:"Who created the Linux kernel in 1991?",o:["Richard Stallman","Linus Torvalds","Ken Thompson","Dennis Ritchie"],a:1,h:"He was a Finnish computer science student when he began the project.",e:"Linus Torvalds released the first Linux kernel in 1991."},
+{t:"2.1 Linux history and Unix relationship",q:"In which year did Linus Torvalds first announce the Linux project?",o:["1969","1983","1991","2001"],a:2,h:"Linux began in the early 1990s.",e:"The Linux project was announced in 1991."},
+{t:"2.1 Linux history and Unix relationship",q:"Which organisation was founded by Richard Stallman to promote free software?",o:["Free Software Foundation","Open Source Initiative","Apache Software Foundation","Linux Foundation"],a:0,h:"Its abbreviation is FSF.",e:"Richard Stallman founded the Free Software Foundation (FSF) in 1985."},
+{t:"2.1 Linux history and Unix relationship",q:"What is the relationship between Linux and UNIX?",o:["Linux is a Unix-like system, developed independently","Linux is the newest version of Microsoft Windows","Linux is a database system","Linux is a hardware architecture"],a:0,h:"Linux follows many UNIX ideas, but its kernel was written as a separate project.",e:"Linux is Unix-like in design and behaviour, but it is not derived from the original UNIX source code."},
+{t:"2.1 Linux history and Unix relationship",q:"Which component is the core of a Linux operating system?",o:["Kernel","Desktop wallpaper","Web browser","Text editor"],a:0,h:"It manages hardware, memory, processes and devices.",e:"The kernel is the central component that manages system resources and provides core operating-system services."},
+{t:"2.2 Linux, Unix and Windows comparison",q:"Which statement about Linux is generally correct?",o:["It is available in many distributions","It is developed only by one computer manufacturer","It cannot support networking","It only runs on desktop computers"],a:0,h:"Think of Ubuntu, Debian, Fedora and other variants.",e:"Linux is distributed through many distributions that package the kernel with system tools, applications and package managers."},
+{t:"2.2 Linux, Unix and Windows comparison",q:"Which operating system is commonly associated with a proprietary desktop licence and a central commercial vendor?",o:["Microsoft Windows","Debian GNU/Linux","Ubuntu","Fedora"],a:0,h:"It is widely used on personal computers and is developed by Microsoft.",e:"Microsoft Windows is proprietary software developed and commercially distributed by Microsoft."},
+{t:"2.2 Linux, Unix and Windows comparison",q:"Which feature is commonly associated with Linux and many traditional Unix systems?",o:["Multiuser and multitasking support","Only one user can log in","No command-line interface","No file permissions"],a:0,h:"More than one user and process can be supported by the system.",e:"Linux and Unix systems support multiple users and concurrent processes, with permissions and resource management."},
+{t:"2.2 Linux, Unix and Windows comparison",q:"What is a major difference between Linux and Windows distributions?",o:["Linux is offered in many independently maintained distributions","Windows has no graphical interface","Linux cannot run applications","Windows cannot use networks"],a:0,h:"Ubuntu and Fedora are examples of one side of this comparison.",e:"Linux is packaged into many distributions maintained by communities or organisations, while Windows is released by Microsoft as a product family."},
+{t:"2.3 Linux features, advantages and variants",q:"What is a Linux distribution?",o:["A packaged operating system built around the Linux kernel","A computer motherboard","A programming language","A type of network cable"],a:0,h:"It typically includes the kernel, system utilities, package tools and applications.",e:"A distribution combines the Linux kernel with system software, package management, configuration and often desktop applications."},
+{t:"2.3 Linux features, advantages and variants",q:"Which of the following is a Debian-based Linux distribution?",o:["Ubuntu","Fedora","openSUSE","Arch Linux"],a:0,h:"It is a popular distribution often used by beginners and on servers.",e:"Ubuntu is based on Debian and uses Debian package-management foundations."},
+{t:"2.3 Linux features, advantages and variants",q:"Which package format is commonly used by Debian and Ubuntu?",o:[".deb"," .rpm",".msi",".dmg"],a:0,h:"The package manager commonly used with it is APT.",e:"Debian-based distributions such as Debian and Ubuntu use .deb packages."},
+{t:"2.3 Linux features, advantages and variants",q:"Which package format is commonly used by Fedora and Red Hat Enterprise Linux?",o:[".rpm",".deb",".apk",".exe"],a:0,h:"The format name is associated with Red Hat Package Manager.",e:"RPM packages are used by Fedora, RHEL and several related distributions."},
+{t:"2.3 Linux features, advantages and variants",q:"Which command commonly updates package lists on Ubuntu or Debian?",o:["sudo apt update","format c:","ipconfig /renew","chkdsk"],a:0,h:"It uses the APT package-management tool.",e:"sudo apt update refreshes the local package index; it does not itself upgrade installed packages."},
+{t:"2.3 Linux features, advantages and variants",q:"Which is a common advantage of Linux in server environments?",o:["Stability, automation and flexible administration","It cannot be remotely administered","It requires a graphical desktop at all times","It supports only one network service"],a:0,h:"Think about command-line tools, scripting and long-running services.",e:"Linux is widely used for servers because of its stability, networking, scripting, automation and administrative flexibility."},
+{t:"2.3 Linux features, advantages and variants",q:"Which Linux command displays the current working directory?",o:["pwd","ls","cd","mkdir"],a:0,h:"Its name means print working directory.",e:"pwd prints the absolute path of the current working directory."},
+{t:"2.3 Linux features, advantages and variants",q:"Which command lists files and directories?",o:["ls","pwd","whoami","touch"],a:0,h:"It is one of the most frequently used shell commands.",e:"ls lists directory contents. Options such as -l and -a show details and hidden files."},
+{t:"2.3 Linux features, advantages and variants",q:"Which command changes the current directory?",o:["cd","cat","grep","echo"],a:0,h:"The command is short for change directory.",e:"cd changes the shell's current working directory."},
+{t:"2.4 Linux architecture",q:"Which layer directly manages CPU, memory and device resources?",o:["Kernel","Shell prompt","Application window","User manual"],a:0,h:"It is the central operating-system component.",e:"The kernel manages hardware resources, processes, memory, devices and system calls."},
+{t:"2.4 Linux architecture",q:"What is the main role of a shell in Linux?",o:["To provide a command interpreter between the user and operating system","To physically store files","To replace the CPU","To manage monitor brightness only"],a:0,h:"Bash is a common example.",e:"A shell interprets commands and scripts, allowing users to interact with the operating system."},
+{t:"2.4 Linux architecture",q:"Which of the following is a commonly used Linux shell?",o:["Bash","PowerPoint","Photoshop","MySQL"],a:0,h:"Its full name is Bourne Again Shell.",e:"Bash is a widely used command-line shell on Linux systems."},
+{t:"2.4 Linux architecture",q:"What is the purpose of a system call?",o:["It allows a user-space program to request a service from the kernel","It physically installs a hard drive","It creates a new Linux distribution","It replaces a device driver"],a:0,h:"Applications use this interface to request kernel operations.",e:"System calls provide a controlled interface through which user-space programs request kernel services such as file access and process creation."},
+{t:"2.4 Linux architecture",q:"Which directory commonly contains essential user commands such as ls and cp?",o:["/usr/bin","/home","/etc","/boot"],a:0,h:"It is a standard location for many installed executable programs.",e:"/usr/bin commonly contains user command binaries. Exact layouts can vary across distributions."},
+{t:"2.4 Linux architecture",q:"Which directory stores system-wide configuration files?",o:["/etc","/home","/media","/tmp"],a:0,h:"Network, service and application configuration is often stored here.",e:"The /etc directory contains system-wide configuration files."},
+{t:"2.4 Linux architecture",q:"Which directory commonly contains users' personal home directories?",o:["/home","/dev","/proc","/boot"],a:0,h:"A regular user might have a directory such as /home/student.",e:"The /home directory usually contains personal directories and files for regular users."},
+{t:"2.4 Linux architecture",q:"What is the purpose of the Linux bootloader?",o:["To start the boot process and load the kernel","To edit text files","To install desktop themes","To manage user passwords after login"],a:0,h:"GRUB is a common example.",e:"A bootloader such as GRUB helps select a boot entry and load the Linux kernel and initial RAM filesystem."},
+{t:"2.5 Installation and partitioning",q:"What is a disk partition?",o:["A logical division of a physical storage device","A Linux user account","A type of CPU register","A software licence"],a:0,h:"One physical disk can contain several of these divisions.",e:"A partition divides a storage device into separately managed regions that can hold filesystems or other data."},
+{t:"2.5 Installation and partitioning",q:"Which partition scheme is commonly recommended for modern UEFI-based computers?",o:["GPT","MBR only","FAT12","EXT2"],a:0,h:"It is the newer partition-table standard and supports large disks and many partitions.",e:"GPT is commonly used with UEFI systems and supports large storage devices and more partitions than traditional MBR."},
+{t:"2.5 Installation and partitioning",q:"What is the main purpose of a swap area in Linux?",o:["To provide disk-backed virtual memory when needed","To store the Linux kernel source only","To replace the root filesystem","To hold user passwords"],a:0,h:"It can help when physical RAM is under memory pressure or for hibernation where configured.",e:"Swap provides disk-backed memory support. It may be a swap partition or a swap file."},
+{t:"2.5 Installation and partitioning",q:"Which filesystem is commonly used as a default on many Linux distributions?",o:["ext4","NTFS only","HFS+ only","FAT12"],a:0,h:"It is a widely supported journaling filesystem in the Linux ecosystem.",e:"ext4 is a common Linux filesystem, although distributions may also support XFS, Btrfs and others."},
+{t:"2.5 Installation and partitioning",q:"During a typical Linux installation, what does the root mount point '/' represent?",o:["The top of the Linux directory hierarchy","The user's desktop folder","A removable USB drive only","The swap area"],a:0,h:"All ordinary directories branch from this location.",e:"The root filesystem mounted at / is the top-level directory of the Linux filesystem hierarchy."},
+{t:"2.5 Installation and partitioning",q:"Which command can display block devices and their partitions?",o:["lsblk","pwd","date","uname -r"],a:0,h:"Its name combines 'list' and 'block'.",e:"lsblk displays block devices, partitions, sizes and mount points."},
+{t:"2.6 Logical Volume Management",q:"What does LVM stand for?",o:["Logical Volume Manager","Linux Virtual Machine","Local Version Mode","Linked Volume Mapping"],a:0,h:"It provides flexible storage management above physical disks or partitions.",e:"LVM stands for Logical Volume Manager."},
+{t:"2.6 Logical Volume Management",q:"In LVM, what does PV mean?",o:["Physical Volume","Primary Variable","Partition View","Program Version"],a:0,h:"It is the disk or partition prepared for LVM use.",e:"A Physical Volume (PV) is a storage device or partition initialised for use by LVM."},
+{t:"2.6 Logical Volume Management",q:"In LVM, what is a Volume Group (VG)?",o:["A storage pool made from one or more physical volumes","A Linux user group","A collection of desktop icons","A bootloader configuration file"],a:0,h:"It combines PV capacity into a shared pool.",e:"A Volume Group aggregates one or more PVs and provides storage capacity from which logical volumes can be allocated."},
+{t:"2.6 Logical Volume Management",q:"What is a Logical Volume (LV)?",o:["A flexible virtual storage volume created from a volume group","A physical CPU core","A network interface","A Linux shell command history"],a:0,h:"It is commonly formatted with a filesystem and mounted.",e:"An LV is a virtual block device allocated from a volume group and can be used like a partition."},
+{t:"2.6 Logical Volume Management",q:"Which sequence correctly represents the basic LVM structure?",o:["PV → VG → LV","LV → PV → VG","VG → LV → PV","Filesystem → CPU → PV"],a:0,h:"Start with physical storage, pool it, then allocate logical storage.",e:"Physical Volumes are combined into a Volume Group, from which Logical Volumes are created."},
+{t:"2.7 Virtual machines and containers",q:"What is a virtual machine (VM)?",o:["A software-based computer that runs a guest operating system on virtualised hardware","A Linux text file","A physical network switch","A package manager"],a:0,h:"A hypervisor provides virtual hardware to the guest system.",e:"A VM emulates or virtualises computer hardware so a guest operating system can run in an isolated environment."},
+{t:"2.7 Virtual machines and containers",q:"What is the role of a hypervisor?",o:["To create and manage virtual machines","To compile HTML pages","To manage Linux file permissions only","To replace the operating-system kernel in every container"],a:0,h:"VirtualBox and VMware are examples of products that provide this function.",e:"A hypervisor creates, runs and manages VMs by allocating host resources to guest systems."},
+{t:"2.7 Virtual machines and containers",q:"Which statement best describes a container?",o:["An isolated application environment that shares the host operating-system kernel","A complete physical computer","A replacement for a hard disk","A special type of BIOS"],a:0,h:"Docker is a popular platform for building and running these.",e:"Containers package applications and dependencies in isolated environments while sharing the host kernel."},
+{t:"2.7 Virtual machines and containers",q:"What is a major difference between a VM and a container?",o:["A VM usually runs a guest OS kernel; a container shares the host kernel","A container always needs more hardware than a VM","A VM cannot run Linux","They are exactly the same technology"],a:0,h:"Consider whether each environment needs its own guest operating-system kernel.",e:"VMs virtualise hardware and generally include a guest OS; containers isolate processes while sharing the host kernel."},
+{t:"2.7 Virtual machines and containers",q:"Which command lists running Docker containers?",o:["docker ps","docker images","docker build","docker pull"],a:0,h:"It is similar to the process-listing idea; use -a to include stopped containers.",e:"docker ps lists running containers; docker ps -a lists all containers, including stopped ones."}
+];
+
+const weight=2.5;let current=0,answers=Array(questions.length).fill(null),student="";
+function render(){
+ const q=questions[current];$("#progressText").text(`Question ${current+1} of ${questions.length}`);
+ $("#progressBar").css("width",`${current/questions.length*100}%`);
+ $("#topicLabel").text(q.t);$("#questionText").text(`${current+1}. ${q.q}`);
+ $("#options").empty();$("#feedback").empty();$("#hintBox").addClass("hidden").text("");
+ $("#hintBtn").prop("disabled",true).text("Show hint (after answering)");
+ $("#nextBtn").prop("disabled",true).toggleClass("hidden",current===questions.length-1);
+ $("#finishBtn").toggleClass("hidden",current!==questions.length-1).prop("disabled",true);
+ q.o.forEach((v,i)=>{
+  const $el=$('<label class="option"><input type="radio" name="answer"><span></span></label>');
+  $el.find("input").val(i);$el.find("span").text(String.fromCharCode(65+i)+". "+v);
+  $el.on("click",function(ev){if(answers[current]!==null){ev.preventDefault();return;}answer(i);});
+  $("#options").append($el);
+ });
+}
+function answer(choice){
+ answers[current]=choice;const q=questions[current];
+ $("#options .option").each(function(i){$(this).find("input").prop("disabled",true);if(i===q.a)$(this).addClass("correct");if(i===choice&&choice!==q.a)$(this).addClass("wrong");});
+ if(choice===q.a)$("#feedback").html('<div class="feedback good">Correct! You earned 2.5 marks.</div>');
+ else $("#feedback").html(`<div class="feedback bad">Incorrect. The correct answer is ${String.fromCharCode(65+q.a)}.</div>`);
+ $("#hintBtn").prop("disabled",false).text("Show hint");
+ if(current===questions.length-1)$("#finishBtn").prop("disabled",false);else $("#nextBtn").prop("disabled",false);
+}
+$("#startBtn").on("click",function(){student=$.trim($("#studentName").val());if(!student){alert("Please enter the student's name.");$("#studentName").focus();return;}$("#studentLabel").text("Student: "+student);$("#setup").addClass("hidden");$("#quiz").removeClass("hidden");render();});
+$("#hintBtn").on("click",function(){if(answers[current]===null)return;$("#hintBox").text("Hint: "+questions[current].h).removeClass("hidden");$(this).prop("disabled",true).text("Hint shown");});
+$("#nextBtn").on("click",function(){if(answers[current]===null)return;current++;render();});
+function finish(){
+ const correct=answers.reduce((n,a,i)=>n+(a===questions[i].a?1:0),0),score=correct*weight,passed=score>=60;
+ $("#quiz").addClass("hidden");$("#results").removeClass("hidden");$("#resultStudent").text("Student: "+student);
+ $("#scoreText").text(score.toFixed(1)+"/100");$("#correctText").text(`${correct} of ${questions.length}`);
+ $("#statusText").text(passed?"PASS":"NOT PASSED").attr("class",passed?"pass":"fail");
+ $("#resultMessage").text(passed?"Congratulations! You achieved the required 60% pass mark.":"You did not reach 60%. Review the answer key and explanations, then try again.");
+}
+$("#finishBtn").on("click",finish);
+$("#reviewBtn").on("click",function(){
+ const $r=$("#answerReview").empty();
+ questions.forEach((q,i)=>{const a=answers[i],ok=a===q.a,$item=$('<div class="review-item"></div>');
+  $item.append($("<strong></strong>").text(`${i+1}. ${q.q}`));
+  $item.append($("<p></p>").text("Your answer: "+(a===null?"Not answered":String.fromCharCode(65+a)+". "+q.o[a])));
+  $item.append($("<p></p>").text("Correct answer: "+String.fromCharCode(65+q.a)+". "+q.o[q.a]));
+  $item.append($("<p class='small'></p>").text("Explanation: "+q.e));
+  $item.append($("<p class='small'></p>").text("Hint: "+q.h));
+  $item.append($(`<span class="pill">${ok?"Correct • 2.5 marks":"Incorrect • 0 marks"}</span>`));$r.append($item);
+ });
+ $r.removeClass("hidden");$(this).prop("disabled",true).text("Answer key displayed");
+});
+$("#printBtn").on("click",()=>window.print());$("#restartBtn").on("click",()=>location.reload());
+});
+</script>
+</body>
+</html>
