@@ -1,0 +1,335 @@
+COURSE TITLE ............ COMPUTER ARCHITECTURE AND ORGANIZATION
+PROGRAM ................ BICTE
+COURSE NO. ............. ICT. Ed. 436
+NATURE OF COURSE ....... Theoretical + Practical
+LEVEL .................. Bachelor
+CREDIT HOUR ............ 3 hours (2T+1P)
+SEMESTER ............... Third
+TEACHING HOUR .......... 64 hours (32+32)
+
+........................................................................
+1. COURSE DESCRIPTION
+........................................................................
+
+This course is an introduction to Computer Architecture and its Organization.
+It covers topics in physical design of the computer (i.e. computer
+organization). This course discusses the basic structure of a digital
+computer and deals with the detailed study of data representation in
+computer system, Register transfer language and microoperations, and
+organization of the Control unit, the Arithmetic and Logic unit, the Memory
+unit and the I/O unit.
+
+........................................................................
+2. GENERAL OBJECTIVES
+........................................................................
+
+The general objectives of this course are as follows:
+
+1. To provide the students with the knowledge of data representation,
+   register transfer language and microoperations.
+
+2. To provide the organization and designing concept of computer system
+   including processor, computer arithmetic, memory organization and
+   I/O organization.
+
+3. To discuss in detail, the operation of the arithmetic unit including
+   the algorithm to add, subtract and multiply signed magnitude data and
+   signed 2's complement data.
+
+4. To study the multiprocessors and pipelining.
+
+5. To study the different ways of communicating with I/O devices and
+   standard I/O interfaces.
+
+........................................................................
+3. COURSE OUTLINES
+........................................................................
+
+UNIT 1: DATA REPRESENTATION ........................................ 4 LH
+
+Specific Objectives:
+- Explain different data types representation.
+- Define the requirement of complement numbers.
+
+Contents:
+1.1 Data Types
+1.2 Complements
+1.3 Fixed Point Representation
+1.4 Floating Point Representation
+
+Practical Works:
+1.1 Computer Program: Write program to visualize the representation of
+    complement numbers, integers, floating point numbers and character
+    data, overflow detection while adding integers.
+
+
+UNIT 2: REGISTER TRANSFER AND MICROOPERATIONS ...................... 8 LH
+
+Specific Objectives:
+- Explain register transfer language.
+- Apply different microoperations to perform specific task.
+
+Contents:
+2.1 Register and Register Transfer Language
+2.2 Bus and Memory Transfers
+2.3 Arithmetic, Logic and Shift Micro-operations
+2.4 Arithmetic Logic Shift Unit
+
+
+UNIT 3: BASIC COMPUTER ORGANIZATION AND DESIGN ..................... 8 LH
+
+Specific Objectives:
+- Explain instruction codes.
+- Describe instruction format and instruction cycle.
+- Design component organization in basic computer.
+
+Contents:
+3.1 Instruction Codes
+3.2 Computer Registers
+3.3 Computer Instructions
+3.4 Timing and Control
+3.5 Instruction Cycle
+3.6 Input Output and Interrupt
+
+Practical Works:
+3.1 Circuit Design: Design of Basic Computer.
+3.2 Computer Program: Write program to illustrate fetch, decode and
+    execute instructions.
+
+
+UNIT 4: MICROPROGRAMMED CONTROL .................................... 6 LH
+
+Specific Objectives:
+- Describe control memory and its usage.
+- Apply address sequencing concept.
+- Identify microinstruction format.
+
+Contents:
+4.1 Control Memory
+4.2 Address Sequencing
+4.3 Computer Configuration
+4.4 Microinstruction Format
+
+
+UNIT 5: CENTRAL PROCESSING UNIT .................................... 6 LH
+
+Specific Objectives:
+- Explain different CPU organizations.
+- Describe the requirement of different instruction formats.
+- Understand and apply addressing modes.
+
+Contents:
+5.1 CPU Organizations
+5.2 Instruction Formats
+5.3 Addressing Modes
+
+Practical Works:
+5.1 Computer Program: Write program to illustrate the use of different
+    addressing modes.
+
+
+UNIT 6: PIPELINING .................................................. 8 LH
+
+Specific Objectives:
+- Define different types of computers.
+- Explain pipelining.
+- Utilize different types of pipelining to improve performance.
+- Understand pipeline hazards and suggest their solutions.
+
+Contents:
+6.1 Parallel Processing, Flynn's Classification of Computers
+6.2 Pipelining
+6.3 Arithmetic Pipeline
+6.4 Instruction Pipeline
+6.5 Pipeline Hazards and their Solutions
+6.6 Array and Vector Processing
+
+Practical Works:
+6.1 Case Study: Available array and vector processors and their
+    application domain.
+6.2 Computer Program: Write program which simulates instruction
+    pipeline and arithmetic pipeline.
+
+
+UNIT 7: COMPUTER ARITHMETIC ......................................... 8 LH
+
+Specific Objectives:
+- Demonstrate the addition and subtraction of signed magnitude data
+  and signed 2's complement data.
+- Trace multiplication algorithms to multiply signed magnitude and
+  signed 2's complement data.
+
+Contents:
+7.1 Addition and Subtraction of Signed Magnitude Data
+7.2 Addition and Subtraction of Signed 2's Complement Data
+7.3 Multiplication of Signed Magnitude Data
+7.4 Multiplication of Signed 2's Complement Data
+
+Practical Works:
+7.1 Computer Program: Implement all algorithms learned in this chapter
+    in high level language.
+
+
+UNIT 8: INPUT AND OUTPUT ORGANIZATION ............................... 6 LH
+
+Specific Objectives:
+- Explain I/O interface, asynchronous data transfer and modes of transfer.
+- Demonstrate interrupt handling and DMA transfer.
+- Identify the need of IOP.
+
+Contents:
+8.1 I/O Interface
+8.2 Asynchronous Data Transfer
+8.3 Modes of Transfer
+8.4 Priority Interrupt
+8.5 Direct Memory Access
+8.6 I/O Processor
+
+Practical Works:
+8.1 Case Study: USB (Universal Serial Bus).
+
+
+UNIT 9: MEMORY ORGANIZATION ......................................... 5 LH
+
+Specific Objectives:
+- Describe the concept of memory hierarchy.
+- Explain associative memory organization and cache mapping techniques.
+
+Contents:
+9.1 Memory Hierarchy
+9.2 Main Memory
+9.3 Associative Memory
+9.4 Cache Memory
+
+Practical Works:
+9.1 Computer Program: Write program to simulate associative memory
+    (key value pair mapping) implementation.
+
+
+UNIT 10: MULTIPROCESSORS ............................................ 5 LH
+
+Specific Objectives:
+- Specify the use of multiprocessor.
+- Demonstrate interconnection structures of processors and IPC.
+- Identify cache coherence problem with its solution.
+
+Contents:
+10.1 Characteristics of Multiprocessor
+10.2 Interconnection Structures
+10.3 Inter Processor Communication and Synchronization
+10.4 Cache Coherence
+
+Practical Works:
+10.1 Computer Program: Write program to simulate cache coherence
+     problem and its solution.
+
+
+........................................................................
+4. INSTRUCTIONAL TECHNIQUES
+........................................................................
+
+The instructional techniques for this course are divided into two groups.
+The first group consists of general instructional techniques applicable
+to most of the units. The second group consists of specific instructional
+techniques applicable to particular units.
+
+4.1 General Techniques
+Reading materials will be provided to students in each unit. Lecture,
+Discussion, use of multi-media projector, brain storming are used in all
+units.
+
+4.2 Specific Instructional Techniques
+Demonstration is an essential instructional technique for all units during
+the teaching-learning process. Specifically, demonstration with practical
+works will be the specific instructional technique in this course.
+
+Unit 2 and 4:
+Lecture, Discussion.
+
+Unit 1, 3, 5, 6, 7, 8, 9 and 10:
+Lecture, Discussion, Practical.
+
+
+........................................................................
+5. EVALUATION
+........................................................................
+
+Evaluation of students' performance is divided into internal assessment
+(theory and practical) and external examinations (theory and practical).
+The distribution of points is given below:
+
+Internal Assessment Theory ................. 25 Points
+Internal Assessment Practical .............. 15 Points
+Semester Examination (Theoretical) ......... 40 Points
+External Practical Exam/Viva ............... 20 Points
+TOTAL ...................................... 100 Points
+
+NOTE:
+Students must pass separately in internal assessment, external practical
+exam and semester examination.
+
+
+5.1 INTERNAL ASSESSMENT (25 POINTS) - THEORETICAL PART
+
+Internal assessment will be conducted by the subject teacher based on
+the following criteria:
+
+Attendance and learning activities .......... 5 points
+First assignment (Written assignment) ....... 5 points
+Second assignment (Project work with
+presentation) .............................. 10 points
+Third assignment/Written examination ....... 5 points
+TOTAL ...................................... 25 points
+
+
+5.2 INTERNAL ASSESSMENT (15 POINTS) - PRACTICAL PART
+
+Internal practical assessment will be conducted by the subject teacher
+based on the following criteria:
+
+Attendance and learning activities .......... 5 points
+Practical work/Project work/Lab work ........ 10 points
+TOTAL ...................................... 15 points
+
+
+5.3 SEMESTER FINAL EXAMINATION (40 POINTS) - THEORETICAL PART
+
+The Examination Division, Dean Office will conduct the final examination
+at the end of the semester.
+
+Objective questions (10 x 1 point) ......... 10 points
+Subjective questions (6 questions x 5 marks,
+with 'OR' two questions) ................... 30 points
+TOTAL ...................................... 40 points
+
+
+5.4 PRACTICAL EXAM/VIVA (20 POINTS)
+
+The Examination Division, Office of the Dean will appoint an external
+examiner (ICT teachers working at another campus) for conducting the
+practical examination.
+
+Evaluation of Record Book ................... 4 points
+Project work/Practical work presentation/
+Skill test .................................. 10 points
+Viva ........................................ 6 points
+TOTAL ...................................... 20 points
+
+
+........................................................................
+6. RECOMMENDED BOOKS AND REFERENCE MATERIALS
+........................................................................
+
+1. Mano, M. M. (2003), Computer System Architecture, 3rd Edition,
+   Prentice Hall of India.
+
+2. Stallings, W. (2016), Computer Organization and Architecture:
+   Designing for Performance, 10th Edition, Pearson Education.
+
+3. Tanenbaum, A. S. (2013), Structured Computer Organization,
+   6th Edition, Pearson Education.
+
+........................................................................
+END OF COURSE OUTLINE
+........................................................................
+Source: ICT Ed. 436 (Architecture) updated.pdf
