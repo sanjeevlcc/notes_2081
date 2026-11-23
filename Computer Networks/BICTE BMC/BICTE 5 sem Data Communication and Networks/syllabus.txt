@@ -1,0 +1,727 @@
+
+
+
+======================================================================
+                 BACHELOR IN INFORMATION AND COMMUNICATION TECHNOLOGY
+                         5TH SEMESTER SYLLABUS
+======================================================================
+
+COURSE TITLE       : Data Communication and Networks
+COURSE NO.         : ICT. Ed. 456
+LEVEL              : Bachelor
+SEMESTER           : Fifth
+NATURE OF COURSE   : Theoretical + Practical
+CREDIT HOUR        : 3 Hours (2T + 1P)
+TEACHING HOUR      : 64 Hours (32 + 32)
+
+
+
+
+
+======================================================================
+1. COURSE DESCRIPTION
+======================================================================
+
+The purpose of this course is to introduce the fundamental concepts on
+data communication, data transmission mechanisms, Network Architectures,
+Internet protocols, Local Area Networks and the practical aspects of
+networking.
+
+It also aims to develop networking skills such as sub-netting and
+network infrastructure design and development.
+
+
+
+
+======================================================================
+2. GENERAL OBJECTIVES
+======================================================================
+
+After successful completion of this course, students will be able to:
+
+1. Identify the different components and their respective roles in
+   computer networks and the Internet.
+
+2. Explain different services provided by the Network Layers.
+
+3. Design an enterprise network employing WLAN, LAN and VLAN
+   technologies and be able to evaluate their advantages and
+   disadvantages.
+
+4. Configure a PC to work as a host in a TCP/IP network and use
+   IP-based commands.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+3. COURSE OUTLINES
+======================================================================
+
+
+######################################################################
+UNIT 1: COMPUTER NETWORKS AND THE INTERNET
+LECTURE HOURS: 3 + 3
+######################################################################
+
+SPECIFIC OBJECTIVES:
+--------------------
+
+1. Describe the basic concept of computer networks and the Internet.
+2. Understand layered architecture.
+
+CONTENTS:
+---------
+
+1.1. The Internet
+
+1.2. The Network Edge:
+     - Access Networks
+     - Physical Media
+
+1.3. The Network Core:
+     - Packet Switching
+     - Circuit Switching
+
+1.4. Delay, Loss, and Throughput in Packet-Switched Networks
+
+1.5. Protocol Layers and Their Service Models:
+     - Layered Architecture
+     - Encapsulation
+
+1.6. History of Computer Networking and the Internet
+
+
+PRACTICAL WORK:
+---------------
+
+1. Installation of Wireshark (free packet sniffer application)
+   and learning how to use it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################
+UNIT 2: APPLICATION LAYER
+LECTURE HOURS: 5 + 5
+######################################################################
+
+SPECIFIC OBJECTIVES:
+--------------------
+
+1. Describe different services provided by the application layer.
+
+2. Identify different application layer protocols.
+
+
+CONTENTS:
+---------
+
+2.1. The Web and HTTP:
+     - Overview of HTTP
+     - HTTP Message Format
+     - User-Server Interaction
+     - Cookies
+     - Web Caching
+
+2.2. Electronic Mail in the Internet:
+     - SMTP
+     - Mail Message Formats
+     - Mail Access Protocols
+
+2.3. DNS - The Internet's Directory Service
+
+2.4. Peer-to-Peer File Distribution
+
+2.5. Video Streaming and Content Distribution Networks
+
+
+CASE STUDIES:
+-------------
+
+1. Netflix
+2. YouTube
+
+
+PRACTICAL WORKS:
+----------------
+
+1. Wireshark Lab: HTTP and DNS
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################
+UNIT 3: TRANSPORT LAYER
+LECTURE HOURS: 6 + 6
+######################################################################
+
+SPECIFIC OBJECTIVES:
+--------------------
+
+1. Describe the basics of the transport layer.
+
+2. Compare and contrast different aspects of TCP and UDP.
+
+3. Discuss connectionless and connection-oriented transport.
+
+
+CONTENTS:
+---------
+
+3.1. Introduction and Transport-Layer Services
+
+     3.1.1. Relationship Between Transport and Network Layers
+
+     3.1.2. Overview of the Transport Layer in the Internet
+
+
+3.2. Multiplexing and De-multiplexing
+
+
+3.3. Connectionless Transport: UDP
+
+     3.3.1. UDP Segment Structure
+
+     3.3.2. UDP Checksum
+
+
+3.4. Principles of Reliable Data Transfer
+
+     3.4.1. Go-Back-N (GBN)
+
+     3.4.2. Selective Repeat (SR)
+
+
+3.5. Connection-Oriented Transport: TCP
+
+     3.5.1. Round-Trip Time Estimation and Timeout
+
+     3.5.2. Reliable Data Transfer
+
+     3.5.3. Flow Control
+
+
+3.6. TCP Congestion Control
+
+
+PRACTICAL WORKS:
+----------------
+
+1. Wireshark Lab: Exploring TCP and UDP
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################
+UNIT 4: THE NETWORK LAYER
+LECTURE HOURS: 8 + 8
+######################################################################
+
+SPECIFIC OBJECTIVES:
+--------------------
+
+1. Describe the network layer data plane and control plane
+   differently.
+
+2. Understand the router and different routing algorithms.
+
+3. Make distinction between IPv4 and IPv6.
+
+
+CONTENTS:
+---------
+
+4.1. Data Plane
+
+     4.1.1. Inside the Router
+
+            4.1.1.1. Input Port Processing and
+                    Destination Based Forwarding
+
+            4.1.1.2. Switching
+
+            4.1.1.3. Output Port Processing
+
+            4.1.1.4. Queuing
+
+            4.1.1.5. Packet Scheduling
+
+
+     4.1.2. The Internet Protocol (IP)
+
+            4.1.2.1. IPv4 Datagram Format
+
+            4.1.2.2. IPv4 Addressing
+
+            4.1.2.3. Subnetting
+
+            4.1.2.4. Network Address Translation (NAT)
+
+            4.1.2.5. IPv6
+
+
+4.2. Control Plane
+
+     4.2.1. Routing Algorithms
+
+            4.2.1.1. The Link-State (LS) Routing Algorithm
+
+            4.2.1.2. The Distance-Vector (DV) Routing Algorithm
+
+
+     4.2.2. Intra-AS Routing in the Internet: OSPF
+
+     4.2.3. Routing Among the ISPs: BGP
+
+     4.2.4. ICMP: The Internet Control Message Protocol
+
+
+PRACTICAL WORKS:
+----------------
+
+1. Wireshark Lab: IP
+
+2. Practice Sub-netting to create small networks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################
+UNIT 5: THE LINK LAYER AND LAN
+LECTURE HOURS: 6 + 6
+######################################################################
+
+SPECIFIC OBJECTIVES:
+--------------------
+
+1. Explain Link Layer protocols and services provided by the
+   Link Layer.
+
+2. Get insight into error detection and error correction techniques.
+
+3. Understand DHCP, Ethernet technology and VLANs.
+
+
+CONTENTS:
+---------
+
+5.1. Introduction to the Link Layer
+
+     5.1.1. The Services Provided by the Link Layer
+
+
+5.2. Error-Detection and -Correction Techniques
+
+     5.2.1. Parity Checks
+
+     5.2.2. Check Sum Methods
+
+     5.2.3. Cyclic Redundancy Check (CRC)
+
+
+5.3. Multiple Access Links and Protocols
+
+     5.3.1. Channel Partitioning Protocols
+
+     5.3.2. Random Access Protocols
+
+     5.3.3. Taking-Turns Protocols
+
+     5.3.4. DOCSIS: The Link-Layer Protocol for Cable Internet Access
+
+
+5.4. Switched Local Area Networks
+
+     5.4.1. Link-Layer Addressing and ARP
+
+     5.4.2. Ethernet
+
+     5.4.3. Link-Layer Switches
+
+     5.4.4. Virtual Local Area Networks (VLANs)
+
+
+5.5. A Day in the Life of a Web Page Request
+
+     5.5.1. DHCP, UDP, IP, and Ethernet
+
+     5.5.2. DNS and ARP
+
+     5.5.3. Intra-Domain Routing to the DNS Server
+
+     5.5.4. Web Client-Server Interaction: TCP and HTTP
+
+
+PRACTICAL WORKS:
+----------------
+
+1. Wireshark Labs: 802.11 Ethernet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################
+UNIT 6: WIRELESS AND MOBILE NETWORKS
+LECTURE HOURS: 4 + 4
+######################################################################
+
+SPECIFIC OBJECTIVES:
+--------------------
+
+1. Describe wireless technologies: WiFi and cellular networks.
+
+
+CONTENTS:
+---------
+
+6.1. WiFi: 802.11 Wireless LANs
+
+     6.1.1. The 802.11 Wireless LAN Architecture
+
+     6.1.2. The 802.11 MAC Protocol
+
+     6.1.3. The IEEE 802.11 Frame
+
+     6.1.4. Mobility in the Same IP Subnet
+
+     6.1.5. Personal Area Networks: Bluetooth
+
+
+6.2. Cellular Networks: 4G and 5G
+
+
+PRACTICAL WORKS:
+----------------
+
+1. Wireshark Lab: Wi-Fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+4. INSTRUCTIONAL TECHNIQUES
+======================================================================
+
+The instructional techniques for this course are divided into two
+groups. The first group consists of general instructional techniques
+applicable to most of the units. The second group consists of specific
+instructional techniques applicable to particular units.
+
+
+4.1. GENERAL TECHNIQUES
+----------------------
+
+Reading materials will be provided to students in each unit.
+
+The following techniques will be used in all units:
+
+1. Lecture
+2. Discussion
+3. Use of multimedia projector
+4. Brainstorming
+
+
+4.2. SPECIFIC INSTRUCTIONAL TECHNIQUES
+--------------------------------------
+
+Demonstration is an essential instructional technique for all units
+in this course during the teaching-learning process.
+
+Specifically, demonstration with practical works will be a specific
+instructional technique in this course.
+
+The details of suggested instructional techniques are presented
+below:
+
+UNIT 1:
+-------
+
+Assign students to prepare a presentation on the Internet.
+
+
+UNIT 2:
+-------
+
+Self-study and ask students to prepare a case study report on
+YouTube and Netflix.
+
+
+UNIT 3:
+-------
+
+Homework and Assignment on TCP and UDP.
+
+
+UNIT 4:
+-------
+
+Homework and Assignment on Subnetting.
+
+
+UNIT 5:
+-------
+
+Homework and Assignment on Error Detection and Correction Methods.
+
+
+UNIT 6:
+-------
+
+Self-study and ask students to make a detailed report and presentation
+on Wireless Technologies:
+
+- CDMA
+- 4G
+- 5G
+- WiFi: 802.11 Wireless LANs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+5. EVALUATION
+======================================================================
+
+The evaluation system consists of three components:
+
+1. Internal Assessment              : 40 Points
+2. External Practical Exam/Viva     : 20 Points
+3. Semester Examination             : 40 Points
+
+TOTAL                               : 100 Points
+
+
+NOTE:
+-----
+
+Students must pass separately in:
+
+1. Internal Assessment
+2. External Practical Examination
+3. Semester Examination
+
+
+----------------------------------------------------------------------
+5.1. INTERNAL EVALUATION (40 POINTS)
+----------------------------------------------------------------------
+
+Internal evaluation will be conducted by the subject teacher based
+on the following criteria:
+
+1. Class Attendance
+   Marks: 5 Points
+
+2. Learning Activities and Class Performance
+   Marks: 5 Points
+
+3. First Assignment (Written Assignment)
+   Marks: 10 Points
+
+4. Second Assignment (Case Study/Project Work with Presentation)
+   Marks: 10 Points
+
+5. Terminal Examination
+   Marks: 10 Points
+
+
+TOTAL: 40 POINTS
+
+
+----------------------------------------------------------------------
+5.2. SEMESTER EXAMINATION (40 POINTS)
+----------------------------------------------------------------------
+
+The Examination Division, Dean Office will conduct the final
+examination at the end of the semester.
+
+Examination Structure:
+
+1. Objective Questions
+   - Multiple Choice Questions
+   - 10 Questions x 1 Mark
+   - Total: 10 Points
+
+2. Subjective Answer Questions
+   - 6 Questions x 5 Marks
+   - Total: 30 Points
+
+
+TOTAL: 40 POINTS
+
+
+----------------------------------------------------------------------
+5.3. EXTERNAL PRACTICAL EXAM/VIVA (20 POINTS)
+----------------------------------------------------------------------
+
+The Examination Division, Dean Office will conduct the final
+practical examination at the end of the semester.
+
+TOTAL: 20 POINTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================
+6. PRESCRIBED TEXTBOOK, RECOMMENDED BOOKS AND REFERENCES
+======================================================================
+
+This section includes prescribed textbooks, recommended books and
+reference materials, including relevant published articles in
+national and international journals.
+
+
+----------------------------------------------------------------------
+6.1. PRESCRIBED TEXTBOOK
+----------------------------------------------------------------------
+
+1. James F. Kurose and Keith W. Ross,
+   Computer Networking: A Top-Down Approach,
+   8th Edition,
+   Pearson Education.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------
+6.2. RECOMMENDED BOOKS AND REFERENCE MATERIALS
+----------------------------------------------------------------------
+
+1. Tanenbaum Andrew S.,
+   Computer Networks,
+   4th Edition (2nd Impression 2006)
+   or available latest edition.
+
+
+2. William Stallings,
+   Data and Computer Communications,
+   7th Edition (3rd Impression 2007)
+   or available latest edition.
+
+
+3. Larry L. Peterson and Bruce S. Davie,
+   Computer Networks: A Systems Approach,
+   4th Edition.
+
+
+4. Halsall Fred,
+   Data Communications, Computer Networks and OSI,
+   4th Edition (10th Indian Reprinting 2005).
+
+
+
+======================================================================
+                       END OF SYLLABUS
+======================================================================
