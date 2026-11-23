@@ -1,0 +1,259 @@
+=====================================================================
+ DHCP SERVER LAB  -  5 Virtual PCs + DORA Verification
+ Platform : Killercoda (Ubuntu) or any Ubuntu Linux terminal (run as root)
+ Method   : Linux network namespaces (each namespace = 1 virtual PC)
+=====================================================================
+
+TOPOLOGY
+--------
+                 +--------------------------------------+
+                 |  Ubuntu host  (DHCP server, dnsmasq) |
+                 |  bridge br-dhcp = 192.168.50.1/24    |
+                 +----+------+------+------+------+-----+
+                      |      |      |      |      |
+                     pc1    pc2    pc3    pc4    pc5
+                  (each is a namespace with eth0, gets IP via DHCP)
+
+ DHCP pool  : 192.168.50.100 - 192.168.50.150
+ Gateway    : 192.168.50.1
+ DNS        : 8.8.8.8
+ Lease time : 12h
+
+
+=====================================================================
+ STEP 0 : BECOME ROOT
+=====================================================================
+sudo -i
+
+
+=====================================================================
+ STEP 1 : INSTALL PACKAGES
+=====================================================================
+apt update
+apt install -y dnsmasq isc-dhcp-client tcpdump iproute2
+
+# dnsmasq auto-starts after install; stop it, we will run our own copy
+systemctl stop dnsmasq 2>/dev/null
+systemctl disable dnsmasq 2>/dev/null
+
+
+=====================================================================
+ STEP 2 : CREATE BRIDGE + 5 VIRTUAL PCs  (copy-paste whole block)
+=====================================================================
+# --- bridge (acts as the virtual switch + DHCP server interface) ---
+ip link add br-dhcp type bridge
+ip addr add 192.168.50.1/24 dev br-dhcp
+ip link set br-dhcp up
+
+# --- create pc1..pc5 ---
+for i in 1 2 3 4 5; do
+  ip netns add pc$i
+  ip link add veth-pc$i type veth peer name vb-pc$i
+  ip link set veth-pc$i netns pc$i
+  ip link set vb-pc$i master br-dhcp
+  ip link set vb-pc$i up
+  ip netns exec pc$i ip link set veth-pc$i name eth0
+  ip netns exec pc$i ip link set lo up
+  ip netns exec pc$i ip link set eth0 address 02:00:00:00:00:0$i
+  ip netns exec pc$i ip link set eth0 up
+done
+
+# --- verify the 5 PCs exist ---
+ip netns list
+ip netns exec pc1 ip -br link
+
+
+=====================================================================
+ STEP 3 : START THE DHCP SERVER
+=====================================================================
+dnsmasq --conf-file=/dev/null \
+  --port=0 \
+  --interface=br-dhcp --bind-interfaces \
+  --dhcp-range=192.168.50.100,192.168.50.150,255.255.255.0,12h \
+  --dhcp-option=option:router,192.168.50.1 \
+  --dhcp-option=option:dns-server,8.8.8.8 \
+  --dhcp-leasefile=/tmp/dnsmasq.leases \
+  --log-dhcp --log-facility=/tmp/dnsmasq.log \
+  --pid-file=/tmp/dnsmasq.pid
+
+# check server is running and listening on UDP 67
+ps aux | grep [d]nsmasq
+ss -ulnp | grep :67
+
+# (port=0 disables DNS so it will not clash with systemd-resolved)
+
+
+=====================================================================
+ STEP 4 : START PACKET CAPTURE FOR DORA  (background)
+=====================================================================
+# Captures Discover / Offer / Request / Ack on the bridge
+tcpdump -i br-dhcp -n -l -e -vv 'udp port 67 or udp port 68' > /tmp/dora_capture.txt 2>&1 &
+echo $! > /tmp/tcpdump.pid
+
+
+=====================================================================
+ STEP 5 : GET IP ON ALL 5 PCs  (this triggers DORA)
+=====================================================================
+for i in 1 2 3 4 5; do
+  echo "================ pc$i : DORA ================"
+  ip netns exec pc$i dhclient -v \
+      -lf /var/lib/dhcp/pc$i.leases \
+      -pf /run/dhclient-pc$i.pid eth0
+done
+
+# You will see for every PC:
+#   DHCPDISCOVER on eth0 ...      (D - client broadcasts)
+#   DHCPOFFER of 192.168.50.x     (O - server offers)
+#   DHCPREQUEST for 192.168.50.x  (R - client requests)
+#   DHCPACK of 192.168.50.x       (A - server acknowledges)
+#   bound to 192.168.50.x
+
+
+=====================================================================
+ STEP 6 : VERIFY IPs / GATEWAY / DNS
+=====================================================================
+# IP of every PC
+for i in 1 2 3 4 5; do
+  echo "--- pc$i ---"
+  ip netns exec pc$i ip -4 -br addr show eth0
+done
+
+# default route given by DHCP
+ip netns exec pc1 ip route
+
+# server side lease table
+cat /tmp/dnsmasq.leases
+# format: expiry  MAC  IP  hostname  client-id
+
+# ping test: pc1 -> server, pc1 -> pc2
+ip netns exec pc1 ping -c 2 192.168.50.1
+PC2_IP=$(ip netns exec pc2 ip -4 -o addr show eth0 | awk '{print $4}' | cut -d/ -f1)
+ip netns exec pc1 ping -c 2 $PC2_IP
+
+
+=====================================================================
+ STEP 7 : PROVE DORA  (server log + packet capture)
+=====================================================================
+# Server log - shows all 4 DORA messages per client
+grep -E "DHCPDISCOVER|DHCPOFFER|DHCPREQUEST|DHCPACK" /tmp/dnsmasq.log
+
+# Packet capture - stop it and read
+kill $(cat /tmp/tcpdump.pid)
+sleep 1
+grep -E "DHCP-Message|Discover|Offer|Request|ACK" /tmp/dora_capture.txt | head -40
+
+# Live DORA for one PC (open a 2nd terminal tab and run this FIRST):
+#   tcpdump -i br-dhcp -n -vv 'udp port 67 or udp port 68'
+# then in 1st tab run the release/renew commands of STEP 8.
+
+
+=====================================================================
+ STEP 8 : RELEASE IP  and  RENEW (DORA AGAIN)
+=====================================================================
+# ---- RELEASE pc1 (sends DHCPRELEASE) ----
+ip netns exec pc1 dhclient -v -r \
+    -lf /var/lib/dhcp/pc1.leases \
+    -pf /run/dhclient-pc1.pid eth0
+
+ip netns exec pc1 ip -4 addr show eth0      # IP should be gone
+cat /tmp/dnsmasq.leases                      # pc1 lease removed
+grep DHCPRELEASE /tmp/dnsmasq.log
+
+# ---- RENEW / GET IP AGAIN (full DORA again) ----
+ip netns exec pc1 dhclient -v \
+    -lf /var/lib/dhcp/pc1.leases \
+    -pf /run/dhclient-pc1.pid eth0
+
+ip netns exec pc1 ip -4 -br addr show eth0
+
+# ---- RELEASE + RENEW ALL 5 PCs ----
+for i in 1 2 3 4 5; do
+  ip netns exec pc$i dhclient -r -lf /var/lib/dhcp/pc$i.leases -pf /run/dhclient-pc$i.pid eth0
+done
+sleep 2
+for i in 1 2 3 4 5; do
+  ip netns exec pc$i dhclient -v -lf /var/lib/dhcp/pc$i.leases -pf /run/dhclient-pc$i.pid eth0
+done
+
+
+=====================================================================
+ STEP 9 : "UP / DOWN" TEST  (interface down then up = new DORA)
+=====================================================================
+ip netns exec pc3 ip link set eth0 down
+ip netns exec pc3 ip link set eth0 up
+ip netns exec pc3 dhclient -v -lf /var/lib/dhcp/pc3.leases -pf /run/dhclient-pc3.pid eth0
+ip netns exec pc3 ip -4 -br addr show eth0
+
+
+=====================================================================
+ STEP 10 : ONE-SHOT VERIFY SCRIPT  (save as verify_dhcp.sh)
+=====================================================================
+cat > /root/verify_dhcp.sh << 'EOF'
+#!/bin/bash
+echo "===== DHCP SERVER ====="
+pgrep -a dnsmasq || echo "dnsmasq NOT running"
+ss -ulnp | grep :67 || echo "port 67 NOT listening"
+echo
+echo "===== CLIENT STATUS ====="
+PASS=0
+for i in 1 2 3 4 5; do
+  IP=$(ip netns exec pc$i ip -4 -o addr show eth0 | awk '{print $4}')
+  if [ -n "$IP" ]; then
+    echo "pc$i : $IP  [OK]"; PASS=$((PASS+1))
+  else
+    echo "pc$i : no IP      [FAIL]"
+  fi
+done
+echo
+echo "===== LEASES ====="
+cat /tmp/dnsmasq.leases
+echo
+echo "===== DORA COUNT IN SERVER LOG ====="
+for m in DHCPDISCOVER DHCPOFFER DHCPREQUEST DHCPACK DHCPRELEASE; do
+  printf "%-13s : %s\n" $m "$(grep -c $m /tmp/dnsmasq.log)"
+done
+echo
+echo "RESULT: $PASS/5 clients got an IP"
+EOF
+chmod +x /root/verify_dhcp.sh
+/root/verify_dhcp.sh
+
+
+=====================================================================
+ STEP 11 : CLEANUP  (remove everything)
+=====================================================================
+for i in 1 2 3 4 5; do
+  ip netns exec pc$i dhclient -r -lf /var/lib/dhcp/pc$i.leases -pf /run/dhclient-pc$i.pid eth0 2>/dev/null
+  ip netns del pc$i
+  rm -f /var/lib/dhcp/pc$i.leases
+done
+kill $(cat /tmp/dnsmasq.pid) 2>/dev/null
+kill $(cat /tmp/tcpdump.pid) 2>/dev/null
+ip link del br-dhcp
+rm -f /tmp/dnsmasq.* /tmp/dora_capture.txt
+
+
+=====================================================================
+ DORA CHEAT SHEET
+=====================================================================
+ D - DISCOVER : client -> broadcast (0.0.0.0:68 -> 255.255.255.255:67)
+                "Is any DHCP server out there?"
+ O - OFFER    : server -> client   "Here is an IP: 192.168.50.1xx"
+ R - REQUEST  : client -> broadcast "I accept that IP"
+ A - ACK      : server -> client   "Confirmed, lease = 12h"
+
+ Extra messages : DHCPRELEASE (client gives IP back), DHCPNAK,
+                  DHCPDECLINE, DHCPINFORM
+
+=====================================================================
+ TROUBLESHOOTING
+=====================================================================
+ * "RTNETLINK: Operation not permitted"  -> you are not root (use sudo -i)
+ * dnsmasq: "Address already in use"     -> pkill dnsmasq, run STEP 3 again
+ * Client gets no IP                     -> check:  ip link show br-dhcp
+                                                    ss -ulnp | grep :67
+                                                    tail /tmp/dnsmasq.log
+ * dhclient permission/apparmor error    -> keep lease files in /var/lib/dhcp/
+                                            exactly as written above
+ * Namespace already exists              -> run STEP 11 cleanup first
+=====================================================================
