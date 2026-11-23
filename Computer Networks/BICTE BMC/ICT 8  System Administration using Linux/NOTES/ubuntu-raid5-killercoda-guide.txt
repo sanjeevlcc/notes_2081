@@ -1,0 +1,51 @@
+========================================================================
+UBUNTU RAID 5 SETUP GUIDE (3x 5GB VIRTUAL DISKS FOR KILLERCODA)
+========================================================================
+
+STEP 1: INSTALL MDADM
+------------------------------------------------------------------------
+. Update package list and install the RAID management utility:
+  sudo apt update && sudo apt install -y mdadm
+. If a Postfix configuration prompt appears, press Tab and Enter to select
+  "No configuration".
+
+STEP 2: CREATE THREE 5GB VIRTUAL DISKS
+------------------------------------------------------------------------
+. Create a folder for the virtual disk images:
+  mkdir -p ~/raid-disks
+. Allocate three 5GB sparse disk image files:
+  truncate -s 5G ~/raid-disks/disk1.img
+  truncate -s 5G ~/raid-disks/disk2.img
+  truncate -s 5G ~/raid-disks/disk3.img
+. Attach the disk images to Linux loop devices:
+  sudo losetup -fP ~/raid-disks/disk1.img
+  sudo losetup -fP ~/raid-disks/disk2.img
+  sudo losetup -fP ~/raid-disks/disk3.img
+. Check the assigned loop device names (e.g., /dev/loop0, /dev/loop1, /dev/loop2):
+  losetup -a | grep raid-disks
+
+STEP 3: BUILD THE RAID 5 ARRAY
+------------------------------------------------------------------------
+. Create the RAID 5 device (/dev/md0) using the three loop devices
+  (replace loop0/loop1/loop2 if Step 2 showed different numbers):
+  sudo mdadm --create --verbose /dev/md0 --level=5 --raid-devices=3 /dev/loop0 /dev/loop1 /dev/loop2
+. Verify array sync status (look for [UUU] next to md0):
+  cat /proc/mdstat
+
+STEP 4: FORMAT AND MOUNT THE RAID ARRAY
+------------------------------------------------------------------------
+. Format the new RAID device with the ext4 filesystem:
+  sudo mkfs.ext4 -F /dev/md0
+. Create a mount directory and mount the RAID volume:
+  sudo mkdir -p /mnt/myraid
+  sudo mount /dev/md0 /mnt/myraid
+
+STEP 5: VERIFY AND TEST THE SETUP
+------------------------------------------------------------------------
+. Check usable capacity (approx. 9.8G - 10G available):
+  df -h /mnt/myraid
+. Inspect full RAID configuration details:
+  sudo mdadm --detail /dev/md0
+. Write and read a test file on the RAID array:
+  echo "RAID 5 is working!" | sudo tee /mnt/myraid/test.txt
+  cat /mnt/myraid/test.txt
