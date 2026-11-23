@@ -1,0 +1,173 @@
+========================================================================
+UBUNTU RAID 5 SETUP GUIDE (3x 5GB VIRTUAL DISKS FOR KILLERCODA)
+========================================================================
+
+
+
+root@controlplane:~$ lsblk
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda     253:0    0   20G  0 disk 
+|-vda1  253:1    0   19G  0 part /
+|-vda14 253:14   0    4M  0 part 
+|-vda15 253:15   0  106M  0 part /boot/efi
+`-vda16 259:0    0  913M  0 part /boot
+
+
+
+
+STEP 1: INSTALL MDADM
+------------------------------------------------------------------------
+. Update package list and install the RAID management utility:
+  sudo apt update && sudo apt install -y mdadm
+
+. If a Postfix configuration prompt appears, press Tab and Enter to select
+  "No configuration".
+
+
+
+
+STEP 2: CREATE THREE 5GB VIRTUAL DISKS
+------------------------------------------------------------------------
+. Create a folder for the virtual disk images:
+  mkdir -p ~/raid-disks
+
+. Allocate three 5GB sparse disk image files:
+  truncate -s 5G ~/raid-disks/disk1.img
+  truncate -s 5G ~/raid-disks/disk2.img
+  truncate -s 5G ~/raid-disks/disk3.img
+
+
+              root@controlplane:~$ ls -lh raid-disks/
+              total 0
+              -rw-r--r-- 1 root root 5.0G Nov 23 23:17 disk1.img
+              -rw-r--r-- 1 root root 5.0G Nov 23 23:17 disk2.img
+              -rw-r--r-- 1 root root 5.0G Nov 23 23:17 disk3.img
+
+
+
+
+. Attach the disk images to Linux loop devices:
+  sudo losetup -fP ~/raid-disks/disk1.img
+  sudo losetup -fP ~/raid-disks/disk2.img
+  sudo losetup -fP ~/raid-disks/disk3.img
+
+
+. Check the assigned loop device names (e.g., /dev/loop0, /dev/loop1, /dev/loop2):
+  losetup -a | grep raid-disks
+
+
+                root@controlplane:~$   losetup -a | grep raid-disks
+                /dev/loop1: [64769]:262239 (/root/raid-disks/disk2.img)
+                /dev/loop2: [64769]:293609 (/root/raid-disks/disk3.img)
+                /dev/loop0: [64769]:262182 (/root/raid-disks/disk1.img)
+
+
+
+
+                  root@controlplane:~$ lsblk 
+                  NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+                  loop0     7:0    0    5G  0 loop 
+                  loop1     7:1    0    5G  0 loop 
+                  loop2     7:2    0    5G  0 loop 
+                  vda     253:0    0   20G  0 disk 
+                  |-vda1  253:1    0   19G  0 part /
+                  |-vda14 253:14   0    4M  0 part 
+                  |-vda15 253:15   0  106M  0 part /boot/efi
+                  `-vda16 259:0    0  913M  0 part /boot
+                  
+                  
+
+
+
+
+
+
+
+
+
+STEP 3: BUILD THE RAID 5 ARRAY
+------------------------------------------------------------------------
+. Create the RAID 5 device (/dev/md0) using the three loop devices
+  (replace loop0/loop1/loop2 if Step 2 showed different numbers):
+
+  sudo mdadm --create --verbose /dev/md0 --level=5 --raid-devices=3 /dev/loop0 /dev/loop1 /dev/loop2
+
+
+. Verify array sync status (look for [UUU] next to md0):
+  cat /proc/mdstat
+
+
+
+
+
+
+STEP 4: FORMAT AND MOUNT THE RAID ARRAY
+------------------------------------------------------------------------
+. Format the new RAID device with the ext4 filesystem:
+  sudo mkfs.ext4 -F /dev/md0
+
+
+
+. Create a mount directory and mount the RAID volume:
+  sudo mkdir -p /mnt/myraid
+  sudo mount /dev/md0 /mnt/myraid
+
+
+
+
+
+
+
+
+
+
+
+
+
+STEP 5: VERIFY AND TEST THE SETUP
+------------------------------------------------------------------------
+. Check usable capacity (approx. 9.8G - 10G available):
+  df -h /mnt/myraid
+
+
+
+. Inspect full RAID configuration details:
+  sudo mdadm --detail /dev/md0
+
+
+
+. Write and read a test file on the RAID array:
+  echo "RAID 5 is working!" | sudo tee /mnt/myraid/test.txt
+  cat /mnt/myraid/test.txt
+
+
+
+
+                  
+                  root@controlplane:~$ lsblk 
+                  NAME    MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+                  loop0     7:0    0    5G  0 loop  
+                  `-md0     9:0    0   10G  0 raid5 /mnt/myraid
+                  loop1     7:1    0    5G  0 loop  
+                  `-md0     9:0    0   10G  0 raid5 /mnt/myraid
+                  loop2     7:2    0    5G  0 loop  
+                  `-md0     9:0    0   10G  0 raid5 /mnt/myraid
+                  vda     253:0    0   20G  0 disk  
+                  |-vda1  253:1    0   19G  0 part  /
+                  |-vda14 253:14   0    4M  0 part  
+                  |-vda15 253:15   0  106M  0 part  /boot/efi
+                  `-vda16 259:0    0  913M  0 part  /boot
+                  You have new mail in /var/mail/root
+                  
+
+
+
+
+
+
+                  root@controlplane:~$  df -h /mnt/myraid
+                  Filesystem      Size  Used Avail Use% Mounted on
+                  /dev/md0        9.8G   24K  9.3G   1% /mnt/myraid
+
+
+
