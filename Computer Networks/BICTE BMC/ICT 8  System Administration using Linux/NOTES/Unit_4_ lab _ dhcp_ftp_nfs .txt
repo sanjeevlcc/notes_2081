@@ -884,6 +884,271 @@ CLEANUP
 ***************************************************************************************************
 
 
+SAMBA SERVER + WEB FILE VIEWER - KILLERCODA UBUNTU - SIMPLE STEPS
+==================================================================
+Server share : /srv/samba/share      (shared as "labshare")
+Client mount : /mnt/smb-client       (mounted from localhost over CIFS/SMB)
+Web viewer   : nginx on port 8081    (shows the files from the Samba mount)
+Samba user   : smbuser / smb123
+
+
+
+
+Flow:  upload file -> Samba mount -> stored in server share -> visible in browser
+
+
+
+
+
+• STEP 1 : Become root and install packages
+    sudo -i
+    apt update
+    apt install -y samba smbclient cifs-utils nginx
+    apt install samba-common-bin
+
+
+• STEP 2 : Create the share folder and a test file
+    mkdir -p /srv/samba/share
+    echo "Hello from Samba server" > /srv/samba/share/welcome.txt
+
+
+
+• STEP 3 : Create the Samba user
+    useradd -M -s /usr/sbin/nologin smbuser
+    printf 'smb123\nsmb123\n' | smbpasswd -a -s smbuser
+    smbpasswd -e smbuser
+    chown -R smbuser:smbuser /srv/samba/share
+    chmod -R 2775 /srv/samba/share
+
+
+
+• STEP 4 : Configure the share
+    cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+    cat >> /etc/samba/smb.conf << 'EOF'
+
+    [labshare]
+        comment = Lab Samba Share
+        path = /srv/samba/share
+        browseable = yes
+        read only = no
+        valid users = smbuser
+        create mask = 0664
+        directory mask = 0775
+    EOF
+
+
+    sed -i 's/^    //' /etc/samba/smb.conf
+    testparm -s
+
+
+
+
+
+  Meaning of options:
+    path            folder that is shared
+    browseable      share is visible in the share list
+    read only = no  read and write allowed
+    valid users     only smbuser may connect
+    create mask     permission of new files
+    directory mask  permission of new folders
+
+  (If sed removes the indent of the whole file, no problem: smb.conf works
+   with or without indentation.)
+
+
+
+
+
+
+• STEP 5 : Start and enable Samba
+    systemctl restart smbd nmbd
+    systemctl enable smbd nmbd
+    (if systemctl does not work:  service smbd restart)
+
+• STEP 6 : Mount the share as a client (using localhost)
+    mkdir -p /mnt/smb-client
+    mount -t cifs //localhost/labshare /mnt/smb-client -o username=smbuser,password=smb123,vers=3.0
+    df -h /mnt/smb-client
+
+
+
+• STEP 7 : Upload files through Samba
+    echo "File 1 uploaded via Samba" > /mnt/smb-client/file1.txt
+    echo "File 2 uploaded via Samba" > /mnt/smb-client/file2.txt
+    cp /etc/hostname /mnt/smb-client/hostname.txt
+    mkdir /mnt/smb-client/docs
+    echo "inside docs folder" > /mnt/smb-client/docs/note.txt
+    ls -l /mnt/smb-client
+
+
+  (Upload without mounting, using smbclient:)
+    echo "uploaded by smbclient" > /tmp/up.txt
+    smbclient //localhost/labshare -U smbuser%smb123 -c "put /tmp/up.txt up.txt"
+
+
+• STEP 8 : Web browser viewer (nginx autoindex)
+    cat > /etc/nginx/conf.d/smb-viewer.conf << 'EOF'
+    server {
+        listen 8081;
+        server_name _;
+        root /mnt/smb-client;
+        autoindex on;
+        autoindex_exact_size off;
+        autoindex_localtime on;
+    }
+    EOF
+
+
+    sed -i 's/^    //' /etc/nginx/conf.d/smb-viewer.conf
+    nginx -t
+    systemctl restart nginx
+
+
+
+
+• STEP 9 : Open in the browser
+    Killercoda top menu -> "Traffic / Ports" -> Port 8081 -> Access
+    You will see the file list (welcome.txt, file1.txt, docs/ ...).
+    Or test from terminal:  curl http://localhost:8081/
+
+
+
+
+
+
+
+==================================================================
+VERIFY CONFIGURATION
+==================================================================
+
+• CHECK 1 : Samba services running
+    systemctl status smbd --no-pager
+    systemctl status nmbd --no-pager
+    -> active (running)
+
+• CHECK 2 : Ports listening (445 = SMB, 139 = NetBIOS)
+    ss -tlnp | grep -E ":445|:139"
+
+• CHECK 3 : Config is valid and share is defined
+    testparm -s | grep -A8 "\[labshare\]"
+
+• CHECK 4 : Samba user exists
+    pdbedit -L
+    -> smbuser:xxxx
+
+• CHECK 5 : Share is visible on the server
+    smbclient -L localhost -U smbuser%smb123
+    -> labshare   Disk   Lab Samba Share
+
+• CHECK 6 : Login + list files with smbclient
+    smbclient //localhost/labshare -U smbuser%smb123 -c "ls"
+    -> welcome.txt, file1.txt ...
+
+• CHECK 7 : Share is mounted
+    mount | grep cifs
+    findmnt /mnt/smb-client
+
+• CHECK 8 : Upload check (client -> server folder)
+    ls -l /srv/samba/share
+    -> file1.txt, file2.txt, hostname.txt, docs/, up.txt must be here
+
+• CHECK 9 : Two-way check (server -> client)
+    echo "created on server side" > /srv/samba/share/from_server.txt
+    cat /mnt/smb-client/from_server.txt
+
+• CHECK 10 : Download check
+    smbclient //localhost/labshare -U smbuser%smb123 -c "get welcome.txt /tmp/dl.txt"
+    cat /tmp/dl.txt
+    -> Hello from Samba server
+
+• CHECK 11 : Wrong password must FAIL
+    smbclient //localhost/labshare -U smbuser%wrongpass -c "ls"
+    -> NT_STATUS_LOGON_FAILURE
+
+• CHECK 12 : Web viewer shows the files
+    curl -s http://localhost:8081/ | grep -E "file1|file2|welcome|docs"
+    curl -s http://localhost:8081/welcome.txt
+
+• CHECK 13 : Active connections
+    smbstatus
+
+
+
+
+
+
+==================================================================
+ONE-SHOT VERIFY SCRIPT
+==================================================================
+    cat > /root/verify_samba.sh << 'EOF'
+    #!/bin/bash
+    ok(){ echo "[PASS] $1"; }
+    no(){ echo "[FAIL] $1"; }
+    systemctl is-active --quiet smbd && ok "smbd active" || no "smbd active"
+    ss -tln | grep -q ':445 ' && ok "port 445 listening" || no "port 445 listening"
+    testparm -s 2>/dev/null | grep -q "\[labshare\]" && ok "share defined" || no "share defined"
+    pdbedit -L | grep -q smbuser && ok "samba user exists" || no "samba user exists"
+    smbclient -L localhost -U smbuser%smb123 2>/dev/null | grep -q labshare && ok "share visible" || no "share visible"
+    mountpoint -q /mnt/smb-client && ok "client mounted" || no "client mounted"
+    echo "verify $(date +%s)" > /mnt/smb-client/verify.txt && ok "write via Samba" || no "write via Samba"
+    diff /mnt/smb-client/verify.txt /srv/samba/share/verify.txt >/dev/null && ok "upload reached server folder" || no "upload reached server folder"
+    smbclient //localhost/labshare -U smbuser%wrong -c ls >/dev/null 2>&1 && no "wrong password blocked" || ok "wrong password blocked"
+    curl -s http://localhost:8081/ | grep -q verify.txt && ok "web viewer lists uploaded file" || no "web viewer lists uploaded file"
+    curl -s http://localhost:8081/welcome.txt | grep -q "Hello from Samba" && ok "web viewer reads file" || no "web viewer reads file"
+    EOF
+    sed -i 's/^    //' /root/verify_samba.sh
+    chmod +x /root/verify_samba.sh
+    /root/verify_samba.sh
+
+
+
+
+
+
+==================================================================
+EXTRA : AUTO-MOUNT AT BOOT (optional)
+==================================================================
+    echo "//localhost/labshare /mnt/smb-client cifs username=smbuser,password=smb123,vers=3.0,_netdev 0 0" >> /etc/fstab
+    mount -a
+
+  Windows client access (if you have a reachable IP):
+    \\<server-ip>\labshare      user: smbuser   password: smb123
+
+
+
+
+
+==================================================================
+TROUBLESHOOTING
+==================================================================
+• "mount error(13): Permission denied" -> wrong user/password; reset:
+                                          printf 'smb123\nsmb123\n' | smbpasswd -a -s smbuser
+• "mount error(95)/(2) no such device"  -> cifs module missing; use smbclient
+                                          commands instead (they need no mount)
+• "NT_STATUS_ACCESS_DENIED" on write    -> chown -R smbuser:smbuser /srv/samba/share
+• "NT_STATUS_BAD_NETWORK_NAME"          -> share name wrong; check testparm -s
+• testparm shows errors                 -> fix /etc/samba/smb.conf, restart smbd
+• nginx 403 Forbidden                   -> chmod -R o+rX /mnt/smb-client
+• nginx port in use                     -> change 8081 in smb-viewer.conf to 8082
+• Samba logs                            -> tail -n 30 /var/log/samba/log.smbd
+
+
+
+
+
+==================================================================
+CLEANUP
+==================================================================
+    umount /mnt/smb-client
+    sed -i '\|/mnt/smb-client|d' /etc/fstab
+    cp /etc/samba/smb.conf.bak /etc/samba/smb.conf
+    smbpasswd -x smbuser
+    userdel smbuser
+    rm -f /etc/nginx/conf.d/smb-viewer.conf
+    systemctl restart nginx
+    systemctl stop smbd nmbd
+    rm -rf /srv/samba
+
 
 ***************************************************************************************************
 ***************************************************************************************************
