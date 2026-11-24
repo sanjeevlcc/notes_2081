@@ -171,3 +171,347 @@ STEP 5: VERIFY AND TEST THE SETUP
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+========================================================================
+RAID 5 + HOT SPARE LAB : "COLLEGE RECORDS SERVER"  (KILLERCODA UBUNTU)
+========================================================================
+
+SCENARIO
+------------------------------------------------------------------------
+. Crimson College stores student records on a small file server.
+. The data must survive a disk crash, so we build:
+    RAID 5  = 3 active disks (data + parity)
+    +  1 HOT SPARE disk (takes over automatically when a disk dies)
+
+. Then we KILL one disk on purpose, watch the spare rebuild the array,
+  prove no data was lost, and finally replace the dead disk.
+
+DISK PLAN (4 virtual disks, 2GB each, made from files)
+------------------------------------------------------------------------
+    disk1  disk2  disk3   -> active RAID 5 members
+    disk4                 -> hot spare
+    disk5                 -> new replacement disk (added at the end)
+
+    Usable space = (3 - 1) x 2GB = about 4GB
+
+    +--------+  +--------+  +--------+      +--------+
+    | disk1  |  | disk2  |  | disk3  |      | disk4  |
+    | active |  | active |  | active |      | SPARE  |
+    +----+---+  +----+---+  +----+---+      +----+---+
+         +-----------+-----------+---------------+
+                          |
+                    /dev/md0 (RAID 5)
+                          |
+                   /mnt/records (ext4)
+
+
+STEP 1: INSTALL MDADM
+------------------------------------------------------------------------
+. Become root and install the RAID tool (no Postfix prompt):
+  sudo -i
+  export DEBIAN_FRONTEND=noninteractive
+  apt update && apt install -y mdadm
+
+
+
+STEP 2: CREATE 4 VIRTUAL DISKS (2GB each)
+------------------------------------------------------------------------
+. Create the folder and the disk image files:
+  mkdir -p ~/raid-lab
+  for i in 1 2 3 4; do truncate -s 2G ~/raid-lab/disk$i.img; done
+  ls -lh ~/raid-lab/
+
+. Attach them to loop devices and save the names in variables:
+  D1=$(losetup -f --show ~/raid-lab/disk1.img)
+  D2=$(losetup -f --show ~/raid-lab/disk2.img)
+  D3=$(losetup -f --show ~/raid-lab/disk3.img)
+  D4=$(losetup -f --show ~/raid-lab/disk4.img)
+
+  echo "$D1 $D2 $D3 $D4"
+
+
+
+
+              root@controlplane:~$ lsblk 
+              NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+              loop0     7:0    0    2G  0 loop 
+              loop1     7:1    0    2G  0 loop 
+              loop2     7:2    0    2G  0 loop 
+              loop3     7:3    0    2G  0 loop 
+              vda     253:0    0   20G  0 disk 
+              ├─vda1  253:1    0   19G  0 part /
+              ├─vda14 253:14   0    4M  0 part 
+              ├─vda15 253:15   0  106M  0 part /boot/efi
+              └─vda16 259:0    0  913M  0 part /boot
+
+
+
+
+
+. Check them:
+  lsblk | grep loop
+  (If you open a new terminal the variables are lost; re-run the 4 lines
+   above using:  losetup -a | grep raid-lab  to see the names.)
+
+
+                root@controlplane:~$ lsblk | grep loop
+                loop0     7:0    0    2G  0 loop 
+                loop1     7:1    0    2G  0 loop 
+                loop2     7:2    0    2G  0 loop 
+                loop3     7:3    0    2G  0 loop
+                
+
+
+
+
+STEP 3: BUILD RAID 5 WITH ONE HOT SPARE
+------------------------------------------------------------------------
+. Create the array (3 active + 1 spare):
+  mdadm --create --verbose /dev/md0 --level=5 --raid-devices=3 \
+        --spare-devices=1 --run $D1 $D2 $D3 $D4
+
+
+
+. Watch the initial sync (look for [UUU]):
+  cat /proc/mdstat
+  watch -n 1 cat /proc/mdstat        (press Ctrl+C to exit)
+
+. Confirm the spare:
+  mdadm --detail /dev/md0 | grep -E "Raid Level|Active Devices|Spare Devices|State :"
+  -> Raid Level : raid5 | Active Devices : 3 | Spare Devices : 1
+
+
+
+
+STEP 4: FORMAT AND MOUNT
+------------------------------------------------------------------------
+. Format with ext4 and mount:
+  mkfs.ext4 -F /dev/md0
+  mkdir -p /mnt/records
+  mount /dev/md0 /mnt/records
+  df -h /mnt/records
+  -> about 3.9G size (2 disks of data, 1 of parity)
+
+
+
+
+STEP 5: ADD COLLEGE DATA + SAVE CHECKSUMS
+------------------------------------------------------------------------
+. Create sample records:
+  mkdir -p /mnt/records/students /mnt/records/results
+
+  for i in $(seq 1 50); do echo "Student $i - Roll $((1000+i)) - Passed" > /mnt/records/students/student$i.txt; done
+
+
+  echo "Result sheet 2026" > /mnt/records/results/result2026.txt
+
+  dd if=/dev/urandom of=/mnt/records/results/bigfile.bin bs=1M count=200 status=none
+
+. Save a checksum of everything (our proof of no data loss):
+  find /mnt/records -type f -exec md5sum {} \; | sort -k2 > /root/before.md5
+  wc -l /root/before.md5
+  -> 52 files recorded
+
+
+STEP 6: SIMULATE A DISK CRASH
+------------------------------------------------------------------------
+. Mark disk2 as FAILED (like a real disk dying):
+  mdadm /dev/md0 --fail $D2
+
+. Watch the hot spare take over and rebuild automatically:
+  cat /proc/mdstat
+  watch -n 1 cat /proc/mdstat
+  -> you will see (F) next to the failed disk, "recovery = xx%", then [UUU] again
+
+. Check details (disk2 = faulty, disk4 = now active):
+  mdadm --detail /dev/md0
+
+. The college server is still online! Confirm the data is untouched:
+  ls /mnt/records/students | wc -l
+  find /mnt/records -type f -exec md5sum {} \; | sort -k2 > /root/after.md5
+  diff /root/before.md5 /root/after.md5 && echo "DATA SAFE - NO LOSS"
+
+
+STEP 7: REPLACE THE DEAD DISK
+------------------------------------------------------------------------
+. Remove the failed disk from the array:
+  mdadm /dev/md0 --remove $D2
+
+. Create a brand-new disk and add it (it becomes the new hot spare):
+  truncate -s 2G ~/raid-lab/disk5.img
+  D5=$(losetup -f --show ~/raid-lab/disk5.img)
+  mdadm /dev/md0 --add $D5
+
+. Check: 3 active + 1 spare again:
+  mdadm --detail /dev/md0 | grep -E "Active Devices|Working Devices|Failed Devices|Spare Devices"
+  -> Active 3 | Working 4 | Failed 0 | Spare 1
+
+
+STEP 8: MAKE THE CONFIGURATION PERMANENT
+------------------------------------------------------------------------
+. Save the RAID configuration:
+  mdadm --detail --scan >> /etc/mdadm/mdadm.conf
+  cat /etc/mdadm/mdadm.conf | tail -3
+  update-initramfs -u
+
+. Auto-mount at boot using the UUID:
+  UUID=$(blkid -s UUID -o value /dev/md0)
+  echo "UUID=$UUID /mnt/records ext4 defaults,nofail 0 0" >> /etc/fstab
+  tail -1 /etc/fstab
+  mount -a && echo "fstab OK"
+
+
+========================================================================
+VERIFY CONFIGURATION
+========================================================================
+
+. CHECK 1 : RAID device exists and is active
+  cat /proc/mdstat
+  -> md0 : active raid5 ... [3/3] [UUU]
+
+. CHECK 2 : RAID level and state
+  mdadm --detail /dev/md0 | grep -E "Raid Level|State :"
+  -> raid5 | clean
+
+. CHECK 3 : Device counts
+  mdadm --detail /dev/md0 | grep -E "Raid Devices|Active Devices|Failed Devices|Spare Devices"
+  -> 3 | 3 | 0 | 1
+
+. CHECK 4 : Filesystem mounted with correct size
+  df -h /mnt/records
+  findmnt /mnt/records
+
+. CHECK 5 : Data integrity (checksums match)
+  find /mnt/records -type f -exec md5sum {} \; | sort -k2 | diff - /root/before.md5 && echo "INTEGRITY OK"
+
+. CHECK 6 : Superblock on each member disk
+  mdadm --examine $D1 | grep -E "Raid Level|Array State"
+
+. CHECK 7 : Config saved
+  grep md0 /etc/mdadm/mdadm.conf
+  grep records /etc/fstab
+
+. CHECK 8 : Write test still works
+  echo "post-recovery write OK" > /mnt/records/final.txt && cat /mnt/records/final.txt
+
+
+========================================================================
+ONE-SHOT VERIFY SCRIPT
+========================================================================
+  cat > /root/verify_raid.sh << 'EOF'
+  #!/bin/bash
+  ok(){ echo "[PASS] $1"; }
+  no(){ echo "[FAIL] $1"; }
+  D=$(mdadm --detail /dev/md0 2>/dev/null)
+  [ -n "$D" ] && ok "/dev/md0 exists" || { no "/dev/md0 exists"; exit 1; }
+  echo "$D" | grep -q "Raid Level : raid5" && ok "level is RAID 5" || no "level is RAID 5"
+  echo "$D" | grep -E "State :" | grep -q clean && ok "array state clean" || no "array state clean"
+  echo "$D" | grep -q "Active Devices : 3" && ok "3 active devices" || no "3 active devices"
+  echo "$D" | grep -q "Failed Devices : 0" && ok "0 failed devices" || no "0 failed devices"
+  echo "$D" | grep -q "Spare Devices : 1" && ok "1 hot spare ready" || no "1 hot spare ready"
+  grep -q "\[3/3\] \[UUU\]" /proc/mdstat && ok "mdstat shows [UUU]" || no "mdstat shows [UUU]"
+  mountpoint -q /mnt/records && ok "/mnt/records mounted" || no "/mnt/records mounted"
+  [ -f /root/before.md5 ] && grep -v final.txt /root/before.md5 >/dev/null
+  (cd / && md5sum -c /root/before.md5 --quiet) && ok "data checksums match" || no "data checksums match"
+  grep -q "/dev/md" /etc/mdadm/mdadm.conf && ok "mdadm.conf saved" || no "mdadm.conf saved"
+  grep -q "/mnt/records" /etc/fstab && ok "fstab entry present" || no "fstab entry present"
+  EOF
+  sed -i 's/^  //' /root/verify_raid.sh
+  chmod +x /root/verify_raid.sh
+  /root/verify_raid.sh
+
+
+========================================================================
+BONUS: OTHER RAID LEVELS (same loop-disk method)
+========================================================================
+. RAID 0  (speed, no safety, min 2 disks):
+  mdadm --create /dev/md1 --level=0 --raid-devices=2 --run $DISKA $DISKB
+
+. RAID 1  (mirror, min 2 disks):
+  mdadm --create /dev/md2 --level=1 --raid-devices=2 --run $DISKA $DISKB
+
+. RAID 6  (2 parity disks, survives 2 failures, min 4 disks):
+  mdadm --create /dev/md3 --level=6 --raid-devices=4 --run $DISKA $DISKB $DISKC $DISKD
+
+. RAID 10 (mirror + stripe, min 4 disks):
+  mdadm --create /dev/md4 --level=10 --raid-devices=4 --run $DISKA $DISKB $DISKC $DISKD
+
+  Quick comparison:
+    RAID 0  : no redundancy      | capacity = all disks
+    RAID 1  : survives 1 failure | capacity = 1 disk
+    RAID 5  : survives 1 failure | capacity = N-1 disks
+    RAID 6  : survives 2 failures| capacity = N-2 disks
+    RAID 10 : survives 1 per pair| capacity = N/2 disks
+
+
+========================================================================
+TROUBLESHOOTING
+========================================================================
+. "mdadm: command not found"          -> apt install -y mdadm
+. "Device or resource busy"            -> disk already in an array:
+                                          mdadm --zero-superblock $D1
+. Variables $D1.. are empty            -> run:  losetup -a | grep raid-lab
+                                          and set them again by hand
+. "cannot open /dev/md0 / not found"   -> mdadm --assemble --scan
+. Rebuild looks stuck at 0%            -> wait; check:  cat /proc/mdstat
+. Loop devices gone after reboot       -> normal for this lab (files stay in
+                                          ~/raid-lab); re-attach with losetup
+                                          then:  mdadm --assemble --scan
+
+
+========================================================================
+CLEANUP (DESTROYS ALL LAB DATA)
+========================================================================
+  umount /mnt/records
+  sed -i '\|/mnt/records|d' /etc/fstab
+  mdadm --stop /dev/md0
+  for d in $(losetup -a | grep raid-lab | cut -d: -f1); do
+      mdadm --zero-superblock $d 2>/dev/null
+      losetup -d $d
+  done
+  sed -i '/md0/d' /etc/mdadm/mdadm.conf
+  rm -rf ~/raid-lab /root/before.md5 /root/after.md5
+  update-initramfs -u
+
