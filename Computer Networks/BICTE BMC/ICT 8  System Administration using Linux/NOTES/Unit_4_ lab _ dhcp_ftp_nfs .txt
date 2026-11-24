@@ -592,6 +592,223 @@ CLEANUP
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+
+
+NFS SERVER + WEB FILE VIEWER - KILLERCODA UBUNTU - SIMPLE STEPS
+================================================================
+Server share : /srv/nfs/share        (exported over NFS)
+Client mount : /mnt/nfs-client       (mounted from localhost)
+Web viewer   : nginx on port 8080    (shows the files from the NFS mount)
+
+
+
+Flow:  upload file -> NFS mount -> stored in server share -> visible in browser
+
+
+
+
+• STEP 1 : Become root and install packages
+    sudo -i
+    apt update
+    apt install -y nfs-kernel-server nfs-common nginx
+
+• STEP 2 : Create the share folder
+    mkdir -p /srv/nfs/share
+    chmod 777 /srv/nfs/share
+    echo "Hello from NFS server" > /srv/nfs/share/welcome.txt
+
+• STEP 3 : Configure the export
+    echo "/srv/nfs/share *(rw,sync,no_subtree_check,no_root_squash)" >> /etc/exports
+    exportfs -ra
+
+
+  Meaning of options:
+    rw               read and write allowed
+    sync             write to disk before replying
+    no_subtree_check avoids subtree check problems
+    no_root_squash   root on client keeps root rights (lab only)
+    *                any client (in real life use a network, e.g. 192.168.1.0/24)
+
+
+
+• STEP 4 : Start and enable NFS server
+    systemctl restart nfs-kernel-server
+    systemctl enable nfs-kernel-server
+    (if systemctl does not work:  service nfs-kernel-server restart)
+
+• STEP 5 : Mount the share as a client (using localhost)
+    mkdir -p /mnt/nfs-client
+    mount -t nfs localhost:/srv/nfs/share /mnt/nfs-client
+    df -h /mnt/nfs-client
+
+
+
+
+
+• STEP 6 : Upload files through NFS
+    echo "File 1 uploaded via NFS" > /mnt/nfs-client/file1.txt
+    echo "File 2 uploaded via NFS" > /mnt/nfs-client/file2.txt
+
+    cp /etc/hostname /mnt/nfs-client/hostname.txt
+    mkdir /mnt/nfs-client/docs
+    echo "inside docs folder" > /mnt/nfs-client/docs/note.txt
+    ls -l /mnt/nfs-client
+
+
+
+• STEP 7 : Web browser viewer (nginx autoindex)
+    cat > /etc/nginx/conf.d/nfs-viewer.conf << 'EOF'
+    server {
+        listen 8080;
+        server_name _;
+        root /mnt/nfs-client;
+        autoindex on;
+        autoindex_exact_size off;
+        autoindex_localtime on;
+    }
+    EOF
+
+
+    sed -i 's/^    //' /etc/nginx/conf.d/nfs-viewer.conf
+    nginx -t
+    systemctl restart nginx
+
+
+
+• STEP 8 : Open in the browser
+    Killercoda top menu -> "Traffic / Ports" -> Port 8080 -> Access
+    You will see the file list (welcome.txt, file1.txt, docs/ ...).
+    Or test from terminal:  curl http://localhost:8080/
+
+
+
+
+================================================================
+VERIFY CONFIGURATION
+================================================================
+
+• CHECK 1 : NFS service running
+    systemctl status nfs-kernel-server --no-pager
+    -> active (exited) or active (running) is OK
+
+• CHECK 2 : NFS port 2049 listening
+    ss -tlnp | grep 2049
+
+• CHECK 3 : RPC services registered
+    rpcinfo -p | grep -E "nfs|mountd|portmapper"
+
+• CHECK 4 : Export is active
+    exportfs -v
+    showmount -e localhost
+    -> /srv/nfs/share must be listed
+
+• CHECK 5 : Share is mounted
+    mount | grep nfs
+    findmnt /mnt/nfs-client
+
+• CHECK 6 : Upload check (client -> server)
+    ls -l /srv/nfs/share
+    -> file1.txt, file2.txt, hostname.txt, docs/ must be here
+       (files created on the mount appear in the real server folder)
+
+• CHECK 7 : Two-way check (server -> client)
+    echo "created on server side" > /srv/nfs/share/from_server.txt
+    cat /mnt/nfs-client/from_server.txt
+
+• CHECK 8 : Download / read check
+    cat /mnt/nfs-client/welcome.txt
+    -> Hello from NFS server
+
+• CHECK 9 : Web viewer shows the files
+    curl -s http://localhost:8080/ | grep -E "file1|file2|welcome|docs"
+    curl -s http://localhost:8080/welcome.txt
+
+• CHECK 10 : NFS statistics
+    nfsstat -s | head -20
+    nfsstat -m
+
+
+
+
+================================================================
+ONE-SHOT VERIFY SCRIPT
+================================================================
+    cat > /root/verify_nfs.sh << 'EOF'
+    #!/bin/bash
+    ok(){ echo "[PASS] $1"; }
+    no(){ echo "[FAIL] $1"; }
+    systemctl is-active --quiet nfs-kernel-server && ok "nfs-server active" || no "nfs-server active"
+    ss -tln | grep -q ':2049 ' && ok "port 2049 listening" || no "port 2049 listening"
+    showmount -e localhost 2>/dev/null | grep -q /srv/nfs/share && ok "export visible" || no "export visible"
+    mountpoint -q /mnt/nfs-client && ok "client mounted" || no "client mounted"
+    echo "verify $(date +%s)" > /mnt/nfs-client/verify.txt && ok "write via NFS" || no "write via NFS"
+    diff /mnt/nfs-client/verify.txt /srv/nfs/share/verify.txt >/dev/null && ok "upload reached server folder" || no "upload reached server folder"
+    curl -s http://localhost:8080/ | grep -q verify.txt && ok "web viewer lists uploaded file" || no "web viewer lists uploaded file"
+    curl -s http://localhost:8080/welcome.txt | grep -q "Hello from NFS" && ok "web viewer reads file" || no "web viewer reads file"
+    EOF
+    sed -i 's/^    //' /root/verify_nfs.sh
+    chmod +x /root/verify_nfs.sh
+    /root/verify_nfs.sh
+
+
+================================================================
+EXTRA : AUTO-MOUNT AT BOOT (optional)
+================================================================
+    echo "localhost:/srv/nfs/share /mnt/nfs-client nfs defaults 0 0" >> /etc/fstab
+    mount -a
+
+
+================================================================
+TROUBLESHOOTING
+================================================================
+• "mount.nfs: access denied"        -> check /etc/exports, then:  exportfs -ra
+• "Connection refused"              -> systemctl restart nfs-kernel-server rpcbind
+• "Permission denied" when writing  -> chmod 777 /srv/nfs/share  (and keep no_root_squash)
+• "Stale file handle"               -> umount -f /mnt/nfs-client ; mount again
+• nginx 403 Forbidden               -> chmod -R o+rX /mnt/nfs-client
+• nginx port in use                 -> change 8080 in nfs-viewer.conf to 8081
+• nfs-kernel-server fails to start  -> journalctl -u nfs-kernel-server -n 30
+    (If the kernel NFS server is not supported in your environment, use
+     the user-space alternative:  apt install nfs-ganesha)
+
+
+================================================================
+CLEANUP
+================================================================
+    umount /mnt/nfs-client
+    sed -i '\|/srv/nfs/share|d' /etc/exports
+    sed -i '\|/mnt/nfs-client|d' /etc/fstab
+    exportfs -ra
+    rm -f /etc/nginx/conf.d/nfs-viewer.conf
+    systemctl restart nginx
+    systemctl stop nfs-kernel-server
+    rm -rf /srv/nfs
+
+
+
+
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
@@ -603,12 +820,279 @@ CLEANUP
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
 ***************************************************************************************************
+
+
+
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+
+
+
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+
+
+
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+
 
 
 
