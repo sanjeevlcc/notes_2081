@@ -471,24 +471,38 @@ VERIFY CONFIGURATION
     curl -u ftpuser:ftp123 ftp://localhost/files/
     -> must list welcome.txt
 
+
+
+
 • CHECK 5 : Download test
     curl -u ftpuser:ftp123 ftp://localhost/files/welcome.txt -o /tmp/downloaded.txt
+
+
     cat /tmp/downloaded.txt
     -> must print:  Hello from FTP server
 
+
+
 • CHECK 6 : Upload test
     echo "uploaded by client" > /tmp/upload_test.txt
+
     curl -T /tmp/upload_test.txt -u ftpuser:ftp123 ftp://localhost/files/
+
     ls -l /home/ftpuser/files/
     -> upload_test.txt must appear
+
+
 
 • CHECK 7 : Wrong password must FAIL
     curl -u ftpuser:wrongpass ftp://localhost/
     -> must show:  Login denied (530)
 
+
 • CHECK 8 : Anonymous login must FAIL
     curl -u anonymous:test ftp://localhost/
     -> must show:  Login denied (530)
+
+
 
 • CHECK 9 : Interactive FTP session (optional)
     ftp localhost
@@ -503,6 +517,13 @@ VERIFY CONFIGURATION
 • CHECK 10 : Server log
     tail -n 20 /var/log/vsftpd.log
     -> shows OK LOGIN, OK UPLOAD, OK DOWNLOAD
+
+
+
+
+
+
+
 
 
 =======================================================
