@@ -1,0 +1,338 @@
+ITM 203: Database Management System
+BITM 3rd Semester
+
+================================================================
+
+COURSE INFORMATION
+
+• Nature of the Course: Theory + Practical
+• Credit Value: 3
+• Total Hours: 48(Th) +16(Pr)
+
+================================================================
+
+COURSE DESCRIPTION
+
+• This course provides a comprehensive introduction to database management systems, covering both relational and non-relational technologies. Students learn database concepts and architecture, conceptual design with Entity-Relationship (ER) and Enhanced ER models, the relational model, normalization, Structured Query Language (SQL), transaction processing, concurrency control and recovery, and NoSQL databases using MongoDB.
+
+• The course connects database theory with practice. Equal emphasis is placed on theoretical understanding and hands-on laboratory work in SQL and NoSQL, and students complete a project that designs and implements a database using both a relational and a NoSQL component, preparing them for advanced data-oriented courses and industry roles.
+
+================================================================
+
+COURSE OBJECTIVES
+
+By the end of this course, students will be able to
+
+• Understand database concepts, the three-schema architecture, data independence and the roles of database users.
+• Design conceptual models using ER and Enhanced ER diagrams and convert them into relational tables.
+• Explain the relational model, keys and integrity constraints.
+• Apply functional dependencies and normal forms (1NF to BCNF) to remove redundancy and anomalies.
+• Write SQL statements for defining, querying and modifying data, and create views, stored procedures, triggers and indexes.
+• Explain transaction properties, serializability, locking, timestamp ordering and recovery techniques.
+• Compare relational and NoSQL databases and select a suitable data model for an application.
+• Create, query, index, aggregate and model data in MongoDB, and explain replication and sharding.
+• Describe database security, performance tuning, distributed databases, data warehousing, data mining and big data.
+• Develop a complete database application using good design practices.
+
+================================================================
+
+COURSE DETAILS
+
+----------------------------------------------------------------
+UNIT 1: Database Concepts and Architecture                 4 LHs
+----------------------------------------------------------------
+
+Contents:
+
+• Data, database and Database Management System (DBMS)
+• file-processing system vs database approach
+• advantages of databases
+• database users: database administrator, designers, application programmers and end users
+• schemas and instances
+• categories of data models (conceptual, logical, physical)
+• three-schema architecture
+• logical and physical data independence
+• database languages (DDL, DML, DCL, TCL) and interfaces
+• database system environment and components
+• centralized and client/server (1-, 2- and 3-tier) architectures
+• Data models and its classification: relational, object-oriented, hierarchical, network and NoSQL.
+
+Learning Outcomes:
+
+• Describe database concepts, the three-schema architecture, data independence and DBMS components (Knowledge)
+• Distinguish the file-processing and database approaches and identify suitable DBMS architectures and users for a given system (Skills)
+• Appreciate the role of a DBMS in managing data for modern applications (Competency)
+
+----------------------------------------------------------------
+UNIT 2: Data Modelling Using the ER/EER Model and the
+        Relational Model                                  10 LHs
+----------------------------------------------------------------
+
+Contents:
+
+• High level conceptual models and the database design process
+• entity types and entity sets
+• attributes (simple, composite, multivalued, derived, identifier/key)
+• keys (super key, candidate key and primary key)
+• relationship types and sets, roles and degree
+• mapping cardinalities and participation constraints
+• weak entity types
+• relationship types of degree higher than two
+• ER diagrams and naming conventions
+• ER design issues
+• Enhanced ER (EER) concepts: specialization and generalization
+• disjoint and overlapping constraints
+• total and partial specialization constraints
+• aggregation
+• relational model concepts: relation, tuple, attribute, domain, degree and cardinality
+• characteristics of relations
+• relational schema and relational database state
+• relational keys (super key, candidate key, primary key, alternate key, composite key and foreign key)
+• integrity constraints: domain, key, entity integrity and referential integrity
+• handling constraint violations during insert, delete and update
+• mapping ER/EER diagrams into relational tables, including strong and weak entities, simple, composite and multivalued attributes, 1:1, 1:N and M:N relationships, higher-degree relationships, and specialization and generalization
+• case study: designing an ER/EER schema for a real-world system and converting it into relational tables.
+
+Learning Outcomes:
+
+• Explain the concepts of ER/EER modelling, relational models, entities, attributes, relationships, keys and integrity constraints (Knowledge)
+• Design ER and EER diagrams based on given requirements and convert them into relational tables by applying appropriate mapping rules (Skills)
+• Apply conceptual modelling, relational database principles and integrity constraints to design sound, consistent and reliable database schemas for real-world problems (Competency).
+
+----------------------------------------------------------------
+UNIT 3: Database Normalization                             5 LHs
+----------------------------------------------------------------
+
+Contents:
+
+• Informal design guidelines for relation schemas
+• update, insertion and deletion anomalies
+• functional dependencies
+• closure of a set of functional dependencies and of attribute sets
+• properties of relational decomposition: lossless-join and dependency preservation
+• normal forms based on primary keys: First, Second and Third Normal Forms
+• Boyce-Codd Normal Form (BCNF) and comparison of BCNF and 3NF
+• multivalued dependency and Fourth Normal Form
+
+Learning Outcomes:
+
+• Explain anomalies, functional dependencies, normal forms and decomposition properties (Knowledge)
+• Compute attribute closures and normalize relations up to BCNF with lossless, dependency-preserving decomposition (Skills)
+• Apply normalization to produce efficient, redundancy-free database designs (Competency)
+
+----------------------------------------------------------------
+UNIT 4: Structured Query Language (SQL)                   10 LHs
+----------------------------------------------------------------
+
+Contents:
+
+• Data Definition Language: data and domain types, create, alter , drop, rename, truncate, schema definition
+• specifying constraints: NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK, DEFAULT and referential actions
+• Data Manipulation Language: SELECT, INSERT, UPDATE and DELETE
+• FROM and WHERE clauses, SQL alias , tuple variables, string operations (LIKE), ordering the display of tuples (ORDER BY), duplicate tuples (DISTINCT)
+• set operations (UNION, INTERSECT, EXCEPT)
+• aggregate functions, GROUP BY and HAVING
+• null values
+• joined relations: INNER, OUTER, CROSS and NATURAL joins and join conditions
+• nested subqueries: set membership, set comparison, test for empty relations and test for absence of duplicate tuples
+• views: creating, querying and updating views
+• Transaction Control Language (Start transaction/ begin, commit, rollback, savepoint, rollback to) and Data Control Language (GRANT, REVOKE)
+• Introduction to stored procedures and functions
+• DML triggers(insert, update, delete)
+• indexing: Introduction and example of clustered and non-clustered indexes
+• Introduction to embedded and dynamic SQL
+
+Learning Outcomes:
+
+• Describe SQL data types, constraints, query constructs, views, stored procedures, triggers and indexes (Knowledge)
+• Write SQL statements to create schemas, manipulate data, join tables, write nested queries and create views, basic triggers (Skills)
+• Apply SQL to solve data management problems in a relational DBMS (Competency)
+
+----------------------------------------------------------------
+UNIT 5: Transaction Processing, Concurrency Control and
+        Recovery                                           6 LHs
+----------------------------------------------------------------
+
+Contents:
+
+• Introduction to transaction processing
+• transaction and system concepts
+• transaction states
+• desirable properties of transactions (ACID)
+• schedules: serial, serializable, conflict-serializable and recoverable schedules
+• concurrency problems: lost update, dirty read, unrepeatable read and phantom
+• lock-based protocols and two-phase locking and its type
+• timestamp-ordering protocol
+• recovery concepts
+• log-based recovery
+• deferred update (NO-UNDO/REDO)
+• immediate update (UNDO/REDO)
+• shadow paging
+• database backup and recovery from failures
+
+Learning Outcomes:
+
+• Explain ACID properties, serializability, concurrency control protocols and recovery techniques (Knowledge)
+• Test schedules for serializability and apply locking, timestamp ordering and log-based recovery to given scenarios (Skills)
+• Apply transaction management concepts to keep databases consistent during concurrent access and failures (Competency)
+
+----------------------------------------------------------------
+UNIT 6: NoSQL Databases                                    8 LHs
+----------------------------------------------------------------
+
+Contents:
+
+Introduction to NoSQL Databases:
+
+• Limitations of relational databases at web scale
+• vertical and horizontal scaling
+• schema flexibility and join overhead in distributed environments
+• definition and historical development of NoSQL
+• RDBMS vs. NoSQL
+• ACID vs. BASE (Basically Available, Soft State, Eventual Consistency)
+• CAP theorem and its consistency, availability, and partition-tolerance trade-offs
+• eventual consistency.
+
+NoSQL Data Models and Selection Criteria:
+
+• Key-value, document, wide-column (column-family), and graph data models
+• representative NoSQL database systems and their applications
+• advantages, limitations, and criteria for selecting and avoiding NoSQL databases.
+
+Document Model and MongoDB Fundamentals:
+
+• Documents and collections
+• JSON and BSON data representation
+• flexible schema
+• overview of the _id field and ObjectId
+• document modeling using embedding and referencing
+
+Basic Operations and Indexing in document model:
+
+• Insertion: insertOne(), insertMany()
+• Querying: find(), findOne(), comparison operators ($gt, $lt, $gte, $in) and logical operators ($and, $or)
+• Projection and Sorting: Field inclusion and exclusion, sort(), limit(), skip()
+• Updates: updateOne(), updateMany(), and update operators ($set, $inc, $push)
+• Deletion: deleteOne(), deleteMany()
+• Basic Indexing: Purpose of indexes and their impact on query performance.)
+• Database backup and restore.
+
+Learning Outcomes:
+
+• Describe NoSQL data models, the CAP theorem, BASE properties (Knowledge)
+• Create collections and perform CRUD, aggregation, indexing and data modelling operations in MongoDB (Skills)
+• Apply the appropriate relational or NoSQL data model for a given application (Competency)
+
+----------------------------------------------------------------
+UNIT 7: Advanced Topics                                    5 LHs
+----------------------------------------------------------------
+
+Contents:
+
+• Database security: access control, authentication and authorization(privilege and roles)
+• Introduction to SQL injection and encryption
+• database performance tuning: query tuning, index selection and execution plans
+• concept of parallel database and its advantages and disadvantages
+• Distributed Databases: Introduction, Characteristics, Advantages, Disadvantages, Components, Distributed Database Design, Fragmentation (horizontal and vertical fragmentation), Replication and Allocation
+• Introduction to big data (volume, velocity, variety) and its link to NoSQL
+
+Learning Outcomes:
+
+• Describe database security, performance tuning, distributed databases, data warehousing, data mining and big data (Knowledge)
+• Identify security threats and use indexes and execution plans to improve query performance (Skills)
+• Appreciate emerging database technologies and their role in data-driven organizations (Competency)
+
+================================================================
+
+PEDAGOGICAL STRATEGIES
+
+• Lectures with live demonstrations of SQL and MongoDB commands
+• Hands-on laboratory sessions with guided and open-ended exercises
+• Problem-based learning using real-world case studies
+• Group discussions and peer review of ER diagrams and database designs
+• Multimedia presentations to visualize database architecture and transactions
+• Mini project with iterative design and feedback cycles
+• Continuous assessment and formative feedback
+
+================================================================
+
+MODE OF DELIVERY
+
+• Lecture sessions (Theory)
+• Demonstration
+• Laboratory work (Practical)
+• Mini project
+
+================================================================
+
+INTERNAL ASSESSMENT METHODS AND TYPES (40%)
+
+Assessment Type                    Weightage    Details
+----------------------------------------------------------------
+• Class participation & attendance    10%       Contribution to discussions, engagement in class activities
+• Quizzes/short tests                 15%       Periodic quizzes to assess comprehension
+• Practical/Project                   20%       Lab sessions (SQL and NoSQL) and mini project
+• Mid-term examination                25%       Written test
+• Pre-board examination               30%       Comprehensive written test covering all units
+
+================================================================
+
+EXTERNAL ASSESSMENT METHODS AND TYPES (60%)
+
+• Out of the total 60% allocated for final assessment, 40% will be assigned to the written/board examination to evaluate students' abilities in remembering, understanding, applying, analyzing, evaluating, and creating. The remaining 20% will be assigned to the final practical examination to assess hands-on SQL and NoSQL skills and competency.
+
+================================================================
+
+MAPPING COURSE: LEARNING OUTCOMES AND PROGRAM LEARNING
+
+Course Learning Objective (CLO)
+
+Dimensions:
+
+• Knowledge (K)
+• Skills (S)
+• Competence (C)
+
+Total Learning:
+
+• Knowledge (K): 40%
+• Skills (S): 35%
+• Competence (C): 25%
+
+================================================================
+
+LABORATORY WORK
+
+Students are required to complete hands-on exercises for every unit. The following practical tasks are prescribed:
+
+• Unit 1 Lab: Install a DBMS; explore its tools and client interface; identify database components
+
+• Unit 2 Lab: Draw ER and EER diagrams for case studies using a diagramming tool and convert them to relational schemas. Create tables with primary key, foreign key, CHECK and DEFAULT constraints; test integrity constraint violations
+
+• Unit 3 Lab: Normalize sample relations to 3NF/BCNF and implement the normalized tables
+
+• Unit 4 Lab: Write DDL and DML statements; queries with WHERE, ORDER BY, DISTINCT, aggregates, GROUP BY and HAVING; set operations; joins and nested subqueries; views; COMMIT, ROLLBACK and SAVEPOINT; GRANT and REVOKE; stored procedures, functions, triggers and indexes
+
+• Unit 5 Lab: Demonstrate transactions with COMMIT and ROLLBACK, lock behaviour and isolation levels using two concurrent sessions; backup and restore a database
+
+• Unit 6 Lab: Install MongoDB; create databases and collections; insertOne, insertMany and mongoimport; find() with query operators, projection, sort and limit; update and delete operations; embedded vs referenced data models and $lookup; aggregation pipeline; single and compound indexes with explain(); replica set or Atlas demonstration; mongodump and mongorestore
+
+• Mini project: Individually or in groups of at most 3 students, design a database for a real-world problem using an ER diagram, normalized relational tables with SQL, and a MongoDB component with a short justification; submit an original report of at least 4 pages containing the project description, entities, ER diagram and normalization steps, sample SQL and MongoDB queries with outputs, and a conclusion
+
+================================================================
+
+SUGGESTED READINGS
+
+• Elmasri, R., & Navathe, S. B. (2016). Fundamentals of database systems (7th ed.). Pearson Education.
+• Silberschatz, A., Korth, H. F., & Sudarshan, S. (2010). Database system concepts (6th ed.). McGraw-Hill.
+• Ramakrishnan, R., & Gehrke, J. (2003). Database management systems (3rd ed.). McGraw-Hill.
+• Ullman, J. D., & Widom, J. (2008). A first course in database systems (3rd ed.). Pearson Education.
+• Sadalage, P. J., & Fowler, M. (2012). NoSQL distilled: A brief guide to the emerging world of polyglot persistence. Addison-Wesley.
+• Chodorow, K. (2013). MongoDB: The definitive guide (2nd ed.). O'Reilly Media.
+• Fowler, A. (2015). NoSQL for dummies. John Wiley & Sons.
+• Özsu, M. T., & Valduriez, P. (2020). Principles of distributed database systems (4th ed.). Springer.
+• MongoDB, Inc. (n.d.). MongoDB documentation. https://www.mongodb.com/docs/
+
+================================================================
+END OF SYLLABUS
+================================================================
