@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 4 | Network Services & File Sharing Quiz</title>
+<style>
+:root{--ink:#172033;--muted:#65718a;--line:#e4e9f2;--bg:#f5f7fb;--blue:#315ee7;--blue2:#244ac0;--green:#16834a;--greenbg:#e9f8ef;--red:#bd3434;--redbg:#fff0f0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#14254a,#315ee7);color:#fff;padding:30px 18px 48px}
+.hero{max-width:900px;margin:auto}.eyebrow{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;opacity:.8;font-weight:700}
+h1{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.12;margin:10px 0}
+header p{max-width:650px;margin:12px 0 0;color:#e5eaff}
+main{max-width:900px;margin:-25px auto 48px;padding:0 16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:clamp(20px,4vw,34px);box-shadow:0 12px 35px #1a2d5410}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.pill{background:#eef2ff;color:#2c4ec0;border-radius:999px;padding:6px 12px;font-size:.86rem;font-weight:650}
+label{display:block;font-weight:700;margin:18px 0 7px}input[type=text]{width:100%;padding:13px 14px;border:1px solid #cbd3e2;border-radius:10px;font:inherit;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #315ee71a}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:12px 18px;cursor:pointer;transition:.15s}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--blue);color:#fff}.primary:hover{background:var(--blue2)}.secondary{background:#eef1f7;color:#26334d}.quiet{background:transparent;color:var(--blue);padding:8px 0}.hidden{display:none!important}
+.small{font-size:.9rem;color:var(--muted)}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.progress{height:9px;background:#edf0f6;border-radius:99px;overflow:hidden;margin:10px 0 24px}.progress span{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+.question{font-size:1.3rem;font-weight:750;line-height:1.35;margin:8px 0 20px}
+.options{display:grid;gap:10px}.option{width:100%;text-align:left;background:#fff;border:1px solid #dce2ed;color:var(--ink);padding:14px 16px;font-weight:550;display:flex;gap:12px;align-items:flex-start}.option:hover:not(:disabled){border-color:var(--blue);background:#f8faff}.option .letter{font-weight:800;color:#69758e;min-width:24px}.option.correct{border-color:#6ac18c;background:var(--greenbg);color:#12673a}.option.wrong{border-color:#e49b9b;background:var(--redbg);color:#a12828}
+.hintbox,.feedback{padding:13px 15px;border-radius:10px;margin-top:14px}.hintbox{background:#fff8e6;color:#76561a;border:1px solid #f2dfab}.feedback{background:#f2f5fa;color:#3b4963}.feedback.good{background:var(--greenbg);color:#12673a}.feedback.bad{background:var(--redbg);color:#a12828}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:24px;flex-wrap:wrap}
+.scorebig{font-size:clamp(2.5rem,8vw,4rem);font-weight:850;line-height:1.1;color:var(--blue);margin:10px 0}
+table{width:100%;border-collapse:collapse;margin-top:14px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}th{font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}td:last-child,th:last-child{text-align:right}
+.rank{font-weight:800;color:var(--blue)}.notice{background:#f7f9fd;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:16px}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px}
+@media(max-width:520px){header{padding-bottom:40px}.panel{border-radius:14px}.question{font-size:1.15rem}.actions button{flex:1}}
+</style>
+</head>
+<body>
+<header><div class="hero">
+<div class="eyebrow">Unit 4 • Network Administration</div>
+<h1>Network Services &amp;<br>File Sharing Quiz</h1>
+<p>Test your understanding of DNS, DHCP, FTP, NFS, Samba, and the practical lab configurations.</p>
+</div></header>
+<main>
+<section id="start" class="panel">
+<h2>Ready to begin?</h2>
+<p class="small">Enter your name to start the 35-question quiz. You’ll see one question at a time, and can reveal a hint before answering.</p>
+<div class="meta"><span class="pill">35 MCQs</span><span class="pill">Hints included</span><span class="pill">Instant feedback</span></div>
+<form id="startForm">
+<label for="studentName">Student name</label>
+<input id="studentName" type="text" maxlength="60" placeholder="Enter your full name" autocomplete="name" required>
+<div class="actions"><span class="small">Your score is saved on this browser after submission.</span><button class="primary" type="submit">Start quiz →</button></div>
+</form>
+</section>
+
+<section id="quiz" class="panel hidden" aria-live="polite">
+<div class="topline"><strong id="studentLabel"></strong><span class="small" id="countLabel">Question 1 of 35</span></div>
+<div class="progress"><span id="progressBar"></span></div>
+<div id="questionText" class="question"></div>
+<div id="options" class="options"></div>
+<button id="hintBtn" class="quiet" type="button">💡 Show hint</button>
+<div id="hintBox" class="hintbox hidden"></div>
+<div id="feedback" class="feedback hidden"></div>
+<div class="actions"><span class="small" id="answeredLabel">Choose one answer.</span><button id="nextBtn" class="primary" disabled type="button">Next question →</button></div>
+</section>
+
+<section id="result" class="panel hidden">
+<div class="eyebrow" style="color:var(--muted)">Quiz submitted</div>
+<h2 id="resultTitle">Well done!</h2>
+<div class="scorebig" id="scoreBig">0 / 35</div>
+<p id="scoreMessage"></p>
+<div class="meta"><span class="pill" id="percentPill"></span><span class="pill" id="rankPill"></span></div>
+<div class="notice"><strong>Leaderboard</strong><div class="small">Scores are stored in this browser only. A shared, all-student leaderboard requires a server or database.</div></div>
+<table><thead><tr><th>Rank</th><th>Student</th><th>Score</th></tr></thead><tbody id="leaderboardBody"></tbody></table>
+<div class="actions"><button id="reviewBtn" class="secondary" type="button">Review answers</button><button id="restartBtn" class="primary" type="button">New attempt</button></div>
+</section>
+
+<section id="review" class="panel hidden">
+<div class="topline"><h2 style="margin:0">Answer review</h2><button id="backResults" class="secondary" type="button">Back to results</button></div>
+<div id="reviewList"></div>
+</section>
+</main>
+<footer>Unit 4 learning activity • Network Services and File Sharing</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function(){
+const questions = [
+{q:"What is the main purpose of DNS?",o:["Assign IP settings automatically","Translate domain names into IP addresses","Transfer files between computers","Share Linux folders"],a:1,h:"Think of how a browser finds the network address for a name such as example.com."},
+{q:"Which DNS record maps a hostname to an IPv4 address?",o:["AAAA","PTR","A","CNAME"],a:2,h:"The record type is named with a single letter."},
+{q:"Which DNS record maps a hostname to an IPv6 address?",o:["AAAA","A","PTR","MX"],a:0,h:"It uses four A characters."},
+{q:"What does a PTR record provide?",o:["An alias for another hostname","Reverse lookup from IP address to name","IPv6 address for a host","A DHCP lease duration"],a:1,h:"It performs the opposite direction of a typical hostname-to-IP lookup."},
+{q:"What does a CNAME record represent?",o:["A reverse DNS entry","An alias for another hostname","A subnet mask","A file-sharing permission"],a:1,h:"The record points one hostname name to another hostname."},
+{q:"What does DHCP automatically provide to clients?",o:["Only a hostname","Network settings such as IP, mask, gateway, and DNS","Only file permissions","Encrypted FTP credentials"],a:1,h:"It reduces the need to configure each client manually."},
+{q:"What is the correct order of the DHCP DORA process?",o:["Discover → Request → Offer → Acknowledge","Offer → Discover → Acknowledge → Request","Discover → Offer → Request → Acknowledge","Request → Discover → Offer → Acknowledge"],a:2,h:"The client first looks for a server; the server then offers an address."},
+{q:"In DHCP, what is a lease?",o:["A permanent DNS alias","An IP address assigned for a limited period","A shared directory","A packet capture file"],a:1,h:"The address assignment has an expiry or renewal period."},
+{q:"Which command is a simple DNS lookup tool in the notes?",o:["nslookup example.com","ip route","exportfs -v","testparm"],a:0,h:"It is a common command-line name-resolution utility."},
+{q:"Which command performs a reverse DNS lookup for 8.8.8.8?",o:["dig 8.8.8.8","dig -x 8.8.8.8","hostnamectl 8.8.8.8","dhclient -r 8.8.8.8"],a:1,h:"The dig option for reverse lookup is a dash followed by x."},
+{q:"Which command can show the system's IP address configuration?",o:["ip addr","ip route","testparm","exportfs -v"],a:0,h:"It displays network interface addresses."},
+{q:"Which command displays the routing table?",o:["hostname","ip route","dig -x","smbclient -L"],a:1,h:"It shows routes, including the default route."},
+{q:"Which command checks listening sockets and associated processes?",o:["sudo ss -tulpn","sudo exportfs -v","hostnamectl","getent hosts"],a:0,h:"The command combines socket statistics with TCP/UDP, listening, and process details."},
+{q:"Traditional FTP transfers files using what connection arrangement?",o:["One encrypted connection only","Separate control and data connections","DNS and DHCP connections","NFS mounts"],a:1,h:"FTP separates command/control traffic from file data."},
+{q:"Why should traditional FTP be avoided on untrusted networks?",o:["It cannot transfer files","It does not encrypt credentials or data","It only works with IPv6","It requires Samba"],a:1,h:"The concern is confidentiality of login details and transferred content."},
+{q:"Which alternatives are recommended when secure file transfer matters?",o:["SFTP or FTPS","A and PTR","DORA and NFS","SMB and DHCP"],a:0,h:"Both names begin with S or F and are secure alternatives to traditional FTP."},
+{q:"What is NFS primarily used for?",o:["Linux/Unix systems sharing directories over a network","Assigning IP addresses","Resolving public domain names","Encrypting FTP sessions"],a:0,h:"The full name is Network File System."},
+{q:"In NFS, what does the server do with directories it shares?",o:["Offers them as DHCP leases","Exports them","Converts them to DNS records","Creates FTP control connections"],a:1,h:"Clients mount the directories; the server makes them available."},
+{q:"Which command displays active NFS exports?",o:["sudo exportfs -v","sudo dhclient -r","testparm","dig example.com"],a:0,h:"It uses the exportfs utility with a verbose option."},
+{q:"Which command mounts an NFS share at /mnt?",o:["sudo mount -t nfs server:/share /mnt","sudo mount -t ftp server:/share /mnt","smbclient -L server /mnt","dig server:/share /mnt"],a:0,h:"The command specifies the filesystem type as nfs and the server export path."},
+{q:"What file is used to configure Samba shares?",o:["/etc/exports","/etc/samba/smb.conf","/etc/resolv.conf","/etc/dhcp/dhcpd.conf"],a:1,h:"The configuration is in the Samba directory and has an smb.conf filename."},
+{q:"Samba commonly provides which file-sharing protocol family?",o:["SMB/CIFS","DNS/DHCP","FTP/FTPS","NFS only"],a:0,h:"It is commonly used for Linux shares accessed by Windows clients."},
+{q:"Which command validates Samba configuration?",o:["testparm","named-checkzone","dhclient","hostnamectl"],a:0,h:"The command name combines the words test and parameter."},
+{q:"In the DHCP lab topology, what subnet is used by the bridge?",o:["192.168.10.0/24","192.168.50.0/24","10.0.0.0/8","172.16.0.0/16"],a:1,h:"The bridge is assigned 192.168.50.1 with a /24 prefix."},
+{q:"What DHCP address pool is configured in the namespace lab?",o:["192.168.50.100–192.168.50.150","192.168.10.1–192.168.10.50","192.168.50.1–192.168.50.5","192.168.1.100–192.168.1.200"],a:0,h:"The range starts at .100 and ends at .150 in the 192.168.50 network."},
+{q:"How many virtual PCs are created in the DHCP namespace lab?",o:["2","3","5","10"],a:2,h:"The topology labels pc1 through pc5."},
+{q:"Which tool is used to capture and inspect DHCP DORA packets in the lab?",o:["tcpdump","testparm","nginx","smbpasswd"],a:0,h:"It captures packets on the bridge interface."},
+{q:"In the lab's DHCP setup, which UDP ports are used for DHCP client/server traffic?",o:["20 and 21","67 and 68","80 and 443","139 and 445"],a:1,h:"The capture filter uses UDP ports 67 and 68."},
+{q:"Which service is configured as the FTP server in the lab?",o:["vsftpd","dnsmasq","BIND9","smbd"],a:0,h:"The package name begins with vsf and ends with ftpd."},
+{q:"Which FTP server setting disables anonymous login in the lab?",o:["anonymous_enable=YES","anonymous_enable=NO","local_enable=NO","write_enable=NO"],a:1,h:"The configuration explicitly disallows anonymous access."},
+{q:"Which FTP port is checked as listening in the lab?",o:["21","22","67","2049"],a:0,h:"This is the traditional FTP control port."},
+{q:"What is the NFS server export directory in the practical lab?",o:["/srv/nfs/share","/srv/samba/share","/home/ftpuser/files","/mnt/smb-client"],a:0,h:"The directory is under /srv/nfs and is named share."},
+{q:"Which port is checked for NFS in the lab?",o:["445","2049","8080","21"],a:1,h:"The NFS verification section checks this port."},
+{q:"In the Samba lab, what is the configured share name?",o:["Shared","labshare","nfs-share","files"],a:1,h:"The share name appears in square brackets in smb.conf."},
+{q:"Which command lists Samba shares on a server?",o:["smbclient -L //server -U username","exportfs -v","dig @server","ip netns list"],a:0,h:"Use smbclient with the list option and server path."}
+];
+
+let student="", index=0, score=0, selected=null, answered=false, responses=[];
+const total=questions.length;
+function showQuestion(){
+ const item=questions[index]; selected=null; answered=false;
+ $("#countLabel").text(`Question ${index+1} of ${total}`);
+ $("#progressBar").css("width",`${index/total*100}%`);
+ $("#questionText").text(item.q); $("#options").empty();
+ $("#hintBox").addClass("hidden").text(""); $("#hintBtn").prop("disabled",false).text("💡 Show hint");
+ $("#feedback").addClass("hidden").removeClass("good bad").text("");
+ $("#answeredLabel").text("Choose one answer."); $("#nextBtn").prop("disabled",true).text(index===total-1?"Finish quiz →":"Next question →");
+ item.o.forEach((option,i)=>{
+   const b=$("<button>",{type:"button",class:"option"});
+   b.append($("<span>",{class:"letter",text:String.fromCharCode(65+i)+"."}));
+   b.append($("<span>",{text:option}));
+   b.on("click",()=>choose(i)); $("#options").append(b);
+ });
+}
+function choose(choice){
+ if(answered)return; answered=true; selected=choice;
+ const item=questions[index], correct=choice===item.a;
+ if(correct)score++;
+ responses[index]={choice,correct};
+ $("#options .option").each(function(i){
+   $(this).prop("disabled",true);
+   if(i===item.a)$(this).addClass("correct");
+   if(i===choice&&!correct)$(this).addClass("wrong");
+ });
+ $("#feedback").removeClass("hidden").addClass(correct?"good":"bad").text(correct?"Correct! Well done.":"Not quite. Correct answer: "+item.o[item.a]);
+ $("#answeredLabel").text(correct?"Answer recorded.":"Answer recorded.");
+ $("#nextBtn").prop("disabled",false);
+}
+$("#startForm").on("submit",function(e){
+ e.preventDefault(); student=$("#studentName").val().trim(); if(!student)return;
+ $("#studentLabel").text("Student: "+student); $("#start").addClass("hidden");$("#result,#review").addClass("hidden");$("#quiz").removeClass("hidden");
+ index=0;score=0;responses=[];showQuestion();
+});
+$("#hintBtn").on("click",function(){ $("#hintBox").text(questions[index].h).removeClass("hidden");$(this).prop("disabled",true).text("Hint shown");});
+$("#nextBtn").on("click",function(){
+ if(!answered)return;
+ if(index<total-1){index++;showQuestion();}else submitQuiz();
+});
+function submitQuiz(){
+ $("#quiz").addClass("hidden");$("#result").removeClass("hidden");
+ const pct=Math.round(score/total*100);
+ $("#scoreBig").text(`${score} / ${total}`);$("#percentPill").text(`${pct}%`);$("#resultTitle").text(pct>=80?"Excellent work!":pct>=50?"Good effort!":"Keep practicing!");
+ $("#scoreMessage").text(`You answered ${score} of ${total} questions correctly.`);
+ const entry={name:student,score:score,total:total,pct:pct,date:Date.now()};
+ let board=[];try{board=JSON.parse(localStorage.getItem("unit4QuizLeaderboard")||"[]");}catch(e){}
+ board.push(entry);board.sort((a,b)=>b.score-a.score||a.date-b.date);board=board.slice(0,50);
+ try{localStorage.setItem("unit4QuizLeaderboard",JSON.stringify(board));}catch(e){}
+ const rank=board.findIndex(x=>x.date===entry.date&&x.name===entry.name)+1;
+ $("#rankPill").text(`Leaderboard rank: ${rank}`);
+ $("#leaderboardBody").empty();
+ board.slice(0,10).forEach((x,i)=>{
+   const tr=$("<tr>");
+   tr.append($("<td>",{class:"rank",text:"#"+(i+1)}),$("<td>",{text:x.name}),$("<td>",{text:`${x.score}/${x.total}`}));
+   $("#leaderboardBody").append(tr);
+ });
+ $("#progressBar").css("width","100%");
+}
+$("#reviewBtn").on("click",function(){
+ $("#result").addClass("hidden");$("#review").removeClass("hidden");$("#reviewList").empty();
+ questions.forEach((q,i)=>{
+  const block=$("<div>").css({padding:"15px 0",borderBottom:"1px solid #e4e9f2"});
+  block.append($("<strong>").text(`${i+1}. ${q.q}`));
+  block.append($("<p>").addClass("small").text("Your answer: "+(responses[i]?q.o[responses[i].choice]:"Not answered")));
+  block.append($("<p>").css({color:"#16834a",fontWeight:700,margin:"6px 0"}).text("Correct answer: "+q.o[q.a]));
+  $("#reviewList").append(block);
+ });
+});
+$("#backResults").on("click",function(){$("#review").addClass("hidden");$("#result").removeClass("hidden");});
+$("#restartBtn").on("click",function(){
+ $("#result,#review,#quiz").addClass("hidden");$("#start").removeClass("hidden");$("#studentName").val("").trigger("focus");
+});
+});
+</script>
+</body>
+</html>
