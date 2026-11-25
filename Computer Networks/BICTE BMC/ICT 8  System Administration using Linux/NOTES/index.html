@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Server Admin Quiz - Apache, Mail, MySQL, Security</title>
+<style>
+:root{--paper:#eef2f0;--ink:#13242c;--muted:#51666e;--line:#cdd9d6;--card:#fff;--teal:#0f6b66;--amber:#f2b134;--ok:#1b7f4b;--bad:#b3261e;--term:#10222b}
+@media (prefers-color-scheme:dark){:root{--paper:#0e1a1f;--ink:#e6efed;--muted:#9bb0b0;--line:#27404a;--card:#15262d;--teal:#4fc1b8}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,-apple-system,sans-serif;padding-bottom:40px}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.1;margin:0 0 12px;letter-spacing:-.02em}
+h2{margin:0 0 10px;font-size:24px}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+.mono{font-family:Consolas,"Courier New",monospace}
+header.hero{padding:44px 0 20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.chips li{border:1px solid var(--line);border-radius:99px;padding:3px 12px;font-size:14px;background:var(--card)}
+.term{background:var(--term);color:#d9ece8;border-radius:10px;padding:18px 18px 16px;margin-top:22px}
+.term .l{font:14px Consolas,monospace;color:#8fb5b0;margin-bottom:8px}
+.prompt{display:flex;align-items:center;gap:8px;font:16px Consolas,monospace}
+.prompt b{color:var(--amber);white-space:nowrap}
+.prompt input{flex:1;min-width:0;background:transparent;border:0;border-bottom:1px dashed #5c8a85;color:#fff;font:inherit;padding:6px 2px}
+.prompt input:focus{outline:none;border-bottom-color:var(--amber)}
+.err{color:#ffb3ab;font:14px Consolas,monospace;min-height:20px;margin-top:8px}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid transparent;padding:10px 20px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.go{background:var(--amber);color:#2a1d00;font-weight:700;margin-top:12px}
+.go:hover{filter:brightness(1.07)}
+.alt{background:transparent;border-color:var(--line);color:var(--ink)}
+.alt:hover{border-color:var(--teal)}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:26px}
+.rules div{border-left:3px solid var(--teal);padding-left:12px}
+.rules strong{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:20px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:26px;font-size:14px;color:var(--muted)}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:0;background:var(--teal);transition:width .3s}
+.topic{font-size:14px;color:var(--teal);font-weight:600;margin-bottom:6px}
+#qtext{font-size:20px;font-weight:600;margin:0 0 16px}
+.opt{display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);color:var(--ink);margin-bottom:10px;padding:12px 14px}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt.ok{border-color:var(--ok);background:rgba(27,127,75,.15)}
+.opt.no{border-color:var(--bad);background:rgba(179,38,30,.13)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.hint{display:none;border-left:4px solid var(--amber);background:rgba(242,177,52,.16);padding:10px 12px;border-radius:0 8px 8px 0;margin:6px 0 14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row .sp{flex:1}
+.score{font-size:56px;font-weight:800;line-height:1}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
+th{color:var(--muted);font-weight:600}
+tr.me td{background:rgba(242,177,52,.2);font-weight:700}
+.rev{border-top:1px solid var(--line);padding:10px 0;font-size:15px}
+.rev b{color:var(--bad)}
+.rev span{color:var(--ok)}
+.tablewrap{overflow-x:auto}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- VIEW 1: LANDING -->
+<section id="vStart" class="view">
+  <header class="hero">
+    <p class="muted mono">Unit 5 &middot; Servers, Mail and Security</p>
+    <h1>Can you run a secure office server?</h1>
+    <p>30 multiple-choice questions on the Himalaya Trading project: Apache, MySQL, Postfix, Dovecot, SSL/TLS, SSH, firewalls and ACLs. Every question has a hint.</p>
+    <ul class="chips"><li>5.1 Apache &amp; Email</li><li>5.2 MySQL</li><li>5.3 Crypto, SSH, Firewall, ACLs</li><li>Practical works</li></ul>
+    <div class="term">
+      <div class="l">Log in to start the quiz</div>
+      <div class="prompt"><b>student@mail.office.local:~$</b><input id="name" maxlength="30" autocomplete="off" placeholder="type your name" aria-label="Your name"></div>
+      <div class="err" id="nameErr"></div>
+      <button class="go" id="startBtn">Start quiz</button>
+    </div>
+  </header>
+  <div class="rules">
+    <div><strong>1 mark each</strong>30 questions, 30 marks in total.</div>
+    <div><strong>Hints are free</strong>But the leaderboard ranks fewer hints higher on equal marks.</div>
+    <div><strong>One try per question</strong>You see the right answer straight away, then move on.</div>
+  </div>
+</section>
+
+<!-- VIEW 2: QUIZ -->
+<section id="vQuiz" class="view" style="display:none">
+  <div class="top"><span id="who"></span><span id="qno"></span></div>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="card">
+    <div class="topic" id="topic"></div>
+    <p id="qtext"></p>
+    <div id="opts"></div>
+    <div class="hint" id="hintBox"></div>
+    <div class="row">
+      <button class="alt" id="hintBtn">Show hint</button>
+      <span class="sp"></span>
+      <button class="go" id="nextBtn" style="display:none;margin:0">Next question</button>
+    </div>
+  </div>
+</section>
+
+<!-- VIEW 3: RESULT + LEADERBOARD -->
+<section id="vEnd" class="view" style="display:none">
+  <div class="card">
+    <p class="muted" id="endName"></p>
+    <div class="score"><span id="endScore"></span><span class="muted" style="font-size:24px"> / 30</span></div>
+    <p id="endMsg" style="margin-top:10px"></p>
+    <p class="muted" id="endMeta"></p>
+  </div>
+  <div class="card">
+    <h2>Leaderboard</h2>
+    <p class="muted">Ranked by marks, then fewer hints, then faster time. Saved in this browser.</p>
+    <div class="tablewrap"><table><thead><tr><th>#</th><th>Name</th><th>Marks</th><th>Hints</th><th>Time</th></tr></thead><tbody id="lb"></tbody></table></div>
+    <div class="row" style="margin-top:16px">
+      <button class="go" id="againBtn" style="margin:0">Play again</button>
+      <button class="alt" id="clearBtn">Clear leaderboard</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Review your mistakes</h2>
+    <div id="review"></div>
+  </div>
+</section>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>window.jQuery||document.write('<script src="jquery.min.js"><\/script>')</script>
+<script>
+// Each item: [topic, question, CORRECT answer, wrong1, wrong2, wrong3, hint]  (options are shuffled on screen)
+var Q=[
+["5.1 Apache","Which package installs the Apache web server on Ubuntu?","apache2","httpd","nginx","lighttpd","Red Hat family systems call it httpd. Ubuntu uses a different name."],
+["5.1 Apache","What is the default port for HTTPS?","443","80","8080","25","Think of the padlock in the browser. HTTP uses 80."],
+["5.1 Apache","Which command checks Apache configuration syntax?","apache2ctl configtest","apache2 --verify-all","systemctl test apache2","httpd -scan","The helper tool ends with ctl and the test word is one word."],
+["5.1 Apache","Which command enables a virtual host file on Ubuntu?","a2ensite office","a2enmod office","apache2 enable office","ln -s /var/www office","a2en + site. a2enmod is for modules."],
+["5.1 Apache","Why is db.php kept outside /var/www/office?","So Apache never serves it as plain text if PHP breaks","So MySQL can find it faster","Because PHP cannot read web folders","So jQuery can load it","It is about protecting the database password."],
+["5.1 Email","What does SMTP do?","Sends and transfers mail between servers","Reads mail from the server mailbox","Encrypts the hard disk","Stores web pages","Remember the first letter pair: Simple Mail Transfer."],
+["5.1 Email","Which program in the project is the MTA (Mail Transfer Agent)?","Postfix","Dovecot","MySQL","jQuery","It sends and receives mail with SMTP."],
+["5.1 Email","What is the main job of Dovecot?","Let users read mailboxes using IMAP or POP3","Relay mail to other domains","Host the website","Manage firewall rules","Postfix delivers mail. Something else lets users open it."],
+["5.1 Email","Which port is IMAP over SSL/TLS (IMAPS)?","993","143","995","587","995 is POP3S. IMAPS is the other 99x number."],
+["5.1 Email","Which Postfix setting saves mail into ~/Maildir for Dovecot?","home_mailbox = Maildir/","myorigin = Maildir","mynetworks = Maildir","mydestination = Maildir","The setting name mentions the home mailbox."],
+["5.1 Email","Which Postfix rule stops the server acting as an open relay?","reject_unauth_destination","message_size_limit","home_mailbox","myhostname","Reject mail whose destination is not yours and not authorised."],
+["5.2 MySQL","Which SQL statement lists all databases?","SHOW DATABASES;","LIST DB;","DISPLAY DATABASES;","SELECT DATABASES;","The verb is the same one used for SHOW TABLES."],
+["5.2 MySQL","Why did office_user receive only SELECT and INSERT?","Least privilege: give only the rights needed","MySQL allows only two rights","To make queries faster","It is required for SSL","Fewer rights means less damage if the web app is hacked."],
+["5.2 MySQL","Which tool creates a backup of database office_db?","mysqldump","mysqlimport","mysqladmin ping","mysqlshow","Its name suggests it dumps the database to an .sql file."],
+["5.2 MySQL","Which PHP technique protects against SQL injection?","Prepared statements with bind_param()","echo","phpinfo()","header()","Query and data are sent separately."],
+["5.2 MySQL","What does bind-address = 127.0.0.1 do?","MySQL accepts only local connections","MySQL accepts all networks","MySQL stops logging","MySQL becomes read-only","127.0.0.1 is localhost."],
+["5.2 MySQL","Which statement gives a user permissions on a database?","GRANT","INSERT INTO","ALLOW","PERMIT","Its opposite is REVOKE."],
+["5.2 MySQL","htmlspecialchars() in list.php mainly prevents which attack?","XSS (script injection)","SQL injection","Brute force","DDoS","It turns characters like < and > into harmless text."],
+["5.3 Crypto","In SSH key login, which key is copied to authorized_keys?","The public key","The private key","Both keys","The root password","One key must stay secret on your own computer."],
+["5.3 SSH","Which command generates a modern SSH key pair?","ssh-keygen -t ed25519","ssh-copy -new","openssl ssh","keygen --ssh","It starts with ssh and contains the word keygen."],
+["5.3 SSH","Which sshd setting turns off password login?","PasswordAuthentication no","PermitRootLogin no","PubkeyAuthentication no","MaxAuthTries 0","Read the name literally: authentication by password."],
+["5.3 Firewall","Why must SSH be allowed in UFW before enabling the firewall?","To avoid locking yourself out","SSH needs UFW to start","UFW enables SSH automatically","To speed up SSH","Default deny incoming blocks everything not allowed."],
+["5.3 Firewall","Which command shows UFW rules with numbers?","ufw status numbered","ufw list rules","ufw show -n","iptables --ufw","It is a status command with a modifier word."],
+["5.3 Firewall","A secure iptables INPUT policy is usually:","DROP, then allow only needed ports","ACCEPT everything","LOG only","FORWARD all","Deny by default, allow by exception."],
+["5.3 ACLs","Which command displays the ACL of a folder?","getfacl","lsacl","aclview","ls -z","The matching setter command is setfacl."],
+["5.3 ACLs","What does a + at the end of ls -l permissions show?","The file has an ACL","The file is encrypted","The file is a link","The file is executable by all","It tells you there is more than normal owner/group/others."],
+["5.3 ACLs","What does setfacl -d -m do?","Sets a default ACL that new files inherit","Deletes the ACL","Disables ACL support","Shows ACL details","-d is for default."],
+["5.3 TLS","Which command creates a self-signed certificate in the project?","openssl req -x509 -nodes -newkey ...","ssh-keygen -x509","certbot --lab","gpg --cert","The certificate is made with the openssl tool. Browsers warn because no known CA signed it."],
+["Practical","What does -k do in: curl -kI https://localhost ?","Accepts the self-signed certificate","Keeps the connection alive","Kills the web server","Uses a key file","Without it, curl rejects certificates it does not trust."],
+["5.3 Crypto","After a tiny change to a file, what happens to its sha256sum?","It becomes a completely different hash","It stays the same","It gets slightly longer","The file becomes encrypted","Hashes are used to detect changes (integrity)."]
+];
+var order=[],cur=0,res=[],hinted=[],t0=0,player="",KEY="srvquiz_lb_v1";
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function show(id){$(".view").hide();$(id).show();window.scrollTo(0,0)}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}}
+function save(l){try{localStorage.setItem(KEY,JSON.stringify(l))}catch(e){}}
+function fmt(s){var m=Math.floor(s/60),r=s%60;return m+"m "+(r<10?"0":"")+r+"s"}
+
+$("#startBtn").on("click",begin);
+$("#name").on("keydown",function(e){if(e.key==="Enter")begin()});
+function begin(){
+  var n=$.trim($("#name").val());
+  if(n.length<2){$("#nameErr").text("error: enter your name (at least 2 characters)");return}
+  player=n;$("#nameErr").text("");
+  order=[];for(var i=0;i<Q.length;i++)order.push(i);
+  cur=0;res=[];hinted=[];t0=Date.now();
+  $("#who").text(player);show("#vQuiz");render();
+}
+function render(){
+  var q=Q[order[cur]];
+  $("#qno").text("Question "+(cur+1)+" of "+Q.length);
+  $("#prog").css("width",(cur/Q.length*100)+"%");
+  $("#topic").text(q[0]);$("#qtext").text(q[1]);
+  $("#hintBox").hide().text("Hint: "+q[6]);
+  $("#hintBtn").show().text("Show hint");
+  $("#nextBtn").hide().text(cur===Q.length-1?"Submit quiz":"Next question");
+  var opts=shuf([q[2],q[3],q[4],q[5]]),$o=$("#opts").empty();
+  $.each(opts,function(i,t){
+    $("<button class='opt'>").text(t).on("click",function(){pick(t)}).appendTo($o);
+  });
+}
+$("#hintBtn").on("click",function(){
+  $("#hintBox").slideDown(150);hinted[cur]=true;$(this).hide();
+});
+function pick(t){
+  var q=Q[order[cur]],right=(t===q[2]);
+  res[cur]={q:q[1],mine:t,right:q[2],ok:right};
+  $("#opts .opt").prop("disabled",true).each(function(){
+    var $b=$(this);
+    if($b.text()===q[2])$b.addClass("ok");
+    else if($b.text()===t)$b.addClass("no");
+  });
+  $("#hintBtn").hide();$("#nextBtn").show().focus();
+}
+$("#nextBtn").on("click",function(){
+  if(cur<Q.length-1){cur++;render()}else finish();
+});
+function finish(){
+  var score=0,hints=0;
+  for(var i=0;i<res.length;i++){if(res[i].ok)score++;if(hinted[i])hints++}
+  var secs=Math.round((Date.now()-t0)/1000),id=Date.now();
+  var lb=load();lb.push({id:id,n:player,s:score,h:hints,t:secs});
+  lb.sort(function(a,b){return b.s-a.s||a.h-b.h||a.t-b.t});
+  lb=lb.slice(0,50);save(lb);
+  $("#endName").text("Well done, "+player);
+  $("#endScore").text(score);
+  var pct=score/Q.length*100;
+  $("#endMsg").text(pct>=80?"Excellent. You could run this server yourself.":pct>=60?"Good work. Review the questions you missed below.":pct>=40?"Fair start. Re-read the project steps and try again.":"Keep practising. Repeat the lab in Killercoda, then retake the quiz.");
+  $("#endMeta").text("Hints used: "+hints+"  |  Time: "+fmt(secs));
+  drawLB(lb,id);
+  var $r=$("#review").empty(),wrong=0;
+  $.each(res,function(i,r){
+    if(r.ok)return;wrong++;
+    $("<div class='rev'>").append($("<div>").text((i+1)+". "+r.q))
+      .append($("<div>").append($("<b>").text("Your answer: "+r.mine)))
+      .append($("<div>").append($("<span>").text("Correct: "+r.right))).appendTo($r);
+  });
+  if(!wrong)$r.append($("<p class='muted'>").text("No mistakes. Perfect score."));
+  show("#vEnd");
+}
+function drawLB(lb,myId){
+  var $b=$("#lb").empty();
+  $.each(lb.slice(0,15),function(i,e){
+    var $tr=$("<tr>");if(e.id===myId)$tr.addClass("me");
+    $("<td>").text(i+1).appendTo($tr);$("<td>").text(e.n).appendTo($tr);
+    $("<td>").text(e.s+" / 30").appendTo($tr);$("<td>").text(e.h).appendTo($tr);
+    $("<td>").text(fmt(e.t)).appendTo($tr);$b.append($tr);
+  });
+}
+$("#againBtn").on("click",function(){$("#name").val(player);show("#vStart")});
+$("#clearBtn").on("click",function(){
+  if(confirm("Delete all leaderboard entries in this browser?")){save([]);drawLB([],0)}
+});
+</script>
+</body>
+</html>
