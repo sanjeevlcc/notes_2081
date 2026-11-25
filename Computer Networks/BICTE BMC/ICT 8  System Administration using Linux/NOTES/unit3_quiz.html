@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unit 3 Linux Administration Quiz</title>
+<style>
+:root{--p:#5557c9;--ink:#182039;--muted:#68738a;--bg:#f4f6fb;--line:#e5e9f2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,Segoe UI,sans-serif}
+header{background:linear-gradient(120deg,#20245d,#6264dc);color:white;text-align:center;padding:38px 16px 62px}
+header h1{font-size:clamp(1.8rem,5vw,2.7rem);margin:12px 0 4px}.tag{border:1px solid #ffffff66;border-radius:30px;padding:5px 12px;font-size:.78rem}
+.wrap{width:min(900px,calc(100% - 28px));margin:-30px auto 45px}.panel,.question,.result{background:white;border:1px solid var(--line);border-radius:16px;padding:23px;box-shadow:0 8px 25px #1820390a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{text-align:center;background:#f3f4ff;padding:12px;border-radius:10px}.stat b{display:block;color:var(--p);font-size:1.3rem}
+label{font-weight:650}input[type=text]{display:block;width:100%;padding:13px;border:1px solid #ccd2e1;border-radius:9px;font:inherit;margin:7px 0 15px}
+button{border:0;border-radius:9px;padding:12px 17px;background:var(--p);color:white;font-weight:700;cursor:pointer}button:hover{filter:brightness(.92)}button:disabled{opacity:.4;cursor:not-allowed}.alt{background:#eceeff;color:#3336a0}.hidden{display:none!important}
+.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.progress{height:9px;background:#e8eaf4;border-radius:20px;margin:13px 0 19px;overflow:hidden}.progress span{display:block;height:100%;background:var(--p);transition:.2s}
+.meta{font-size:.78rem;color:var(--p);font-weight:800;letter-spacing:.06em;text-transform:uppercase}.question{margin:14px 0}.question h3{font-size:1.1rem;margin:9px 0 15px}
+.option{display:flex;gap:10px;border:1px solid var(--line);border-radius:9px;padding:11px;margin:8px 0;cursor:pointer}.option:hover,.option.sel{border-color:var(--p);background:#f4f4ff}.option input{margin-top:5px;accent-color:var(--p)}
+.hint{margin-top:13px}.hint button{padding:8px 12px;font-size:.85rem}.hintbox{margin-top:9px;background:#fff8e8;border-left:3px solid #e1a72e;padding:10px;border-radius:6px;color:#70551b}
+.controls{display:flex;justify-content:space-between;gap:10px;margin:18px 0}.right{display:flex;gap:8px}.muted{color:var(--muted);font-size:.88rem}
+.result{text-align:center;margin:15px 0}.score{font-size:3rem;font-weight:850;color:var(--p)}table{width:100%;border-collapse:collapse;margin-top:14px}td,th{text-align:left;padding:10px;border-bottom:1px solid var(--line)}th{font-size:.8rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:20px}
+@media(max-width:580px){.panel{padding:17px}.controls{flex-direction:column}.controls button{width:100%}}
+</style></head>
+<body>
+<header><span class="tag">LINUX SYSTEM ADMINISTRATION • UNIT 3</span><h1>Storage &amp; Network Configuration Quiz</h1><p>Disk quotas • RAID • LVM • IPv4/IPv6 • Troubleshooting</p></header>
+<main class="wrap">
+<section id="start" class="panel">
+<h2>Welcome, student!</h2><p>Take this 30-question practice quiz based on the uploaded Unit 3 Markdown notes and RAID 5 lab guide. Every question includes a hint.</p>
+<div class="stats"><div class="stat"><b>30</b>Questions</div><div class="stat"><b>30</b>Maximum points</div><div class="stat"><b>5</b>Lab areas</div></div>
+<label for="student">Enter your name to begin</label><input id="student" type="text" maxlength="35" placeholder="e.g. Alex Sharma" autocomplete="name">
+<p id="err" class="hidden" style="color:#c33">Please enter your name.</p><button id="begin">Start quiz →</button>
+<p class="muted">Scores are saved in this browser's local storage. No account is required.</p>
+</section>
+<section id="quiz" class="hidden">
+<div class="panel"><div class="top"><b id="who"></b><span id="count"></span></div><div class="progress"><span id="bar"></span></div><div class="top muted"><span id="unit"></span><span id="done"></span></div></div>
+<div id="qhost"></div><div class="controls"><button class="alt" id="prev">← Previous</button><div class="right"><button class="alt" id="next">Next →</button><button id="submit" class="hidden">Submit quiz</button></div></div>
+<p class="muted">You can revisit questions and change answers before submitting. Hints do not reduce your score.</p>
+</section>
+<section id="finish" class="hidden">
+<div class="result"><div class="meta">Quiz submitted</div><h2 id="congrats"></h2><div class="score" id="score"></div><p id="message"></p><p class="muted" id="elapsed"></p><button id="again">Try again</button></div>
+<div class="panel"><div class="top"><div><h2 style="margin:0">🏆 Leaderboard</h2><span class="muted">Best scores saved on this device</span></div><button class="alt" id="clear">Clear leaderboard</button></div>
+<div style="overflow-x:auto"><table><thead><tr><th>Rank</th><th>Student</th><th>Score</th><th>Time</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="muted">This leaderboard is local to this browser/device. A shared class leaderboard requires a server or database.</p></div>
+</section>
+</main><footer>Unit 3 • Disk Quotas, Storage Management &amp; Network Configuration</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+const Q=[
+["3.1 Disk quotas","What is the main purpose of a disk quota?",["Increase disk speed","Limit how much disk space or how many files a user/group can use","Create backups automatically","Configure IP addresses"],1,"Think about controlling storage consumption by each user or group.","Disk quotas limit disk space (blocks) and file counts (inodes)."],
+["3.1 Disk quotas","Which statement describes a soft quota limit?",["It can be exceeded temporarily during a grace period","It can never be exceeded","It controls network bandwidth","It creates a RAID mirror"],0,"The user may go beyond this limit for a limited time.","A soft limit can be exceeded temporarily during a grace period."],
+["3.1 Disk quotas","Which quota limit cannot be exceeded?",["Soft limit","Grace limit","Hard limit","Warning limit"],2,"It is the strict maximum usage allowed.","A hard limit cannot be exceeded."],
+["3.1 Disk quotas","What does a block quota limit?",["Number of network packets","Disk space usage","Number of IP addresses","Number of mounted disks"],1,"Blocks relate to the amount of stored data.","A block quota limits disk space."],
+["3.1 Disk quotas","What does an inode quota limit?",["Number of files","Disk transfer speed","RAID parity size","IPv6 addresses"],0,"An inode is a filesystem record associated with a file.","An inode quota limits the number of files a user/group can create."],
+["3.1 Disk quotas lab","Which package is installed for quota management on Ubuntu/Debian in the notes?",["mdadm","quota","lvm2","net-tools"],1,"The package has the same name as the feature being configured.","The notes use: sudo apt install quota."],
+["3.1 Disk quotas lab","Which command edits the quota settings for user student?",["sudo quota -u student","sudo edquota -u student","sudo repquota -a","sudo quotacheck -cugm /home"],1,"Choose the command that edits a user's quota record.","edquota -u student opens the user's quota settings for editing."],
+["3.1 Disk quotas lab","Which command displays quota information for user student?",["sudo quota -u student","sudo pvcreate student","sudo ip addr student","sudo mdadm --detail student"],0,"Use the command that reports an individual user's quota.","sudo quota -u student displays that user's quota usage and limits."],
+["3.1 Disk quotas lab","In the supplied /home quota scenario, what inode soft/hard limits are set?",["100/200","500/1000","800/1000","1000/2000"],2,"The soft limit is lower than the hard limit in the lab instructions.","The lab sets inode limits to 800 soft and 1000 hard."],
+["3.1 Disk quotas lab","Which command gives a system-wide quota report?",["sudo repquota -a","sudo ip route","sudo lvs","sudo losetup -a"],0,"It reports quota usage across filesystems.","repquota -a displays a report of quotas."],
+["3.1 RAID","Which RAID level uses striping and has no redundancy?",["RAID 0","RAID 1","RAID 5","RAID 6"],0,"This level prioritizes speed/capacity rather than fault tolerance.","RAID 0 stripes data and provides no redundancy."],
+["3.1 RAID","Which RAID level mirrors data across two disks?",["RAID 0","RAID 1","RAID 5","RAID 6"],1,"Mirroring means a duplicate copy is written to another disk.","RAID 1 mirrors data and a two-disk mirror can survive one disk failure."],
+["3.1 RAID","How many disks are required at minimum for RAID 5?",["2","3","4","5"],1,"The RAID 5 notes describe distributed parity and a minimum member count.","RAID 5 requires at least three disks."],
+["3.1 RAID 5 lab","The RAID 5 example uses how many 5 GB virtual disks?",["2","3","4","5"],1,"The lab creates disk1.img, disk2.img and disk3.img.","The first RAID 5 example uses three 5 GB virtual disks."],
+["3.1 RAID 5 lab","With three equal disks in RAID 5, what is the approximate usable capacity?",["5 GB","10 GB","15 GB","20 GB"],1,"Use (number of disks − 1) × disk size.","(3 − 1) × 5 GB gives about 10 GB usable capacity; parity uses one disk-equivalent."],
+["3.1 RAID 5 lab","Which command creates /dev/md0 as RAID 5 from three loop devices?",["mdadm --create /dev/md0 --level=5 --raid-devices=3 /dev/loop0 /dev/loop1 /dev/loop2","mkfs.ext4 /dev/md0","pvcreate /dev/md0","mount /dev/loop0 /mnt"],0,"Look for mdadm, the array device, level 5 and three RAID members.","The lab uses mdadm --create with --level=5 and --raid-devices=3."],
+["3.1 RAID 5 lab","Which command shows RAID synchronization status?",["cat /proc/mdstat","df -i","ip addr","quota -u"],0,"The RAID status is exposed through a kernel file under /proc.","cat /proc/mdstat shows array status and synchronization progress."],
+["3.1 RAID 5 lab","Which command formats the RAID device as ext4?",["sudo mkfs.ext4 -F /dev/md0","sudo mdadm --detail /dev/md0","sudo losetup -a","sudo ip route"],0,"Formatting uses the make-filesystem command.","The guide uses sudo mkfs.ext4 -F /dev/md0."],
+["3.1 RAID 5 lab","Where is the first RAID 5 example mounted?",["/mnt/raid1","/mnt/myraid","/mnt/lv_data","/home/raid"],1,"The mount path includes the word 'myraid'.","The first RAID 5 guide creates and mounts /mnt/myraid."],
+["3.1 RAID 5 + hot spare","In the college records scenario, how many active RAID 5 disks are used?",["2","3","4","5"],1,"The fourth disk is reserved as the spare.","The scenario uses three active RAID 5 members plus one hot spare."],
+["3.1 RAID 5 + hot spare","What is the role of the hot spare disk?",["Stores DNS records","Automatically takes over when an active disk fails","Acts as the default gateway","Increases inode count"],1,"It waits unused until an active member fails.","The hot spare takes over and is used for automatic rebuild after a disk failure."],
+["3.1 RAID 5 + hot spare","Which command marks a RAID member as failed in the lab?",["mdadm /dev/md0 --fail $D2","mdadm --create /dev/md0","mkfs.ext4 /dev/md0","df -h /mnt/records"],0,"The command operates on /dev/md0 and includes the --fail option.","The guide uses mdadm /dev/md0 --fail $D2 to simulate a disk crash."],
+["3.1 RAID 5 + hot spare","Which command removes a failed disk from the array?",["mdadm /dev/md0 --remove $D2","mdadm --detail --scan","sudo quotaon -vug /home","ip addr flush dev enp0s3"],0,"After recovery, the lab removes the failed member using an mdadm option.","The command is mdadm /dev/md0 --remove $D2."],
+["3.1 LVM","What does PV stand for in LVM?",["Primary Volume","Physical Volume","Protected Value","Partition Variable"],1,"It is the physical disk or partition initialized for LVM.","PV means Physical Volume."],
+["3.1 LVM","What does VG represent in LVM?",["Virtual Gateway","Volume Group","Verified Geometry","Virtual Graphics"],1,"It is the pool made from one or more physical volumes.","VG means Volume Group."],
+["3.1 LVM","What does LV represent in LVM?",["Logical Volume","Local Variable","Large Virtual-disk","Linked Volume"],0,"It is the virtual storage volume created from a volume group.","LV means Logical Volume."],
+["3.1 LVM lab","Which command initializes /dev/sdb1 as an LVM physical volume?",["sudo pvcreate /dev/sdb1","sudo vgcreate /dev/sdb1","sudo lvcreate /dev/sdb1","sudo mkfs.ext4 /dev/sdb1"],0,"The command name is the abbreviation for creating a physical volume.","pvcreate initializes a disk/partition as an LVM PV."],
+["3.2 IPv4/IPv6","How many bits are in an IPv4 address?",["16","32","64","128"],1,"IPv4 has four 8-bit octets.","IPv4 addresses are 32-bit."],
+["3.2 IPv4/IPv6","How many bits are in an IPv6 address?",["32","64","96","128"],3,"IPv6 addresses are four times the length of IPv4.","IPv6 addresses are 128-bit."],
+["3.2 Network troubleshooting","A computer can ping 8.8.8.8 but cannot ping example.com. What is the likely problem?",["RAID failure","DNS resolution problem","Inode limit","LVM volume group"],1,"IP connectivity works, but resolving a domain name does not.","The notes identify this pattern as a likely DNS issue."],
+["3.2 Network troubleshooting","Which command displays the system routing table?",["ip addr","ip route","df -h","lsblk"],1,"The command uses the name of the path-selection information.","ip route displays routes, including the default gateway route."]
+];
+let idx=0,answers=Array(30).fill(null),hints=new Set(),name="",startTime=0;
+function render(){let q=Q[idx];$("#count").text(`Question ${idx+1} of 30`);$("#unit").text(q[0].toUpperCase());$("#done").text(`${answers.filter(x=>x!==null).length} answered`);$("#bar").css("width",`${(idx+1)/30*100}%`);
+let opts=q[2].map((x,i)=>`<label class="option ${answers[idx]===i?'sel':''}"><input type="radio" name="ans" value="${i}" ${answers[idx]===i?'checked':''}><span><b>${"ABCD"[i]}.</b> ${x}</span></label>`).join("");
+$("#qhost").html(`<article class="question"><div class="meta">QUESTION ${idx+1}</div><h3>${q[1]}</h3>${opts}<div class="hint"><button class="alt" id="hint">${hints.has(idx)?"Hide hint":"💡 Show hint"}</button>${hints.has(idx)?`<div class="hintbox">${q[4]}</div>`:""}</div></article>`);
+$(".option").on("click",function(){answers[idx]=Number($(this).find("input").val());render()});$("#hint").on("click",()=>{hints.has(idx)?hints.delete(idx):hints.add(idx);render()});$("#prev").prop("disabled",idx===0);$("#next").toggleClass("hidden",idx===29);$("#submit").toggleClass("hidden",idx!==29)}
+function board(){let b=JSON.parse(localStorage.getItem("unit3QuizBoard")||"[]");$("#rows").html(b.length?b.map((x,i)=>`<tr><td><b>#${i+1}</b></td><td>${$("<div>").text(x.name).html()}</td><td><b>${x.score}/30</b></td><td>${x.time}</td></tr>`).join(""):'<tr><td colspan="4">No scores yet. Be the first!</td></tr>')}
+function submit(){let missing=answers.filter(x=>x===null).length;if(missing&&!confirm(`${missing} question(s) unanswered. Submit anyway?`))return;let score=answers.reduce((s,a,i)=>s+(a===Q[i][3]?1:0),0),sec=Math.max(1,Math.round((Date.now()-startTime)/1000)),time=`${Math.floor(sec/60)}m ${sec%60}s`,b=JSON.parse(localStorage.getItem("unit3QuizBoard")||"[]");b.push({name,score,time,sec});b.sort((a,b)=>b.score-a.score||a.sec-b.sec);localStorage.setItem("unit3QuizBoard",JSON.stringify(b.slice(0,20)));$("#quiz").addClass("hidden");$("#finish").removeClass("hidden");$("#congrats").text(`Well done, ${name}!`);$("#score").text(`${score}/30`);$("#message").text(score>=25?"Excellent work! You have a strong understanding of Unit 3.":score>=18?"Good job! Review the notes and practise the lab commands.":"Keep practising. Revisit Unit 3 notes and lab steps, then try again.");$("#elapsed").text(`Completed in ${time}. Correct: ${score} • Incorrect or unanswered: ${30-score}.`);board();window.scrollTo({top:0,behavior:"smooth"})}
+$(function(){$("#begin").on("click",()=>{name=$("#student").val().trim();if(!name){$("#err").removeClass("hidden");return}$("#err").addClass("hidden");$("#start").addClass("hidden");$("#quiz").removeClass("hidden");$("#who").text("Student: "+name);startTime=Date.now();render()});$("#student").on("keydown",e=>{if(e.key==="Enter")$("#begin").click()});$("#prev").on("click",()=>{if(idx>0){idx--;render()}});$("#next").on("click",()=>{if(idx<29){idx++;render()}});$("#submit").on("click",submit);$("#again").on("click",()=>{idx=0;answers=Array(30).fill(null);hints.clear();$("#finish").addClass("hidden");$("#start").removeClass("hidden");$("#student").val(name);window.scrollTo({top:0,behavior:"smooth"})});$("#clear").on("click",()=>{if(confirm("Clear all Unit 3 scores saved in this browser?")){localStorage.removeItem("unit3QuizBoard");board()}})});
+</script></body></html>
