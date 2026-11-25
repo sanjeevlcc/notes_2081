@@ -1,3 +1,9 @@
+****************************
+        Page 20
+****************************
+
+
+
 ITM 203: Database Management System
 BITM 3rd Semester
 
@@ -11,16 +17,32 @@ COURSE INFORMATION
 
 ================================================================
 
+
+
 COURSE DESCRIPTION
+++++++++++++++++++++++++++
+• This course provides a comprehensive introduction to database
+management systems, covering both relational and non-relational 
+technologies. Students learn database concepts and architecture, 
+conceptual design with Entity-Relationship (ER) and Enhanced ER 
+models, the relational model, normalization, Structured Query
+Language (SQL), transaction processing, concurrency control 
+and recovery, and NoSQL databases using MongoDB.
 
-• This course provides a comprehensive introduction to database management systems, covering both relational and non-relational technologies. Students learn database concepts and architecture, conceptual design with Entity-Relationship (ER) and Enhanced ER models, the relational model, normalization, Structured Query Language (SQL), transaction processing, concurrency control and recovery, and NoSQL databases using MongoDB.
-
-• The course connects database theory with practice. Equal emphasis is placed on theoretical understanding and hands-on laboratory work in SQL and NoSQL, and students complete a project that designs and implements a database using both a relational and a NoSQL component, preparing them for advanced data-oriented courses and industry roles.
+• The course connects database theory with practice. Equal emphasis
+is placed on theoretical understanding and hands-on laboratory 
+work in SQL and NoSQL, and students complete a project that designs
+and implements a database using both a relational and a NoSQL 
+component, preparing them for advanced data-oriented courses 
+and industry roles.
 
 ================================================================
 
-COURSE OBJECTIVES
 
+
+
+COURSE OBJECTIVES
+++++++++++++++++++++++++++
 By the end of this course, students will be able to
 
 • Understand database concepts, the three-schema architecture, data independence and the roles of database users.
@@ -63,6 +85,18 @@ Learning Outcomes:
 • Distinguish the file-processing and database approaches and identify suitable DBMS architectures and users for a given system (Skills)
 • Appreciate the role of a DBMS in managing data for modern applications (Competency)
 
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------------------------------
 UNIT 2: Data Modelling Using the ER/EER Model and the
         Relational Model                                  10 LHs
@@ -99,6 +133,20 @@ Learning Outcomes:
 • Design ER and EER diagrams based on given requirements and convert them into relational tables by applying appropriate mapping rules (Skills)
 • Apply conceptual modelling, relational database principles and integrity constraints to design sound, consistent and reliable database schemas for real-world problems (Competency).
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------------------------------
 UNIT 3: Database Normalization                             5 LHs
 ----------------------------------------------------------------
@@ -119,6 +167,19 @@ Learning Outcomes:
 • Explain anomalies, functional dependencies, normal forms and decomposition properties (Knowledge)
 • Compute attribute closures and normalize relations up to BCNF with lossless, dependency-preserving decomposition (Skills)
 • Apply normalization to produce efficient, redundancy-free database designs (Competency)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ----------------------------------------------------------------
 UNIT 4: Structured Query Language (SQL)                   10 LHs
@@ -148,6 +209,19 @@ Learning Outcomes:
 • Write SQL statements to create schemas, manipulate data, join tables, write nested queries and create views, basic triggers (Skills)
 • Apply SQL to solve data management problems in a relational DBMS (Competency)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------------------------------
 UNIT 5: Transaction Processing, Concurrency Control and
         Recovery                                           6 LHs
@@ -175,6 +249,19 @@ Learning Outcomes:
 • Explain ACID properties, serializability, concurrency control protocols and recovery techniques (Knowledge)
 • Test schedules for serializability and apply locking, timestamp ordering and log-based recovery to given scenarios (Skills)
 • Apply transaction management concepts to keep databases consistent during concurrent access and failures (Competency)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ----------------------------------------------------------------
 UNIT 6: NoSQL Databases                                    8 LHs
@@ -223,6 +310,19 @@ Learning Outcomes:
 • Create collections and perform CRUD, aggregation, indexing and data modelling operations in MongoDB (Skills)
 • Apply the appropriate relational or NoSQL data model for a given application (Competency)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------------------------------------
 UNIT 7: Advanced Topics                                    5 LHs
 ----------------------------------------------------------------
@@ -243,6 +343,19 @@ Learning Outcomes:
 • Appreciate emerging database technologies and their role in data-driven organizations (Competency)
 
 ================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 PEDAGOGICAL STRATEGIES
 
@@ -265,6 +378,19 @@ MODE OF DELIVERY
 
 ================================================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 INTERNAL ASSESSMENT METHODS AND TYPES (40%)
 
 Assessment Type                    Weightage    Details
@@ -283,6 +409,19 @@ EXTERNAL ASSESSMENT METHODS AND TYPES (60%)
 
 ================================================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 MAPPING COURSE: LEARNING OUTCOMES AND PROGRAM LEARNING
 
 Course Learning Objective (CLO)
@@ -300,6 +439,19 @@ Total Learning:
 • Competence (C): 25%
 
 ================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 LABORATORY WORK
 
@@ -336,3 +488,29 @@ SUGGESTED READINGS
 ================================================================
 END OF SYLLABUS
 ================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
