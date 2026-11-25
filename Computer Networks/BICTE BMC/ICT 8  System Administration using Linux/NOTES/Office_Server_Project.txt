@@ -1,0 +1,985 @@
+================================================================================
+        SECURE OFFICE SERVER PROJECT (LAMP + MAIL + SSL/TLS + FIREWALL)
+        Platform : Ubuntu Linux on Killercoda (Ubuntu Playground)
+        Topics   : Apache, MySQL, Postfix, Dovecot, SSL/TLS, SSH, Firewall, ACLs
+================================================================================
+
+
+--------------------------------------------------------------------------------
+PART 0 : CASE SCENARIO (OFFICE)
+--------------------------------------------------------------------------------
+
+Company  : Himalaya Trading Pvt. Ltd., Butwal (15 staff)
+Your role: System Administrator (Linux)
+
+PROBLEM
+  The office has no server. Staff send requests to IT by phone and paper.
+  Email goes through free public mail, and nothing is protected.
+
+MANAGEMENT ASKS YOU TO BUILD ONE SERVER THAT PROVIDES:
+  1. An internal office website (HTML, CSS, JavaScript, jQuery, PHP).
+  2. A database to store helpdesk messages (MySQL).
+  3. Internal email for staff (Postfix to send, Dovecot to read).
+  4. Security: HTTPS/TLS, SSH keys only, firewall, ACLs, anti-spam rules.
+  5. A check in the web browser that everything works.
+
+SERVER DETAILS USED IN THIS PROJECT
+  Domain      : office.local          (lab domain, not on the real internet)
+  Hostname    : mail.office.local
+  Web folder  : /var/www/office
+  Database    : office_db
+  DB user     : office_user   Password: Office@123
+  Mail users  : alice  (Alice@12345)   and   bob  (Bob@12345)
+  Web admin   : admin  (Admin@12345)
+  IMPORTANT   : These passwords are for the lab only. Change them in real life.
+
+HOW THE PIECES FIT TOGETHER
+
+   Staff browser ---HTTPS(443)---> [ Apache + PHP ] ---> [ MySQL ]
+                                         |
+                                         | PHP mail() sends a notice
+                                         v
+   Staff mail app <--IMAPS(993)-- [ Dovecot ] <--- [ Postfix ] <--SMTP(25)
+                                         |
+              [ UFW Firewall ]  +  [ SSH keys only ]  +  [ ACLs ]
+
+
+--------------------------------------------------------------------------------
+PART 1 : WHAT IS IT? (SHORT DEFINITIONS)
+--------------------------------------------------------------------------------
+
+Apache / HTTPD
+  Apache is a web server program. It receives requests from browsers and sends
+  back web pages. On Ubuntu the package is "apache2"; on Red Hat it is "httpd".
+
+HTML / CSS / JavaScript / jQuery
+  HTML builds the page structure. CSS styles it. JavaScript makes it interactive.
+  jQuery is a JavaScript library that makes things like AJAX shorter to write.
+
+PHP
+  A server-side language. Apache runs the PHP code and sends only the result
+  to the browser. PHP talks to MySQL.
+
+MySQL
+  A database server. It stores data in tables and is queried with SQL.
+
+SMTP
+  Simple Mail Transfer Protocol. The protocol used to SEND mail (port 25/587).
+
+Postfix
+  A Mail Transfer Agent (MTA). It sends and receives mail using SMTP.
+
+Dovecot
+  A mail delivery/reading server. It lets users read their mailbox using
+  IMAP (port 143/993) or POP3 (port 110/995).
+
+IMAP / POP3
+  IMAP keeps mail on the server and syncs it. POP3 downloads mail to one device.
+
+Cryptography
+  Protecting data using mathematics: encryption (hide data), hashing
+  (check data has not changed), and digital signatures (prove who sent it).
+
+SSL / TLS
+  Protocols that encrypt traffic between client and server. TLS is the newer
+  version of SSL. HTTPS = HTTP + TLS. A certificate proves the server identity.
+
+SSH
+  Secure Shell. Encrypted remote login to a Linux server (port 22).
+  SSH keys are safer than passwords.
+
+Firewall (UFW / iptables / firewalld)
+  A filter that allows or blocks network traffic by port, protocol and address.
+  iptables is the kernel firewall tool. UFW is an easy front end on Ubuntu.
+  firewalld is the front end on Red Hat/CentOS.
+
+ACL (Access Control List)
+  A finer permission list. Normal Linux permissions give only owner, group,
+  and others. ACLs let you give rights to extra specific users or groups.
+  Apache also has ACLs (Require ip ...) to limit who can open a URL.
+
+Anti-spam
+  Rules and tools that reject unwanted or fake mail (for example HELO checks,
+  sender checks, blocklists, SpamAssassin).
+
+
+--------------------------------------------------------------------------------
+PART 2 : PREPARE THE SERVER (KILLERCODA UBUNTU)
+--------------------------------------------------------------------------------
+
+In Killercoda you are normally logged in as root, so sudo is not needed.
+If your prompt is not root, put "sudo" before each command.
+
+Step 2.1  Update the system
+    apt update
+    apt upgrade -y
+
+Step 2.2  Set the hostname and local name resolution
+    hostnamectl set-hostname mail.office.local
+    echo "127.0.0.1  mail.office.local office.local mail" >> /etc/hosts
+    hostname -f
+
+    Expected: mail.office.local
+
+Step 2.3  Install helper tools
+    apt install -y curl nano net-tools nmap acl openssl
+
+
+--------------------------------------------------------------------------------
+PART 3 : APACHE + PHP + MYSQL (5.1 and 5.2)
+--------------------------------------------------------------------------------
+
+Step 3.1  Install Apache, PHP, MySQL and jQuery library
+    apt install -y apache2 apache2-utils php libapache2-mod-php php-mysql \
+        mysql-server libjs-jquery
+
+Step 3.2  Start services and enable them at boot
+    systemctl enable --now apache2
+    systemctl enable --now mysql
+    systemctl status apache2 --no-pager
+    systemctl status mysql --no-pager
+
+    If systemctl does not work in your lab, use:
+        service apache2 start
+        service mysql start
+
+Step 3.3  Quick test (terminal)
+    curl -I http://localhost
+
+    Expected first line: HTTP/1.1 200 OK
+
+--------------------------------------------------------------------
+3A. MYSQL ADMINISTRATION (5.2)
+--------------------------------------------------------------------
+
+Step 3.4  Create database, table and users
+    mysql <<'EOF'
+    CREATE DATABASE office_db CHARACTER SET utf8mb4;
+    USE office_db;
+    CREATE TABLE messages (
+        id         INT AUTO_INCREMENT PRIMARY KEY,
+        name       VARCHAR(100) NOT NULL,
+        email      VARCHAR(150) NOT NULL,
+        message    TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE USER 'office_user'@'localhost' IDENTIFIED BY 'Office@123';
+    GRANT SELECT, INSERT ON office_db.* TO 'office_user'@'localhost';
+    FLUSH PRIVILEGES;
+    EOF
+
+    NOTE: The web user gets only SELECT and INSERT (least privilege).
+          It cannot delete or drop anything.
+
+Step 3.5  Check what was created
+    mysql -e "SHOW DATABASES;"
+    mysql -e "USE office_db; SHOW TABLES; DESCRIBE messages;"
+    mysql -e "SHOW GRANTS FOR 'office_user'@'localhost';"
+
+Step 3.6  Secure MySQL (same goals as mysql_secure_installation)
+    mysql -e "DELETE FROM mysql.user WHERE User='';"
+    mysql -e "DROP DATABASE IF EXISTS test;"
+    mysql -e "FLUSH PRIVILEGES;"
+
+    Make MySQL listen only on the local machine:
+    grep -R "bind-address" /etc/mysql/
+    (It should show 127.0.0.1. If not, set bind-address = 127.0.0.1 in
+     /etc/mysql/mysql.conf.d/mysqld.cnf and run: systemctl restart mysql)
+
+Step 3.7  Backup and restore
+    mkdir -p /root/backup
+    mysqldump office_db > /root/backup/office_db.sql
+    ls -l /root/backup/
+
+    Restore (when needed):
+        mysql office_db < /root/backup/office_db.sql
+
+Step 3.8  Useful MySQL admin checks
+    mysql -e "SELECT user,host FROM mysql.user;"
+    mysql -e "SHOW PROCESSLIST;"
+    mysql -e "STATUS;"
+
+--------------------------------------------------------------------
+3B. WEBSITE FILES (HTML, CSS, JS, jQuery, PHP)
+--------------------------------------------------------------------
+
+Step 3.9  Create folders
+    mkdir -p /var/www/office/admin
+    mkdir -p /var/www/config
+    cp /usr/share/javascript/jquery/jquery.min.js /var/www/office/jquery.min.js
+
+Step 3.10  Database config file (kept OUTSIDE the web folder for safety)
+    cat > /var/www/config/db.php <<'EOF'
+    <?php
+    $db = new mysqli('localhost', 'office_user', 'Office@123', 'office_db');
+    if ($db->connect_error) {
+        http_response_code(500);
+        die('Database error');
+    }
+    $db->set_charset('utf8mb4');
+    EOF
+    chown root:www-data /var/www/config/db.php
+    chmod 640 /var/www/config/db.php
+
+Step 3.11  index.html  (HTML page with a form)
+    cat > /var/www/office/index.html <<'EOF'
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Himalaya Trading - Office Portal</title>
+      <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <header>
+        <h1>Himalaya Trading Pvt. Ltd.</h1>
+        <p>Internal Office Portal - Butwal</p>
+      </header>
+      <main>
+        <h2>Send a message to the IT Helpdesk</h2>
+        <form id="msgForm">
+          <label>Name</label>
+          <input type="text" name="name" required>
+          <label>Email</label>
+          <input type="email" name="email" required>
+          <label>Message</label>
+          <textarea name="message" rows="5" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+        <p id="result"></p>
+        <p><a href="admin/list.php">Admin: view all messages</a></p>
+      </main>
+      <footer>Server: Ubuntu + Apache + PHP + MySQL | Secured with TLS</footer>
+      <script src="jquery.min.js"></script>
+      <script src="script.js"></script>
+    </body>
+    </html>
+    EOF
+
+Step 3.12  style.css  (CSS)
+    cat > /var/www/office/style.css <<'EOF'
+    body   { font-family: Arial, sans-serif; margin: 0; background: #f2f5f9; }
+    header { background: #0b3d6b; color: #fff; padding: 20px; text-align: center; }
+    main   { max-width: 520px; margin: 30px auto; background: #fff; padding: 25px;
+             border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    label  { display: block; margin-top: 12px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+    button { margin-top: 15px; padding: 10px 25px; background: #0b3d6b; color: #fff;
+             border: 0; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #09294a; }
+    footer { text-align: center; color: #666; padding: 15px; font-size: 13px; }
+    table  { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+    EOF
+
+Step 3.13  script.js  (JavaScript + jQuery AJAX)
+    cat > /var/www/office/script.js <<'EOF'
+    $(function () {
+      $('#msgForm').on('submit', function (e) {
+        e.preventDefault();
+        $.post('submit.php', $(this).serialize())
+          .done(function () {
+            $('#result').text('Message saved. Thank you!').css('color', 'green');
+            $('#msgForm')[0].reset();
+          })
+          .fail(function () {
+            $('#result').text('Error: please check your input.').css('color', 'red');
+          });
+      });
+    });
+    EOF
+
+Step 3.14  submit.php  (PHP saves to MySQL and sends a mail notice)
+    cat > /var/www/office/submit.php <<'EOF'
+    <?php
+    require '/var/www/config/db.php';
+    header('Content-Type: application/json');
+
+    $name  = trim($_POST['name']    ?? '');
+    $email = trim($_POST['email']   ?? '');
+    $msg   = trim($_POST['message'] ?? '');
+
+    if ($name === '' || $msg === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo json_encode(['ok' => false]);
+        exit;
+    }
+
+    $stmt = $db->prepare('INSERT INTO messages (name, email, message) VALUES (?, ?, ?)');
+    $stmt->bind_param('sss', $name, $email, $msg);
+    $stmt->execute();
+
+    // Mail notice to IT staff (works after Part 5 is done)
+    $subject = 'New helpdesk message from ' . preg_replace('/[\r\n]+/', ' ', $name);
+    @mail('bob@office.local', $subject, $msg, 'From: webform@office.local');
+
+    echo json_encode(['ok' => true]);
+    EOF
+
+    NOTE: prepare() + bind_param() is a "prepared statement". It protects the
+          database from SQL injection.
+
+Step 3.15  admin/list.php  (shows saved messages)
+    cat > /var/www/office/admin/list.php <<'EOF'
+    <?php
+    require '/var/www/config/db.php';
+    $res = $db->query('SELECT id, name, email, message, created_at FROM messages ORDER BY id DESC');
+    ?>
+    <!DOCTYPE html>
+    <html><head><meta charset="UTF-8"><title>Messages</title>
+    <link rel="stylesheet" href="../style.css"></head>
+    <body>
+    <header><h1>Helpdesk Messages</h1></header>
+    <main style="max-width:900px">
+    <table>
+      <tr><th>ID</th><th>Name</th><th>Email</th><th>Message</th><th>Time</th></tr>
+      <?php while ($r = $res->fetch_assoc()): ?>
+      <tr>
+        <td><?= (int)$r['id'] ?></td>
+        <td><?= htmlspecialchars($r['name']) ?></td>
+        <td><?= htmlspecialchars($r['email']) ?></td>
+        <td><?= htmlspecialchars($r['message']) ?></td>
+        <td><?= htmlspecialchars($r['created_at']) ?></td>
+      </tr>
+      <?php endwhile; ?>
+    </table>
+    <p><a href="../index.html">Back</a></p>
+    </main></body></html>
+    EOF
+
+    NOTE: htmlspecialchars() stops XSS (script injection) when showing data.
+
+Step 3.16  Test PHP is working
+    echo '<?php phpinfo();' > /var/www/office/info.php
+    curl -s http://localhost/info.php | head -n 5
+    rm /var/www/office/info.php
+
+    (Always delete info.php. It shows too much to attackers.)
+
+Step 3.17  Password for the admin area (Basic Auth)
+    htpasswd -bc /etc/apache2/.htpasswd admin 'Admin@12345'
+
+Step 3.18  Apache directory rules (ACL for web folders)
+    cat > /etc/apache2/conf-available/office-dirs.conf <<'EOF'
+    <Directory /var/www/office>
+        Options -Indexes +FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/office/admin>
+        AuthType Basic
+        AuthName "Office Admin Area"
+        AuthUserFile /etc/apache2/.htpasswd
+        Require valid-user
+        # Web ACL example (limit by IP). Uncomment to use:
+        # Require ip 127.0.0.1 10.0.0.0/8
+    </Directory>
+    EOF
+
+Step 3.19  Harden Apache (hide version, add security headers)
+    a2enmod headers
+    cat > /etc/apache2/conf-available/hardening.conf <<'EOF'
+    ServerTokens Prod
+    ServerSignature Off
+    TraceEnable Off
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    EOF
+
+Step 3.20  Create the virtual host for port 80
+    cat > /etc/apache2/sites-available/office.conf <<'EOF'
+    <VirtualHost *:80>
+        ServerName office.local
+        DocumentRoot /var/www/office
+        DirectoryIndex index.html index.php
+        ErrorLog  ${APACHE_LOG_DIR}/office_error.log
+        CustomLog ${APACHE_LOG_DIR}/office_access.log combined
+    </VirtualHost>
+    EOF
+
+Step 3.21  Fix ownership, enable site, test and reload
+    chown -R www-data:www-data /var/www/office
+    find /var/www/office -type d -exec chmod 755 {} \;
+    find /var/www/office -type f -exec chmod 644 {} \;
+
+    a2dissite 000-default
+    a2enconf office-dirs hardening
+    a2ensite office
+    apache2ctl configtest
+    systemctl reload apache2
+
+    Expected: "Syntax OK"
+
+Step 3.22  Terminal test of the full web + database path
+    curl -s http://localhost/ | head -n 8
+    curl -s -X POST -d "name=Ram&email=ram@office.local&message=Printer not working" \
+         http://localhost/submit.php
+    mysql -e "SELECT * FROM office_db.messages;"
+
+    Expected: {"ok":true} and one row visible in MySQL.
+
+
+--------------------------------------------------------------------------------
+PART 4 : EMAIL SERVER - POSTFIX + DOVECOT (5.1)
+--------------------------------------------------------------------------------
+
+Step 4.1  Create mail users (each gets a Linux account and a mailbox)
+    useradd -m -s /bin/bash alice
+    useradd -m -s /bin/bash bob
+    echo 'alice:Alice@12345' | chpasswd
+    echo 'bob:Bob@12345'     | chpasswd
+
+Step 4.2  Install Postfix and Dovecot without prompts
+    export DEBIAN_FRONTEND=noninteractive
+    debconf-set-selections <<< "postfix postfix/mailname string office.local"
+    debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+    apt install -y postfix mailutils dovecot-core dovecot-imapd dovecot-pop3d
+
+Step 4.3  Configure Postfix (SMTP server)
+    postconf -e "myhostname = mail.office.local"
+    postconf -e "mydomain = office.local"
+    postconf -e "myorigin = \$mydomain"
+    postconf -e "inet_interfaces = all"
+    postconf -e "mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain"
+    postconf -e "mynetworks = 127.0.0.0/8"
+    postconf -e "home_mailbox = Maildir/"
+    postconf -e "disable_vrfy_command = yes"
+    systemctl restart postfix
+
+    Meaning of key settings:
+      myorigin / mydestination : which domains this server accepts mail for
+      mynetworks               : who may relay mail (only localhost here)
+      home_mailbox = Maildir/  : mail is saved in ~/Maildir (Dovecot reads it)
+
+Step 4.4  Configure Dovecot (IMAP/POP3 server)
+    cat > /etc/dovecot/conf.d/99-office.conf <<'EOF'
+    mail_location = maildir:~/Maildir
+    disable_plaintext_auth = yes
+    auth_mechanisms = plain login
+    EOF
+    systemctl restart dovecot
+
+    (Files that load later override earlier ones, so 99- is a safe place.)
+
+Step 4.5  Send a test mail and check delivery
+    echo "Hello Bob, server test." | mail -s "Test 1" bob@office.local
+    sleep 3
+    ls /home/bob/Maildir/new/
+    cat /home/bob/Maildir/new/* | head -n 20
+
+    If you see a file in "new", Postfix delivered the mail to Bob.
+
+Step 4.6  Read the mail through Dovecot (IMAP test)
+    doveadm auth test bob 'Bob@12345'
+    printf 'a1 LOGIN bob Bob@12345\r\na2 SELECT INBOX\r\na3 LOGOUT\r\n' | nc -q 2 localhost 143
+
+    Expected: "auth succeeded" and "a2 OK ... Select completed".
+
+Step 4.7  Check the mail logs
+    journalctl -u postfix --no-pager | tail -n 15
+    tail -n 15 /var/log/mail.log        (if the file exists)
+    postqueue -p                         (queue should be empty)
+
+--------------------------------------------------------------------
+4A. ANTI-SPAM MEASURES (Postfix rules)
+--------------------------------------------------------------------
+
+Step 4.8  Add basic anti-spam checks
+    postconf -e "smtpd_helo_required = yes"
+    postconf -e "smtpd_helo_restrictions = permit_mynetworks, reject_invalid_helo_hostname, reject_non_fqdn_helo_hostname"
+    postconf -e "smtpd_sender_restrictions = permit_mynetworks, reject_non_fqdn_sender"
+    postconf -e "smtpd_recipient_restrictions = permit_mynetworks, reject_unauth_destination, reject_non_fqdn_recipient"
+    postconf -e "smtpd_relay_restrictions = permit_mynetworks, reject_unauth_destination"
+    postconf -e "smtpd_client_connection_count_limit = 10"
+    postconf -e "message_size_limit = 10485760"
+    systemctl reload postfix
+
+    What they do:
+      helo_required            : sender must say HELO (bots often skip it)
+      reject_non_fqdn_*        : reject fake or incomplete addresses
+      reject_unauth_destination: server is NOT an open relay
+      connection_count_limit   : slows down flooding from one client
+      message_size_limit       : max mail size 10 MB
+
+Step 4.9  Optional extra anti-spam (needs internet DNS, may not work in lab)
+    - Blocklist check: add  reject_rbl_client zen.spamhaus.org
+      inside smtpd_recipient_restrictions.
+    - Content filter: apt install -y spamassassin spamc
+    - Brute-force protection: apt install -y fail2ban
+
+Step 4.10 Prove it is not an open relay (must be refused from outside)
+    From any other machine you would test:  telnet SERVER-IP 25
+        MAIL FROM:<x@example.com>
+        RCPT TO:<someone@gmail.com>
+    Expected: "Relay access denied".
+
+
+--------------------------------------------------------------------------------
+PART 5 : SSL / TLS CERTIFICATE (5.3 CRYPTOGRAPHY)
+--------------------------------------------------------------------------------
+
+A real office uses a certificate from a CA such as Let's Encrypt. In a lab with
+no public domain we create a SELF-SIGNED certificate. The encryption is the
+same. Browsers only show a warning because no known CA signed it.
+
+Step 5.1  Create the private key and certificate (valid 365 days)
+    mkdir -p /etc/ssl/office
+    openssl req -x509 -nodes -newkey rsa:2048 -days 365 \
+      -keyout /etc/ssl/office/office.key \
+      -out    /etc/ssl/office/office.crt \
+      -subj "/C=NP/ST=Lumbini/L=Butwal/O=Himalaya Trading/CN=office.local" \
+      -addext "subjectAltName=DNS:office.local,DNS:mail.office.local"
+    chmod 600 /etc/ssl/office/office.key
+    chmod 644 /etc/ssl/office/office.crt
+
+Step 5.2  Read the certificate
+    openssl x509 -in /etc/ssl/office/office.crt -noout -subject -dates -issuer
+
+--------------------------------------------------------------------
+5A. HTTPS ON APACHE
+--------------------------------------------------------------------
+
+Step 5.3  Enable SSL and create the HTTPS virtual host
+    a2enmod ssl
+    cat > /etc/apache2/sites-available/office-ssl.conf <<'EOF'
+    <VirtualHost *:443>
+        ServerName office.local
+        DocumentRoot /var/www/office
+        DirectoryIndex index.html index.php
+
+        SSLEngine on
+        SSLCertificateFile    /etc/ssl/office/office.crt
+        SSLCertificateKeyFile /etc/ssl/office/office.key
+        SSLProtocol -all +TLSv1.2 +TLSv1.3
+        SSLCipherSuite HIGH:!aNULL:!MD5:!3DES
+
+        Header always set Strict-Transport-Security "max-age=31536000"
+
+        ErrorLog  ${APACHE_LOG_DIR}/office_ssl_error.log
+        CustomLog ${APACHE_LOG_DIR}/office_ssl_access.log combined
+    </VirtualHost>
+    EOF
+    a2ensite office-ssl
+    apache2ctl configtest
+    systemctl restart apache2
+
+Step 5.4  Test HTTPS in the terminal
+    curl -kI https://localhost
+    openssl s_client -connect localhost:443 -servername office.local </dev/null 2>/dev/null | grep -E "Protocol|Cipher|subject"
+
+    (-k means "accept the self-signed certificate")
+
+Step 5.5  OPTIONAL - force HTTP to redirect to HTTPS
+    Replace the port 80 file with this content:
+    cat > /etc/apache2/sites-available/office.conf <<'EOF'
+    <VirtualHost *:80>
+        ServerName office.local
+        Redirect permanent / https://office.local/
+    </VirtualHost>
+    EOF
+    systemctl reload apache2
+
+    WARNING FOR KILLERCODA: The Killercoda browser link (Traffic/Ports) cannot
+    resolve "office.local", so the redirect will break your browser test there.
+    Do this step LAST, or skip it in Killercoda. On a real server or your own
+    VM, add office.local to your PC hosts file and the redirect works well.
+
+--------------------------------------------------------------------
+5B. TLS FOR POSTFIX AND DOVECOT
+--------------------------------------------------------------------
+
+Step 5.6  Dovecot: force encryption (IMAPS 993 / POP3S 995)
+    cat >> /etc/dovecot/conf.d/99-office.conf <<'EOF'
+    ssl = required
+    ssl_cert = </etc/ssl/office/office.crt
+    ssl_key  = </etc/ssl/office/office.key
+    ssl_min_protocol = TLSv1.2
+    EOF
+    systemctl restart dovecot
+
+Step 5.7  Postfix: enable STARTTLS on SMTP
+    postconf -e "smtpd_tls_cert_file = /etc/ssl/office/office.crt"
+    postconf -e "smtpd_tls_key_file  = /etc/ssl/office/office.key"
+    postconf -e "smtpd_tls_security_level = may"
+    postconf -e "smtp_tls_security_level = may"
+    postconf -e "smtpd_tls_protocols = >=TLSv1.2"
+    systemctl restart postfix
+
+Step 5.8  Test TLS for mail
+    openssl s_client -connect localhost:993 -quiet </dev/null
+    openssl s_client -starttls smtp -connect localhost:25 </dev/null 2>/dev/null | grep -E "Protocol|Cipher"
+
+    Test login over the encrypted IMAP port:
+    printf 'a1 LOGIN bob Bob@12345\r\na2 LIST "" "*"\r\na3 LOGOUT\r\n' | openssl s_client -quiet -connect localhost:993 2>/dev/null
+
+    Expected: "a1 OK ... Logged in".
+
+--------------------------------------------------------------------
+5C. SMALL CRYPTOGRAPHY DEMOS (for understanding)
+--------------------------------------------------------------------
+
+Hashing (detect change):
+    echo "salary report" > /tmp/file.txt
+    sha256sum /tmp/file.txt
+    echo "salary report changed" > /tmp/file.txt
+    sha256sum /tmp/file.txt
+    (A tiny change gives a completely different hash.)
+
+Symmetric encryption (one shared password):
+    echo "secret office plan" > /tmp/plan.txt
+    openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/plan.txt -out /tmp/plan.enc -pass pass:LabPass123
+    cat /tmp/plan.enc                (unreadable)
+    openssl enc -d -aes-256-cbc -pbkdf2 -in /tmp/plan.enc -pass pass:LabPass123
+
+Asymmetric encryption (public key / private key):
+    This is what TLS and SSH use to start a secure session.
+
+
+--------------------------------------------------------------------------------
+PART 6 : SSH KEYS (5.3 SECURE LOGIN)
+--------------------------------------------------------------------------------
+
+Step 6.1  Install and start the SSH server
+    apt install -y openssh-server
+    systemctl enable --now ssh
+
+Step 6.2  Create an admin user for remote login
+    useradd -m -s /bin/bash -G sudo sysadmin
+    echo 'sysadmin:Sys@12345' | chpasswd
+
+Step 6.3  Generate an SSH key pair (act as the administrator)
+    su - sysadmin -c "ssh-keygen -t ed25519 -N '' -f ~/.ssh/id_ed25519"
+
+Step 6.4  Install the PUBLIC key on the server (authorized_keys)
+    mkdir -p /home/sysadmin/.ssh
+    cat /home/sysadmin/.ssh/id_ed25519.pub >> /home/sysadmin/.ssh/authorized_keys
+    chown -R sysadmin:sysadmin /home/sysadmin/.ssh
+    chmod 700 /home/sysadmin/.ssh
+    chmod 600 /home/sysadmin/.ssh/authorized_keys
+
+    (In a real office you run ssh-keygen on your PC and use ssh-copy-id.)
+
+Step 6.5  Test key login BEFORE you disable passwords
+    su - sysadmin -c "ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 sysadmin@localhost 'whoami; hostname'"
+
+    Expected: sysadmin  and  mail.office.local
+
+Step 6.6  Harden SSH (only after Step 6.5 worked)
+    cat > /etc/ssh/sshd_config.d/99-hardening.conf <<'EOF'
+    PermitRootLogin no
+    PasswordAuthentication no
+    PubkeyAuthentication yes
+    PermitEmptyPasswords no
+    MaxAuthTries 3
+    LoginGraceTime 30
+    ClientAliveInterval 300
+    ClientAliveCountMax 2
+    AllowUsers sysadmin
+    EOF
+    sshd -t
+    systemctl restart ssh
+
+    WARNING: Never close your working terminal until a second login test
+    succeeds. A bad SSH config can lock you out of a real server.
+    (In Killercoda your terminal is not an SSH session, so you are safe.)
+
+Step 6.7  Prove that passwords are now refused
+    ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no alice@localhost
+
+    Expected: "Permission denied" (alice is not allowed, and passwords are off).
+
+
+--------------------------------------------------------------------------------
+PART 7 : FIREWALL (UFW, WITH IPTABLES ALTERNATIVE)
+--------------------------------------------------------------------------------
+
+Open ports we need:
+    22  SSH          80  HTTP         443 HTTPS
+    25  SMTP         993 IMAPS        995 POP3S
+Closed on purpose: 3306 (MySQL), 143 (plain IMAP), 110 (plain POP3).
+
+Step 7.1  Install UFW and set default rules
+    apt install -y ufw
+    ufw default deny incoming
+    ufw default allow outgoing
+
+Step 7.2  Allow SSH FIRST (so you do not lock yourself out)
+    ufw limit 22/tcp comment 'SSH with rate limit'
+
+Step 7.3  Allow the other services
+    ufw allow 80/tcp  comment 'HTTP'
+    ufw allow 443/tcp comment 'HTTPS'
+    ufw allow 25/tcp  comment 'SMTP'
+    ufw allow 993/tcp comment 'IMAPS'
+    ufw allow 995/tcp comment 'POP3S'
+
+Step 7.4  Turn it on and view the rules
+    ufw --force enable
+    ufw status verbose
+    ufw status numbered
+
+Step 7.5  Check which services are listening
+    ss -tulpn
+
+    MySQL should show 127.0.0.1:3306 only (not 0.0.0.0).
+
+    NOTE: Testing from the same machine (localhost) always bypasses the
+    firewall. To truly test, scan from another host or use the Killercoda
+    second node if your scenario has one:
+        nmap -Pn -p 22,25,80,110,143,443,993,995,3306 SERVER-IP
+
+Step 7.6  Delete or change a rule (practice)
+    ufw delete allow 995/tcp
+    ufw status numbered
+
+--------------------------------------------------------------------
+ALTERNATIVE: IPTABLES (use this instead of UFW, not together)
+--------------------------------------------------------------------
+
+    ufw disable
+    iptables -F
+    iptables -P INPUT DROP
+    iptables -P FORWARD DROP
+    iptables -P OUTPUT ACCEPT
+    iptables -A INPUT -i lo -j ACCEPT
+    iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+    iptables -A INPUT -p tcp --dport 22  -j ACCEPT
+    iptables -A INPUT -p tcp --dport 80  -j ACCEPT
+    iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+    iptables -A INPUT -p tcp --dport 25  -j ACCEPT
+    iptables -A INPUT -p tcp --dport 993 -j ACCEPT
+    iptables -A INPUT -p tcp --dport 995 -j ACCEPT
+    iptables -L -n -v --line-numbers
+
+    Save rules after reboot (Ubuntu):
+        apt install -y iptables-persistent
+        netfilter-persistent save
+
+--------------------------------------------------------------------
+ALTERNATIVE: FIREWALLD (Red Hat / CentOS style)
+--------------------------------------------------------------------
+
+    firewall-cmd --permanent --add-service={ssh,http,https,smtp,imaps,pop3s}
+    firewall-cmd --reload
+    firewall-cmd --list-all
+
+
+--------------------------------------------------------------------------------
+PART 8 : ACLs (5.3 ACCESS CONTROL LISTS)
+--------------------------------------------------------------------------------
+
+Scenario: A shared folder /srv/office-docs.
+    Group "finance" : full access
+    Group "hr"      : read only
+    User  "bob"     : read only (he is IT, needs to check files)
+    Everyone else   : no access
+
+Step 8.1  Create groups and folder
+    groupadd finance
+    groupadd hr
+    usermod -aG finance alice
+    usermod -aG hr bob
+    mkdir -p /srv/office-docs
+    chmod 770 /srv/office-docs
+
+Step 8.2  Set ACLs
+    setfacl -m g:finance:rwx /srv/office-docs
+    setfacl -m g:hr:r-x      /srv/office-docs
+    setfacl -m u:bob:r-x     /srv/office-docs
+
+Step 8.3  Default ACL (new files inherit the same rules)
+    setfacl -d -m g:finance:rwx /srv/office-docs
+    setfacl -d -m g:hr:r-x      /srv/office-docs
+
+Step 8.4  View the ACL
+    getfacl /srv/office-docs
+    ls -ld /srv/office-docs         (a "+" at the end means an ACL exists)
+
+Step 8.5  Test the permissions
+    su - alice -c "touch /srv/office-docs/budget.txt && echo alice can write"
+    su - bob   -c "touch /srv/office-docs/test.txt"
+    su - bob   -c "ls /srv/office-docs"
+
+    Expected: alice can write; bob gets "Permission denied" on touch,
+    but bob can list files.
+
+Step 8.6  Remove an ACL
+    setfacl -x u:bob /srv/office-docs
+    setfacl -b /srv/office-docs        (removes ALL ACL entries)
+
+Other ACLs used in this project:
+    Apache   : "Require ip" and "Require valid-user" in office-dirs.conf
+    Postfix  : "mynetworks" and "smtpd_*_restrictions"
+    Firewall : UFW / iptables allow and deny rules
+    MySQL    : GRANT / REVOKE for each database user
+
+
+--------------------------------------------------------------------------------
+PART 9 : VERIFY EVERYTHING IN THE WEB BROWSER
+--------------------------------------------------------------------------------
+
+KILLERCODA BROWSER ACCESS
+    1. In the Killercoda top-right menu, click "Traffic / Ports".
+    2. Choose "Custom Ports", type 80, click "Access".
+       A new browser tab opens with a long killercoda.com address.
+    3. For HTTPS, try port 443. The Killercoda proxy may not accept HTTPS to
+       the backend. If it fails, verify HTTPS with the terminal commands in
+       Step 5.4 and Step 5.8 (curl -k and openssl s_client). That is valid proof.
+
+ON A NORMAL VM / PC
+    Add this line to your hosts file, using your server IP:
+        192.168.1.50   office.local mail.office.local
+    Then open: https://office.local
+
+BROWSER CHECKLIST (tick each item)
+
+ [ ] 1. Home page opens, with the blue header and the form (HTML + CSS OK).
+ [ ] 2. Submit the form: green "Message saved" appears without page reload
+        (JavaScript + jQuery AJAX OK).
+ [ ] 3. Open "Admin: view all messages". A username/password box appears
+        (admin / Admin@12345). Your message is in the table
+        (PHP + MySQL OK, Basic Auth OK).
+ [ ] 4. Open /submit.php directly: you get a JSON error, not a crash.
+ [ ] 5. Open /admin/ without logging in: access is refused (ACL OK).
+ [ ] 6. Open https://IP-or-name (VM/PC): padlock/warning for self-signed cert.
+        Click the certificate: it shows CN = office.local (TLS OK).
+ [ ] 7. Try a folder like /nofolder/: 404 page shows no Apache version
+        (hardening OK).
+ [ ] 8. After the form is submitted, check IT mail in the terminal:
+        ls /home/bob/Maildir/new/   -> a new "New helpdesk message" mail
+        (PHP -> Postfix -> Dovecot mailbox chain OK).
+
+TERMINAL SUMMARY TEST (run all and compare)
+    systemctl is-active apache2 mysql postfix dovecot ssh
+    curl -kI https://localhost | head -n 1
+    ufw status | head -n 3
+    ss -tulpn | grep -E ":(22|25|80|443|993|995|3306)\b"
+    mysql -e "SELECT COUNT(*) AS saved_messages FROM office_db.messages;"
+
+
+--------------------------------------------------------------------------------
+PART 10 : TROUBLESHOOTING (SERVERS AND NETWORKS)
+--------------------------------------------------------------------------------
+
+Follow this order: 1) Is the service running?  2) Is the port listening?
+3) Does the firewall allow it?  4) What do the logs say?
+
+COMMON COMMANDS
+    systemctl status SERVICE --no-pager
+    journalctl -u SERVICE --no-pager | tail -n 30
+    ss -tulpn                              (listening ports)
+    ping -c 3 localhost
+    ip a                                   (IP address)
+    ip route                               (gateway)
+    cat /etc/resolv.conf                   (DNS)
+    curl -v http://localhost
+    nmap -p 1-1000 localhost
+
+PROBLEM TABLE
+
+ Problem                              Check / Fix
+ -----------------------------------  ----------------------------------------
+ Apache will not start                apache2ctl configtest ; check port 80 is
+                                      free: ss -tulpn | grep :80
+ Browser shows 403 Forbidden          chown -R www-data:www-data /var/www/office
+                                      check Require lines in office-dirs.conf
+ PHP shows source code, not output    a2enmod php* ; systemctl restart apache2
+                                      (apt install libapache2-mod-php)
+ Form says "Error" or HTTP 500        tail /var/log/apache2/error.log ;
+                                      check db.php password and mysql user
+ "Access denied for user"             Re-create the user, then FLUSH PRIVILEGES
+ MySQL not running                    systemctl restart mysql ;
+                                      journalctl -u mysql | tail
+ Mail not delivered                   postqueue -p ; journalctl -u postfix ;
+                                      check mydestination and home_mailbox
+ Mail "Relay access denied"           Correct if sender is outside mynetworks
+ Dovecot login fails                  doveadm auth test USER PASSWORD ;
+                                      check mail_location and 99-office.conf
+ Dovecot will not start               doveconf -n  (shows config errors)
+ TLS error / certificate warning      Normal for self-signed. For real use, get
+                                      a Let's Encrypt certificate.
+ SSH "Permission denied (publickey)"  Check permissions: .ssh = 700,
+                                      authorized_keys = 600, correct owner
+ Locked out after firewall            Console access: ufw disable, then allow
+                                      port 22 first and enable again
+ Cannot reach site from outside       ufw status ; ss -tulpn ; check cloud /
+                                      lab port forwarding
+
+USEFUL LOG FILES
+    /var/log/apache2/error.log        /var/log/apache2/office_access.log
+    /var/log/mail.log  (or journalctl -u postfix / dovecot)
+    /var/log/auth.log                 (SSH and login attempts)
+    /var/log/mysql/error.log
+    /var/log/ufw.log                  (blocked traffic)
+
+
+--------------------------------------------------------------------------------
+PART 11 : PRACTICAL WORKS MAP (CHECKLIST FOR YOUR LAB REPORT)
+--------------------------------------------------------------------------------
+
+Practical 1: Set up a basic Apache web server and host a sample website
+    -> Parts 3.1 to 3.22, tested in Part 9
+
+Practical 2: Configure an email server using Postfix or Dovecot
+    -> Part 4 (Postfix SMTP + Dovecot IMAP), TLS in 5.6 to 5.8
+
+Practical 3: Secure a Linux server using SSH keys, configure a firewall
+    -> Part 6 (SSH keys) and Part 7 (UFW / iptables / firewalld)
+
+Specific Objectives covered:
+    Configure Apache, MySQL, Postfix, Dovecot ......... Parts 3 and 4
+    Troubleshoot servers and networks ................. Part 10
+    Secure with SSL/TLS, SSH, firewalls ............... Parts 5, 6, 7
+    Implement ACLs and anti-spam ...................... Part 4A and Part 8
+
+Contents covered:
+    5.1 Apache, HTTPD, Email (SMTP, Postfix, Dovecot) .. Parts 3 and 4
+    5.2 MySQL Administration ........................... Part 3A
+    5.3 Cryptography, SSH, Firewall, ACLs .............. Parts 5, 6, 7, 8
+
+
+--------------------------------------------------------------------------------
+PART 12 : SHORT VIVA QUESTIONS
+--------------------------------------------------------------------------------
+
+Q1. What is the difference between SMTP and IMAP?
+    SMTP sends mail between servers. IMAP lets a user read mail on the server.
+
+Q2. Why is the DB config file kept outside /var/www/office?
+    So the web server can never show it as plain text if PHP breaks.
+
+Q3. Why use SSH keys instead of passwords?
+    Keys cannot be guessed by brute force and the private key never leaves
+    your computer.
+
+Q4. Why allow SSH in the firewall before enabling it?
+    Otherwise the firewall blocks your own connection and you lock yourself out.
+
+Q5. What is an open relay?
+    A mail server that sends mail for anyone. Spammers abuse it. We prevent it
+    with reject_unauth_destination and mynetworks.
+
+Q6. Self-signed vs CA-signed certificate?
+    Both encrypt. Only a CA-signed one is trusted by browsers automatically.
+
+Q7. What does a "+" at the end of ls -l permissions mean?
+    The file has an ACL.
+
+
+--------------------------------------------------------------------------------
+PART 13 : CLEAN UP (OPTIONAL, FOR RE-DOING THE LAB)
+--------------------------------------------------------------------------------
+
+    ufw --force reset
+    systemctl stop apache2 postfix dovecot mysql
+    apt purge -y apache2 mysql-server postfix dovecot-core
+    rm -rf /var/www/office /var/www/config /etc/ssl/office
+    userdel -r alice ; userdel -r bob ; userdel -r sysadmin
+
+Killercoda sessions also reset automatically when the time ends.
+
+================================================================================
+                                 END OF PROJECT
+================================================================================
