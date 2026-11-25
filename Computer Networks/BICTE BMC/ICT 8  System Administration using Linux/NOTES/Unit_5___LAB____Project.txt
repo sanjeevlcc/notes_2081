@@ -12,18 +12,30 @@ PART 0 : CASE SCENARIO (OFFICE)
 Company  : Himalaya Trading Pvt. Ltd., Butwal (15 staff)
 Your role: System Administrator (Linux)
 
+
+
+
 PROBLEM
+-------------
   The office has no server. Staff send requests to IT by phone and paper.
   Email goes through free public mail, and nothing is protected.
 
+
+
+
 MANAGEMENT ASKS YOU TO BUILD ONE SERVER THAT PROVIDES:
+-----------------------------------------------------------------
   1. An internal office website (HTML, CSS, JavaScript, jQuery, PHP).
   2. A database to store helpdesk messages (MySQL).
   3. Internal email for staff (Postfix to send, Dovecot to read).
   4. Security: HTTPS/TLS, SSH keys only, firewall, ACLs, anti-spam rules.
   5. A check in the web browser that everything works.
 
+
+
+
 SERVER DETAILS USED IN THIS PROJECT
+---------------------------------------
   Domain      : office.local          (lab domain, not on the real internet)
   Hostname    : mail.office.local
   Web folder  : /var/www/office
@@ -33,8 +45,13 @@ SERVER DETAILS USED IN THIS PROJECT
   Web admin   : admin  (Admin@12345)
   IMPORTANT   : These passwords are for the lab only. Change them in real life.
 
-HOW THE PIECES FIT TOGETHER
 
+
+
+
+
+HOW THE PIECES FIT TOGETHER
+---------------------------------------
    Staff browser ---HTTPS(443)---> [ Apache + PHP ] ---> [ MySQL ]
                                          |
                                          | PHP mail() sends a notice
@@ -42,6 +59,10 @@ HOW THE PIECES FIT TOGETHER
    Staff mail app <--IMAPS(993)-- [ Dovecot ] <--- [ Postfix ] <--SMTP(25)
                                          |
               [ UFW Firewall ]  +  [ SSH keys only ]  +  [ ACLs ]
+
+
+
+
 
 
 --------------------------------------------------------------------------------
@@ -103,6 +124,11 @@ Anti-spam
   sender checks, blocklists, SpamAssassin).
 
 
+
+
+
+
+
 --------------------------------------------------------------------------------
 PART 2 : PREPARE THE SERVER (KILLERCODA UBUNTU)
 --------------------------------------------------------------------------------
@@ -125,6 +151,9 @@ Step 2.3  Install helper tools
     apt install -y curl nano net-tools nmap acl openssl
 
 
+
+
+
 --------------------------------------------------------------------------------
 PART 3 : APACHE + PHP + MYSQL (5.1 and 5.2)
 --------------------------------------------------------------------------------
@@ -132,6 +161,7 @@ PART 3 : APACHE + PHP + MYSQL (5.1 and 5.2)
 Step 3.1  Install Apache, PHP, MySQL and jQuery library
     apt install -y apache2 apache2-utils php libapache2-mod-php php-mysql \
         mysql-server libjs-jquery
+
 
 Step 3.2  Start services and enable them at boot
     systemctl enable --now apache2
@@ -147,6 +177,12 @@ Step 3.3  Quick test (terminal)
     curl -I http://localhost
 
     Expected first line: HTTP/1.1 200 OK
+
+
+
+
+
+
 
 --------------------------------------------------------------------
 3A. MYSQL ADMINISTRATION (5.2)
@@ -171,10 +207,14 @@ Step 3.4  Create database, table and users
     NOTE: The web user gets only SELECT and INSERT (least privilege).
           It cannot delete or drop anything.
 
+
+
 Step 3.5  Check what was created
     mysql -e "SHOW DATABASES;"
     mysql -e "USE office_db; SHOW TABLES; DESCRIBE messages;"
     mysql -e "SHOW GRANTS FOR 'office_user'@'localhost';"
+
+
 
 Step 3.6  Secure MySQL (same goals as mysql_secure_installation)
     mysql -e "DELETE FROM mysql.user WHERE User='';"
@@ -186,6 +226,8 @@ Step 3.6  Secure MySQL (same goals as mysql_secure_installation)
     (It should show 127.0.0.1. If not, set bind-address = 127.0.0.1 in
      /etc/mysql/mysql.conf.d/mysqld.cnf and run: systemctl restart mysql)
 
+
+
 Step 3.7  Backup and restore
     mkdir -p /root/backup
     mysqldump office_db > /root/backup/office_db.sql
@@ -194,10 +236,15 @@ Step 3.7  Backup and restore
     Restore (when needed):
         mysql office_db < /root/backup/office_db.sql
 
+
+
 Step 3.8  Useful MySQL admin checks
     mysql -e "SELECT user,host FROM mysql.user;"
     mysql -e "SHOW PROCESSLIST;"
     mysql -e "STATUS;"
+
+
+
 
 --------------------------------------------------------------------
 3B. WEBSITE FILES (HTML, CSS, JS, jQuery, PHP)
@@ -220,6 +267,8 @@ Step 3.10  Database config file (kept OUTSIDE the web folder for safety)
     EOF
     chown root:www-data /var/www/config/db.php
     chmod 640 /var/www/config/db.php
+
+
 
 Step 3.11  index.html  (HTML page with a form)
     cat > /var/www/office/index.html <<'EOF'
@@ -257,6 +306,9 @@ Step 3.11  index.html  (HTML page with a form)
     </html>
     EOF
 
+
+
+
 Step 3.12  style.css  (CSS)
     cat > /var/www/office/style.css <<'EOF'
     body   { font-family: Arial, sans-serif; margin: 0; background: #f2f5f9; }
@@ -272,6 +324,8 @@ Step 3.12  style.css  (CSS)
     table  { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
     EOF
+
+
 
 Step 3.13  script.js  (JavaScript + jQuery AJAX)
     cat > /var/www/office/script.js <<'EOF'
@@ -289,6 +343,9 @@ Step 3.13  script.js  (JavaScript + jQuery AJAX)
       });
     });
     EOF
+
+
+
 
 Step 3.14  submit.php  (PHP saves to MySQL and sends a mail notice)
     cat > /var/www/office/submit.php <<'EOF'
@@ -320,6 +377,12 @@ Step 3.14  submit.php  (PHP saves to MySQL and sends a mail notice)
     NOTE: prepare() + bind_param() is a "prepared statement". It protects the
           database from SQL injection.
 
+
+
+
+
+
+
 Step 3.15  admin/list.php  (shows saved messages)
     cat > /var/www/office/admin/list.php <<'EOF'
     <?php
@@ -350,6 +413,12 @@ Step 3.15  admin/list.php  (shows saved messages)
 
     NOTE: htmlspecialchars() stops XSS (script injection) when showing data.
 
+
+
+
+
+
+
 Step 3.16  Test PHP is working
     echo '<?php phpinfo();' > /var/www/office/info.php
     curl -s http://localhost/info.php | head -n 5
@@ -357,8 +426,14 @@ Step 3.16  Test PHP is working
 
     (Always delete info.php. It shows too much to attackers.)
 
+
+
+
 Step 3.17  Password for the admin area (Basic Auth)
     htpasswd -bc /etc/apache2/.htpasswd admin 'Admin@12345'
+
+
+
 
 Step 3.18  Apache directory rules (ACL for web folders)
     cat > /etc/apache2/conf-available/office-dirs.conf <<'EOF'
@@ -378,6 +453,9 @@ Step 3.18  Apache directory rules (ACL for web folders)
     </Directory>
     EOF
 
+
+
+
 Step 3.19  Harden Apache (hide version, add security headers)
     a2enmod headers
     cat > /etc/apache2/conf-available/hardening.conf <<'EOF'
@@ -387,6 +465,9 @@ Step 3.19  Harden Apache (hide version, add security headers)
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
     EOF
+
+
+
 
 Step 3.20  Create the virtual host for port 80
     cat > /etc/apache2/sites-available/office.conf <<'EOF'
@@ -398,6 +479,9 @@ Step 3.20  Create the virtual host for port 80
         CustomLog ${APACHE_LOG_DIR}/office_access.log combined
     </VirtualHost>
     EOF
+
+
+
 
 Step 3.21  Fix ownership, enable site, test and reload
     chown -R www-data:www-data /var/www/office
@@ -412,6 +496,9 @@ Step 3.21  Fix ownership, enable site, test and reload
 
     Expected: "Syntax OK"
 
+
+
+
 Step 3.22  Terminal test of the full web + database path
     curl -s http://localhost/ | head -n 8
     curl -s -X POST -d "name=Ram&email=ram@office.local&message=Printer not working" \
@@ -419,6 +506,12 @@ Step 3.22  Terminal test of the full web + database path
     mysql -e "SELECT * FROM office_db.messages;"
 
     Expected: {"ok":true} and one row visible in MySQL.
+
+
+
+
+
+
 
 
 --------------------------------------------------------------------------------
@@ -431,11 +524,17 @@ Step 4.1  Create mail users (each gets a Linux account and a mailbox)
     echo 'alice:Alice@12345' | chpasswd
     echo 'bob:Bob@12345'     | chpasswd
 
+
+
+
 Step 4.2  Install Postfix and Dovecot without prompts
     export DEBIAN_FRONTEND=noninteractive
     debconf-set-selections <<< "postfix postfix/mailname string office.local"
     debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
     apt install -y postfix mailutils dovecot-core dovecot-imapd dovecot-pop3d
+
+
+
 
 Step 4.3  Configure Postfix (SMTP server)
     postconf -e "myhostname = mail.office.local"
@@ -453,6 +552,9 @@ Step 4.3  Configure Postfix (SMTP server)
       mynetworks               : who may relay mail (only localhost here)
       home_mailbox = Maildir/  : mail is saved in ~/Maildir (Dovecot reads it)
 
+
+
+
 Step 4.4  Configure Dovecot (IMAP/POP3 server)
     cat > /etc/dovecot/conf.d/99-office.conf <<'EOF'
     mail_location = maildir:~/Maildir
@@ -463,6 +565,9 @@ Step 4.4  Configure Dovecot (IMAP/POP3 server)
 
     (Files that load later override earlier ones, so 99- is a safe place.)
 
+
+
+
 Step 4.5  Send a test mail and check delivery
     echo "Hello Bob, server test." | mail -s "Test 1" bob@office.local
     sleep 3
@@ -471,16 +576,28 @@ Step 4.5  Send a test mail and check delivery
 
     If you see a file in "new", Postfix delivered the mail to Bob.
 
+
+
+
 Step 4.6  Read the mail through Dovecot (IMAP test)
     doveadm auth test bob 'Bob@12345'
     printf 'a1 LOGIN bob Bob@12345\r\na2 SELECT INBOX\r\na3 LOGOUT\r\n' | nc -q 2 localhost 143
 
     Expected: "auth succeeded" and "a2 OK ... Select completed".
 
+
+
+
 Step 4.7  Check the mail logs
     journalctl -u postfix --no-pager | tail -n 15
     tail -n 15 /var/log/mail.log        (if the file exists)
     postqueue -p                         (queue should be empty)
+
+
+
+
+
+
 
 --------------------------------------------------------------------
 4A. ANTI-SPAM MEASURES (Postfix rules)
@@ -503,17 +620,29 @@ Step 4.8  Add basic anti-spam checks
       connection_count_limit   : slows down flooding from one client
       message_size_limit       : max mail size 10 MB
 
+
+
+
 Step 4.9  Optional extra anti-spam (needs internet DNS, may not work in lab)
     - Blocklist check: add  reject_rbl_client zen.spamhaus.org
       inside smtpd_recipient_restrictions.
     - Content filter: apt install -y spamassassin spamc
     - Brute-force protection: apt install -y fail2ban
 
+
+
+
 Step 4.10 Prove it is not an open relay (must be refused from outside)
     From any other machine you would test:  telnet SERVER-IP 25
         MAIL FROM:<x@example.com>
         RCPT TO:<someone@gmail.com>
     Expected: "Relay access denied".
+
+
+
+
+
+
 
 
 --------------------------------------------------------------------------------
@@ -565,11 +694,17 @@ Step 5.3  Enable SSL and create the HTTPS virtual host
     apache2ctl configtest
     systemctl restart apache2
 
+
+
+
 Step 5.4  Test HTTPS in the terminal
     curl -kI https://localhost
     openssl s_client -connect localhost:443 -servername office.local </dev/null 2>/dev/null | grep -E "Protocol|Cipher|subject"
 
     (-k means "accept the self-signed certificate")
+
+
+
 
 Step 5.5  OPTIONAL - force HTTP to redirect to HTTPS
     Replace the port 80 file with this content:
@@ -585,6 +720,9 @@ Step 5.5  OPTIONAL - force HTTP to redirect to HTTPS
     resolve "office.local", so the redirect will break your browser test there.
     Do this step LAST, or skip it in Killercoda. On a real server or your own
     VM, add office.local to your PC hosts file and the redirect works well.
+
+
+
 
 --------------------------------------------------------------------
 5B. TLS FOR POSTFIX AND DOVECOT
@@ -816,6 +954,12 @@ Other ACLs used in this project:
     MySQL    : GRANT / REVOKE for each database user
 
 
+
+
+
+
+
+
 --------------------------------------------------------------------------------
 PART 9 : VERIFY EVERYTHING IN THE WEB BROWSER
 --------------------------------------------------------------------------------
@@ -828,10 +972,16 @@ KILLERCODA BROWSER ACCESS
        the backend. If it fails, verify HTTPS with the terminal commands in
        Step 5.4 and Step 5.8 (curl -k and openssl s_client). That is valid proof.
 
+
+
+
 ON A NORMAL VM / PC
     Add this line to your hosts file, using your server IP:
         192.168.1.50   office.local mail.office.local
     Then open: https://office.local
+
+
+
 
 BROWSER CHECKLIST (tick each item)
 
@@ -851,12 +1001,21 @@ BROWSER CHECKLIST (tick each item)
         ls /home/bob/Maildir/new/   -> a new "New helpdesk message" mail
         (PHP -> Postfix -> Dovecot mailbox chain OK).
 
+
+
+
 TERMINAL SUMMARY TEST (run all and compare)
     systemctl is-active apache2 mysql postfix dovecot ssh
     curl -kI https://localhost | head -n 1
     ufw status | head -n 3
     ss -tulpn | grep -E ":(22|25|80|443|993|995|3306)\b"
     mysql -e "SELECT COUNT(*) AS saved_messages FROM office_db.messages;"
+
+
+
+
+
+
 
 
 --------------------------------------------------------------------------------
@@ -876,6 +1035,9 @@ COMMON COMMANDS
     cat /etc/resolv.conf                   (DNS)
     curl -v http://localhost
     nmap -p 1-1000 localhost
+
+
+
 
 PROBLEM TABLE
 
@@ -915,6 +1077,15 @@ USEFUL LOG FILES
     /var/log/ufw.log                  (blocked traffic)
 
 
+
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------
 PART 11 : PRACTICAL WORKS MAP (CHECKLIST FOR YOUR LAB REPORT)
 --------------------------------------------------------------------------------
@@ -938,6 +1109,15 @@ Contents covered:
     5.1 Apache, HTTPD, Email (SMTP, Postfix, Dovecot) .. Parts 3 and 4
     5.2 MySQL Administration ........................... Part 3A
     5.3 Cryptography, SSH, Firewall, ACLs .............. Parts 5, 6, 7, 8
+
+
+
+
+
+
+
+
+
 
 
 --------------------------------------------------------------------------------
@@ -968,6 +1148,12 @@ Q7. What does a "+" at the end of ls -l permissions mean?
     The file has an ACL.
 
 
+
+
+
+
+
+
 --------------------------------------------------------------------------------
 PART 13 : CLEAN UP (OPTIONAL, FOR RE-DOING THE LAB)
 --------------------------------------------------------------------------------
@@ -977,6 +1163,9 @@ PART 13 : CLEAN UP (OPTIONAL, FOR RE-DOING THE LAB)
     apt purge -y apache2 mysql-server postfix dovecot-core
     rm -rf /var/www/office /var/www/config /etc/ssl/office
     userdel -r alice ; userdel -r bob ; userdel -r sysadmin
+
+
+
 
 Killercoda sessions also reset automatically when the time ends.
 
